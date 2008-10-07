@@ -1,16 +1,23 @@
 from setuptools import setup, find_packages
+import os.path
 
 version = '4.0'
 
 setup(name='Plone',
       version=version,
       description="The Plone Content Management System",
-      long_description="""\
-""",
+      long_description=open("README.txt").read() +  "\n" +
+                       open(os.path.join("docs", "NEWS.txt")).read(),
       classifiers=[
-        "Framework :: Plone",
-        "Framework :: Zope2",
-        "Programming Language :: Python",
+          "Development Status :: 3 - Alpha",
+          "Environment :: Web Environment"
+          "Framework :: Plone",
+          "Framework :: Zope2",
+          "License :: OSI Approved :: GNU General Public License (GPL)",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python",
+          "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+          "Topic :: Software Development :: Libraries :: Python Modules",
         ],
       keywords='Plone CMF python Zope',
       author='Plone Foundation',

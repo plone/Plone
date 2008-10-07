@@ -172,8 +172,8 @@ Preferred but not obligatory (right now)
 
 * QuickInstaller-based installation should use GenericSetup profiles instead 
 
-* use events instead of manage_ methods (which will probably disappear in Plone
-  4.0)
+* use events instead of `manage_` methods (which will probably disappear in
+  Plone 4.0)
 
 * Packaging technology:
 
