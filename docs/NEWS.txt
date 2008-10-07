@@ -1,0 +1,14 @@
+.. This file should contain the changes for the last release only, which
+   will be included on the package's page on pypi. All older entries are
+   kept in HISTORY.txt
+
+Changelog
+=========
+
+3.2a2 - UNRELEASED
+------------------
+
+- First fully eggified Plone release (ignoring the not yet eggified
+  Zope2).
+  [wichert]
+
