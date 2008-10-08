@@ -8,6 +8,10 @@ Changelog
 3.2a2 - UNRELEASED
 ------------------
 
+- Take getNotAddableTypes into account when determining if the editable
+  border should be shown.
+  [wichert]
+
 - First fully eggified Plone release (ignoring the not yet eggified
   Zope2).
   [wichert]
