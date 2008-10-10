@@ -10,7 +10,7 @@ setup(name='Plone',
                        open(os.path.join("docs", "NEWS.txt")).read(),
       classifiers=[
           "Development Status :: 3 - Alpha",
-          "Environment :: Web Environment"
+          "Environment :: Web Environment",
           "Framework :: Plone",
           "Framework :: Zope2",
           "License :: OSI Approved :: GNU General Public License (GPL)",
