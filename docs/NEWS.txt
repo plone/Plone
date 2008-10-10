@@ -5,8 +5,8 @@
 Changelog
 =========
 
-3.2a2 - UNRELEASED
-------------------
+3.2a1 - October 11, 2008
+------------------------
 
 - Take getNotAddableTypes into account when determining if the editable
   border should be shown.
