@@ -11,6 +11,9 @@ Plone 4.0 - UNRELEASED
 * in which it is being first introduced.
 ***
 
+- Removed unmaintained wicked.
+  [hannosch]
+
 - Removed long unmaintained external editor support.
   [hannosch]
 
