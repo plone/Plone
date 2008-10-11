@@ -1,0 +1,679 @@
+<?xml version="1.0"?>
+<object name="portal_actions" meta_type="Plone Actions Tool"
+   xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+ <action-provider name="portal_workflow"/>
+ <action-provider name="portal_types"/>
+ <action-provider name="portal_actions" />
+
+ <object name="controlpanel" meta_type="CMF Action Category">
+  <property name="title">Control Panel</property>
+  <object name="controlpanel_plone" meta_type="CMF Action Category">
+   <property name="title" i18n:domain="plone"
+       i18n:translate="">Plone Configuration</property>
+   <object name="QuickInstaller" meta_type="CMF Action" i18n:domain="plone">
+    <property name="title" i18n:translate="">Add-on Products</property>
+    <property name="description" i18n:translate=""></property>
+    <property name="url_expr">string:${portal_url}/prefs_install_products_form</property>
+    <property name="icon_expr">string:$portal_url/product_icon.gif</property>
+    <property name="available_expr"></property>
+    <property name="permissions">
+     <element value="Manage portal"/>
+    </property>
+    <property name="visible">True</property>
+   </object>
+   <object name="PloneReconfig" meta_type="CMF Action" i18n:domain="plone">
+    <property name="title" i18n:translate="">Site</property>
+    <property name="description" i18n:translate=""></property>
+    <property name="url_expr">string:${portal_url}/@@site-controlpanel</property>
+    <property name="icon_expr">string:$portal_url/logoIcon.gif</property>
+    <property name="available_expr"></property>
+    <property name="permissions">
+     <element value="Manage portal"/>
+    </property>
+    <property name="visible">True</property>
+   </object>
+   <object name="UsersGroups" meta_type="CMF Action" i18n:domain="plone">
+    <property name="title" i18n:translate="">Users and Groups</property>
+    <property name="description" i18n:translate=""></property>
+    <property name="url_expr">string:${portal_url}/prefs_users_overview</property>
+    <property name="icon_expr">string:$portal_url/group.gif</property>
+    <property name="available_expr"></property>
+    <property name="permissions">
+     <element value="Manage portal"/>
+    </property>
+    <property name="visible">True</property>
+   </object>
+   <object name="MailHost" meta_type="CMF Action" i18n:domain="plone">
+    <property name="title" i18n:translate="">Mail</property>
+    <property name="description" i18n:translate=""></property>
+    <property name="url_expr">string:${portal_url}/@@mail-controlpanel</property>
+    <property name="icon_expr">string:$portal_url/mail_icon.gif</property>
+    <property name="available_expr"></property>
+    <property name="permissions">
+     <element value="Manage portal"/>
+    </property>
+    <property name="visible">True</property>
+   </object>
+   <object name="PortalSkin" meta_type="CMF Action" i18n:domain="plone">
+    <property name="title" i18n:translate="">Themes</property>
+    <property name="description" i18n:translate=""></property>
+    <property name="url_expr">string:${portal_url}/@@skins-controlpanel</property>
+    <property name="icon_expr">string:$portal_url/skins_icon.gif</property>
+    <property name="available_expr"></property>
+    <property name="permissions">
+     <element value="Manage portal"/>
+    </property>
+    <property name="visible">True</property>
+   </object>
+   <object name="errorLog" meta_type="CMF Action" i18n:domain="plone">
+    <property name="title" i18n:translate="">Errors</property>
+    <property name="description" i18n:translate=""></property>
+    <property name="url_expr">string:${portal_url}/prefs_error_log_form</property>
+    <property name="icon_expr">string:$portal_url/error_log_icon.gif</property>
+    <property name="available_expr"></property>
+    <property name="permissions">
+     <element value="Manage portal"/>
+    </property>
+    <property name="visible">True</property>
+   </object>
+   <object name="TypesSettings" meta_type="CMF Action" i18n:domain="plone">
+    <property name="title" i18n:translate="">Types</property>
+    <property name="description" i18n:translate=""></property>
+    <property name="url_expr">string:${portal_url}/@@types-controlpanel</property>
+    <property name="icon_expr">string:$portal_url/document_icon.gif</property>
+    <property name="available_expr"></property>
+    <property name="permissions">
+     <element value="Manage portal"/>
+    </property>
+    <property name="visible">True</property>
+   </object>
+   <object name="MarkupSettings" meta_type="CMF Action" i18n:domain="plone">
+    <property name="title" i18n:translate="">Markup</property>
+    <property name="description" i18n:translate=""></property>
+    <property name="url_expr">string:${portal_url}/@@markup-controlpanel</property>
+    <property name="icon_expr">string:$portal_url/edit.gif</property>
+    <property name="available_expr"></property>
+    <property name="permissions">
+     <element value="Manage portal"/>
+    </property>
+    <property name="visible">True</property>
+   </object>
+   <object name="SecuritySettings" meta_type="CMF Action" i18n:domain="plone">
+    <property name="title" i18n:translate="">Security</property>
+    <property name="description" i18n:translate=""></property>
+    <property name="url_expr">string:${portal_url}/@@security-controlpanel</property>
+    <property name="icon_expr">string:$portal_url/lock_icon.gif</property>
+    <property name="available_expr"></property>
+    <property name="permissions">
+     <element value="Manage portal"/>
+    </property>
+    <property name="visible">True</property>
+   </object>
+   <object name="SearchSettings" meta_type="CMF Action" i18n:domain="plone">
+    <property name="title" i18n:translate="">Search</property>
+    <property name="description" i18n:translate=""></property>
+    <property name="url_expr">string:${portal_url}/@@search-controlpanel</property>
+    <property name="icon_expr">string:$portal_url/search_icon.gif</property>
+    <property name="available_expr"></property>
+    <property name="permissions">
+     <element value="Manage portal"/>
+    </property>
+    <property name="visible">True</property>
+   </object>
+   <object name="NavigationSettings" meta_type="CMF Action" i18n:domain="plone">
+    <property name="title" i18n:translate="">Navigation</property>
+    <property name="description" i18n:translate=""></property>
+    <property name="url_expr">string:${portal_url}/prefs_navigation_form</property>
+    <property name="icon_expr">string:$portal_url/navigation_icon.gif</property>
+    <property name="available_expr"></property>
+    <property name="permissions">
+     <element value="Manage portal"/>
+    </property>
+    <property name="visible">True</property>
+   </object>
+   <object name="PloneLanguageTool" meta_type="CMF Action" i18n:domain="plone">
+    <property name="title" i18n:translate="">Language</property>
+    <property name="description" i18n:translate=""></property>
+    <property name="url_expr">string:${portal_url}/@@language-controlpanel</property>
+    <property name="icon_expr">string:$portal_url/flag-plone.gif</property>
+    <property name="available_expr"></property>
+    <property name="permissions">
+     <element value="Manage portal"/>
+    </property>
+    <property name="visible">True</property>
+   </object>
+   <object name="CalendarSettings" meta_type="CMF Action" i18n:domain="plone">
+    <property name="title" i18n:translate="">Calendar</property>
+    <property name="description" i18n:translate=""></property>
+    <property name="url_expr">string:${portal_url}/@@calendar-controlpanel</property>
+    <property name="icon_expr">string:$portal_url/event_icon.gif</property>
+    <property name="available_expr"></property>
+    <property name="permissions">
+     <element value="Manage portal"/>
+    </property>
+    <property name="visible">True</property>
+   </object>
+   <object name="HtmlFilter" meta_type="CMF Action" i18n:domain="plone">
+    <property name="title" i18n:translate="">HTML Filtering</property>
+    <property name="description" i18n:translate=""></property>
+    <property name="url_expr">string:${portal_url}/@@filter-controlpanel</property>
+    <property name="icon_expr">string:$portal_url/htmlfilter_icon.gif</property>
+    <property name="available_expr"></property>
+    <property name="permissions">
+     <element value="Manage portal"/>
+    </property>
+    <property name="visible">True</property>
+   </object>
+   <object name="Maintenance" meta_type="CMF Action" i18n:domain="plone">
+    <property name="title" i18n:translate="">Maintenance</property>
+    <property name="description" i18n:translate=""></property>
+    <property name="url_expr">string:${portal_url}/@@maintenance-controlpanel</property>
+    <property name="icon_expr">string:$portal_url/maintenance_icon.gif</property>
+    <property name="available_expr"></property>
+    <property name="permissions">
+     <element value="Manage portal"/>
+    </property>
+    <property name="visible">True</property>
+   </object>
+   <object name="ContentRules" meta_type="CMF Action" i18n:domain="plone">
+    <property name="title" i18n:translate="">Content Rules</property>
+    <property name="description" i18n:translate=""></property>
+    <property name="url_expr">string:${portal_url}/@@rules-controlpanel</property>
+    <property name="icon_expr">string:$portal_url/contentrules_icon.gif</property>
+    <property name="available_expr"></property>
+    <property name="permissions">
+     <element value="Manage portal"/>
+    </property>
+    <property name="visible">True</property>
+   </object>
+   <object name="kupu" meta_type="CMF Action" i18n:domain="plone">
+    <property name="title" i18n:translate="">Visual editor</property>
+    <property name="description" i18n:translate=""></property>
+    <property name="url_expr">string:${portal_url}/kupu_library_tool/kupu_config</property>
+    <property name="icon_expr">string:$portal_url/kupuimages/kupu_icon.gif</property>
+    <property name="available_expr"></property>
+    <property name="permissions">
+     <element value="Manage portal"/>
+    </property>
+    <property name="visible">True</property>
+   </object>
+  </object>
+  <object name="controlpanel_addons" meta_type="CMF Action Category">
+   <property name="title" i18n:domain="plone"
+       i18n:translate="">Add-on Configuration</property>
+  </object>
+  <object name="controlpanel_advanced" meta_type="CMF Action Category">
+   <property name="title" i18n:domain="plone"
+       i18n:translate="">Advanced Configuration</property>
+   <object name="RamCache" meta_type="CMF Action" i18n:domain="plone">
+    <property name="title" i18n:translate="">RAM Cache</property>
+    <property name="description" i18n:translate=""></property>
+    <property name="url_expr">string:${portal_url}/@@ramcache-controlpanel</property>
+    <property name="icon_expr">string:$portal_url/misc_/StandardCacheManagers/cache.gif</property>
+    <property name="available_expr"></property>
+    <property name="permissions">
+     <element value="Manage portal"/>
+    </property>
+    <property name="visible">True</property>
+   </object>
+   <object name="Viewlets" meta_type="CMF Action" i18n:domain="plone">
+    <property name="title" i18n:translate="">Viewlets</property>
+    <property name="description" i18n:translate=""></property>
+    <property name="url_expr">string:${portal_url}/@@manage-viewlets</property>
+    <property name="icon_expr">string:$portal_url/skins_icon.gif</property>
+    <property name="available_expr"></property>
+    <property name="permissions">
+     <element value="Manage portal"/>
+    </property>
+    <property name="visible">True</property>
+   </object>
+   <object name="collection" meta_type="CMF Action" i18n:domain="plone">
+    <property name="title" i18n:translate="">Collection</property>
+    <property name="description" i18n:translate=""></property>
+    <property name="url_expr">string:${portal_url}/portal_atct/atct_manageTopicIndex</property>
+    <property name="icon_expr">string:$portal_url/topic_icon.gif</property>
+    <property name="available_expr"></property>
+    <property name="permissions">
+     <element value="Manage portal"/>
+    </property>
+    <property name="visible">True</property>
+   </object>
+   <object name="ZMI" meta_type="CMF Action" i18n:domain="plone">
+    <property name="title" i18n:translate="">Zope Management Interface</property>
+    <property name="description" i18n:translate=""></property>
+    <property name="url_expr">string:${portal_url}/manage_main</property>
+    <property name="icon_expr">string:$portal_url/zope_icon.gif</property>
+    <property name="available_expr"></property>
+    <property name="permissions">
+     <element value="Manage portal"/>
+    </property>
+    <property name="visible">True</property>
+   </object>
+  </object>
+  <object name="controlpanel_user" meta_type="CMF Action Category">
+   <property name="title" i18n:domain="plone"
+       i18n:translate="">User Configuration</property>
+   <object name="MemberPrefs" meta_type="CMF Action" i18n:domain="plone">
+    <property name="title" i18n:translate="">Personal Preferences</property>
+    <property name="description" i18n:translate=""></property>
+    <property name="url_expr">string:${portal_url}/personalize_form</property>
+    <property name="icon_expr">string:$portal_url/user.gif</property>
+    <property name="available_expr"></property>
+    <property name="permissions">
+     <element value="Set own properties"/>
+    </property>
+    <property name="visible">True</property>
+   </object>
+   <object name="MemberPassword" meta_type="CMF Action" i18n:domain="plone">
+    <property name="title" i18n:translate="">Change Password</property>
+    <property name="description" i18n:translate=""></property>
+    <property name="url_expr">string:${portal_url}/password_form</property>
+    <property name="icon_expr">string:$portal_url/lock_icon.gif</property>
+    <property name="available_expr">python:member.canPasswordSet()</property>
+    <property name="permissions">
+     <element value="Set own password"/>
+    </property>
+    <property name="visible">True</property>
+   </object>
+  </object>
+ </object>
+ <object name="document_actions" meta_type="CMF Action Category">
+  <property name="title"></property>
+  <object name="rss" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">RSS feed</property>
+   <property name="description" i18n:translate=""></property>
+   <property name="url_expr">string:$object_url/RSS</property>
+   <property name="icon_expr">string:$portal_url/rss.gif</property>
+   <property
+      name="available_expr">python:portal.portal_syndication.isSyndicationAllowed(object)</property>
+   <property name="permissions">
+    <element value="View"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+  <object name="sendto" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">Send this</property>
+   <property name="description" i18n:translate=""></property>
+   <property name="url_expr">string:$object_url/sendto_form</property>
+   <property name="icon_expr">string:$portal_url/mail_icon.gif</property>
+   <property name="available_expr"></property>
+   <property name="permissions">
+    <element value="Allow sendto"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+  <object name="print" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">Print this</property>
+   <property name="description" i18n:translate=""></property>
+   <property name="url_expr">string:javascript:this.print();</property>
+   <property name="icon_expr">string:$portal_url/print_icon.gif</property>
+   <property name="available_expr"></property>
+   <property name="permissions">
+    <element value="View"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+  <object name="addtofavorites" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">Add to favorites</property>
+   <property name="description" i18n:translate=""></property>
+   <property name="url_expr">string:${object_url}/addtoFavorites</property>
+   <property name="icon_expr">string:$portal_url/favorite_icon.gif</property>
+   <property
+      name="available_expr">python:(member is not None) and (portal.portal_membership.getHomeFolder() is not None)</property>
+   <property name="permissions">
+    <element value="View"/>
+   </property>
+   <property name="visible">False</property>
+  </object>
+  <object name="full_screen" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">Toggle full screen mode</property>
+   <property name="description" i18n:translate=""></property>
+   <property
+      name="url_expr">string:javascript:toggleFullScreenMode();</property>
+   <property
+      name="icon_expr">string:$portal_url/fullscreenexpand_icon.gif</property>
+   <property name="available_expr">python:member is not None</property>
+   <property name="permissions">
+    <element value="View"/>
+   </property>
+   <property name="visible">False</property>
+  </object>
+ </object>
+ <object name="site_actions" meta_type="CMF Action Category">
+  <property name="title"></property>
+  <object name="sitemap" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">Site Map</property>
+   <property name="description" i18n:translate=""></property>
+   <property name="url_expr">string:$portal_url/sitemap</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions">
+    <element value="View"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+  <object name="accessibility" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">Accessibility</property>
+   <property name="description" i18n:translate=""></property>
+   <property
+      name="url_expr">string:${portal_url}/accessibility-info</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions">
+    <element value="View"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+  <object name="contact" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">Contact</property>
+   <property name="description" i18n:translate=""></property>
+   <property name="url_expr">string:${portal_url}/contact-info</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions">
+    <element value="View"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+  <object name="plone_setup" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">Site Setup</property>
+   <property name="description" i18n:translate=""></property>
+   <property
+      name="url_expr">string:${portal_url}/plone_control_panel</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions">
+    <element value="Manage portal"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+ </object>
+ <object name="folder_buttons" meta_type="CMF Action Category">
+  <property name="title"></property>
+  <object name="copy" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">Copy</property>
+   <property name="description" i18n:translate=""></property>
+   <property name="url_expr">string:folder_copy:method</property>
+   <property name="icon_expr">string:$portal_url/copy_icon.gif</property>
+   <property name="available_expr"></property>
+   <property name="permissions">
+    <element value="Copy or Move"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+  <object name="cut" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">Cut</property>
+   <property name="description" i18n:translate=""></property>
+   <property name="url_expr">string:folder_cut:method</property>
+   <property name="icon_expr">string:$portal_url/cut_icon.gif</property>
+   <property
+      name="available_expr">python:checkPermission("Delete objects", object)</property>
+   <property name="permissions">
+    <element value="Copy or Move"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+  <object name="rename" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">Rename</property>
+   <property name="description" i18n:translate=""></property>
+   <property name="url_expr">string:folder_rename_form:method</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions">
+    <element value="Add portal content"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+  <object name="paste" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">Paste</property>
+   <property name="description" i18n:translate=""></property>
+   <property name="url_expr">string:folder_paste:method</property>
+   <property name="icon_expr">string:$portal_url/paste_icon.gif</property>
+   <property name="available_expr">folder/cb_dataValid</property>
+   <property name="permissions">
+    <element value="Add portal content"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+  <object name="delete" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">Delete</property>
+   <property name="description" i18n:translate=""></property>
+   <property name="url_expr">string:folder_delete:method</property>
+   <property name="icon_expr">string:$portal_url/delete_icon.gif</property>
+   <property name="available_expr"></property>
+   <property name="permissions">
+    <element value="Delete objects"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+  <object name="change_state" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">Change State</property>
+   <property name="description" i18n:translate=""></property>
+   <property name="url_expr">string:content_status_history:method</property>
+   <property name="icon_expr"></property>
+   <property
+      name="available_expr">python:checkPermission("Modify portal content", object) or checkPermission("Review portal content", object)</property>
+   <property name="permissions">
+    <element value="View"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+ </object>
+ <object name="object" meta_type="CMF Action Category">
+  <property name="title"></property>
+  <object name="folderContents" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">Contents</property>
+   <property name="description" i18n:translate=""></property>
+   <property
+      name="url_expr">string:${globals_view/getCurrentFolderUrl}/folder_contents</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr">object/displayContentsTab</property>
+   <property name="permissions">
+    <element value="List folder contents"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+  <object name="syndication" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">Syndication</property>
+   <property name="description" i18n:translate=""></property>
+   <property name="url_expr">string:${folder_url}/synPropertiesForm</property>
+   <property name="icon_expr"></property>
+   <property
+      name="available_expr">python:folder is object and portal.portal_syndication.isSiteSyndicationAllowed()</property>
+   <property name="permissions">
+    <element value="Manage properties"/>
+   </property>
+   <property name="visible">False</property>
+  </object>
+  <object name="contentrules" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">Rules</property>
+   <property name="description" i18n:translate=""></property>
+   <property
+      name="url_expr">string:${plone_context_state/canonical_object_url}/@@manage-content-rules</property>
+   <property name="icon_expr"></property>
+   <property
+      name="available_expr">python:plone_context_state.canonical_object().restrictedTraverse('@@plone_contentrules_info').show_rules_tab()</property>
+   <property name="permissions">
+    <element value="Content rules: Manage rules"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+  <object name="local_roles" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">Sharing</property>
+   <property name="description" i18n:translate=""></property>
+   <property name="url_expr">string:${object_url}/@@sharing</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions">
+    <element value="Sharing page: Delegate roles"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+ </object>
+ <object name="object_buttons" meta_type="CMF Action Category">
+  <property name="title"></property>
+  <object name="cut" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">Cut</property>
+   <property name="description" i18n:translate=""></property>
+   <property
+      name="url_expr">string:${globals_view/getCurrentObjectUrl}/object_cut</property>
+   <property name="icon_expr">string:$portal_url/cut_icon.gif</property>
+   <property
+      name="available_expr">python:checkPermission("Delete objects", globals_view.getParentObject()) and checkPermission("Copy or Move", object) and not globals_view.isPortalOrPortalDefaultPage()</property>
+   <property name="permissions">
+    <element value="Delete objects"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+  <object name="copy" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">Copy</property>
+   <property name="description" i18n:translate=""></property>
+   <property
+      name="url_expr">string:${globals_view/getCurrentObjectUrl}/object_copy</property>
+   <property name="icon_expr">string:$portal_url/copy_icon.gif</property>
+   <property
+      name="available_expr">python:checkPermission("Copy or Move", object) and not globals_view.isPortalOrPortalDefaultPage()</property>
+   <property name="permissions">
+    <element value="View"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+  <object name="paste" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">Paste</property>
+   <property name="description" i18n:translate=""></property>
+   <property
+      name="url_expr">string:${globals_view/getCurrentFolderUrl}/object_paste</property>
+   <property name="icon_expr">string:$portal_url/paste_icon.gif</property>
+   <property name="available_expr">folder/cb_dataValid|nothing</property>
+   <property name="permissions">
+    <element value="View"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+  <object name="delete" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">Delete</property>
+   <property name="description" i18n:translate=""></property>
+   <property
+      name="url_expr">string:${globals_view/getCurrentObjectUrl}/delete_confirmation</property>
+   <property name="icon_expr">string:$portal_url/delete_icon.gif</property>
+   <property
+      name="available_expr">python:checkPermission("Delete objects", globals_view.getParentObject()) and not globals_view.isPortalOrPortalDefaultPage()</property>
+   <property name="permissions">
+    <element value="Delete objects"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+  <object name="rename" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">Rename</property>
+   <property name="description" i18n:translate=""></property>
+   <property
+      name="url_expr">string:${globals_view/getCurrentObjectUrl}/object_rename</property>
+   <property name="icon_expr"></property>
+   <property
+      name="available_expr">python:checkPermission("Delete objects", globals_view.getParentObject()) and checkPermission("Copy or Move", object) and checkPermission("Add portal content", object) and not globals_view.isPortalOrPortalDefaultPage()</property>
+   <property name="permissions">
+    <element value="Add Portal Content"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+ </object>
+ <object name="portal_tabs" meta_type="CMF Action Category">
+  <property name="title"></property>
+  <object name="index_html" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">Home</property>
+   <property name="description" i18n:translate=""></property>
+   <property
+      name="url_expr">string:${globals_view/navigationRootUrl}</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr"></property>
+   <property name="permissions">
+    <element value="View"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+ </object>
+ <object name="user" meta_type="CMF Action Category">
+  <property name="title"></property>
+  <object name="preferences" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">Preferences</property>
+   <property name="description" i18n:translate=""></property>
+   <property
+      name="url_expr">string:${portal_url}/plone_memberprefs_panel</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr">python:member is not None</property>
+   <property name="permissions">
+    <element value="View"/>
+   </property>
+   <property name="visible">False</property>
+  </object>
+  <object name="login" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">Log in</property>
+   <property name="description" i18n:translate=""></property>
+   <property name="url_expr">string:${portal_url}/login_form</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr">python:member is None</property>
+   <property name="permissions">
+    <element value="View"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+  <object name="join" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">Register</property>
+   <property name="description" i18n:translate=""></property>
+   <property name="url_expr">string:${portal_url}/join_form</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr">python:member is None</property>
+   <property name="permissions">
+    <element value="Add portal member"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+  <object name="undo" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">Undo</property>
+   <property name="description" i18n:translate=""></property>
+   <property name="url_expr">string:${portal_url}/undo_form</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr">python:member is not None</property>
+   <property name="permissions">
+    <element value="List undoable changes"/>
+   </property>
+   <property name="visible">False</property>
+  </object>
+  <object name="logout" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">Log out</property>
+   <property name="description" i18n:translate=""></property>
+   <property name="url_expr">string:${portal_url}/logout</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr">python:member is not None</property>
+   <property name="permissions">
+    <element value="View"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+  <object name="addFavorite" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">Add to favorites</property>
+   <property name="description" i18n:translate=""></property>
+   <property name="url_expr">string:${object_url}/addtoFavorites</property>
+   <property name="icon_expr">string:$portal_url/favorite_icon.gif</property>
+   <property
+      name="available_expr">python: portal.portal_membership.getHomeFolder() is not None</property>
+   <property name="permissions">
+    <element value="View"/>
+   </property>
+   <property name="visible">False</property>
+  </object>
+  <object name="favorites" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">My favorites</property>
+   <property name="description" i18n:translate=""></property>
+   <property
+      name="url_expr">string:${portal/portal_membership/getHomeUrl}/Favorites/folder_contents</property>
+   <property name="icon_expr"></property>
+   <property
+      name="available_expr">python:(member is not None) and hasattr(portal.portal_membership.getHomeFolder(), "Favorites")</property>
+   <property name="permissions">
+    <element value="View"/>
+   </property>
+   <property name="visible">False</property>
+  </object>
+ </object>
+</object>

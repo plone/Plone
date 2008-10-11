@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<object name="portal_actions">
+  <object name="document_actions">
+    <object name="extedit" remove="True" />
+  </object>
+</object>
