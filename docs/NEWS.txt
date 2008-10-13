@@ -8,7 +8,8 @@ Changelog
 3.2 - Unreleased
 ----------------
 
-- ...
+- Include missing dependency on plone.app.locales.
+  [hannosch]
 
 
 3.2a1 - October 11, 2008
