@@ -12,10 +12,12 @@ Plone 4.0 - UNRELEASED
   navtree_preferences.  Request from theming sprinter at ploneconf2008.
   [MatthewWilkes]
 
-- Removed unmaintained wicked.
+- Removed unmaintained wicked. See PLIP #8593 at
+  http://dev.plone.org/plone/ticket/8593.
   [hannosch]
 
-- Removed long unmaintained external editor support.
+- Removed long unmaintained external editor support. See PLIP #8592 at
+  http://dev.plone.org/plone/ticket/8592.
   [hannosch]
 
 - Fixed missing define for portal in the prefs_user_memberships template.
