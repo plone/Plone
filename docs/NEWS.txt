@@ -8,6 +8,10 @@ Changelog
 Plone 4.0 - UNRELEASED
 ----------------------
 
+- Exposed option to honour exclude from navigation even in subfolders from
+  navtree_preferences.  Request from theming sprinter at ploneconf2008.
+  [MatthewWilkes]
+
 - Removed unmaintained wicked.
   [hannosch]
 
