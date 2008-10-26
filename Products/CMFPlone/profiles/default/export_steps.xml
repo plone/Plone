@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<export-steps>
+ <export-step id="atcttool"
+              handler="Products.ATContentTypes.exportimport.atcttool.exportATCTTool"
+              title="ATContentTypes Tool">
+  Export ATContentTypes specific configuration.
+ </export-step>
+ <export-step id="content"
+              handler="Products.CMFCore.exportimport.content.exportSiteStructure"
+              title="Content">
+  Export the site's structure and content.
+ </export-step>
+ <export-step id="cssregistry"
+              handler="Products.ResourceRegistries.exportimport.cssregistry.exportCSSRegistry"
+              title="Stylesheet registry">
+   Export stylesheet registry
+ </export-step>
+ <export-step id="kssregistry"
+              handler="Products.ResourceRegistries.exportimport.kssregistry.exportKSSRegistry"
+              title="KSS registry">
+   Export stylesheet registry
+ </export-step>
+ <export-step id="factorytool"
+              handler="Products.CMFPlone.exportimport.factorytool.exportFactoryTool"
+              title="Portal Factory Tool">
+  Export type registration for the portal factory tool.
+ </export-step>
+ <export-step id="jsregistry"
+              handler="Products.ResourceRegistries.exportimport.jsregistry.exportJSRegistry"
+              title="Javascript registry">
+   Export javascript registry
+ </export-step>
+ <export-step id="memberdata-properties"
+              handler="Products.CMFPlone.exportimport.memberdata_properties.exportMemberDataProperties"
+              title="MemberData properties">
+   Export MemberData properties
+ </export-step>
+ <export-step id="propertiestool"
+              handler="Products.CMFPlone.exportimport.propertiestool.exportPloneProperties"
+              title="Plone Properties">
+  Export plone properties tool and subobjects.
+ </export-step>
+ <export-step id="viewlets"
+              handler="plone.app.viewletmanager.exportimport.storage.exportViewletSettingsStorage"
+              title="Viewlet Settings">
+  Export viewlet settings
+ </export-step>
+ <export-step id="kupu-setup" version="20061211-01"
+              handler="Products.kupu.plone.exportimport.exportKupuSettings"
+              title="Kupu Settings">
+  Export Kupu settings
+ </export-step>
+</export-steps>

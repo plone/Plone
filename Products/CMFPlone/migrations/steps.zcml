@@ -1,0 +1,494 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="plone">
+
+  <!-- General -->
+
+  <genericsetup:upgradeSteps
+      source="*"
+      destination="3.0.5"
+      profile="Products.CMFPlone:plone">
+
+      <genericsetup:upgradeStep
+          title="Make the portal a Zope3 site"
+          handler=".v3_0.alphas.enableZope3Site"
+          />
+
+      <genericsetup:upgradeStep
+          title="Register some tools as utilities"
+          handler=".v3_0.alphas.registerToolsAsUtilities"
+          />
+
+  </genericsetup:upgradeSteps>
+
+  <!-- Plone 2.5.x -->
+
+  <genericsetup:upgradeSteps
+      source="2.5"
+      destination="2.5.1.rc1"
+      profile="Products.CMFPlone:plone">
+
+      <genericsetup:upgradeStep
+          title="Migrate all existing actions to new-style actions"
+          handler=".v3_0.alphas.migrateOldActions"
+          />
+
+      <genericsetup:upgradeStep
+          title="Repair plone_lexicon pipeline"
+          handler=".v2_5.fixupPloneLexicon"
+          />
+
+      <genericsetup:upgradeStep
+          title="General required migration steps"
+          handler=".v2_5.final_two51"
+          />
+
+  </genericsetup:upgradeSteps>
+
+  <genericsetup:upgradeStep
+      source="2.5.1.rc1"
+      destination="2.5.1"
+      title="Empty upgrade step"
+      profile="Products.CMFPlone:plone"
+      handler=".null_upgrade_step"
+      />
+
+  <genericsetup:upgradeStep
+      source="2.5.1"
+      destination="2.5.2.rc1"
+      title="Changes cookie auth redirects to the correct location"
+      profile="Products.CMFPlone:plone"
+      handler=".v2_5.setLoginFormInCookieAuth"
+      />
+
+  <genericsetup:upgradeStep
+      source="2.5.2.rc1"
+      destination="2.5.2"
+      title="Empty upgrade step"
+      profile="Products.CMFPlone:plone"
+      handler=".null_upgrade_step"
+      />
+
+  <genericsetup:upgradeStep
+      source="2.5.2"
+      destination="2.5.3.rc1"
+      title="Add markdown and textile mime types."
+      profile="Products.CMFPlone:plone"
+      handler=".v2_5.addMissingMimeTypes"
+      />
+
+  <genericsetup:upgradeStep
+      source="2.5.3.rc1"
+      destination="2.5.3"
+      title="Empty upgrade step"
+      profile="Products.CMFPlone:plone"
+      handler=".null_upgrade_step"
+      />
+
+  <genericsetup:upgradeStep
+      source="2.5.3"
+      destination="2.5.4"
+      title="Correct baseline profile in GenericSetup."
+      profile="Products.CMFPlone:plone"
+      handler=".v3_0.alphas.updateImportStepsFromBaseProfile"
+      />
+
+  <genericsetup:upgradeStep
+      source="2.5.4"
+      destination="2.5.4.2"
+      title="Empty upgrade step"
+      profile="Products.CMFPlone:plone"
+      handler=".null_upgrade_step"
+      />
+
+  <genericsetup:upgradeStep
+      source="2.5.4.2"
+      destination="2.5.5"
+      title="Empty upgrade step"
+      profile="Products.CMFPlone:plone"
+      handler=".null_upgrade_step"
+      />
+
+  <genericsetup:upgradeSteps
+      source="2.5.5"
+      destination="3.0.a1"
+      profile="Products.CMFPlone:plone">
+
+      <genericsetup:upgradeStep
+          title="Updates the available GS import steps"
+          handler=".v3_0.alphas.updateImportStepsFromBaseProfile"
+          />
+
+      <genericsetup:upgradeStep
+          title="Migrate all existing actions to new-style actions"
+          handler=".v3_0.alphas.migrateOldActions"
+          />
+
+      <genericsetup:upgradeStep
+          title="Add an i18n_domain to actions"
+          handler=".v3_0.alphas.updateActionsI18NDomain"
+          />
+
+      <genericsetup:upgradeStep
+          title="Add an i18n_domain to type information"
+          handler=".v3_0.alphas.updateFTII18NDomain"
+          />
+
+      <genericsetup:upgradeStep
+          title="General required migration steps"
+          handler=".v3_0.alphas.three0_alpha1"
+          />
+
+      <genericsetup:upgradeStep
+          title="Remove tableless skin"
+          handler=".v3_0.alphas.removeTablelessSkin"
+          />
+
+      <genericsetup:upgradeStep
+          title="Add portlet managers"
+          handler=".v3_0.alphas.addPortletManagers"
+          />
+
+      <genericsetup:upgradeStep
+          title="Migrate legacy portlets"
+          handler=".v3_0.alphas.convertLegacyPortlets"
+          />
+
+  </genericsetup:upgradeSteps>
+
+  <!-- Plone 3.0 -->
+
+  <genericsetup:upgradeSteps
+      source="3.0.a1"
+      destination="3.0.a2"
+      profile="Products.CMFPlone:plone">
+
+      <genericsetup:upgradeStep
+          title="General required migration steps"
+          handler=".v3_0.alphas.alpha1_alpha2"
+          />
+
+      <genericsetup:upgradeStep
+          title="Add reader and editor roles"
+          handler=".v3_0.alphas.addReaderAndEditorRoles"
+          />
+
+      <genericsetup:upgradeStep
+          title="Change folder_localrole_form to @@sharing"
+          handler=".v3_0.alphas.migrateLocalroleForm"
+          />
+
+      <genericsetup:upgradeStep
+          title="Reorder the user actions"
+          handler=".v3_0.alphas.reorderUserActions"
+          />
+
+      <genericsetup:upgradeStep
+          title="Install KSS"
+          handler=".v3_0.alphas.installKss"
+          />
+
+  </genericsetup:upgradeSteps>
+
+  <genericsetup:upgradeSteps
+      source="3.0.a2"
+      destination="3.0.b1"
+      profile="Products.CMFPlone:plone">
+
+      <genericsetup:upgradeStep
+          title="General required migration steps"
+          handler=".v3_0.alphas.alpha2_beta1"
+          />
+
+      <genericsetup:upgradeStep
+          title="Use the unpacked kukit-src.js and pack it ourself"
+          handler=".v3_0.alphas.updateKukitJS"
+          />
+
+      <genericsetup:upgradeStep
+          title="Remove the mystuff user action"
+          handler=".v3_0.alphas.removeMyStuffAction"
+          />
+
+      <genericsetup:upgradeStep
+          title="Modify security settings to match new default policies"
+          handler=".v3_0.alphas.updateMemberSecurity"
+          />
+
+      <genericsetup:upgradeStep
+          title="Add new Plone Session Plugin"
+          handler=".v3_0.alphas.updatePASPlugins"
+          />
+
+      <genericsetup:upgradeStep
+          title="Add a RAMCache for ResourceRegistries"
+          handler=".v3_0.alphas.addCacheForResourceRegistry"
+          />
+
+      <genericsetup:upgradeStep
+          title="Add the object_provides catalog index"
+          handler=".v3_0.alphas.addObjectProvidesIndex"
+          />
+
+      <genericsetup:upgradeStep
+          title="Add additional example workflows"
+          handler=".v3_0.alphas.addMissingWorkflows"
+          />
+
+      <genericsetup:upgradeStep
+          title="Replace obsolete PlonePAS version of plone tool"
+          handler=".v3_0.alphas.restorePloneTool"
+          />
+
+  </genericsetup:upgradeSteps>
+
+  <genericsetup:upgradeSteps
+      source="3.0.b1"
+      destination="3.0.b2"
+      profile="Products.CMFPlone:plone">
+
+      <genericsetup:upgradeStep
+          title="Migrate history action"
+          handler=".v3_0.betas.migrateHistoryTab"
+          />
+
+      <genericsetup:upgradeStep
+          title="Change the order of action providers"
+          handler=".v3_0.betas.changeOrderOfActionProviders"
+          />
+
+      <genericsetup:upgradeStep
+          title="Update edit action with locking condition"
+          handler=".v3_0.betas.updateEditActionConditionForLocking"
+          />
+
+      <genericsetup:upgradeStep
+          title="Add form unload JS to the JSregistry"
+          handler=".v3_0.betas.addOnFormUnloadJS"
+          />
+
+      <genericsetup:upgradeStep
+          title="Remove old no longer used actions"
+          handler=".v3_0.betas.cleanupOldActions"
+          />
+
+      <genericsetup:upgradeStep
+          title="Remove empty default_charset from portal"
+          handler=".v3_0.betas.cleanDefaultCharset"
+          />
+
+      <genericsetup:upgradeStep
+          title="General required migration steps"
+          handler=".v3_0.betas.beta1_beta2"
+          />
+
+      <genericsetup:upgradeStep
+          title="Add automatic group PAS plugin"
+          handler=".v3_0.betas.addAutoGroupToPAS"
+          />
+
+      <genericsetup:upgradeStep
+          title="Remove s5_presentation action"
+          handler=".v3_0.betas.removeS5Actions"
+          />
+
+      <genericsetup:upgradeStep
+          title="Associate portal_kss with RAM cache"
+          handler=".v3_0.betas.addCacheForKSSRegistry"
+          />
+
+      <genericsetup:upgradeStep
+          title="Disable KSS for anonymous users"
+          handler=".v3_0.betas.modifyKSSResources"
+          />
+
+      <genericsetup:upgradeStep
+          title="Allow contributer role to add content"
+          handler=".v3_0.betas.addContributorToCreationPermissions"
+          />
+
+      <genericsetup:upgradeStep
+          title="Remove no longer existing action proiders"
+          handler=".v3_0.betas.cleanupActionProviders"
+          />
+
+      <genericsetup:upgradeStep
+          title="Remove properties tab from types"
+          handler=".v3_0.betas.hidePropertiesAction"
+          />
+
+  </genericsetup:upgradeSteps>
+
+  <genericsetup:upgradeSteps
+      source="3.0.b2"
+      destination="3.0.b3"
+      profile="Products.CMFPlone:plone">
+
+      <genericsetup:upgradeStep
+          title="General required migration steps"
+          handler=".v3_0.betas.beta2_beta3"
+          />
+
+      <genericsetup:upgradeStep
+          title="Remove sharing action from types"
+          handler=".v3_0.betas.removeSharingAction"
+          />
+
+      <genericsetup:upgradeStep
+          title="Grant editor role secondary edit permissions"
+          handler=".v3_0.betas.addEditorToSecondaryEditorPermissions"
+          />
+
+  </genericsetup:upgradeSteps>
+
+  <genericsetup:upgradeSteps
+      source="3.0.b3"
+      destination="3.0.rc1"
+      profile="Products.CMFPlone:plone">
+
+      <genericsetup:upgradeStep
+          title="General required migration steps"
+          handler=".v3_0.betas.beta3_rc1"
+          />
+
+      <genericsetup:upgradeStep
+          title="Change the title of topics to collection"
+          handler=".v3_0.betas.updateTopicTitle"
+          />
+
+      <genericsetup:upgradeStep
+          title="Separate KSS development and production resources"
+          handler=".v3_0.betas.modifyKSSResourcesForDevelMode"
+          />
+
+  </genericsetup:upgradeSteps>
+
+  <genericsetup:upgradeStep
+      source="3.0.rc1"
+      destination="3.0.rc2"
+      title="Add intelligenttext mime type and transforms"
+      profile="Products.CMFPlone:plone"
+      handler=".v3_0.rcs.addIntelligentText"
+      />
+
+  <genericsetup:upgradeStep
+      source="3.0.rc2"
+      destination="3.0"
+      title="General required migration steps"
+      profile="Products.CMFPlone:plone"
+      handler=".v3_0.rcs.rc2_final"
+      />
+
+  <!-- Plone 3.0.x -->
+
+  <genericsetup:upgradeStep
+      source="3.0"
+      destination="3.0.1"
+      title="General required migration steps"
+      profile="Products.CMFPlone:plone"
+      handler=".v3_0.final_three0x.final_three01"
+      />
+
+  <genericsetup:upgradeStep
+      source="3.0.1"
+      destination="3.0.2"
+      title="General required migration steps"
+      profile="Products.CMFPlone:plone"
+      handler=".v3_0.final_three0x.three01_three02"
+      />
+
+  <genericsetup:upgradeStep
+      source="3.0.2"
+      destination="3.0.3"
+      title="Empty upgrade step"
+      profile="Products.CMFPlone:plone"
+      handler=".null_upgrade_step"
+      />
+
+  <genericsetup:upgradeSteps
+      source="3.0.3"
+      destination="3.0.4"
+      profile="Products.CMFPlone:plone">
+
+      <genericsetup:upgradeStep
+          title="General required migration steps"
+          handler=".v3_0.final_three0x.three03_three04"
+          />
+
+      <genericsetup:upgradeStep
+          title="Added new CMFEditions modifiers"
+          handler=".v3_0.final_three0x.installNewModifiers"
+          />
+
+  </genericsetup:upgradeSteps>
+
+  <genericsetup:upgradeStep
+      source="3.0.4"
+      destination="3.0.5"
+      title="Empty upgrade step"
+      profile="Products.CMFPlone:plone"
+      handler=".null_upgrade_step"
+      />
+
+  <genericsetup:upgradeStep
+      source="3.0.5"
+      destination="3.0.6"
+      title="Empty upgrade step"
+      profile="Products.CMFPlone:plone"
+      handler=".null_upgrade_step"
+      />
+
+  <!-- Plone 3.1.x -->
+
+  <genericsetup:upgradeStep
+      source="3.0.6"
+      destination="3.1-beta1"
+      title="Upgrade from Plone 3.0.6 to Plone 3.1-beta1"
+      profile="Products.CMFPlone:plone"
+      handler=".v3_1.betas.three0_beta1"
+      />
+
+  <genericsetup:upgradeStep
+      source="3.1-beta1"
+      destination="3.1-rc1"
+      title="Empty upgrade step"
+      profile="Products.CMFPlone:plone"
+      handler=".null_upgrade_step"
+      />
+
+  <genericsetup:upgradeStep
+      source="3.1-rc1"
+      destination="3.1"
+      title="Empty upgrade step"
+      profile="Products.CMFPlone:plone"
+      handler=".null_upgrade_step"
+      />
+
+  <genericsetup:upgradeStep
+      source="3.1"
+      destination="3.1.1"
+      title="Empty upgrade step"
+      profile="Products.CMFPlone:plone"
+      handler=".null_upgrade_step"
+      />
+
+  <genericsetup:upgradeStep
+      source="3.1.1"
+      destination="3.1.2"
+      title="Upgrade from Plone 3.1.1 to Plone 3.1.2"
+      profile="Products.CMFPlone:plone"
+      handler=".v3_1.final_three1x.three11_three12"
+      />
+
+  <!-- Plone 4.0 -->
+
+  <genericsetup:upgradeStep
+      source="3.1.2"
+      destination="4.0.dev"
+      title="Upgrade from Plone 3.1.1 to Plone 4.0.dev."
+      profile="Products.CMFPlone:plone"
+      handler=".v4_0.alphas.threeX_alpha1"
+      />
+
+</configure>

@@ -46,7 +46,6 @@ from Products.CMFEditions.interfaces.IRepository import IRepositoryTool
 from Products.CMFEditions.interfaces import IStorageTool
 from Products.CMFFormController.interfaces import IFormControllerTool
 from Products.CMFQuickInstallerTool.interfaces import IQuickInstallerTool
-from Products.CMFPlacefulWorkflow.global_symbols import placeful_prefs_configlet
 from Products.CMFPlacefulWorkflow.interfaces import IPlacefulMarker
 from Products.CMFPlone.interfaces import IControlPanel
 from Products.CMFPlone.interfaces import IFactoryTool
@@ -109,8 +108,6 @@ from Products.CMFPlone.migrations.v3_0.betas import addOnFormUnloadJS
 
 from Products.CMFPlone.migrations.v3_0.betas import beta3_rc1
 from Products.CMFPlone.migrations.v3_0.betas import modifyKSSResourcesForDevelMode
-from Products.CMFPlone.migrations.v3_0.betas import moveKupuAndCMFPWControlPanel
-from Products.CMFPlone.migrations.v3_0.betas import updateLanguageControlPanel
 from Products.CMFPlone.migrations.v3_0.betas import updateTopicTitle
 from Products.CMFPlone.migrations.v3_0.betas import cleanupActionProviders
 from Products.CMFPlone.migrations.v3_0.betas import hidePropertiesAction
@@ -455,7 +452,6 @@ class TestMigrations_v2_5_x(MigrationTest):
 
     def afterSetUp(self):
         self.profile = 'profile-Products.CMFPlone.migrations:2.5.x-3.0a1'
-        self.cp = self.portal.portal_controlpanel
         self.icons = self.portal.portal_actionicons
         self.types = self.portal.portal_types
         self.properties = self.portal.portal_properties
@@ -546,31 +542,6 @@ class TestMigrations_v2_5_x(MigrationTest):
                 'text/plain', 'text/plain-pre', 'text/x-python',
                 'text/x-web-markdown', 'text/x-web-intelligent', 'text/x-web-textile')
             )
-
-    def testAddIconForMarkupAndCalendarConfiglet(self):
-        self.removeActionIconFromTool('MarkupSettings')
-        self.removeActionIconFromTool('CalendarSettings')
-        # Test it twice
-        for i in range(2):
-            loadMigrationProfile(self.portal, self.profile, ('action-icons', ))
-            self.failUnless('MarkupSettings' in [x.getActionId() for x in self.icons.listActionIcons()])
-            self.failUnless('CalendarSettings' in [x.getActionId() for x in self.icons.listActionIcons()])
-
-    def testAddMarkupAndCalendarConfiglet(self):
-        self.removeActionFromTool('MarkupSettings', action_provider='portal_controlpanel')
-        self.removeActionFromTool('CalendarSettings', action_provider='portal_controlpanel')
-        # Test it twice
-        for i in range(2):
-            loadMigrationProfile(self.portal, self.profile, ('controlpanel', ))
-            self.failUnless('MarkupSettings' in [action.getId() for action in self.cp.listActions()])
-            self.failUnless('CalendarSettings' in [x.getId() for x in self.cp.listActions()])
-            types = self.cp.getActionObject('Plone/MarkupSettings')
-            cal = self.cp.getActionObject('Plone/CalendarSettings')
-            self.assertEquals(types.action.text,
-                              'string:${portal_url}/@@markup-controlpanel')
-            self.assertEquals(cal.title, 'Calendar')
-            self.assertEquals(cal.action.text,
-                              'string:${portal_url}/@@calendar-controlpanel')
 
     def testTablelessRemoval(self):
         st = getToolByName(self.portal, "portal_skins")
@@ -783,24 +754,6 @@ class TestMigrations_v3_0_alpha1(MigrationTest):
     def afterSetUp(self):
         self.profile = 'profile-Products.CMFPlone.migrations:3.0a1-3.0a2'
         self.actions = self.portal.portal_actions
-        self.cp = self.portal.portal_controlpanel
-
-    def testUpdateSearchAndMailHostConfiglet(self):
-        search = self.cp.getActionObject('Plone/SearchSettings')
-        mail = self.cp.getActionObject('Plone/MailHost')
-        search.action = Expression('string:search')
-        mail.action = Expression('string:mail')
-        # Test it twice
-        for i in range(2):
-            loadMigrationProfile(self.portal, self.profile, ('controlpanel', ))
-            search = self.cp.getActionObject('Plone/SearchSettings')
-            mail = self.cp.getActionObject('Plone/MailHost')
-            self.assertEquals(search.title, 'Search')
-            self.assertEquals(search.action.text,
-                              'string:${portal_url}/@@search-controlpanel')
-            self.assertEquals(mail.title, 'Mail')
-            self.assertEquals(mail.action.text,
-                              'string:${portal_url}/@@mail-controlpanel')
 
     def testInstallRedirectorUtility(self):
         sm = getSiteManager(self.portal)
@@ -961,7 +914,6 @@ class TestMigrations_v3_0_alpha2(MigrationTest):
     def afterSetUp(self):
         self.profile = 'profile-Products.CMFPlone.migrations:3.0a2-3.0b1'
         self.actions = self.portal.portal_actions
-        self.cp = self.portal.portal_controlpanel
         self.icons = self.portal.portal_actionicons
         self.properties = self.portal.portal_properties
 
@@ -1044,69 +996,6 @@ class TestMigrations_v3_0_alpha2(MigrationTest):
         self.failUnless('@@kss_devel_mode' in resource2.getExpression())
         self.failUnless('isoff' in resource1.getExpression())
         self.failUnless('ison' in resource2.getExpression())
-
-    def testVariousConfiglets(self):
-        skins = self.cp.getActionObject('Plone/PortalSkin')
-        site = self.cp.getActionObject('Plone/PloneReconfig')
-        skins.action = Expression('string:skins')
-        site.action = Expression('string:site')
-        RENAMED_CONFIGLETS = [
-            ('Plone/portal_atct', 'Collection'),
-            ('Plone/PloneLanguageTool', 'Language'),
-            ('Plone/NavigationSettings', 'Navigation'),
-            ('Plone/UsersGroups', 'Users and Groups'),
-            ('Plone/UsersGroups2', 'Users and Groups')]
-        for ren in RENAMED_CONFIGLETS:
-            conf = self.cp.getActionObject(ren[0])
-            conf.title = 'wrongtitle'
-        ADDED_CONFIGLETS = ('ContentRules', 'HtmlFilter', 'Maintenance',
-                            'SecuritySettings', 'TypesSettings')
-        for add in ADDED_CONFIGLETS:
-            self.removeActionFromTool(add, action_provider='portal_controlpanel')
-        # Test it twice
-        for i in range(2):
-            loadMigrationProfile(self.portal, self.profile, ('controlpanel', ))
-            skins = self.cp.getActionObject('Plone/PortalSkin')
-            site = self.cp.getActionObject('Plone/PloneReconfig')
-            self.assertEquals(skins.title, 'Themes')
-            self.assertEquals(skins.action.text,
-                              'string:${portal_url}/@@skins-controlpanel')
-            self.assertEquals(site.title, 'Site')
-            self.assertEquals(site.action.text,
-                              'string:${portal_url}/@@site-controlpanel')
-            for ren in RENAMED_CONFIGLETS:
-                conf = self.cp.getActionObject(ren[0])
-                self.assertEquals(conf.title, ren[1])
-            actionids = [x.getId() for x in self.cp.listActions()]
-            for add in ADDED_CONFIGLETS:
-                self.failUnless(add in actionids)
-            htmlfilter = self.cp.getActionObject('Plone/HtmlFilter')
-            self.assertEquals(htmlfilter.title, 'HTML Filtering')
-            self.assertEquals(htmlfilter.action.text,
-                              'string:${portal_url}/@@filter-controlpanel')
-            main = self.cp.getActionObject('Plone/Maintenance')
-            self.assertEquals(main.title, 'Maintenance')
-            self.assertEquals(main.action.text,
-                              'string:${portal_url}/@@maintenance-controlpanel')
-            security = self.cp.getActionObject('Plone/SecuritySettings')
-            self.assertEquals(security.title, 'Security')
-            self.assertEquals(security.action.text,
-                              'string:${portal_url}/@@security-controlpanel')
-            types = self.cp.getActionObject('Plone/TypesSettings')
-            self.assertEquals(types.action.text,
-                              'string:${portal_url}/@@types-controlpanel')
-
-    def testaddIconsForVariousConfiglets(self):
-        ICONS = ('ContentRules', 'HtmlFilter', 'Maintenance',
-                 'SecuritySettings', 'TypesSettings')
-        for i in ICONS:
-            self.removeActionIconFromTool(i)
-        # Test it twice
-        for i in range(2):
-            loadMigrationProfile(self.portal, self.profile, ('action-icons', ))
-            iconids = [x.getActionId() for x in self.icons.listActionIcons()]
-            for i in ICONS:
-                self.failUnless(i in iconids)
 
     def testInstallContentrulesAndLanguageUtilities(self):
         sm = getSiteManager()
@@ -1225,7 +1114,6 @@ class TestMigrations_v3_0(MigrationTest):
     def afterSetUp(self):
         self.profile = 'profile-Products.CMFPlone.migrations:3.0b1-3.0b2'
         self.actions = self.portal.portal_actions
-        self.cp = self.portal.portal_controlpanel
         self.icons = self.portal.portal_actionicons
         self.skins = self.portal.portal_skins
         self.types = self.portal.portal_types
@@ -1515,31 +1403,6 @@ class TestMigrations_v3_0(MigrationTest):
         beta3_rc1(self.portal)
         util = queryUtility(IRAMCache)
         self.failUnless(util.maxAge == 3600)
-
-    def testMoveKupuAndCMFPWControlPanel(self):
-        kupu = self.cp.getActionObject('Plone/kupu')
-        kupu.category = 'Products'
-        cmfpw = self.cp.getActionObject('Products/placefulworkflow')
-        if cmfpw is None:
-            self.cp.registerConfiglet(**placeful_prefs_configlet)
-        cmfpw = self.cp.getActionObject('Products/placefulworkflow')
-        cmfpw.category = 'Plone'
-        # Test it twice
-        for i in range(2):
-            moveKupuAndCMFPWControlPanel(self.portal)
-            kupu = self.cp.getActionObject('Plone/kupu')
-            self.assertEquals(kupu.getCategory(), 'Plone')
-            cmfpw = self.cp.getActionObject('Products/placefulworkflow')
-            self.assertEquals(cmfpw.getCategory(), 'Products')
-
-    def testUpdateLanguageControlPanel(self):
-        lang = self.cp.getActionObject('Plone/PloneLanguageTool')
-        lang.action = Expression('string:lang')
-        # Test it twice
-        for i in range(2):
-            updateLanguageControlPanel(self.portal)
-            self.assertEquals(lang.action.text,
-                              'string:${portal_url}/@@language-controlpanel')
 
     def testUpdateTopicTitle(self):
         topic = self.types.get('Topic')

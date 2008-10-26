@@ -8,6 +8,10 @@ Changelog
 Plone 4.0 - UNRELEASED
 ----------------------
 
+- Removed controlpanel.xml files and related migrations. The new controlpanel
+  overview is backed by normal actions from the actions tool.
+  [hannosch]
+
 - Removed the plone_control_panel template, which is superseded by a view
   in plone.app.controlpanel.
   [hannosch]

@@ -49,9 +49,7 @@ class TestPortalCreation(PloneTestCase.PloneTestCase, WarningInterceptor):
         self.membership = self.portal.portal_membership
         self.workflow = self.portal.portal_workflow
         self.types = self.portal.portal_types
-        self.cp = self.portal.portal_controlpanel
         self.actions = self.portal.portal_actions
-        self.icons = self.portal.portal_actionicons
         self.properties = self.portal.portal_properties
         self.memberdata = self.portal.portal_memberdata
         self.catalog = self.portal.portal_catalog
@@ -97,12 +95,6 @@ class TestPortalCreation(PloneTestCase.PloneTestCase, WarningInterceptor):
     def testCanViewManagementScreen(self):
         # Make sure the ZMI management screen works
         self.portal.manage_main()
-
-    def testControlPanelGroups(self):
-        # Test for http://dev.plone.org/plone/ticket/2749
-        # Wake up object, in the case it was deactivated.
-        dir(self.cp); dir(self.cp)
-        self.failUnless(self.cp.__dict__.has_key('groups'))
 
     def testWorkflowIsActionProvider(self):
         # The workflow tool is one of the last remaining action providers.
@@ -432,14 +424,6 @@ class TestPortalCreation(PloneTestCase.PloneTestCase, WarningInterceptor):
         # site_properties should have enable_livesearch property
         self.failUnless(self.properties.site_properties.hasProperty('enable_livesearch'))
 
-    def testSearchSettingsActionIcon(self):
-        # There should be a SearchSettings action icon
-        for icon in self.icons.listActionIcons():
-            if icon.getActionId() == 'SearchSettings':
-                break
-        else:
-            self.fail("Action icons tool has no 'SearchSettings' icon")
-
     def testPortalFTIIsDynamicFTI(self):
         # Plone Site FTI should be a DynamicView FTI
         fti = self.portal.getTypeInfo()
@@ -488,25 +472,6 @@ class TestPortalCreation(PloneTestCase.PloneTestCase, WarningInterceptor):
                 self.assertEqual(action.getActionExpression(), 'string:${object_url}/edit')
             if action.getId() == 'sharing':
                 self.assertEqual(action.getActionExpression(), 'string:${object_url}/sharing')
-
-    def testNavigationSettingsActionIcon(self):
-        # There should be a NavigationSettings action icon
-        for icon in self.icons.listActionIcons():
-            if icon.getActionId() == 'NavigationSettings':
-                break
-        else:
-            self.fail("Action icons tool has no 'NavigationSettings' icon")
-
-    def testNavigationAndSearchPanelsInstalled(self):
-        # Navigation and search panels should be installed
-        haveSearch = False
-        haveNavigation = False
-        for panel in self.cp.listActions():
-            if panel.getId() == 'SearchSettings':
-                haveSearch = True
-            elif panel.getId() == 'NavigationSettings':
-                haveNavigation = True
-        self.failUnless(haveSearch and haveNavigation)
 
     def testOwnerHasAccessInactivePermission(self):
         permission_on_role = [p for p in self.portal.permissionsOfRole('Owner')
