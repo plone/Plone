@@ -8,6 +8,9 @@ Changelog
 Plone 4.0 - UNRELEASED
 ----------------------
 
+- Removed our own home-grown dependency checking code.
+  [hannosch]
+
 - Exposed option to honour exclude from navigation even in subfolders from
   navtree_preferences.  Request from theming sprinter at ploneconf2008.
   [MatthewWilkes]
