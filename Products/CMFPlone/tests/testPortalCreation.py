@@ -369,14 +369,6 @@ class TestPortalCreation(PloneTestCase.PloneTestCase, WarningInterceptor):
                          'Topic'):
             self.failUnless(metaType in types)
 
-    def testAllDependenciesMet(self):
-        from Products.CMFPlone.setup import dependencies
-        # filter out the unknown Zope version message
-        msgs = [x for x in dependencies.messages if
-                  not x['message'].startswith('Unable to detect Zope version.')]
-        msgs = [x for x in msgs if not x['optional']]
-        self.failUnlessEqual(msgs, [])
-
     def testDisableFolderSectionsSiteProperty(self):
         # The disable_folder_sections site property should be emtpy
         props = self.portal.portal_properties.site_properties
