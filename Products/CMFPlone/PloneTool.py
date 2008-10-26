@@ -484,8 +484,11 @@ class PloneTool(PloneBaseTool, UniqueObject, SimpleItem):
         >>> url = 'http://dev.plone.org/plone/query?milestone=2.1#foo'
         >>> tuple(ptool.urlparse(url))
         ('http', 'dev.plone.org', '/plone/query', '', 'milestone=2.1', 'foo')
+        
+        New in Python 2.6: urlparse now returns a ParseReusult object.
+        We just need the tuple form which is tuple(result).
         """
-        return urlparse.urlparse(url)
+        return tuple(urlparse.urlparse(url))
 
     security.declarePublic('urlunparse')
     def urlunparse(self, url_tuple):
