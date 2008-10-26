@@ -8,6 +8,10 @@ Changelog
 Plone 4.0 - UNRELEASED
 ----------------------
 
+- Removed the plone_control_panel template, which is superseded by a view
+  in plone.app.controlpanel.
+  [hannosch]
+
 - Removed the graphviz-based reference visualization from standard content
   types, since Archetypes has stopped supporting it.
   [hannosch]
