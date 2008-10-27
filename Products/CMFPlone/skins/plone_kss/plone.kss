@@ -260,50 +260,46 @@ body:load {
     toggleClass-classname: "selected";
 }
 
+/* Generic setup which (made more specific by other rules) */
+.update-selection:click, #listing-table .column:click {
+    action-server: update_table url(kssAttr("serveraction", true));
+    evt-click-preventdefault: True;
+    update_table-pagenumber: currentFormVar('pagenumber');
+    update_table-show_all: currentFormVar('show_all');
+    update_table-sort_on: currentFormVar('sort_on');
+}
+
+#foldercontents-show-batched:click {
+    update_table-show_all: "false";
+} 
+
+#foldercontents-show-all:click {
+    update_table-show_all: "true";
+        update_table-pagenumber: "1";
+} 
 
 #foldercontents-title-column:click {
-    action-server: foldercontents_update_table;
-    evt-click-preventdefault: True;
-    foldercontents_update_table-pagenumber: currentFormVar('pagenumber');
-    foldercontents_update_table-sort_on: "sortable_title";
+    update_table-sort_on: "sortable_title";
 } 
 
 #foldercontents-modified-column:click {
-    action-server: foldercontents_update_table;
-    evt-click-preventdefault: True;
-    foldercontents_update_table-pagenumber: currentFormVar('pagenumber');
-    foldercontents_update_table-sort_on: "modified";
+    update_table-sort_on: "modified";
 } 
 
 #foldercontents-status-column:click {
-    action-server: foldercontents_update_table;
-    evt-click-preventdefault: True;
-    foldercontents_update_table-pagenumber: currentFormVar('pagenumber');
-    foldercontents_update_table-sort_on: "review_state";
+    update_table-sort_on: "review_state";
 } 
 
 #foldercontents-selectall:click {
-    action-server: foldercontents_update_table;
-    foldercontents_update_table-pagenumber: currentFormVar('pagenumber');
-    foldercontents_update_table-sort_on: currentFormVar('sort_on');
-    foldercontents_update_table-select: 'screen';
-    evt-click-preventdefault: True;
+    update_table-select: 'screen';
 } 
 
 #foldercontents-selectall-completebatch:click {
-    action-server: foldercontents_update_table;
-    foldercontents_update_table-pagenumber: currentFormVar('pagenumber');
-    foldercontents_update_table-sort_on: currentFormVar('sort_on');
-    foldercontents_update_table-select: 'all';
-    evt-click-preventdefault: True;
+    update_table-select: 'all';
 } 
 
 #foldercontents-clearselection:click {
-    action-server: foldercontents_update_table;
-    foldercontents_update_table-pagenumber: currentFormVar('pagenumber');
-    foldercontents_update_table-sort_on: currentFormVar('sort_on');
-    foldercontents_update_table-select: 'none';
-    evt-click-preventdefault: True;
+    update_table-select: 'none';
 } 
 
 #folderlisting-main-table:load { 
