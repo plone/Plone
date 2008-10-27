@@ -8,6 +8,9 @@ Changelog
 Plone 4.0 - UNRELEASED
 ----------------------
 
+- Removed unmaintained and unused Favorite content type.
+  [hannosch]
+
 - Removed controlpanel.xml files and related migrations. The new controlpanel
   overview is backed by normal actions from the actions tool.
   [hannosch]

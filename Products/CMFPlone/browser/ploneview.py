@@ -201,9 +201,7 @@ class Plone(BrowserView):
                 return True
 
         # Check to see if the user is able to add content
-        exclude = context.getNotAddableTypes()
-        allowedTypes = [fti for fti in _allowedTypes(request, context)
-                        if fti.getId() not in exclude]
+        allowedTypes = [fti for fti in _allowedTypes(request, context)]
         if allowedTypes:
             return True
 

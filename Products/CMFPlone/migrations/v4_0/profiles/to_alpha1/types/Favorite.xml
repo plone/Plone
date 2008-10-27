@@ -1,5 +1,0 @@
-<?xml version="1.0"?>
-<object name="Favorite">
- <property name="content_icon">favorite_icon.png</property>
- <action action_id="external_edit" category="object" remove="True" />
-</object>

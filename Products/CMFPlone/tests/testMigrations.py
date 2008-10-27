@@ -1267,7 +1267,7 @@ class TestMigrations_v3_0(MigrationTest):
     def testAddContributorToCreationPermissions(self):
         self.portal._delRoles(['Contributor',])
         for p in ['Add portal content', 'Add portal folders', 'ATContentTypes: Add Document',
-                    'ATContentTypes: Add Event', 'ATContentTypes: Add Favorite',
+                    'ATContentTypes: Add Event',
                     'ATContentTypes: Add File', 'ATContentTypes: Add Folder', 
                     'ATContentTypes: Add Image', 'ATContentTypes: Add Large Plone Folder',
                     'ATContentTypes: Add Link', 'ATContentTypes: Add News Item', ]:
@@ -1278,7 +1278,7 @@ class TestMigrations_v3_0(MigrationTest):
             self.failUnless('Contributor' in self.portal.valid_roles())
             self.failUnless('Contributor' in self.portal.acl_users.portal_role_manager.listRoleIds())
             for p in ['Add portal content', 'Add portal folders', 'ATContentTypes: Add Document',
-                        'ATContentTypes: Add Event', 'ATContentTypes: Add Favorite',
+                        'ATContentTypes: Add Event',
                         'ATContentTypes: Add File', 'ATContentTypes: Add Folder', 
                         'ATContentTypes: Add Image', 'ATContentTypes: Add Large Plone Folder',
                         'ATContentTypes: Add Link', 'ATContentTypes: Add News Item', ]:
@@ -1352,7 +1352,7 @@ class TestMigrations_v3_0(MigrationTest):
             self.assertEquals(False, bool(self.portal.acquiredRolesAreUsedBy('Manage properties')))
 
     def testUpdateEditActionConditionForLocking(self):
-        lockable_types = ['Document', 'Event', 'Favorite', 'File', 'Folder',
+        lockable_types = ['Document', 'Event', 'File', 'Folder',
                           'Image', 'Large Plone Folder', 'Link',
                           'News Item', 'Topic']
         for contentType in lockable_types:
