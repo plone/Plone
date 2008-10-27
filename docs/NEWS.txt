@@ -8,6 +8,10 @@ Changelog
 Plone 4.0 - UNRELEASED
 ----------------------
 
+- Removed persistent control panel tool. The control panel section is based
+  on normal actions, stored in the actions tool.
+  [hannosch]
+
 - Removed unmaintained and unused Favorite content type.
   [hannosch]
 

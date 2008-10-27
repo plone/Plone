@@ -47,7 +47,6 @@ from Products.CMFEditions.interfaces import IStorageTool
 from Products.CMFFormController.interfaces import IFormControllerTool
 from Products.CMFQuickInstallerTool.interfaces import IQuickInstallerTool
 from Products.CMFPlacefulWorkflow.interfaces import IPlacefulMarker
-from Products.CMFPlone.interfaces import IControlPanel
 from Products.CMFPlone.interfaces import IFactoryTool
 from Products.CMFPlone.interfaces import IInterfaceTool
 from Products.CMFPlone.interfaces import IMigrationTool
@@ -733,7 +732,7 @@ class TestMigrations_v2_5_x(MigrationTest):
                       IMembershipTool, IGroupTool, IGroupDataTool,
                       IMemberDataTool, IArchetypeTool, ICachingPolicyManager,
                       IRegistrationTool, ITranslationServiceTool,
-                      IControlPanel, ISetupTool, IQuickInstallerTool,
+                      ISetupTool, IQuickInstallerTool,
                      )
         for i in interfaces:
             sm.unregisterUtility(provided=i)

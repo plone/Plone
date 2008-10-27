@@ -117,7 +117,7 @@ def initialize(context):
 
     # Plone tools
     import PloneTool, FactoryTool
-    import InterfaceTool, MigrationTool, PloneControlPanel
+    import InterfaceTool, MigrationTool
     import MembershipTool, WorkflowTool, URLTool, MetadataTool
     import RegistrationTool, MemberDataTool, SyndicationTool
     import PropertiesTool, ActionsTool, TypesTool, UndoTool
@@ -135,7 +135,6 @@ def initialize(context):
               PropertiesTool.PropertiesTool,
               MigrationTool.MigrationTool,
               InterfaceTool.InterfaceTool,
-              PloneControlPanel.PloneControlPanel,
               RegistrationTool.RegistrationTool,
               URLTool.URLTool,
               MetadataTool.MetadataTool,

@@ -26,7 +26,6 @@ from Products.CMFCore.permissions import AccessInactivePortalContent
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone import setuphandlers
 from Products.CMFPlone.factory import _DEFAULT_PROFILE
-from Products.CMFPlone.interfaces import IControlPanel
 from Products.CMFPlone.UnicodeSplitter import Splitter, CaseNormalizer
 from Products.GenericSetup.interfaces import ISetupTool
 from Products.GenericSetup.browser.manage import ExportStepsView
