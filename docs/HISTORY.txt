@@ -4,6 +4,12 @@ Changelog
 3.2 - Unreleased
 ----------------
 
+- Fixed Forbidden error when attempting to login for the first time as a newly
+  created user, if the must_change_password property has been added (as a
+  Boolean) to the portal_memberdata tool and set to True.
+  Closes https://dev.plone.org/plone/ticket/8425
+  [hexsprite]
+
 - Fixed the toc.js to not turn heading text containing an "@" into the link.
   Closes http://dev.plone.org/plone/ticket/7949
   [sbruno, calvinhp]
