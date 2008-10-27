@@ -4,6 +4,10 @@ Changelog
 3.2 - Unreleased
 ----------------
 
+- Fixed the toc.js to not turn heading text containing an "@" into the link.
+  Closes http://dev.plone.org/plone/ticket/7949
+  [sbruno, calvinhp]
+
 - Fixed the form_tabbing to use the correct buttons names. Closes
   http://dev.plone.org/plone/ticket/7559
   [lucie, calvinhp]
