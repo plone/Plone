@@ -1,6 +1,13 @@
 Changelog
 =========
 
+3.2 - Unreleased
+----------------
+
+- Fixed the full_review_list select all link to only select the items shown
+  and not all of the items at the portal root. This closes:
+  http://dev.plone.org/plone/ticket/6991
+  [garbas, calvinhp]
 
 3.1.6 - October 7, 2008
 -----------------------
