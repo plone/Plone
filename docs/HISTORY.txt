@@ -15,6 +15,10 @@ Changelog
   http://dev.plone.org/plone/ticket/7559
   [lucie, calvinhp]
 
+- Gave RTL.css higher priority within the stylesheet registry.
+  Closes http://dev.plone.org/plone/ticket/8505
+  [emanlove]
+
 3.2a1 - October 11, 2008
 ------------------------
 
