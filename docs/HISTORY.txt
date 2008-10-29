@@ -19,6 +19,10 @@ Changelog
   Closes http://dev.plone.org/plone/ticket/8505
   [emanlove]
 
+- For RTL languages shifted Info Bar to the right.
+  Closes http://dev.plone.org/plone/ticket/8140
+  [emanlove]
+
 3.2a1 - October 11, 2008
 ------------------------
 
