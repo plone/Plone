@@ -29,7 +29,7 @@ class TestNoGETControlPanel(PloneTestCase.FunctionalTestCase):
         self.assertEqual(response.getStatus(), 403)
 
         data = StringIO(qstring)
-        if env.has_key('QUERY_STRING'):
+        if 'QUERY_STRING' in env:
             del env['QUERY_STRING']
         response = self.publish(path, basic_auth, env, request_method='POST',
                                 stdin=data)
