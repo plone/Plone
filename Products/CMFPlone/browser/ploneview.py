@@ -13,12 +13,15 @@ from Products.CMFPlone import utils
 from Products.CMFPlone.browser.interfaces import IPlone
 
 from zope.deprecation import deprecate
-from zope.interface import implements
+from zope.interface import implements, alsoProvides
 from zope.component import getMultiAdapter, queryMultiAdapter, getUtility
+
+import sys
 
 from plone.memoize.view import memoize
 from plone.portlets.interfaces import IPortletManager, IPortletManagerRenderer
 
+from plone.app.layout.globals.interfaces import IViewView
 from plone.app.layout.icons.interfaces import IContentIcon
 
 from plone.app.content.browser.folderfactories import _allowedTypes
@@ -27,6 +30,16 @@ _marker = []
 
 class Plone(BrowserView):
     implements(IPlone)
+
+    def mark_view(self):
+        """ Adds a marker interface to the view if it is "the" view for the context
+            May only be called from a template.
+        """
+        context = sys._getframe(2).f_locals['econtext']
+        view = context.vars.get('view', None)
+        context_state = getMultiAdapter((self.context, self.request), name=u'plone_context_state')
+        if view and context_state.is_view_template() and not IViewView.providedBy(view):
+            alsoProvides(view, IViewView)
 
     # XXX: This is lame
     def hide_columns(self, column_left, column_right):
