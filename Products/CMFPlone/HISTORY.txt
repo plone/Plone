@@ -4,6 +4,9 @@ Changelog for Plone
 
 Plone 3.1.7 - UNRELEASED
 
+    - Updated the PloneTool normalization tests to match plone.i18n policies.
+      [hannosch]
+
     - Inline editing now supports Unlock on page unload.
       [alecm]
 
