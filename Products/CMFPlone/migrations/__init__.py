@@ -138,4 +138,5 @@ def registerMigrations():
     registerUpgradePath('3.1.5', '3.1.5.1', null)
     registerUpgradePath('3.1.5.1', '3.1.6', null)
     registerUpgradePath('3.1.6', '3.1.7', null)
+    registerUpgradePath('3.1.7', '3.1.8 (svn/unreleased)', null)
 
