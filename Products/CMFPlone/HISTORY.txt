@@ -2,7 +2,7 @@ Changelog for Plone
 
     (name of developer listed in brackets)
 
-Plone 3.1.7 - UNRELEASED
+Plone 3.1.7 - November 5, 2008
 
     - Updated the PloneTool normalization tests to match plone.i18n policies.
       [hannosch]
