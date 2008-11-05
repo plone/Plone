@@ -214,6 +214,25 @@ ul.configletDetails {
 .link-user {
     padding: 1px 16px 1px 0;
 }
+.comment h1,
+.comment h2,
+.comment h3,
+.comment h4, 
+.comment h5,
+.comment h6 {
+    float: right;
+}
+/* IE6 Hack */
+* html .comment h3 {
+    float: none;
+}
+.comment h3 a {
+    background: url(&dtml-portal_url;/discussionitem_icon.gif) no-repeat scroll right center;
+    float: right;
+    padding-left: none;
+    padding-right: 18px;
+    display: inline;
+}
 
 /* No way to get these to work with IE, it seems - suggestions welcome --limi */
 .link-external,
