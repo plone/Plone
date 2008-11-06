@@ -23,6 +23,14 @@ Changelog
   http://dev.plone.org/plone/ticket/6991
   [garbas, calvinhp]
 
+
+3.1.7 - November 5, 2008
+------------------------
+
+- Updated the PloneTool normalization tests to match plone.i18n policies.
+  [hannosch]
+
+
 3.1.6 - October 7, 2008
 -----------------------
 
