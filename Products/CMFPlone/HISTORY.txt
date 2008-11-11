@@ -4,11 +4,6 @@ Changelog for Plone
 
 Plone 3.1.8 - UNRELEASED
 
-    - Fix 'NoneType' object has no attribute 'absolute_url'
-      When actions are called directly from a viewlet aq_parent(folder) returns
-      an instance of the viewlet when aq_parent(aq_inner(folder)) returns an
-      instance of a folder type.
-      [encolpe]
 
 
 Plone 3.1.7 - November 5, 2008
