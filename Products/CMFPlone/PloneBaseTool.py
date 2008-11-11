@@ -54,9 +54,7 @@ def getOAI(context, object=None):
                     # don't strip off its outer acquisition context (Plone)
                     parent = aq_parent(aq_inner(folder))
                     if getattr(parent, '__class__', None) == TempFolderClass:
-                        # Go to the upper level which is supposed to ne be a
-                        # TempFolder
-                        folder = aq_parent(parent)
+                        folder = aq_parent(folder)
                     else:
                         folder = parent
         info = oai(context, folder, object)
