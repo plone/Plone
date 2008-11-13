@@ -3262,7 +3262,8 @@ class TestMigrations_v3_2(MigrationTest):
             'Modify portal content',)
         self._upgrade()
         self.failUnlessEqual(
-            self.actions.object_buttons.iterate_checkin.permissions, ('View',))
+            self.actions.object_buttons.iterate_checkin.permissions,
+            ('iterate : Check in content',))
 
     def testIterateInstalledButActionMissing(self):
         self.qi.installProduct('plone.app.iterate')
