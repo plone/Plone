@@ -11,8 +11,5 @@
     <element value="iterate : Check out content"/>
    </property>
   </object>
-  <object name="cancel_checkout">
-   <property name="available_expr"></property>
-  </object>
  </object>
 </object>
