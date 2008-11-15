@@ -4,7 +4,11 @@ Changelog for Plone
 
 Plone 3.1.8 - UNRELEASED
 
-
+    - Moved plone specific diff tool configuration back to Plone default 
+      profile, since it's both plone specific and was never actually added 
+      to CMFDiffTool.
+      Closes https://dev.plone.org/plone/ticket/8590
+      [alecm]
 
 Plone 3.1.7 - November 5, 2008
 
