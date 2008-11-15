@@ -8,6 +8,7 @@ Changelog
   profile, since it's both plone specific and was never actually added
   to CMFDiffTool.
   Closes http://dev.plone.org/plone/ticket/8590
+  [alecm]
 
 - Fixed Forbidden error when attempting to login for the first time as a newly
   created user, if the must_change_password property has been added (as a
