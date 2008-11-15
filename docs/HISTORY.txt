@@ -4,6 +4,11 @@ Changelog
 3.2 - Unreleased
 ----------------
 
+- Moved plone specific diff tool configuration back to Plone default
+  profile, since it's both plone specific and was never actually added
+  to CMFDiffTool.
+  Closes http://dev.plone.org/plone/ticket/8590
+
 - Fixed Forbidden error when attempting to login for the first time as a newly
   created user, if the must_change_password property has been added (as a
   Boolean) to the portal_memberdata tool and set to True.
