@@ -55,7 +55,14 @@ class Plone(BrowserView):
         YOU CAN ONLY CALL THIS METHOD FROM A PAGE TEMPLATE AND EVEN
         THEN IT MIGHT DESTROY YOU!
         """
-        context = sys._getframe(2).f_locals['econtext']
+
+        frame = sys._getframe()
+        while frame.f_locals.get('econtext', _marker) is _marker:
+            frame = frame.f_back
+            if frame is None:
+                raise RuntimeError, "Can't locate template frame."
+        context = frame.f_locals['econtext']
+        
         # Some of the original global_defines used 'options' to get parameters
         # passed in through the template call, so we need this to support
         # products which may have used this little hack

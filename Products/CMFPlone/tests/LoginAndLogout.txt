@@ -113,7 +113,7 @@ of test_user_1_:
     >>> browser.getControl('Password').value = 'secret'
     >>> browser.getControl('Log in').click()
     >>> browser.url
-    'http://nohost/plone/Members/test_user_1_/atct_edit'
+    'http://nohost/plone/Members/test_user_1_/edit'
 
 We were automatically redirected to the page that triggered the
 login request.

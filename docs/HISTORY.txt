@@ -1,28 +1,9 @@
 Changelog
 =========
 
-3.2 - Unreleased
-----------------
+See NEWS.txt for changes included the current release.
 
-- Fixed Forbidden error when attempting to login for the first time as a newly
-  created user, if the must_change_password property has been added (as a
-  Boolean) to the portal_memberdata tool and set to True.
-  Closes https://dev.plone.org/plone/ticket/8425
-  [hexsprite]
-
-- Fixed the toc.js to not turn heading text containing an "@" into the link.
-  Closes http://dev.plone.org/plone/ticket/7949
-  [sbruno, calvinhp]
-
-- Fixed the form_tabbing to use the correct buttons names. Closes
-  http://dev.plone.org/plone/ticket/7559
-  [lucie, calvinhp]
-
-- Fixed the full_review_list select all link to only select the items shown
-  and not all of the items at the portal root. This closes:
-  http://dev.plone.org/plone/ticket/6991
-  [garbas, calvinhp]
-
+Older releases:
 
 3.1.7 - November 5, 2008
 ------------------------
