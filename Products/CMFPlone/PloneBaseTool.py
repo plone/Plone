@@ -91,6 +91,9 @@ def createExprContext(folder, portal, object):
     checkPerm = membership_tool.checkPermission
     expr_context.setGlobal('checkPermission', checkPerm)
 
+    # add 'context' as an alias for 'object'
+    expr_context.setGlobal('context', object)
+
     return expr_context
 
 def getExprContext(context, object=None):
