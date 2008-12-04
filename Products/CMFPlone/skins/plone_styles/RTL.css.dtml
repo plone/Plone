@@ -73,6 +73,9 @@ ol {
     padding-left: 1em; /* fix for overlapping icon - smoothify */
     display: table-cell;
 }
+.documentContent {
+    padding: 1em 2em 2em !important;
+}
 .contentViews {
     padding-right: 1em;
     margin-right: 0;
