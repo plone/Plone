@@ -49,7 +49,7 @@ class CalendarTool(PloneBaseTool, BaseTool):
         last_day = self._getCalendar().monthrange(year, month)[1]
         first_date = self.getBeginAndEndTimes(1, month, year)[0]
         last_date = self.getBeginAndEndTimes(last_day, month, year)[1]
-        # inject path into the REQUEST so that the catalog will use it in the query
+        # Take the NavigationRoot into consideration when doing the query
         path = getNavigationRoot(self.context)
         
         ctool = getToolByName(self, 'portal_catalog')
