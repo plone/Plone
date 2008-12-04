@@ -289,6 +289,11 @@ dl.portalMessage dt {
     margin: 0pt 0pt 0pt 0.5em;
 }
 
+
+.portraitPhoto {
+    float: left !important;
+}
+
 /* set sitemap borders and margins for right alignment  - smoothify */
 #portal-sitemap .navTreeLevel1,
 #portal-sitemap .navTreeLevel2 {
