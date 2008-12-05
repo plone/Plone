@@ -8,6 +8,15 @@ Changelog
 3.2 - Unreleased
 ----------------
 
+- For RTL languages adjusted document content padding so welcome
+  text fits inside text area. Closes
+  http://dev.plone.org/plone/ticket/6919
+  [emanlove]
+
+- For RTL languages shifted portrait photo to the left.
+  Closes http://dev.plone.org/plone/ticket/6214
+  [emanlove]
+
 - Added 'context' as an alias for 'object' in action expressions.
   [davisagli]
 
