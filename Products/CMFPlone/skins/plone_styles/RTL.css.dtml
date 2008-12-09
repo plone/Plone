@@ -332,6 +332,15 @@ dt span.documentByLine {
 .livesearchContainer {
     right: auto;
     left: 0px;
+    text-align: right;
+}
+.LSDescr {
+    margin-left: 0;
+    margin-right: 2.5em;
+}
+#livesearchLegend {
+    margin-left: 0;
+    margin-right: -0.1em;
 }
 
 /* Kupu fixes */
