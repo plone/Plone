@@ -342,6 +342,12 @@ dt span.documentByLine {
     margin-left: 0;
     margin-right: -0.1em;
 }
+/* IE6 Hack */
+/* Resolves issue with down arrow character under IE6, See
+   http://dev.plone.org/plone/ticket/4632                  */
+* html #livesearchLegend{
+    font-family: Times New Roman;
+}
 
 /* Kupu fixes */
 
