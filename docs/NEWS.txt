@@ -8,6 +8,10 @@ Changelog
 3.2 - Unreleased
 ----------------
 
+- Load the `plone.app.locales` configure.zcml. This references
+  http://dev.plone.org/plone/ticket/8788.
+  [hannosch]
+
 - Cleaned up Livesearch results for RTL Languages.
   Closes http://dev.plone.org/plone/ticket/4632
   [emanlove]
