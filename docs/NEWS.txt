@@ -8,7 +8,7 @@ Changelog
 3.2 - Unreleased
 ----------------
 
-- Load the `plone.app.locales` configure.zcml. This references
+- Load the `plone.app.locales` configure.zcml. This fixes
   http://dev.plone.org/plone/ticket/8788.
   [hannosch]
 
