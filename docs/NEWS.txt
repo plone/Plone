@@ -8,6 +8,11 @@ Changelog
 3.2 - Unreleased
 ----------------
 
+- Shifted profile and personal preferences to the left for RTL
+  scripts. Closes
+  http://dev.plone.org/plone/ticket/8169
+  [emanlove]
+
 - Load the `plone.app.locales` configure.zcml. This fixes
   http://dev.plone.org/plone/ticket/8788.
   [hannosch]
