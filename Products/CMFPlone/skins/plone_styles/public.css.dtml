@@ -1170,7 +1170,6 @@ div.managedPortlet.portlet {
 }
 
 #dashboard-actions ul li.portalUser {
-    background:transparent url(&dtml-portal_url;/user.gif) no-repeat scroll left center;
     padding-left:18px;
 }
 
