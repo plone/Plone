@@ -349,6 +349,12 @@ dt span.documentByLine {
     font-family: Times New Roman;
 }
 
+/* Dashboard */
+
+#dashboard-actions {
+    float:left;
+}
+
 /* Kupu fixes */
 
 #kupu-zoom {
