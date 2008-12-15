@@ -5,8 +5,8 @@
 Changelog
 =========
 
-3.2 - Unreleased
-----------------
+3.2rc1 - December 15, 2008
+--------------------------
 
 - Shifted profile and personal preferences to the left for RTL
   scripts. Closes
