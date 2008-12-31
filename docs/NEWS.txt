@@ -5,9 +5,18 @@
 Changelog
 =========
 
-3.2 - Unreleased
+3.2.1 - Unreleased
 ----------------
 
+
+
+3.2 - December 31, 2008
+-----------------------
+
+- Merge the upgrade instructions from
+  http://plone.org/documentation/manual/upgrade-guide/version/upgrading-from-3-x-to-3.2
+  into the release notes.
+  [wichert]
 
 
 3.2rc1 - December 15, 2008
