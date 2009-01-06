@@ -8,6 +8,9 @@ Changelog
 3.2.1 - Unreleased
 ----------------
 
+- Cleaned up document actions for RTL scripts. Closes
+  http://dev/plone.org/plone/ticket/8863
+  [emanlove]
 
 
 3.2 - December 31, 2008
