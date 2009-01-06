@@ -8,6 +8,10 @@ Changelog
 3.2.1 - Unreleased
 ----------------
 
+- Removed old background icon from personal bar for RTL scripts.
+  Closes http://dev.plone.org/plone/ticket/4570
+  [emanlove]
+
 - Moved history icon off text and shifted history header
   to the right under RTL scripts. Closes
   http://dev.plone.org/plone/ticket/6368

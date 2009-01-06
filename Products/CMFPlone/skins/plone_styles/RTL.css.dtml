@@ -67,7 +67,6 @@ ol {
     display: table-cell;
 }
 #portal-personaltools li {
-    background: transparent url(&dtml-portal_url;/rtl-linkOpaque.gif) 100% 50% no-repeat;
     margin: 0;
     padding-right: 10px; /* fix for overlapping icon - smoothify */
     padding-left: 1em; /* fix for overlapping icon - smoothify */
