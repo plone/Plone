@@ -360,4 +360,17 @@ dt span.documentByLine {
 #kupu-tb-buttons {
     margin-right: 2em;
 }
+
+/* Collapsible */
+
+dl.collapsedInlineCollapsible dt.collapsibleHeader {
+    float: right;
+}
+dl.collapsible dt.collapsibleHeader {
+    margin: 0pt 1em -0.6em 0pt;
+}
+dl.expandedInlineCollapsible dt.collapsibleHeader,
+dl.expandedBlockCollapsible dt.collapsibleHeader   {
+    float: right;
+}
 /* </dtml-with> */

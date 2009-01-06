@@ -8,8 +8,13 @@ Changelog
 3.2.1 - Unreleased
 ----------------
 
+- Moved history icon off text and shifted history header
+  to the right under RTL scripts. Closes
+  http://dev.plone.org/plone/ticket/6368
+  [emanlove]
+
 - Cleaned up document actions for RTL scripts. Closes
-  http://dev/plone.org/plone/ticket/8863
+  http://dev.plone.org/plone/ticket/8863
   [emanlove]
 
 
