@@ -151,10 +151,7 @@ class TestBaseNavTree(PloneTestCase.PloneTestCase):
         view = self.view_class(self.portal, self.request)
         tree = view.navigationTree()
         for child in tree['children']:
-            if child['portal_type'] != 'Link':
-                self.failIf(child['item'].getRemoteUrl)
-            if child['Title'] == 'link1':
-                self.failUnlessEqual(child['item'].getRemoteUrl, 'http://plone.org')
+            self.failIf(hasattr(child['item'], 'getRemoteUrl'))
 
     def testNonStructuralFolderHidesChildren(self):
         # Make sure NonStructuralFolders act as if parentMetaTypesNotToQuery
