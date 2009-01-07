@@ -15,6 +15,7 @@
                 useView    python:item.portal_type in viewActions;
                 item_icon  python:plone_view.getIcon(item);
                 itemUrl    python:test(useView, item.getURL() + '/view', item.getURL());
+                linkRemote python:item.getRemoteUrl and item.Creator != member_id;
                 isCurrent  node/currentItem;"
     tal:condition="python: bottomLevel &lt;= 0 or level &lt; bottomLevel-1">
 
@@ -23,7 +24,7 @@
     <div tal:define="itemClass string:$item_wf_state_class;
                      itemClass python:test(isCurrent, itemClass + ' navTreeCurrentItem', itemClass);">
         
-        <a tal:attributes="href itemUrl;
+        <a tal:attributes="href python:test(linkRemote, item.getRemoteUrl, itemUrl);
                            title item/Description;
                            class string:$itemClass">
             <img width="16" height="16"

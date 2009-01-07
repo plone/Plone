@@ -176,8 +176,10 @@ class SitemapNavtreeStrategy(NavtreeStrategyBase):
         newNode['portal_type'] = portalType
         newNode['review_state'] = getattr(item, 'review_state', None)
         newNode['Description'] = getattr(item, 'Description', None)
+        newNode['getRemoteUrl'] = getattr(item, 'getRemoteUrl', None)
         newNode['show_children'] = showChildren
         newNode['no_display'] = False # We sort this out with the nodeFilter
+        newNode['link_remote'] = newNode['getRemoteUrl'] and newNode['Creator'] != self.memberId
 
         idnormalizer = queryUtility(IIDNormalizer)
         newNode['normalized_portal_type'] = idnormalizer.normalize(portalType)

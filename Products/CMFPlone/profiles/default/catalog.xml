@@ -127,6 +127,7 @@
  <column value="getIcon"/>
  <column value="getId"/>
  <column value="getObjSize"/>
+ <column value="getRemoteUrl"/>
  <column value="id"/>
  <column value="is_folderish"/>
  <column value="listCreators"/>

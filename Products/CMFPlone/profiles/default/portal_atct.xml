@@ -203,6 +203,9 @@
      friendlyName="Short Name" i18n:attributes="description; friendlyName" />
   <metadata name="getObjSize" description="The size of an item" enabled="True"
      friendlyName="Size" i18n:attributes="description; friendlyName" />
+  <metadata name="getRemoteUrl" description="The url of a Link item"
+     enabled="False" friendlyName="Remote Url"
+     i18n:attributes="description; friendlyName" />
   <metadata name="id" description="" enabled="False"
      friendlyName="Short Name" i18n:attributes="description; friendlyName" />
   <metadata name="is_folderish"
