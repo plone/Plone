@@ -67,11 +67,13 @@ ol {
     display: table-cell;
 }
 #portal-personaltools li {
-    background: transparent url(&dtml-portal_url;/rtl-linkOpaque.gif) 100% 50% no-repeat;
     margin: 0;
     padding-right: 10px; /* fix for overlapping icon - smoothify */
     padding-left: 1em; /* fix for overlapping icon - smoothify */
     display: table-cell;
+}
+.documentContent {
+    padding: 1em 2em 2em !important;
 }
 .contentViews {
     padding-right: 1em;
@@ -127,9 +129,6 @@ ol {
 .newsImageContainer {
     float: left; 
     margin: 0 1em 0.5em 0;
-}
-.documentActions {
-    float: left;
 }
 .documentByLine {
     text-align: left;
@@ -289,6 +288,11 @@ dl.portalMessage dt {
     margin: 0pt 0pt 0pt 0.5em;
 }
 
+
+.portraitPhoto {
+    float: left !important;
+}
+
 /* set sitemap borders and margins for right alignment  - smoothify */
 #portal-sitemap .navTreeLevel1,
 #portal-sitemap .navTreeLevel2 {
@@ -324,6 +328,27 @@ dt span.documentByLine {
 .livesearchContainer {
     right: auto;
     left: 0px;
+    text-align: right;
+}
+.LSDescr {
+    margin-left: 0;
+    margin-right: 2.5em;
+}
+#livesearchLegend {
+    margin-left: 0;
+    margin-right: -0.1em;
+}
+/* IE6 Hack */
+/* Resolves issue with down arrow character under IE6, See
+   http://dev.plone.org/plone/ticket/4632                  */
+* html #livesearchLegend{
+    font-family: Times New Roman;
+}
+
+/* Dashboard */
+
+#dashboard-actions {
+    float:left;
 }
 
 /* Kupu fixes */
@@ -333,5 +358,18 @@ dt span.documentByLine {
 }
 #kupu-tb-buttons {
     margin-right: 2em;
+}
+
+/* Collapsible */
+
+dl.collapsedInlineCollapsible dt.collapsibleHeader {
+    float: right;
+}
+dl.collapsible dt.collapsibleHeader {
+    margin: 0pt 1em -0.6em 0pt;
+}
+dl.expandedInlineCollapsible dt.collapsibleHeader,
+dl.expandedBlockCollapsible dt.collapsibleHeader   {
+    float: right;
 }
 /* </dtml-with> */

@@ -23,7 +23,8 @@
 
             <h5 class="hiddenStructure">Views</h5>
         
-            <ul class="contentViews">
+            <ul id="content-views"
+                class="contentViews">
               <li>
                 <a href=""
                    tal:define="member_id python:member.getId();
@@ -42,7 +43,7 @@
               &nbsp;
             </div>
 
-            <div class="documentContent" id="content">
+            <div class="documentContent" id="region-content">
 
                 <a name="documentContent"></a>
 

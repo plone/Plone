@@ -32,6 +32,8 @@
                                 authorinfo python: mtool.getMemberInfo(author);">
 
         <tal:noAuthor condition="not: authorinfo">
+        <div id="region-content">
+
         <dl class="portalMessage error">
             <dt i18n:translate="">
                 Error
@@ -40,6 +42,7 @@
                 No user by that name.
             </dd>
         </dl>
+        </div>
         </tal:noAuthor>
 
 
@@ -53,7 +56,8 @@
         <h5 class="hiddenStructure"
             tal:condition="isOwner">Views</h5>
         
-        <ul class="contentViews"
+        <ul id="content-views"
+            class="contentViews"
             tal:condition="isOwner">
           <li class="selected">
             <a href=""
@@ -74,7 +78,8 @@
           &nbsp;
         </div>
 
-        <div class="documentContent" id="content">
+
+        <div class="documentContent" id="region-content">
 
             <a name="documentContent"></a>
                     

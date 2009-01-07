@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os.path
 
-version = '3.2'
+version = '3.2.1'
 
 setup(name='Plone',
       version=version,
@@ -9,7 +9,7 @@ setup(name='Plone',
       long_description=open("README.txt").read() +  "\n" +
                        open(os.path.join("docs", "NEWS.txt")).read(),
       classifiers=[
-          "Development Status :: 3 - Alpha",
+          "Development Status :: 5 - Production/Stable",
           "Environment :: Web Environment",
           "Framework :: Plone",
           "Framework :: Zope2",
@@ -76,7 +76,7 @@ setup(name='Plone',
           'plone.app.i18n',
           'plone.app.iterate',
           'plone.app.kss',
-          'plone.app.layout',
+          'plone.app.layout >=1.1.7dev-r23744',
           'plone.app.linkintegrity >=1.0.3',
           'plone.app.locales',
           'plone.app.openid',

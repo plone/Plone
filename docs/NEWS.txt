@@ -5,8 +5,59 @@
 Changelog
 =========
 
-3.2 - Unreleased
+3.2.1 - Unreleased
 ----------------
+
+- Removed old background icon from personal bar for RTL scripts.
+  Closes http://dev.plone.org/plone/ticket/4570
+  [emanlove]
+
+- Moved history icon off text and shifted history header
+  to the right under RTL scripts. Closes
+  http://dev.plone.org/plone/ticket/6368
+  [emanlove]
+
+- Cleaned up document actions for RTL scripts. Closes
+  http://dev.plone.org/plone/ticket/8863
+  [emanlove]
+
+
+3.2 - December 31, 2008
+-----------------------
+
+- Merge the upgrade instructions from
+  http://plone.org/documentation/manual/upgrade-guide/version/upgrading-from-3-x-to-3.2
+  into the release notes.
+  [wichert]
+
+
+3.2rc1 - December 15, 2008
+--------------------------
+
+- Shifted profile and personal preferences to the left for RTL
+  scripts. Closes
+  http://dev.plone.org/plone/ticket/8169
+  [emanlove]
+
+- Load the `plone.app.locales` configure.zcml. This fixes
+  http://dev.plone.org/plone/ticket/8788.
+  [hannosch]
+
+- Cleaned up Livesearch results for RTL Languages.
+  Closes http://dev.plone.org/plone/ticket/4632
+  [emanlove]
+
+- For RTL languages adjusted document content padding so welcome
+  text fits inside text area. Closes
+  http://dev.plone.org/plone/ticket/6919
+  [emanlove]
+
+- For RTL languages shifted portrait photo to the left.
+  Closes http://dev.plone.org/plone/ticket/6214
+  [emanlove]
+
+- Added 'context' as an alias for 'object' in action expressions.
+  [davisagli]
 
 - Include missing dependency on plone.app.locales.
   [hannosch]
