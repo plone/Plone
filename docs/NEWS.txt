@@ -8,6 +8,10 @@ Changelog
 3.2.1 - Unreleased
 ----------------
 
+- Put in workaround for IE6 background caching problem, closes
+  https://dev.plone.org/plone/ticket/7445, thanks cwainwright
+  [calvinhp]
+
 - Removed old background icon from personal bar for RTL scripts.
   Closes http://dev.plone.org/plone/ticket/4570
   [emanlove]

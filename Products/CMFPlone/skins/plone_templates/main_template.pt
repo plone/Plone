@@ -39,11 +39,16 @@
           tal:attributes="name python:keyval[0];
                           content python:keyval[1];" />
 
-    <!-- Internet Explorer CSS Fixes -->
+    <!-- Internet Explorer Fixes -->
     <tal:iefixstart replace="structure string:&lt;!--[if IE]&gt;" />
         <style type="text/css" media="all" tal:condition="exists: portal/IEFixes.css"
                tal:content="string:@import url($portal_url/IEFixes.css);">
         </style>
+        
+        <script type="text/javascript"
+                tal:attributes="src string:${portal_url}/iefixes.js">
+        </script>
+        
     <tal:iefixend replace="structure string:&lt;![endif]--&gt;" />
 
     <link tal:replace="structure provider:plone.htmlhead.links" />
