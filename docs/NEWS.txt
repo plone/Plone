@@ -5,6 +5,15 @@
 Changelog
 =========
 
+3.3a1 - Unreleased
+------------------
+
+- Remove CatalogTool.ExtensibleIndexableObjectWrapper in favour of the wrapper
+  in plone.indexer, and make registerIndexableAttribute() a deprecated facade
+  for registering an IIndexer adapter. See plone.indexer for more information
+  about the correct (and more robust) way to register custom indexers.
+  [optilude]
+
 3.2.1 - Unreleased
 ----------------
 
