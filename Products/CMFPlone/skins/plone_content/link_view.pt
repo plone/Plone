@@ -32,7 +32,8 @@
         <div tal:replace="structure provider:plone.abovecontentbody" />
 
         <dl class="portalMessage info"
-            tal:condition="portal/portal_properties/site_properties/redirect_links|nothing">
+            tal:define="redirect_links portal/portal_properties/site_properties/redirect_links|nothing"
+            tal:condition="python: redirect_links and checkPermission('Modify portal content', context)">
             <dt>Info</dt>
             <dd i18n:translate="message_permissions_blocking_link_redirect">This link will immediately redirect to the link address for users who don't have permission to edit the link.</dd>
         </dl>
