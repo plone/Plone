@@ -3272,6 +3272,29 @@ class TestMigrations_v3_2(MigrationTest):
         self.failIf('iterate_checkin' in
                     self.actions.object_buttons.objectIds())
 
+class TestMigrations_v3_3(MigrationTest):
+
+    def afterSetUp(self):
+        self.types = self.portal.portal_types
+        self.properties = self.portal.portal_properties
+        self.migration = self.portal.portal_migration
+    
+    def _upgrade(self):
+        self.migration._upgrade('3.2rc1')
+    
+    def testRedirectLinksProperty(self):
+        self.removeSiteProperty('redirect_links')
+        self._upgrade()
+        self.assertEquals(False, self.properties.site_properties.getProperty('redirect_links'))
+
+    def testLinkDefaultView(self):
+        self.types.Link.default_view = 'link_view'
+        self.types.Link.immediate_view = 'link_view'
+        self.types.Link.view_methods = ('link_view',)
+        self._upgrade()
+        self.assertEqual(self.types.Link.default_view, 'link_redirect_view')
+        self.assertEqual(self.types.Link.immediate_view, 'link_redirect_view')
+        self.assertEqual(self.types.Link.view_methods, ('link_redirect_view',))
 
 def test_suite():
     from unittest import TestSuite, makeSuite
@@ -3287,4 +3310,5 @@ def test_suite():
     suite.addTest(makeSuite(TestMigrations_v3_0_Actions))
     suite.addTest(makeSuite(TestMigrations_v3_1))
     suite.addTest(makeSuite(TestMigrations_v3_2))
+    suite.addTest(makeSuite(TestMigrations_v3_3))
     return suite
