@@ -8,11 +8,12 @@ Changelog
 3.3 - Unreleased
 ----------------
 
-- Added a 'redirect_links' site property and corresponding 'Redirect immediately to link
-  target for anonymous users' setting in the types configlet (for the Link type only).
-  The default view for the Link type has been changed to link_redirect_view.py from the
-  plone_content skin layer, which redirects or falls back to the old link_view depending
-  on the 'redirect_links' value.  This implements http://plone.org/products/plone/roadmap/126
+- Added a 'redirect_links' site property and corresponding 'Redirect
+  immediately to link target' setting in the types configlet (for the Link type
+  only).  The default view for the Link type has been changed to
+  link_redirect_view.py from the plone_content skin layer, which redirects or
+  falls back to the old link_view depending on the 'redirect_links' value.
+  This implements http://plone.org/products/plone/roadmap/126
   [davisagli]
 
 

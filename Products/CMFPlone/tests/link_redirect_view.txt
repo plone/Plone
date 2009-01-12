@@ -21,7 +21,7 @@ the 'redirect_links' property is off by default::
   >>> browser.open('http://nohost/plone/link')
   >>> browser.url
   'http://nohost/plone/link'
-
+  
 But if we turn on 'redirect_links', visiting the link should redirect us to
 plone.org::
 
@@ -40,3 +40,20 @@ redirected, even though 'redirect_links' is still on::
   >>> browser.open('http://nohost/plone/link')
   >>> browser.url
   'http://nohost/plone/link'
+
+The manager should get a message to help clarify that the link will redirect
+for anonymous users::
+
+  >>> 'This link will immediately redirect' in browser.contents
+  True
+
+If we turn redirect_links back off, that message should not be present::
+
+  >>> self.portal.portal_properties.site_properties.redirect_links = False
+  >>> browser.open('http://nohost/plone/link')
+  >>> browser.url
+  'http://nohost/plone/link'
+  >>> 'This link will immediately redirect' in browser.contents
+  False
+
+  
