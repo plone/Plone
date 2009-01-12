@@ -103,6 +103,16 @@
       />
 
   <genericsetup:registerProfile
+      name="3.2-3.3"
+      title="Migration profile for Plone 3.2 to Plone 3.3"
+      description="This profile contains configuration changes that are applied during the Plone 3.2 to 3.3
+                    migration." 
+      directory="v3_2/profiles/three2_three3"
+      for="Products.CMFPlone.interfaces.IMigratingPloneSiteRoot"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+  <genericsetup:registerProfile
       name="3.2a1-3.2rc1-iterate"
       title="Migration profile for Plone 3.2a1 to Plone 3.2rc1 with Iterate"
       description="This profile contains configuration changes that are applied during the Plone 3.2a1 to 3.2rc1 migration when Iterate is installed."
