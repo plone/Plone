@@ -439,6 +439,9 @@ class TestPortalCreation(PloneTestCase.PloneTestCase, WarningInterceptor):
         self.failUnless(self.properties.site_properties.hasProperty('redirect_links'))
         self.assertEquals(False, self.properties.site_properties.redirect_links)
 
+    def testLinkDefaultView(self):
+        self.assertEqual(self.types.Link.default_view, 'link_redirect_view')
+
     def testSearchSettingsActionIcon(self):
         # There should be a SearchSettings action icon
         for icon in self.icons.listActionIcons():
