@@ -73,7 +73,9 @@ files, etc.
 
 Plone runs on Windows, Linux, BSD, Mac OS X, and many other platforms;
 double-click installers are available for Windows and Mac OS X, and RPM
-packages are available for Linux. For full information, see Download.
+packages are available for Linux. For full information, see the
+`plone.org product page`_.
 
 .. _documentation: http://plone.org/documentation
+.. _plone.org product page: http://plone.org/products/plone
 
