@@ -82,28 +82,25 @@
                                 Start Date Time</span> <br />
                             <span i18n:translate="event_from">from</span>  
                             <abbr metal:define-macro="startdatesame-field-view"
-                                  tal:define="ampm python:site_properties.getProperty('localLongTimeFormat').find('%p') >= 0;
-                                              kss_class python:getKssClasses('startDate',
+                                  tal:define="kss_class python:getKssClasses('startDate',
                                               templateId=templateId, macro='startdatesame-field-view');"
                                   id="parent-fieldname-startDate"
                                   tal:attributes="class string:$kss_class dtstart;
                                                   title python:here.start().ISO8601()">
                                   <span metal:define-slot="inside" 
-                                        tal:replace="python:test(ampm, here.start().AMPMMinutes(), here.start().TimeMinutes())">Start Time</span>
+                                        class="explain"
+                                        tal:content="python:here.toLocalizedTime(here.start(), time_only=1)">Start Time</span>
                             </abbr>
                             <span i18n:translate="event_to">to</span>
                             <abbr metal:define-macro="enddatesame-field-view"
-                                  tal:define="ampm python:site_properties.getProperty('localLongTimeFormat').find('%p') >= 0;
-                                              kss_class python:getKssClasses('endDate',
+                                  tal:define="kss_class python:getKssClasses('endDate',
                                               templateId=templateId, macro='enddatesame-field-view');"
                                   id="parent-fieldname-endDate"
                                   tal:attributes="class string:$kss_class dtend;
                                                   title python:here.end().ISO8601()">
-
-
-
                                   <span metal:define-slot="inside" 
-                                        tal:replace="python:test(ampm, here.end().AMPMMinutes(), here.end().TimeMinutes())">End Time</span>
+                                        class="explain"
+                                        tal:content="python:here.toLocalizedTime(here.end(), time_only=1)">End Time</span>
                             </abbr>
                             
                             <!-- <span tal:replace="python:test(ampm, here.end().AMPMMinutes(), here.end().TimeMinutes())">End Time</span> -->
