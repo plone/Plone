@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<object name="Link">
- <property name="immediate_view">link_redirect_view</property>
- <property name="default_view">link_redirect_view</property>
- <property name="view_methods">
-  <element value="link_redirect_view"/>
- </property>
-</object>

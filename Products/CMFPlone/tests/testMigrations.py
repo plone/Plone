@@ -3295,6 +3295,15 @@ class TestMigrations_v3_3(MigrationTest):
         self.assertEqual(self.types.Link.default_view, 'link_redirect_view')
         self.assertEqual(self.types.Link.immediate_view, 'link_redirect_view')
         self.assertEqual(self.types.Link.view_methods, ('link_redirect_view',))
+        
+        # but only change if old default was 'link_view'
+        self.types.Link.default_view = 'foobar'
+        self.types.Link.immediate_view = 'foobar'
+        self.types.Link.view_methods = ('foobar',)
+        self._upgrade()
+        self.assertEqual(self.types.Link.default_view, 'foobar')
+        self.assertEqual(self.types.Link.immediate_view, 'foobar')
+        self.assertEqual(self.types.Link.view_methods, ('foobar',))
 
 def test_suite():
     from unittest import TestSuite, makeSuite
