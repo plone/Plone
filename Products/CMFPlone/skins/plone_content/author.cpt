@@ -49,7 +49,7 @@
 
         <tal:haveAuthor condition="authorinfo">
  
-    <div class="documentEditable"
+    <div id="region-content" class="documentEditable"
          tal:define="isOwner python:member.getId()==author"
          tal:attributes="class python: test(isOwner, 'documentEditable', '')">
 
