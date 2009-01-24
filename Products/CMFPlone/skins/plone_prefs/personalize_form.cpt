@@ -19,7 +19,7 @@
             tal:define="errors options/state/getErrors;">
     <tal:main-macro metal:define-macro="main">
 
-     <div class="documentEditable">
+     <div id="region-content" class="documentEditable">
 
             <h5 class="hiddenStructure">Views</h5>
         
