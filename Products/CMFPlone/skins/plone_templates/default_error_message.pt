@@ -15,6 +15,7 @@
 
 <body>
 <div metal:fill-slot="main"
+     id="content"
      tal:define="err_type options/error_type|nothing;
                  err_message options/error_message|nothing;
                  err_tb options/error_tb|nothing;
