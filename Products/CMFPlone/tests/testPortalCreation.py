@@ -320,8 +320,6 @@ class TestPortalCreation(PloneTestCase.PloneTestCase, WarningInterceptor):
         self.assertEqual(query['start']['query'].Date(), DateTime().Date())
         self.assertEqual(query['start']['range'], 'min')
         self.assertEqual(topic.checkCreationFlag(), False)
-        # query shouldn't have a start key #8827
-        self.failIf(query['start'])
 
     def testEventsSubTopic(self):
         # past Events sub-topic is in place and has criteria to show
@@ -336,6 +334,8 @@ class TestPortalCreation(PloneTestCase.PloneTestCase, WarningInterceptor):
         self.assertEqual(query['end']['query'].Date(), DateTime().Date())
         self.assertEqual(query['end']['range'], 'max')
         self.assertEqual(topic.checkCreationFlag(), False)
+        # query shouldn't have a start key #8827
+        self.failIf(query['start'])
 
     def testObjectButtonActions(self):
         self.setRoles(['Manager', 'Member'])
