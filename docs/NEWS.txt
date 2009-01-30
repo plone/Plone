@@ -8,6 +8,12 @@ Changelog
 3.2.1 - Unreleased
 ----------------
 
+- Fix contact_info.cpt so it bases the appearance of the fullname and email
+  fields on whether they are set in the current member's profile, rather
+  than on whether the current user is anonymous or not.  This closes
+  http://dev.plone.org/plone/ticket/8526
+  [davisagli]
+
 - Update default frontpage to refer to Plone 3 instead of 3.0.
   [wichert]
 
