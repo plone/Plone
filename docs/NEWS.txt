@@ -5,12 +5,12 @@
 Changelog
 =========
 
-3.2.1 - Unreleased
-----------------
+3.2.1 - February 4, 2009
+------------------------
 
 - Add dependency on Products.NuPlone to prevents sites who use NuPlone from
   breaking when upgrading from Plone 3.0.x or 3.1.x to 3.2 or later.
-  [wichert[
+  [wichert]
 
 - Fix contact_info.cpt so it bases the appearance of the fullname and email
   fields on whether they are set in the current member's profile, rather
