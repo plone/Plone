@@ -102,6 +102,8 @@ setup(name='Plone',
           'wicked',
           'five.customerize',
           'five.localsitemanager',
+# Needed to prevent upgrades breaking existing sites only
+          'Products.NuPlone',
 # Needed for testing only
           'Products.PloneTestCase',
       ],
