@@ -145,5 +145,6 @@ def registerMigrations():
     registerUpgradePath('3.2rc1', '3.2', null)
 
     # Plone 3.2.x
-    registerUpgradePath('3.2', '3.2.1 (svn/unreleased)', null)
+    registerUpgradePath('3.2', '3.2.1', null)
+    registerUpgradePath('3.2.1', '3.2.2 (svn/unreleased)', null)
 
