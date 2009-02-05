@@ -3285,8 +3285,9 @@ class TestMigrations_v3_3(MigrationTest):
     def testRedirectLinksProperty(self):
         self.removeSiteProperty('redirect_links')
         self._upgrade()
-        self.assertEquals(False, self.properties.site_properties.getProperty('redirect_links'))
-
+        self.assertEquals(True, 
+            self.properties.site_properties.getProperty('redirect_links'))
+    
     def testLinkDefaultView(self):
         self.types.Link.default_view = 'link_view'
         self.types.Link.immediate_view = 'link_view'
