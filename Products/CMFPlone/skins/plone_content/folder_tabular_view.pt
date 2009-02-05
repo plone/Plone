@@ -98,8 +98,7 @@
                                           ">
                             <td>
                                 <span class=""
-                                      tal:attributes="class item_type_class"
-                                      tal:condition="python:item_type != 'Link'">
+                                      tal:attributes="class item_type_class">
                                     <img width="16" height="16"
                                          src="" alt=""
                                          tal:condition="item_icon/url"
@@ -114,26 +113,6 @@
                                                        title item_description;"
                                        tal:content="item_title_or_id">
                                         Item Title
-                                    </a>
-                                </span>
-
-                                <span class=""
-                                      tal:attributes="class item_type_class"
-                                      tal:condition="python:item_type == 'Link'">
-                                    <img width="16" height="16"
-                                         src="" alt=""
-                                         tal:condition="item_icon/url"
-                                         tal:attributes="src item_icon/url;
-                                                         alt item_icon/description;
-                                                         title item_icon/title;
-                                                         width item_icon/width;
-                                                         height item_icon/height;" />
-                                    <a href="#"
-                                       tal:content="item_title_or_id"
-                                       tal:attributes="href item/getRemoteUrl;
-                                                       class string:${item_wf_state_class} link-plain;
-                                                       title item_description;">
-                                        External Link
                                     </a>
                                 </span>
                             </td>

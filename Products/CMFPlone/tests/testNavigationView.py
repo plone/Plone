@@ -152,8 +152,14 @@ class TestBaseNavTree(PloneTestCase.PloneTestCase):
         tree = view.navigationTree()
         for child in tree['children']:
             if child['portal_type'] != 'Link':
+                # the brain still has getRemoteUrl as BBB for plip126
                 self.failIf(child['item'].getRemoteUrl)
+                # but the child dict doesn't have getRemoteUrl
+                self.failIf(child.has_key('getRemoteUrl'))
             if child['Title'] == 'link1':
+                # BBB getRemoteUrl could be removed because the behavior is
+                # configurable via redirect_links property and plip126 
+                # default link view
                 self.failUnlessEqual(child['item'].getRemoteUrl, 'http://plone.org')
 
     def testNonStructuralFolderHidesChildren(self):

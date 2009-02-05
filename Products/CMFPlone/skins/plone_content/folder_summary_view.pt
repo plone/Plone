@@ -71,17 +71,7 @@
                      tal:attributes="class string:tileItem visualIEFloatFix vevent ${item_type_class}">
 
                     <a href="#"
-                       tal:condition="python:item_type != 'Link'"
                        tal:attributes="href python:test(item_type in use_view_action, item_url+'/view', item_url);">
-                        <img src="" alt=""
-                             tal:condition="exists:item_object/image_thumb"
-                             tal:replace="structure python: path('nocall:item_object/tag')(scale='thumb', css_class='tileImage')" />
-                    </a>
-
-                    <a href="#"
-                       class="link-plain"
-                       tal:condition="python:item_type == 'Link'"
-                       tal:attributes="href item/getRemoteUrl">
                         <img src="" alt=""
                              tal:condition="exists:item_object/image_thumb"
                              tal:replace="structure python: path('nocall:item_object/tag')(scale='thumb', css_class='tileImage')" />
@@ -92,19 +82,11 @@
 
                         <a href="#"
                            class="summary url"
-                           tal:condition="python:item_type != 'Link'"
                            tal:attributes="href python:test(item_type in use_view_action, item_url+'/view', item_url);"
                            tal:content="item_title_or_id">
                             Item Title
                         </a>
 
-                        <a href="#"
-                           class="link-plain"
-                           tal:condition="python:item_type == 'Link'"
-                           tal:content="item_title_or_id"
-                           tal:attributes="href item/getRemoteUrl;">
-                            External Link
-                        </a>
                     </h2>
 
                     <div class="documentByLine" tal:condition="python: site_properties.allowAnonymousViewAbout or not isAnon">
