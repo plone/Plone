@@ -437,7 +437,7 @@ class TestPortalCreation(PloneTestCase.PloneTestCase, WarningInterceptor):
 
     def testRedirectLinksProperty(self):
         self.failUnless(self.properties.site_properties.hasProperty('redirect_links'))
-        self.assertEquals(False, self.properties.site_properties.redirect_links)
+        self.assertEquals(True, self.properties.site_properties.redirect_links)
 
     def testLinkDefaultView(self):
         self.assertEqual(self.types.Link.default_view, 'link_redirect_view')
