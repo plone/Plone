@@ -13,6 +13,15 @@
                     tal:define="kssClassesView context/@@kss_field_decorator_view;
                                 getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;">
 
+        <dl class="portalMessage info"
+            tal:define="redirect_links portal/portal_properties/site_properties/redirect_links|nothing"
+            tal:condition="python: redirect_links and checkPermission('Modify portal content', context)">
+            <dt i18n:translate="">Info</dt>
+            <dd i18n:translate="message_permissions_blocking_link_redirect">
+              You see this page because you have permission to edit this link.  Others will be immediately redirected to the link's target URL.
+            </dd>
+        </dl>
+
         <div tal:replace="structure provider:plone.abovecontenttitle" />
 
         <h1 class="documentFirstHeading"> 
@@ -30,16 +39,6 @@
         </p>
     
         <div tal:replace="structure provider:plone.abovecontentbody" />
-
-        <dl class="portalMessage info"
-            tal:define="redirect_links portal/portal_properties/site_properties/redirect_links|nothing"
-            tal:condition="python: redirect_links and checkPermission('Modify portal content', context)">
-            <dt i18n:translate="">Info</dt>
-            <dd i18n:translate="message_permissions_blocking_link_redirect">
-              This link will immediately redirect to the link address for 
-              users who don't have permission to edit the link.
-            </dd>
-        </dl>
 
         <p>
             <span i18n:translate="link_address">The link address is:</span>
