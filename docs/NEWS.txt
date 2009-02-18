@@ -8,5 +8,6 @@ Changelog
 3.3 - Unreleased
 ----------------
 
-
+- PLIP 238: Disable inline editing for new Plone sites.
+  [wichert]
 
