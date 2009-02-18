@@ -5,6 +5,141 @@ See NEWS.txt for changes included the current release.
 
 Older releases:
 
+
+3.2.1 - February 4, 2009
+------------------------
+
+- Add dependency on Products.NuPlone to prevents sites who use NuPlone from
+  breaking when upgrading from Plone 3.0.x or 3.1.x to 3.2 or later.
+  [wichert]
+
+- Fix contact_info.cpt so it bases the appearance of the fullname and email
+  fields on whether they are set in the current member's profile, rather
+  than on whether the current user is anonymous or not.  This closes
+  http://dev.plone.org/plone/ticket/8526
+  [davisagli]
+
+- Update default frontpage to refer to Plone 3 instead of 3.0.
+  [wichert]
+
+- Added time_only for use with toLocalizedTime so that event_view now localizes
+  the start/end times if the start/end dates are the same. Added migration for
+  3.2 to 3.2.1 to add new property to the propery tool. Closes
+  http://dev.plone.org/plone/ticket/8607
+  [jnelson, calvinhp]
+
+- Fixed links-plain issue on the front-page. This closes  
+  http://dev.plone.org/plone/ticket/6479. 
+  [cwainwright, calvinhp] 
+
+- Put in workaround for IE6 background caching problem, closes
+  http://dev.plone.org/plone/ticket/7445
+  [cwainwright, calvinhp]
+
+- Removed old background icon from personal bar for RTL scripts.
+  Closes http://dev.plone.org/plone/ticket/4570
+  [emanlove]
+
+- Moved history icon off text and shifted history header
+  to the right under RTL scripts. Closes
+  http://dev.plone.org/plone/ticket/6368
+  [emanlove]
+
+- Cleaned up document actions for RTL scripts. Closes
+  http://dev.plone.org/plone/ticket/8863
+  [emanlove]
+
+
+3.2 - December 31, 2008
+-----------------------
+
+- Merge the upgrade instructions from
+  http://plone.org/documentation/manual/upgrade-guide/version/upgrading-from-3-x-to-3.2
+  into the release notes.
+  [wichert]
+
+
+3.2rc1 - December 15, 2008
+--------------------------
+
+- Shifted profile and personal preferences to the left for RTL
+  scripts. Closes
+  http://dev.plone.org/plone/ticket/8169
+  [emanlove]
+
+- Load the `plone.app.locales` configure.zcml. This fixes
+  http://dev.plone.org/plone/ticket/8788.
+  [hannosch]
+
+- Cleaned up Livesearch results for RTL Languages.
+  Closes http://dev.plone.org/plone/ticket/4632
+  [emanlove]
+
+- For RTL languages adjusted document content padding so welcome
+  text fits inside text area. Closes
+  http://dev.plone.org/plone/ticket/6919
+  [emanlove]
+
+- For RTL languages shifted portrait photo to the left.
+  Closes http://dev.plone.org/plone/ticket/6214
+  [emanlove]
+
+- Added 'context' as an alias for 'object' in action expressions.
+  [davisagli]
+
+- Include missing dependency on plone.app.locales.
+  [hannosch]
+
+- Moved plone specific diff tool configuration back to Plone default
+  profile, since it's both plone specific and was never actually added
+  to CMFDiffTool.
+  Closes http://dev.plone.org/plone/ticket/8590
+  [alecm]
+
+- Fixed Forbidden error when attempting to login for the first time as a newly
+  created user, if the must_change_password property has been added (as a
+  Boolean) to the portal_memberdata tool and set to True.
+  Closes http://dev.plone.org/plone/ticket/8425
+  [hexsprite]
+
+- Fixed the toc.js to not turn heading text containing an "@" into the link.
+  Closes http://dev.plone.org/plone/ticket/7949
+  [sbruno, calvinhp]
+
+- Fixed the form_tabbing to use the correct buttons names. Closes
+  http://dev.plone.org/plone/ticket/7559
+  [lucie, calvinhp]
+
+- Fixed the full_review_list select all link to only select the items shown
+  and not all of the items at the portal root. This closes:
+  http://dev.plone.org/plone/ticket/6991
+  [garbas, calvinhp]
+
+- Gave RTL.css higher priority within the stylesheet registry.
+  loses http://dev.plone.org/plone/ticket/8505
+  [emanlove]
+
+- For RTL languages shifted Info Bar to the right.
+  Closes http://dev.plone.org/plone/ticket/8140
+  [emanlove]
+
+- For RTL languages shifted comment icon to the right.
+  Closes http://dev.plone.org/plone/ticket/6366
+  [emanlove]
+
+
+3.2a1 - October 11, 2008
+------------------------
+
+- Take getNotAddableTypes into account when determining if the editable
+  border should be shown.
+  [wichert]
+
+- First fully eggified Plone release (ignoring the not yet eggified
+  Zope2).
+  [wichert]
+
+
 3.1.7 - November 5, 2008
 ------------------------
 
