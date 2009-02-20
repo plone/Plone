@@ -978,57 +978,43 @@ a.link-parent {
     color: red;
 }
 
-/* Handling external/internal links, we first set the icon on all links, then 
-   remove it from the ones that are local - for both http and https */
-#content a[href ^="http:"],
-#content a.link-external {
+
+/* Handling external links */
+#content span.link-external a {
     background: transparent url(&dtml-portal_url;/link_icon.gif) 0px 1px no-repeat;
     padding: 1px 0px 1px 16px;
 }
-#content a[href ^="https:"],
-#content a.link-https {
+#content span.link-https a {
     background: transparent url(&dtml-portal_url;/lock_icon.gif) 0px 1px no-repeat;
     padding: 1px 0px 1px 16px;
 }
-#content a[href ^="&dtml-portal_url;"] {
-    background: none;
-    padding: 0;
-}
-
 
 /* Protocol-specific links */
-#content a[href ^="mailto:"],
-#content a.link-mailto  {
+#content span.link-mailto  a {
     background: transparent url(&dtml-portal_url;/mail_icon.gif) 0px 1px no-repeat;
     padding: 1px 0px 1px 16px;
 }
-#content a[href ^="news:"],
-#content a.link-news {
+#content span.link-news a {
     background: transparent url(&dtml-portal_url;/topic_icon.gif) 0px 1px no-repeat;
     padding: 1px 0px 1px 16px;
 }
-#content a[href ^="ftp:"],
-#content a.link-ftp {
+#content span.link-ftp a {
     background: transparent url(&dtml-portal_url;/file_icon.gif) 0px 1px no-repeat;
     padding: 1px 0px 1px 16px;
 }
-#content a[href ^="irc:"],
-#content a.link-irc {
+#content span.link-irc a {
     background: transparent url(&dtml-portal_url;/discussionitem_icon.gif) 0px 1px no-repeat;
     padding: 1px 0px 1px 16px;
 }
-#content a[href ^="callto:"],
-#content a.link-callto {
+#content span.link-callto a {
     background: transparent url(&dtml-portal_url;/phone_icon.gif) 0px 1px no-repeat;
     padding: 1px 0px 1px 16px;
 }
-#content a[href ^="webcal:"],
-#content a.link-webcal {
+#content span.link-webcal a {
     background: transparent url(&dtml-portal_url;/event_icon.gif) 0px 1px no-repeat;
     padding: 1px 0px 1px 16px;
 }
-#content a[href ^="feed:"],
-#content a.link-feed {
+#content span.link-feed a {
     background: transparent url(&dtml-portal_url;/rss.gif) 0px 1px no-repeat;
     padding: 1px 0px 1px 18px;
 }
