@@ -9,5 +9,5 @@ var form_resubmit_message = '<tal:block tal:replace="python: context.translate('
 // the following are flags for mark_special_links.js
 // links get the target="_blank" attribute
 var external_links_open_new_window = '<tal:block replace="portal_props/external_links_open_new_window" />';
-var mark_special_links = '<tal:block replace="portal_props/mark_special_links" />';
+var mark_special_links = '<tal:block replace="portal_props/mark_special_links | string:false" />';
 </metal:block>
