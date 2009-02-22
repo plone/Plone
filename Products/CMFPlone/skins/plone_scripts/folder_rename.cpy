@@ -39,7 +39,7 @@ if change_template:
                                               new_path)
         request.set('orig_template', orig_template)
         message = _(u"Renamed '${oldid}' to '${newid}'.", 
-                    mapping={u'oldid' : obid, u'newid' : new_id}
+                    mapping={u'oldid' : obid, u'newid' : new_id})
 
 success, failure = putils.renameObjectsByPaths(paths, new_ids, new_titles,
                                                REQUEST=request)
