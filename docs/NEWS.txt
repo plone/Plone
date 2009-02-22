@@ -8,6 +8,15 @@ Changelog
 3.3 - Unreleased
 ----------------
 
+- "Mark external links" and "External links open in new window" were not working
+  independently ('mark' had to be set for 'new window' to work) and marking could
+  not be turned off at all (#7383). Fixed by having either one enable the js
+  support and adding a new site property to control marking. Implemented so
+  that new site property will be assumed false if missing and created on change
+  if missing -- so no migration required. There is a matching change in 
+  plone.app.controlpanel.
+  [smcmahon]
+
 - PLIP 238: Disable inline editing for new Plone sites.
   [wichert]
 
