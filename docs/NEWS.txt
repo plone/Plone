@@ -8,7 +8,9 @@ Changelog
 3.2.2 - Unreleased
 ------------------
 
-
+- Fix the internalization of folder_rename status message
+  https://dev.plone.org/plone/ticket/8750
+  [encolpe]
 
 
 3.2.1 - February 4, 2009
