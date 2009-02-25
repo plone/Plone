@@ -8,6 +8,14 @@ Changelog
 3.3 - Unreleased
 ----------------
 
+- Added a 'redirect_links' site property and corresponding 'Redirect
+  immediately to link target' setting in the types configlet (for the Link type
+  only).  The default view for the Link type has been changed to
+  link_redirect_view.py from the plone_content skin layer, which redirects or
+  falls back to the old link_view depending on the 'redirect_links' value.
+  This implements http://plone.org/products/plone/roadmap/126
+  [davisagli]
+
 - "Mark external links" and "External links open in new window" were not working
   independently ('mark' had to be set for 'new window' to work) and marking could
   not be turned off at all (#7383). Fixed by having either one enable the js

@@ -437,6 +437,13 @@ class TestPortalCreation(PloneTestCase.PloneTestCase, WarningInterceptor):
         # site_properties should have enable_livesearch property
         self.failUnless(self.properties.site_properties.hasProperty('enable_livesearch'))
 
+    def testRedirectLinksProperty(self):
+        self.failUnless(self.properties.site_properties.hasProperty('redirect_links'))
+        self.assertEquals(True, self.properties.site_properties.redirect_links)
+
+    def testLinkDefaultView(self):
+        self.assertEqual(self.types.Link.default_view, 'link_redirect_view')
+
     def testSearchSettingsActionIcon(self):
         # There should be a SearchSettings action icon
         for icon in self.icons.listActionIcons():
@@ -901,7 +908,6 @@ class TestPortalCreation(PloneTestCase.PloneTestCase, WarningInterceptor):
         self.app.REQUEST['HTTP_ACCEPT_LANGUAGE'] = 'pt-br'
         gen.setupPortalContent(self.folder.brazilian)
         self.failUnlessEqual(self.folder.brazilian.news.Title(), 'Bar')
-
 
 class TestPortalBugs(PloneTestCase.PloneTestCase):
 

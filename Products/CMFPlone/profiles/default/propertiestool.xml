@@ -136,6 +136,6 @@
   <property name="external_links_open_new_window" type="string">false</property>
   <property name="icon_visibility" type="string">enabled</property>
   <property name="mark_special_links" type="string">false</property>
-  
+  <property name="redirect_links" type="boolean">True</property>
  </object>
 </object>
