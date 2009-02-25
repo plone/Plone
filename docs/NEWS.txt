@@ -8,6 +8,11 @@ Changelog
 3.3 - Unreleased
 ----------------
 
+- Added an option in the Site Settings configlet to disable TTW locking
+  entirely.  Also fixed a couple bugs with unlocking and made it so the
+  lock gets refreshed as long as an editor is on the edit page.
+  This implements http://plone.org/products/plone/roadmap/240
+
 - Added a 'redirect_links' site property and corresponding 'Redirect
   immediately to link target' setting in the types configlet (for the Link type
   only).  The default view for the Link type has been changed to

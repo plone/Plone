@@ -3306,6 +3306,12 @@ class TestMigrations_v3_3(MigrationTest):
         self.assertEqual(self.types.Link.immediate_view, 'foobar')
         self.assertEqual(self.types.Link.view_methods, ('foobar',))
 
+    def testLockOnTTWProperty(self):
+        self.removeSiteProperty('lock_on_ttw_edit')
+        self._upgrade()
+        self.assertEquals(True, self.properties.site_properties.getProperty('lock_on_ttw_edit'))
+    
+
 def test_suite():
     from unittest import TestSuite, makeSuite
     suite = TestSuite()

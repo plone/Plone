@@ -131,6 +131,7 @@
   <property name="enable_sitemap" type="boolean">False</property>
   <property name="number_of_days_to_keep" type="int">7</property>
   <property name="enable_inline_editing" type="boolean">False</property>
+  <property name="lock_on_ttw_edit" type="boolean">True</property>
   <property name="enable_link_integrity_checks" type="boolean">True</property>
   <property name="webstats_js" type="string"></property>
   <property name="external_links_open_new_window" type="string">false</property>

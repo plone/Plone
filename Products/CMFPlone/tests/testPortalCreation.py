@@ -444,6 +444,10 @@ class TestPortalCreation(PloneTestCase.PloneTestCase, WarningInterceptor):
     def testLinkDefaultView(self):
         self.assertEqual(self.types.Link.default_view, 'link_redirect_view')
 
+    def testTTWLockableProperty(self):
+        self.failUnless(self.properties.site_properties.hasProperty('lock_on_ttw_edit'))
+        self.assertEquals(True, self.properties.site_properties.lock_on_ttw_edit)
+
     def testSearchSettingsActionIcon(self):
         # There should be a SearchSettings action icon
         for icon in self.icons.listActionIcons():

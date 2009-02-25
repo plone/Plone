@@ -2,5 +2,6 @@
 <object name="portal_properties" meta_type="Plone Properties Tool">
  <object name="site_properties" meta_type="Plone Property Sheet">
   <property name="redirect_links" type="boolean">True</property>
+  <property name="lock_on_ttw_edit" type="boolean">True</property>
  </object>
 </object>
