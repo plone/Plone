@@ -9,8 +9,8 @@ Changelog
 ----------------
 
 - Fix the internalization of folder_rename status message
-  https://dev.plone.org/plone/ticket/8750
-  [vincentfretin]
+  http://dev.plone.org/plone/ticket/8750
+  [encolpe]
 
 - Removed the `Reinstall` button from the `Add/Remove products` control panel.
   Users would constantly mistake it as an upgrade mechanism, which Plone does

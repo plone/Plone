@@ -1,6 +1,6 @@
 <?xml version="1.0"?> 
-<object name="portal_properties" meta_type="Plone Properties Tool"> 
- <object name="site_properties" meta_type="Plone Property Sheet"> 
+<object name="portal_properties">
+ <object name="site_properties">
   <property name="localTimeOnlyFormat" type="string">%I:%M %p</property> 
  </object> 
 </object> 
