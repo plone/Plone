@@ -8,6 +8,10 @@ Changelog
 3.2.2 - Unreleased
 ------------------
 
+- Register 3.2 -> 3.2.1 migration step with the migration machinery. This fixes
+  problems due to a missing site  property for migrated sites.
+  [matthewwilkes]
+
 - Fix the internalization of folder_rename status message
   http://dev.plone.org/plone/ticket/8750
   [encolpe]
