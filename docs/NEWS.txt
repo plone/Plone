@@ -9,7 +9,7 @@ Changelog
 ------------------
 
 - Fix the internalization of folder_rename status message
-  https://dev.plone.org/plone/ticket/8750
+  http://dev.plone.org/plone/ticket/8750
   [encolpe]
 
 
