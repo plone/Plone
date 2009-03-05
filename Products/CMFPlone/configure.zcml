@@ -23,6 +23,7 @@
   <include package="plone.memoize" />
   <include package="plone.session" />
   <include package="plone.protect" />
+  <include package="plone.indexer" />
 
   <!-- viewlets zope 3 layers support for themes -->
   <include package="plone.browserlayer" />
@@ -54,6 +55,7 @@
 
   <include file="deprecated.zcml"/>
   <include file="profiles.zcml"/>
+  <include file="catalog.zcml" />
 
   <five:implements
     class=".FactoryTool.FactoryTool"
@@ -104,12 +106,6 @@
   <utility factory=".setuphandlers.HiddenProducts"
            name="Products.CMFPlone" />
            
-  <!-- Default wrapper for indexing -->
-  <adapter
-      for="* Products.CMFCore.interfaces.ISiteRoot"
-      provides="plone.app.content.interfaces.IIndexableObjectWrapper"
-      factory=".CatalogTool.ExtensibleIndexableObjectWrapper" />
-
   <!-- Adapter for default workflow lookup -->
   <adapter
       factory=".workflow.ToolWorkflowChain"

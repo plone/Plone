@@ -5,7 +5,17 @@
 Changelog
 =========
 
-3.3 - Unreleased
+3.3a1 - Unreleased
+------------------
+
+- Removed CatalogTool.ExtensibleIndexableObjectWrapper in favour of the
+  wrapper in plone.indexer, and made registerIndexableAttribute() a deprecated
+  facade for registering an IIndexer adapter. See plone.indexer for more
+  information about the correct (and more robust) way to register custom
+  indexers.
+  [optilude]
+
+3.2.1 - Unreleased
 ----------------
 
 - Removed the `Reinstall` button from the `Add/Remove products` control panel.
