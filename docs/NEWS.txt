@@ -8,7 +8,9 @@ Changelog
 3.2.3 - Unreleased
 ------------------
 
-
+- Make the Groups Overview search post back to the same page, since it displays a
+  lot more useful information than the prefs_user_group_search, and fits more
+  with the way the Users Overview works. [esteele]
 
 3.2.2 - March 3, 2009
 ---------------------

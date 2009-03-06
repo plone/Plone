@@ -20,8 +20,9 @@
                 portal_roles here/getGlobalPortalRoles;
                 searchstring request/searchstring | nothing;
                 gtool context/portal_groups;
-                search_results python:test(not site_properties.many_groups, search_view.searchGroups(), searchstring and search_view.searchGroups(id=searchstring) or None);
+                search_results python:test(not searchstring and not site_properties.many_groups, search_view.searchGroups(), searchstring and search_view.searchGroups(id=searchstring) or None);
                 batch python:search_results and Batch(search_results, b_size, int(b_start), orphan=1) or None;">
+
     <div id="region-content" class="documentEditable"
          tal:condition="python:checkPermission('Manage Groups', here)">
 
@@ -229,7 +230,7 @@
                         </tal:block>
                     </table>
 
-                    <tal:block tal:condition="python:(searchstring or search_results)">
+                    <tal:block tal:condition="python:(search_results)">
 
                         <div metal:use-macro="here/batch_macros/macros/navigation" />
 
