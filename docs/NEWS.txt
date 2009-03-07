@@ -8,6 +8,11 @@ Changelog
 3.3a1 - Unreleased
 ------------------
 
+- Replace the workflow history portlet with a content history portlet
+  for newly created sites. This implements PLIP 243.
+  [wichert]
+ 
+
 - Changed most actions to now use the globals_view/navigationRootUrl. Updated
   the CMFCalendar tool override to allow the calendar portlet to allow passing
   in kwargs such as path.  Fixed skin templates and scripts to use the

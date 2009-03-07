@@ -73,10 +73,11 @@ list of versionable content types:
   ...     [folder.portal_type])
 
 
-Now let us list the tabs that would show up in the page:
+Now let us list the tabs that would show up in the page (note, that
+`History` has been removed in the course of PLIP #243):
 
   >>> context_state = folder.restrictedTraverse('@@plone_context_state')
   >>> pactions = folder.plonifyActions(
   ...     template_id='view', actions=context_state.actions())
   >>> [str(a['title']) for a in pactions]
-  ['Contents', 'View', 'Edit', 'Sharing', 'History']
+  ['Contents', 'View', 'Edit', 'Sharing']
