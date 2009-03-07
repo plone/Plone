@@ -3280,7 +3280,7 @@ class TestMigrations_v3_3(MigrationTest):
         self.migration = self.portal.portal_migration
     
     def _upgrade(self):
-        self.migration._upgrade('3.2.1')
+        self.migration._upgrade('3.2.2')
     
     def testRedirectLinksProperty(self):
         self.removeSiteProperty('redirect_links')
