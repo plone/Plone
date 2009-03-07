@@ -112,4 +112,7 @@
       trusted="y"
       />
 
+    <!-- include plone plugins with z3c.autoinclude -->
+    <includePlugins package="plone" file="configure.zcml" />
+
 </configure>

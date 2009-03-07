@@ -103,6 +103,7 @@ setup(name='Plone',
           'wicked',
           'five.customerize',
           'five.localsitemanager',
+          'z3c.autoinclude',
 # Needed to prevent upgrades breaking existing sites only
           'Products.NuPlone',
 # Needed for testing only
