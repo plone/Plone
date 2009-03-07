@@ -8,6 +8,13 @@ Changelog
 3.3a1 - Unreleased
 ------------------
 
+- Changed most actions to now use the globals_view/navigationRootUrl. Updated
+  the CMFCalendar tool override to allow the calendar portlet to allow passing
+  in kwargs such as path.  Fixed skin templates and scripts to use the
+  @@plone_portal_state/navigation_root_url instead of portal_url.
+  This implements http://plone.org/products/plone/roadmap/234
+  [calvinhp]
+ 
 - Removed CatalogTool.ExtensibleIndexableObjectWrapper in favour of the
   wrapper in plone.indexer, and made registerIndexableAttribute() a deprecated
   facade for registering an IIndexer adapter. See plone.indexer for more

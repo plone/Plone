@@ -121,7 +121,7 @@
                                 <tal:name tal:condition="item_creator"
                                   tal:define="author python:mtool.getMemberInfo(item_creator)">
                                 <a href="#"
-                                   tal:attributes="href string:${portal_url}/author/${item_creator}"
+                                   tal:attributes="href string:${context/@@plone_portal_state/navigation_root_url}/author/${item_creator}"
                                    tal:content="python:author and author['fullname'] or item_creator"
                                    tal:omit-tag="not:author">
                                   Bob Dobalina
