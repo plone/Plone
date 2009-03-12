@@ -8,6 +8,10 @@ Changelog
 3.3rc1 - UNRELEASED
 -------------------
 
+ - Make the Groups Overview search post back to the same page, since it displays a
+   lot more useful information than the prefs_user_group_search, and fits more
+   with the way the Users Overview works. Include a "Show all" button as well. 
+   [esteele]
 
 
 3.3b1 - March 12, 2009
