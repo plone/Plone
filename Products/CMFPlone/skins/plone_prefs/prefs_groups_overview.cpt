@@ -20,8 +20,11 @@
                 portal_roles here/getGlobalPortalRoles;
                 searchstring request/searchstring | nothing;
                 gtool context/portal_groups;
-                search_results python:test(not site_properties.many_groups, search_view.searchGroups(), searchstring and search_view.searchGroups(id=searchstring) or None);
+                findAll python:'form.button.FindAll' in request.keys();
+                showAll python:not site_properties.many_groups and (findAll or not searchstring);
+                search_results python:test(showAll, search_view.searchGroups(), searchstring and search_view.searchGroups(id=searchstring) or None);
                 batch python:search_results and Batch(search_results, b_size, int(b_start), orphan=1) or None;">
+
     <div id="region-content" class="documentEditable"
          tal:condition="python:checkPermission('Manage Groups', here)">
 
@@ -132,6 +135,14 @@
                                        value="Search"
                                        i18n:attributes="value label_search;"
                                        />
+                                       
+                                <input type="submit"
+                                       class="searchButton"
+                                       name="form.button.FindAll"
+                                       value="Show all"
+                                       i18n:attributes="value label_showall;"
+                                       tal:condition="not:site_properties/many_groups"
+                                       />                                       
 
                                 <input type="hidden"
                                        name="searchonly"
@@ -229,7 +240,7 @@
                         </tal:block>
                     </table>
 
-                    <tal:block tal:condition="python:(searchstring or search_results)">
+                    <tal:block tal:condition="python:(search_results)">
 
                         <div metal:use-macro="here/batch_macros/macros/navigation" />
 
