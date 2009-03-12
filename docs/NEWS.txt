@@ -5,8 +5,8 @@
 Changelog
 =========
 
-3.3b1 - Unreleased
-------------------
+3.3b1 - March 12, 2009
+----------------------
 
 - Replace the workflow history portlet with a content history portlet
   for newly created sites. This implements PLIP 243.
