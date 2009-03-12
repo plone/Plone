@@ -5,8 +5,8 @@ See NEWS.txt for changes included the current release.
 
 Older releases:
 
-3.2.2 - Unreleased
-------------------
+3.2.2 - March 3, 2009
+---------------------
 
 - Register 3.2 -> 3.2.1 migration step with the migration machinery. This fixes
   problems due to a missing site  property for migrated sites.

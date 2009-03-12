@@ -1,7 +1,7 @@
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.migrations.migration_util import loadMigrationProfile
 
-def three21_three3(portal):
+def three21_three3_beta1(portal):
     """3.2.1 -> 3.3
     """
     loadMigrationProfile(portal, 'profile-Products.CMFPlone.migrations:3.2.1-3.3')
