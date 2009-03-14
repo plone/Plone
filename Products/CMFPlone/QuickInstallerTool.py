@@ -45,8 +45,8 @@ class QuickInstallerTool(PloneBaseTool, BaseTool):
             profile_version = product_version
         installed_profile_version = setup.getLastVersionForProfile(profile_id)
         if installed_profile_version == 'unknown':
-            # Inline migration, set profile version to last product version
-            setup.setLastVersionForProfile(profile_id, installed_product_version)
+            # Inline migration, set profile version to profile version
+            setup.setLastVersionForProfile(profile_id, profile_version)
             installed_profile_version = setup.getLastVersionForProfile(profile_id)
         # getLastVersionForProfile returns the version as a tuple
         installed_profile_version = str('.'.join(installed_profile_version))
@@ -54,6 +54,21 @@ class QuickInstallerTool(PloneBaseTool, BaseTool):
             required=profile_version != installed_profile_version,
             available=len(setup.listUpgrades(profile_id))>0,
             )
+
+    security.declareProtected(ManagePortal, 'upgradeProduct')
+    def upgradeProduct(self, pid):
+        profile = self.getInstallProfile(pid)
+        if profile is None:
+            # No upgrade profiles
+            self.reinstallProducts(products=[pid])
+        profile_id = profile['id']
+        setup = getToolByName(self, 'portal_setup')
+        upgrades = setup.listUpgrades(profile_id)
+        for upgrade in upgrades:
+            step = upgrade['step']
+            step.doStep(setup)
+        version = str(profile['version'])
+        setup.setLastVersionForProfile(profile_id, version)
 
 
 QuickInstallerTool.__doc__ = BaseTool.__doc__
