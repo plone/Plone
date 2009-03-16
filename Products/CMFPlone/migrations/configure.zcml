@@ -121,8 +121,17 @@
       />
 
   <genericsetup:registerProfile
-      name="3.2.1-3.3"
-      title="Migration profile for Plone 3.2.1 to Plone 3.3"
+      name="3.2.2-3.2.3"
+      title="Migration profile for Plone 3.2.2 to Plone 3.2.3"
+      description="This profile contains configuration changes that are applied during the Plone 3.2.2 to 3.2.3 migration."
+      directory="v3_2/profiles/three22_three23"
+      for="Products.CMFPlone.interfaces.IMigratingPloneSiteRoot"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+  <genericsetup:registerProfile
+      name="3.2.3-3.3"
+      title="Migration profile for Plone 3.2.3 to Plone 3.3"
       description="This profile contains configuration changes that are applied during the Plone 3.2.1 to 3.3
                     migration." 
       directory="v3_3/profiles/three21_three3"
