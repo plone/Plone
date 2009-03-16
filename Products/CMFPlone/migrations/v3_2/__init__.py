@@ -19,3 +19,9 @@ def three21_three22(portal):
             portal,
             'profile-Products.CMFPlone.migrations:3.2-3.2.1')
 
+def three22_three23(portal):
+    """3.2.2 -> 3.2.3
+    """
+    loadMigrationProfile(
+            portal,
+            'profile-Products.CMFPlone.migrations:3.2.2-3.2.3')

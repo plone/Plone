@@ -13,6 +13,10 @@ Changelog
   with the way the Users Overview works. Include a "Show all" button as well. 
   [esteele]
 
+- Convert event-registration.js to use jQuery and remove it from new sites.
+  This closes http://dev.plone.org/ticket/8097
+  [mj]
+
 3.2.2 - March 3, 2009
 ---------------------
 
