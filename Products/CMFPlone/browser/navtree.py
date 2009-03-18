@@ -178,6 +178,9 @@ class SitemapNavtreeStrategy(NavtreeStrategyBase):
         newNode['Description'] = getattr(item, 'Description', None)
         newNode['show_children'] = showChildren
         newNode['no_display'] = False # We sort this out with the nodeFilter
+        # BBB getRemoteUrl and link_remote are deprecated, remove in Plone 4
+        newNode['getRemoteUrl'] = getattr(item, 'getRemoteUrl', None)
+        newNode['link_remote'] = newNode['getRemoteUrl'] and newNode['Creator'] != self.memberId
 
         idnormalizer = queryUtility(IIDNormalizer)
         newNode['normalized_portal_type'] = idnormalizer.normalize(portalType)
