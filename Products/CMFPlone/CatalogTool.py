@@ -67,7 +67,7 @@ def registerIndexableAttribute(name, callable):
     
     # Ideally, we'd emit a configuration action here, but we don't have access
     # to the configuration context, so we have to do it this way
-    provideAdapter(factory, (Interface,), IIndexer)
+    provideAdapter(factory, (Interface,), IIndexer, name=name)
 
 @indexer(Interface)
 def allowedRolesAndUsers(obj, portal, **kwargs):

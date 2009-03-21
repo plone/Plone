@@ -8,6 +8,10 @@ Changelog
 3.3rc1 - UNRELEASED
 -------------------
 
+ - Fixed the registerIndexableAttribute() backwards-compatibility shim to
+   register named adapters.
+   [optilude]
+
  - Re-added the 'getRemoteUrl' and 'link_remote' attributes of the navtree
    decorator, which were lost during the implementation of PLIP 126.  Note
    that these attributes are deprecated and will not be available in Plone 4.
