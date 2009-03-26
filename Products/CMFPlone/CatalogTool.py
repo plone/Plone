@@ -52,6 +52,38 @@ _marker = object()
 ## DEPRECATED: This is for compatibility in the 3.x series and should go away
 ## in Plone 4.
 
+from zope.interface import implements
+from zope.interface.declarations import Implements, implementedBy
+
+from plone.indexer.interfaces import IIndexer
+from zope.component import provideAdapter
+    
+class BBBDelegatingIndexer(object):
+    """An indexer that delegates to a given callable
+    """
+    implements(IIndexer)
+    
+    def __init__(self, context, catalog, callable):
+        self.context = context
+        self.catalog = catalog
+        self.callable = callable
+        
+    def __call__(self):
+        kwargs = {'portal': aq_parent(aq_inner(self.catalog))}
+        return self.callable(self.context, **kwargs)
+
+class BBBDelegatingIndexerFactory(object):
+    """An adapter factory for an IIndexer that works by calling a
+    BBBDelegatingIndexer.
+    """
+    
+    def __init__(self, callable):
+        self.callable = callable
+        self.__implemented__ = Implements(implementedBy(BBBDelegatingIndexer))
+        
+    def __call__(self, object, catalog=None):
+        return BBBDelegatingIndexer(object, catalog, self.callable)
+
 @deprecate("The registerIndexableAttribute hook has been deprecated and will be\n"
            "removed in Plone 4.0. Please use the following pattern instead:\n"
            "  >>> from plone.indexer.decorator import indexer\n"
@@ -65,10 +97,8 @@ _marker = object()
 def registerIndexableAttribute(name, callable):
     """BBB function.
     """
-    from plone.indexer.interfaces import IIndexer
-    from plone.indexer.delegate import DelegatingIndexerFactory
-    from zope.component import provideAdapter
-    factory = DelegatingIndexerFactory(callable)
+    
+    factory = BBBDelegatingIndexerFactory(callable)
     
     # Ideally, we'd emit a configuration action here, but we don't have access
     # to the configuration context, so we have to do it this way
