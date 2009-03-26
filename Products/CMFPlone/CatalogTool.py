@@ -18,10 +18,12 @@ from Acquisition import aq_base
 from DateTime import DateTime
 from BTrees.Length import Length
 
+from Products.CMFCore.interfaces import ISiteRoot
 from Products.CMFCore.utils import _getAuthenticatedUser
 from Products.CMFCore.utils import _checkPermission
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.CatalogTool import _mergedLocalRoles
+
 from Products.CMFPlone.PloneBaseTool import PloneBaseTool
 from Products.CMFPlone.interfaces import INonStructuralFolder
 from Products.CMFPlone.interfaces.NonStructuralFolder import \
@@ -39,19 +41,22 @@ from AccessControl.Permissions import search_zcatalog as SearchZCatalog
 from AccessControl.PermissionRole import rolesForPermissionOn
 
 from zope.interface import Interface, providedBy
-from zope.component import getMultiAdapter
+from zope.component import queryMultiAdapter
 from zope.deprecation import deprecate
 
-from plone.indexer.interfaces import IIndexableObjectWrapper
-from plone.indexer.decorator import indexer
+from plone.indexer.interfaces import IIndexableObject
+from plone.indexer import indexer
 
 _marker = object()
+
+## DEPRECATED: This is for compatibility in the 3.x series and should go away
+## in Plone 4.
 
 @deprecate("The registerIndexableAttribute hook has been deprecated and will be\n"
            "removed in Plone 4.0. Please use the following pattern instead:\n"
            "  >>> from plone.indexer.decorator import indexer\n"
            "  >>> @indexer(Interface)\n"
-           "  ... def my_indexer(object, portal, **kwargs):\n"
+           "  ... def my_indexer(object):\n"
            "  ...     return <some value>\n"
            " Then register the indexer as an adapter in ZCML:\n"
            "     <adapter factory='.indexers.my_indexer' name='my_attribute' />\n"
@@ -67,10 +72,67 @@ def registerIndexableAttribute(name, callable):
     
     # Ideally, we'd emit a configuration action here, but we don't have access
     # to the configuration context, so we have to do it this way
-    provideAdapter(factory, (Interface,), IIndexer, name=name)
+    provideAdapter(factory, (Interface, Interface), IIndexer, name=name)
+
+from zope.interface import implements
+from zope.component import adapts
+from plone.indexer.interfaces import IIndexer
+from plone.indexer.wrapper import IndexableObjectWrapper as _BaseWrapper
+from plone.app.content.interfaces import IIndexableObjectWrapper as _old_IIndexableObjectWrapper
+
+class ExtensibleIndexableObjectWrapper(_BaseWrapper):
+    """BBB alias retaining the API of the old ExtensibleIndexableObjectWrapper.
+    This may be used as a base class. It delegates to the plone.indexer
+    wrapper, with a few assumptions.
+    """
+    
+    implements(_old_IIndexableObjectWrapper)
+    adapts(Interface, ISiteRoot)
+    
+    def __init__(self, obj, portal, registry={}):
+        catalog = getToolByName(portal, 'portal_catalog')
+        super(ExtensibleIndexableObjectWrapper, self).__init__(obj, catalog)
+        
+        # Retain old mangled name
+        self._IndexableObjectWrapper__ob = obj
+        self._kwargs = {}
+    
+    def update(self, vars, **kwargs):
+        # Note that this is not even used below, because kwargs were never
+        # passed to catalog_object() in the first place, and workflow vars
+        # are taken care of by __init__() now.
+        pass
+    
+    def beforeGetattrHook(self, vars, obj, kwargs):
+        return vars, obj, kwargs
+
+    def __getattr__(self, name):
+        
+        # Make getattr continue to call the beforeGetattrHook
+        
+        vars = self._IndexableObjectWrapper__vars
+        obj = self._IndexableObjectWrapper__ob
+        catalog = self._IndexableObjectWrapper__catalog
+        kwargs = self._kwargs
+        
+        vars, obj, kwargs = self.beforeGetattrHook(vars, obj, kwargs)
+        
+        # Use the possibly modified objects from beforeGetattrHook.
+        indexer = queryMultiAdapter((obj, catalog,), IIndexer, name=name)
+        if indexer is not None:
+            return indexer()
+        if name in vars:
+            return vars[name]                    
+        return getattr(obj, name)
+        
+    def allowedRolesAndUsers(self):
+        # Disable CMFCore version of this method; use registry hook instead
+        return self.__getattr__('allowedRolesAndUsers')
+
+## End Deprecated BBB code
 
 @indexer(Interface)
-def allowedRolesAndUsers(obj, portal, **kwargs):
+def allowedRolesAndUsers(obj):
     """Return a list of roles and users with View permission.
 
     Used by PortalCatalog to filter out items you're not allowed to see.
@@ -79,7 +141,9 @@ def allowedRolesAndUsers(obj, portal, **kwargs):
     for r in rolesForPermissionOn('View', obj):
         allowed[r] = 1
     try:
-        localroles = portal.acl_users._getAllLocalRoles(obj)
+        acl_users = getToolByName(obj, 'acl_users', None)
+        if acl_users is not None:
+            localroles = acl_users._getAllLocalRoles(obj)
     except AttributeError:
         localroles = _mergedLocalRoles(obj)
     for user, roles in localroles.items():
@@ -91,8 +155,8 @@ def allowedRolesAndUsers(obj, portal, **kwargs):
     return list(allowed.keys())
 
 @indexer(Interface)
-def object_provides(object, portal, **kw):
-    return [i.__identifier__ for i in providedBy(object).flattened()]
+def object_provides(obj):
+    return [i.__identifier__ for i in providedBy(obj).flattened()]
 
 def zero_fill(matchobj):
     return matchobj.group().zfill(8)
@@ -100,7 +164,7 @@ def zero_fill(matchobj):
 num_sort_regex = re.compile('\d+')
 
 @indexer(Interface)
-def sortable_title(obj, portal, **kwargs):
+def sortable_title(obj):
     """ Helper method for to provide FieldIndex for Title.
 
     >>> from Products.CMFPlone.CatalogTool import sortable_title
@@ -123,7 +187,7 @@ def sortable_title(obj, portal, **kwargs):
     return ''
 
 @indexer(Interface)
-def getObjPositionInParent(obj, **kwargs):
+def getObjPositionInParent(obj):
     """ Helper method for catalog based folder contents.
 
     >>> from Products.CMFPlone.CatalogTool import getObjPositionInParent
@@ -146,7 +210,7 @@ SIZE_CONST = {'kB': 1024, 'MB': 1024*1024, 'GB': 1024*1024*1024}
 SIZE_ORDER = ('GB', 'MB', 'kB')
 
 @indexer(Interface)
-def getObjSize(obj, **kwargs):
+def getObjSize(obj):
     """ Helper method for catalog based folder contents.
 
     >>> from Products.CMFPlone.CatalogTool import getObjSize
@@ -181,7 +245,7 @@ def getObjSize(obj, **kwargs):
     return size
 
 @indexer(Interface)
-def is_folderish(obj, **kwargs):
+def is_folderish(obj):
     """Should this item be treated as a folder?
 
     Checks isPrincipiaFolderish, as well as the INonStructuralFolder
@@ -235,7 +299,7 @@ def is_folderish(obj, **kwargs):
         return folderish
 
 @indexer(Interface)
-def syndication_enabled(obj, **kwargs):
+def syndication_enabled(obj):
     """Get state of syndication.
     """
     syn = getattr(aq_base(obj), 'syndication_information', _marker)
@@ -244,14 +308,16 @@ def syndication_enabled(obj, **kwargs):
     return False
 
 @indexer(Interface)
-def is_default_page(obj, portal, **kwargs):
+def is_default_page(obj):
     """Is this the default page in its folder
     """
-    ptool = getToolByName(portal, 'plone_utils')
+    ptool = getToolByName(obj, 'plone_utils', None)
+    if ptool is None:
+        return False
     return ptool.isDefaultPage(obj)
 
 @indexer(Interface)
-def getIcon(obj, **kwargs):
+def getIcon(obj):
     """Make sure we index icon relative to portal"""
     return obj.getIcon(True)
 
@@ -300,21 +366,21 @@ class CatalogTool(PloneBaseTool, BaseTool):
     def catalog_object(self, object, uid, idxs=[],
                        update_metadata=1, pghandler=None):
         self._increment_counter()
-        # Wraps the object with workflow and accessibility
-        # information just before cataloging.
-        wf = getattr(self, 'portal_workflow', None)
-        # A comment for all the frustrated developers which aren't able to pin
-        # point the code which adds the review_state to the catalog. :)
-        # The review_state var and some other workflow vars are added to the
-        # indexable object wrapper throught the code in the following lines
-        if wf is not None:
-            vars = wf.getCatalogVariablesFor(object)
-        else:
-            vars = {}
-        portal = aq_parent(aq_inner(self))
         
-        w = getMultiAdapter((object, portal), IIndexableObjectWrapper)
-        w.update(vars)
+        w = object
+        
+        if not IIndexableObject.providedBy(object):
+            
+            # BBB: Compatibility wrapper lookup. Should be removed in Plone 4.
+            portal = aq_parent(aq_inner(self))
+            wrapper = queryMultiAdapter((object, portal), _old_IIndexableObjectWrapper)
+            if wrapper is not None:
+                w = wrapper
+            else:
+                # This is the CMF 2.2 compatible approach, which should be used going forward
+                wrapper = queryMultiAdapter((object, self), IIndexableObject)
+                if wrapper is not None:
+                    w = wrapper
         
         ZCatalog.catalog_object(self, w, uid, idxs,
                                 update_metadata, pghandler=pghandler)

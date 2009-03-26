@@ -8,6 +8,12 @@ Changelog
 3.3rc1 - UNRELEASED
 -------------------
 
+ - Updated the custom indexes in CatalogTool.py to no longer depend on the
+   'portal' keyword or kwargs, both of which are gone from plone.indexer.
+   This is done in an effort to be forward-compatible with CMF 2.2. See
+   the plone.indexer README for more details.
+   [optilude]
+
  - Fixed the registerIndexableAttribute() backwards-compatibility shim to
    register named adapters.
    [optilude]

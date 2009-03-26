@@ -463,8 +463,7 @@ class TestCatalogSorting(PloneTestCase.PloneTestCase):
 
     def testSortableTitleOutput(self):
         doc = self.folder.doc
-        wrapped = IndexableObjectWrapper(doc, self.portal)
-        wrapped.update(vars={})
+        wrapped = IndexableObjectWrapper(doc, self.portal.portal_catalog)
 
         self.assertEqual(wrapped.sortable_title, u'00000012 document 00000025')
 
@@ -473,8 +472,7 @@ class TestCatalogSorting(PloneTestCase.PloneTestCase):
         title = 'La Pe\xc3\xb1a'
         doc = self.folder.doc
         doc.setTitle(title)
-        wrapped = IndexableObjectWrapper(doc, self.portal)
-        wrapped.update(vars={})
+        wrapped = IndexableObjectWrapper(doc, self.portal.portal_catalog)
         self.assertEqual(wrapped.sortable_title, u'la pe\xf1a'.encode('utf-8'))
 
 
@@ -912,15 +910,15 @@ class TestIndexers(PloneTestCase.PloneTestCase):
 
     def test_is_folderishWithNonFolder(self):
         i = dummy.Item()
-        self.failIf(is_folderish(i)(self.portal))
+        self.failIf(is_folderish(i)())
 
     def test_is_folderishWithFolder(self):
         f = dummy.Folder('struct_folder')
-        self.failUnless(is_folderish(f)(self.portal))
+        self.failUnless(is_folderish(f)())
 
     def test_is_folderishWithNonStructuralFolder(self):
         f = dummy.NonStructuralFolder('ns_folder')
-        self.failIf(is_folderish(f)(self.portal))
+        self.failIf(is_folderish(f)())
 
     def test_provided(self):
         from Products.CMFCore.interfaces import IContentish
@@ -928,8 +926,7 @@ class TestIndexers(PloneTestCase.PloneTestCase):
         from Products.CMFCore.tests.base.dummy import DummyContent
 
         obj = DummyContent()
-        w = IndexableObjectWrapper(obj, self.portal)
-        w.update(vars={})
+        w = IndexableObjectWrapper(obj, self.portal.portal_catalog)
         
         self.failUnless(IIndexableObjectWrapper.providedBy(w))
         self.failUnless(IContentish.providedBy(w))
@@ -937,7 +934,7 @@ class TestIndexers(PloneTestCase.PloneTestCase):
     def test_getIcon(self):
         doc = self.doc
         iconname = doc.getIcon(relative_to_portal=1)
-        wrapped = IndexableObjectWrapper(doc, self.portal)
+        wrapped = IndexableObjectWrapper(doc, self.portal.portal_catalog)
         self.failUnlessEqual(wrapped.getIcon, iconname)
 
 
@@ -945,7 +942,7 @@ class TestObjectProvidedIndexExtender(unittest.TestCase):
     
     def _index(self, object):
         from Products.CMFPlone.CatalogTool import object_provides
-        return object_provides(object)(portal=None)
+        return object_provides(object)()
     
     def testNoInterfaces(self):
         class Dummy(object):
