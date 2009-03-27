@@ -8,6 +8,11 @@ Changelog
 3.3rc1 - UNRELEASED
 -------------------
 
+ - Fixed msgid label_event_byline default message which contained dynamic content.
+   Created a label_event_byline_without_location used when you don't specify
+   location in an Event.
+   [vincentfretin]
+
  - Updated the custom indexes in CatalogTool.py to no longer depend on the
    'portal' keyword or kwargs, both of which are gone from plone.indexer.
    This is done in an effort to be forward-compatible with CMF 2.2. See
