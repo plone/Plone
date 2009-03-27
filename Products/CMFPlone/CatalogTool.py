@@ -35,6 +35,7 @@ from OFS.IOrderSupport import IOrderedContainer
 from ZODB.POSException import ConflictError
 
 from Products.ZCatalog.ZCatalog import ZCatalog
+from Products.ZCatalog.interfaces import IZCatalog
 
 from AccessControl.Permissions import manage_zcatalog_entries as ManageZCatalogEntries
 from AccessControl.Permissions import search_zcatalog as SearchZCatalog
@@ -102,7 +103,7 @@ def registerIndexableAttribute(name, callable):
     
     # Ideally, we'd emit a configuration action here, but we don't have access
     # to the configuration context, so we have to do it this way
-    provideAdapter(factory, (Interface, Interface), IIndexer, name=name)
+    provideAdapter(factory, (Interface, IZCatalog,), IIndexer, name=name)
 
 from zope.interface import implements
 from zope.component import adapts
