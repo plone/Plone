@@ -8,33 +8,33 @@ Changelog
 3.3rc1 - UNRELEASED
 -------------------
 
- - Fixed msgid label_event_byline default message which contained dynamic content.
-   Created a label_event_byline_without_location used when you don't specify
-   location in an Event.
-   [vincentfretin]
+- Fixed msgid label_event_byline default message which contained dynamic content.
+  Created a label_event_byline_without_location used when you don't specify
+  location in an Event.
+  [vincentfretin]
 
- - Updated the custom indexes in CatalogTool.py to no longer depend on the
-   'portal' keyword or kwargs, both of which are gone from plone.indexer.
-   This is done in an effort to be forward-compatible with CMF 2.2. See
-   the plone.indexer README for more details.
-   [optilude]
+- Updated the custom indexes in CatalogTool.py to no longer depend on the
+  'portal' keyword or kwargs, both of which are gone from plone.indexer.
+  This is done in an effort to be forward-compatible with CMF 2.2. See
+  the plone.indexer README for more details.
+  [optilude]
 
- - Fixed the registerIndexableAttribute() backwards-compatibility shim to
-   register named adapters.
-   [optilude]
+- Fixed the registerIndexableAttribute() backwards-compatibility shim to
+  register named adapters.
+  [optilude]
 
- - Re-added the 'getRemoteUrl' and 'link_remote' attributes of the navtree
-   decorator, which were lost during the implementation of PLIP 126.  Note
-   that these attributes are deprecated and will not be available in Plone 4.
-   Custom navigation templates using these attributes should simply link to
-   the Link object, whose default view now takes care of redirecting based on
-   the value of the global 'redirect_links' property.
-   [davisagli]
+- Re-added the 'getRemoteUrl' and 'link_remote' attributes of the navtree
+  decorator, which were lost during the implementation of PLIP 126.  Note
+  that these attributes are deprecated and will not be available in Plone 4.
+  Custom navigation templates using these attributes should simply link to
+  the Link object, whose default view now takes care of redirecting based on
+  the value of the global 'redirect_links' property.
+  [davisagli]
 
- - Make the Groups Overview search post back to the same page, since it displays a
-   lot more useful information than the prefs_user_group_search, and fits more
-   with the way the Users Overview works. Include a "Show all" button as well. 
-   [esteele]
+- Make the Groups Overview search post back to the same page, since it displays a
+  lot more useful information than the prefs_user_group_search, and fits more
+  with the way the Users Overview works. Include a "Show all" button as well. 
+  [esteele]
 
 
 3.3b1 - March 12, 2009
