@@ -125,13 +125,13 @@
                               tal:repeat="product products">
                 <tal:filter condition="python: not product['isHidden'] and not product['isLocked']">
 
-                <li tal:define="prodver python:QI.getProductVersion(product['id']);
-                                        pid product/id;">
-    
+                <li tal:define="pid product/id;
+                                prodver python:QI.getProductVersion(pid);">
+
                     <input class="noborder"
                            type="checkbox"
                            name="products:list" 
-                           tal:attributes="value product/id;
+                           tal:attributes="value pid;
                                            id pid;"
                            tal:condition="not: product/isLocked"
                            />
@@ -144,7 +144,7 @@
                         1.3
                         </span>
                     </label>
-    
+
                     <ul class="configletDetails"
                         tal:define="product_file python:container.portal_quickinstaller.getProductFile(pid);
                                     product_desc python:container.portal_quickinstaller.getProductDescription(pid);">
@@ -168,8 +168,38 @@
                                 <span i18n:translate="link_install_products_log">Install log</span>
                             </a>
                         </li>
-
-                        <li tal:condition="python:not QI.isProductAvailable(product['id'])">
+                        
+                        <li tal:define="upgrade_info python:QI.upgradeInfo(pid)"
+                            tal:condition="upgrade_info/required">
+                          <span>
+                            <img alt="" src=""
+                                 tal:replace="structure here/error_icon.gif" />
+                            <span i18n:translate="label_product_upgrade_version">
+                              This product has been upgraded.
+                              Old version was <b i18n:name="version" tal:content="product/installedVersion">version</b>.
+                            </span>
+                            <span i18n:translate="label_product_upgrade_action"
+                              tal:condition="upgrade_info/available">
+                               Upgrade:
+                              <span i18n:name="reinstall_button">
+                                <input class="context"
+                                       type="submit"
+                                       value="product"
+                                       name="prefs_reinstallProducts:method"
+                                       tal:attributes="value pid;"
+                                       />
+                              </span>
+                            </span>
+                            <span i18n:translate="label_product_no_upgrade_action"
+                              tal:condition="not:upgrade_info/available">
+                              There is no upgrade available for this product.
+                              Please contact the product documentation for
+                              upgrade information or contact the product author.
+                            </span>
+                          </span>
+                        </li>
+                        
+                        <li tal:condition="python:not QI.isProductAvailable(pid)">
                             <img alt="" src=""
                                  tal:replace="structure here/error_icon.gif" />
                             <span i18n:translate="text_product_unavailable">

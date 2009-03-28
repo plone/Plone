@@ -8,6 +8,12 @@ Changelog
 3.3rc1 - UNRELEASED
 -------------------
 
+- Merged `safe-upgrade-button` branch. Instead of the removed `Reinstall`
+  button in the `Add/Remove products` control panel, we now have an upgrade
+  button for all products whose installation is driven by GenericSetup. This
+  is based on GenericSetup upgrade steps.
+  [hannosch]
+
 - Fixed msgid label_event_byline default message which contained dynamic content.
   Created a label_event_byline_without_location used when you don't specify
   location in an Event.
