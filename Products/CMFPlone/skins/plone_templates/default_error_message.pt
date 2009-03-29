@@ -34,7 +34,7 @@
                     
                 <h1 class="documentFirstHeading"
                     i18n:translate="heading_site_there_seems_to_be_an_error">
-                    We're sorry, but that page doesn't exist&hellip;
+                    We&#8217;re sorry, but that page doesn&#8217;t exist&hellip;
                 </h1>
 
                 <p i18n:translate="description_site_error_double_check_or_search">
@@ -134,7 +134,7 @@
 
             <h1 class="documentFirstHeading"
                 i18n:translate="heading_site_error_sorry">
-                We're sorry, but there seems to be an error&hellip;
+                We&#8217;re sorry, but there seems to be an error&hellip;
             </h1>
 
             <tal:hasentry condition="err_log_id">

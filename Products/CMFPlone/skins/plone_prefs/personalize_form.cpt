@@ -19,31 +19,32 @@
             tal:define="errors options/state/getErrors;">
     <tal:main-macro metal:define-macro="main">
 
+        <h5 class="hiddenStructure">Views</h5>
+
+        <ul id="content-views"
+            class="contentViews">
+          <li>
+            <a href=""
+               tal:define="member_id python:member.getId();
+                           member_url python:(member_id.startswith('http:') or member_id.startswith('https:')) and ('?author=%s' % member_id) or member_id"
+               tal:attributes="href string:${portal_url}/author/${member_url}"
+               i18n:translate="label_view">View</a>
+          </li>
+          <li class="selected">
+            <a href=""
+               tal:attributes="href string:${portal_url}/personalize_form"
+               i18n:translate="label_edit">Edit</a>
+          </li>
+        </ul>
+
+        <div class="contentActions">
+          &nbsp;
+        </div>
+
+
      <div id="region-content" class="documentEditable">
 
-            <h5 class="hiddenStructure">Views</h5>
-        
-            <ul id="content-views"
-                class="contentViews">
-              <li>
-                <a href=""
-                   tal:define="member_id python:member.getId();
-                               member_url python:(member_id.startswith('http:') or member_id.startswith('https:')) and ('?author=%s' % member_id) or member_id"
-                   tal:attributes="href string:${context/@@plone_portal_state/navigation_root_url}/author/${member_url}"
-                   i18n:translate="label_view">View</a>
-              </li>
-              <li class="selected">
-                <a href=""
-                   tal:attributes="href string:${context/@@plone_portal_state/navigation_root_url}/personalize_form"
-                   i18n:translate="label_edit">Edit</a>
-              </li>
-            </ul>
-
-            <div class="contentActions">
-              &nbsp;
-            </div>
-
-            <div class="documentContent" id="region-content">
+            <div class="documentContent" id="content">
 
                 <a name="documentContent"></a>
 
@@ -56,7 +57,7 @@
 
                 <a href=""
                    class="link-parent"
-                   tal:attributes="href string:${context/@@plone_portal_state/navigation_root_url}/dashboard"
+                   tal:attributes="href string:${context/@@plone_portal_state/navigation_root_url}/dashboard"                  
                    tal:condition="python:context.portal_membership.checkPermission('Portlets: Manage own portlets', context)"
                    i18n:translate="label_to_dashboard">
                     Up to my dashboard
@@ -428,12 +429,9 @@
                     </fieldset>
                     </metal:userdetails>
                 </form>
-            </div>
     </tal:main-macro>
 
 </metal:main>
 
 </body>
 </html>
-
-

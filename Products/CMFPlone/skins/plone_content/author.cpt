@@ -28,12 +28,11 @@
                     tal:define="url_unquote_plus python:modules['Products.PythonScripts.standard'].url_unquote_plus;
                                 author python:(len(request.traverse_subpath) > 0 and url_unquote_plus(request.traverse_subpath[0])) or request.get('author', None);
                                 portrait python: mtool.getPersonalPortrait(author);
-                                portal_types portal/portal_types;
                                 authorinfo python: mtool.getMemberInfo(author);">
 
         <tal:noAuthor condition="not: authorinfo">
         <div id="region-content">
-
+        <div id="content">
         <dl class="portalMessage error">
             <dt i18n:translate="">
                 Error
@@ -43,15 +42,12 @@
             </dd>
         </dl>
         </div>
+        </div>
         </tal:noAuthor>
 
 
 
-        <tal:haveAuthor condition="authorinfo">
- 
-    <div id="region-content" class="documentEditable"
-         tal:define="isOwner python:member.getId()==author"
-         tal:attributes="class python: test(isOwner, 'documentEditable', '')">
+        <tal:haveAuthor condition="authorinfo" define="isOwner python:member.getId()==author">
 
         <h5 class="hiddenStructure"
             tal:condition="isOwner">Views</h5>
@@ -63,12 +59,12 @@
             <a href=""
                 tal:define="url_quote_plus python:modules['Products.PythonScripts.standard'].url_quote_plus;
                             memberurl python:url_quote_plus(member.getId())"
-               tal:attributes="href string:${context/@@plone_portal_state/navigation_root_url}/author/${memberurl}"
+               tal:attributes="href string:${portal_url}/author/${memberurl}"
                i18n:translate="label_view">View</a>
           </li>
           <li>
             <a href=""
-               tal:attributes="href string:${context/@@plone_portal_state/navigation_root_url}/personalize_form"
+               tal:attributes="href string:${portal_url}/personalize_form"
                i18n:translate="label_edit">Edit</a>
           </li>
         </ul>
@@ -78,8 +74,11 @@
           &nbsp;
         </div>
 
+ 
+    <div class="documentEditable" id="region-content"
+         tal:attributes="class python: test(isOwner, 'documentEditable', '')">
 
-        <div class="documentContent" id="region-content">
+        <div class="documentContent" id="content">
 
             <a name="documentContent"></a>
                     
@@ -143,7 +142,7 @@
             <div class="formControls" tal:condition="isAnon">
             <form 
               tal:define="pss modules/Products/PythonScripts/standard"
-              tal:attributes="action string:${context/@@plone_portal_state/navigation_root_url}/login_form">
+              tal:attributes="action string:$portal_url/login_form">
                <input class="standalone"
                    type="submit"
                    value="Log in to send feedback"
@@ -244,7 +243,7 @@
             </tal:feedbackForm>
             <!-- listing of content created by this user -->
         
-            <tal:authorContent define="author_content python:here.author_find_content(author);"
+            <tal:authorContent define="author_content python:context.portal_catalog.searchResults(Creator=author, sort_on='created', sort_order='reverse')[:10];"
                                condition="author_content">
         
                 <h2 i18n:translate="heading_author_content">
@@ -252,44 +251,32 @@
                 </h2>
                 
                 <div metal:define-macro="user_content_listing">
-                <table class="listing" summary="Lists content written by an author grouped by content type" i18n:attributes="summary summary_author_content_list;">
-                    <tal:repeat repeat="content_by_type author_content">
-                      <tal:grouping define="getTypeInfo nocall:portal_types/getTypeInfo;
-                                            content_type_ content_by_type/portal_type;
-                                            type_title python: getTypeInfo(content_type_) or None"
-                                    condition="type_title">		
+                <table class="vertical listing" 
+                       summary="Lists content written by an author grouped by content type" 
+                       i18n:attributes="summary summary_author_content_list;">
+                    <tal:repeat repeat="item author_content">
                         <tr>
-                            <th colspan="2"
-                                i18n:translate=""
-                                tal:define="getTypeInfo nocall:portal_types/getTypeInfo;
-                                            content_type_ content_by_type/portal_type;
-                                            type_title python: getTypeInfo(content_type_) or None"
-                                tal:content="python:type_title and type_title.Title() or content_type_ + ' is not available'">
-                                Type
+                            <th tal:content="python:toLocalizedTime(item.Date)"
+                                style="white-space: nowrap">
+                                Date
                             </th>
+                            <td>
+                                <a href="" tal:attributes="href item/getURL"
+                                   tal:content="item/pretty_title_or_id">title</a>
+                            </td>
                         </tr>
-                        <tal:repeat repeat="item content_by_type/content_items">
-                            <tr>
-                                <td>
-                                    <a href="" tal:attributes="href item/getURL"
-                                       tal:content="item/pretty_title_or_id">title</a>
-                                </td>
-                                <td tal:content="python:toLocalizedTime(item.Date)">
-                                    Date
-                                </td>
-                            </tr>
-                        </tal:repeat>
-                      </tal:grouping>
                     </tal:repeat>
                 </table>
                 </div>
 
+                <p>
                 <a href=""
-                   tal:attributes="href string:$here_url/search?Creator=${author}&amp;sort_on=Date&amp;sort_order=reverse"
+                   tal:attributes="href string:$here_url/search?Creator=${author}&amp;sort_on=created&amp;sort_order=reverse"
                    i18n:translate="go_to_search_author_content">
                     All content created by 
                     <span i18n:name="user" tal:omit-tag="" tal:content="python:authorinfo['fullname'] or author"/>&hellip;
                 </a>
+                </p>
 
             </tal:authorContent>
 
@@ -304,4 +291,3 @@
 
 </body>
 </html>
-
