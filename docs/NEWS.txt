@@ -9,7 +9,7 @@ Changelog
 -------------------
 
 - New favicon.ico that is in line with the new branding.
- [limi]
+  [limi]
 
 - author.pt: Fixed the #region-content mess, replaced modification date with
   created date (as that's what the table says it's listing), reduced to 5 items
