@@ -1,7 +1,7 @@
 Changelog
 =========
 
-See NEWS.txt for changes included the current release.
+See NEWS.txt for changes included in the current release.
 
 Older releases:
 
