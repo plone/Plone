@@ -8,51 +8,51 @@ Changelog
 3.3rc1 - UNRELEASED
 -------------------
 
- - New favicon.ico that is in line with the new branding.
+- New favicon.ico that is in line with the new branding.
+ [limi]
+
+- author.pt: Fixed the #region-content mess, replaced modification date with
+  created date (as that's what the table says it's listing), reduced to 5 items
+  instead of 30 tables with 5 items each, made the table vertical.
   [limi]
 
- - author.pt: Fixed the #region-content mess, replaced modification date with
-   created date (as that's what the table says it's listing), reduced to 5 items
-   instead of 30 tables with 5 items each, made the table vertical.
-   [limi]
- 
- - batch_macros.pt: Added "current" class to current item, removed the brackets, 
-   added ellipses. Moved comments to a tal section to stop them from showing up 
-   in the source.
-   [limi]
- 
- - default_error_message.pt: Turned apostrophes into real apostrophes.
-   [limi]
- 
- - join_form.pt: Removed unnecessary fieldset.
-   [limi]
- 
- - logged_out.pt: Removed duplicate "new account" section (it's actually located 
-   in the login form).
-   [limi]
- 
- - login_form.pt: Moved Forgot/New out of the fieldset, fixed wording + added 
-   headline.
-   [limi]
- 
- - main_template.pt: Moved #content to main template instead of offloading its
-   responsibility to the individual templates. This makes it easier to avoid 
-   duplication and make it possible to use it with Deliverance and similar 
-   theming approaches.
-   [limi]
- 
- - personalize_form.pt: Cleaned up the #content mismatch. No more double tabs.
-   [limi]
- 
- - search_form.pt: Removed unnecessary fieldset, inserted "searchform" id on 
-   form to not get it filled in as id="search" automatically.
-   [limi]
- 
- - Updated the custom indexes in CatalogTool.py to no longer depend on the
-   'portal' keyword or kwargs, both of which are gone from plone.indexer.
-   This is done in an effort to be forward-compatible with CMF 2.2. See
-   the plone.indexer README for more details.
-   [optilude]
+- batch_macros.pt: Added "current" class to current item, removed the brackets, 
+  added ellipses. Moved comments to a tal section to stop them from showing up 
+  in the source.
+  [limi]
+
+- default_error_message.pt: Turned apostrophes into real apostrophes.
+  [limi]
+
+- join_form.pt: Removed unnecessary fieldset.
+  [limi]
+
+- logged_out.pt: Removed duplicate "new account" section (it's actually located 
+  in the login form).
+  [limi]
+
+- login_form.pt: Moved Forgot/New out of the fieldset, fixed wording + added 
+  headline.
+  [limi]
+
+- main_template.pt: Moved #content to main template instead of offloading its
+  responsibility to the individual templates. This makes it easier to avoid 
+  duplication and make it possible to use it with Deliverance and similar 
+  theming approaches.
+  [limi]
+
+- personalize_form.pt: Cleaned up the #content mismatch. No more double tabs.
+  [limi]
+
+- search_form.pt: Removed unnecessary fieldset, inserted "searchform" id on 
+  form to not get it filled in as id="search" automatically.
+  [limi]
+
+- Updated the custom indexes in CatalogTool.py to no longer depend on the
+  'portal' keyword or kwargs, both of which are gone from plone.indexer.
+  This is done in an effort to be forward-compatible with CMF 2.2. See
+  the plone.indexer README for more details.
+  [optilude]
 
 - Merged `safe-upgrade-button` branch. Instead of the removed `Reinstall`
   button in the `Add/Remove products` control panel, we now have an upgrade
