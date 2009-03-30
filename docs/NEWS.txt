@@ -5,8 +5,8 @@
 Changelog
 =========
 
-3.3rc1 - UNRELEASED
--------------------
+3.3rc1 - March 30, 2009
+-----------------------
 
 - New favicon.ico that is in line with the new branding.
   [limi]
