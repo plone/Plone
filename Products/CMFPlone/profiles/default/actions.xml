@@ -310,7 +310,7 @@
    <property
       name="available_expr">python:checkPermission("Delete objects", globals_view.getParentObject()) and checkPermission("Copy or Move", object) and checkPermission("Add portal content", object) and not globals_view.isPortalOrPortalDefaultPage()</property>
    <property name="permissions">
-    <element value="Add Portal Content"/>
+    <element value="Add portal content"/>
    </property>
    <property name="visible">True</property>
   </object>
