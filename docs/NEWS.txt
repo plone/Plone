@@ -8,6 +8,10 @@ Changelog
 3.3 - Unreleased
 ----------------
 
+- Added an explicit return statement in the upgrade code for products without
+  a GS profile. Thx to Vincent Fretin for the code review.
+  [hannosch]
+
 - Fixing permissions typo in object_rename button, this closes
   http://dev.plone.org/plone/ticket/9060
   [siebo]

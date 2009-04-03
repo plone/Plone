@@ -60,7 +60,7 @@ class QuickInstallerTool(PloneBaseTool, BaseTool):
         profile = self.getInstallProfile(pid)
         if profile is None:
             # No upgrade profiles
-            self.reinstallProducts(products=[pid])
+            return self.reinstallProducts(products=[pid])
         profile_id = profile['id']
         setup = getToolByName(self, 'portal_setup')
         upgrades = setup.listUpgrades(profile_id)
