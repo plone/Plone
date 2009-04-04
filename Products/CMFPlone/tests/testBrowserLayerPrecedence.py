@@ -8,7 +8,7 @@ from zope.publisher.browser import TestRequest
 from zope.event import notify
 from zope.interface import Interface
 from zope.component import getGlobalSiteManager
-from zope.publisher.interfaces.browser import IBrowserSkinType
+from zope.publisher.interfaces.browser import IBrowserSkinType, IDefaultBrowserLayer
 from zope.app.publication.interfaces import BeforeTraverseEvent
 from plone.browserlayer.utils import register_layer, unregister_layer
 
@@ -20,26 +20,29 @@ class IAdditiveLayer(Interface):
 
 class TestBrowserLayerPrecedence(PloneTestCase.FunctionalTestCase):
 
-    def afterSetUp(self):
+    def _get_request_interfaces(self):
+        request = TestRequest()
+        notify(BeforeTraverseEvent(self.portal, request))
+        iro = list(request.__provides__.__iro__)
+        return iro
+
+    def testCustomBrowserLayerHasPrecedenceOverDefaultLayer(self):
+        register_layer(IAdditiveLayer, 'Plone.testlayer')
+        iro = self._get_request_interfaces()
+        unregister_layer('Plone.testlayer')
+        
+        self.failUnless(iro.index(IAdditiveLayer) < iro.index(IDefaultBrowserLayer))
+
+    def testThemeSpecificLayerTakesHighestPrecedence(self):
         gsm = getGlobalSiteManager()
         gsm.registerUtility(IThemeSpecific, IBrowserSkinType, 'Plone Default')
         register_layer(IAdditiveLayer, 'Plone.testlayer')
-
-    def testThemeSpecificLayerTakesPrecedence(self):
-        request = TestRequest()
-        notify(BeforeTraverseEvent(self.portal, request))
-        
-        # make sure the theme-specific layer comes first in the interface
-        # resolution order
-        iro = list(request.__provides__.__iro__)
-        self.failUnless(iro.index(IThemeSpecific) < iro.index(IAdditiveLayer),
-            'Theme-specific browser layers should take precedence over other browser layers.')
-
-    def beforeTearDown(self):
-        # avoid polluting test environment
-        gsm = getGlobalSiteManager()
+        iro = self._get_request_interfaces()
         gsm.unregisterUtility(IThemeSpecific, IBrowserSkinType, 'Plone Default')
         unregister_layer('Plone.testlayer')
+        
+        self.failUnless(iro.index(IThemeSpecific) < iro.index(IAdditiveLayer),
+            'Theme-specific browser layers should take precedence over other browser layers.')
 
 def test_suite():
     from unittest import TestSuite, makeSuite
