@@ -5,8 +5,8 @@
 Changelog
 =========
 
-3.3 - Unreleased
-----------------
+3.3rc2 - April 5, 2009
+----------------------
 
 - Added an explicit return statement in the upgrade code for products without
   a GS profile. Thx to Vincent Fretin for the code review.
@@ -15,6 +15,7 @@ Changelog
 - Fixing permissions typo in object_rename button, this closes
   http://dev.plone.org/plone/ticket/9060
   [siebo]
+
 
 3.3rc1 - March 30, 2009
 -----------------------
