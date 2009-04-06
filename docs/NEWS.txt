@@ -8,7 +8,9 @@ Changelog
 3.3 - unreleased
 ----------------
 
-
+- author.cpt should honour allowAnonymousViewAbout in the same way as
+  document_byline, this closes http://dev.plone.org/old/plone/ticket/8560
+  [elro]
 
 3.3rc2 - April 5, 2009
 ----------------------
