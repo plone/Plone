@@ -39,8 +39,9 @@
           tal:attributes="name python:keyval[0];
                           content python:keyval[1];" />
 
-    <!-- Internet Explorer Fixes -->
-    <tal:iefixstart replace="structure string:&lt;!--[if IE]&gt;" />
+    <!-- Internet Explorer Fixes, force IE8 forces into standards mode, IE5/6/7 get workaround CSS/JS -->
+    <meta name="IE" content="EmulateIE8" />
+    <tal:iefixstart replace="structure string:&lt;!-- [if lte IE7]&gt;" />
         <style type="text/css" media="all" tal:condition="exists: portal/IEFixes.css"
                tal:content="string:@import url($portal_url/IEFixes.css);">
         </style>

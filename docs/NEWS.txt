@@ -8,6 +8,12 @@ Changelog
 3.3 - unreleased
 ----------------
 
+- Added Internet Explorer 8 support. We only load the workaround CSS file for
+  IE7 and earlier now, Internet Explorer 8 parses the
+  '<meta name="IE" content="EmulateIE8" />' header that forces it into standards
+  mode on both intranets and public internet sites.
+  [limi]
+
 - author.cpt should honour allowAnonymousViewAbout in the same way as
   document_byline, this closes http://dev.plone.org/old/plone/ticket/8560
   [elro]
