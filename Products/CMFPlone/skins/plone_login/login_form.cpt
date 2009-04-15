@@ -150,14 +150,14 @@
     </p>
 </div>
 
-<div i18n:translate="description_no_account"
+<div
    tal:define="join python:[a['url'] for a in actions['user'] if a['id']=='join']"
    tal:condition="python: join and checkPermission('Add portal member', here)">
-    <h3>
+    <h3 i18n:translate="heading_new_user">
     New user?
     </h3>
 
-    <p>
+    <p i18n:translate="description_no_account">
     If you do not have an account here, head over to the
     <span i18n:name="registration_form">
         <a href=""
