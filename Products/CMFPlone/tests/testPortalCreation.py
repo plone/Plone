@@ -335,7 +335,7 @@ class TestPortalCreation(PloneTestCase.PloneTestCase, WarningInterceptor):
         self.assertEqual(query['end']['range'], 'max')
         self.assertEqual(topic.checkCreationFlag(), False)
         # query shouldn't have a start key #8827
-        self.failIf(query['start'])
+        self.failIf(query['start'], "Bug #8827 is not yet fixed")
 
     def testObjectButtonActions(self):
         self.setRoles(['Manager', 'Member'])
