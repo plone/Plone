@@ -38,7 +38,7 @@ plone.UnlockHandler = {
             baseUrl = pieces.join('/');
         }
         return baseUrl;
-    },
+    }
 };
 
 jq(plone.UnlockHandler.init);
