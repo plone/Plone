@@ -10,6 +10,7 @@ Changelog
 
 - Removed spurious comma from unlockOnFormUnload.js which was causing
   Javascript errors in IE.  This closes http://dev.plone.org/plone/ticket/9157
+  [davisagli]
 
 - Splitted description_no_account msgid into two, heading_new_user msgid added.
   [vincentfretin]
