@@ -423,14 +423,16 @@
                         </div>
 
                         <input type="hidden" name="form.submitted" value="1" />
-
+                        
                         <input tal:replace="structure context/@@authenticator/authenticator" />
-
+                        
                     </fieldset>
                     </metal:userdetails>
                 </form>
+            </div>
+     </div>
     </tal:main-macro>
-
+    
 </metal:main>
 
 </body>
