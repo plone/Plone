@@ -8,7 +8,7 @@ Changelog
 3.3 - unreleased
 ----------------
 
-- Removed width for evenDetails CSS class.
+- Removed width from eventDetails CSS class.
   This closes http://dev.plone.org/plone/ticket/8933
   [vincentfretin]
 
