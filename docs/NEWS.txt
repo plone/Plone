@@ -8,6 +8,11 @@ Changelog
 3.3 - unreleased
 ----------------
 
+- Splitted label_event_byline into two in folder_summary_view.pt like in
+  folder_listing.pt fixed in Plone 3.3rc1.
+  This closes https://dev.plone.org/plone/ticket/8358
+  [vincentfretin]
+
 - Removed spurious comma from unlockOnFormUnload.js which was causing
   Javascript errors in IE.  This closes http://dev.plone.org/plone/ticket/9157
   [davisagli]
