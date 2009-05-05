@@ -36,6 +36,9 @@ class QuickInstallerTool(PloneBaseTool, BaseTool):
             return dict(
                 required=product_version != installed_product_version,
                 available=True,
+                hasProfile=False,
+                installedVersion=installed_product_version,
+                newVersion=product_version,
                 )
         profile_id = profile['id']
         setup = getToolByName(self, 'portal_setup')
@@ -53,6 +56,9 @@ class QuickInstallerTool(PloneBaseTool, BaseTool):
         return dict(
             required=profile_version != installed_profile_version,
             available=len(setup.listUpgrades(profile_id))>0,
+            hasProfile=True,
+            installedVersion=installed_profile_version,
+            newVersion=profile_version,
             )
 
     security.declareProtected(ManagePortal, 'upgradeProduct')

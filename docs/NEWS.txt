@@ -8,13 +8,17 @@ Changelog
 3.3 - unreleased
 ----------------
 
-- Removed width from eventDetails CSS class.
-  This closes http://dev.plone.org/plone/ticket/8933
+- Show old and new profile versions for products with profile, this closes
+  http://dev.plone.org/plone/ticket/9172
+  [vincentfretin]
+
+- Removed width from eventDetails CSS class, this closes
+  http://dev.plone.org/plone/ticket/8933
   [vincentfretin]
 
 - Splitted label_event_byline into two in folder_summary_view.pt like in
-  folder_listing.pt fixed in Plone 3.3rc1.
-  This closes http://dev.plone.org/plone/ticket/8358
+  folder_listing.pt fixed in Plone 3.3rc1, this closes
+  http://dev.plone.org/plone/ticket/8358
   [vincentfretin]
 
 - Removed spurious comma from unlockOnFormUnload.js which was causing

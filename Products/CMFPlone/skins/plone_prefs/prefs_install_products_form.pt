@@ -174,9 +174,20 @@
                           <span>
                             <img alt="" src=""
                                  tal:replace="structure here/error_icon.gif" />
-                            <span i18n:translate="label_product_upgrade_version">
+                            <span i18n:translate="label_product_upgrade_message">
                               This product has been upgraded.
-                              Old version was <b i18n:name="version" tal:content="product/installedVersion">version</b>.
+                            </span>
+                            <span tal:condition="not:upgrade_info/hasProfile"
+                                  i18n:translate="label_product_upgrade_old_version">
+                              Old version was <b i18n:name="version" tal:content="upgrade_info/installedVersion">version</b>.
+                            </span>
+                            <span tal:condition="upgrade_info/hasProfile">
+                              <tal:span i18n:translate="label_product_upgrade_old_profile_version">
+                                Old profile version was <b i18n:name="version" tal:content="upgrade_info/installedVersion">version</b>.
+                              </tal:span>
+                              <tal:span i18n:translate="label_product_upgrade_new_profile_version">
+                                New profile version is <b i18n:name="version" tal:content="upgrade_info/newVersion">version</b>.
+                              </tal:span>
                             </span>
                             <span i18n:translate="label_product_upgrade_action"
                               tal:condition="upgrade_info/available">
