@@ -60,7 +60,7 @@
                i18n:translate="label_full_name">Full Name</label>
 
         <div class="formHelp" i18n:translate="help_full_name_creation">
-          Enter full name, eg. John Smith.
+          Enter full name, e.g. John Smith.
         </div>
 
         <div tal:content="error">Validation error output</div>

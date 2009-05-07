@@ -181,29 +181,29 @@ def weekdayname_english(number, format=None):
 def monthname_msgid(number):
     # returns the msgid for monthname
     # use to translate to full monthname (January, February, ...)
-    # eg. month_jan, month_feb, ...
+    # e.g. month_jan, month_feb, ...
     return "month_%s" % monthname_english(number, format='a').lower()
     
 def monthname_msgid_abbr(number):
     # returns the msgid for the abbreviated monthname
     # use to translate to abbreviated format (Jan, Feb, ...)
-    # eg. month_jan_abbr, month_feb_abbr, ...
+    # e.g. month_jan_abbr, month_feb_abbr, ...
     return "month_%s_abbr" % monthname_english(number, format='a').lower()
     
 def weekdayname_msgid(number):
     # returns the msgid for the weekdayname
     # use to translate to full weekdayname (Monday, Tuesday, ...)
-    # eg. weekday_mon, weekday_tue, ...
+    # e.g. weekday_mon, weekday_tue, ...
     return "weekday_%s" % weekdayname_english(number, format='a').lower()
     
 def weekdayname_msgid_abbr(number):
     # returns the msgid for abbreviated weekdayname
     # use to translate to abbreviated format (Mon, Tue, ...)
-    # eg. weekday_mon_abbr, weekday_tue_abbr, ...
+    # e.g. weekday_mon_abbr, weekday_tue_abbr, ...
     return "weekday_%s_abbr" % weekdayname_english(number, format='a').lower()
     
 def weekdayname_msgid_short(number):
     # return the msgid for short weekdayname
     # use to translate to 2 char format (Mo, Tu, ...)
-    # eg. weekday_mon_short, weekday_tue_short, ...
+    # e.g. weekday_mon_short, weekday_tue_short, ...
     return "weekday_%s_short" % weekdayname_english(number, format='a').lower()
