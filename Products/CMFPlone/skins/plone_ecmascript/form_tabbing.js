@@ -166,4 +166,9 @@ jq(function() {
     jq("form.enableFormTabbing,div.enableFormTabbing")
         .each(ploneFormTabbing.initializeForm);
     jq("dl.enableFormTabbing").each(ploneFormTabbing.initializeDL);
+    
+    //Select tab if it's part of the URL
+    if (window.location.hash && jq(".enableFormTabbing fieldset" + window.location.hash)) {
+        ploneFormTabbing.select(window.location.hash);
+    }
 });

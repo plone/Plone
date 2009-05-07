@@ -8,6 +8,11 @@ Changelog
 3.3 - unreleased
 ----------------
 
+- form_tabbing.js: Allow for selection of a fieldset tab other than the default
+  if a url hash is in the form of #fieldset-[fieldsetname]. This allows for
+  graceful fallback if JavaScript is disabled.
+  [dunlapm]
+
 - Show old and new profile versions for products with profile, this closes
   http://dev.plone.org/plone/ticket/9172
   [vincentfretin]
