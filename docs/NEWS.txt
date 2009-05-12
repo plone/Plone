@@ -8,6 +8,10 @@ Changelog
 3.3 - unreleased
 ----------------
 
+- mark_special_links.js: Fix jQuery syntax for element wrapping. This closes
+  http://dev.plone.org/plone/ticket/8200
+  [dunlapm]
+
 - form_tabbing.js: Allow for selection of a fieldset tab other than the default
   if a url hash is in the form of #fieldset-[fieldsetname]. This allows for
   graceful fallback if JavaScript is disabled.

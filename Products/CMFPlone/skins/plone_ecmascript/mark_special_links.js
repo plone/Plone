@@ -33,7 +33,7 @@ function scanforlinks() {
       // and no img children should be wrapped in a link-external span
       contentarea.find(
           'a[href^=http]:not(.link-plain):not([href^=' + url + ']):not(:has(img))')
-          .wrap('<span>').parent().addClass('link-external')
+          .wrap('<span></span>').parent().addClass('link-external')
       // All links without an http href (without the link-plain class), not within this site,
       // and no img children should be wrapped in a link-[protocol] span
       contentarea.find(
@@ -42,7 +42,7 @@ function scanforlinks() {
               // those without a http link may have another interesting protocol
               // wrap these in a link-[protocol] span
               if (res = protocols.exec(this.href))
-                  jq(this).wrap('<span>').parent().addClass('link-' + res[0]);
+                  jq(this).wrap('<span></span>').parent().addClass('link-' + res[0]);
           });
     }
 };
