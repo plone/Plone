@@ -4,7 +4,7 @@
 ##bind namespace=
 ##bind script=script
 ##bind subpath=traverse_subpath
-##parameters=addname=None, groupname=None, title=None, description=None
+##parameters=addname=None, groupname=None
 ##title=Edit user
 ##
 
@@ -14,10 +14,7 @@ REQUEST=context.REQUEST
 msg = _(u'No changes made.')
 
 if addname:
-    success = context.portal_groups.addGroup(addname,(),(),
-                                             REQUEST=context.REQUEST,
-                                             title=title,
-                                             description=description)
+    success = context.portal_groups.addGroup(addname,(),(),REQUEST=context.REQUEST)
     if not success:
         msg = _(u'Could not add group ${name}, perhaps a user or group with '
                 u'this name already exists.', mapping={u'name' : addname})

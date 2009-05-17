@@ -8,14 +8,6 @@ Changelog
 3.3 - unreleased
 ----------------
 
-- ControlPanel: When searching for Users and Groups search for the 
-  Fullname/Title too and not only for the userid or groupid. Existing 
-  groups in the standard ZODB based groups source are not migrated so 
-  searching for the title does only work for new groups.
-  For other sources it depends on the implementation of the PAS plugin.
-  Fixes http://dev.plone.org/plone/ticket/8368
-  [csenger]
-
 - mark_special_links.js: Fix jQuery syntax for element wrapping. This closes
   http://dev.plone.org/plone/ticket/8200
   [dunlapm]
