@@ -13,7 +13,6 @@
 
 <div metal:fill-slot="prefs_configlet_content"
      tal:define="errors python:request.get('errors', {});
-                search_view here/@@pas_search;
                 Batch python:modules['Products.CMFPlone'].Batch;
                 b_start request/b_start | python:0;
                 b_size python:20;
@@ -22,7 +21,7 @@
                 gtool context/portal_groups;
                 findAll python:'form.button.FindAll' in request.keys();
                 showAll python:not site_properties.many_groups and (findAll or not searchstring);
-                search_results python:test(showAll, search_view.searchGroups(), searchstring and search_view.searchGroups(id=searchstring) or None);
+                search_results python:context.prefsPasGroupsSearch(searchstring, showAll);
                 batch python:search_results and Batch(search_results, b_size, int(b_start), orphan=1) or None;">
 
     <div id="region-content" class="documentEditable"
