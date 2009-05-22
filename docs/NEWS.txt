@@ -5,8 +5,12 @@
 Changelog
 =========
 
-3.3 - unreleased
-----------------
+3.3rc3 - May 22, 2009
+---------------------
+
+- Hide the NuPlone uninstall profile from the list of available extensions
+  at Plone site creation.
+  [wichert]
 
 - mark_special_links.js: Fix jQuery syntax for element wrapping. This closes
   http://dev.plone.org/plone/ticket/8200
@@ -46,6 +50,7 @@ Changelog
 - author.cpt should honour allowAnonymousViewAbout in the same way as
   document_byline, this closes http://dev.plone.org/old/plone/ticket/8560
   [elro]
+
 
 3.3rc2 - April 5, 2009
 ----------------------
