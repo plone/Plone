@@ -8,6 +8,10 @@ Changelog
 3.3 - Unreleased
 ----------------
 
+- When viewing the prefs_install_products_form, do not do inline
+  migration for profiles that were previously unknown as this may hide
+  valid upgrade steps in some cases.
+  [maurits]
 
 
 3.3rc3 - May 22, 2009

@@ -47,12 +47,10 @@ class QuickInstallerTool(PloneBaseTool, BaseTool):
             # If a profile doesn't have a metadata.xml use product version
             profile_version = product_version
         installed_profile_version = setup.getLastVersionForProfile(profile_id)
-        if installed_profile_version == 'unknown':
-            # Inline migration, set profile version to profile version
-            setup.setLastVersionForProfile(profile_id, profile_version)
-            installed_profile_version = setup.getLastVersionForProfile(profile_id)
-        # getLastVersionForProfile returns the version as a tuple
-        installed_profile_version = str('.'.join(installed_profile_version))
+        # getLastVersionForProfile returns the version as a tuple or unknown.
+        if installed_profile_version != 'unknown':
+            installed_profile_version = str(
+                '.'.join(installed_profile_version))
         return dict(
             required=profile_version != installed_profile_version,
             available=len(setup.listUpgrades(profile_id))>0,
