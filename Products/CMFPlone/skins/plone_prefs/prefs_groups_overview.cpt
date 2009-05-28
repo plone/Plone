@@ -212,7 +212,7 @@
                                        value="Manager"
                                        tal:attributes="name string:group_${group_info/groupid}:list;
                                                        value portal_role;
-                                                       checked python:test(portal_role in group_roles, 'checked' ,'');
+                                                       checked python:test(portal_role in group_roles, 'checked', nothing);
                                                        disabled python:group.canAssignRole(portal_role) and default or 'disabled'"
                                        />
                             </td>
