@@ -1,8 +1,5 @@
-<metal:membercontent
-      xmlns:tal="http://xml.zope.org/namespaces/tal"
-      xmlns:metal="http://xml.zope.org/namespaces/metal"
-      tal:define="member nocall:options/member"
-      tal:condition="nothing">
+<metal:membercontent tal:define="member nocall:options/member"
+                     tal:condition="nothing">
 
 (remove the tal:condition="nothing" and this text if you want
  default text for new users)

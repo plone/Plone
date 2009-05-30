@@ -69,7 +69,6 @@
         ><span i18n:name="number" 
         tal:omit-tag="" 
         tal:content="python:len(results)">234</span> items matching your search terms</span>
-      </span>
     </h1>
 
     <p class="discreet"
