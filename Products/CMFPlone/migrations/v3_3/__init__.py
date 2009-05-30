@@ -7,6 +7,9 @@ def three23_three3_beta1(portal):
     loadMigrationProfile(portal, 'profile-Products.CMFPlone.migrations:3.2.3-3.3')
     maybeUpdateLinkView(portal)
 
+def three3_rc3_three3_rc4(portal):
+    loadMigrationProfile(portal,'profile-Products.CMFPlone.migrations:3.3rc3-3.3')
+
 def maybeUpdateLinkView(portal):
     ttool = getToolByName(portal, 'portal_types')
     link_fti = ttool.Link

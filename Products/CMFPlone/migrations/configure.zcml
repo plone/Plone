@@ -139,5 +139,15 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
+  <genericsetup:registerProfile
+      name="3.3rc3-3.3"
+      title="Migration profile for Plone 3.3rc3 to Plone 3.3"
+      description="This profile contains configuration changes that are applied during the Plone 3.3rc3 to 3.3
+                    migration." 
+      directory="v3_3/profiles/three3_rc3_three3_rc4"
+      for="Products.CMFPlone.interfaces.IMigratingPloneSiteRoot"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
 </configure>
 
