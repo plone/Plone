@@ -1,4 +1,8 @@
-<div i18n:domain="plone" 
+<div xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+     xmlns:tal="http://xml.zope.org/namespaces/tal"
+     xmlns:metal="http://xml.zope.org/namespaces/metal"
+     xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+     i18n:domain="plone" 
      tal:omit-tag=""
      tal:define="utool nocall:here/portal_url;
                  portal utool/getPortalObject;
