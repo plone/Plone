@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<object name="portal_actions" meta_type="Plone Actions Tool"
+   xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+ <object name="site_actions" meta_type="CMF Action Category">
+  <object name="sitemap" meta_type="CMF Action" i18n:domain="plone">
+   <property name="url_expr">string:${globals_view/navigationRootUrl}/sitemap</property>
+  </object>
+  <object name="accessibility" meta_type="CMF Action" i18n:domain="plone">
+   <property
+      name="url_expr">string:${globals_view/navigationRootUrl}/accessibility-info</property>
+  </object>
+  <object name="contact" meta_type="CMF Action" i18n:domain="plone">
+   <property name="url_expr">string:${globals_view/navigationRootUrl}/contact-info</property>
+  </object>
+ </object>
+ <object name="user" meta_type="CMF Action Category">
+  <object name="preferences" meta_type="CMF Action" i18n:domain="plone">
+   <property
+      name="url_expr">string:${globals_view/navigationRootUrl}/plone_memberprefs_panel</property>
+  </object>
+  <object name="login" meta_type="CMF Action" i18n:domain="plone">
+   <property name="url_expr">string:${globals_view/navigationRootUrl}/login_form</property>
+  </object>
+  <object name="join" meta_type="CMF Action" i18n:domain="plone">
+   <property name="url_expr">string:${globals_view/navigationRootUrl}/join_form</property>
+  </object>
+  <object name="undo" meta_type="CMF Action" i18n:domain="plone">
+   <property name="url_expr">string:${globals_view/navigationRootUrl}/undo_form</property>
+  </object>
+  <object name="logout" meta_type="CMF Action" i18n:domain="plone">
+   <property name="url_expr">string:${globals_view/navigationRootUrl}/logout</property>
+  </object>
+ </object>
+</object>
