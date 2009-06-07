@@ -49,10 +49,6 @@
   <property name="localTimeOnlyFormat" type="string">%I:%M %p</property>
   <property name="default_language" type="string">en</property>
   <property name="default_charset" type="string">utf-8</property>
-  <!-- BBB: use_folder_tabs is deprecated, but we leave it available until 
-                Plone 4.0 -->
-  <property name="use_folder_tabs" type="lines"> 
-  </property> 
   <property name="ext_editor" type="boolean">False</property>
   <property name="available_editors" type="lines">
    <element value="None"/>

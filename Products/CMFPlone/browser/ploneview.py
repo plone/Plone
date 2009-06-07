@@ -12,7 +12,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone import utils
 from Products.CMFPlone.browser.interfaces import IPlone
 
-from zope.deprecation import deprecate, deprecated
+from zope.deprecation import deprecate
 from zope.interface import implements, alsoProvides
 from zope.component import getMultiAdapter, queryMultiAdapter, getUtility
 
@@ -27,21 +27,7 @@ from plone.app.layout.icons.interfaces import IContentIcon
 
 from plone.app.content.browser.folderfactories import _allowedTypes
 
-deprecated(
-    ('IndexIterator'),
-    "This reference to IndexIterator will be removed in Plone 4.0. Please "
-    "import it from Products.CMFPlone.utils instead.")
-
-IndexIterator = utils.IndexIterator
-
 _marker = []
-
-import zope.deferredimport
-zope.deferredimport.deprecated(
-    "It has been replaced by plone.memoize.instance.memoize. This alias will " 
-    "be removed in Plone 4.0.",
-    cache_decorator = 'plone.memoize.instance:memoize',
-    )
 
 class Plone(BrowserView):
     implements(IPlone)
@@ -445,24 +431,9 @@ class Plone(BrowserView):
 
     # Deprecated in favour of the @@plone_context_state and @@plone_portal_state views
 
-    @deprecate("The keyFilteredActions method of the Plone view has been "
-               "deprecated and will be removed in Plone 4.0. Use the "
-               "keyed_actions method of the plone_context_state adapter "
-               "instead.")
-    def keyFilteredActions(self, actions=None):
-        context_state = getMultiAdapter((aq_inner(self.context), self.request), name=u'plone_context_state')
-        return context_state.keyed_actions()
-
     def getCurrentUrl(self):
         context_state = getMultiAdapter((aq_inner(self.context), self.request), name=u'plone_context_state')
         return context_state.current_page_url()
-
-    @deprecate("The isRightToLeft method of the Plone view has been "
-               "deprecated and will be removed in Plone 4.0. Use the "
-               "is_rtl method of the plone_portal_state adapter instead.")
-    def isRightToLeft(self, domain='plone'):
-        portal_state = getMultiAdapter((aq_inner(self.context), self.request), name=u'plone_portal_state')
-        return portal_state.is_rtl()
 
     def isDefaultPageInFolder(self):
         context_state = getMultiAdapter((aq_inner(self.context), self.request), name=u'plone_context_state')
