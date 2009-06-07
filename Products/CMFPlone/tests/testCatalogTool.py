@@ -29,7 +29,7 @@ base_content = ['Members', 'aggregator', 'aggregator',
                 default_user, 'front-page', 'doc']
 
 
-class TestCatalogSetup(PloneTestCase.PloneTestCase):
+class TestCatalogSetup(PloneTestCase.PloneContentLessTestCase):
 
     def afterSetUp(self):
         self.catalog = self.portal.portal_catalog
@@ -465,7 +465,7 @@ class TestCatalogSorting(PloneTestCase.PloneTestCase):
         doc = self.folder.doc
         wrapped = IndexableObjectWrapper(doc, self.portal.portal_catalog)
 
-        self.assertEqual(wrapped.sortable_title, u'00000012 document 00000025')
+        self.assertEqual(wrapped.sortable_title, u'000012 document 000025')
 
     def testSortableNonASCIITitles(self):
         #test a utf-8 encoded string gets properly unicode converted
@@ -474,6 +474,21 @@ class TestCatalogSorting(PloneTestCase.PloneTestCase):
         doc.setTitle(title)
         wrapped = IndexableObjectWrapper(doc, self.portal.portal_catalog)
         self.assertEqual(wrapped.sortable_title, u'la pe\xf1a'.encode('utf-8'))
+
+    def testSortableLongNumberPrefix(self):
+        title = '1.2.3 foo document'
+        doc = self.folder.doc
+        doc.setTitle(title)
+        wrapped = ExtensibleIndexableObjectWrapper(doc, self.portal)
+        wrapped.update(vars={})
+        self.assertEqual(wrapped.sortable_title,
+                         u'000001.000002.000003 foo document')
+        title = '1.2.3 foo program'
+        doc.setTitle(title)
+        wrapped = ExtensibleIndexableObjectWrapper(doc, self.portal)
+        wrapped.update(vars={})
+        self.assertEqual(wrapped.sortable_title,
+                         u'000001.000002.000003 foo program')
 
 
 class TestFolderCataloging(PloneTestCase.PloneTestCase):

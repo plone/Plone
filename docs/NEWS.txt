@@ -8,10 +8,31 @@ Changelog
 4.0 - Unreleased
 ----------------
 
- - Removed dependency checking code for everything contained in the Plone 
-   Core tarball. The number of dependencies is just too huge by now to 
-   check them all. We still check external dependencies like Python, Zope, 
-   PIL and elementree though. 
+ - Removed tests for isRTL method of PTS. The method was deprecated in the 
+   last release and is gone now. 
+   [hannosch]
+
+ - Use new contentless test class for all tests that don't depend on any. 
+   [hannosch]
+
+ - Replaced our FasterStringIO implementation by one based on 
+   collections.deque, which is a faster than StringIO. 
+   [hannosch]
+
+ - Removed more deprecated code, adjusted some comments. 
+   [hannosch]
+
+ - Tweaked sortable_title method to give reasonable results for titles with 
+   many numbers in them, like '1.2.3 document'. 
+   [hannosch]
+
+ - Moved CMF skins registration into configure.zcml, removed security 
+   declaration for no-longer extant listPolicies of the portal. 
+   [hannosch]
+
+ - Refactored initial content creation into a separate extension profile, 
+   thus making it possible to skip it. This refs 
+   http://dev.plone.org/plone/ticket/6948 
    [hannosch]
 
  - Removed some outdated Extension scripts. 
