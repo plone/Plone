@@ -116,3 +116,5 @@ may need to take the following changes into account.
 
 * The Products.CMFPlone.utils.ulocalized_time method is now
   Products.CMFPlone.i18nl10n.ulocalized_time
+
+* The getPILVersion method of the MigrationTool has been removed.

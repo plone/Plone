@@ -12,7 +12,6 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone import utils
 from Products.CMFPlone.browser.interfaces import IPlone
 
-from zope.deprecation import deprecate
 from zope.interface import implements, alsoProvides
 from zope.component import getMultiAdapter, queryMultiAdapter, getUtility
 
