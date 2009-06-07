@@ -20,7 +20,13 @@ from DateTime import DateTime
 from Products.Five.bridge import fromZ2Interface
 from Products.CMFCore.utils import ToolInit as CMFCoreToolInit
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.interfaces.Translatable import ITranslatable
+
+# BBB Plone 4.0
+try:
+    from Products.LinguaPlone.interfaces import ITranslatable
+except ImportError:
+    from Products.CMFPlone.interfaces.Translatable import ITranslatable
+
 import transaction
 
 from Products.PageTemplates.GlobalTranslationService import \

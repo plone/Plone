@@ -45,13 +45,6 @@
   <dependency step="componentregistry"/>
     Import content type registry's predicates and bindings.
  </import-step>
- <import-step id="controlpanel" version="20060213-01"
-              handler="Products.CMFPlone.exportimport.controlpanel.importControlPanel"
-              title="Control Panel">
-  <dependency step="actions"/>
-  <dependency step="componentregistry"/>
-    Import Plone control panel actions.
- </import-step>
  <import-step id="cssregistry" version="20051015-01"
               handler="Products.ResourceRegistries.exportimport.cssregistry.importCSSRegistry"
               title="Stylesheet registry">
@@ -66,13 +59,6 @@
   <dependency step="componentregistry"/>
     Import KSS registry
  </import-step>
- <import-step id="factorytool" version="20060711-01"
-              handler="Products.CMFPlone.exportimport.factorytool.importFactoryTool"
-              title="Portal Factory Tool">
-  <dependency step="componentregistry"/>
-  <dependency step="typeinfo"/>
-  Import type registration for the portal factory tool.
- </import-step>
  <import-step id="jsregistry" version="20051015-01"
               handler="Products.ResourceRegistries.exportimport.jsregistry.importJSRegistry"
               title="Javascript registry">
@@ -86,63 +72,11 @@
   <dependency step="componentregistry"/>
     Import mailhost settings
  </import-step>
- <import-step id="memberdata-properties"
-              version="20051108-01"
-              handler="Products.CMFPlone.exportimport.memberdata_properties.importMemberDataProperties"
-              title="MemberData Properties">
-  <dependency step="componentregistry"/>
-    Import MemberData properties
- </import-step>
- <import-step id="plone-archetypes" version="20070318-01"
-              handler="Products.CMFPlone.setuphandlers.importArchetypes"
-              title="Plone Archetypes Import">
-  <dependency step="componentregistry"/>
-    Plone Archetypes import
- </import-step>
 
- <import-step id="plone-content" version="20061230-01"
-              handler="Products.CMFPlone.setuphandlers.importContent"
-              title="Plone Content Import">
-  <dependency step="content"/>
-  <dependency step="plone-final"/>
-    Plone content import
- </import-step>
- <import-step id="plone-final" version="20051110-01"
-              handler="Products.CMFPlone.setuphandlers.importFinalSteps"
-              title="Final Plone Config">
-  <dependency step="kss_mimetype"/>
-  <dependency step="plone_various"/>
-  <dependency step="portlets"/>
-    Final Plone configuration
- </import-step>
- <import-step id="plone-site" version="20061227-01"
-              handler="Products.CMFPlone.setuphandlers.importSite"
-              title="Plone Site Config">
-    Plone site configuration
- </import-step>
- <import-step id="plone_various" version="20061227-01"
-              handler="Products.CMFPlone.setuphandlers.importVarious"
-              title="Various Plone Settings">
-  <dependency step="catalog"/>
-  <dependency step="cssregistry"/>
-  <dependency step="kssregistry"/>
-  <dependency step="jsregistry"/>
-  <dependency step="propertiestool"/>
-  <dependency step="rolemap"/>
-  <dependency step="skins"/>
-  <dependency step="typeinfo"/>
-    Plone specific settings
- </import-step>
  <import-step id="properties" version="20041215-01"
               handler="Products.CMFCore.exportimport.properties.importSiteProperties"
               title="Site Properties">
     Import site properties.
- </import-step>
- <import-step id="propertiestool" version="20051101-01"
-              handler="Products.CMFPlone.exportimport.propertiestool.importPloneProperties"
-              title="Plone Properties">
-  <dependency step="componentregistry"/>
-    Export plone properties tool and subobjects.
  </import-step>
  <import-step id="rolemap" version="20040523-01"
               handler="Products.GenericSetup.rolemap.importRolemap"

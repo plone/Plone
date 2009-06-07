@@ -8,6 +8,28 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+ - Move our GenericSetup import step registrations to zcml. 
+   [wichert]
+
+ - Added a 'do-not-use' warning to the ZMI security screen for Plone content 
+   objects. Sharing tab or workflows are what you are looking for. 
+   [hannosch]
+
+ - Moved interface declarations for factorytool from ZCML to the class. 
+   [hannosch]
+
+ - Added BBB code for ITranslatable, which is now part of LinguaPlone. 
+   [hannosch]
+
+ - Added an explicit button to add a new Plone site to the ZMI for faster 
+   access. If you have installed Plone this is probably what you want to 
+   add most of the time. The button only shows up in the root folder. 
+   [hannosch]
+
+ - Deprecate the ITranslatable interface. This interface is LinguaPlone- 
+   specific and has thus been moved to LinguaPlone. 
+   [wichert]
+
  - Removed tests for isRTL method of PTS. The method was deprecated in the 
    last release and is gone now. 
    [hannosch]

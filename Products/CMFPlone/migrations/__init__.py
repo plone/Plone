@@ -88,7 +88,7 @@ def registerMigrations():
 
     registerUpgradePath('2.5', '2.5.1-rc1', v2_5.final_two51.final_two51)
     
-    registerUpgradePath('2.5.1-rc1', '2.5.1', v2_5.final_two51.final_two51)
+    registerUpgradePath('2.5.1-rc1', '2.5.1', null)
     registerUpgradePath('2.5.1', '2.5.2-rc1', v2_5.two51_two52.two51_two52)
 
     registerUpgradePath('2.5.2-rc1', '2.5.2', null)

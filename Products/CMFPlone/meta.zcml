@@ -1,5 +1,7 @@
 <configure xmlns="http://namespaces.zope.org/zope">
     
+    <include package="Products.GenericSetup" file="meta.zcml" />
+
     <include package="plone.app.portlets" file="meta.zcml" />
     
     <!-- kss -->

@@ -383,10 +383,6 @@ form.searchPage input.searchButton {
     text-transform: &dtml-textTransform;;
     list-style: none;
 }
-#portal-personaltools .portalUser {
-    background: transparent url(&dtml-portal_url;/user.gif) center left no-repeat;
-    padding-left: 18px;
-}
 #portal-personaltools .portalNotLoggedIn {
     /* Used on all descriptions relevant to those not logged in */
     color: &dtml-fontColor;;

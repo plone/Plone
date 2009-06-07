@@ -25,7 +25,6 @@ from Products.CMFCore.interfaces.Discussions import Discussable
 from Products.CMFCore.WorkflowCore import WorkflowException
 from Products.CMFDefault.DublinCore import DefaultDublinCoreImpl
 from Products.CMFPlone.interfaces import IPloneTool
-from Products.CMFPlone.interfaces.Translatable import ITranslatable
 from Products.CMFPlone.interfaces import INonStructuralFolder
 from Products.CMFPlone.PloneBaseTool import PloneBaseTool
 from Products.CMFPlone.PloneFolder import ReplaceableWrapper
@@ -40,6 +39,13 @@ from Products.CMFPlone.interfaces import IBrowserDefault
 from Products.statusmessages.interfaces import IStatusMessage
 from AccessControl.requestmethod import postonly
 from plone.app.linkintegrity.exceptions import LinkIntegrityNotificationException
+
+# BBB Plone 4.0
+try:
+    from Products.LinguaPlone.interfaces import ITranslatable
+except ImportError:
+    from Products.CMFPlone.interfaces.Translatable import ITranslatable
+
 
 AllowSendto = 'Allow sendto'
 permissions.setDefaultRoles(AllowSendto, ('Anonymous', 'Manager',))

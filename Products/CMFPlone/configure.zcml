@@ -4,6 +4,7 @@
            xmlns:five="http://namespaces.zope.org/five"
            i18n_domain="plone">
 
+  <include package="Products.GenericSetup" />
   <include package="plone.app.contentmenu" />
   <include package="plone.app.content" />
   <include package="plone.app.contentrules" />
@@ -63,21 +64,6 @@
       directory="skins"
       recursive="True"
       />
-
-  <five:implements
-    class=".FactoryTool.FactoryTool"
-    interface=".interfaces.IFactoryTool"
-    />
-
-  <five:implements
-    class=".FactoryTool.FactoryTool"
-    interface=".interfaces.IHideFromBreadcrumbs"
-    />
-
-  <five:implements
-    class=".FactoryTool.TempFolder"
-    interface=".interfaces.IHideFromBreadcrumbs"
-    />
 
   <five:implements
     class="Products.PluggableAuthService.PluggableAuthService.PluggableAuthService"

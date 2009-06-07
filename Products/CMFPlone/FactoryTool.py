@@ -17,6 +17,8 @@ from Products.CMFCore.utils import UniqueObject
 from Products.CMFCore.utils import getToolByName
 from StructuredText.StructuredText import HTML
 from Products.CMFPlone.interfaces import IFactoryTool
+from Products.CMFPlone.interfaces import IHideFromBreadcrumbs
+from Products.CMFPlone.interfaces import IPloneSiteRoot
 from Products.CMFPlone.PloneFolder import PloneFolder as TempFolderBase
 from Products.CMFPlone.PloneBaseTool import PloneBaseTool
 from Products.CMFPlone.utils import base_hasattr
@@ -32,8 +34,11 @@ FACTORY_INFO = '__factory__info__'
 # for the class without having side effects in the rest of
 # the portal.
 class TempFolder(TempFolderBase):
+
     portal_type = meta_type = 'TempFolder'
     isPrincipiaFolderish = 0
+
+    implements(IHideFromBreadcrumbs)
 
     # override getPhysicalPath so that temporary objects return a full path
     # that includes the acquisition parent of portal_factory (otherwise we get
@@ -164,6 +169,10 @@ class TempFolder(TempFolderBase):
             obj.unindexObject()
 
             # additionally keep it out of Archetypes UID and refs catalogs
+            # XXX this isn't really needed as CatalogMultiplex handles the
+            # removal from all used catalogs, but right now the catalog_map
+            # in the archetype_tool is empty for most types, so this doesn't
+            # work :(
             if base_hasattr(obj, '_uncatalogUID'):
                 obj._uncatalogUID(obj)
             if base_hasattr(obj, '_uncatalogRefs'):
@@ -185,7 +194,7 @@ class FactoryTool(PloneBaseTool, UniqueObject, SimpleItem):
     security = ClassSecurityInfo()
     isPrincipiaFolderish = 0
 
-    implements(IFactoryTool)
+    implements(IFactoryTool, IHideFromBreadcrumbs)
 
     manage_options = ( ({'label':'Overview', 'action':'manage_overview'}, \
                         {'label':'Documentation', 'action':'manage_docs'}, \
@@ -376,27 +385,27 @@ class FactoryTool(PloneBaseTool, UniqueObject, SimpleItem):
     index_html = None  # call __call__, not index_html
 
     def _getTempFolder(self, type_name):
-        
         factory_info = self.REQUEST.get(FACTORY_INFO, {})
         tempFolder = factory_info.get(type_name, None)
-        if tempFolder:
+        if tempFolder is not None:
             tempFolder = aq_inner(tempFolder).__of__(self)
             return tempFolder
-        
+
         # make sure we can add an object of this type to the temp folder
         types_tool = getToolByName(self, 'portal_types')
         if not type_name in types_tool.TempFolder.allowed_content_types:
             # update allowed types for tempfolder
             types_tool.TempFolder.allowed_content_types=(types_tool.listContentTypes())
-            
+
         tempFolder = TempFolder(type_name).__of__(self)
         intended_parent = aq_parent(self)
-        portal = getToolByName(self, 'portal_url').getPortalObject()
         folder_roles = {} # mapping from permission name to list or tuple of roles
                           # list if perm is acquired; tuple if not
         n_acquired = 0    # number of permissions that are acquired
 
         # build initial folder_roles dictionary
+        # XXX This is a list of about 200 permissions (all permissions you can
+        # see in the ZMI), which makes this extremely slow.
         for p in intended_parent.ac_inherited_permissions(1):
             name, value = p[:2]
             p=Permission(name,value,intended_parent)
@@ -407,10 +416,11 @@ class FactoryTool(PloneBaseTool, UniqueObject, SimpleItem):
 
         # If intended_parent is not the portal, walk up the acquisition hierarchy and
         # acquire permissions explicitly so we can assign the acquired version to the
-        # temp_folder.  In addition to being cumbersome, this is undoubtedly very slow.
-        if intended_parent != portal:
+        # temp_folder. In addition to being cumbersome, this is undoubtedly very slow.
+        # XXX This is indeed slow again :(
+        if not IPloneSiteRoot.providedBy(intended_parent):
             parent = aq_parent(aq_inner(intended_parent))
-            while(n_acquired and parent!=portal):
+            while(n_acquired and not IPloneSiteRoot.providedBy(parent)):
                 n_acquired = 0
                 for p in parent.ac_inherited_permissions(1):
                     name, value = p[:2]
@@ -427,6 +437,13 @@ class FactoryTool(PloneBaseTool, UniqueObject, SimpleItem):
                             roles = tuple(roles)
                         folder_roles[name] = roles
                 parent = aq_parent(aq_inner(parent))
+
+        # XXX Setting the permissions this way is insane.
+        # The manage_permission method internally iterates over all permissions
+        # itself, so we end up with another 200 x 100 (mean) method calls. All
+        # of these nowadays have the @requestmethod('POST') protection... :(
+        # I think we need to work around the API here and directly set some
+        # attributes...
         for name, roles in folder_roles.items():
             tempFolder.manage_permission(name, roles, acquire=isinstance(roles, list))
 
