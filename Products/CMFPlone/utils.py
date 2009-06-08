@@ -6,6 +6,7 @@ from cStringIO import StringIO
 from PIL import Image
 
 from plone.i18n.normalizer.interfaces import IIDNormalizer
+from webdav.interfaces import IWriteLock
 
 import zope.interface
 from zope.interface import implementedBy
@@ -373,7 +374,9 @@ def _createObjectByType(type_name, container, id, *args, **kw):
     m(id, *args, **kw)
     ob = container._getOb( id )
 
-    return fti._finishConstruction(ob)
+    if safe_hasattr(ob, '_setPortalTypeName'):
+        ob._setPortalTypeName(fti.getId())
+    return ob
 
 
 def safeToInt(value):
@@ -566,15 +569,15 @@ def webdav_enabled(obj, container):
     """WebDAV check used in externalEditorEnabled.py"""
 
     # Object implements lock interface
-    interface_tool = getToolByName(container, 'portal_interface')
-    if not interface_tool.objectImplements(obj, 'webdav.WriteLockInterface.WriteLockInterface'):
-        return False
+    if IWriteLock.providedBy(obj):
+        return True
 
-    # Backwards compatibility code for AT < 1.3.6
-    if safe_hasattr(obj, '__dav_marshall__'):
-        if obj.__dav_marshall__ == False:
-            return False
-    return True
+    # BBB for Zope2 webdav interface
+    interface_tool = getToolByName(container, 'portal_interface')
+    if interface_tool.objectImplements(obj, 'webdav.WriteLockInterface.WriteLockInterface'):
+        return True
+
+    return False
 
 
 # Copied 'unrestricted_rename' from ATCT migrations to avoid

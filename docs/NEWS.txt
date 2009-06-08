@@ -8,6 +8,21 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+ - Hiding page history, page navigation, and busy icon (spinner) in print.css 
+   Related to http://dev.plone.org/plone/ticket/7433 
+   http://dev.plone.org/plone/ticket/7402
+   [siebo]
+
+ - Updated webdav_enabled method in utils.py to check for 
+   webdav.interfaces.IWriteLock interface in addition to the old Zope2 
+   interface. 
+   [hannosch]
+
+ - Use a FauxArchetypeTool which returns no catalogs for CatalogMultiplex 
+   aware objects in portal factory. This prevents most temporary objects 
+   from being indexed in the first place. 
+   [tesdal, hannosch]
+
  - Move our GenericSetup import step registrations to zcml. 
    [wichert]
 

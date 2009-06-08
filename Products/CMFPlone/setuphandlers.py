@@ -83,9 +83,6 @@ class PloneGenerator:
     def installArchetypes(self, p):
         """QuickInstaller install of Archetypes and required dependencies."""
         qi = getToolByName(p, "portal_quickinstaller")
-        qi.installProduct('CMFFormController', locked=1, hidden=1, forceProfile=True)
-        qi.installProduct('MimetypesRegistry', locked=1, hidden=1, forceProfile=True)
-        qi.installProduct('PortalTransforms', locked=1, hidden=1, forceProfile=True)
         qi.installProduct('Archetypes', locked=1, hidden=1,
             profile=u'Products.Archetypes:Archetypes')
 
@@ -536,7 +533,6 @@ def importContent(context):
     out = []
     site = context.getSite()
     gen = PloneGenerator()
-    gen.addDefaultPortlets(site)
     gen.setupPortalContent(site)
 
 def updateWorkflowRoleMappings(context):
