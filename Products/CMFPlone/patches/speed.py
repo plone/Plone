@@ -1,0 +1,18 @@
+from plone.memoize import forever
+
+# Remember the installed products and packages
+from App import FactoryDispatcher
+
+FactoryDispatcher._product_packages = \
+    forever.memoize(FactoryDispatcher._product_packages)
+
+# Avoid unneeded line breaks in TAL output, by effectively disabling the
+# internal beautified wrapping inside tags
+def wrap_init(func):
+    def new_init(*args, **kwargs):
+        kwargs['wrap'] = kwargs.get('wrap', 1023)
+        func(*args, **kwargs)
+    return new_init
+
+from zope.tal.talinterpreter import TALInterpreter
+TALInterpreter.__init__ = wrap_init(TALInterpreter.__init__)

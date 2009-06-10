@@ -1,7 +1,7 @@
 from Products.CMFPlone.MigrationTool import registerUpgradePath
 
 def executeMigrations():
-    import v2_1, v2_5, v3_0, v3_1, v3_2, v3_3
+    import v2_1, v2_5, v3_0, v3_1, v3_2, v3_3, v4_0
 
 def null(portal):
     """ This is a null migration, use it when nothing happens """
@@ -156,3 +156,6 @@ def registerMigrations():
     registerUpgradePath('3.3rc2', '3.3rc3', null)
     registerUpgradePath('3.3rc3', '3.3 (svn/unreleased)', v3_3.three3_rc3_three3_rc4)
 
+    # Plone 4.0
+
+    registerUpgradePath('3.3 (svn/unreleased)', '4.0.dev', v4_0.alphas.threeX_alpha1)

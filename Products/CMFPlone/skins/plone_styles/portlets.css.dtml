@@ -223,7 +223,7 @@ div.managedPortlet {
 
 /* Static text portlet */
 .portletStaticText ul {
-    list-style-image: url(&dtml-portal_url;/bullet.gif);
+    list-style-image: url(&dtml-portal_url;/bullet.png);
     list-style-type: square; 
     margin: 0.5em 0 0 1.5em;
 }
@@ -243,13 +243,13 @@ div.managedPortlet {
 
 
 .calendarPrevious {
-    background-image: url(&dtml-portal_url;/arrowLeft.gif);
+    background-image: url(&dtml-portal_url;/arrowLeft.png);
     background-repeat: no-repeat;
     background-position: 50% 50%;
     float: left;
 }
 .calendarNext {
-    background-image: url(&dtml-portal_url;/arrowRight.gif);
+    background-image: url(&dtml-portal_url;/arrowRight.png);
     background-repeat: no-repeat;
     background-position: 50% 50%;
     float: right;
@@ -262,15 +262,15 @@ div.managedPortlet {
     border: 0;
     margin: 0;
     padding: 0;
-    padding-top: <dtml-var "_['arrowLeft.gif'].height">px;
+    padding-top: <dtml-var "_['arrowLeft.png'].height">px;
     height: 0px !important;
-    height /**/: <dtml-var "_['arrowLeft.gif'].height">px;
+    height /**/: <dtml-var "_['arrowLeft.png'].height">px;
     cursor: pointer;
 }
 .calendarNext {
-    padding-top: <dtml-var "_['arrowRight.gif'].height">px;
+    padding-top: <dtml-var "_['arrowRight.png'].height">px;
     height: 0px !important;
-    height /**/: <dtml-var "_['arrowRight.gif'].height">px;
+    height /**/: <dtml-var "_['arrowRight.png'].height">px;
 }
 
 </dtml-comment>

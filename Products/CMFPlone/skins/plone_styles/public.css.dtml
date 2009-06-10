@@ -58,7 +58,7 @@ h3, h4, h5, h6 {
     background: &dtml-backgroundColor;;
 }
 .documentContent ul {
-    list-style-image: url(&dtml-portal_url;/bullet.gif);
+    list-style-image: url(&dtml-portal_url;/bullet.png);
     list-style-type: square;
     margin: 0.5em 0 0 1.5em;
 }
@@ -943,7 +943,7 @@ textarea.proportional {
 /* Link types */
 a.link-parent {
     display: block;
-    background: transparent url(&dtml-portal_url;/arrowUp.gif) 4px 5px no-repeat;
+    background: transparent url(&dtml-portal_url;/arrowUp.png) 4px 5px no-repeat;
     padding: 1px 0px 10px 16px;
     font-size: &dtml-fontSmallSize;;
     text-decoration: none;
@@ -952,11 +952,11 @@ a.link-parent {
     color: #74ae0b !important;
 }
 #content .link-user {
-    background: transparent url(&dtml-portal_url;/user.gif) 0 1px no-repeat;
+    background: transparent url(&dtml-portal_url;/user.png) 0 1px no-repeat;
     padding: 1px 0px 1px 16px;
 }
 #content .link-comment {
-    background: transparent url(&dtml-portal_url;/discussionitem_icon.gif) center left no-repeat;
+    background: transparent url(&dtml-portal_url;/discussionitem_icon.png) center left no-repeat;
     padding: 1px 0px 1px 16px !important; /* value:  */
 }
 #content .link-anchor {
@@ -976,41 +976,41 @@ a.link-parent {
 
 /* Handling external links */
 #content span.link-external a {
-    background: transparent url(&dtml-portal_url;/link_icon.gif) 0px 1px no-repeat;
+    background: transparent url(&dtml-portal_url;/link_icon.png) 0px 1px no-repeat;
     padding: 1px 0px 1px 16px;
 }
 #content span.link-https a {
-    background: transparent url(&dtml-portal_url;/lock_icon.gif) 0px 1px no-repeat;
+    background: transparent url(&dtml-portal_url;/lock_icon.png) 0px 1px no-repeat;
     padding: 1px 0px 1px 16px;
 }
 
 /* Protocol-specific links */
 #content span.link-mailto  a {
-    background: transparent url(&dtml-portal_url;/mail_icon.gif) 0px 1px no-repeat;
+    background: transparent url(&dtml-portal_url;/mail_icon.png) 0px 1px no-repeat;
     padding: 1px 0px 1px 16px;
 }
 #content span.link-news a {
-    background: transparent url(&dtml-portal_url;/topic_icon.gif) 0px 1px no-repeat;
+    background: transparent url(&dtml-portal_url;/topic_icon.png) 0px 1px no-repeat;
     padding: 1px 0px 1px 16px;
 }
 #content span.link-ftp a {
-    background: transparent url(&dtml-portal_url;/file_icon.gif) 0px 1px no-repeat;
+    background: transparent url(&dtml-portal_url;/file_icon.png) 0px 1px no-repeat;
     padding: 1px 0px 1px 16px;
 }
 #content span.link-irc a {
-    background: transparent url(&dtml-portal_url;/discussionitem_icon.gif) 0px 1px no-repeat;
+    background: transparent url(&dtml-portal_url;/discussionitem_icon.png) 0px 1px no-repeat;
     padding: 1px 0px 1px 16px;
 }
 #content span.link-callto a {
-    background: transparent url(&dtml-portal_url;/phone_icon.gif) 0px 1px no-repeat;
+    background: transparent url(&dtml-portal_url;/phone_icon.png) 0px 1px no-repeat;
     padding: 1px 0px 1px 16px;
 }
 #content span.link-webcal a {
-    background: transparent url(&dtml-portal_url;/event_icon.gif) 0px 1px no-repeat;
+    background: transparent url(&dtml-portal_url;/event_icon.png) 0px 1px no-repeat;
     padding: 1px 0px 1px 16px;
 }
 #content span.link-feed a {
-    background: transparent url(&dtml-portal_url;/rss.gif) 0px 1px no-repeat;
+    background: transparent url(&dtml-portal_url;/rss.png) 0px 1px no-repeat;
     padding: 1px 0px 1px 18px;
 }
 

@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<object name="Large Plone Folder">
+ <property name="content_icon">folder_icon.png</property>
+</object>

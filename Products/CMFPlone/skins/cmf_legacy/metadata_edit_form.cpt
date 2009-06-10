@@ -324,7 +324,7 @@
                tal:define="process_creation request/process_creation|nothing;">
 
             <img src="" class="context"
-                   tal:define="locked portal_object/lock_icon.gif;"
+                   tal:define="locked portal_object/lock_icon.png;"
                    tal:condition="isLocked"
                    tal:replace="structure python:locked.tag(title='This item is locked')"
                    alt="Object locked"

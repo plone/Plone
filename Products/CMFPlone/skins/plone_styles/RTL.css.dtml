@@ -60,7 +60,7 @@ ol {
     clear: both;
 }
 #portal-personaltools .portalUser {
-    background: transparent url(&dtml-portal_url;/user.gif) 100% 50% no-repeat;
+    background: transparent url(&dtml-portal_url;/user.png) 100% 50% no-repeat;
     margin: 0;
     padding-right: 18px; /* fix for overlapping icon - smoothify */
     padding-left: 1em; /* fix for overlapping icon - smoothify */
@@ -140,16 +140,16 @@ ol {
 .standalone,
 .documentEditable * .standalone {
     padding: 1px 15px 1px 1px;
-    background: &dtml-globalBackgroundColor; url(&dtml-portal_url;/rtl-linkOpaque.gif) 90% 1px no-repeat;
+    background: &dtml-globalBackgroundColor; url(&dtml-portal_url;/rtl-linkOpaque.png) 90% 1px no-repeat;
 }
 .context,
 .documentEditable * .context {
     padding: 1px 15px 1px 1px;
-    background: transparent url(&dtml-portal_url;/rtl-linkTransparent.gif) 90% 1px no-repeat;
+    background: transparent url(&dtml-portal_url;/rtl-linkTransparent.png) 90% 1px no-repeat;
 }
 .destructive,
 .documentEditable * .destructive {
-    background: &dtml-notifyBackgroundColor; url(&dtml-portal_url;/rtl-linkTransparent.gif) 90% 1px no-repeat;
+    background: &dtml-notifyBackgroundColor; url(&dtml-portal_url;/rtl-linkTransparent.png) 90% 1px no-repeat;
     padding: 1px 15px 1px 1px;
 }
 input.searchButton {
@@ -161,7 +161,7 @@ input.searchButton {
     margin: 0 0 1em 1em;
 }
 .fieldRequired {
-    background: url(&dtml-portal_url;/required.gif) center right no-repeat;
+    background: url(&dtml-portal_url;/required.png) center right no-repeat;
     padding: 0 8px 0 0;
 }
 .card {
@@ -208,7 +208,7 @@ ul.configletDetails {
 }
 .link-parent {
     padding: 1px 16px 1px 0;
-    background: transparent url(&dtml-portal_url;/arrowUp.gif) 100% 5px no-repeat;
+    background: transparent url(&dtml-portal_url;/arrowUp.png) 100% 5px no-repeat;
 }
 .link-user {
     padding: 1px 16px 1px 0;
@@ -245,7 +245,7 @@ ul.configletDetails {
     background: none;
 }
 .link-comment {
-    background: transparent url(&dtml-portal_url;/discussionitem_icon.gif) center right no-repeat;
+    background: transparent url(&dtml-portal_url;/discussionitem_icon.png) center right no-repeat;
     padding: 1px 16px 1px 0 !important;
 }
 .hiddenStructure {
@@ -270,10 +270,10 @@ ul.configletDetails {
     text-align: left;
 }
 .ploneCalendar #calendar-previous {
-    background-image: url(&dtml-portal_url;/arrowRight.gif);
+    background-image: url(&dtml-portal_url;/arrowRight.png);
 }
 .ploneCalendar #calendar-next {
-    background-image: url(&dtml-portal_url;/arrowLeft.gif);
+    background-image: url(&dtml-portal_url;/arrowLeft.png);
 }
 .navTreeLevel0 { margin: 0; }
 .navTreeLevel1 { margin-left: 0em; margin-right: 1em;}

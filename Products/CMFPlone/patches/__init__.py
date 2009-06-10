@@ -17,3 +17,5 @@ import unicodeFallbackPatch     # Makes the TAL engine in Zope 2.10+ accept
 
 import csrf                     # Protects most important methods from
 csrf.applyPatches()             # CSRF attacks
+
+import speed                    # Various caching patches to improve speed

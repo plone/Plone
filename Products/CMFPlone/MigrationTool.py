@@ -126,9 +126,9 @@ class MigrationTool(PloneBaseTool, UniqueObject, SimpleItem):
         """ Useful core information """
         vars = {}
         cp = self.Control_Panel
-        vars['Zope'] = cp.version_txt
-        vars['Python'] = cp.sys_version
-        vars['Platform'] = cp.sys_platform
+        vars['Zope'] = cp.version_txt()
+        vars['Python'] = cp.sys_version()
+        vars['Platform'] = cp.sys_platform()
         vars['Plone Instance'] = self.getInstanceVersion()
         vars['Plone File System'] = self.getFileSystemVersion()
         vars['CMF'] = cp.Products.CMFCore.version

@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<object name="Topic">
+ <property name="content_icon">topic_icon.png</property>
+</object>

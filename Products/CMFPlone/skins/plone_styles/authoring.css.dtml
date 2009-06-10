@@ -271,7 +271,7 @@ ul.configletDetails li.configletDescription {
     font-weight: normal;
 }
 .comment h3 a {
-    background-image: url(&dtml-portal_url;/discussionitem_icon.gif);
+    background-image: url(&dtml-portal_url;/discussionitem_icon.png);
     background-repeat: no-repeat;
     padding-left: 18px;
     margin-left: -1px;
@@ -321,7 +321,7 @@ dl.collapsible dd.collapsibleContent > dl {
 dl.expandedInlineCollapsible dt.collapsibleHeader,
 dl.expandedBlockCollapsible dt.collapsibleHeader {
     padding: 0 6px 0 22px;
-    background: &dtml-backgroundColor; url(treeExpanded.gif) no-repeat 6px 50%;
+    background: &dtml-backgroundColor; url(treeExpanded.png) no-repeat 6px 50%;
     cursor: pointer;
 }
 
@@ -336,7 +336,7 @@ dl.collapsedBlockCollapsible dt.collapsibleHeader {
     margin: 0;
     padding: 0 0 0 22px;
     line-height: 1em;
-    background: transparent url(treeCollapsed.gif) no-repeat 6px 50%;
+    background: transparent url(treeCollapsed.png) no-repeat 6px 50%;
     cursor: pointer;
 }
 dl.collapsedInlineCollapsible dd.collapsibleContent,
@@ -355,7 +355,7 @@ dl.collapsedInlineCollapsible dt.collapsibleHeader {
     margin: 0;
     padding: 0 0 0 22px;
     line-height: 1em;
-    background: transparent url(treeCollapsed.gif) no-repeat 6px 50%;
+    background: transparent url(treeCollapsed.png) no-repeat 6px 50%;
     cursor: pointer;
     display: inline;
 }
@@ -459,7 +459,7 @@ li.formTab a.notify {
     color: &dtml-fontColor;;
 }
 li.formTab a.required span {
-    background-image: url(&dtml-portal_url;/required.gif);
+    background-image: url(&dtml-portal_url;/required.png);
     background-position: center right;
     background-repeat: no-repeat;
     padding-right: 8px;

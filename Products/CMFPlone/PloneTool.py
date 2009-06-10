@@ -41,10 +41,13 @@ from AccessControl.requestmethod import postonly
 from plone.app.linkintegrity.exceptions import LinkIntegrityNotificationException
 
 # BBB Plone 4.0
+from zope.deprecation import __show__
+__show__.off()
 try:
     from Products.LinguaPlone.interfaces import ITranslatable
 except ImportError:
     from Products.CMFPlone.interfaces.Translatable import ITranslatable
+__show__.on()
 
 
 AllowSendto = 'Allow sendto'
@@ -351,16 +354,26 @@ class PloneTool(PloneBaseTool, UniqueObject, SimpleItem):
         return wfs
 
     security.declareProtected(View, 'getIconFor')
-    def getIconFor(self, category, id, default=_marker):
-        """Cache point for actionicons.getActionIcon call.
-
-        Also we want to allow for a default icon id to be passed in.
+    def getIconFor(self, category, id, default=_marker, context=None):
+        """Get an icon for an action. Prefer the icon_expr on the action
+        itself and if not specified fall back to the icon from the
+        action icons tool.
         """
+        if context is None:
+            context = aq_parent(self)
+        atool = getToolByName(context, 'portal_actions')
+        actions = atool.listActionInfos(action_chain='%s/%s' % (category, id),
+                                        object=context)
+        if len(actions) > 0:
+            icon = actions[0].get('icon', None)
+            if icon:
+                return icon
+ 
         # Short circuit the lookup
         if (category, id) in _icons.keys():
             return _icons[(category, id)]
         try:
-            actionicons = getToolByName(self, 'portal_actionicons')
+            actionicons = getToolByName(context, 'portal_actionicons')
             iconinfo = actionicons.getActionIcon(category, id)
             icon = _icons.setdefault((category, id), iconinfo)
         except KeyError:

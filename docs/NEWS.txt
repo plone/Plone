@@ -8,6 +8,41 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+ - Hide the deprecation warning about the moved ITranslatable interface 
+   for our own code. 
+   [hannosch]
+
+ - Use png icons instead of gif icons since they are much more flexible 
+   for styling.
+   [dannyb, wichert]
+
+ - Fixed the coreVersions method in MigrationTool to return strings and not 
+   bound methods for the Zope and Python version. 
+   [hannosch]
+
+ - Fixed off-by-two error in transaction_note. This closes 
+   http://dev.plone.org/plone/ticket/7610
+   [hannosch]
+
+ - Moved all icons for real actions from the action icons tool to the
+   actions themselves.
+   [hannosch]
+
+ - Changed PloneTool's getIconFor method to prefer the icon expression set 
+   on the action itself instead of looking it up in the action icons tool. 
+   This finally makes use of the new icon expression on actions introduced 
+   in CMF 2.1. 
+   [hannosch]
+
+ - Avoid unneeded line breaks in TAL output, by effectively disabling the 
+   internal beautified wrapping inside tags. This reduces the HTML output 
+   by 5% - 10% for normal Plone pages. 
+   [hannosch]
+
+ - Memoize the installed products and packages in App.FactoryDispatcher 
+   for the duration of the process runtime. 
+   [hannosch]
+
  - Hiding page history, page navigation, and busy icon (spinner) in print.css 
    Related to http://dev.plone.org/plone/ticket/7433 
    http://dev.plone.org/plone/ticket/7402

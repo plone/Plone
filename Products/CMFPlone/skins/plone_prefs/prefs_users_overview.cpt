@@ -158,7 +158,7 @@
                     <td>
               <a href="prefs_user_details"
                  tal:attributes="href string:$portal_url/prefs_user_details?${userquery}">
-            <tal:block replace="structure portal/user.gif"/>&nbsp;<span tal:replace="userid">username</span>
+            <tal:block replace="structure portal/user.png"/>&nbsp;<span tal:replace="userid">username</span>
             (<span tal:replace="python:user.getProperty('fullname')">Full Name</span>)
               </a>
               <input type="hidden" name="users.id:records" tal:attributes="value userid" />
@@ -170,7 +170,7 @@
                          tal:attributes="href string:mailto:${email}"
                          title="Send a mail to this user"
                          i18n:attributes="title title_send_mail_to_user;"
-                         ><tal:block replace="structure here/mail_icon.gif"/></a>
+                         ><tal:block replace="structure here/mail_icon.png"/></a>
               <input style="margin:2px;"
                              type="text"
                  size="15"

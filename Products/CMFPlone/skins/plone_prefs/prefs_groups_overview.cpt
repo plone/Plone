@@ -197,7 +197,7 @@
                                    tal:attributes="href python:here_url+'/prefs_group_members?'+ztu.make_query(groupname=group_info['groupid']);
                                                    title group_info/title|group_info/groupid">
 
-                                   <tal:block replace="structure portal/group.gif" />&nbsp;
+                                   <tal:block replace="structure portal/group.png" />&nbsp;
                                    <tal:group tal:replace="group_info/title|group_info/groupid" />
                                </a>
                             </td>

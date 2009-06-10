@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<object name="TempFolder">
+ <property name="content_icon">folder_icon.png</property>
+</object>

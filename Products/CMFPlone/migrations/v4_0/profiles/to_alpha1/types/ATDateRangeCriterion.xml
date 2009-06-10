@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<object name="ATDateRangeCriterion">
+ <property name="content_icon">document_icon.png</property>
+</object>

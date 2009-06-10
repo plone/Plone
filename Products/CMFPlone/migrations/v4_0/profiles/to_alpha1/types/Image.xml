@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<object name="Image">
+ <property name="content_icon">image_icon.png</property>
+</object>

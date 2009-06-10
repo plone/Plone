@@ -28,6 +28,8 @@ from Products.CMFPlone import setuphandlers
 from Products.CMFPlone.interfaces import IControlPanel
 from Products.CMFPlone.UnicodeSplitter import Splitter, CaseNormalizer
 from Products.GenericSetup.interfaces import ISetupTool
+from Products.GenericSetup.browser.manage import ExportStepsView
+from Products.GenericSetup.browser.manage import ImportStepsView
 
 from Products.StandardCacheManagers.AcceleratedHTTPCacheManager import \
      AcceleratedHTTPCacheManager
@@ -178,14 +180,8 @@ class TestPortalCreation(PloneTestCase.PloneTestCase, WarningInterceptor):
     def testFullScreenAction(self):
         # There should be a full_screen action
         self.failUnless(self.actions.getActionInfo('document_actions/full_screen') is not None)
-
-    def testFullScreenActionIcon(self):
-        # There should be a full_screen action icon
-        for icon in self.icons.listActionIcons():
-            if icon.getActionId() == 'full_screen':
-                break
-        else:
-            self.fail("Action icons tool has no 'full_screen' icon")
+        action = self.actions.getActionInfo('document_actions/full_screen')
+        self.failUnless('fullscreenexpand_icon' in action['icon'])
 
     def testVisibleIdsProperties(self):
         # visible_ids should be a site property and a memberdata property
@@ -682,21 +678,6 @@ class TestPortalCreation(PloneTestCase.PloneTestCase, WarningInterceptor):
         # vcXMLRPC.js should no longer be registered
         self.failIf('vcXMLRPC.js' in self.javascripts.getResourceIds())
 
-    def testActionDropDownMenuIcons(self):
-        # Object buttons should have icons
-        icons = self.icons.listActionIcons()
-        def assertIcon(action_id):
-            for icon in icons:
-                if (icon.getActionId() == action_id and
-                    icon.getCategory() == 'object_buttons'):
-                    break
-            else:
-                self.fail("Action icons tool has no '%s' icon" % action_id)
-        assertIcon('cut')
-        assertIcon('copy')
-        assertIcon('paste')
-        assertIcon('delete')
-
     def testCacheManagers(self):
         # The cache and caching policy managers should exist
         httpcache = self.portal._getOb('HTTPCache', None)
@@ -912,6 +893,23 @@ class TestPortalCreation(PloneTestCase.PloneTestCase, WarningInterceptor):
         self.app.REQUEST['HTTP_ACCEPT_LANGUAGE'] = 'pt-br'
         gen.setupPortalContent(self.folder.brazilian)
         self.failUnlessEqual(self.folder.brazilian.news.Title(), 'Bar')
+
+    def testNoDoubleGenericSetupImportSteps(self):
+        view=ImportStepsView(self.setup, None)
+        self.assertEqual([i['id'] for i in view.doubleSteps()], [])
+            
+    def testNoInvalidGenericSetupImportSteps(self):
+        view=ImportStepsView(self.setup, None)
+        self.assertEqual([i['id'] for i in view.invalidSteps()], [])
+
+    def testNoDoubleGenericSetupExportSteps(self):
+        view=ExportStepsView(self.setup, None)
+        self.assertEqual([i['id'] for i in view.doubleSteps()], [])
+            
+    def testNoInvalidGenericSetupExportSteps(self):
+        view=ExportStepsView(self.setup, None)
+        self.assertEqual([i['id'] for i in view.invalidSteps()], [])
+
 
 class TestPortalBugs(PloneTestCase.PloneTestCase):
 

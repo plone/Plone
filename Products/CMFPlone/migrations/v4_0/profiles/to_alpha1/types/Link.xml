@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<object name="Link">
+ <property name="content_icon">link_icon.png</property>
+</object>
