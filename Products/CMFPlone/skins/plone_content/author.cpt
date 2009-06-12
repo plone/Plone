@@ -248,7 +248,7 @@
                                condition="author_content">
         
                 <h2 i18n:translate="heading_author_content">
-                    Latest content created by this user
+                    Recent content created by this user
                 </h2>
                 
                 <div metal:define-macro="user_content_listing">
