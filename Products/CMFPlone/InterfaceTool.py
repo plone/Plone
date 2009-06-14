@@ -1,6 +1,7 @@
 from zope.dottedname.resolve import resolve
 from zope.interface import implements
 from zope.interface import Interface
+from zope.interface.interfaces import IMethod
 
 from types import ModuleType, ListType, TupleType
 from Products.CMFPlone.interfaces import IInterfaceTool
@@ -12,10 +13,6 @@ from OFS.SimpleItem import SimpleItem
 from Globals import InitializeClass
 from AccessControl import ClassSecurityInfo
 from Products.CMFPlone.PloneBaseTool import PloneBaseTool
-
-from Interface.Implements import getImplements, flattenInterfaces
-from Interface import Interface as z2Interface
-from Interface.IMethod import IMethod
 
 _marker = ('module_finder',)
 
@@ -36,18 +33,14 @@ class InterfaceTool(PloneBaseTool, UniqueObject, SimpleItem):
         """ Asserts if an object implements a given interface """
         obj = aq_base(obj)
         iface = resolveInterface(dotted_name)
-        if issubclass(iface, Interface):
-            return iface.providedBy(obj)
-        return iface.isImplementedBy(obj)
+        return iface.providedBy(obj)
 
     security.declarePublic('classImplements')
     def classImplements(self, obj, dotted_name):
         """ Asserts if an object's class implements a given interface """
         klass = aq_base(obj).__class__
         iface = resolveInterface(dotted_name)
-        if issubclass(iface, Interface):
-            return iface.providedBy(obj)
-        return iface.isImplementedBy(obj)
+        return iface.providedBy(obj)
 
     security.declarePublic('namesAndDescriptions')
     def namesAndDescriptions(self, dotted_name, all=0):
@@ -61,14 +54,7 @@ class InterfaceTool(PloneBaseTool, UniqueObject, SimpleItem):
     def getInterfacesOf(self, object):
         """Returns the list of interfaces which are implemented by the object
         """
-        impl = getImplements(object)
-        if impl:
-            if type(impl) in (ListType, TupleType):
-                result = flattenInterfaces(impl)
-            else:
-                result = (impl, )
-            return [ iface for iface in result if iface is not z2Interface ]
-        return None
+        return tuple(implementedBy(object).flattened())
 
     def getBaseInterfacesOf(self, object):
         """Returns all base interfaces of an object but no direct interfaces
@@ -92,12 +78,12 @@ class InterfaceTool(PloneBaseTool, UniqueObject, SimpleItem):
         * methods with signature and trimmed doc string
         * attributes with trimemd doc string
         """
-        bases = [ base for base in iface.getBases() if base is not z2Interface ]
+        bases = [ base for base in iface.getBases() ]
 
         attributes = []
         methods = []
         for name, desc in iface.namesAndDescriptions():
-            if IMethod.isImplementedBy(desc):
+            if IMethod.providedBy(desc):
                 methods.append({'signature' : desc.getSignatureString(),
                                 'name' : desc.getName(),
                                 'doc' : _trim_doc_string(desc.getDoc()),
@@ -123,9 +109,8 @@ def resolveInterface(dotted_name):
     klass = resolve(dotted_name)
     if issubclass(klass, Interface):
         return klass
-    elif not issubclass(klass, z2Interface):
+    else:
         raise ValueError, '%r is not a valid Interface.' % dotted_name
-    return klass
 
 def getDottedName(iface):
     return "%s.%s" % (iface.__module__, iface.__name__)
@@ -151,42 +136,10 @@ def _trim_doc_string(text):
 def visitBaseInterfaces(iface, lst):
     bases = iface.getBases()
     for base in bases:
-        if base is z2Interface or base in lst:
+        if base in lst:
             return
         lst.append(base)
         visitBaseInterfaces(iface, lst)
-
-class InterfaceFinder:
-
-    _visited = {}
-    _found = {}
-
-    def findInterfaces(self, n=None, module=_marker):
-        # return class reference info
-        dict={}
-        pairs = []
-        if module is _marker:
-            import Products
-            module = Products
-        self._visited[module] = None
-        for sym in dir(module):
-            ob=getattr(module, sym)
-            if type(ob) is type(z2Interface) and \
-               issubclass(ob, z2Interface) and \
-               ob is not z2Interface:
-                self.found(ob)
-            elif type(ob) is ModuleType and ob not in self._visited.keys():
-                self.findInterfaces(module=ob)
-
-        ifaces = self._found.keys()
-        ifaces.sort()
-        ifaces.reverse()
-        if n is not None:
-            ifaces = ifaces[:n]
-        return ifaces
-
-    def found(self, iface):
-        self._found[getDottedName(iface)] = iface
 
 InitializeClass(InterfaceTool)
 registerToolInterface('portal_interface', IInterfaceTool)

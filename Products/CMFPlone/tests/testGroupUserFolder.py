@@ -15,7 +15,7 @@ else:
     PREFIX = ''
 
 
-class TestGroupUserFolder(PloneTestCase.PloneContentLessTestCase, WarningInterceptor):
+class TestGroupUserFolder(PloneTestCase.PloneTestCase, WarningInterceptor):
 
     def afterSetUp(self):
         self.uf = self.portal.acl_users
@@ -112,7 +112,7 @@ class TestGroupUserFolder(PloneTestCase.PloneContentLessTestCase, WarningInterce
         self._free_warning_output()
 
 
-class TestUserManagement(PloneTestCase.PloneContentLessTestCase, WarningInterceptor):
+class TestUserManagement(PloneTestCase.PloneTestCase, WarningInterceptor):
 
     def afterSetUp(self):
         self.uf = self.portal.acl_users
@@ -208,7 +208,7 @@ class TestUserManagement(PloneTestCase.PloneContentLessTestCase, WarningIntercep
         self._free_warning_output()
 
 
-class TestGroupManagement(PloneTestCase.PloneContentLessTestCase, WarningInterceptor):
+class TestGroupManagement(PloneTestCase.PloneTestCase, WarningInterceptor):
 
     def afterSetUp(self):
         self.uf = self.portal.acl_users
@@ -264,7 +264,7 @@ class TestGroupManagement(PloneTestCase.PloneContentLessTestCase, WarningInterce
         self._free_warning_output()
 
 
-class TestUsersAndGroups(PloneTestCase.PloneContentLessTestCase, WarningInterceptor):
+class TestUsersAndGroups(PloneTestCase.PloneTestCase, WarningInterceptor):
 
     def afterSetUp(self):
         self.uf = self.portal.acl_users

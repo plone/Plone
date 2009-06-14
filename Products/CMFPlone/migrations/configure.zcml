@@ -3,11 +3,40 @@
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     i18n_domain="plone">
 
+  <include file="steps.zcml"/>
+
   <genericsetup:registerProfile
-      name="2.5-3.0a1"
+      name="2.5final-2.5.1"
+      title="Migration profile for Plone 2.5-final to Plone 2.5.1"
+      description="This profile contains configuration changes that are applied during the Plone 2.5-final to 2.5.1 migration."
+      directory="v2_5/profiles/final_two51"
+      for="Products.CMFPlone.interfaces.IMigratingPloneSiteRoot"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+  <genericsetup:registerProfile
+      name="2.5.x-3.0a1"
       title="Migration profile for Plone 2.5.x to Plone 3.0-alpha1"
       description="This profile contains configuration changes that are applied during the Plone 2.5.x to 3.0-alpha1 migration." 
       directory="v3_0/profiles/two5_alpha1"
+      for="Products.CMFPlone.interfaces.IMigratingPloneSiteRoot"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+  <genericsetup:registerProfile
+      name="3.0a1-3.0a2"
+      title="Migration profile for Plone 3.0-alpha1 to Plone 3.0-alpha2"
+      description="This profile contains configuration changes that are applied during the Plone 3.0-alpha1 to 3.0-alpha2 migration." 
+      directory="v3_0/profiles/alpha1_alpha2"
+      for="Products.CMFPlone.interfaces.IMigratingPloneSiteRoot"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+  <genericsetup:registerProfile
+      name="3.0a2-3.0b1"
+      title="Migration profile for Plone 3.0-alpha2 to Plone 3.0-beta1"
+      description="This profile contains configuration changes that are applied during the Plone 3.0-alpha2 to 3.0-beta1 migration." 
+      directory="v3_0/profiles/alpha2_beta1"
       for="Products.CMFPlone.interfaces.IMigratingPloneSiteRoot"
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
@@ -159,4 +188,3 @@
       />
 
 </configure>
-

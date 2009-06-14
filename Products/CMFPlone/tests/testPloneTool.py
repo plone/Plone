@@ -532,7 +532,7 @@ class TestFormulatorFields(PloneTestCase.PloneTestCase):
         self.assertEqual(self.doc.Language(), '')
 
 
-class TestBreadCrumbs(PloneTestCase.PloneContentLessTestCase):
+class TestBreadCrumbs(PloneTestCase.PloneTestCase):
     '''Tests for the portal tabs query'''
 
     def afterSetUp(self):

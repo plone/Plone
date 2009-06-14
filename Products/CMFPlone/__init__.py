@@ -102,11 +102,6 @@ def initialize(context):
     # Make cgi.escape available TTW
     ModuleSecurityInfo('cgi').declarePublic('escape')
 
-    # Setup migrations
-    import migrations
-    migrations.executeMigrations()
-    migrations.registerMigrations()
-
     # Inititalize configuration machinery
     import setup
 

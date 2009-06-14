@@ -1,5 +1,5 @@
 from zope.deprecation import deprecated
-from Interface import Interface
+from zope.interface import Interface
 
 class ITranslatable(Interface):
     """

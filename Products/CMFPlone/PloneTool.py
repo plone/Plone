@@ -766,10 +766,10 @@ class PloneTool(PloneBaseTool, UniqueObject, SimpleItem):
             # Only look up for untranslated folderish content,
             # in translated containers we assume the container has default page
             # in the correct language.
-            implemented = ITranslatable.isImplementedBy(obj)
+            implemented = ITranslatable.providedBy(obj)
             if not implemented or implemented and not obj.isTranslation():
                 pageobj = getattr(obj, page, None)
-                if pageobj is not None and ITranslatable.isImplementedBy(pageobj):
+                if pageobj is not None and ITranslatable.providedBy(pageobj):
                     translation = pageobj.getTranslation()
                     if translation is not None and \
                        (not wftool.getChainFor(pageobj) or\
@@ -883,7 +883,7 @@ class PloneTool(PloneBaseTool, UniqueObject, SimpleItem):
     security.declarePublic('isTranslatable')
     def isTranslatable(self, obj):
         """Checks if a given object implements the ITranslatable interface."""
-        return ITranslatable.isImplementedBy(obj)
+        return ITranslatable.providedBy(obj)
 
     security.declarePublic('isStructuralFolder')
     def isStructuralFolder(self, obj):

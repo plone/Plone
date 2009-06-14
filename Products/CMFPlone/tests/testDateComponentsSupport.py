@@ -12,7 +12,7 @@ def sortTuple(t):
     return tuple(l)
 
 
-class TestDateComponentsSupport(PloneTestCase.PloneContentLessTestCase):
+class TestDateComponentsSupport(PloneTestCase.PloneTestCase):
 
     def afterSetUp(self):
         date = DateTime(2002, 8, 1, 17, 42, 0)
@@ -167,7 +167,7 @@ class TestDateComponentsSupport(PloneTestCase.PloneContentLessTestCase):
         self.assertEqual(ampm, [])
 
 
-class TestDateComponentsSupportDefault(PloneTestCase.PloneContentLessTestCase):
+class TestDateComponentsSupportDefault(PloneTestCase.PloneTestCase):
 
     def afterSetUp(self):
         self.d = self.portal.date_components_support(None)
@@ -316,7 +316,7 @@ class TestDateComponentsSupportDefault(PloneTestCase.PloneContentLessTestCase):
         self.assertEqual(ampm, [])
 
 
-class TestDateComponentsSupportAMPM(PloneTestCase.PloneContentLessTestCase):
+class TestDateComponentsSupportAMPM(PloneTestCase.PloneTestCase):
 
     def afterSetUp(self):
         date = DateTime(2002, 8, 1, 17, 42, 0)
@@ -373,7 +373,7 @@ class TestDateComponentsSupportAMPM(PloneTestCase.PloneContentLessTestCase):
             self.assertEqual(ampm[i], data[i])
 
 
-class TestDateComponentsSupportAMPMDefault(PloneTestCase.PloneContentLessTestCase):
+class TestDateComponentsSupportAMPMDefault(PloneTestCase.PloneTestCase):
 
     def afterSetUp(self):
         self.d = self.portal.date_components_support(None, use_ampm=1)
@@ -415,7 +415,7 @@ class TestDateComponentsSupportAMPMDefault(PloneTestCase.PloneContentLessTestCas
             self.assertEqual(ampm[i], data[i])
 
 
-class TestDateComponentsSupportMinuteStepDefault(PloneTestCase.PloneContentLessTestCase):
+class TestDateComponentsSupportMinuteStepDefault(PloneTestCase.PloneTestCase):
 
     def testMinutesStep1(self):
         data = [
@@ -444,7 +444,7 @@ class TestDateComponentsSupportMinuteStepDefault(PloneTestCase.PloneContentLessT
             self.assertEqual(minutes[i], data[i])
 
 
-class TestSpecialCases(PloneTestCase.PloneContentLessTestCase):
+class TestSpecialCases(PloneTestCase.PloneTestCase):
 
     def testNoneUsesDefault(self):
         d = self.portal.date_components_support(None)

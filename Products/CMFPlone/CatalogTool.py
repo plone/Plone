@@ -26,13 +26,10 @@ from Products.CMFCore.CatalogTool import _mergedLocalRoles
 
 from Products.CMFPlone.PloneBaseTool import PloneBaseTool
 from Products.CMFPlone.interfaces import INonStructuralFolder
-from Products.CMFPlone.interfaces.NonStructuralFolder import \
-     INonStructuralFolder as z2INonStructuralFolder
 from Products.CMFPlone.utils import base_hasattr
 from Products.CMFPlone.utils import safe_callable
 from Products.CMFPlone.utils import safe_unicode
-from OFS.IOrderSupport import IOrderedContainer
-from ZODB.POSException import ConflictError
+from OFS.interfaces import IOrderedContainer
 
 from Products.ZCatalog.ZCatalog import ZCatalog
 from Products.ZCatalog.interfaces import IZCatalog
@@ -227,14 +224,9 @@ def getObjPositionInParent(obj):
     0
     """
     parent = aq_parent(aq_inner(obj))
-    if IOrderedContainer.isImplementedBy(parent):
-        try:
-            return parent.getObjectPosition(obj.getId())
-        except ConflictError:
-            raise
-        except:
-            pass
-            # XXX log
+    ordered = IOrderedContainer(parent, None)
+    if ordered is not None: 
+        return ordered.getObjectPosition(obj.getId())
     return 0
 
 SIZE_CONST = {'kB': 1024, 'MB': 1024*1024, 'GB': 1024*1024*1024}
@@ -297,18 +289,9 @@ def is_folderish(obj):
       >>> is_folderish(self.folder)
       False
       
-    Now we revert our interface change and apply the z2 no-folderish interface::
-      >>> directlyProvides(self.folder, base_implements)
-      >>> is_folderish(self.folder)
-      True
-      >>> z2base_implements = self.folder.__implements__
-      >>> self.folder.__implements__ = z2base_implements + (z2INonStructuralFolder,)
-      >>> is_folderish(self.folder)
-      False
-
-    We again revert the interface change and check to make sure that
+    Now we revert our interface change and check to make sure that
     PrincipiaFolderish is respected::
-      >>> self.folder.__implements__ = z2base_implements
+      >>> directlyProvides(self.folder, base_implements)
       >>> is_folderish(self.folder)
       True
       >>> self.folder.isPrincipiaFolderish = False
@@ -322,9 +305,6 @@ def is_folderish(obj):
     if not folderish:
         return False
     elif INonStructuralFolder.providedBy(obj):
-        return False
-    elif z2INonStructuralFolder.isImplementedBy(obj):
-        # BBB: for z2 interface compat
         return False
     else:
         return folderish

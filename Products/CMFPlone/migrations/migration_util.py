@@ -1,11 +1,14 @@
-from types import ListType, TupleType
-from Acquisition import aq_base
 import logging
-from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.MemberDataTool import MemberDataTool
+from types import ListType, TupleType
 
+from Acquisition import aq_base
+from Products.CMFCore.utils import getToolByName
+from Products.GenericSetup.interfaces import ISetupTool
 from Products.PlonePAS.tools.memberdata \
         import MemberDataTool as PASMemberDataTool
+
+from Products.CMFPlone.MemberDataTool import MemberDataTool
+
 
 _marker = []
 
@@ -99,13 +102,14 @@ def installOrReinstallProduct(portal, product_name, out, hidden=False):
             out.append('%s already installed.' % product_name)
 
 
-def loadMigrationProfile(portal, profile, steps=_marker):
-    tool = getToolByName(portal, "portal_setup")
+def loadMigrationProfile(context, profile, steps=_marker):
+    if not ISetupTool.providedBy(context):
+        context = getToolByName(context, "portal_setup")
     if steps is _marker:
-        tool.runAllImportStepsFromProfile(profile, purge_old=False)
+        context.runAllImportStepsFromProfile(profile, purge_old=False)
     else:
         for step in steps:
-            tool.runImportStepFromProfile(profile,
-                                          step,
-                                          run_dependencies=False,
-                                          purge_old=False)
+            context.runImportStepFromProfile(profile,
+                                             step,
+                                             run_dependencies=False,
+                                             purge_old=False)

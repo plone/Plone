@@ -8,7 +8,7 @@ from Products.ResourceRegistries.config import CSSTOOLNAME, JSTOOLNAME
 from Products.CMFCore.utils import getToolByName
 
 
-class TestCSSRegistry(PloneTestCase.PloneContentLessTestCase):
+class TestCSSRegistry(PloneTestCase.PloneTestCase):
 
     def afterSetUp(self):
         self.tool = getToolByName(self.portal, CSSTOOLNAME)
@@ -48,7 +48,7 @@ class TestCSSRegistry(PloneTestCase.PloneContentLessTestCase):
         for cb in comes_before:
             self.failUnless(cb in installedStylesheetIds[:indexRTLStylesheet],cb)
 
-class TestJSRegistry(PloneTestCase.PloneContentLessTestCase):
+class TestJSRegistry(PloneTestCase.PloneTestCase):
 
     def afterSetUp(self):
         self.tool = getToolByName(self.portal, JSTOOLNAME)

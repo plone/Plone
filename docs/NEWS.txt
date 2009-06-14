@@ -8,6 +8,76 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+ - Include link to the plone.org upgrade manual from the migration tool 
+   inside the ZMI. This closes http://dev.plone.org/plone/ticket/8075
+   [hannosch]
+
+ - Clarify help text in content_status_history. This closes 
+   http://dev.plone.org/plone/ticket/8218
+   [hannosch]
+
+ - Let default RSS list publication date, not modified date and include 
+   the body text. This closes http://dev.plone.org/plone/ticket/7952
+   [hannosch]
+
+ - Updated the check_id script to disallowed content by the name of 
+   properties. This closes http://dev.plone.org/plone/ticket/6005
+   [hannosch]
+
+ - Fixed invalid markup in membershipRolemapping.dtml. This closes 
+   http://dev.plone.org/plone/ticket/6222
+   [hannosch]
+
+ - Removed long unused getObjPositionInParent.py script which wasn't 
+   functional at all anymore, since it used Zope 2 interfaces. Also 
+   simplified the getObjPositionInParent function in the CatalogTool. 
+   This closes http://dev.plone.org/plone/ticket/6081
+   [hannosch]
+
+ - Removed getActionObject call from createObject script. It was a private 
+   method and would always fail. This closes 
+   http://dev.plone.org/plone/ticket/7172
+   [hannosch]
+
+ - Removed testing of sendto action visibilty from sendto.cpy. There's a 
+   permission to use to restrict sending mail. This closes 
+   http://dev.plone.org/plone/ticket/5377
+   [hannosch]
+
+ - Disable external editor icon for structural folders. This closes 
+   http://dev.plone.org/plone/ticket/6871
+   [hannosch]
+
+ - Updated the check_id script to disallowed content by the name of zip or 
+   plone since this shadows the views by those names. This closes 
+   http://dev.plone.org/plone/ticket/6105
+   [hannosch]
+
+ - Purged old Zope 2 Interface interfaces for Zope 2.12 compatibility. 
+   [elro]
+
+ - Make use of upgrade steps with a source '*' version and an explicit 
+   destination, to register the 'enable site' and 'register tools as 
+   utilities' only once.
+   [hannosch]
+
+ - Added support for upgrade step groups to the migration tool and started 
+   exposing the individual upgrade methods as steps. 
+   [hannosch]
+
+ - Changed the way messages are handled during migration. We don't pass an 
+   `out` list around anymore, but use the logging framework. 
+   [hannosch]
+
+ - Replaced our own migration step registration by using GenericSetup steps 
+   directly. Changed the migration tool to integrate with GS instead. 
+   Added BBB code to read the instance version from the migration tool if 
+   the last profile version isn't set yet inside the GS tool. 
+   [hannosch]
+
+ - Exposed all our migration steps as GenericSetup upgrade steps.
+   [hannosch]
+
  - Hide the deprecation warning about the moved ITranslatable interface 
    for our own code. 
    [hannosch]
@@ -82,9 +152,6 @@ Changelog
 
  - Removed tests for isRTL method of PTS. The method was deprecated in the 
    last release and is gone now. 
-   [hannosch]
-
- - Use new contentless test class for all tests that don't depend on any. 
    [hannosch]
 
  - Replaced our FasterStringIO implementation by one based on 

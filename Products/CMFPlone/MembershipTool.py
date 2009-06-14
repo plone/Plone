@@ -190,11 +190,7 @@ class MembershipTool(PloneBaseTool, BaseTool):
         to use searchForMembers instead of listMembers, so that it will not be
         possible anymore to have a method returning several hundred of users :)
         '''
-        uf = self.acl_users
-        if uf.meta_type == 'Group User Folder':
-            return [BaseTool.wrapUser(self, x) for x in uf.getPureUsers()]
-        else:
-            return BaseTool.listMembers(self)
+        return BaseTool.listMembers(self)
 
     security.declareProtected(ManageUsers, 'listMemberIds')
     def listMemberIds(self):
@@ -202,11 +198,7 @@ class MembershipTool(PloneBaseTool, BaseTool):
         replaced with a set of methods for querying pieces of the
         list rather than the entire list at once.
         '''
-        uf = self.acl_users
-        if hasattr(aq_base(uf), 'getPureUserIds'): # GRUF
-            return uf.getPureUserIds()
-        else:
-            return self.__getPUS().getUserIds()
+        return self.acl_users.getUserIds()
 
     security.declareProtected(SetOwnPassword, 'testCurrentPassword')
     def testCurrentPassword(self, password):

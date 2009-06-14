@@ -33,7 +33,7 @@ class DeniedItem(SimpleItem):
 InitializeClass(DeniedItem)
 
 
-class BrokenAcquisitionTest(PloneTestCase.PloneContentLessTestCase):
+class BrokenAcquisitionTest(PloneTestCase.PloneTestCase):
 
     def afterSetUp(self):
         self.folder = self.portal

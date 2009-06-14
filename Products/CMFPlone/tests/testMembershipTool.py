@@ -425,7 +425,7 @@ class TestCreateMemberarea(PloneTestCase.PloneTestCase):
         memberfolder = self.membership.getHomeFolder('user2')
         self.failIf(memberfolder, 'createMemberarea created memberarea despite flag')
 
-class TestMemberareaSetup(PloneTestCase.PloneContentLessTestCase):
+class TestMemberareaSetup(PloneTestCase.PloneTestCase):
 
     def afterSetUp(self):
         self.membership = self.portal.portal_membership
@@ -468,7 +468,7 @@ class TestMemberareaSetup(PloneTestCase.PloneContentLessTestCase):
             self.failIf('index_html' in self.home.objectIds())
 
 
-class TestSearchForMembers(PloneTestCase.PloneContentLessTestCase, WarningInterceptor):
+class TestSearchForMembers(PloneTestCase.PloneTestCase, WarningInterceptor):
 
     def afterSetUp(self):
         self.memberdata = self.portal.portal_memberdata
@@ -540,7 +540,7 @@ class TestSearchForMembers(PloneTestCase.PloneContentLessTestCase, WarningInterc
         self._free_warning_output()
 
 
-class TestDefaultUserAndPasswordNotChanged(PloneTestCase.PloneContentLessTestCase):
+class TestDefaultUserAndPasswordNotChanged(PloneTestCase.PloneTestCase):
     # A test for a silly transaction/persistency bug in PlonePAS
 
     def afterSetUp(self):
@@ -553,7 +553,7 @@ class TestDefaultUserAndPasswordNotChanged(PloneTestCase.PloneContentLessTestCas
         self.failIf(self.membership.testCurrentPassword('geheim'))
 
 
-class TestMethodProtection(PloneTestCase.PloneContentLessTestCase):
+class TestMethodProtection(PloneTestCase.PloneTestCase):
     # MembershipTool is missing security declarations
     # http://dev.plone.org/plone/ticket/5432
 

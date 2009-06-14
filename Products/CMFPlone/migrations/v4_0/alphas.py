@@ -1,5 +1,8 @@
 from Products.CMFCore.utils import getToolByName
+
+from Products.CMFPlone.migrations import logger
 from Products.CMFPlone.migrations.migration_util import loadMigrationProfile
+
 
 _KNOWN_ACTION_ICONS = {
     'user' : ['addtofavorites'],
@@ -9,20 +12,16 @@ _KNOWN_ACTION_ICONS = {
     'folder_buttons' : ['cut', 'copy', 'paste', 'delete'],
 }
 
-def threeX_alpha1(portal):
+def threeX_alpha1(context):
     """3.x -> 4.0alpha1
     """
-    out = []
+    portal = getToolByName(context, 'portal_url').getPortalObject()
+    loadMigrationProfile(context, 'profile-Products.CMFPlone.migrations:3-4alpha1')
 
-    loadMigrationProfile(portal, 'profile-Products.CMFPlone.migrations:3-4alpha1')
-
-    migrateActionIcons(portal, out)
-
-
-    return out
+    migrateActionIcons(portal)
 
 
-def migrateActionIcons(portal, out):
+def migrateActionIcons(portal):
     atool = getToolByName(portal, 'portal_actions', None)
     aitool = getToolByName(portal, 'portal_actionicons', None)
 

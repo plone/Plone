@@ -81,13 +81,6 @@ class TestPloneView(PloneTestCase.PloneTestCase):
         f = dummy.NonStructuralFolder('ns_folder')
         self.failIf(Plone(f, self.app.REQUEST).isStructuralFolder())
 
-    def testIsStructuralFolderWithZ2NonStructuralFolder(self):
-        f = dummy.Folder('z2_nsFolder')
-        f.__implements__ = f.__implements__ + (z2INonStructuralFolder,)
-        view = Plone(f, self.app.REQUEST)
-        value = view.isStructuralFolder()
-        self.failIf(Plone(f, self.app.REQUEST).isStructuralFolder())
-
     def testIsDefaultPageInFolder(self):
         view = Plone(self.folder.test, self.app.REQUEST)
         self.failIf(view.isDefaultPageInFolder())
@@ -275,7 +268,7 @@ class TestPloneView(PloneTestCase.PloneTestCase):
         self.failIf(data['user_actions'])
 
 
-class TestVisibleIdsEnabled(PloneTestCase.PloneContentLessTestCase):
+class TestVisibleIdsEnabled(PloneTestCase.PloneTestCase):
     '''Tests the visibleIdsEnabled method'''
 
     def afterSetUp(self):

@@ -23,11 +23,3 @@ from translationservice import ITranslationServiceTool
 from breadcrumbs import IHideFromBreadcrumbs
 from workflow import IWorkflowChain
 
-import ConstrainTypes
-import NonStructuralFolder
-
-from Interface.bridge import createZope3Bridge
-
-createZope3Bridge(IConstrainTypes, ConstrainTypes, 'IConstrainTypes')
-createZope3Bridge(ISelectableConstrainTypes, ConstrainTypes, 'ISelectableConstrainTypes')
-createZope3Bridge(INonStructuralFolder, NonStructuralFolder, 'INonStructuralFolder')

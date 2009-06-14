@@ -46,7 +46,7 @@ class TestATContentTypes(PloneTestCase.PloneTestCase):
             ob = self.construct(pt, pt, self.folder)
             self.failUnlessEqual(ob._getPortalTypeName(), pt)
             self.failUnlessEqual(ob.portal_type, pt)
-            self.failUnless(IATContentType.isImplementedBy(ob))
+            self.failUnless(IATContentType.providedBy(ob))
 
 
 class TestContentTypes(PloneTestCase.PloneTestCase):
@@ -124,7 +124,7 @@ class TestContentTypes(PloneTestCase.PloneTestCase):
         self.assertEqual(self.folder.topic.Title(), 'Foo')
 
 
-class TestContentTypeInformation(PloneTestCase.PloneContentLessTestCase):
+class TestContentTypeInformation(PloneTestCase.PloneTestCase):
 
     def afterSetUp(self):
         self.types = self.portal.portal_types

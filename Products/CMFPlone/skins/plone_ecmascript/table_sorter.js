@@ -18,7 +18,7 @@ function sort() {
     jq(this).parent().find('th:not(.nosort) img.sortdirection')
         .attr('src', portal_url + '/arrowBlank.png');
     jq(this).children('img.sortdirection').attr('src', portal_url + 
-        (reverse ? '/arrowDown.png' : '/arrowUp.gif'));
+        (reverse ? '/arrowDown.png' : '/arrowUp.png'));
     
     var index = jq(this).parent().children('th').index(this);
     var data = [];

@@ -205,7 +205,7 @@ class TestManageDelObjects(PloneTestCase.PloneTestCase):
         self.failIf('sub1' in self.folder.objectIds())
 
 
-class TestManageDelObjectsInPortal(PloneTestCase.PloneContentLessTestCase):
+class TestManageDelObjectsInPortal(PloneTestCase.PloneTestCase):
 
     def afterSetUp(self):
         _createObjectByType('Folder', self.portal, id='sub1')

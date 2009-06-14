@@ -6,7 +6,7 @@ from Products.CMFPlone.tests import PloneTestCase
 from Products.CMFPlone.tests import dummy
 
 
-class TestSortObjects(PloneTestCase.PloneContentLessTestCase):
+class TestSortObjects(PloneTestCase.PloneTestCase):
 
     def afterSetUp(self):
         self.items = [

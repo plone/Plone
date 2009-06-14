@@ -25,6 +25,7 @@ from Products.CMFCore.CachingPolicyManager import CachingPolicyManager
 from Products.CMFCore.permissions import AccessInactivePortalContent
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone import setuphandlers
+from Products.CMFPlone.factory import _DEFAULT_PROFILE
 from Products.CMFPlone.interfaces import IControlPanel
 from Products.CMFPlone.UnicodeSplitter import Splitter, CaseNormalizer
 from Products.GenericSetup.interfaces import ISetupTool
@@ -66,8 +67,20 @@ class TestPortalCreation(PloneTestCase.PloneTestCase, WarningInterceptor):
 
     def testInstanceVersion(self):
         # Test if the version of the instance has been set
-        mt = self.portal.portal_migration
-        self.assertEqual(mt._version, mt.getFileSystemVersion())
+        mt = getToolByName(self.portal, 'portal_migration')
+        self.assertEqual(mt._version, False)
+
+    def testProfileVersion(self):
+        # The profile version for the base profile should be the same
+        # as the file system version and the instance version
+        mt = getToolByName(self.portal, 'portal_migration')
+        setup = getToolByName(self.portal, 'portal_setup')
+
+        version = setup.getVersionForProfile(_DEFAULT_PROFILE)
+        instance = mt.getInstanceVersion()
+        fsversion = mt.getFileSystemVersion()
+        self.assertEqual(instance, fsversion)
+        self.assertEqual(instance, version)
 
     def testPloneSkins(self):
         # Plone skins should have been set up

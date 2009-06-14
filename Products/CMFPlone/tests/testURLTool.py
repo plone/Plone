@@ -7,7 +7,7 @@ from Products.CMFPlone.tests import PloneTestCase
 portal_name = PloneTestCase.portal_name
 
 
-class TestURLTool(PloneTestCase.PloneContentLessTestCase):
+class TestURLTool(PloneTestCase.PloneTestCase):
 
     def afterSetUp(self):
         self.url = self.portal.portal_url

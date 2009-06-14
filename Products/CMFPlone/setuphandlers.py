@@ -2,13 +2,12 @@
 CMFPlone setup handlers.
 """
 
+from borg.localrole.utils import setup_localrole_plugin
 from five.localsitemanager import make_objectmanager_site
+from plone.i18n.normalizer.interfaces import IURLNormalizer
 from zope.app.component.interfaces import ISite
 from zope.app.component.hooks import setSite
-from zope.component import getUtility
-from zope.component import getMultiAdapter
 from zope.component import queryUtility
-
 from zope.event import notify
 from zope.i18n.interfaces import ITranslationDomain
 from zope.i18n.interfaces import IUserPreferredLanguages
@@ -16,30 +15,20 @@ from zope.i18n.locales import locales, LoadLocaleError
 from zope.interface import implements
 
 from Acquisition import aq_base, aq_get
-from Products.StandardCacheManagers.AcceleratedHTTPCacheManager import \
-     AcceleratedHTTPCacheManager
-from Products.StandardCacheManagers.RAMCacheManager import \
-     RAMCacheManager
-
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.utils import _createObjectByType
-from Products.CMFPlone import migrations as migs
-from Products.CMFPlone.events import SiteManagerCreatedEvent
-from Products.CMFPlone.Portal import member_indexhtml
 from Products.ATContentTypes.lib import constraintypes
 from Products.CMFQuickInstallerTool.interfaces import INonInstallable
-
-from plone.i18n.normalizer.interfaces import IURLNormalizer
-from plone.portlets.interfaces import IPortletAssignmentMapping
-from plone.portlets.interfaces import IPortletManager
-from plone.portlets.interfaces import ILocalPortletAssignmentManager
-from plone.portlets.constants import CONTEXT_CATEGORY as CONTEXT_PORTLETS
-from plone.app.portlets import portlets
-
-from Products.CMFPlone.interfaces import IMigrationTool
-
 from Products.PlonePAS.plugins.local_role import LocalRolesManager
-from borg.localrole.utils import setup_localrole_plugin
+from Products.StandardCacheManagers.AcceleratedHTTPCacheManager import \
+     AcceleratedHTTPCacheManager
+from Products.StandardCacheManagers.RAMCacheManager import RAMCacheManager
+
+from Products.CMFPlone.utils import _createObjectByType
+from Products.CMFPlone.events import SiteManagerCreatedEvent
+from Products.CMFPlone.factory import _DEFAULT_PROFILE
+from Products.CMFPlone.interfaces import IMigrationTool
+from Products.CMFPlone.migrations import logger
+from Products.CMFPlone.Portal import member_indexhtml
 
 
 class HiddenProducts(object):
@@ -83,6 +72,9 @@ class PloneGenerator:
     def installArchetypes(self, p):
         """QuickInstaller install of Archetypes and required dependencies."""
         qi = getToolByName(p, "portal_quickinstaller")
+        qi.installProduct('CMFFormController', locked=1, hidden=1, forceProfile=True)
+        qi.installProduct('MimetypesRegistry', locked=1, hidden=1, forceProfile=True)
+        qi.installProduct('PortalTransforms', locked=1, hidden=1, forceProfile=True)
         qi.installProduct('Archetypes', locked=1, hidden=1,
             profile=u'Products.Archetypes:Archetypes')
 
@@ -402,12 +394,15 @@ class PloneGenerator:
                 index_html.write(member_indexhtml)
                 index_html.ZPythonScript_setTitle('User Search')
 
-    def performMigrationActions(self, p):
+    def performMigrationActions(self, portal):
         """
         Perform any necessary migration steps.
         """
         mt = queryUtility(IMigrationTool)
         mt.setInstanceVersion(mt.getFileSystemVersion())
+        setup = getToolByName(portal, 'portal_setup')
+        version = setup.getVersionForProfile(_DEFAULT_PROFILE)
+        setup.setLastVersionForProfile(_DEFAULT_PROFILE, version)
 
     def enableSyndication(self, portal, out):
         syn = getToolByName(portal, 'portal_syndication', None)
@@ -503,7 +498,7 @@ def importVarious(context):
     gen.installProducts(site)
     gen.addCacheHandlers(site)
     gen.addCacheForResourceRegistry(site)
-    replace_local_role_manager(site, [])
+    replace_local_role_manager(site)
 
 def importFinalSteps(context):
     """
@@ -545,7 +540,7 @@ def updateWorkflowRoleMappings(context):
     portal_workflow = getToolByName(site, 'portal_workflow')
     portal_workflow.updateRoleMappings()
 
-def replace_local_role_manager(portal, out):
+def replace_local_role_manager(portal):
     """Installs the borg local role manager in place of the standard one from
     PlonePAS"""
     uf = getToolByName(portal, 'acl_users', None)
@@ -556,6 +551,6 @@ def replace_local_role_manager(portal, out):
             orig_lr = getattr(uf, 'local_roles')
             if isinstance(orig_lr, LocalRolesManager):
                 uf.plugins.removePluginById('local_roles')
-                out.append("Deactivated original 'local_roles' plugin")
+                logger.info("Deactivated original 'local_roles' plugin")
         # Install the borg.localrole plugin if it's not already there
-        out.append(setup_localrole_plugin(portal))
+        logger.info(setup_localrole_plugin(portal))

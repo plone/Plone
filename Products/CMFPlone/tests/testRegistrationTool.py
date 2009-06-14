@@ -10,7 +10,7 @@ from Products.CMFCore.permissions import AddPortalMember
 member_id = 'new_member'
 
 
-class TestRegistrationTool(PloneTestCase.PloneContentLessTestCase):
+class TestRegistrationTool(PloneTestCase.PloneTestCase):
 
     def afterSetUp(self):
         self.registration = self.portal.portal_registration
@@ -92,7 +92,7 @@ class TestRegistrationTool(PloneTestCase.PloneContentLessTestCase):
         self.failUnless(self.registration.isMemberIdAllowed('useri'))
         
 
-class TestPasswordGeneration(PloneTestCase.PloneContentLessTestCase):
+class TestPasswordGeneration(PloneTestCase.PloneTestCase):
 
     def afterSetUp(self):
         self.registration = self.portal.portal_registration

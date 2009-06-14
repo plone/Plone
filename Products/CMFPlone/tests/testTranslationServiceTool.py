@@ -6,7 +6,7 @@ from Products.CMFPlone.tests import PloneTestCase
 from Products.CMFCore.utils import getToolByName
 
 
-class TestUTranslate(PloneTestCase.PloneContentLessTestCase):
+class TestUTranslate(PloneTestCase.PloneTestCase):
 
     def afterSetUp(self):
         self.tool = getToolByName(self.portal, 'translation_service')
@@ -36,7 +36,7 @@ class TestUTranslate(PloneTestCase.PloneContentLessTestCase):
         value = self.tool.utranslate('domain', 'foo', default=None)
         self.assertEquals(value, u'foo')
 
-class TestTranslationServiceTool(PloneTestCase.PloneContentLessTestCase):
+class TestTranslationServiceTool(PloneTestCase.PloneTestCase):
 
     def afterSetUp(self):
         self.tool = getToolByName(self.portal, 'translation_service')

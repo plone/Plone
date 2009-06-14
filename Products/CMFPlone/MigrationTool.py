@@ -1,26 +1,27 @@
 import logging
-import traceback
-import sys
+from StringIO import StringIO
 
 import transaction
 from zope.interface import implements
 
 from AccessControl import ClassSecurityInfo
+from AccessControl.requestmethod import postonly
 from Globals import InitializeClass, DTMLFile, DevelopmentMode
 from OFS.SimpleItem import SimpleItem
 from ZODB.POSException import ConflictError
 
-from Products.CMFCore.utils import UniqueObject, getToolByName
+from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.utils import registerToolInterface
-from Products.CMFCore.permissions import ManagePortal, View
+from Products.CMFCore.utils import UniqueObject
+from Products.CMFCore.permissions import ManagePortal
+
+from Products.CMFPlone.factory import _DEFAULT_PROFILE
 from Products.CMFPlone.interfaces import IMigrationTool
+from Products.CMFPlone.migrations import logger
 from Products.CMFPlone.PloneBaseTool import PloneBaseTool
-from Products.CMFPlone.utils import versionTupleFromString
-from Products.CMFPlone.utils import log
-from AccessControl.requestmethod import postonly
 
 _upgradePaths = {}
-_widgetRegistry = {}
+
 
 class MigrationTool(PloneBaseTool, UniqueObject, SimpleItem):
     """Handles migrations between Plone releases"""
@@ -74,47 +75,42 @@ class MigrationTool(PloneBaseTool, UniqueObject, SimpleItem):
     security.declareProtected(ManagePortal, 'getInstanceVersion')
     def getInstanceVersion(self):
         """ The version this instance of plone is on """
-        if getattr(self, '_version', None) is None:
-            self.setInstanceVersion(self.getFileSystemVersion())
-        return self._version.lower()
+        setup = getToolByName(self, 'portal_setup')
+        version = setup.getLastVersionForProfile(_DEFAULT_PROFILE)
+        if isinstance(version, tuple):
+            version = '.'.join(version)
+
+        _version = getattr(self, '_version', None)
+        if _version is None:
+            self._version = False
+
+        if version == 'unknown':
+            if _version:
+                # Instance version was not pkg_resources compatible...
+                _version = _version.replace('devel (svn/unreleased)', 'dev')
+                _version = _version.rstrip('-final')
+                _version = _version.rstrip('final')
+                _version = _version.replace('alpha', 'a')
+                _version = _version.replace('beta', 'b')
+                _version = _version.replace('-', '.')
+                version = _version
+            else:
+                version = setup.getVersionForProfile(_DEFAULT_PROFILE)
+            self.setInstanceVersion(version)
+        return version
 
     security.declareProtected(ManagePortal, 'setInstanceVersion')
     def setInstanceVersion(self, version):
         """ The version this instance of plone is on """
-        self._version = version
-
-    security.declareProtected(ManagePortal, 'knownVersions')
-    def knownVersions(self):
-        """All known version ids, except current one and unsupported
-           migration paths.
-        """
-        versions = [k for k in _upgradePaths if _upgradePaths[k][1] != False]
-        return versions
-
-    security.declareProtected(ManagePortal, 'unsupportedVersion')
-    def unsupportedVersion(self):
-        """Is the current instance version known to be a no longer supported
-           version for migrations.
-        """
-        versions = [k for k in _upgradePaths if _upgradePaths[k][1] is False]
-        return self._version in versions
+        setup = getToolByName(self, 'portal_setup')
+        setup.setLastVersionForProfile(_DEFAULT_PROFILE, version)
+        self._version = False
 
     security.declareProtected(ManagePortal, 'getFileSystemVersion')
     def getFileSystemVersion(self):
         """ The version this instance of plone is on """
-        return self.Control_Panel.Products.CMFPlone.version.lower()
-
-    security.declareProtected(View, 'getFSVersionTuple')
-    def getFSVersionTuple(self):
-        """ returns tuple representing filesystem version """
-        v_str = self.getFileSystemVersion()
-        return versionTupleFromString(v_str)
-
-    security.declareProtected(View, 'getInstanceVersionTuple')
-    def getInstanceVersionTuple(self):
-        """ returns tuple representing instance version """
-        v_str = self.getInstanceVersion()
-        return versionTupleFromString(v_str)
+        setup = getToolByName(self, 'portal_setup')
+        return setup.getVersionForProfile(_DEFAULT_PROFILE)
 
     security.declareProtected(ManagePortal, 'needUpgrading')
     def needUpgrading(self):
@@ -175,142 +171,106 @@ class MigrationTool(PloneBaseTool, UniqueObject, SimpleItem):
         return products
 
     security.declareProtected(ManagePortal, 'upgrade')
-    def upgrade(self, REQUEST=None, dry_run=None, swallow_errors=1):
+    def upgrade(self, REQUEST=None, dry_run=None, swallow_errors=True):
         """ perform the upgrade """
-        # keep it simple
-        out = []
+        setup = getToolByName(self, 'portal_setup')
 
-        self._check()
+        # This sets the profile version if it wasn't set yet
+        version = self.getInstanceVersion()
+        upgrades = setup.listUpgrades(_DEFAULT_PROFILE)
+        steps = []
+        for u in upgrades:
+            if isinstance(u, list):
+                steps.extend(u)
+            else:
+                steps.append(u)
 
-        if dry_run:
-            out.append(("Dry run selected.", logging.INFO))
-
-        # either get the forced upgrade instance or the current instance
-        newv = getattr(REQUEST, "force_instance_version",
-                       self.getInstanceVersion())
-
-        out.append(("Starting the migration from "
-                    "version: %s" % newv, logging.INFO))
-        while newv is not None:
-            out.append(("Attempting to upgrade from: %s" % newv, logging.INFO))
-            try:
-                newv, msgs = self._upgrade(newv)
-                if msgs:
-                    for msg in msgs:
-                        # if string make list
-                        if isinstance(msg, basestring):
-                            msg = [msg,]
-                        # if no status, add one
-                        if len(msg) == 1:
-                            msg.append(logging.INFO)
-                        out.append(msg)
-                if newv is not None:
-                    out.append(("Upgrade to: %s, completed" % newv, logging.INFO))
-                    self.setInstanceVersion(newv)
-
-            except ConflictError:
-                raise
-            except:
-                out.append(("Upgrade aborted", logging.ERROR))
-                out.append(("Error type: %s" % sys.exc_type, logging.ERROR))
-                out.append(("Error value: %s" % sys.exc_value, logging.ERROR))
-                for line in traceback.format_tb(sys.exc_traceback):
-                    out.append((line, logging.ERROR))
-
-                # set newv to None
-                # to break the loop
-                newv = None
-                if not swallow_errors:
-                    for msg, sev in out: log(msg, severity=sev)
-                    raise
-                else:
-                    # abort transaction to safe the zodb
-                    transaction.abort()
-
-        out.append(("End of upgrade path, migration has finished", logging.INFO))
-
-        if self.needUpgrading():
-            out.append((("The upgrade path did NOT reach "
-                        "current version"), logging.ERROR))
-            out.append(("Migration has failed", logging.ERROR))
-        else:
-            out.append((("Your ZODB and Filesystem Plone "
-                         "instances are now up-to-date."), logging.INFO))
-
-        # do this once all the changes have been done
-        if self.needRecatalog():
-            try:
-                catalog = self.portal_catalog
-                # Reduce threshold for the reindex run
-                old_threshold = catalog.threshold
-                pg_threshold = getattr(catalog, 'pgthreshold', 0)
-                catalog.pgthreshold = 300
-                catalog.threshold = 2000
-                catalog.refreshCatalog(clear=1)
-                catalog.threshold = old_threshold
-                catalog.pgthreshold = pg_threshold
-                self._needRecatalog = 0
-            except ConflictError:
-                raise
-            except:
-                out.append(("Exception was thrown while cataloging",
-                            logging.ERROR))
-                for line in traceback.format_tb(sys.exc_traceback):
-                    out.append((line, logging.ERROR))
-                if not swallow_errors:
-                    for msg, sev in out: log(msg, severity=sev)
-                    raise
-
-        if self.needUpdateRole():
-            try:
-                self.portal_workflow.updateRoleMappings()
-                self._needUpdateRole = 0
-            except ConflictError:
-                raise
-            except:
-                out.append((("Exception was thrown while updating "
-                             "role mappings"), logging.ERROR))
-                for line in traceback.format_tb(sys.exc_traceback):
-                    out.append((line, logging.ERROR))
-                if not swallow_errors:
-                    for msg, sev in out: log(msg, severity=sev)
-                    raise
-
-        if dry_run:
-            out.append(("Dry run selected, transaction aborted", logging.INFO))
-            transaction.abort()
-
-        # log all this
-        for msg, sev in out: log(msg, severity=sev)
         try:
-            return self.manage_results(self, out=out)
-        except NameError:
-            pass
+            stream = StringIO()
+            handler = logging.StreamHandler(stream)
+            handler.setLevel(logging.DEBUG)
+            logger.addHandler(handler)
+            gslogger = logging.getLogger('GenericSetup')
+            gslogger.addHandler(handler)
+
+            if dry_run:
+                logger.info("Dry run selected.")
+
+            logger.info("Starting the migration from version: %s" % version)
+
+            for step in steps:
+                try:
+                    step['step'].doStep(setup)
+                    setup.setLastVersionForProfile(_DEFAULT_PROFILE, step['dest'])
+                    logger.info("Ran upgrade step: %s" % step['title'])
+                except (ConflictError, KeyboardInterrupt):
+                    raise
+                except:
+                    logger.error("Upgrade aborted. Error:\n", exc_info=True)
+
+                    if not swallow_errors:
+                        raise
+                    else:
+                        # abort transaction to safe the zodb
+                        transaction.abort()
+                        break
+
+            logger.info("End of upgrade path, migration has finished")
+
+            if self.needUpgrading():
+                logger.error("The upgrade path did NOT reach current version")
+                logger.error("Migration has failed")
+            else:
+                logger.info("Your Plone instance is now up-to-date.")
+
+            # do this once all the changes have been done
+            if self.needRecatalog():
+                try:
+                    catalog = self.portal_catalog
+                    # Reduce threshold for the reindex run
+                    old_threshold = catalog.threshold
+                    pg_threshold = getattr(catalog, 'pgthreshold', 0)
+                    catalog.pgthreshold = 300
+                    catalog.threshold = 2000
+                    catalog.refreshCatalog(clear=1)
+                    catalog.threshold = old_threshold
+                    catalog.pgthreshold = pg_threshold
+                    self._needRecatalog = 0
+                except (ConflictError, KeyboardInterrupt):
+                    raise
+                except:
+                    logger.error("Exception was thrown while cataloging:\n",
+                                 exc_info=True)
+                    if not swallow_errors:
+                        raise
+
+            if self.needUpdateRole():
+                try:
+                    self.portal_workflow.updateRoleMappings()
+                    self._needUpdateRole = 0
+                except (ConflictError, KeyboardInterrupt):
+                    raise
+                except:
+                    logger.error("Exception was thrown while updating role "
+                                 "mappings", exc_info=True)
+                    if not swallow_errors:
+                        raise
+
+            if dry_run:
+                logger.info("Dry run selected, transaction aborted")
+                transaction.abort()
+
+            return self.manage_results(self, out=stream.getvalue())
+
+        finally:
+            logger.removeHandler(handler)
+            gslogger.removeHandler(handler)
+
     upgrade = postonly(upgrade)
-
-    ##############################################################
-    # Private methods
-
-    def _check(self):
-        """ Are we inside a Plone site?  Are we allowed? """
-        if getattr(self,'portal_url', []) == []:
-            raise AttributeError, 'You must be in a Plone site to migrate.'
-
-    def _upgrade(self, version):
-        version = version.lower()
-        if not _upgradePaths.has_key(version):
-            return None, ("Migration completed at version %s." % version,)
-
-        newversion, function = _upgradePaths[version]
-        # This means a now unsupported migration path has been triggered
-        if function is False:
-            return None, ("Migration stopped at version %s." % version,)
-        res = function(self.aq_parent)
-        return newversion, res
 
 def registerUpgradePath(oldversion, newversion, function):
     """ Basic register func """
-    _upgradePaths[oldversion.lower()] = [newversion.lower(), function]
+    pass
 
 InitializeClass(MigrationTool)
 registerToolInterface('portal_migration', IMigrationTool)
