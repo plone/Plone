@@ -42,8 +42,8 @@ class TestExternalEditorEnabled(PloneTestCase.PloneTestCase):
         self.failIf(self.doc.externalEditorEnabled())
 
     def testFailOnUnSupportedObjects(self):
-        # ATCT Folders are editable by default now
-        self.failUnless(self.folder.externalEditorEnabled())
+        # Structural Folders are not editable by default
+        self.failIf(self.folder.externalEditorEnabled())
 
     def testFailWithoutUseExtEditPermission(self):
         self.portal.manage_permission('Use external editor',

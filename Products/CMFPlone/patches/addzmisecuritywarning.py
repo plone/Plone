@@ -3,11 +3,11 @@ from AccessControl.Role import RoleManager
 ADD_SECURITY_WARNING = '''
 <!-- Added security warning -->
 <p style="font-size:120%; color:red; font-weight:bold;">
-WARNING!!!
+Attention!
 <br />
-Do not use this form to adjust security settings for any Plone content objects!
-Use the sharing tab or workflows instead.
-</p>
+Any security settings for Plone objects changed here are liable to be 
+overwritten without warning. To assign local roles use the "Sharing" tab in 
+Plone. More complex changes should be made using workflows where appropriate.</p>
 <!-- End security warning -->
 '''
 

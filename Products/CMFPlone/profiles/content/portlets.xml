@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<portlets>
+ <!-- Assign the standard portlets -->
+ <assignment
+     manager="plone.leftcolumn"
+     category="context"
+     key="/"
+     type="portlets.Navigation"
+     name="navigation"
+     />
+ 
+ <assignment
+     manager="plone.leftcolumn"
+     category="context"
+     key="/"
+     type="portlets.Login"
+     name="login"
+     />
+     
+  <assignment
+     manager="plone.rightcolumn"
+     category="context"
+     key="/"
+     type="portlets.Review"
+     name="review"
+     />
+
+ <assignment
+     manager="plone.rightcolumn"
+     category="context"
+     key="/"
+     type="portlets.News"
+     name="news"
+     />
+     
+ <assignment
+     manager="plone.rightcolumn"
+     category="context"
+     key="/"
+     type="portlets.Events"
+     name="events"
+     />
+     
+ <assignment
+     manager="plone.rightcolumn"
+     category="context"
+     key="/"
+     type="portlets.Calendar"
+     name="calendar"
+     />
+
+ <!-- Clear the right portlet column in the /Members folder -->
+ <blacklist
+     manager="plone.rightcolumn"
+     location="/Members"
+     category="context"
+     status="block"
+     />
+
+ <blacklist
+     manager="plone.rightcolumn"
+     location="/Members"
+     category="group"
+     status="block"
+     />
+     
+ <blacklist
+     manager="plone.rightcolumn"
+     location="/Members"
+     category="content_type"
+     status="block"
+     />
+
+</portlets>

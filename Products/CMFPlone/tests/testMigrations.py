@@ -1594,7 +1594,6 @@ class TestMigrations_v3_0_alpha1(MigrationTest):
             for action in self.actions.user.objectIds():
                 sort[action] = n
                 n += 1
-            self.failUnless(sort['mystuff'] < sort['preferences'])
             self.failUnless(sort['preferences'] < sort['undo'])
             self.failUnless(sort['undo'] < sort['logout'])
             self.failUnless(sort['login'] < sort['join'])
@@ -1610,7 +1609,6 @@ class TestMigrations_v3_0_alpha1(MigrationTest):
             for action in self.actions.user.objectIds():
                 sort[action] = n
                 n += 1
-            self.failUnless(sort['mystuff'] < sort['undo'])
             self.failUnless(sort['undo'] < sort['logout'])
             self.failUnless(sort['login'] < sort['join'])
 

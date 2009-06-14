@@ -76,7 +76,8 @@
             <label i18n:translate="label_login_name"
                    tal:attributes="for ac_name">Login Name</label>
 
-            <div tal:content="error">Validation error output</div>
+            <div tal:condition="error"
+                 tal:content="error">Validation error output</div>
 
             <input type="text"
                    size="15"
@@ -94,7 +95,8 @@
             <label i18n:translate="label_password"
                    tal:attributes="for ac_password">Password</label>
 
-            <div tal:content="error">Validation error output</div>
+            <div tal:condition="error"
+                 tal:content="error">Validation error output</div>
 
             <input type="password"
                    size="15"

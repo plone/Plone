@@ -32,7 +32,7 @@
 
         <tal:results tal:repeat="result batch">
 
-            <dl>
+            <dl tal:define="description result/Description">
                 <dt tal:define="item_icon python:plone_view.getIcon(result);
                                 item_wf_state result/review_state;
                                 item_wf_state_class python:'state-' + normalizeString(item_wf_state);">
@@ -59,16 +59,21 @@
                               i18n:name="date">date</span>
                     </span>
                 </dt>
-                
-                <dd tal:content="result/Description">
+
+                <dd tal:condition="description"
+                    tal:content="description">
                     Description
+                </dd>
+
+                <dd tal:condition="not:description">
+                    &nbsp;
                 </dd>
             </dl>
 
         </tal:results>
 
         <div class="spacer">
-        &nbsp;
+            &nbsp;
         </div>
 
         <!-- Navigation -->

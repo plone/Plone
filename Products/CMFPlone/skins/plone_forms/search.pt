@@ -149,10 +149,10 @@
                                Category
                             </a><tal:separator condition="not: repeat/category/end">,</tal:separator>
                         </span>
-                </span>    
+                </span>
 
-                <span class="relevance" 
-                      tal:condition="result/data_record_normalized_score_">
+                <span class="relevance"
+                      tal:condition="python: result.data_record_normalized_score_ > 1">
                     &mdash;
                     <tal:relevance i18n:translate="label_relevance_percentage">
                     Relevance:

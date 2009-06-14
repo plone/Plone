@@ -8,6 +8,67 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+ - Replaced lock_icon with smaller version with one third of the size. 
+   [hannosch]
+
+ - Removed backwards-compatibility code in calendar_formfields.js introduced 
+   in Plone 3.1.4. Any date-time picker not based on calendar_macros.pt 
+   using the old-style (no plone.jscalendar namespace) methods will no 
+   longer work until adjusted. 
+   [mj]
+
+ - Don't show relevance information of one percent in the search form,
+   since sort_on searches will always show this for all entries
+   This closes http://dev.plone.org/plone/ticket/4325
+   [hannosch]
+
+ - Removed duplicated isMemberIdAllowed method from registration tool.
+   [hannosch]
+
+ - Fixed mailto link in event view and enhanced the spam protect script to
+   allow setting css ids on the generated anchor tag. This closes
+   http://dev.plone.org/plone/ticket/8219
+   [hannosch]
+
+ - Fixed contact form to be usable for authenticated users which have no
+   email address stored in their member data. This closes
+   http://dev.plone.org/plone/ticket/5766
+   [hannosch]
+
+ - Avoid empty tags in the contact form. This closes
+   http://dev.plone.org/plone/ticket/8182
+   [hannosch]
+
+ - Avoid an empty div in login_form. This closes
+   http://dev.plone.org/plone/ticket/8192
+   [hannosch]
+
+ - Avoid an empty dd in recently modified.pt. This closes
+   http://dev.plone.org/plone/ticket/8186
+   [hannosch]
+
+ - Avoid an empty span in folder_summary_view. This closes 
+   http://dev.plone.org/plone/ticket/8181
+   [hannosch]
+
+ - Changed wording in personalize form to remove reference to external
+   editor icon and add a note about ZopeEditManager. This closes
+   http://dev.plone.org/plone/ticket/7390
+   [hannosch]
+
+ - Changed webstats_js in portal properties to a text field.
+   This refs http://dev.plone.org/plone/ticket/7781
+   [hannosch]
+
+ - Added option to the error log control panel to search for an error log
+   entry by number, since the number is the only thing that is exposed to
+   normal users. This closes http://dev.plone.org/plone/ticket/7234
+   [hannosch]
+
+ - Changed title of collections control panel to plural form. This
+   closes http://dev.plone.org/plone/ticket/8096
+   [hannosch]
+
  - Include link to the plone.org upgrade manual from the migration tool 
    inside the ZMI. This closes http://dev.plone.org/plone/ticket/8075
    [hannosch]

@@ -153,10 +153,13 @@
                     </dt>
 
                     <dd>
-                        <span tal:omit-tag="" tal:condition="not:item_description"> 
+                        <span tal:omit-tag=""
+                              tal:condition="not:item_description"> 
                             &nbsp; 
                         </span> 
-                        <span class="description" tal:content="item_description">
+                        <span class="description"
+                               tal:condition="not:item_description"
+                               tal:content="item_description">
                             description 
                         </span> 
                     </dd>

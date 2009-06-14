@@ -164,9 +164,9 @@ class RegistrationTool(PloneBaseTool, BaseTool):
         if not self._ALLOWED_MEMBER_ID_PATTERN.match( id ):
             return 0
 
-        pas = getToolByName("acl_users")
+        pas = getToolByName(self, 'acl_users')
         if IPluggableAuthService.providedBy(pas):
-            results = pas.searchPrincipals(id=id)
+            results = pas.searchPrincipals(id=id, exact_match=True)
             if results:
                 return 0
         else:
@@ -281,26 +281,6 @@ class RegistrationTool(PloneBaseTool, BaseTool):
 
         return self.mail_password_response( self, self.REQUEST )
 
-    def isMemberIdAllowed(self, id):
-        if len(id) < 1 or id == 'Anonymous User':
-            return 0
-        if not self._ALLOWED_MEMBER_ID_PATTERN.match( id ):
-            return 0
-
-        pas = getToolByName(self, 'acl_users')
-        if IPluggableAuthService.providedBy(pas):
-            results = pas.searchPrincipals(id=id, exact_match=True)
-            if results:
-                return 0
-        else:
-            membership = getToolByName(self, 'portal_membership')
-            if membership.getMemberById(id) is not None:
-                return 0
-            groups = getToolByName(self, 'portal_groups')
-            if groups.getGroupById(id) is not None:
-                return 0
-
-        return 1
 
 RegistrationTool.__doc__ = BaseTool.__doc__
 
