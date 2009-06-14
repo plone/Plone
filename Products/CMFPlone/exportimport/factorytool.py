@@ -50,9 +50,9 @@ class PortalFactoryXMLAdapter(XMLAdapterBase):
 
     def _extractFactoryToolSettings(self):
         node=self._doc.createElement("factorytypes")
-        for type in self.context.getFactoryTypes():
+        for t in sorted(self.context.getFactoryTypes()):
             child=self._doc.createElement("type")
-            child.setAttribute("portal_type", type)
+            child.setAttribute("portal_type", t)
             node.appendChild(child)
 
         return node

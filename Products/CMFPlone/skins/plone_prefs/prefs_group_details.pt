@@ -13,7 +13,7 @@
 
 <div metal:fill-slot="prefs_configlet_content"
      tal:define="errors python:request.get('errors', {});
-                 portal_roles mtool/getPortalRoles;
+                 portal_roles python:context.portal_membership.getPortalRoles();
                  mq python:modules['ZTUtils'].make_query;
                  groupname request/groupname | nothing;
                  groupquery python:mq(groupname=groupname);
@@ -21,7 +21,8 @@
                  grouproles python:request.set('grouproles', []);
                  gtool context/portal_groups;
                  group python:gtool.getGroupById(groupname);
-                 grouptitle group/getGroupTitleOrName | nothing">
+                 grouptitle group/getGroupTitleOrName | nothing;
+                 portal_url context/portal_url;">
 
     <tal:conditional condition="group">
         <tal:defines define="dummy python:request.set('grouproles', group.getRoles())" />
@@ -32,12 +33,12 @@
     <ul class="contentViews">
       <li>
         <a href=""
-           tal:attributes="href string:$here_url/prefs_group_members?${groupquery}"
+           tal:attributes="href string:$portal_url/prefs_group_members?${groupquery}"
            i18n:translate="label_group_members">Group Members</a>
       </li>
       <li class="selected">
         <a href=""
-           tal:attributes="href string:$here_url/${template_id}?${groupquery}"
+           tal:attributes="href string:$portal_url/${template/getId}?${groupquery}"
            i18n:translate="label_group_properties">Group Properties</a>
       </li>
       <li>

@@ -29,7 +29,8 @@
           method="get"
           name="search"
           id="searchform"
-          tal:define="DateTime python:modules['DateTime'].DateTime">
+          tal:define="DateTime python:modules['DateTime'].DateTime;
+                      portal context/@@plone_portal_state/portal;">
 
             <div class="field">
                 <label for="SearchableText" i18n:translate="label_search_text">Search Text</label>
@@ -136,7 +137,9 @@
                 Return items added since you were last logged on, the last week, etc.
                 </div>
     
-                <tal:datetime define="today python:DateTime().earliestTime()">
+                <tal:datetime define="today python:DateTime().earliestTime();
+                                      isAnon context/@@plone_portal_state/anonymous;
+                                      member context/@@plone_portal_state/member;">
                 <select name="created:list:date"
                         id="created"
                         tal:define="yesterday python:(today-1).Date();
@@ -179,8 +182,8 @@
                 </span>
                 <br />
                 <div style="float:left; margin-right: 2em;"
-                     tal:define="allTypes python:putils.getUserFriendlyTypes();
-                             typeLists python:here.createMultiColumnList(allTypes, numCols=2, sort_on='self');"
+                     tal:define="allTypes python:context.plone_utils.getUserFriendlyTypes();
+                                 typeLists python:here.createMultiColumnList(allTypes, numCols=2, sort_on='self');"
                      tal:repeat="sublist typeLists">
                     <tal:items repeat="type sublist">
                     <input type="checkbox"
@@ -251,9 +254,10 @@
                 </span>
 
                 <tal:states define="
-                                navtree_props portal_properties/navtree_properties;
-                                states          python:wtool.listWFStatesByTitle(filter_similar=1);
-                                state_lists     python: here.createMultiColumnList(states, numCols=1, sort_on='self');"
+                                navtree_props portal/portal_properties/navtree_properties;
+                                states python:portal.portal_workflow.listWFStatesByTitle(filter_similar=1);
+                                state_lists python:context.createMultiColumnList(states, numCols=1, sort_on='self');
+                                normalizeString nocall:context/@@plone/normalizeString;"
                             repeat="sublist state_lists">
                     <tal:items repeat="state sublist">
                     <input class="noborder"

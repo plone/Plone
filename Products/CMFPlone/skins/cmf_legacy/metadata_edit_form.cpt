@@ -11,12 +11,12 @@
     <metal:calendar fill-slot="javascript_head_slot">
     <!-- ECMAScript calendar -->
     <style type="text/css" media="all"
-        tal:content="string:@import url($portal_url/jscalendar/calendar-system.css);"></style>
+        tal:content="string:@import url(${context/portal_url}/jscalendar/calendar-system.css);"></style>
     <script type="text/javascript"
-        tal:attributes="src string:$portal_url/jscalendar/calendar_stripped.js"></script>
+        tal:attributes="src string:${context/portal_url}/jscalendar/calendar_stripped.js"></script>
     <script type="text/javascript" charset="iso-8859-1"
-        tal:condition="exists: portal/jscalendar/calendar-en.js"
-        tal:attributes="src string:$portal_url/jscalendar/calendar-en.js"></script>
+        tal:condition="exists: context/jscalendar/calendar-en.js"
+        tal:attributes="src string:${context/portal_url}/jscalendar/calendar-en.js"></script>
     </metal:calendar>
 </head>
 
@@ -26,6 +26,8 @@
          tal:define="errors options/state/getErrors;
                      lockable python:hasattr(here, 'wl_isLocked');
                      isLocked python:lockable and here.wl_isLocked();">
+
+    <div tal:replace="structure provider:plone.documentactions" />
 
     <h1 class="documentFirstHeading"
         i18n:translate="heading_edit_properties">Edit Properties</h1>
@@ -115,7 +117,7 @@
                                  allowedSubjects python:list(here.unique(allowedSubjects+catalogSubjects));
                                  dummy python:allowedSubjects.sort( lambda x,y: cmp(x,y) );">
 
-                <tal:block define="allowRolesToAddKeywords site_properties/allowRolesToAddKeywords"
+                <tal:block define="allowRolesToAddKeywords context/portal_properties/site_properties/allowRolesToAddKeywords"
                            condition="python:[role for role in user.getRolesInContext(here) if role in allowRolesToAddKeywords]">
 
                     <div style="width: 45%; float: right;">
@@ -240,7 +242,8 @@
 
             <select name="format"
                     id="format"
-                    tal:define="format request/format | here/Format;">
+                    tal:define="putils nocall:context/plone_utils;
+                                format request/format | here/Format;">
               <option value=""
                       i18n:translate="label_choose_mime">
                 Choose MIME-type
@@ -253,7 +256,7 @@
           </div>
 
           <div class="field"
-               tal:define="sel_language language;">
+               tal:define="sel_language context/@@plone_portal_state/language;">
 
             <label for="language"
                    i18n:translate="label_language">
@@ -324,7 +327,7 @@
                tal:define="process_creation request/process_creation|nothing;">
 
             <img src="" class="context"
-                   tal:define="locked portal_object/lock_icon.png;"
+                   tal:define="locked context/lock_icon.png;"
                    tal:condition="isLocked"
                    tal:replace="structure python:locked.tag(title='This item is locked')"
                    alt="Object locked"
@@ -350,9 +353,7 @@
 
       </form>
 
-      <div metal:use-macro="here/document_byline/macros/byline">
-        Get the byline - contains details about author and modification date.
-      </div>
+      <div tal:replace="structure provider:plone.belowcontenttitle" />
 
     </div>
 

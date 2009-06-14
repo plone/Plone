@@ -22,7 +22,8 @@
                  err_value options/error_value|nothing;
                  err_traceback options/error_traceback|nothing;
                  err_log_url options/error_log_url|nothing;
-                 err_log_id options/error_log_id|nothing">
+                 err_log_id options/error_log_id|nothing;
+                 isAnon context/@@plone_portal_state/anonymous;">
 
         <div tal:condition="python:err_type=='NotFound'">
 
@@ -46,7 +47,7 @@
                 contact the <span i18n:name="site_admin">
                 <a href="#" 
                    i18n:translate="label_site_admin"
-                   tal:attributes="href string:${portal_url}/contact-info">site administration</a></span>.
+                   tal:attributes="href string:${context/portal_url}/contact-info">site administration</a></span>.
                 </p>
 
                 <p i18n:translate="description_site_error_thank_you">
@@ -57,9 +58,11 @@
                 <tal:suggestions define="first_parent redirection_view/find_first_parent;
                                          similar_items redirection_view/search_for_similar;
                                          plone_view context/@@plone;
+                                         site_properties context/portal_properties/site_properties;
                                          use_view_action site_properties/typesUseViewActionInListings|python:();
                                          desc_length site_properties/search_results_description_length;
-                                         desc_ellipsis site_properties/ellipsis;"
+                                         desc_ellipsis site_properties/ellipsis;
+                                         normalizeString nocall:plone_view/normalizeString;"
                                  condition="python:first_parent is not None or similar_items">
                     
                     <h3 i18n:translate="heading_not_found_suggestions">You might have been looking for&hellip;</h3>
@@ -72,7 +75,7 @@
                                            item_icon python:plone_view.getIcon(first_parent);
                                            url python:test(result_type in use_view_action, result_url+'/view', result_url+'/');"
                                    tal:condition="result_type">
-                            <dt tal:define="item_wf_state_class python:'state-' + wtool.getInfoFor(first_parent, 'review_state', '');"
+                            <dt tal:define="item_wf_state_class python:'state-' + context.portal_workflow.getInfoFor(first_parent, 'review_state', '');"
                                 tal:attributes="class python:'contenttype-' + normalizeString(result_type)">
                               <img tal:replace="structure item_icon/html_tag" />
                                <a
@@ -130,7 +133,8 @@
         </div>
 
         <div tal:condition="python: err_type!='NotFound'"
-             tal:define="isManager python: checkPermission('Manage portal', here)">
+             tal:define="checkPermission nocall: context/portal_membership/checkPermission;
+                         isManager python: checkPermission('Manage portal', here)">
 
             <h1 class="documentFirstHeading"
                 i18n:translate="heading_site_error_sorry">
@@ -150,7 +154,7 @@
                 <span i18n:name="site_admin">
                 <a href="#" 
                    i18n:translate="label_site_admin"
-                   tal:attributes="href string:${portal_url}/contact-info">site administration</a></span>,
+                   tal:attributes="href string:${context/portal_url}/contact-info">site administration</a></span>,
                 please include this entry number in your message.
                 </p>
             
@@ -172,7 +176,7 @@
                 contact the <span i18n:name="site_admin">
                 <a href="#" 
                    i18n:translate="label_site_admin"
-                   tal:attributes="href string:${portal_url}/contact-info">site administration</a></span>.
+                   tal:attributes="href string:${context/portal_url}/contact-info">site administration</a></span>.
                 </p>
             </tal:noentry>
 

@@ -12,16 +12,12 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone import utils
 from Products.CMFPlone.browser.interfaces import IPlone
 
-from zope.interface import implements, alsoProvides
+from zope.interface import implements
 from zope.component import getMultiAdapter, queryMultiAdapter, getUtility
-
-import ZTUtils
-import sys
 
 from plone.memoize.view import memoize
 from plone.portlets.interfaces import IPortletManager, IPortletManagerRenderer
 
-from plone.app.layout.globals.interfaces import IViewView
 from plone.app.layout.icons.interfaces import IContentIcon
 
 from plone.app.content.browser.folderfactories import _allowedTypes
@@ -30,130 +26,6 @@ _marker = []
 
 class Plone(BrowserView):
     implements(IPlone)
-
-    def globalize(self):
-        """
-        Pure optimization hack, globalizes entire view for speed. Yes
-        it's evil, but this hack will eventually be removed after
-        globals are officially deprecated.
-
-        YOU CAN ONLY CALL THIS METHOD FROM A PAGE TEMPLATE AND EVEN
-        THEN IT MIGHT DESTROY YOU!
-        """
-
-        frame = sys._getframe()
-        while frame.f_locals.get('econtext', _marker) is _marker:
-            frame = frame.f_back
-            if frame is None:
-                raise RuntimeError, "Can't locate template frame."
-        context = frame.f_locals['econtext']
-        
-        # Some of the original global_defines used 'options' to get parameters
-        # passed in through the template call, so we need this to support
-        # products which may have used this little hack
-        options = context.vars.get('options',{})
-        view = context.vars.get('view', None)
-        template = context.vars.get('template', None)
-
-        state = {}
-        self._initializeData(options=options, view=view, template=template)
-        for name, v in self._data.items():
-            state[name] = v
-            context.setGlobal(name, v)
-
-    def __init__(self, context, request):
-        super(Plone, self).__init__(context, request)
-        self._data = {}
-
-    def _initializeData(self, options=None, view=None, template=None):
-        # We don't want to do this in __init__ because the view provides
-        # methods which are useful outside of globals.  Also, performing
-        # actions during __init__ is dangerous because instances are usually
-        # created during traversal, which means authentication hasn't yet
-        # happened.
-        context = aq_inner(self.context)
-        if options is None:
-            options = {}
-        if view is None:
-            view = self
-
-        show_portlets = not options.get('no_portlets', False)
-        def_actions = options.get('actions', None)
-
-        # XXX: Can't store data as attributes directly because it will
-        # insert the view into the acquisition chain. Someone should
-        # come up with a way to prevent this or get rid of the globals
-        # view altogether
-
-        tools = getMultiAdapter((context, self.request), name=u'plone_tools')
-        portal_state = getMultiAdapter((context, self.request), name=u'plone_portal_state')
-        context_state = getMultiAdapter((context, self.request), name=u'plone_context_state')
-
-        self._data['utool'] = utool = tools.url()
-        self._data['portal'] = portal = portal_state.portal()
-        self._data['portal_url'] =  portal_state.portal_url()
-        self._data['mtool'] = mtool = tools.membership()
-        self._data['atool'] = atool = tools.actions()
-        self._data['putils'] = putils = getToolByName(context, "plone_utils")
-        self._data['acl_users'] = getToolByName(context, 'acl_users')
-        self._data['wtool'] = wtool = tools.workflow()
-        self._data['ifacetool'] = tools.interface()
-        self._data['syntool'] = tools.syndication()
-        self._data['portal_title'] = portal_state.portal_title()
-        self._data['object_title'] = context_state.object_title()
-        self._data['checkPermission'] = checkPermission = mtool.checkPermission
-        self._data['member'] = portal_state.member()
-        self._data['membersfolder'] =  mtool.getMembersFolder()
-        self._data['isAnon'] =  portal_state.anonymous()
-        self._data['actions'] = actions = def_actions or context_state.actions()
-        self._data['keyed_actions'] =  def_actions or context_state.keyed_actions()
-        self._data['user_actions'] =  actions['user']
-        self._data['workflow_actions'] =  actions['workflow']
-        self._data['folder_actions'] =  actions['folder']
-        self._data['global_actions'] =  actions['global']
-
-        portal_tabs_view = getMultiAdapter((context, context.REQUEST), name='portal_tabs_view')
-        self._data['portal_tabs'] =  portal_tabs_view.topLevelTabs(actions=actions)
-
-        self._data['wf_state'] =  context_state.workflow_state()
-        self._data['portal_properties'] = props = tools.properties()
-        self._data['site_properties'] = site_props = props.site_properties
-        self._data['ztu'] =  ZTUtils
-        self._data['isFolderish'] =  context_state.is_folderish()
-        
-        self._data['sl'] = have_left_portlets = show_portlets and self.have_portlets('plone.leftcolumn', view)
-        self._data['sr'] = have_right_portlets = show_portlets and self.have_portlets('plone.rightcolumn', view)
-        self._data['hidecolumns'] =  self.hide_columns(have_left_portlets, have_right_portlets)
-        
-        self._data['here_url'] =  context_state.object_url()
-        self._data['default_language'] = portal_state.default_language()
-        self._data['language'] =  portal_state.language()
-        self._data['is_editable'] = context_state.is_editable()
-        self._data['isLocked'] = context_state.is_locked()
-        self._data['isRTL'] =  portal_state.is_rtl()
-        self._data['visible_ids'] =  self.visibleIdsEnabled() or None
-        self._data['current_page_url'] =  context_state.current_page_url()
-        self._data['normalizeString'] = putils.normalizeString
-        self._data['toLocalizedTime'] = self.toLocalizedTime
-        self._data['isStructuralFolder'] = context_state.is_structural_folder()
-        self._data['isContextDefaultPage'] = context_state.is_default_page()
-
-        self._data['navigation_root_url'] = portal_state.navigation_root_url()
-        self._data['Iterator'] = utils.IndexIterator
-        self._data['tabindex'] = utils.IndexIterator(pos=30000, mainSlot=False)
-        self._data['uniqueItemIndex'] = utils.RealIndexIterator(pos=0)
-
-        template_id = options.get('template_id', None)
-        if template_id is None and template is not None:
-            template_id = template.getId()
-        self._data['template_id'] = template_id
-        
-        isViewTemplate = context_state.is_view_template()
-        if isViewTemplate and not IViewView.providedBy(view):
-            # Mark the view as being "the" view
-            alsoProvides(view, IViewView)
-            
-        self._data['isViewTemplate'] = isViewTemplate
 
     # XXX: This is lame
     def hide_columns(self, column_left, column_right):
@@ -166,7 +38,12 @@ class Plone(BrowserView):
         return "visualColumnHideNone"
 
     # Utility methods
-    
+
+    @memoize
+    def uniqueItemIndex(self, pos=0):
+        """Return an index iterator."""
+        return utils.RealIndexIterator(pos=pos)
+
     def toLocalizedTime(self, time, long_format=None, time_only=None):
         """Convert time to localized time
         """
@@ -308,9 +185,9 @@ class Plone(BrowserView):
             if action.get('id', '') != 'view':
                 return True
 
-        template_id = self._data.get('template_id', None)
-        if template_id is None and 'PUBLISHED' in request:
-            if hasattr(request['PUBLISHED'], 'getId'):
+        template_id = None
+        if 'PUBLISHED' in request:
+            if getattr(request['PUBLISHED'], 'getId', None):
                 template_id=request['PUBLISHED'].getId()
 
         idActions = {}

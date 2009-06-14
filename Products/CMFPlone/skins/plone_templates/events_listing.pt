@@ -3,20 +3,19 @@
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
-      metal:use-macro="here/main_template/macros/master"
+      metal:use-macro="context/main_template/macros/master"
       i18n:domain="plone">
 
 <head>
 
 </head>
-             
-             
+
 <body>
 <div metal:fill-slot="main" id="content-news"
      tal:define="path context/@@plone_portal_state/navigation_root_path;
-                 results python:here.portal_catalog.searchResults(
+                 results python:context.portal_catalog.searchResults(
                             portal_type='Event',
-                            end={'query': here.ZopeTime(),
+                            end={'query': context.ZopeTime(),
                                  'range': 'min'},
                             sort_on='start',
                             review_state='published',
@@ -24,15 +23,18 @@
                  results python:[r for r in results if r.getObject()];
                  Batch python:modules['Products.CMFPlone'].Batch;
                  b_start python:request.get('b_start',0);
-                 portal_discussion nocall:here/portal_discussion;
+                 portal_discussion nocall:context/portal_discussion;
                  isDiscussionAllowedFor nocall:portal_discussion/isDiscussionAllowedFor;
                  getDiscussionFor nocall:portal_discussion/getDiscussionFor;
-                 home_url python: mtool.getHomeUrl;
-                 show_about python:not isAnon or site_properties.allowAnonymousViewAbout">
+                 home_url python:context.portal_membership.getHomeUrl;
+                 isAnon context/@@plone_portal_state/anonymous;
+                 portal context/@@plone_portal_state/portal;
+                 show_about python:not isAnon or context.portal_properties.site_properties.allowAnonymousViewAbout">
 
 
     <form name="searchresults" action="" method="post" tal:condition="results"
-                      tal:define="batch python:Batch(results, 15, int(b_start), orphan=1)">
+                      tal:define="batch python:Batch(results, 15, int(b_start), orphan=1);
+                                  toLocalizedTime nocall: context/@@plone/toLocalizedTime;">
 
         <metal:block tal:repeat="result batch">
 
@@ -57,7 +59,6 @@
                     </p>
     
                     <ul class="newsAbout">
- 
                         <li>
                         <span tal:replace="python:modules['string'].join(resultObject.Subject(), ' ')"> Conference </span>
                         </li>
@@ -111,7 +112,7 @@
         </metal:block>
 
         <!-- Navigation -->
-        <div metal:use-macro="here/batch_macros/macros/navigation" />
+        <div metal:use-macro="context/batch_macros/macros/navigation" />
 
         </form>
 
@@ -119,9 +120,9 @@
         No events have been posted.
     </p>
 
-    <div tal:define="contentTypes here/getAllowedTypes" tal:omit-tag="python:1"
-         tal:condition="python:'events' in portal.contentIds() and here==portal.events">
-        <tal:add_button metal:use-macro="here/folder_contents/macros/add_button"/>
+    <div tal:define="contentTypes context/getAllowedTypes" tal:omit-tag="python:1"
+         tal:condition="python:'events' in portal.contentIds() and context==portal.events">
+        <!--tal:add_button metal:use-macro="context/folder_contents/macros/add_button"/-->
     </div>
 
   </div>

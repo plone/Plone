@@ -16,8 +16,8 @@ _FACTORYTOOL_XML = """\
 <?xml version="1.0"?>
 <object name="portal_factory" meta_type="Plone Factory Tool">
  <factorytypes>
-  <type portal_type="Folder"/>
   <type portal_type="Document"/>
+  <type portal_type="Folder"/>
  </factorytypes>
 </object>
 """

@@ -8,6 +8,7 @@
 <head>
     <metal:block metal:fill-slot="head_slot">
         <link rel="alternate" title="RSS 1.0" type="application/rss+xml"
+              tal:define="here_url context/@@plone_context_state/object_url"
               tal:condition="request/SearchableText|nothing"
               tal:attributes="href string:$here_url/search_rss?${request/QUERY_STRING}"/>
     </metal:block>
@@ -25,10 +26,12 @@
                  results python:here.queryCatalog(REQUEST=request,use_types_blacklist=use_types_blacklist, use_navigation_root=use_navigation_root);
                  Batch python:modules['Products.CMFPlone'].Batch;
                  b_size python:30;b_start python:0;b_start request/b_start | b_start;
+                 site_properties context/portal_properties/site_properties;
                  desc_length site_properties/search_results_description_length;
                  desc_ellipsis site_properties/ellipsis;
                  searchterm request/SearchableText|nothing;
-                 use_view_action site_properties/typesUseViewActionInListings|python:();">
+                 use_view_action site_properties/typesUseViewActionInListings|python:();
+                 portal_url context/portal_url;">
 
     <form name="searchform" 
           action="search"
@@ -73,10 +76,11 @@
     </h1>
 
     <p class="discreet"
-       tal:condition="syntool/isSiteSyndicationAllowed">
+       tal:condition="context/portal_syndication/isSiteSyndicationAllowed">
         <a href=""
            class="link-feed"
            i18n:translate="title_rss_feed"
+           tal:define="here_url context/@@plone_context_state/object_url"
            tal:attributes="href string:$here_url/search_rss?${request/QUERY_STRING}">
              Subscribe to an always-updated feed of these search terms</a>
     </p>
@@ -87,7 +91,10 @@
     </div>
 
     <div tal:condition="results"
-          tal:define="batch python:Batch(results, b_size, int(b_start), orphan=1);">
+          tal:define="normalizeString nocall: context/plone_utils/normalizeString;
+                      isAnon context/@@plone_portal_state/anonymous;
+                      toLocalizedTime nocall: context/@@plone/toLocalizedTime;
+                      batch python:Batch(results, b_size, int(b_start), orphan=1);">
 
         <dl class="searchResults">
         <tal:results repeat="result batch">

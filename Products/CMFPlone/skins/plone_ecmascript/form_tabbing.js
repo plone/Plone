@@ -36,53 +36,52 @@ ploneFormTabbing._toggleFactory = function(container, tab_ids, panel_ids) {
 };
 
 ploneFormTabbing._buildTabs = function(container, legends) {
-    var threshold = 6;
-    var tab_ids = [];
-    var panel_ids = [];
+    var threshold = legends.length > 6;
+    var panel_ids, tab_ids = [], tabs = '';
 
-    legends.each(function(i) {
-        tab_ids[i] = '#' + this.id;
-        panel_ids[i] = tab_ids[i].replace(/^#fieldsetlegend-/, "#fieldset-");
-    });
-    var handler = ploneFormTabbing._toggleFactory(
-        container, tab_ids.join(','), panel_ids.join(','));
+    for (var i=0; i < legends.length; i++) {
+        var className, tab, legend = legends[i], lid = legend.id;
+        tab_ids[i] = '#' + lid;
 
-    if (legends.length > threshold) {
-        var tabs = document.createElement("select");
-        var tabtype = 'option';
-        jq(tabs).change(handler).addClass('noUnloadProtection');
-    } else {
-        var tabs = document.createElement("ul");
-        var tabtype = 'li';
-    }
-    jq(tabs).addClass('formTabs');
-
-    legends.each(function() {
-        var tab = document.createElement(tabtype);
-        jq(tab).addClass('formTab');
-
-        if (legends.length > threshold) {
-            jq(tab).text(jq(this).text());
-            tab.id = this.id;
-            tab.value = '#' + this.id;
-        } else {
-            var a = document.createElement("a");
-            a.id = this.id;
-            a.href = "#" + this.id;
-            jq(a).click(handler);
-            var span = document.createElement("span");
-            jq(span).text(jq(this).text());
-            a.appendChild(span);
-            tab.appendChild(a);
+        switch (i) {
+            case 0: {
+                className = 'class="formTab firstFormTab"';
+                break;
+            }
+            case (legends.length-1): {
+                className = 'class="formTab lastFormTab"';
+                break;
+            }
+            default: {
+                className = 'class="formTab"';
+                break;
+            }
         }
-        tabs.appendChild(tab);
-        jq(this).remove();
-    });
-    
-    jq(tabs).children(':first').addClass('firstFormTab');
-    jq(tabs).children(':last').addClass('lastFormTab');
-    
-    return tabs;
+
+        if (threshold) {
+            tab = '<option '+className+' id="'+lid+'" value="'+lid+'">';
+            tab += jq(legend).text()+'</option>';
+        } else {
+            tab = '<li '+className+'><a id="'+lid+'" href="#'+lid+'"><span>';
+            tab += jq(legend).text()+'</span></a></li>';
+        }
+
+        tabs += tab;
+        jq(legend).hide();
+    }
+
+    tab_ids = tab_ids.join(',');
+    panel_ids = tab_ids.replace(/#fieldsetlegend-/g, "#fieldset-");
+
+    if (threshold) {
+        tabs = jq('<select class="formTabs">'+tabs+'</select>');
+        tabs.change(ploneFormTabbing._toggleFactory(container, tab_ids, panel_ids));
+    } else {
+        tabs = jq('<ul class="formTabs">'+tabs+'</ul>');
+        tabs.find('a').click(ploneFormTabbing._toggleFactory(container, tab_ids, panel_ids));
+    }
+
+    return tabs.get(0);
 };
 
 ploneFormTabbing.select = function($which) {

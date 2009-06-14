@@ -20,7 +20,7 @@
                  mailhost context/MailHost/smtp_host|nothing;
                  mailfrom context/email_from_address|nothing;
                  site_properties context/portal_properties/site_properties;
-                 allowEnterPassword not:utool/getPortalObject/validate_email|nothing;
+                 allowEnterPassword not:context/portal_url/getPortalObject/validate_email|nothing;
                  mailpw site_properties/validate_email;
                  mailconfigured python:allowEnterPassword or (mailhost and mailfrom)">
 
@@ -39,7 +39,7 @@
         method="post"
         tal:condition="mailconfigured"
         tal:define="allowEnterPassword site_properties/validate_email|nothing;"
-        tal:attributes="action template_id" >
+        tal:attributes="action template/getId" >
 
       <input type="hidden" name="came_from" value=""
              tal:condition="request/came_from|nothing"

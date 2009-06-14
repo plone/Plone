@@ -5,14 +5,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xml:lang="en"
       lang="en"
-      tal:define="input_id request/input_id;"
+      tal:define="input_id request/input_id;
+                  default_language context/@@plone_portal_state/default_language"
       tal:attributes="lang default_language | default;
                       xml:lang default_language | default"
       i18n:domain="plone">
 
   <head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"
-          tal:define="charset site_properties/default_charset|string:utf-8;
+          tal:define="charset context/portal_properties/site_properties/default_charset|string:utf-8;
                       dummy python:request.RESPONSE.setHeader('Content-Type', 'text/html;;charset=%s' % charset)"
           tal:attributes="content string:text/html;;charset=${charset}" />
 
@@ -26,7 +28,7 @@
     </metal:css>
 
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"
-          tal:define="charset site_properties/default_charset|string:utf-8"
+          tal:define="charset context/portal_properties/site_properties/default_charset|string:utf-8"
           tal:attributes="content string:text/html;;charset=${charset}" />
 
   </head>

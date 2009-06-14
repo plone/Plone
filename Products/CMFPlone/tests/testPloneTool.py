@@ -127,28 +127,6 @@ class TestPloneTool(PloneTestCase.PloneTestCase):
         self.assertEqual(self.utils.normalizeString("this is. also. a file.html"),
                          'this-is-also-a-file.html')
 
-    def testNormalizeStringAccents(self):
-        # European accented chars will be transliterated to rough
-        # ASCII equivalents
-        input = u"Eksempel \xe6\xf8\xe5 norsk \xc6\xd8\xc5"
-        self.assertEqual(self.utils.normalizeString(input),
-                         'eksempel-eoa-norsk-eoa')
-
-    def testNormalizeStringUTF8(self):
-        # In real life, input will not be Unicode...
-        input = u"Eksempel \xe6\xf8\xe5 norsk \xc6\xd8\xc5".encode('utf-8')
-        self.assertEqual(self.utils.normalizeString(input),
-                         'eksempel-eoa-norsk-eoa')
-
-    def testNormalizeStringHex(self):
-        # Everything that can't be transliterated will be hex'd
-        self.assertEqual(
-            self.utils.normalizeString(u"\u9ad8\u8054\u5408 Chinese"),
-            '9ad880545408-chinese')
-        self.assertEqual(
-            self.utils.normalizeString(u"\uc774\ubbf8\uc9f1 Korean"),
-            'c774bbf8c9f1-korean')
-
     def testNormalizeStringIgnoredCharacters(self):
         # Some characters should be ignored
         self.assertEqual(self.utils.normalizeString("test'test"), 'testtest')

@@ -8,6 +8,40 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+ - Made the fieldset tabbing code faster on startup (especially for IE) by 
+   constructing a big string and creating the HTML elements in one bunch 
+   instead of using DOM functions to add them step by step. 
+   [fschulze]
+
+ - Added uniqueItemIndex as a method to the plone view. 
+   [hannosch]
+
+ - Added dependency on plone.keyring and load its GS profile, so we get a 
+   default KeyManager utility.
+   [hannosch]
+
+ - Added back ``global_defines.pt`` as a template including the (empty)
+   macro definition. This allows main templates to be compatible with both 
+   Plone 3.x and 4.0 at the same time. 
+   [hannosch]
+
+ - Removed ``global_defines.pt`` and the globalize-hack. Templates 
+   now bring in their tool and function dependency using the 
+   standard utility views or via normal Acquisition of tools.
+   [malthe, hannosch]
+
+ - Fixed test for editing language fields. This refs 
+   http://dev.plone.org/plone/ticket/8342. 
+   [hannosch]
+
+ - Removed deprecated context parameter in getDefaultPage and 
+   isDefaultPage in utils.py. 
+   [maurits]
+
+ - Made sure the export order of the factory tool GS step is consistent. 
+   This closes http://dev.plone.org/plone/ticket/7892. 
+  [hannosch]
+
  - Replaced lock_icon with smaller version with one third of the size. 
    [hannosch]
 

@@ -12,18 +12,20 @@
 <body>
 
 <div metal:fill-slot="prefs_configlet_content"
-     tal:define="userid python:request.get('userid', member.getId());
+     tal:define="member context/@@plone_portal_state/member;
+                 userid python:request.get('userid', member.getId());
                  mq python:modules['ZTUtils'].make_query;
                  userquery python:mq(userid=userid);
-                 member python:mtool.getMemberById(userid);
-                 errors options/state/getErrors;">
+                 member python:context.portal_membership.getMemberById(userid);
+                 errors options/state/getErrors;
+                 portal_url context/portal_url;">
 
       <div id="region-content" class="documentEditable">
     <!-- simulating views on the groups/user pages until we have real objects. -->
     <ul class="contentViews">
       <li class="selected">
             <a href=""
-               tal:attributes="href string:$portal_url/${template_id}?${userquery}"
+               tal:attributes="href string:$portal_url/${template/getId}?${userquery}"
                i18n:translate="label_user_properties">
               User Properties
             </a>
@@ -75,7 +77,7 @@
                   enctype="multipart/form-data"
                   class="enableUnloadProtection enableAutoFocus"
                   tal:condition="user | nothing"
-              tal:attributes="action template_id">
+              tal:attributes="action template/getId">
 
             <input type="hidden" name="userid" value="username"
                    tal:attributes="value member/getId" />

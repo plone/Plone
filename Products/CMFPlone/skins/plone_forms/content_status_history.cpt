@@ -14,12 +14,12 @@
   <metal:calendar fill-slot="javascript_head_slot">
     <!-- ECMAScript calendar -->
     <style type="text/css" media="all"
-            tal:content="string:@import url($portal_url/jscalendar/calendar-system.css);"></style>
+            tal:content="string:@import url(${context/portal_url}/jscalendar/calendar-system.css);"></style>
     <script type="text/javascript"
-            tal:attributes="src string:$portal_url/jscalendar/calendar_stripped.js"></script>
+            tal:attributes="src string:${context/portal_url}/jscalendar/calendar_stripped.js"></script>
     <script type="text/javascript" charset="iso-8859-1"
-            tal:condition="exists: portal/jscalendar/calendar-en.js"
-            tal:attributes="src string:$portal_url/jscalendar/calendar-en.js"></script>
+            tal:condition="exists: context/jscalendar/calendar-en.js"
+            tal:attributes="src string:${context/portal_url}/jscalendar/calendar-en.js"></script>
   </metal:calendar>
 
   <body>
@@ -35,7 +35,7 @@
 
     <div metal:fill-slot="main"
          tal:define="errors options/state/getErrors;
-                     review_state wf_state;
+                     review_state context/@@plone_context_state/workflow_state;
                      paths python:request.get('paths', ['/'.join(here.getPhysicalPath())]);
                      batch python:here.getObjectsFromPathList(paths,batch=True);
                      folders_in_publishing python:[o.getId for o in batch if o.isPrincipiaFolderish];
@@ -63,7 +63,7 @@
             name="edit_form"
             method="post"
             action="content_status_modify"
-            tal:attributes="action string:$here_url/$template_id"
+            tal:attributes="action string:${context/@@plone_context_state/object_url}/${template/getId}"
             tal:condition="not:python:paths and not batch">
 
           <div class="field" tal:condition="batch">
@@ -199,7 +199,7 @@
                      i18n:translate="label_no_change">No change</label>
               <br />
 
-              <tal:block define="transitions python:wtool.getTransitionsFor(target, here)"
+              <tal:block define="transitions python:context.portal_workflow.getTransitionsFor(target, here)"
                          repeat="transition transitions">
                   <input class="noborder"
                          id=""

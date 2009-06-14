@@ -23,6 +23,7 @@
   <include package="plone.app.viewletmanager" />
   <include package="plone.app.vocabularies" />
   <include package="plone.app.workflow" />
+  <include package="plone.keyring" />
   <include package="plone.memoize" />
   <include package="plone.session" />
   <include package="plone.protect" />
@@ -39,9 +40,6 @@
 
   <!-- wicked -->
   <include package="wicked.plone" file="selective-atct.zcml" />
-
-  <!-- all AT text fields and object wikified -->
-  <!-- include package="wicked.plone" file="all-at.zcml" / -->
   
   <!-- extra portlets -->
   <include package="plone.portlet.static" />

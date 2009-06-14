@@ -197,57 +197,14 @@ class IPlone(Interface):
     """ """
 
     def globalize():
-        """ A method which puts all of the following view attributes into the
-            globals of the current tal expression context (plus the
-            toLocalizedTime method):
-
-    atool = Attribute("The portal_actions tool")
-
-    utool = Attribute("The portal_url tool")
-
-    portal = Attribute("The portal object itself")
-
-    portal_url = Attribute("The portal url")
-
-    mtool = Attribute("The portal_membership tool")
-
-    putils = Attribute("The plone_utils tool (PloneTool)")
-
-    wtool = Attribute("The portal_workflow tool")
-
-    ifacetool = Attribute("The portal_interface tool")
-
-    syntool = Attribute("The portal_syndication tool")
+        """
 
     portal_title = Attribute("The title of the portal")
 
     object_title = Attribute("The title of the current object (context)")
 
-    member = Attribute("The member object for the authenticated user in "
-                       "context")
-
-    checkPermission = Attribute("The checkPermission method of the membership"
-                                " tool")
-
-    membersfolder = Attribute("The portal's Members folder")
-
-    isAnon = Attribute("Boolean indicating whether the current user is "
-                       "anonymous")
-
     actions = Attribute("The result of listFilteredActionsFor(context) in the "
                         "portal_actions tool")
-
-    keyed_actions = Attribute("A mapping of action categories to action ids "
-                              "to action information: "
-                              "mapping[cat][id] == actioninfo")
-
-    user_actions = Attribute("Actions in the user category")
-
-    workflow_actions = Attribute("Actions in the workflow category")
-
-    folder_actions = Attribute("Actions in the folder category")
-
-    global_actions = Attribute("Actions in the global category")
 
     portal_tabs = Attribute("The actions for the portal tabs")
 
@@ -257,32 +214,16 @@ class IPlone(Interface):
 
     site_properties = Attribute("The site_properties tool")
 
-    ztu = Attribute("The ZTUtils module")
-
-    isFolderish = Attribute("A boolean indicating whether the object is "
-                            "folderish")
-
     here_url = Attribute("The url of the current object")
 
     sl = Attribute("True if the left slot should be shown")
 
     sr = Attribute("True if the right slot should be shown")
 
-    hidecolumns = Attribute("The css class to use for the column container"
-                            "which determines which columns to show")
-
-    default_language = Attribute("The default language of the portal")
-
     language = Attribute("The language of the current request or context.")
-
-    is_editable = Attribute("A boolean indicating if the current user has "
-                            " edit permissions in this context")
 
     isLocked = Attribute("A boolean indicating that the object is webdav "
                          "locked")
-
-    isRTL = Attribute("A boolean indicating that the current language is a "
-                      "right-to-left language.")
 
     visible_ids = Attribute("A boolean indicating whether to show object ids "
                             "to the current user")
@@ -294,13 +235,6 @@ class IPlone(Interface):
 
     isStructuralFolder = Attribute("Boolean indicating that the context is a "
                                    "'Structural Folder'.")
-
-    Iterator = Attribute("A factory for generating sinple integer Iterators.")
-
-    tabindex = Attribute("An iterator for use in creating tabindexes.")
-
-    uniqueItemIndex = Attribute("An iterator for help inc reading unique "
-                                "html ids.")
     """
 
     def getCurrentUrl():
@@ -320,6 +254,9 @@ class IPlone(Interface):
 
     def isRightToLeft(domain='plone'):
         """Is the currently selected language a right to left language"""
+
+    def uniqueItemIndex(pos=0):
+        """Return an index iterator."""
 
     def toLocalizedTime(time, long_format=None, time_only = None):
         """ The time parameter must be either a string that is suitable for
@@ -413,3 +350,4 @@ class IPlone(Interface):
 
     def have_portlets(manager_name, view=None):
         """Determine whether a column should be shown."""
+

@@ -1,15 +1,17 @@
 <metal:page define-macro="master">
 <metal:block define-slot="top_slot" />
 
-<tal:doctype tal:replace="structure string:&lt;!DOCTYPE html PUBLIC
-  &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot;
-  &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;" />
-<metal:block use-macro="here/global_defines/macros/defines" />
-
 <html xmlns="http://www.w3.org/1999/xhtml"
       xml:lang="en"
       lang="en"
-      tal:define="lang language"
+      tal:define="portal_state context/@@plone_portal_state;
+                  context_state context/@@plone_context_state;
+                  plone_view context/@@plone;
+                  lang portal_state/language;
+                  view nocall:view | nocall: plone_view;
+                  portal_url portal_state/portal_url;
+                  checkPermission nocall: context/portal_membership/checkPermission;
+                  site_properties context/portal_properties/site_properties;"
       tal:attributes="lang lang;
                       xml:lang lang">
 
@@ -33,7 +35,7 @@
 
     <div tal:replace="structure provider:plone.htmlhead" />
 
-    <meta tal:define="metatags python:putils.listMetaTags(here).items()"
+    <meta tal:define="metatags python:context.plone_utils.listMetaTags(context).items()"
           tal:condition="metatags"
           tal:repeat="keyval metatags"
           tal:attributes="name python:keyval[0];
@@ -42,7 +44,7 @@
     <!-- Internet Explorer Fixes, force IE8 forces into standards mode, IE5/6/7 get workaround CSS/JS -->
     <meta name="IE" content="EmulateIE8" />
     <tal:iefixstart replace="structure string:&lt;!-- [if lte IE7]&gt;" />
-        <style type="text/css" media="all" tal:condition="exists: portal/IEFixes.css"
+        <style type="text/css" media="all" tal:condition="exists:context/IEFixes.css"
                tal:content="string:@import url($portal_url/IEFixes.css);">
         </style>
         
@@ -71,7 +73,10 @@
 
   </head>
 
-  <body tal:attributes="class string:${here/getSectionFromURL} template-${template/id};
+  <body tal:define="isRTL portal_state/is_rtl;
+                    sl python:plone_view.have_portlets('plone.leftcolumn');
+                    sr python:plone_view.have_portlets('plone.rightcolumn');"
+        tal:attributes="class string:${here/getSectionFromURL} template-${template/id};
                         dir python:test(isRTL, 'rtl', 'ltr')">
     <div id="visual-portal-wrapper">
 
@@ -99,7 +104,8 @@
 
             <tal:comment replace="nothing"> Start of main content block </tal:comment>
             <td id="portal-column-content"
-                tal:define="tabindex python:Iterator(mainSlot=False)">
+                tal:define="Iterator python:modules['Products.CMFPlone'].IndexIterator;
+                            tabindex python:Iterator(mainSlot=False)">
 
               <metal:block define-slot="content">
                 <div metal:define-macro="content"

@@ -56,7 +56,7 @@
                    name="selectButton"
                    title="Select all items"
                    onClick="toggleSelect(this, 'add:list');"
-                   tal:attributes="src string:$portal_url/select_all_icon.png"
+                   tal:attributes="src string:${context/portal_url}/select_all_icon.png"
                    alt="Select all items"
                    i18n:attributes="title label_select_all_items; alt label_select_all_items;"/>
             </th>
@@ -77,6 +77,7 @@
                            tal:define="calcId obj/getGroupId | obj/getId;
                                        userid userid | nothing;
                                        groupname groupname | nothing;
+                                       member context/@@plone_portal_state/member;
                                        m python:userid and member or here.portal_membership.getMemberById(calcId);
                                        g python:groupname and groupname or calcId;"
                            tal:attributes="value calcId;

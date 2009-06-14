@@ -27,6 +27,7 @@ may need to take the following changes into account.
   is the modern location for portlets.
 
 * The following items from the plone_deprecated skin layer have been removed.
+
   - colophon.pt
   - correctPREformatting.js
   - cropText.py
@@ -85,7 +86,6 @@ may need to take the following changes into account.
   - portlet_languages.pt
   - portlet_login.pt
   - portlet_navigation.pt
-  - portlet_navtree_macro.pt
   - portlet_news.pt
   - portlet_recent.pt
   - portlet_related.pt
@@ -118,3 +118,57 @@ may need to take the following changes into account.
   Products.CMFPlone.i18nl10n.ulocalized_time
 
 * The getPILVersion method of the MigrationTool has been removed.
+
+* The deprecated context parameter in getDefaultPage and isDefaultPage in
+  utils.py has been removed.
+
+* The following variables are no longer automatically inserted into the global
+  expression context of main_template, for performance reasons. Use the expressions
+  suggested below instead. (Note: Using the suggested expressions requires that
+  the context have a proper acquisition chain to the portal root.)
+
+  here
+    context
+  here_url
+    context/@@plone_context_state/object_url
+  portal
+    context/@@plone_portal_state/portal
+  utool
+    context/portal_url
+  putils
+    context/plone_utils
+  mtool
+    context/portal_membership
+  member
+    context/@@plone_portal_state/member
+  ifacetool
+    context/portal_interface
+  syntool
+    context/portal_syndication
+  wtool
+    context/portal_workflow
+  wf_state
+    context/@@plone_context_state/workflow_state
+  isAnon
+    context/@@plone_portal_state/anonymous
+  ztu
+    modules/ZTUtils
+  is_editable
+    context/@@plone_context_state/is_editable
+  default_language
+    context/@@plone_portal_state/default_language
+  portal_properties
+    context/portal_properties
+  normalizeString
+    context/@@plone/normalizeString
+  toLocalizedTime
+    nocall:context/@@plone/toLocalizedTime
+  acl_users
+    context/acl_users
+  template_id
+    template/getId
+  actions
+    python:context.portal_actions.listFilteredActionsFor(context)
+  isContextDefaultPage
+    context/@@plone_context_state/is_default_page
+

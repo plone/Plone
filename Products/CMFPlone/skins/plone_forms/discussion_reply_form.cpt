@@ -13,7 +13,7 @@
 
 <div metal:fill-slot="main"
      tal:define="errors options/state/getErrors;
-                 thread python:putils.getDiscussionThread(here);
+                 thread python:context.plone_utils.getDiscussionThread(here);
                  discussable python:thread[0];
                  replies python:thread[1:]">
 
@@ -62,7 +62,8 @@
           class="enableAutoFocus"
           method="post"
           action="talkback"
-          tal:attributes="action string:$here_url/$template_id">
+          tal:attributes="action string:${context/@@plone_context_state/object_url}/${template/getId}"
+          tal:define="isAnon context/@@plone_portal_state/anonymous;">
 
         <fieldset>
 
@@ -73,6 +74,7 @@
             </p>
 
             <input type="hidden" name="Creator" value=""
+                   tal:define="member context/@@plone_portal_state/member;"
                    tal:attributes="value member/getUserName" />
 
             <div tal:condition="isAnon">

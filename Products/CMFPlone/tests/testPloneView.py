@@ -22,9 +22,7 @@ from Products.CMFCore.WorkflowTool import WorkflowTool
 from zope.publisher.browser import setDefaultSkin
 
 class TestPloneView(PloneTestCase.PloneTestCase):
-    """Tests the global plone view.  All the old global_defines should be
-       in the _data mapping of the view, which is globablized into
-       calling templates."""
+    """Tests the global plone view."""
 
     def afterSetUp(self):
         # We need to fiddle the request for zope 2.9+
@@ -32,37 +30,6 @@ class TestPloneView(PloneTestCase.PloneTestCase):
         self.folder.invokeFactory('Document', 'test',
                                   title='Test default page')
         self.view = Plone(self.portal, self.app.REQUEST)
-        self.view._initializeData()
-
-    def testUTool(self):
-        assert isinstance(self.view._data['utool'], URLTool)
-
-    def testPortal(self):
-        assert self.view._data['portal'] == self.portal
-
-    def testPortalURL(self):
-        assert isinstance(self.view._data['portal_url'], type(''))
-
-    def testMTool(self):
-        assert isinstance(self.view._data['mtool'], MembershipTool)
-
-    def testATool(self):
-        assert isinstance(self.view._data['atool'], ActionsTool)
-
-    def testPUtils(self):
-        pass
-
-    def testWTool(self):
-        assert isinstance(self.view._data['wtool'], WorkflowTool)
-
-    def testIFaceTool(self):
-        assert isinstance(self.view._data['ifacetool'], InterfaceTool)
-
-    def testSynTool(self):
-        assert isinstance(self.view._data['syntool'], SyndicationTool)
-
-    def testPortalTitle(self):
-        pass
 
     def testToLocalizedTime(self):
         localdate = self.view.toLocalizedTime
@@ -186,16 +153,6 @@ class TestPloneView(PloneTestCase.PloneTestCase):
         self.assertEqual(False, view.have_portlets('plone.leftcolumn'))
         self.assertEqual(True, view.have_portlets('plone.rightcolumn'))
 
-    def testDisablePortlets(self):
-        view = Plone(self.portal, self.app.REQUEST)
-        view._initializeData()
-        data = view._data
-        self.assertEqual(True, data['sr'])
-        self.assertEqual('visualColumnHideOne', data['hidecolumns'])
-        view._initializeData(options={'no_portlets': True})
-        self.assertEqual(False, data['sr'])
-        self.assertEqual('visualColumnHideOneTwo', data['hidecolumns'])
-
     def testCropText(self):
         view = Plone(self.portal, self.app.REQUEST)
         self.assertEqual(view.cropText('Hello world', 7), 'Hello ...')
@@ -207,13 +164,7 @@ class TestPloneView(PloneTestCase.PloneTestCase):
         # Must return 6 characters, because 5th character is two byte
         text = u'Koko\u0159\xedn'.encode('utf8')
         self.assertEqual(view.cropText(text, 5), 'Koko\xc5\x99...')
-    
-    def testUniqueIndexIterator(self):
-        iterator = self.view._data['uniqueItemIndex']
-        self.assertEquals(0, iterator.next())
-        self.assertEquals(1, iterator.next())
-        self.assertEquals(2, iterator.next())
-        
+
     def testPrepareObjectTabsOnPortalRoot(self):
         del self.app.REQUEST.__annotations__
         self.loginAsPortalOwner()
@@ -251,21 +202,6 @@ class TestPloneView(PloneTestCase.PloneTestCase):
         tabs = view.prepareObjectTabs()
         self.assertEquals(0, len([t for t in tabs if t['id'] == 'folderContents']))
         self.assertEquals(['edit'], [t['id'] for t in tabs if t['selected']])
-
-    def testActionOverrideFromTemplate(self):
-        # We should be able to pass actions in from the template
-        # and have them override the calculated actions
-        view = Plone(self.portal, self.app.REQUEST)
-        view._initializeData()
-        data = view._data
-        self.failUnless(data['actions'])
-        self.failUnless(data['keyed_actions'])
-        self.failUnless(data['user_actions'])
-        no_actions = {'folder':[], 'user':[], 'global':[], 'workflow':[]}
-        view._initializeData(options={'actions':no_actions})
-        self.assertEqual(data['actions'], no_actions)
-        self.assertEqual(data['keyed_actions'], no_actions)
-        self.failIf(data['user_actions'])
 
 
 class TestVisibleIdsEnabled(PloneTestCase.PloneTestCase):

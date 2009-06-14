@@ -45,10 +45,14 @@
                             more_url more_url|request/more_url|string:folder_contents;
                             is_a_topic python:here.portal_type=='Topic';
                             folderContents folderContents|nothing; folderContents python:folderContents or is_a_topic and here.queryCatalog(contentFilter, batch=True) or here.getFolderContents(contentFilter, batch=True, b_size=limit_display or 100);
+                            site_properties context/portal_properties/site_properties;
                             use_view_action site_properties/typesUseViewActionInListings|python:();
                             over_limit python: limit_display and len(folderContents) > limit_display;
                             folderContents python: (over_limit and folderContents[:limit_display]) or folderContents;
                             batch folderContents;
+                            isAnon context/@@plone_portal_state/anonymous;
+                            normalizeString nocall: context/plone_utils/normalizeString;
+                            toLocalizedTime nocall: context/@@plone/toLocalizedTime;
                             show_about python:not isAnon or site_properties.allowAnonymousViewAbout;">
         <tal:listing condition="folderContents">
 
@@ -64,7 +68,7 @@
                                        item_created item/CreationDate;
                                        item_icon python:plone_view.getIcon(item);
                                        item_type_class python:'contenttype-' + normalizeString(item_type);
-                                       item_wf_state item/review_state|python: wtool.getInfoFor(item, 'review_state', '');
+                                       item_wf_state item/review_state|python: context.portal_workflow.getInfoFor(item, 'review_state', '');
                                        item_wf_state_class python:'state-' + normalizeString(item_wf_state);
                                        item_creator item/Creator;
                                        item_start item/start/ISO|item/StartDate|nothing;
@@ -118,7 +122,7 @@
                                 &mdash;
 
                                 <tal:name tal:condition="item_creator"
-                                    tal:define="author python:mtool.getMemberInfo(item_creator)">
+                                    tal:define="author python:context.portal_membership.getMemberInfo(item_creator)">
                                   <span i18n:translate="label_by_author">
                                     by
                                   <a href="#"

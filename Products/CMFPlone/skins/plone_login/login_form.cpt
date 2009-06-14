@@ -9,7 +9,7 @@
     <metal:js fill-slot="javascript_head_slot">
         <script type="text/javascript"
               src=""
-              tal:attributes="src string:${portal_url}/login.js">
+              tal:attributes="src string:${context/portal_url}/login.js">
       </script>
     </metal:js>
     <metal:block fill-slot="top_slot"
@@ -23,12 +23,14 @@
 <div metal:fill-slot="main"
      tal:define="auth nocall:here/acl_users/credentials_cookie_auth|here/cookie_authentication|nothing;
                  came_from request/came_from|request/HTTP_REFERER|nothing;
-                 came_from python:test(utool.isURLInPortal(came_from), came_from, None);
+                 came_from python:test(context.portal_url.isURLInPortal(came_from), came_from, None);
                  errors options/state/getErrors;
                  ac_name auth/name_cookie|string:__ac_name;
                  ac_password auth/pw_cookie|string:__ac_password;
                  ac_persist auth/persist_cookie|nothing;
-                 login_name python:request.get('login_name', request.get(ac_name, ''));">
+                 login_name python:request.get('login_name', request.get(ac_name, ''));
+                 actions python:context.portal_actions.listFilteredActionsFor(context);
+                 ztu modules/ZTUtils;">
 
 <dl class="portalMessage error"
     id="enable_cookies_message"
@@ -51,12 +53,12 @@
       class="enableAutoFocus"
       method="post"
       id="login_form"
+      tal:define="ztu modules/ZTUtils;"
       tal:condition="python:auth">
 
     <fieldset id="login-form">
 
         <legend i18n:translate="heading_sign_in">Please log in</legend>
-
 
         <input type="hidden"
             name="came_from"
@@ -140,7 +142,8 @@
 
 </form>
 
-<div tal:condition="python:checkPermission('Mail forgotten password', here)">
+<div tal:define="checkPermission nocall: context/portal_membership/checkPermission;"
+     tal:condition="python:checkPermission('Mail forgotten password', here)">
     <h3 i18n:translate="box_forgot_password_option">
         Forgot your password?
     </h3>
@@ -153,7 +156,8 @@
 </div>
 
 <div
-   tal:define="join python:[a['url'] for a in actions['user'] if a['id']=='join']"
+   tal:define="join python:[a['url'] for a in actions['user'] if a['id']=='join'];
+               checkPermission nocall: context/portal_membership/checkPermission;"
    tal:condition="python: join and checkPermission('Add portal member', here)">
     <h3 i18n:translate="heading_new_user">
     New user?
@@ -170,8 +174,8 @@
            i18n:translate="description_no_account_registration_linktext">
             registration form</a></span>.
     </p>
-</div>
 
+</div>
 
 </metal:login>
 

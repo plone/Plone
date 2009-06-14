@@ -16,7 +16,9 @@
 <body>
 
 <metal:main fill-slot="content"
-            tal:define="errors options/state/getErrors;">
+            tal:define="errors options/state/getErrors;
+                        portal_url context/portal_url;
+                        member context/@@plone_portal_state/member;">
     <tal:main-macro metal:define-macro="main">
 
         <h5 class="hiddenStructure">Views</h5>
@@ -72,7 +74,7 @@
                       method="post"
                       enctype="multipart/form-data"
                       tal:condition="member"
-                      tal:attributes="action template_id">
+                      tal:attributes="action template/getId">
 
                     <metal:userdetails define-macro="user_form">
                     <fieldset tal:define="macros here/additional_memberdata/macros | nothing;
@@ -81,7 +83,8 @@
                                           bottom_macro macros/bottom | nothing;
                                           showBottom python:bottom_macro;
                                           after_primary macros/after_primary| nothing;
-                                          showAfterPrimary python:after_primary;">
+                                          showAfterPrimary python:after_primary;
+                                          site_properties context/portal_properties/site_properties;">
 
                         <legend i18n:translate="legend_personal_details">Personal Details</legend>
                         
@@ -179,7 +182,7 @@
                             <select name="language"
                                     id="language"
                                     tal:attributes="disabled python:member.canWriteProperty('language') and default or 'disabled'">
-                                <tal:block tal:repeat="lang portal/availableLanguages">
+                                <tal:block tal:repeat="lang context/availableLanguages">
                                     <option value="None"
                                         tal:content="python:lang[1]"
                                         tal:attributes="value python:lang[0];
@@ -365,7 +368,7 @@
                         </div>
 
                         <div class="field"
-                             tal:define="portrait python:mtool.getPersonalPortrait(member.getId());">
+                             tal:define="portrait python:context.portal_membership.getPersonalPortrait(member.getId());">
 
                             <label for="portrait" i18n:translate="label_portrait">Portrait</label>
 

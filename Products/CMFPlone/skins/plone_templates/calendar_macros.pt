@@ -4,9 +4,10 @@
       i18n:domain="plone">
 
   <body>
-    
+
     <!-- The calendar date picker. -->
     <div metal:define-macro="calendarDatePickerBox" tal:define="
+         uniqueItemIndex context/@@plone/uniqueItemIndex;
          inputIndex uniqueItemIndex/next;
          show_hm show_hm | python:1;
          show_ymd show_ymd | python:1;

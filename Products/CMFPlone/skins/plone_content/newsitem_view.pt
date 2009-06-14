@@ -36,6 +36,7 @@
         <div class="newsImageContainer"
              tal:condition="here/getImage|nothing">
             <a href="#"
+               tal:define="here_url context/@@plone_context_state/object_url;"
                tal:attributes="href string:$here_url/image/image_view_fullscreen"
                id="parent-fieldname-image">
                <img tal:replace="structure python: here.tag(scale='mini', css_class='newsImage')" src="" alt="" />
@@ -47,7 +48,8 @@
             </p>
         </div>
 
-        <p tal:condition="python: not len_text and is_editable"
+        <p tal:define="is_editable context/@@plone_context_state/is_editable"
+           tal:condition="python: not len_text and is_editable"
            i18n:translate="no_body_text"
            class="discreet">
             This item does not have any body text, click the edit tab to change it.

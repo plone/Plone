@@ -44,9 +44,11 @@
                             limit_display limit_display|request/limit_display|nothing;
                             more_url more_url|request/more_url|string:folder_contents;
                             folderContents python:here.portal_type=='Topic' and here.queryCatalog(contentFilter, batch=True) or here.getFolderContents(contentFilter, batch=True, b_size=limit_display or 100);
+                            site_properties context/portal_properties/site_properties;
                             use_view_action site_properties/typesUseViewActionInListings|python:();
                             over_limit python: limit_display and len(folderContents) > limit_display;
                             folderContents python: (over_limit and folderContents[:limit_display]) or folderContents;
+                            isAnon context/@@plone_portal_state/anonymous;
                             batch folderContents">
         <tal:listing condition="folderContents">
 
@@ -58,10 +60,13 @@
                                        item_description item/Description;
                                        item_type item/portal_type;
                                        item_type_title item/Type;
+                                       ploneview context/@@plone;
+                                       normalizeString nocall:ploneview/normalizeString;
+                                       toLocalizedTime nocall:ploneview/toLocalizedTime;
                                        item_type_class python: 'contenttype-' + normalizeString(item_type);
                                        item_modified item/ModificationDate;
                                        item_created item/CreationDate;
-                                       item_wf_state        item/review_state|python: wtool.getInfoFor(item, 'review_state', '');
+                                       item_wf_state item/review_state|python:context.portal_workflow.getInfoFor(item, 'review_state', '');
                                        item_wf_state_class python:'state-' + normalizeString(item_wf_state);
                                        item_creator item/Creator;
                                        item_start item/start/ISO|item/StartDate|nothing;
@@ -120,7 +125,7 @@
                     </tal:event>
                     <tal:newsitem condition="python: item_type == 'News Item'">
                         <tal:name tal:condition="item_creator"
-                            tal:define="author python:mtool.getMemberInfo(item_creator)">
+                            tal:define="author python:context.portal_membership.getMemberInfo(item_creator)">
                           <span i18n:translate="label_by_author">
                             by
                           <a href="#"

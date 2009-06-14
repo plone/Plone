@@ -685,7 +685,7 @@ class PloneTool(PloneBaseTool, UniqueObject, SimpleItem):
         long as they are processed before the portal_message macro is
         called by the main template. Example:
 
-          <tal:block tal:define="temp python:putils.addPortalMessage('A random info message')" />
+          <tal:block tal:define="temp python:context.plone_utils.addPortalMessage('A random info message')" />
         """
         if request is None:
             request = self.REQUEST

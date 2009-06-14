@@ -13,7 +13,9 @@
 
 <body>
 <div metal:fill-slot="main"
-     tal:define="email_from_address portal/email_from_address">
+     tal:define="portal context/@@plone_portal_state/portal;
+                 email_from_address portal/email_from_address;
+                 isAnon context/@@plone_portal_state/anonymous;">
 
     <h1 class="documentFirstHeading"
         i18n:translate="heading_contact_form">Contact form</h1>
@@ -43,9 +45,10 @@
             action=""
             method="post"
             tal:define="errors options/state/getErrors"
-            tal:attributes="action string:$here_url/$template_id">
+            tal:attributes="action string:$portal_url/${template/getId}">
 
-        <fieldset tal:define="fullname python:request.get('fullname', not isAnon and member.getProperty('fullname', '') or None);
+        <fieldset tal:define="member context/@@plone_portal_state/member;
+                              fullname python:request.get('fullname', not isAnon and member.getProperty('fullname', '') or None);
                               email python:request.get('email', not isAnon and member.getProperty('email','') or None);">
 
             <legend i18n:translate="legend_feedback_for_contact_info">Feedback details</legend>

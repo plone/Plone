@@ -12,6 +12,7 @@
 
   <form action="#"
         method="post"
+        tal:define="here_url context/@@plone_context_state/object_url;"
         tal:attributes="action here_url"
         tal:condition="has_history" >
 

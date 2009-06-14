@@ -34,7 +34,7 @@
 
         <a href=""
            class="discreet"
-           tal:attributes="href string:$here_url/image_view_fullscreen">
+           tal:attributes="href string:${context/@@plone_context_state/object_url}/image_view_fullscreen">
             <tal:block condition="size" replace="structure python: here.tag(scale='preview')" />
             <br />
             <span class="visualNoPrint">

@@ -13,7 +13,7 @@
 
 <div metal:fill-slot="prefs_configlet_content"
      tal:define="errors python:request.get('errors', {});
-                portal_roles mtool/getPortalRoles;
+                portal_roles python:context.portal_membership.getPortalRoles();
                 Batch python:modules['Products.CMFPlone'].Batch;
                 b_start python:request.get('b_start',0);
                 b_size python:20;
@@ -26,7 +26,8 @@
                 isGroup nocall:gtool/isGroup;
                 mq python:modules['ZTUtils'].make_query;
                 groupquery python:mq(groupname=groupname);
-                groupkeyquery python:mq(key=groupname);">
+                groupkeyquery python:mq(key=groupname);
+                portal_url context/portal_url;">
 
     <tal:conditional condition="group">
         <tal:defines define="dummy python:request.set('grouproles', group.getRoles())" />
@@ -38,12 +39,12 @@
     <ul class="contentViews">
       <li class="selected">
             <a href=""
-           tal:attributes="href string:$here_url/${template_id}?${groupquery}"
+           tal:attributes="href string:$portal_url/${template/getId}?${groupquery}"
            i18n:translate="label_group_members">Group Members</a>
       </li>
       <li>
             <a href=""
-           tal:attributes="href string:${here_url}/prefs_group_details?${groupquery}"
+           tal:attributes="href string:${portal_url}/prefs_group_details?${groupquery}"
                i18n:translate="label_group_properties">Group Properties</a>
       </li>
       <li>
@@ -103,12 +104,13 @@
           <form action=""
                     name="groups"
                     method="post"
-                    tal:attributes="action string:$here_url/$template_id"
+                    tal:attributes="action string:$portal_url/${template/getId}"
                     tal:define="searchstring request/searchstring | nothing;
                                 findAll python:'form.button.FindAll' in request.keys();
                                 ignoreUsersGroups python: group.getAllGroupMembers() + [group,];
                                 results python:(searchstring or findAll) and here.prefs_user_group_search(searchstring, 'all', ignore=ignoreUsersGroups) or [];
-                                batch python:Batch(results, b_size, int(b_start), orphan=1)">
+                                batch python:Batch(results, b_size, int(b_start), orphan=1);
+                                many_users context/portal_properties/site_properties/many_users">
             <h2 i18n:translate="heading_groupmembers_current">Current group members</h2>
               <table class="listing" summary="Group Members Listing"
                  tal:condition="groupMembers">
@@ -215,7 +217,7 @@
                            name="form.button.FindAll"
                            value="Show all"
                            i18n:attributes="value label_search_large;"
-                           tal:condition="not:site_properties/many_users" />
+                           tal:condition="not:many_users" />
                 </th>
               </tr>
               <tr tal:condition="batch">

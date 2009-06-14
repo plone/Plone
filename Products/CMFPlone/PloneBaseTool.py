@@ -67,10 +67,12 @@ def createExprContext(folder, portal, object):
         view_obj = portal
     req = view_obj.REQUEST
     
+    expr_context.setGlobal('portal', portal)
+    
     globals_view = getMultiAdapter((view_obj, req), name='plone')
     expr_context.setGlobal('globals_view', globals_view)
     
-    # XXX: For some reason, when using getMultiAdapter() here we get 
+    # TODO: For some reason, when using getMultiAdapter() here we get 
     # authoriziation problems in some cases (e.g. when using one of these
     # in a python: expression in an action).
     

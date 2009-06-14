@@ -18,7 +18,7 @@
          
     <a href=""
        class="link-parent"
-       tal:attributes="href string:$portal_url/plone_control_panel"
+       tal:attributes="href string:${context/portal_url}/plone_control_panel"
        i18n:translate="label_up_to_plone_setup">
         Up to Site Setup
     </a>
@@ -94,7 +94,8 @@
                         </tr>
                     </thead>
 
-                    <tbody tal:define="updatetime python:member.getProperty('error_log_update', 0.0);
+                    <tbody tal:define="member context/@@plone_portal_state/member;
+                                       updatetime python:member.getProperty('error_log_update', 0.0);
                                        updatetime python:updatetime and updatetime or 0.0;
                                        updatetime python:float(updatetime)">
                         
@@ -103,7 +104,9 @@
                             tal:attributes="class python:test(oddrow, 'even', 'odd')"
                             tal:condition="python: test(entry['time'] > updatetime,1,0)">
                         
-                            <td tal:content="python:toLocalizedTime(DateTime(entry['time']), long_format=True)">13:04:41</td>
+                            <td
+                                tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime;"
+                                tal:content="python:toLocalizedTime(DateTime(entry['time']), long_format=True)">13:04:41</td>
                             <td tal:content="string:${entry/username} (${entry/userid})">joe</td>
                             <td>
                                 <a href="showEntry"

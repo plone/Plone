@@ -20,23 +20,28 @@
                 portal_roles here/getGlobalPortalRoles;
                 searchstring request/searchstring | nothing;
                 gtool context/portal_groups;
+                site_properties context/portal_properties/site_properties;
                 findAll python:'form.button.FindAll' in request.keys();
                 showAll python:not site_properties.many_groups and (findAll or not searchstring);
                 search_results python:test(showAll, search_view.searchGroups(), searchstring and search_view.searchGroups(id=searchstring) or None);
-                batch python:search_results and Batch(search_results, b_size, int(b_start), orphan=1) or None;">
+                batch python:search_results and Batch(search_results, b_size, int(b_start), orphan=1) or None;
+                portal_url context/portal_url;
+                ztu modules/ZTUtils;
+                checkPermission nocall: context/portal_membership/checkPermission;">
+
 
     <div id="region-content" class="documentEditable"
-         tal:condition="python:checkPermission('Manage Groups', here)">
+         tal:condition="python:checkPermission('Manage Groups', context)">
 
         <ul class="contentViews">
             <li>
                 <a href=""
-                   tal:attributes="href string:$here_url/prefs_users_overview"
+                   tal:attributes="href string:$portal_url/prefs_users_overview"
                    i18n:translate="label_users">Users</a>
             </li>
             <li class="selected">
                 <a href=""
-                   tal:attributes="href string:$here_url/$template_id"
+                   tal:attributes="href string:$portal_url/${template/getId}"
                    i18n:translate="label_groups">Groups</a>
             </li>
             <li>
@@ -183,7 +188,7 @@
                         <tal:block repeat="group_info batch">
                         <tr tal:define="oddrow repeat/group_info/odd;
                                         roles python:['this'];
-                                        group python:acl_users.getGroupById(group_info['groupid']);"
+                                        group python:context.acl_users.getGroupById(group_info['groupid']);"
                             tal:attributes="class python:test(oddrow,'odd','even')">
 
                             <td>
@@ -194,10 +199,10 @@
                                        />
 
                                 <a href="#"
-                                   tal:attributes="href python:here_url+'/prefs_group_members?'+ztu.make_query(groupname=group_info['groupid']);
+                                   tal:attributes="href python:portal_url+'/prefs_group_members?'+ztu.make_query(groupname=group_info['groupid']);
                                                    title group_info/title|group_info/groupid">
 
-                                   <tal:block replace="structure portal/group.png" />&nbsp;
+                                   <tal:block replace="structure context/portal_url/group.png" />&nbsp;
                                    <tal:group tal:replace="group_info/title|group_info/groupid" />
                                </a>
                             </td>
@@ -257,7 +262,7 @@
     </div>
 
     <div id="region-content" class="documentEditable"
-         tal:condition="python:not checkPermission('Manage Groups', here)">
+         tal:condition="python:not checkPermission('Manage Groups', context)">
         <tal:block replace="here/raiseUnauthorized" />
     </div>
 

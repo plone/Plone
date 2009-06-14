@@ -77,12 +77,13 @@
                         </tal:differentday>
 
                         <tal:sameday tal:condition="python:here.start().Date() == here.end().Date()"
-                                     tal:define="ampm python:site_properties.getProperty('localLongTimeFormat').find('%p') >= 0">
+                                     tal:define="ampm python:context.portal_properties.site_properties.getProperty('localLongTimeFormat').find('%p') >= 0">
                             <span tal:replace="python:toLocalizedTime(here.start())">
                                 Start Date Time</span> <br />
                             <span i18n:translate="event_from">from</span>  
                             <abbr metal:define-macro="startdatesame-field-view"
-                                  tal:define="kss_class python:getKssClasses('startDate',
+                                  tal:define="ampm python:context.portal_properties.site_properties.getProperty('localLongTimeFormat').find('%p') >= 0;
+                                              kss_class python:getKssClasses('startDate',
                                               templateId=templateId, macro='startdatesame-field-view');"
                                   id="parent-fieldname-startDate"
                                   tal:attributes="class string:$kss_class dtstart;
@@ -93,7 +94,8 @@
                             </abbr>
                             <span i18n:translate="event_to">to</span>
                             <abbr metal:define-macro="enddatesame-field-view"
-                                  tal:define="kss_class python:getKssClasses('endDate',
+                                  tal:define="ampm python:context.portal_properties.site_properties.getProperty('localLongTimeFormat').find('%p') >= 0;
+                                              kss_class python:getKssClasses('endDate',
                                               templateId=templateId, macro='enddatesame-field-view');"
                                   id="parent-fieldname-endDate"
                                   tal:attributes="class string:$kss_class dtend;
@@ -149,7 +151,7 @@
                 </tr>
                 <tr>
                     <th i18n:translate="heading_add_to_calendar">Add event to calendar</th>
-                    <td>
+                    <td tal:define="here_url context/@@plone_context_state/object_url;">
                         <a href="#"
                            tal:attributes="href string:$here_url/vcs_view"
                            title="Download this event in vCal format"

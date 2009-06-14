@@ -83,7 +83,7 @@ def _getDefaultPageView(obj, request):
         view = DefaultPage(obj, request)
     return view
 
-def isDefaultPage(obj, request, context=None):
+def isDefaultPage(obj, request):
     if context is not None:
         warnings.warn("The context parameter for isDefaultPage is "
                       "deprecated and will be removed in Plone 4.",
@@ -94,7 +94,7 @@ def isDefaultPage(obj, request, context=None):
     view = _getDefaultPageView(container, request)
     return view.isDefaultPage(obj)
 
-def getDefaultPage(obj, request, context=None):
+def getDefaultPage(obj, request):
     if context is not None:
         warnings.warn("The context parameter for getDefaultPage is "
                       "deprecated and will be removed in Plone 4.",

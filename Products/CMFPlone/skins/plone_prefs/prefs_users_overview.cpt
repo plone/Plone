@@ -16,15 +16,17 @@
                 b_start request/b_start | python:0;
                 b_size request/b_size | python:20;
                 portal_roles here/getGlobalPortalRoles;
-                searchstring request/searchstring | nothing;">
+                searchstring request/searchstring | nothing;
+                portal_url context/portal_url;
+                checkPermission nocall: context/portal_membership/checkPermission;">
 
       <div id="region-content" class="documentEditable"
-           tal:condition="python:checkPermission('Manage users', here)">
+           tal:condition="python:checkPermission('Manage users', context)">
 
             <ul class="contentViews">
               <li class="selected">
                 <a href=""
-                   tal:attributes="href template_id"
+                   tal:attributes="href string:$portal_url/${template/getId}"
                    i18n:translate="label_users">Users</a>
               </li>
               <li>
@@ -83,7 +85,7 @@
         <form action=""
               name="users_add"
               method="post"
-              tal:attributes="action template_id">
+              tal:attributes="action string:$portal_url/${template/getId}">
 
           <input class="standalone add"
                      type="submit"
@@ -102,7 +104,8 @@
               tal:define="findAll python:'form.button.FindAll' in request.keys();
                           search_view here/@@pas_search;
                           portal_users python:(searchstring or findAll) and search_view.searchUsers(**(findAll and dict(sort_by='userid') or dict(sort_by='userid', fullname=searchstring))) or [];
-                          batch python:Batch(portal_users, b_size, int(b_start), orphan=1)">
+                          batch python:Batch(portal_users, b_size, int(b_start), orphan=1);
+                          many_users context/portal_properties/site_properties/many_users">
           <input type="hidden" name="form.submitted" value="1" />
 
           <table class="listing" summary="User Listing">
@@ -128,7 +131,7 @@
                            name="form.button.FindAll"
                            value="Show all"
                            i18n:attributes="value label_showall;"
-                           tal:condition="not:site_properties/many_users"
+                           tal:condition="not:many_users"
                            />
                     </th>
                 </tr>
@@ -151,14 +154,14 @@
                           userid this_user/userid;
                           mq python:modules['ZTUtils'].make_query;
                           userquery python:mq(userid=userid);
-                          user python:mtool.getMemberById(userid)"
+                          user python:context.portal_membership.getMemberById(userid)"
               tal:condition="python:user is not None"
               tal:attributes="class python:test(oddrow,'odd','even')">
 
                     <td>
               <a href="prefs_user_details"
                  tal:attributes="href string:$portal_url/prefs_user_details?${userquery}">
-            <tal:block replace="structure portal/user.png"/>&nbsp;<span tal:replace="userid">username</span>
+            <tal:block replace="structure context/portal_url/user.png"/>&nbsp;<span tal:replace="userid">username</span>
             (<span tal:replace="python:user.getProperty('fullname')">Full Name</span>)
               </a>
               <input type="hidden" name="users.id:records" tal:attributes="value userid" />
@@ -216,13 +219,13 @@
                         i18n:translate="text_nomatches"
                         style="text-align:center;">No matches</td>
                     <tal:block tal:condition="not:searchstring">
-                      <td tal:condition="site_properties/many_users"
+                      <td tal:condition="many_users"
                           class="discreet"
                           i18n:translate="text_no_user_searchstring"
                           style="text-align:center; font-size: 100%;">
                           Enter a username to search for
                       </td>
-                      <td tal:condition="not:site_properties/many_users"
+                      <td tal:condition="not:many_users"
                           class="discreet"
                           i18n:translate="text_no_user_searchstring_largesite"
                           style="text-align:center; font-size: 100%;">
@@ -251,7 +254,7 @@
       </div>
 
       <div id="region-content" class="documentEditable"
-           tal:condition="python:not checkPermission('Manage users', here)">
+           tal:condition="python:not checkPermission('Manage users', context)">
         <tal:block replace="here/raiseUnauthorized" />
       </div>
     </div>

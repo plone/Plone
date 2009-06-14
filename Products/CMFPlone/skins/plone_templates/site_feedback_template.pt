@@ -4,8 +4,7 @@
      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
      i18n:domain="plone" 
      tal:omit-tag=""
-     tal:define="utool nocall:here/portal_url;
-                 portal utool/getPortalObject;
+     tal:define="portal context/@@plone_portal_state/portal;
                  charset portal/email_charset|string:utf-8;
                  dummy python:request.RESPONSE.setHeader('Content-Type', 'text/plain;;charset=%s' % charset);"
 ><div i18n:translate="site_feedback_mailtemplate_body" tal:omit-tag="">
