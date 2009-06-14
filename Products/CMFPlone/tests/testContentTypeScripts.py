@@ -13,7 +13,6 @@ from OFS.CopySupport import CopyError
 #    NOTE
 #    document, link, and newsitem edit's are now validated
 #    so we must pass in fields that the validators need
-#    such as title on a favorite's link_edit
 
 
 class TestContentTypeScripts(PloneTestCase.PloneTestCase):
@@ -69,28 +68,6 @@ class TestContentTypeScripts(PloneTestCase.PloneTestCase):
         self.assertEqual(self.folder.event.Title(), 'Foo')
         self.assertEqual(self.folder.event.start().ISO(), '2003-09-18 00:00:00')
         self.assertEqual(self.folder.event.end().ISO(), '2003-09-19 00:00:00')
-
-    def testFavoriteCreate(self):
-        # Ugh, addFavorite traverses to remote_url, so make sure it can.
-        self.setRoles(['Manager'])
-        self.portal.invokeFactory('Folder', id='bar')
-        self.portal.bar.invokeFactory('Document', id='baz.html')
-        self.setRoles(['Member'])
-        # back to normal
-        self.folder.invokeFactory('Favorite', id='favorite',
-                                  remote_url='bar/baz.html',
-                                  title='Foo')
-        self.assertEqual(self.folder.favorite.getRemoteUrl(),
-                         '%s/bar/baz.html' % self.portal.portal_url())
-        self.assertEqual(self.folder.favorite.Title(), 'Foo')
-
-    def testFavoriteEdit(self):
-        # Note: link_edit does not traverse to remote_url
-        self.folder.invokeFactory('Favorite', id='favorite')
-        self.folder.favorite.link_edit('bar/baz.html', title='Foo')
-        self.assertEqual(self.folder.favorite.getRemoteUrl(),
-                         '%s/bar/baz.html' % self.portal.portal_url())
-        self.assertEqual(self.folder.favorite.Title(), 'Foo')
 
     def testFileCreate(self):
         self.folder.invokeFactory('File', id='file', file=dummy.File())
@@ -152,25 +129,6 @@ class TestContentTypeScripts(PloneTestCase.PloneTestCase):
         self.assertEqual(self.folder.image.Title(), 'Foo')
         self.folder.image.image_edit(title='')
         self.assertEqual(self.folder.image.Title(), '')
-
-    def testAddToFavorites(self):
-        # Ugh, addFavorite traverses to remote_url, so make sure it can.
-        self.setRoles(['Manager'])
-        self.portal.invokeFactory('Folder', id='bar')
-        self.portal.bar.invokeFactory('Document', id='baz.html')
-        self.setRoles(['Member'])
-        # back to normal
-        self.failIf('Favorites' in self.folder.objectIds())
-        self.portal.bar['baz.html'].addtoFavorites()
-        self.failUnless('Favorites' in self.folder.objectIds())
-        favorite = self.folder.Favorites.objectValues()[0]
-        self.assertEqual(favorite.getRemoteUrl(),
-                         '%s/bar/baz.html' % self.portal.portal_url())
-        # Make sure the script created AT types
-        self.assertEqual(self.folder.Favorites.meta_type, 'ATFolder')
-        self.assertEqual(favorite.meta_type, 'ATFavorite')
-        # Make sure that the script gave a Title to the folder
-        self.assertEqual(self.folder.Favorites.Title(), 'Favorites')
 
     def test_listMetaTypes(self):
         self.folder.invokeFactory('Document', id='doc')

@@ -3,7 +3,7 @@
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
-      metal:use-macro="here/prefs_main_template/macros/master"
+      metal:use-macro="context/prefs_main_template/macros/master"
       i18n:domain="plone">
 
 <metal:block fill-slot="top_slot"
@@ -47,7 +47,7 @@
     <div id="region-content" class="documentContent">
       <a name="documentContent"></a>
       
-      <div metal:use-macro="here/global_statusmessage/macros/portal_message">
+      <div metal:use-macro="context/global_statusmessage/macros/portal_message">
         Portal status message
       </div>
 
@@ -82,7 +82,7 @@
             <input type="hidden" name="userid" value="username"
                    tal:attributes="value member/getId" />
 
-            <metal:login use-macro="here/personalize_form/macros/user_form">
+            <metal:login use-macro="context/personalize_form/macros/user_form">
             Render the personalize_form core template
             </metal:login>
 

@@ -50,7 +50,7 @@
 
                 <a name="documentContent"></a>
 
-                <div metal:use-macro="here/global_statusmessage/macros/portal_message">
+                <div metal:use-macro="context/global_statusmessage/macros/portal_message">
                     Portal status message
                 </div>
 
@@ -77,7 +77,7 @@
                       tal:attributes="action template/getId">
 
                     <metal:userdetails define-macro="user_form">
-                    <fieldset tal:define="macros here/additional_memberdata/macros | nothing;
+                    <fieldset tal:define="macros context/additional_memberdata/macros | nothing;
                                           top_macro macros/top | nothing;
                                           showTop python:top_macro;
                                           bottom_macro macros/bottom | nothing;
@@ -299,25 +299,6 @@
                         </div>
 
                         <div class="field"
-                             tal:define="listed python:request.get('listed', member.getProperty('listed',''));">
-
-                            <input type="checkbox"
-                                   class="noborder"
-                                   name="listed"
-                                   id="cb_listed"
-                                   tal:attributes="checked python:test(listed, 'checked', None);
-                                                   disabled python:member.canWriteProperty('listed') and default or 'disabled'"
-                                   />
-
-                            <label for="cb_listed" i18n:translate="label_listed_status">Listed in searches</label>
-
-                            <div class="formHelp" i18n:translate="help_listed_search">
-                            Determines if your user name is listed in user searches done on this site.
-                            </div>
-
-                        </div>
-
-                        <div class="field"
                                  tal:condition="site_properties/visible_ids|nothing"
                                  tal:define="visible_ids python:request.get('visible_ids', member.getProperty('visible_ids',''));">
 
@@ -341,9 +322,9 @@
                         </div>
 
                         <div class="field"
-                                tal:condition="here/portal_skins/allow_any"
-                                tal:define="skinvar python:request.get(here.portal_skins.getRequestVarname(), '');
-                                skindefault here/portal_skins/getDefaultSkin;
+                                tal:condition="context/portal_skins/allow_any"
+                                tal:define="skinvar python:request.get(context.portal_skins.getRequestVarname(), '');
+                                skindefault context/portal_skins/getDefaultSkin;
                                 skincurrent python:test(skinvar, skinvar, skindefault);">
 
                             <label for="portal_skin" i18n:translate="label_look">Look</label>

@@ -3,7 +3,7 @@
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
-      metal:use-macro="here/prefs_main_template/macros/master"
+      metal:use-macro="context/prefs_main_template/macros/master"
       i18n:domain="plone">
 
 <metal:block fill-slot="top_slot"
@@ -13,11 +13,11 @@
 
 <div metal:fill-slot="prefs_configlet_content"
      tal:define="errors python:request.get('errors', {});
-                search_view here/@@pas_search;
+                search_view context/@@pas_search;
                 Batch python:modules['Products.CMFPlone'].Batch;
                 b_start request/b_start | python:0;
                 b_size python:20;
-                portal_roles here/getGlobalPortalRoles;
+                portal_roles context/getGlobalPortalRoles;
                 searchstring request/searchstring | nothing;
                 gtool context/portal_groups;
                 site_properties context/portal_properties/site_properties;
@@ -58,7 +58,7 @@
         <div class="documentContent">
             <a name="documentContent"></a>
 
-            <div metal:use-macro="here/global_statusmessage/macros/portal_message">
+            <div metal:use-macro="context/global_statusmessage/macros/portal_message">
                 Portal status message
             </div>
 
@@ -247,7 +247,7 @@
 
                     <tal:block tal:condition="python:(search_results)">
 
-                        <div metal:use-macro="here/batch_macros/macros/navigation" />
+                        <div metal:use-macro="context/batch_macros/macros/navigation" />
 
                         <input class="context"
                                type="submit"
@@ -263,7 +263,7 @@
 
     <div id="region-content" class="documentEditable"
          tal:condition="python:not checkPermission('Manage Groups', context)">
-        <tal:block replace="here/raiseUnauthorized" />
+        <tal:block replace="context/raiseUnauthorized" />
     </div>
 
 </div>

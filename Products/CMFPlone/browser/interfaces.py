@@ -196,64 +196,13 @@ class ISitemapView(Interface):
 class IPlone(Interface):
     """ """
 
-    def globalize():
-        """
-
-    portal_title = Attribute("The title of the portal")
-
-    object_title = Attribute("The title of the current object (context)")
-
-    actions = Attribute("The result of listFilteredActionsFor(context) in the "
-                        "portal_actions tool")
-
-    portal_tabs = Attribute("The actions for the portal tabs")
-
-    wf_state = Attribute("The review_state of the current object")
-
-    portal_properties = Attribute("The portal_properties tool")
-
-    site_properties = Attribute("The site_properties tool")
-
-    here_url = Attribute("The url of the current object")
-
-    sl = Attribute("True if the left slot should be shown")
-
-    sr = Attribute("True if the right slot should be shown")
-
-    language = Attribute("The language of the current request or context.")
-
-    isLocked = Attribute("A boolean indicating that the object is webdav "
-                         "locked")
-
-    visible_ids = Attribute("A boolean indicating whether to show object ids "
-                            "to the current user")
-
-    current_page_url = Attribute("The full url with query string")
-
-    isContextDefaultPage = Attribute("Boolean indicating that the context is "
-                                     "the default page of its parent folder.")
-
-    isStructuralFolder = Attribute("Boolean indicating that the context is a "
-                                   "'Structural Folder'.")
-    """
-
     def getCurrentUrl():
         """ Returns the actual url plus the query string. """
-
-    def keyFilteredActions(actions=None):
-        """ Returns a mapping of action categories to action ids to action
-            information: mapping[cat][id] == actioninfo
-
-            Optionally takes an action list, if ommitted it will be calculated
-        """
 
     def visibleIdsEnabled():
         """Determines whether to show object ids based on portal and user
            settings.
         """
-
-    def isRightToLeft(domain='plone'):
-        """Is the currently selected language a right to left language"""
 
     def uniqueItemIndex(pos=0):
         """Return an index iterator."""
@@ -351,3 +300,7 @@ class IPlone(Interface):
     def have_portlets(manager_name, view=None):
         """Determine whether a column should be shown."""
 
+    def mark_view(view):
+        """ Adds a marker interface to the view if it is "the" view for the context
+            May only be called from a template.
+        """

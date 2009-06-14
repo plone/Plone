@@ -3,7 +3,7 @@
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
-      metal:use-macro="here/main_template/macros/master"
+      metal:use-macro="context/main_template/macros/master"
       i18n:domain="plone">
 
   <metal:block fill-slot="top_slot">
@@ -36,15 +36,15 @@
     <div metal:fill-slot="main"
          tal:define="errors options/state/getErrors;
                      review_state context/@@plone_context_state/workflow_state;
-                     paths python:request.get('paths', ['/'.join(here.getPhysicalPath())]);
-                     batch python:here.getObjectsFromPathList(paths,batch=True);
+                     paths python:request.get('paths', ['/'.join(context.getPhysicalPath())]);
+                     batch python:context.getObjectsFromPathList(paths,batch=True);
                      folders_in_publishing python:[o.getId for o in batch if o.isPrincipiaFolderish];
-                     came_from python:request.get('HTTP_REFERER', here.absolute_url()).split('?')[0];
+                     came_from python:request.get('HTTP_REFERER', context.absolute_url()).split('?')[0];
                      dummy python:request.set('orig_template', came_from);
                      ">
 
       <metal:block tal:condition="python: paths and not batch"
-                   tal:replace="python:here.redirectToReferrer('The item(s) you selected are no longer available.')"/>
+                   tal:replace="python:context.redirectToReferrer('The item(s) you selected are no longer available.')"/>
 
       <h1 class="documentFirstHeading"
           i18n:translate="heading_publishing_process">Publishing process</h1>
@@ -70,7 +70,7 @@
             <label for="" i18n:translate="label_affected_content">Affected content</label>
             <div tal:define="dummy python:request.set('ids_checked', 1);">
               <table summary="Affected content" i18n:attributes="summary summary_affected_content;"
-                     metal:use-macro="here/old_folder_contents/macros/folder_listing">
+                     metal:use-macro="context/old_folder_contents/macros/folder_listing">
               </table>
             </div>
           </div>
@@ -107,11 +107,11 @@
 
             <div tal:define="inputname  string:effective_date;
                              formname   string:edit_form;
-                             effective python:test(request.get('paths'), None, here.EffectiveDate()) ;
+                             effective python:test(request.get('paths'), None, context.EffectiveDate()) ;
                              inputvalue python:test(effective and effective!='None', effective, request.get('effective_date', ''));"
                  tal:attributes="class python:test(error, 'field error', 'field')">
 
-              <div metal:use-macro="here/calendar_macros/macros/calendarDatePickerBox">
+              <div metal:use-macro="context/calendar_macros/macros/calendarDatePickerBox">
                 calendar pop-up
               </div>
 
@@ -133,11 +133,11 @@
             <div class="field">
               <div tal:define="inputname  string:expiration_date;
                                formname   string:edit_form;
-                               expiration here/ExpirationDate;
+                               expiration context/ExpirationDate;
                                inputvalue python:test(expiration and expiration!='None', expiration, request.get('expiration_date', ''));"
                    tal:attributes="class python:test(error, 'field error', 'field')">
 
-                <div metal:use-macro="here/calendar_macros/macros/calendarDatePickerBox">
+                <div metal:use-macro="context/calendar_macros/macros/calendarDatePickerBox">
                   calendar pop-up
                 </div>
               </div>

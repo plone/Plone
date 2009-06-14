@@ -15,7 +15,6 @@
   <element value="Discussion Item"/>
   <element value="Document"/>
   <element value="Event"/>
-  <element value="Favorite"/>
   <element value="File"/>
   <element value="Folder"/>
   <element value="Image"/>

@@ -30,6 +30,12 @@ class TestPloneView(PloneTestCase.PloneTestCase):
         self.folder.invokeFactory('Document', 'test',
                                   title='Test default page')
         self.view = Plone(self.portal, self.app.REQUEST)
+        
+    def _invalidateRequestMemoizations(self):
+        try:
+            del self.app.REQUEST.__annotations__
+        except AttributeError:
+            pass
 
     def testToLocalizedTime(self):
         localdate = self.view.toLocalizedTime
@@ -54,7 +60,7 @@ class TestPloneView(PloneTestCase.PloneTestCase):
         self.failUnless(self.folder.canSelectDefaultPage())
         self.folder.saveDefaultPage('test')
         # re-create the view, because the old value is cached
-        del self.app.REQUEST.__annotations__
+        self._invalidateRequestMemoizations()
         view = Plone(self.folder.test, self.app.REQUEST)
         self.failUnless(view.isDefaultPageInFolder())
 
@@ -70,7 +76,7 @@ class TestPloneView(PloneTestCase.PloneTestCase):
         view = Plone(self.folder.test, self.app.REQUEST)
         self.assertEqual(view.getParentObject(), self.folder)
         # Make sure this looks only at containment
-        del self.app.REQUEST.__annotations__
+        self._invalidateRequestMemoizations()
         view = Plone(self.folder.test.__of__(self.portal), self.app.REQUEST)
         self.assertEqual(view.getParentObject(), self.folder)
 
@@ -79,18 +85,18 @@ class TestPloneView(PloneTestCase.PloneTestCase):
         view = Plone(self.folder, self.app.REQUEST)
         self.failUnless(view.isFolderOrFolderDefaultPage())
         # But not a document
-        del self.app.REQUEST.__annotations__
+        self._invalidateRequestMemoizations()
         view = Plone(self.folder.test, self.app.REQUEST)
         self.failIf(view.isFolderOrFolderDefaultPage())
         # Unless we make it the default view
         self.folder.saveDefaultPage('test')
-        del self.app.REQUEST.__annotations__
+        self._invalidateRequestMemoizations()
         view = Plone(self.folder.test, self.app.REQUEST)
         self.failUnless(view.isFolderOrFolderDefaultPage())
         # And if we have a non-structural folder it should not be true
         f = dummy.NonStructuralFolder('ns_folder')
         self.folder._setObject('ns_folder', f)
-        del self.app.REQUEST.__annotations__
+        self._invalidateRequestMemoizations()
         view = Plone(self.folder.ns_folder, self.app.REQUEST)
         self.failIf(view.isFolderOrFolderDefaultPage())
 
@@ -102,12 +108,12 @@ class TestPloneView(PloneTestCase.PloneTestCase):
         self.setRoles(['Manager'])
         self.portal.invokeFactory('Document', 'portal_test',
                                   title='Test default page')
-        del self.app.REQUEST.__annotations__
+        self._invalidateRequestMemoizations()
         view = Plone(self.portal.portal_test, self.app.REQUEST)
         self.failIf(view.isPortalOrPortalDefaultPage())
         # Unless we make it the default view
         self.portal.saveDefaultPage('portal_test')
-        del self.app.REQUEST.__annotations__
+        self._invalidateRequestMemoizations()
         view = Plone(self.portal.portal_test, self.app.REQUEST)
         self.failUnless(view.isPortalOrPortalDefaultPage())
 
@@ -118,19 +124,19 @@ class TestPloneView(PloneTestCase.PloneTestCase):
         
         # If context is not a folder, then the parent is returned
         # A bit crude ... we need to make sure our memos don't stick in the tests
-        del self.app.REQUEST.__annotations__
+        self._invalidateRequestMemoizations()
         view = Plone(self.folder.test, self.app.REQUEST)
         self.assertEqual(view.getCurrentFolder(), self.folder)
         
         # The real container is returned regardless of context
-        del self.app.REQUEST.__annotations__
+        self._invalidateRequestMemoizations()
         view = Plone(self.folder.test.__of__(self.portal), self.app.REQUEST)
         self.assertEqual(view.getCurrentFolder(), self.folder)
         
         # A non-structural folder does not count as a folder`
         f = dummy.NonStructuralFolder('ns_folder')
         self.folder._setObject('ns_folder', f)
-        del self.app.REQUEST.__annotations__
+        self._invalidateRequestMemoizations()
         view = Plone(self.folder.ns_folder, self.app.REQUEST)
         self.assertEqual(view.getCurrentFolder(), self.folder)
         
@@ -139,12 +145,12 @@ class TestPloneView(PloneTestCase.PloneTestCase):
         self.setRoles(['Manager'])
         self.folder.invokeFactory('Topic', 'topic')
         
-        del self.app.REQUEST.__annotations__
+        self._invalidateRequestMemoizations()
         view = Plone(self.folder.topic, self.app.REQUEST)
         self.assertEqual(view.getCurrentFolder(), self.folder.topic)
         self.folder.saveDefaultPage('topic')
         
-        del self.app.REQUEST.__annotations__
+        self._invalidateRequestMemoizations()
         view = Plone(self.folder.topic, self.app.REQUEST)
         self.assertEqual(view.getCurrentFolder(), self.folder)
 
@@ -166,7 +172,7 @@ class TestPloneView(PloneTestCase.PloneTestCase):
         self.assertEqual(view.cropText(text, 5), 'Koko\xc5\x99...')
 
     def testPrepareObjectTabsOnPortalRoot(self):
-        del self.app.REQUEST.__annotations__
+        self._invalidateRequestMemoizations()
         self.loginAsPortalOwner()
         self.app.REQUEST['ACTUAL_URL'] = self.portal.absolute_url()
         view = self.portal.restrictedTraverse('@@plone')
@@ -175,7 +181,7 @@ class TestPloneView(PloneTestCase.PloneTestCase):
         self.assertEquals(['view'], [t['id'] for t in tabs if t['selected']])
         
     def testPrepareObjectTabsNonFolder(self):
-        del self.app.REQUEST.__annotations__
+        self._invalidateRequestMemoizations()
         self.loginAsPortalOwner()
         self.app.REQUEST['ACTUAL_URL'] = self.folder.test.absolute_url()
         view = self.folder.test.restrictedTraverse('@@plone')
@@ -184,7 +190,7 @@ class TestPloneView(PloneTestCase.PloneTestCase):
         self.assertEquals(['view'], [t['id'] for t in tabs if t['selected']])
         
     def testPrepareObjectTabsNonStructuralFolder(self):
-        del self.app.REQUEST.__annotations__
+        self._invalidateRequestMemoizations()
         self.loginAsPortalOwner()
         self.app.REQUEST['ACTUAL_URL'] = self.folder.absolute_url()
         directlyProvides(self.folder, INonStructuralFolder)
@@ -195,7 +201,7 @@ class TestPloneView(PloneTestCase.PloneTestCase):
         self.assertEquals(['view'], [t['id'] for t in tabs if t['selected']])
         
     def testPrepareObjectTabsDefaultView(self):
-        del self.app.REQUEST.__annotations__
+        self._invalidateRequestMemoizations()
         self.loginAsPortalOwner()
         self.app.REQUEST['ACTUAL_URL'] = self.folder.test.absolute_url() + '/edit'
         view = self.folder.test.restrictedTraverse('@@plone')

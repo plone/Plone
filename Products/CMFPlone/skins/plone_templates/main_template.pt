@@ -1,7 +1,14 @@
 <metal:page define-macro="master">
 <metal:block define-slot="top_slot" />
 
+<tal:doctype tal:replace="structure string:&lt;!DOCTYPE html PUBLIC
+  &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot;
+  &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;" />
+
 <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       xml:lang="en"
       lang="en"
       tal:define="portal_state context/@@plone_portal_state;
@@ -9,6 +16,7 @@
                   plone_view context/@@plone;
                   lang portal_state/language;
                   view nocall:view | nocall: plone_view;
+                  dummy python: plone_view.mark_view(view);
                   portal_url portal_state/portal_url;
                   checkPermission nocall: context/portal_membership/checkPermission;
                   site_properties context/portal_properties/site_properties;"
@@ -16,7 +24,7 @@
                       xml:lang lang">
 
   <tal:cache tal:define="charset site_properties/default_charset|string:utf-8">
-    <metal:cache use-macro="here/global_cache_settings/macros/cacheheaders">
+    <metal:cache use-macro="context/global_cache_settings/macros/cacheheaders">
       Get the global cache headers located in global_cache_settings.
     </metal:cache>
   </tal:cache>
@@ -28,7 +36,7 @@
           tal:attributes="content string:text/html;;charset=${charset}" />
 
     <metal:baseslot define-slot="base">
-      <base tal:attributes="href here/renderBase" /><!--[if lt IE 7]></base><![endif]-->
+      <base tal:attributes="href context/renderBase" /><!--[if lt IE 7]></base><![endif]-->
     </metal:baseslot>
 
     <meta name="generator" content="Plone - http://plone.org" />
@@ -76,7 +84,7 @@
   <body tal:define="isRTL portal_state/is_rtl;
                     sl python:plone_view.have_portlets('plone.leftcolumn');
                     sr python:plone_view.have_portlets('plone.rightcolumn');"
-        tal:attributes="class string:${here/getSectionFromURL} template-${template/id};
+        tal:attributes="class string:${context/getSectionFromURL} template-${template/id};
                         dir python:test(isRTL, 'rtl', 'ltr')">
     <div id="visual-portal-wrapper">
 
@@ -122,7 +130,7 @@
                     
                     <a name="documentContent"></a>
 
-                    <div metal:use-macro="here/global_statusmessage/macros/portal_message">
+                    <div metal:use-macro="context/global_statusmessage/macros/portal_message">
                       Portal status message
                     </div>
                     

@@ -19,9 +19,6 @@
   <object name="print" meta_type="CMF Action" i18n:domain="plone">
    <property name="title" i18n:translate="">Print this</property>
   </object>
-  <object name="addtofavorites" meta_type="CMF Action" i18n:domain="plone">
-   <property name="title" i18n:translate="">Add to favorites</property>
-  </object>
   <object name="full_screen" meta_type="CMF Action" i18n:domain="plone">
    <property name="visible">False</property>
   </object>

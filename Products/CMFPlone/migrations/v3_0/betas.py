@@ -192,7 +192,7 @@ def addContributorToCreationPermissions(context):
         portal.acl_users.portal_role_manager.addRole('Contributor')
     
     for p in ['Add portal content', 'Add portal folders', 'ATContentTypes: Add Document',
-                'ATContentTypes: Add Event', 'ATContentTypes: Add Favorite',
+                'ATContentTypes: Add Event',
                 'ATContentTypes: Add File', 'ATContentTypes: Add Folder', 
                 'ATContentTypes: Add Image', 'ATContentTypes: Add Large Plone Folder',
                 'ATContentTypes: Add Link', 'ATContentTypes: Add News Item', ]:
@@ -226,7 +226,7 @@ def updateEditActionConditionForLocking(context):
     tab if an item is locked
     """
     portal_types = getToolByName(context, 'portal_types', None)
-    lockable_types = ['Document', 'Event', 'Favorite', 'File', 'Folder',
+    lockable_types = ['Document', 'Event', 'File', 'Folder',
                       'Image', 'Large Plone Folder', 'Link',
                       'News Item', 'Topic']
     if portal_types is not None:

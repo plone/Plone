@@ -3,7 +3,7 @@
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
-      metal:use-macro="here/main_template/macros/master"
+      metal:use-macro="context/main_template/macros/master"
       i18n:domain="plone">
 
 <body>
@@ -12,12 +12,12 @@
     <tal:main-macro metal:define-macro="main"
                     tal:define="kssClassesView context/@@kss_field_decorator_view;
                                 getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
-                                size here/size">
+                                size context/size">
 
         <div tal:replace="structure provider:plone.abovecontenttitle" />
 
         <h1 class="documentFirstHeading"> 
-            <metal:field use-macro="python:here.widget('title', mode='view')">
+            <metal:field use-macro="python:context.widget('title', mode='view')">
             Title
             </metal:field>
         </h1>
@@ -25,7 +25,7 @@
         <div tal:replace="structure provider:plone.belowcontenttitle" />
 
         <p class="documentDescription">
-            <metal:field use-macro="python:here.widget('description', mode='view')">
+            <metal:field use-macro="python:context.widget('description', mode='view')">
             Description
             </metal:field>
         </p>
@@ -35,10 +35,10 @@
         <a href=""
            class="discreet"
            tal:attributes="href string:${context/@@plone_context_state/object_url}/image_view_fullscreen">
-            <tal:block condition="size" replace="structure python: here.tag(scale='preview')" />
+            <tal:block condition="size" replace="structure python: context.tag(scale='preview')" />
             <br />
             <span class="visualNoPrint">
-                <img src="" alt="" tal:replace="structure here/search_icon.png" />
+                <img src="" alt="" tal:replace="structure context/search_icon.png" />
                 <span i18n:translate="label_click_to_view_full_image">Click to view full-size image&hellip;</span>
             </span>
         </a>
@@ -47,7 +47,7 @@
         &mdash;
             <span i18n:translate="label_size">Size</span>:
 
-            <span tal:define="size python:here.getObjSize(here)"
+            <span tal:define="size python:context.getObjSize(here)"
                   tal:content="size">
                 File size
             </span>
@@ -58,7 +58,7 @@
             </span>
         </span>
 
-        <div metal:use-macro="here/document_relateditems/macros/relatedItems">
+        <div metal:use-macro="context/document_relateditems/macros/relatedItems">
             show related items if they exist
         </div>
         

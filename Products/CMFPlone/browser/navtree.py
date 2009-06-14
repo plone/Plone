@@ -6,23 +6,13 @@
 from zope.interface import implements
 from zope.component import getMultiAdapter, queryUtility
 
-# Nasty hack to circumvent 'plone' modulealias
-import sys
-import plone
-del sys.modules['Products.CMFPlone.browser.plone']
-
 from plone.app.layout.navigation.interfaces import INavigationQueryBuilder
-from plone.app.layout.navigation.interfaces import INavigationRoot
 from plone.app.layout.navigation.interfaces import INavtreeStrategy
 
-from plone.app.layout.navigation.navtree import buildFolderTree
 from plone.app.layout.navigation.navtree import NavtreeStrategyBase
 from plone.app.layout.navigation.root import getNavigationRoot
 
 from plone.i18n.normalizer.interfaces import IIDNormalizer
-
-import ploneview
-sys.modules['Products.CMFPlone.browser.plone'] = ploneview
 
 from Acquisition import aq_inner
 from Products.CMFCore.utils import getToolByName

@@ -2,7 +2,7 @@
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-      metal:use-macro="here/main_template/macros/master"
+      metal:use-macro="context/main_template/macros/master"
       i18n:domain="plone">
 
 <metal:block fill-slot="top_slot"
@@ -29,13 +29,13 @@
         <input type="hidden" name="form.submitted" value="1"/>
     
         <tal:items define="availableTypes site_properties/default_page_types | python:[];
-                           items python:[item for item in here.getFolderContents() if
+                           items python:[item for item in context.getFolderContents() if
                                             not item.is_folderish or item.portal_type in availableTypes];
-                           cur_page here/getDefaultPage|nothing">
+                           cur_page context/getDefaultPage|nothing">
         <tal:hasItems condition="items">
             <dl>
                 <tal:item repeat="item items">
-                    <dt tal:define="item_typeinfo python: here.portal_types.getTypeInfo(item.portal_type);
+                    <dt tal:define="item_typeinfo python: context.portal_types.getTypeInfo(item.portal_type);
                                     item_icon string:${context/portal_url}/${item_typeinfo/getIcon};">
                         <input type="radio" name="objectId" value="" 
                             tal:attributes="value item/getId;

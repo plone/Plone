@@ -12,12 +12,13 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone import utils
 from Products.CMFPlone.browser.interfaces import IPlone
 
-from zope.interface import implements
+from zope.interface import implements, alsoProvides
 from zope.component import getMultiAdapter, queryMultiAdapter, getUtility
 
 from plone.memoize.view import memoize
 from plone.portlets.interfaces import IPortletManager, IPortletManagerRenderer
 
+from plone.app.layout.globals.interfaces import IViewView
 from plone.app.layout.icons.interfaces import IContentIcon
 
 from plone.app.content.browser.folderfactories import _allowedTypes
@@ -26,6 +27,17 @@ _marker = []
 
 class Plone(BrowserView):
     implements(IPlone)
+
+    def mark_view(self, view):
+        """ Adds a marker interface to the view if it is "the" view for the context
+            May only be called from a template.
+        """
+
+        context_state = getMultiAdapter(
+            (self.context, self.request), name=u'plone_context_state')
+        
+        if view and context_state.is_view_template() and not IViewView.providedBy(view):
+            alsoProvides(view, IViewView)
 
     # XXX: This is lame
     def hide_columns(self, column_left, column_right):
@@ -82,16 +94,14 @@ class Plone(BrowserView):
         site_properties = getToolByName(context, "portal_properties").site_properties
 
         context_state = getMultiAdapter((context, self.request), name=u'plone_context_state')
-        actions = context_state.actions()
+        actions = context_state.actions
 
         action_list = []
         if context_state.is_structural_folder():
-            action_list = actions['folder'] + actions['object']
-        else:
-            action_list = actions['object']
+            action_list = actions('folder')
+        action_list.extend(actions('object'))
 
         tabs = []
-        
         found_selected = False
         fallback_action = None
 
@@ -102,7 +112,6 @@ class Plone(BrowserView):
             request_url_path = request_url_path[1:]
 
         for action in action_list:
-            
             item = {'title'    : action['title'],
                     'id'       : action['id'],
                     'url'      : '',
@@ -153,12 +162,11 @@ class Plone(BrowserView):
         """Determine if the editable border should be shown
         """
         request = self.request
-        
-        if request.has_key('disable_border'): #short circuit
+        if 'disable_border' in request:
             return False
-        if request.has_key('enable_border'): #short circuit
+        if 'enable_border' in request:
             return True
-        
+
         context = aq_inner(self.context)
         
         portal_membership = getToolByName(context, 'portal_membership')
@@ -173,15 +181,15 @@ class Plone(BrowserView):
             return False
 
         context_state = getMultiAdapter((context, request), name="plone_context_state")
-        actions = context_state.actions()
-            
-        if actions.get('workflow', ()):
+        actions = context_state.actions
+
+        if actions('workflow', max=1):
             return True
 
-        if actions.get('batch', []):
+        if actions('batch', max=1):
             return True
-            
-        for action in actions.get('object', []):
+
+        for action in actions('object'):
             if action.get('id', '') != 'view':
                 return True
 
@@ -191,18 +199,16 @@ class Plone(BrowserView):
                 template_id=request['PUBLISHED'].getId()
 
         idActions = {}
-        for obj in actions.get('object', ()) + actions.get('folder', ()):
+        for obj in actions('object') + actions('folder'):
             idActions[obj.get('id', '')] = 1
 
-        if idActions.has_key('edit'):
-            if (idActions.has_key(template_id) or \
+        if 'edit' in idActions:
+            if (template_id in idActions or \
                 template_id in ['synPropertiesForm', 'folder_contents', 'folder_listing']) :
                 return True
 
         # Check to see if the user is able to add content
-        exclude = context.getNotAddableTypes()
-        allowedTypes = [fti for fti in _allowedTypes(request, context)
-                        if fti.getId() not in exclude]
+        allowedTypes = [fti for fti in _allowedTypes(request, context)]
         if allowedTypes:
             return True
 

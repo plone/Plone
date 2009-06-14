@@ -3,7 +3,7 @@
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
-      metal:use-macro="here/prefs_main_template/macros/master"
+      metal:use-macro="context/prefs_main_template/macros/master"
       i18n:domain="plone">
 
 <metal:block fill-slot="top_slot"
@@ -49,7 +49,7 @@
     <div id="region-content" class="documentContent">
       <a name="documentContent"></a>
 
-      <div metal:use-macro="here/global_statusmessage/macros/portal_message">
+      <div metal:use-macro="context/global_statusmessage/macros/portal_message">
         Portal status message
       </div>
 
@@ -71,7 +71,7 @@
         </a>
 
         <h2 i18n:translate="heading_search_groups">Search for groups</h2>
-        <div metal:use-macro="here/prefs_search_macros/macros/user_group_search">
+        <div metal:use-macro="context/prefs_search_macros/macros/user_group_search">
           <metal:block metal:fill-slot="hiddens">
             <input type="hidden" name="userid" value="userid" tal:attributes="value member/getId" />
           </metal:block>

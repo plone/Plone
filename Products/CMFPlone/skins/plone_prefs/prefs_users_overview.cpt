@@ -3,7 +3,7 @@
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
     lang="en"
-    metal:use-macro="here/prefs_main_template/macros/master"
+    metal:use-macro="context/prefs_main_template/macros/master"
     i18n:domain="plone">
 
 <metal:block metal:fill-slot="top_slot"
@@ -15,7 +15,7 @@
     tal:define="Batch python:modules['Products.CMFPlone'].Batch;
                 b_start request/b_start | python:0;
                 b_size request/b_size | python:20;
-                portal_roles here/getGlobalPortalRoles;
+                portal_roles context/getGlobalPortalRoles;
                 searchstring request/searchstring | nothing;
                 portal_url context/portal_url;
                 checkPermission nocall: context/portal_membership/checkPermission;">
@@ -48,7 +48,7 @@
             <div class="documentContent" id="content">
                 <a name="documentContent"></a>
 
-      <div metal:use-macro="here/global_statusmessage/macros/portal_message">
+      <div metal:use-macro="context/global_statusmessage/macros/portal_message">
         Portal status message
       </div>
 
@@ -102,7 +102,7 @@
               method="post"
               tal:attributes="action template/getId"
               tal:define="findAll python:'form.button.FindAll' in request.keys();
-                          search_view here/@@pas_search;
+                          search_view context/@@pas_search;
                           portal_users python:(searchstring or findAll) and search_view.searchUsers(**(findAll and dict(sort_by='userid') or dict(sort_by='userid', fullname=searchstring))) or [];
                           batch python:Batch(portal_users, b_size, int(b_start), orphan=1);
                           many_users context/portal_properties/site_properties/many_users">
@@ -173,7 +173,7 @@
                          tal:attributes="href string:mailto:${email}"
                          title="Send a mail to this user"
                          i18n:attributes="title title_send_mail_to_user;"
-                         ><tal:block replace="structure here/mail_icon.png"/></a>
+                         ><tal:block replace="structure context/mail_icon.png"/></a>
               <input style="margin:2px;"
                              type="text"
                  size="15"
@@ -235,7 +235,7 @@
                 </tr>
           </table>
 
-          <div metal:use-macro="here/batch_macros/macros/navigation" />
+          <div metal:use-macro="context/batch_macros/macros/navigation" />
 
           <input class="context"
              type="submit"
@@ -255,7 +255,7 @@
 
       <div id="region-content" class="documentEditable"
            tal:condition="python:not checkPermission('Manage users', context)">
-        <tal:block replace="here/raiseUnauthorized" />
+        <tal:block replace="context/raiseUnauthorized" />
       </div>
     </div>
 

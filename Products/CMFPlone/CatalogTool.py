@@ -176,9 +176,9 @@ def allowedRolesAndUsers(obj):
         localroles = _mergedLocalRoles(obj)
     for user, roles in localroles.items():
         for role in roles:
-            if allowed.has_key(role):
+            if role in allowed:
                 allowed['user:' + user] = 1
-    if allowed.has_key('Owner'):
+    if 'Owner' in allowed:
         del allowed['Owner']
     return list(allowed.keys())
 

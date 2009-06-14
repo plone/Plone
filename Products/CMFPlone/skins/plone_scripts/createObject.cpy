@@ -28,7 +28,7 @@ fti = types_tool.getTypeInfo(type_name)
 if not fti.queryMethodID('edit'):
     state.setStatus('success_no_edit')
 
-if context.portal_factory.getFactoryTypes().has_key(type_name):
+if type_name in context.portal_factory.getFactoryTypes():
     new_url = 'portal_factory/' + type_name + '/' + id
     if state.getStatus() != 'success_no_edit':
         new_url = new_url + '/edit'

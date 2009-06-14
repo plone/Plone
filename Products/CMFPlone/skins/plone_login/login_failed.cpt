@@ -3,7 +3,7 @@
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
-      metal:use-macro="here/main_template/macros/master"
+      metal:use-macro="context/main_template/macros/master"
       i18n:domain="plone">
 
 <head>
@@ -16,7 +16,7 @@
 <div metal:fill-slot="main">
   <div id="content"
        metal:define-macro="login_failed"
-       tal:define="auth nocall:here/acl_users/credentials_cookie_auth|here/cookie_authentication|nothing;
+       tal:define="auth nocall:context/acl_users/credentials_cookie_auth|context/cookie_authentication|nothing;
                    came_from request/came_from|request/HTTP_REFERER|nothing;
                    came_from python:test(context.portal_url.isURLInPortal(came_from), came_from, None);
                    errors options/state/getErrors;
@@ -26,7 +26,7 @@
                    login_name python:request.get('login_name', request.get(ac_name, ''));">
 
 
-    <metal:login use-macro="here/login_form/macros/login" />
+    <metal:login use-macro="context/login_form/macros/login" />
 
 
     <p i18n:translate="description_not_accept_cookies">

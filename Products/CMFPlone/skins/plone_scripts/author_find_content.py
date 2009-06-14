@@ -28,7 +28,7 @@ content = catalog.searchResults(Creator      = author,
 for item in content:
     itemType = item.portal_type
 
-    if not found.has_key(itemType):
+    if not itemType in found:
         found[itemType] = []
     if len(found[itemType]) < limit_per_type:
         found[itemType].append(item)

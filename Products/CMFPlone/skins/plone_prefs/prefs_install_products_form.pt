@@ -3,7 +3,7 @@
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
-      metal:use-macro="here/prefs_main_template/macros/master">
+      metal:use-macro="context/prefs_main_template/macros/master">
 
 <metal:block fill-slot="top_slot"
              tal:define="dummy python:request.set('disable_border',1)" />
@@ -60,7 +60,7 @@
     
                     <label for="" tal:attributes="for pid">
 
-                        <tal:block replace="structure here/product_icon.png"/>
+                        <tal:block replace="structure context/product_icon.png"/>
                      
                         <span tal:replace="product/title">
                         Product Name
@@ -84,7 +84,7 @@
                         <li tal:condition="product_file">
                             <a tal:attributes="href string:${QI/absolute_url}/prefs_install_product_readme?filereadme=${product/id}">
                                 <img src="" alt="" 
-                                     tal:replace="structure here/book_icon.png" />
+                                     tal:replace="structure context/book_icon.png" />
                                 <span i18n:translate="text_product_description">
                                     Product Description
                                 </span>
@@ -93,7 +93,7 @@
                         <li tal:condition="has_error">    
                             <a tal:attributes="href string:${QI/absolute_url}/${pid}/prefs_installed_product_overview">
                                 <img src="" alt="" 
-                                     tal:replace="structure here/error_icon.png" />
+                                     tal:replace="structure context/error_icon.png" />
                                 <span i18n:translate="text_broken_product">
                                     This Product is broken
                                 </span>
@@ -137,7 +137,7 @@
                            />
                         
                     <label for="" tal:attributes="for pid">
-                        <tal:block replace="structure here/product_icon.png"/>
+                        <tal:block replace="structure context/product_icon.png"/>
                         <span tal:replace="product/title" />
                         
                         <span tal:replace="prodver">
@@ -156,7 +156,7 @@
                         <li tal:condition="product_file">
                             <a tal:attributes="href string:${QI/absolute_url}/prefs_install_product_readme?filereadme=${product/id}" >
                                 <img alt="" src=""
-                                     tal:replace="structure here/book_icon.png" />
+                                     tal:replace="structure context/book_icon.png" />
                                 <span i18n:translate="text_product_description">Product Description</span>
                             </a>
                         </li>
@@ -164,7 +164,7 @@
                         <li>
                             <a tal:attributes="href string:${QI/absolute_url}/${product/id}/prefs_installed_product_overview">
                                 <img alt="" src=""
-                                     tal:replace="structure here/document_icon.png" />
+                                     tal:replace="structure context/document_icon.png" />
                                 <span i18n:translate="link_install_products_log">Install log</span>
                             </a>
                         </li>
@@ -173,7 +173,7 @@
                             tal:condition="upgrade_info/required">
                           <span>
                             <img alt="" src=""
-                                 tal:replace="structure here/error_icon.png" />
+                                 tal:replace="structure context/error_icon.png" />
                             <span i18n:translate="label_product_upgrade_message">
                               This product has been upgraded.
                             </span>
@@ -212,7 +212,7 @@
                         
                         <li tal:condition="python:not QI.isProductAvailable(pid)">
                             <img alt="" src=""
-                                 tal:replace="structure here/error_icon.png" />
+                                 tal:replace="structure context/error_icon.png" />
                             <span i18n:translate="text_product_unavailable">
                                 This Product has been removed from the file system.
                             </span>
@@ -248,7 +248,7 @@
                 <li tal:repeat="product broken">
 
                     <label for="" tal:attributes="for product">
-                        <tal:block replace="structure here/product_icon.png"/>
+                        <tal:block replace="structure context/product_icon.png"/>
                         <span tal:replace="product/productname">
                             Product Name
                         </span>

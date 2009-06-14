@@ -1,6 +1,6 @@
 <metal:page define-macro="master">
 
-<metal:block use-macro="here/global_defines/macros/defines" />
+<metal:block use-macro="context/global_defines/macros/defines" />
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xml:lang="en"
@@ -21,9 +21,9 @@
     <title i18n:translate="label_calendar">Calendar</title>
 
     <script type="text/javascript" language="javascript"
-            tal:content="python:here.getPopupScript(input_id=input_id)"></script>
+            tal:content="python:context.getPopupScript(input_id=input_id)"></script>
 
-    <metal:css metal:use-macro="here/renderAllTheStylesheets/macros/cssrenderer">
+    <metal:css metal:use-macro="context/renderAllTheStylesheets/macros/cssrenderer">
         <!-- Fetch stylesheets from the CSS Registry -->
     </metal:css>
 
@@ -39,7 +39,7 @@
       Choose a date
     </div>
 
-    <div metal:use-macro="here/calendar_macros/macros/calendarDatePickerBoxPopup">
+    <div metal:use-macro="context/calendar_macros/macros/calendarDatePickerBoxPopup">
       Show calendar
     </div>
 

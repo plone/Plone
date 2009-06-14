@@ -12,7 +12,7 @@ default_user = PloneTestCase.default_user
 default_password = PloneTestCase.default_password
 
 
-class TestNoGETControlPannel(PloneTestCase.FunctionalTestCase):
+class TestNoGETControlPanel(PloneTestCase.FunctionalTestCase):
 
     def afterSetUp(self):
         self.folder_path = '/'+self.folder.absolute_url(1)
@@ -31,6 +31,8 @@ class TestNoGETControlPannel(PloneTestCase.FunctionalTestCase):
         self.assertEqual(response.getStatus(), 403)
 
         data = StringIO(qstring)
+        if 'QUERY_STRING' in env:
+            del env['QUERY_STRING']
         response = self.publish(path, basic_auth, env, request_method='POST',
                                 stdin=data)
         self.assertEqual(response.getStatus(), success)
@@ -138,7 +140,7 @@ class TestPrefsUserManage(PloneTestCase.PloneTestCase):
         self.portal.prefs_user_manage(delete=['barney'])
         self.setRequestMethod('GET')
         md = memberdata._members
-        self.failIf(md.has_key('barney'))
+        self.failIf('barney' in md)
 
         # There is an _v_ variable that is killed at the end of each request
         # which stores a temporary version of the member object, this is
@@ -176,5 +178,5 @@ def test_suite():
     suite = TestSuite()
     suite.addTest(makeSuite(TestPrefsUserManage))
     suite.addTest(makeSuite(TestAccessControlPanelScripts))
-    suite.addTest(makeSuite(TestNoGETControlPannel))
+    suite.addTest(makeSuite(TestNoGETControlPanel))
     return suite

@@ -3,7 +3,7 @@
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
-      metal:use-macro="here/main_template/macros/master"
+      metal:use-macro="context/main_template/macros/master"
       i18n:domain="plone">
 <body>
 
@@ -12,13 +12,13 @@
           tal:define="kssClassesView context/@@kss_field_decorator_view;
                       getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
                       templateId template/getId;
-                      text python:here.CookedBody(stx_level=2);
+                      text python:context.CookedBody(stx_level=2);
                       len_text python:len(text.strip())">
 
         <div tal:replace="structure provider:plone.abovecontenttitle" />
 
         <h1 class="documentFirstHeading"> 
-            <metal:field use-macro="python:here.widget('title', mode='view')">
+            <metal:field use-macro="python:context.widget('title', mode='view')">
             Title
             </metal:field>
         </h1>
@@ -26,7 +26,7 @@
         <div tal:replace="structure provider:plone.belowcontenttitle" />
 
         <p class="documentDescription">
-            <metal:field use-macro="python:here.widget('description', mode='view')">
+            <metal:field use-macro="python:context.widget('description', mode='view')">
             Description
             </metal:field>
         </p>
@@ -34,15 +34,15 @@
         <div tal:replace="structure provider:plone.abovecontentbody" />
 
         <div class="newsImageContainer"
-             tal:condition="here/getImage|nothing">
+             tal:condition="context/getImage|nothing">
             <a href="#"
                tal:define="here_url context/@@plone_context_state/object_url;"
                tal:attributes="href string:$here_url/image/image_view_fullscreen"
                id="parent-fieldname-image">
-               <img tal:replace="structure python: here.tag(scale='mini', css_class='newsImage')" src="" alt="" />
+               <img tal:replace="structure python: context.tag(scale='mini', css_class='newsImage')" src="" alt="" />
             </a>
             <p class="discreet">
-              <metal:field use-macro="python:here.widget('imageCaption', mode='view')">
+              <metal:field use-macro="python:context.widget('imageCaption', mode='view')">
               Image Caption
               </metal:field>
             </p>
@@ -59,14 +59,14 @@
              id="parent-fieldname-text" class="stx"
              tal:define="kss_class python:getKssClasses('text',
                          templateId=templateId, macro='text-field-view');
-                         text text|here/getText|nothing"
+                         text text|context/getText|nothing"
              tal:condition="text"
-             tal:attributes="class python:test(here.Format() in ('text/structured',
+             tal:attributes="class python:test(context.Format() in ('text/structured',
                                                    'text/x-rst', ), 'stx' + kss_class, 'plain' + kss_class)">
             <div metal:define-slot="inside" tal:replace="structure text">The body</div>
         </div>
         
-        <div metal:use-macro="here/document_relateditems/macros/relatedItems">
+        <div metal:use-macro="context/document_relateditems/macros/relatedItems">
             Show related items if they exist
         </div>
         

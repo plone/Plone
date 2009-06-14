@@ -5260,7 +5260,7 @@ Alpha 1 - released January 29, 2006
   listed (portlets, listings, etc.). This method could easily be added to
   catalog metadata if the penalty is too large, with no need to change the
   templates.  However, doing so would loose the translatability of the
-  default string.  Something like 'here/pretty_title_or_id|empty_title'
+  default string.  Something like 'context/pretty_title_or_id|empty_title'
   won't work as '|' only triggers on an exception, so a python expression
   would be needed to maintain translatability.
   [alecm]
@@ -7561,7 +7561,7 @@ Alpha 1 - released January 29, 2006
   used from other templates. [limi]
   Example:
 
-  '<div metal:use-macro="here/folder_listing/macros/listing">
+  '<div metal:use-macro="context/folder_listing/macros/listing">
   The folder listing of the current folder
   </div>'
 
@@ -7790,7 +7790,7 @@ Alpha 1 - released January 29, 2006
 
 - Made sure there are no naked mailto: links for spambots, all mail addresses
   are now using the spamProtect script. Syntax:
-  '<a tal:replace="structure python: here.spamProtect(Person.email)" />'
+  '<a tal:replace="structure python: context.spamProtect(Person.email)" />'
   - this will return a complete a href tag with the mail address spam-
   protected. [limi]
 
@@ -7908,7 +7908,7 @@ Alpha 1 - released January 29, 2006
   portal root are created have been changed.  It is quite sensible.  We
   are removing the terminology of 'slots'.  We are moving towards the
   prefered naming, 'portlets'.  Macro paths are sensible:
-  here/portlet_foo/macros/portlet
+  context/portlet_foo/macros/portlet
   This means that all slots are now renamed portlet_$name and all macro have
   been renamed to 'portlet'.  The old slot code still exists and has
   deprecation comments in the PageTemplates.
@@ -8467,7 +8467,7 @@ Alpha 1 - released January 29, 2006
   documents themselves. [limi]
 
 - removed all .properties files and made them .metadata files
-  tal:define="here/rejectAnonymous" and made [ 'security' ] assertions in
+  tal:define="context/rejectAnonymous" and made [ 'security' ] assertions in
   .metadata    [runyaga]
 
 - there is now a folder in the root of the Plone site called 'help' which is
@@ -8667,7 +8667,7 @@ Alpha 1 - released January 29, 2006
 - Only show "Add Comment" button if discussion is allowed, and user
   has permission to reply to item.
 
-- added on-error for search results when path('here/%s'%result.getIcon)
+- added on-error for search results when path('context/%s'%result.getIcon)
   raises a AttributeError
 
 - making less assumptions in Portal/Customization Policy for migrations of
@@ -8954,7 +8954,7 @@ We released a beta3 tarball and then decided to fix the above before a final bet
 - Added support for CMFBTreeFolder if it is installed.
 
 - Added a script, portal_form_url.py, that adds portal_form to a URL in the appropriate
-  spot.  If you set your form's action to python:here.portal_form_url(template.id), the
+  spot.  If you set your form's action to python:context.portal_form_url(template.id), the
   portal_form machinery will kick in upon submission even if the form's URL doesn't have
   portal_form in it initially.
 
@@ -9062,7 +9062,7 @@ We released a beta3 tarball and then decided to fix the above before a final bet
 
 - main_template now uses prepare_slots.py
 
-- added structure here/title_or_id to plone_contents and other views.
+- added structure context/title_or_id to plone_contents and other views.
   Thanks to 'DZ' on plone.org for noticing
 
 - dont show a select box, "Show all items" in folder_contents unless there are types
@@ -9167,7 +9167,7 @@ We released a beta3 tarball and then decided to fix the above before a final bet
 
 - removed the download tab on File view since we have a button
 
-- fixed Issue 242, if portal_title==here/title_or_id
+- fixed Issue 242, if portal_title==context/title_or_id
   (in a pagetemplate) search for template/id in header -
   thanks ronnix for pointing this out.
   We do this by adding properties on the filesystem i.e.
@@ -9401,7 +9401,7 @@ We released a beta3 tarball and then decided to fix the above before a final bet
 - added a PrivateSiteCustomizationPolicy that makes a plone site "private"
   (preconfigures workflow's) -- you will still need to
   customize the header to get rid of the search_form
-  tal:condition="not: here/portal_membership/isAnonymousUser"
+  tal:condition="not: context/portal_membership/isAnonymousUser"
 
 - added metadata tab to Event contentType in DefaultCustomizationPolicy
 
@@ -9498,7 +9498,7 @@ We released a beta3 tarball and then decided to fix the above before a final bet
 
 - removed plone_images/img, all images are now in plone_images
     WARNING: you should always specify the full url to the image or caching
-    will not occur. ${here/portal_url}/image.gif
+    will not occur. ${context/portal_url}/image.gif
     You want to cache as many images on the client side (or in caches in
     front of your ZOPE) as possible.
 

@@ -88,6 +88,14 @@
    <depends name="componentregistry" />
   </genericsetup:importStep>
 
+  <genericsetup:importStep
+      name="plone-difftool"
+      handler="Products.CMFDiffTool.exportimport.difftool.importDiffTool"
+      title="Diff Tool"
+      description="Import CMFDiffTool settings">
+    <depends name="plone_various"/>
+  </genericsetup:importStep>
+  
   <adapter
      factory=".factorytool.PortalFactoryXMLAdapter"
      provides="Products.GenericSetup.interfaces.IBody"

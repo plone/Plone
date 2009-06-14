@@ -1,6 +1,7 @@
 import logging
 import os
 
+from zope.structuredtext import stx2html
 from zope.interface import implements
 
 import Globals
@@ -15,7 +16,6 @@ from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 from Products.CMFCore.permissions import ManagePortal
 from Products.CMFCore.utils import UniqueObject
 from Products.CMFCore.utils import getToolByName
-from StructuredText.StructuredText import HTML
 from Products.CMFPlone.interfaces import IFactoryTool
 from Products.CMFPlone.interfaces import IHideFromBreadcrumbs
 from Products.CMFPlone.interfaces import IPloneSiteRoot
@@ -87,7 +87,7 @@ class TempFolder(TempFolderBase):
                     lr=lr()
                 lr = lr or {}
                 for k, v in lr.items():
-                    if not local_roles.has_key(k):
+                    if not k in local_roles:
                         local_roles[k] = []
                     for role in v:
                         if not role in local_roles[k]:
@@ -241,7 +241,7 @@ class FactoryTool(PloneBaseTool, UniqueObject, SimpleItem):
     f = open(os.path.join(wwwpath, 'portal_factory_docs.stx'), 'r')
     _docs = f.read()
     f.close()
-    _docs = HTML(_docs)
+    _docs = stx2html(_docs)
 
     security.declarePublic('docs')
     def docs(self):
@@ -267,7 +267,7 @@ class FactoryTool(PloneBaseTool, UniqueObject, SimpleItem):
         self._factory_types = {}
         types_tool = getToolByName(self, 'portal_types')
         for t in types_tool.listContentTypes():
-            if dict.has_key(t):
+            if t in dict:
                 self._factory_types[t] = 1
         self._p_changed = 1
         if REQUEST:

@@ -343,7 +343,7 @@ class MembershipTool(PloneBaseTool, BaseTool):
             # Expire the skin cookie if it is not configured to persist
             st = getToolByName(self, "portal_skins")
             skinvar = st.getRequestVarname()
-            if REQUEST.has_key(skinvar) and not st.getCookiePersistence():
+            if skinvar in REQUEST and not st.getCookiePersistence():
                     portal = getToolByName(self, "portal_url").getPortalObject()
                     path = '/' + portal.absolute_url(1)
                     # XXX check if this path is sane

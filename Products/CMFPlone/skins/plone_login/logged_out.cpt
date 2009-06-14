@@ -2,7 +2,7 @@
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-      metal:use-macro="here/main_template/macros/master"
+      metal:use-macro="context/main_template/macros/master"
       i18n:domain="plone">
 
       <head>
@@ -16,7 +16,7 @@
 <body>
 
   <div metal:fill-slot="main"
-       tal:define="auth nocall:here/acl_users/credentials_cookie_auth|here/cookie_authentication|nothing;
+       tal:define="auth nocall:context/acl_users/credentials_cookie_auth|context/cookie_authentication|nothing;
                    came_from request/came_from|request/HTTP_REFERER|nothing;
                    came_from python:test(context.portal_url.isURLInPortal(came_from), came_from, None);
                    errors options/state/getErrors;
@@ -35,7 +35,7 @@
      i18n:translate="description_loginagain">You can log in again below.</p>
 
   <p i18n:translate="description_no_account"
-     tal:define="join python:[a['url'] for a in actions['user'] if a['id']=='join'];
+     tal:define="join python:context.portal_actions['user'].get('join').get('url', None);
                  checkPermission nocall: context/portal_membership/checkPermission;"
      tal:condition="python: join and checkPermission('Add portal member', here)">
 
@@ -67,7 +67,7 @@
       Since cookie authentication is disabled, cookie-based login is not available.
   </div>
 
-  <metal:login use-macro="here/login_form/macros/login" />
+  <metal:login use-macro="context/login_form/macros/login" />
 
 </tal:reallyloggedout>
 

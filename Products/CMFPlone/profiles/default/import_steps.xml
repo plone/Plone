@@ -47,12 +47,6 @@
   <dependency step="mimetypes-registry-various"/>
     KSS (Kinetic Style Sheet) setup. Register kss mimetype.
  </import-step>
- <import-step id="plone-difftool" version="20081114-01"
-              handler="Products.CMFDiffTool.exportimport.difftool.importDiffTool"
-              title="Diff Tool">
-   <dependency step="plone_various"/>
-   Import CMFDiffTool settings
- </import-step>
  <import-step id="kupu-setup" version="20061211-01"
               handler="Products.kupu.plone.exportimport.importKupuSettings"
               title="Kupu Settings">

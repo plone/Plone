@@ -3,7 +3,7 @@
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
-      metal:use-macro="here/prefs_main_template/macros/master"
+      metal:use-macro="context/prefs_main_template/macros/master"
       i18n:domain="plone">
 
 <metal:block fill-slot="top_slot"
@@ -27,7 +27,7 @@
     Back to Error Log
     </a>
 
-    <div tal:define="entry python:here.error_log.getLogEntryById(request.get('id'))">
+    <div tal:define="entry python:context.error_log.getLogEntryById(request.get('id'))">
 
         <dl class="portalMessage error"
             tal:condition="not:entry">

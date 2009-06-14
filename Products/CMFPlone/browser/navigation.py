@@ -15,11 +15,6 @@ from Products.CMFPlone.interfaces import IHideFromBreadcrumbs
 
 from Products.CMFPlone.browser.navtree import NavtreeQueryBuilder, SitemapQueryBuilder
 
-# Nasty hack to circumvent 'plone' modulealias
-import sys
-import plone
-del sys.modules['Products.CMFPlone.browser.plone']
-
 from plone.app.layout.navigation.interfaces import INavtreeStrategy
 
 from plone.app.layout.navigation.root import getNavigationRoot
@@ -31,9 +26,6 @@ zope.deferredimport.deprecated(
     "This alias will be removed in Plone 4.0",
     DefaultPage = 'plone.app.layout.navigation.defaultpage:DefaultPage',
     )
-    
-import ploneview
-sys.modules['Products.CMFPlone.browser.plone'] = ploneview
 
 def get_url(item):
     if hasattr(aq_base(item), 'getURL'):
@@ -130,11 +122,16 @@ class CatalogNavigationTabs(BrowserView):
         navtree_properties = getattr(portal_properties, 'navtree_properties')
         site_properties = getattr(portal_properties, 'site_properties')
 
+        if actions is None:
+            context_state = getMultiAdapter((context, self.request),
+                                            name=u'plone_context_state')
+            actions = context_state.actions(category)
+
         # Build result dict
         result = []
         # first the actions
         if actions is not None:
-            for actionInfo in actions.get(category, []):
+            for actionInfo in actions:
                 data = actionInfo.copy()
                 data['name'] = data['title']
                 result.append(data)
@@ -180,7 +177,7 @@ class CatalogNavigationTabs(BrowserView):
 
         # now add the content to results
         for item in rawresult:
-            if not (excludedIds.has_key(item.getId) or item.exclude_from_nav):
+            if not (item.getId in excludedIds or item.exclude_from_nav):
                 id, item_url = get_view_url(item)
                 data = {'name'      : utils.pretty_title_or_id(context, item),
                         'id'         : item.getId,

@@ -55,7 +55,7 @@ class PloneSite(CMFSite, OrderedContainer, BrowserDefaultMixin):
     def index_html(self):
         """ Acquire if not present. """
         request = getattr(self, 'REQUEST', None)
-        if request and request.has_key('REQUEST_METHOD'):
+        if request is not None and 'REQUEST_METHOD' in request:
             if request.maybe_webdav_client:
                 method = request['REQUEST_METHOD']
                 if method in ('PUT',):

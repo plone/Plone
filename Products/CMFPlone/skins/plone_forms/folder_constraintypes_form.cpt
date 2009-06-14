@@ -2,7 +2,7 @@
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-      metal:use-macro="here/main_template/macros/master"
+      metal:use-macro="context/main_template/macros/master"
       i18n:domain="plone">
 
 <metal:block fill-slot="top_slot"
@@ -62,10 +62,10 @@
 
         <input type="hidden" name="form.submitted" value="1"/>
 
-        <tal:items define="currentMode    request/constrainTypesMode | here/getConstrainTypesMode;
-                           currentAllow   request/currentAllow | here/getLocallyAllowedTypes;
-                           currentPrefer  request/currentPrefer | here/getImmediatelyAddableTypes;
-                           availableTypes here/getDefaultAddableTypes;
+        <tal:items define="currentMode    request/constrainTypesMode | context/getConstrainTypesMode;
+                           currentAllow   request/currentAllow | context/getLocallyAllowedTypes;
+                           currentPrefer  request/currentPrefer | context/getImmediatelyAddableTypes;
+                           availableTypes context/getDefaultAddableTypes;
                            parent plone_view/getParentObject">
 
             <div class="field">
@@ -138,7 +138,7 @@
                     <div tal:content="error">Validation error output</div>
 
                     <div style="float:left; margin-right: 2em;"
-                         tal:define="typeLists python:here.createMultiColumnList(availableTypes, numCols=3, sort_on='title_or_id');"
+                         tal:define="typeLists python:context.createMultiColumnList(availableTypes, numCols=3, sort_on='title_or_id');"
                          tal:repeat="sublist typeLists">
                         <tal:block tal:repeat="type sublist">
                             <input name="currentPrefer:list"
@@ -183,7 +183,7 @@
                     <div tal:content="error">Validation error output</div>
 
                     <div style="float:left; margin-right: 2em;"
-                         tal:define="typeLists python:here.createMultiColumnList(availableTypes, numCols=3, sort_on='title_or_id');"
+                         tal:define="typeLists python:context.createMultiColumnList(availableTypes, numCols=3, sort_on='title_or_id');"
                          tal:repeat="sublist typeLists">
                         <tal:block tal:repeat="type sublist">
                             <input name="currentAllow:list"

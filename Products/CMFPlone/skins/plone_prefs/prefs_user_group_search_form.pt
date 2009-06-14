@@ -3,7 +3,7 @@
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
     lang="en"
-    metal:use-macro="here/prefs_main_template/macros/master"
+    metal:use-macro="context/prefs_main_template/macros/master"
     i18n:domain="plone">
 
 <metal:block fill-slot="top_slot"
@@ -36,19 +36,19 @@
         <span tal:omit-tag="" i18n:translate="label_show_me">Show me</span>
 
         <select name="searching"
-                tal:condition="python: not here.prefs_valid_search_restriction(searchonly)">
+                tal:condition="python: not context.prefs_valid_search_restriction(searchonly)">
             <option value="both" i18n:translate="label_usersandgroups">Users and groups</option>
             <option value="users" i18n:translate="label_users">Users</option>
             <option value="groups" i18n:translate="label_groups">Groups</option>
         </select>
         <input type="hidden" name="searchonly"
-            tal:condition="python: here.prefs_valid_search_restriction(searchonly)"
+            tal:condition="python: context.prefs_valid_search_restriction(searchonly)"
             tal:attributes="value request/searchonly" />
-        <span tal:condition="python: here.prefs_valid_search_restriction(searchonly,['users'])" tal:omit-tag="" i18n:translate="label_users">Users</span>
-        <input type="hidden" name="restrict" tal:condition="python: here.prefs_valid_search_restriction(searchonly,['users'])" value="users" />
-        <span tal:condition="python: here.prefs_valid_search_restriction(searchonly,['groups'])" tal:omit-tag="" i18n:translate="label_groups">Groups</span>
-        <input type="hidden" name="restrict" tal:condition="python: here.prefs_valid_search_restriction(searchonly,['groups'])" value="groups" />
-        <input type="hidden" name="restrict" tal:condition="python: not here.prefs_valid_search_restriction(searchonly)" value="" />
+        <span tal:condition="python: context.prefs_valid_search_restriction(searchonly,['users'])" tal:omit-tag="" i18n:translate="label_users">Users</span>
+        <input type="hidden" name="restrict" tal:condition="python: context.prefs_valid_search_restriction(searchonly,['users'])" value="users" />
+        <span tal:condition="python: context.prefs_valid_search_restriction(searchonly,['groups'])" tal:omit-tag="" i18n:translate="label_groups">Groups</span>
+        <input type="hidden" name="restrict" tal:condition="python: context.prefs_valid_search_restriction(searchonly,['groups'])" value="groups" />
+        <input type="hidden" name="restrict" tal:condition="python: not context.prefs_valid_search_restriction(searchonly)" value="" />
 
         <span i18n:translate="label_containing">containing</span>
 
@@ -72,7 +72,7 @@
         <!--restricted by <span tal:replace="searchfor"/>-->
         <table class="listing"
             id="sortable"
-            tal:define="searchresults python:Batch(here.prefs_user_group_search(searchstring, searchfor), 25, int(b_start), orphan=1)"
+            tal:define="searchresults python:Batch(context.prefs_user_group_search(searchstring, searchfor), 25, int(b_start), orphan=1)"
             summary="Returned results" i18n:attributes="summary_returned_results;">
 
             <tr>

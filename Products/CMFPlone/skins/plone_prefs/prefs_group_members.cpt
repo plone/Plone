@@ -3,7 +3,7 @@
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
-      metal:use-macro="here/prefs_main_template/macros/master"
+      metal:use-macro="context/prefs_main_template/macros/master"
       i18n:domain="plone">
 
 <metal:block fill-slot="top_slot"
@@ -60,7 +60,7 @@
 
     <div id="content" class="documentContent">
 
-      <div metal:use-macro="here/global_statusmessage/macros/portal_message">
+      <div metal:use-macro="context/global_statusmessage/macros/portal_message">
         Portal status message
       </div>
 
@@ -108,7 +108,7 @@
                     tal:define="searchstring request/searchstring | nothing;
                                 findAll python:'form.button.FindAll' in request.keys();
                                 ignoreUsersGroups python: group.getAllGroupMembers() + [group,];
-                                results python:(searchstring or findAll) and here.prefs_user_group_search(searchstring, 'all', ignore=ignoreUsersGroups) or [];
+                                results python:(searchstring or findAll) and context.prefs_user_group_search(searchstring, 'all', ignore=ignoreUsersGroups) or [];
                                 batch python:Batch(results, b_size, int(b_start), orphan=1);
                                 many_users context/portal_properties/site_properties/many_users">
             <h2 i18n:translate="heading_groupmembers_current">Current group members</h2>
@@ -296,7 +296,7 @@
             <input type="hidden" value="b_start" name="b_start"
                      tal:attributes="value b_start"/>
 
-            <div metal:use-macro="here/batch_macros/macros/navigation" />
+            <div metal:use-macro="context/batch_macros/macros/navigation" />
 
             <input class="context"
                     type="submit"

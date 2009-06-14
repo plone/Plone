@@ -3,7 +3,7 @@
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
-      metal:use-macro="here/main_template/macros/master"
+      metal:use-macro="context/main_template/macros/master"
       i18n:domain="plone">
 <head>
     <metal:block metal:fill-slot="head_slot">
@@ -23,7 +23,7 @@
 <div metal:fill-slot="main"
      tal:define="use_types_blacklist request/use_types_blacklist | python:True;
                  use_navigation_root request/use_navigation_root | python:True;
-                 results python:here.queryCatalog(REQUEST=request,use_types_blacklist=use_types_blacklist, use_navigation_root=use_navigation_root);
+                 results python:context.queryCatalog(REQUEST=request,use_types_blacklist=use_types_blacklist, use_navigation_root=use_navigation_root);
                  Batch python:modules['Products.CMFPlone'].Batch;
                  b_size python:30;b_start python:0;b_start request/b_start | b_start;
                  site_properties context/portal_properties/site_properties;
@@ -176,7 +176,7 @@
         </tal:results>
         </dl>
          
-        <div metal:use-macro="here/batch_macros/macros/navigation" />
+        <div metal:use-macro="context/batch_macros/macros/navigation" />
 
     </div>
 

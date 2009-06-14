@@ -10,7 +10,7 @@
     tal:define="tools context/@@plone_tools;
                 getInfoFor python:tools.workflow().getInfoFor;">
     <tal:allowed condition="context/@@plone_context_state/is_view_template">
-        <tal:relatedItems tal:define="related python:here.computeRelatedItems();">
+        <tal:relatedItems tal:define="related python:context.computeRelatedItems();">
             <tal:block tal:condition="python:related">
                 <div class="visualClear" id="clear-space-before-relatedItemBox"><!-- --></div>
                 <fieldset id="relatedItemBox"

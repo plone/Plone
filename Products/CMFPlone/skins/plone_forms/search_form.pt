@@ -3,7 +3,7 @@
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
-      metal:use-macro="here/main_template/macros/master"
+      metal:use-macro="context/main_template/macros/master"
       i18n:domain="plone">
 
     <metal:head fill-slot="top_slot"
@@ -79,8 +79,8 @@
                         id="Subject"
                         size="7"
                         multiple="multiple"
-                        tal:define="contentSubjects here/Subject;
-                                    usedSubjects python:here.portal_catalog.uniqueValuesFor('Subject');"
+                        tal:define="contentSubjects context/Subject;
+                                    usedSubjects python:context.portal_catalog.uniqueValuesFor('Subject');"
                         >
                     <option value="#"
                             tal:repeat="subject usedSubjects"
@@ -183,7 +183,7 @@
                 <br />
                 <div style="float:left; margin-right: 2em;"
                      tal:define="allTypes python:context.plone_utils.getUserFriendlyTypes();
-                                 typeLists python:here.createMultiColumnList(allTypes, numCols=2, sort_on='self');"
+                                 typeLists python:context.createMultiColumnList(allTypes, numCols=2, sort_on='self');"
                      tal:repeat="sublist typeLists">
                     <tal:items repeat="type sublist">
                     <input type="checkbox"

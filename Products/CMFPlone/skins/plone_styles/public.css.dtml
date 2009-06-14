@@ -367,7 +367,7 @@ form.searchPage input.searchButton {
     color: &dtml-globalFontColor;;
 }
 #portal-personaltools {
-    /* Bar with personalized menu (user preferences, favorites etc) */
+    /* Bar with personalized menu (user preferences, etc) */
     background-color: &dtml-globalBackgroundColor;;
     border-top-color: &dtml-globalBorderColor;;
     border-top-style: &dtml-borderStyle;;
@@ -413,7 +413,7 @@ form.searchPage input.searchButton {
     display: inline;
 }
 #portal-breadcrumbs {
-    /* The path bar, including breadcrumbs and add to favorites */
+    /* The path bar, including breadcrumbs */
     border-bottom-color: &dtml-globalBorderColor;;
     border-bottom-style: &dtml-borderStyle;;
     border-bottom-width: &dtml-borderWidth;;
@@ -427,9 +427,6 @@ form.searchPage input.searchButton {
 }
 .breadcrumbSeparator {
     font-size: 120%;
-}
-.addFavorite {
-    vertical-align: bottom;
 }
 .documentEditable {
     padding: 0em 1em 1em 1em !important;

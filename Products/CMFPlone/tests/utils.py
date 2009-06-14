@@ -30,7 +30,7 @@ class MockMailHost(Base):
 
 
 # a function to test if a string is a valid CSS identifier
-def validatateCSSIdentifier(identifier):
+def validateCSSIdentifier(identifier):
     match = VALID_CSS_ID.match(identifier)
     if not match is None:
         return match.end()== len(identifier)

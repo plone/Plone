@@ -97,7 +97,7 @@ class WorkflowTool(PloneBaseTool, BaseTool):
                            tdef.trigger_type == TRIGGER_USER_ACTION and \
                            tdef.actbox_name and \
                            wf._checkTransitionGuard(tdef, obj) and \
-                           not result.has_key(tdef.id):
+                           not tdef.id in result:
                             result[tdef.id] = {
                                     'id': tdef.id,
                                     'title': tdef.title,
@@ -238,7 +238,7 @@ class WorkflowTool(PloneBaseTool, BaseTool):
     def getChainForPortalType(self, pt_name, managescreen=0):
         """ Get a chain for a specific portal type.
         """
-        if self._chains_by_type.has_key(pt_name):
+        if pt_name in self._chains_by_type:
             return self._chains_by_type[pt_name]
         else:
             # (Default) is _not_ a chain nor a workflow in a chain.
@@ -300,7 +300,7 @@ class WorkflowTool(PloneBaseTool, BaseTool):
                 else:
                     for state in state_folder.objectValues():
                         key = '%s:%s'%(state.id,state.title)
-                        if not dup_list.has_key(key):
+                        if not key in dup_list:
                             states.append(state)
                         dup_list[key] = 1
         return [(s.title, s.getId()) for s in states]

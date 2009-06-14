@@ -3,7 +3,7 @@
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
-      metal:use-macro="here/main_template/macros/master"
+      metal:use-macro="context/main_template/macros/master"
       i18n:domain="plone">
 
 <head>
@@ -13,10 +13,10 @@
 
 <body>
 
-<tal:block tal:condition="exists: here/portal_skins | nothing"
+<tal:block tal:condition="exists: context/portal_skins | nothing"
            tal:replace="nothing">
-    <tal:block tal:condition="here/portal_skins/updateSkinCookie | nothing"
-               tal:define="dummy here/setupCurrentSkin" />
+    <tal:block tal:condition="context/portal_skins/updateSkinCookie | nothing"
+               tal:define="dummy context/setupCurrentSkin" />
 </tal:block>
 
 <div metal:fill-slot="main"
@@ -71,7 +71,7 @@
     </div>
   </div>
   <div tal:condition="isAnon">
-    <div metal:use-macro="here/login_failed/macros/login_failed" />
+    <div metal:use-macro="context/login_failed/macros/login_failed" />
   </div>
 </div>
 

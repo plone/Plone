@@ -3,7 +3,7 @@
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
-      metal:use-macro="here/main_template/macros/master"
+      metal:use-macro="context/main_template/macros/master"
       i18n:domain="plone">
 
 <body>
@@ -16,13 +16,13 @@
 
         <div tal:replace="structure provider:plone.abovecontenttitle" />
 
-        <h1 metal:use-macro="here/kss_generic_macros/macros/generic_title_view">
+        <h1 metal:use-macro="context/kss_generic_macros/macros/generic_title_view">
             Title or id
         </h1>
 
         <div tal:replace="structure provider:plone.belowcontenttitle" />
 
-        <p metal:use-macro="here/kss_generic_macros/macros/generic_description_view">
+        <p metal:use-macro="context/kss_generic_macros/macros/generic_description_view">
             Description
         </p>
 
@@ -32,9 +32,9 @@
              id="parent-fieldname-text" class="stx"
              tal:define="kss_class python:getKssClasses('text',
                          templateId=templateId, macro='text-field-view');
-                         text here/aq_explicit/getText|nothing"
+                         text context/aq_explicit/getText|nothing"
              tal:condition="text"
-             tal:attributes="class python:test(here.Format() in ('text/structured',
+             tal:attributes="class python:test(context.Format() in ('text/structured',
                                                    'text/x-rst', ), 'stx' + kss_class, 'plain' + kss_class)">
             <div metal:define-slot="inside" tal:replace="structure text">The body</div>
         </div>
@@ -43,7 +43,7 @@
         <tal:foldercontents define="contentFilter contentFilter|request/contentFilter|nothing;
                             limit_display limit_display|request/limit_display|nothing;
                             more_url more_url|request/more_url|string:folder_contents;
-                            folderContents python:here.portal_type=='Topic' and here.queryCatalog(contentFilter, batch=True) or here.getFolderContents(contentFilter, batch=True, b_size=limit_display or 100);
+                            folderContents python:context.portal_type=='Topic' and context.queryCatalog(contentFilter, batch=True) or context.getFolderContents(contentFilter, batch=True, b_size=limit_display or 100);
                             site_properties context/portal_properties/site_properties;
                             use_view_action site_properties/typesUseViewActionInListings|python:();
                             over_limit python: limit_display and len(folderContents) > limit_display;
@@ -168,7 +168,7 @@
             </tal:block>
 
             <!-- Navigation -->
-            <div metal:use-macro="here/batch_macros/macros/navigation" />
+            <div metal:use-macro="context/batch_macros/macros/navigation" />
 
         </tal:listing>
         <metal:empty metal:define-slot="no_items_in_listing">
@@ -182,7 +182,7 @@
         </tal:foldercontents>
         </metal:listingmacro>
 
-        <metal:subtopics use-macro="here/atct_topic_view/macros/folderlisting_macro" />
+        <metal:subtopics use-macro="context/atct_topic_view/macros/folderlisting_macro" />
 
         <div tal:replace="structure provider:plone.belowcontentbody" />
 

@@ -14,14 +14,14 @@
       <form action=""
           name="groups"
           method="post"
-          tal:attributes="action here/absolute_url"
+          tal:attributes="action context/absolute_url"
           tal:define="Batch python:modules['Products.CMFPlone'].Batch;
                       b_start request/b_start | python:0;
                       b_size python:20;
                       searchstring request/searchstring | nothing;
                       searchonly searchonly | nothing;
                       mq python:modules['ZTUtils'].make_query;
-                      results python:searchstring and here.prefs_user_group_search(searchstring, searchonly) or None;
+                      results python:searchstring and context.prefs_user_group_search(searchstring, searchonly) or None;
                       batch python:results and Batch(results, b_size, int(b_start), orphan=1) or None">
 
         <span metal:define-slot="hiddens" />
@@ -78,7 +78,7 @@
                                        userid userid | nothing;
                                        groupname groupname | nothing;
                                        member context/@@plone_portal_state/member;
-                                       m python:userid and member or here.portal_membership.getMemberById(calcId);
+                                       m python:userid and member or context.portal_membership.getMemberById(calcId);
                                        g python:groupname and groupname or calcId;"
                            tal:attributes="value calcId;
                                            disabled python:m.canAddToGroup(g) and default or 'disabled'" />
@@ -116,7 +116,7 @@
         <input type="hidden" value="b_start" name="b_start" 
                tal:attributes="value b_start"/>
 
-        <div metal:use-macro="here/batch_macros/macros/navigation" />
+        <div metal:use-macro="context/batch_macros/macros/navigation" />
 
         <metal:block metal:define-slot="actions" >
         <input class="context"

@@ -55,7 +55,7 @@ if not id:
 # do basic id validation
 
 # check for reserved names
-if id in [ 'login', 'layout', 'plone', 'zip', 'properties' ]:
+if id in ('login', 'layout', 'plone', 'zip', 'properties', ):
     return _(u'${name} is reserved.', mapping={u'name' : id})
 
 # check for bad characters
@@ -104,18 +104,8 @@ if checkForCollision:
         except Unauthorized:
             return # nothing we can do
 
-    # Check for an existing object.  If it is a content object, then we don't
-    # try to replace it; there may be other attributes we shouldn't replace,
-    # but because there are some always replaceable attributes, this is the
-    # only type of filter we can reasonably expect to work.
-    exists = False
-    # Optimization for BTreeFolders
-    if base_hasattr(contained_by, 'has_key'):
-        exists = contained_by.has_key(id)
-    # Otherwise check object ids (using getattr can trigger Unauth exceptions)
-    elif base_hasattr(contained_by, 'objectIds'):
-        exists = id in contained_by.objectIds()
-    if exists:
+    # Check for an existing object.
+    if id in contained_by:
         try:
             existing_obj = getattr(contained_by, id, None)
             if base_hasattr(existing_obj, 'portal_type'):
@@ -127,7 +117,7 @@ if checkForCollision:
             return _(u'There is already an item named ${name} in this folder.',
                      mapping={u'name' : id})
 
-    if hasattr(contained_by, 'checkIdAvailable'):
+    if base_hasattr(contained_by, 'checkIdAvailable'):
         try:
             if not contained_by.checkIdAvailable(id):
                 return _(u'${name} is reserved.', mapping={u'name' : id})
@@ -135,7 +125,7 @@ if checkForCollision:
             pass # ignore if we don't have permission
 
     # containers may implement this hook to further restrict ids
-    if hasattr(contained_by, 'checkValidId'):
+    if base_hasattr(contained_by, 'checkValidId'):
         try:
             contained_by.checkValidId(id)
         except Unauthorized:
@@ -152,9 +142,8 @@ if checkForCollision:
         if parentFti is not None:
             aliases = plone_utils.getMethodAliases(parentFti)
             if aliases is not None:
-                for alias in aliases.keys():
-                    if id == alias:
-                        return _(u'${name} is reserved.', mapping={u'name' : id})
+                if id in aliases.keys():
+                    return _(u'${name} is reserved.', mapping={u'name' : id})
 
     # Lastly, we want to disallow the id of any of the tools in the portal root,
     # as well as any object that can be acquired via portal_skins. However, we

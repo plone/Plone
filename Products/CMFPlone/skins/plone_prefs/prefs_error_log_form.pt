@@ -3,7 +3,7 @@
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
-      metal:use-macro="here/prefs_main_template/macros/master"
+      metal:use-macro="context/prefs_main_template/macros/master"
       i18n:domain="plone">
 
 <metal:block fill-slot="top_slot"
@@ -40,7 +40,7 @@
 
         <form action="prefs_error_log_update" method="get">
 
-            <fieldset tal:define="entries here/error_log/getLogEntries">
+            <fieldset tal:define="entries context/error_log/getLogEntries">
 
                 <legend i18n:translate="legend_logexception">Exception Log (most recent first)</legend>
 
@@ -130,7 +130,7 @@
           method="post"
           class="enableUnloadProtection">
     
-        <fieldset tal:define="props here/error_log/getProperties">
+        <fieldset tal:define="props context/error_log/getProperties">
         
             <legend i18n:translate="legend_logdetails">Log details</legend>
 
@@ -153,7 +153,7 @@
                        id="cb_copy_to_zlog" 
                        name="copy_to_zlog"
                        tal:attributes="checked props/copy_to_zlog;
-                                       disabled not:here/error_log/checkEventLogPermission|nothing" />
+                                       disabled not:context/error_log/checkEventLogPermission|nothing" />
 
                 <label for="cb_copy_to_zlog" i18n:translate="label_copy_exceptions">
                     Copy exceptions to the event log

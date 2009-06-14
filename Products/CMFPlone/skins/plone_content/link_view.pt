@@ -3,7 +3,7 @@
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
-      metal:use-macro="here/main_template/macros/master"
+      metal:use-macro="context/main_template/macros/master"
       i18n:domain="plone">
 
 <body>
@@ -25,7 +25,7 @@
         <div tal:replace="structure provider:plone.abovecontenttitle" />
 
         <h1 class="documentFirstHeading"> 
-            <metal:field use-macro="python:here.widget('title', mode='view')">
+            <metal:field use-macro="python:context.widget('title', mode='view')">
             Title
             </metal:field>
         </h1>
@@ -33,7 +33,7 @@
         <div tal:replace="structure provider:plone.belowcontenttitle" />
 
         <p class="documentDescription">
-            <metal:field use-macro="python:here.widget('description', mode='view')">
+            <metal:field use-macro="python:context.widget('description', mode='view')">
             Description
             </metal:field>
         </p>
@@ -42,11 +42,11 @@
 
         <p>
             <span i18n:translate="link_address">The link address is:</span>
-            <a href="#" tal:attributes="href here/remote_url"
-                        tal:content="here/remote_url">remote url</a>
+            <a href="#" tal:attributes="href context/remote_url"
+                        tal:content="context/remote_url">remote url</a>
         </p>
 
-        <div metal:use-macro="here/document_relateditems/macros/relatedItems">
+        <div metal:use-macro="context/document_relateditems/macros/relatedItems">
             show related items if they exist
         </div>
     

@@ -2,7 +2,7 @@
                     children options/children | nothing;
                     bottomLevel options/bottomLevel | nothing;
                     normalizeString nocall:context/plone_utils/normalizeString;
-                    viewActions here/portal_properties/site_properties/typesUseViewActionInListings|python:();
+                    viewActions context/portal_properties/site_properties/typesUseViewActionInListings|python:();
                     member context/@@plone_portal_state/member;
                     member_id member/getId|nothing;
                     plone_view context/@@plone">
@@ -43,7 +43,7 @@
     <ul tal:attributes="class python:'navTree navTreeLevel'+str(level)"
         tal:define="level python:level+1;"
         tal:condition="nocall:children">
-        <metal:recurse use-macro="here/portlet_navtree_macro/macros/nav_main"/>
+        <metal:recurse use-macro="context/portlet_navtree_macro/macros/nav_main"/>
     </ul>
     </tal:level>
 </li>

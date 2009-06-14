@@ -40,18 +40,6 @@
    </property>
    <property name="visible">True</property>
   </object>
-  <object name="addtofavorites" meta_type="CMF Action" i18n:domain="plone">
-   <property name="title" i18n:translate="">Add to favorites</property>
-   <property name="description" i18n:translate=""></property>
-   <property name="url_expr">string:${object_url}/addtoFavorites</property>
-   <property name="icon_expr">string:$portal_url/favorite_icon.gif</property>
-   <property
-      name="available_expr">python:(member is not None) and (portal.portal_membership.getHomeFolder() is not None)</property>
-   <property name="permissions">
-    <element value="View"/>
-   </property>
-   <property name="visible">False</property>
-  </object>
   <object name="full_screen" meta_type="CMF Action" i18n:domain="plone">
    <property name="title" i18n:translate="">Toggle full screen mode</property>
    <property name="description" i18n:translate=""></property>
@@ -388,31 +376,6 @@
     <element value="View"/>
    </property>
    <property name="visible">True</property>
-  </object>
-  <object name="addFavorite" meta_type="CMF Action" i18n:domain="plone">
-   <property name="title" i18n:translate="">Add to favorites</property>
-   <property name="description" i18n:translate=""></property>
-   <property name="url_expr">string:${object_url}/addtoFavorites</property>
-   <property name="icon_expr">string:$portal_url/favorite_icon.gif</property>
-   <property
-      name="available_expr">python: portal.portal_membership.getHomeFolder() is not None</property>
-   <property name="permissions">
-    <element value="View"/>
-   </property>
-   <property name="visible">False</property>
-  </object>
-  <object name="favorites" meta_type="CMF Action" i18n:domain="plone">
-   <property name="title" i18n:translate="">My favorites</property>
-   <property name="description" i18n:translate=""></property>
-   <property
-      name="url_expr">string:${portal/portal_membership/getHomeUrl}/Favorites/folder_contents</property>
-   <property name="icon_expr"></property>
-   <property
-      name="available_expr">python:(member is not None) and hasattr(portal.portal_membership.getHomeFolder(), "Favorites")</property>
-   <property name="permissions">
-    <element value="View"/>
-   </property>
-   <property name="visible">False</property>
   </object>
  </object>
 </object>

@@ -127,8 +127,6 @@ may need to take the following changes into account.
   suggested below instead. (Note: Using the suggested expressions requires that
   the context have a proper acquisition chain to the portal root.)
 
-  here
-    context
   here_url
     context/@@plone_context_state/object_url
   portal
@@ -172,3 +170,13 @@ may need to take the following changes into account.
   isContextDefaultPage
     context/@@plone_context_state/is_default_page
 
+* The "Favorite" content type has been removed.
+
+* The "Products.CMFPlone.browser.plone" alias for
+  Products.CMFPlone.browser.ploneview has been removed.
+
+* String exceptions were deprecated in Python 2.5 and are no longer supported
+  in Python 2.6.
+
+* The 'doctype' slot has been removed from main_template.  Should this
+  flexibility be required, it's recommended to customize main_template.

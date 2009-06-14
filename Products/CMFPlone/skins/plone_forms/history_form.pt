@@ -8,7 +8,7 @@
                     first_trx python:request.get('first_transaction',0);
                     last_trx python:20;
                     has_history python:getattr(here, 'manage_change_history',None) is not  None;
-                    history python: has_history and here.manage_change_history() or [];">
+                    history python: has_history and context.manage_change_history() or [];">
 
   <form action="#"
         method="post"

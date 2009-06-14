@@ -114,7 +114,7 @@
     </select>
 
       <a tal:condition="show_jscal"
-         tal:attributes="onclick string:return plone.jscalendar.show('#${input_id}', $yearStart, $yearEnd);"><img alt="" src="" tal:replace="structure here/popup_calendar.png" /></a>
+         tal:attributes="onclick string:return plone.jscalendar.show('#${input_id}', $yearStart, $yearEnd);"><img alt="" src="" tal:replace="structure context/popup_calendar.png" /></a>
       </tal:ymd>
 
       <span tal:condition="show_hm">
@@ -238,7 +238,7 @@
       </th>
     </tr>
 
-    <tr tal:define="weekdays here/portal_calendar/getDays" class="weekdays">
+    <tr tal:define="weekdays context/portal_calendar/getDays" class="weekdays">
       <tal:block repeat="weekday weekdays">
         <td i18n:translate="" tal:content="weekday">Su</td>
       </tal:block>

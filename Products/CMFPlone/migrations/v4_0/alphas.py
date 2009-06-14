@@ -5,9 +5,7 @@ from Products.CMFPlone.migrations.migration_util import loadMigrationProfile
 
 
 _KNOWN_ACTION_ICONS = {
-    'user' : ['addtofavorites'],
-    'plone' : ['sendto', 'print', 'rss', 'extedit',
-               'addtofavorites', 'full_screen'],
+    'plone' : ['sendto', 'print', 'rss', 'extedit', 'full_screen'],
     'object_buttons' : ['cut', 'copy', 'paste', 'delete'],
     'folder_buttons' : ['cut', 'copy', 'paste', 'delete'],
 }

@@ -24,13 +24,13 @@ class MemberDataTool(PloneBaseTool, BaseTool):
 
     def _setPortrait(self, portrait, member_id):
         " store portrait which must be a raw image in _portrais "
-        if self.portraits.has_key(member_id):
+        if member_id in self.portraits:
             self.portraits._delObject(member_id)
         self.portraits._setObject(id= member_id, object=portrait)
 
     def _deletePortrait(self, member_id):
         " remove member_id's portrait "
-        if self.portraits.has_key(member_id):
+        if member_id in self.portraits:
             self.portraits._delObject(member_id)
 
     security.declarePrivate('pruneMemberDataContents')
@@ -142,18 +142,12 @@ class MemberDataTool(PloneBaseTool, BaseTool):
 
         this is mainly used for the localrole form
         """
-
         s=s.strip().lower()
-
-        portal = self.portal_url.getPortalObject()
-        mu = self.portal_membership
-        is_manager = mu.checkPermission('Manage portal', self)
+        mu = getToolByName(self, 'portal_membership')
 
         res = []
         for member in mu.listMembers():
             u = member.getUser()
-            if not (member.listed or is_manager):
-                continue
             if u.getUserName().lower().find(s) != -1 \
                 or member.getProperty('fullname').lower().find(s) != -1 \
                 or member.getProperty('email').lower().find(s) != -1:

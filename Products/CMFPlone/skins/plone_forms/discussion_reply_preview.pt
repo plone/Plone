@@ -2,7 +2,7 @@
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-      metal:use-macro="here/main_template/macros/master"
+      metal:use-macro="context/main_template/macros/master"
       i18n:domain="plone">
 
 <metal:block fill-slot="top_slot"
@@ -50,7 +50,7 @@
                            value="Change Comment"
                            name=""
                            i18n:attributes="value label_change_comment;"
-                           tal:define="hId here/getId"
+                           tal:define="hId context/getId"
             	           tal:attributes="name python: hId + '/discussion_reply_form:method';" />
 
                     <input class="standalone"

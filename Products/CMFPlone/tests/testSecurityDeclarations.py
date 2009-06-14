@@ -468,8 +468,6 @@ class TestNavtreeSecurity(PloneTestCase.PloneTestCase, RestrictedPythonTest):
     def testGetNavigationRoot(self):
         self.check('from Products.CMFPlone.browser.navtree import getNavigationRoot')
 
-    def testBuildFolderTree(self):
-        self.check('from Products.CMFPlone.browser.navtree import buildFolderTree')
 
 def test_suite():
     from unittest import TestSuite, makeSuite

@@ -12,7 +12,7 @@ from Products.ATContentTypes.interfaces import IATContentType
 
 AddPortalTopics = 'Add portal topics'
 
-atct_types = ('Document', 'Event', 'Favorite', 'File', 'Folder',
+atct_types = ('Document', 'Event', 'File', 'Folder',
               'Large Plone Folder', 'Image', 'Link', 'News Item',
              )
 
@@ -76,14 +76,6 @@ class TestContentTypes(PloneTestCase.PloneTestCase):
         self.assertEqual(self.folder.event.Title(), 'Foo')
         self.assertEqual(self.folder.event.start().ISO(), '2003-09-18 00:00:00')
         self.assertEqual(self.folder.event.end().ISO(), '2003-09-19 00:00:00')
-
-    def testFavoriteEdit(self):
-        # Note: link_edit does not traverse to remote_url
-        self.folder.invokeFactory('Favorite', id='favorite')
-        self.folder.favorite.edit(remote_url='bar/baz.html', title='Foo')
-        self.assertEqual(self.folder.favorite.getRemoteUrl(),
-                         '%s/bar/baz.html' % self.portal.portal_url())
-        self.assertEqual(self.folder.favorite.Title(), 'Foo')
 
     def testFileEdit(self):
         self.folder.invokeFactory('File', id='file')

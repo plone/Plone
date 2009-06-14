@@ -102,9 +102,6 @@ def initialize(context):
     # Make cgi.escape available TTW
     ModuleSecurityInfo('cgi').declarePublic('escape')
 
-    # Inititalize configuration machinery
-    import setup
-
     # Apply monkey patches
     import patches
 
@@ -194,11 +191,3 @@ PloneMessageFactory = MessageFactory('plone')
 # Import PloneLocalesMessageFactory to create messages in the plonelocales domain
 from zope.i18nmessageid import MessageFactory
 PloneLocalesMessageFactory = MessageFactory('plonelocales')
-
-# A module alias for the stupidly named plone.py - now called 'ploneview.py'
-# 
-# If you get weird import errors like "Cannot import module 'utils'" (when 
-# trying to import Products.CMFPlone.utils, comment out the next two lines -
-# they may be masking the error.
-from browser import ploneview
-sys.modules['Products.CMFPlone.browser.plone'] = ploneview

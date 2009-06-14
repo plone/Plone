@@ -4,6 +4,7 @@ from types import UnicodeType, StringType
 import urlparse
 import transaction
 
+from zope.component import queryAdapter
 from zope.interface import implements
 
 from AccessControl import ClassSecurityInfo, Unauthorized
@@ -407,7 +408,7 @@ class PloneTool(PloneBaseTool, UniqueObject, SimpleItem):
             pass
         if wfs:
             for w in wfs:
-                if w.states.has_key(objstate):
+                if objstate in w.states:
                     return w.states[objstate].title or objstate
         return None
 
@@ -481,10 +482,14 @@ class PloneTool(PloneBaseTool, UniqueObject, SimpleItem):
 
         >>> ptool = self.portal.plone_utils
 
-        >>> ptool.urlparse('http://dev.plone.org/plone/query?milestone=2.1#foo')
+        >>> url = 'http://dev.plone.org/plone/query?milestone=2.1#foo'
+        >>> tuple(ptool.urlparse(url))
         ('http', 'dev.plone.org', '/plone/query', '', 'milestone=2.1', 'foo')
+        
+        New in Python 2.6: urlparse now returns a ParseReusult object.
+        We just need the tuple form which is tuple(result).
         """
-        return urlparse.urlparse(url)
+        return tuple(urlparse.urlparse(url))
 
     security.declarePublic('urlunparse')
     def urlunparse(self, url_tuple):
@@ -567,13 +572,13 @@ class PloneTool(PloneBaseTool, UniqueObject, SimpleItem):
         return BAD_CHARS(id)
 
     security.declarePublic('getInheritedLocalRoles')
-    def getInheritedLocalRoles(self, here):
+    def getInheritedLocalRoles(self, context):
         """Returns a tuple with the acquired local roles."""
-        portal = getToolByName(here, 'portal_url').getPortalObject()
+        portal = getToolByName(context, 'portal_url').getPortalObject()
         result = []
         cont = 1
-        if portal != here:
-            parent = here.aq_parent
+        if portal != context:
+            parent = context.aq_parent
             while cont:
                 if not getattr(parent, 'acl_users', False):
                     break
@@ -752,8 +757,8 @@ class PloneTool(PloneBaseTool, UniqueObject, SimpleItem):
         # means acquire PROPFIND from the folder and call it
         # its all very odd and WebDAV'y
         request = getattr(self, 'REQUEST', None)
-        if request and request.has_key('REQUEST_METHOD'):
-            if request['REQUEST_METHOD'] not in  ['GET', 'POST']:
+        if request is not None and 'REQUEST_METHOD' in request:
+            if request['REQUEST_METHOD'] not in ['GET', 'POST']:
                 return obj, [request['REQUEST_METHOD']]
         # Now back to normal
 
@@ -774,23 +779,11 @@ class PloneTool(PloneBaseTool, UniqueObject, SimpleItem):
                     if translation is not None and \
                        (not wftool.getChainFor(pageobj) or\
                            wftool.getInfoFor(pageobj, 'review_state') == wftool.getInfoFor(translation, 'review_state')):
-                        if ids.has_key(translation.getId()):
+                        if translation.getId() in obj:
                             return obj, [translation.getId()]
                         else:
                             return translation, ['view']
             return obj, [page]
-
-        # The list of ids where we look for default
-        ids = {}
-
-        # If we are not dealing with a folder, then leave this empty
-        if obj.isPrincipiaFolderish:
-            # For BTreeFolders we just use has_key, otherwise build a dict
-            if base_hasattr(obj, 'has_key'):
-                ids = obj
-            else:
-                for id in obj.objectIds():
-                    ids[id] = 1
 
         #
         # 1. Get an attribute or contained object index_html
@@ -820,7 +813,7 @@ class PloneTool(PloneBaseTool, UniqueObject, SimpleItem):
         if obj.isPrincipiaFolderish:
             defaultPage = self.getDefaultPage(obj)
             if defaultPage is not None:
-                if ids.has_key(defaultPage):
+                if defaultPage in obj:
                     return returnPage(obj, defaultPage)
                 # Avoid infinite recursion in the case that the page id == the
                 # object id
@@ -832,8 +825,10 @@ class PloneTool(PloneBaseTool, UniqueObject, SimpleItem):
                     return obj, defaultPage.split('/')
 
         # 5. If there is no default page, try IBrowserDefault.getLayout()
-
-        browserDefault = IBrowserDefault(obj, None)
+        if IBrowserDefault.providedBy(obj):
+            browserDefault = obj
+        else:
+            browserDefault = queryAdapter(obj, IBrowserDefault)
         if browserDefault is not None:
             layout = browserDefault.getLayout()
             if layout is None:
@@ -852,33 +847,34 @@ class PloneTool(PloneBaseTool, UniqueObject, SimpleItem):
         # action (this applies to old-style folders only, IBrowserDefault is
         # managed explicitly above)
 
-        try:
-            # XXX: This isn't quite right since it assumes the action
-            # starts with ${object_url}.  Should we raise an error if
-            # it doesn't?
-            act = obj.getTypeInfo().getActionInfo('folder/folderlisting')['url'].split('/')[-1]
-            return obj, [act]
-        except ValueError:
-            pass
+        if base_hasattr(obj, 'getTypeInfo'):
+            try:
+                # XXX: This isn't quite right since it assumes the action
+                # starts with ${object_url}.  Should we raise an error if
+                # it doesn't?
+                act = obj.getTypeInfo().getActionInfo('folder/folderlisting')['url'].split('/')[-1]
+                return obj, [act]
+            except ValueError:
+                pass
 
-        #
-        # 7. Fall back on the 'view' action
-        #
+            #
+            # 7. Fall back on the 'view' action
+            #
 
-        try:
-            # XXX: This isn't quite right since it assumes the action
-            # starts with ${object_url}.  Should we raise an error if
-            # it doesn't?
-            act = obj.getTypeInfo().getActionInfo('object/view')['url'].split('/')[-1]
-            return obj, [act]
-        except ValueError:
-            pass
+            try:
+                # XXX: This isn't quite right since it assumes the action
+                # starts with ${object_url}.  Should we raise an error if
+                # it doesn't?
+                act = obj.getTypeInfo().getActionInfo('object/view')['url'].split('/')[-1]
+                return obj, [act]
+            except ValueError:
+                pass
 
         #
         # 8. If we can't find this either, raise an exception
         #
 
-        raise AttributeError, "Failed to get a default page or view_action for %s" % (obj.absolute_url,)
+        raise AttributeError, "Failed to get a default page or view_action for %s" % (obj.absolute_url(),)
 
     security.declarePublic('isTranslatable')
     def isTranslatable(self, obj):

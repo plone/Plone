@@ -3,7 +3,7 @@
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
-      metal:use-macro="here/main_template/macros/master"
+      metal:use-macro="context/main_template/macros/master"
       i18n:domain="plone">
 
 <head>
@@ -91,7 +91,7 @@
 
             <a name="documentContent"></a>
                     
-            <div metal:use-macro="here/global_statusmessage/macros/portal_message">
+            <div metal:use-macro="context/global_statusmessage/macros/portal_message">
                 Portal status message
             </div>
 

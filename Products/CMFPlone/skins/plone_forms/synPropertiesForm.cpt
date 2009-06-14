@@ -3,7 +3,7 @@
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
-      metal:use-macro="here/main_template/macros/master"
+      metal:use-macro="context/main_template/macros/master"
       i18n:domain="plone">
 
   <body>
@@ -73,7 +73,7 @@
             <dd tal:content="context/@@plone_context_state/object_title">title</dd>
             
             <dt i18n:translate="label_syndication_channel_description">Channel Description</dt>
-            <dd tal:content="here/Description">description</dd>
+            <dd tal:content="context/Description">description</dd>
           </dl>
 
           <fieldset>
@@ -141,7 +141,7 @@
               
               <div tal:content="error">Validation error output</div>
 
-              <div metal:use-macro="here/calendar_macros/macros/calendarDatePickerBox">
+              <div metal:use-macro="context/calendar_macros/macros/calendarDatePickerBox">
                 calendar popup
               </div>
             </div>
