@@ -686,6 +686,11 @@ def restorePloneTool(context):
 
 def updateImportStepsFromBaseProfile(context):
     """Updates the available import steps for existing sites."""
-
-    tool = getToolByName(context, "portal_setup")
-    tool.setBaselineContext("profile-%s" % _DEFAULT_PROFILE)
+    setup_tool = getToolByName(context, "portal_setup", None)
+    if setup_tool is not None:
+        # only rerun when unset
+        if not setup_tool.getBaselineContextID():
+            # make sure the profile is there
+            if _DEFAULT_PROFILE in [i['id'] for i in setup_tool.listProfileInfo()]:
+                setup_tool.setBaselineContext('profile-' + _DEFAULT_PROFILE)
+                logger.info('Set plone GS profile as default')

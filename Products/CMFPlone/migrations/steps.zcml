@@ -89,9 +89,9 @@
   <genericsetup:upgradeStep
       source="2.5.3"
       destination="2.5.4"
-      title="Correct baseline profile in GenericSetup."
+      title="Empty upgrade step"
       profile="Products.CMFPlone:plone"
-      handler=".v3_0.alphas.updateImportStepsFromBaseProfile"
+      handler=".null_upgrade_step"
       />
 
   <genericsetup:upgradeStep

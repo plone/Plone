@@ -1041,52 +1041,6 @@ class TestMigrations_v2_5_2(MigrationTest):
         # now they're back:
         self.failUnless(set(self.mimetypes.list_mimetypes()).issuperset(set(missing_types)))
 
-class TestMigrations_v2_5_4(MigrationTest):
-
-    def afterSetUp(self):
-        self.setup = self.portal.portal_setup
-
-    def testAddGSSteps(self):
-        # unset the gs profile
-        self.setup._baseline_context_id = ''
-        self.assertEqual(self.setup.getBaselineContextID(), '')
-        updateImportStepsFromBaseProfile(self.portal)
-        self.assertEqual(self.setup.getBaselineContextID(),
-                         'profile-' + _DEFAULT_PROFILE)
-
-    def testAddGSStepsAlreadyThere(self):
-        # set a bogus existing profile, ensure we don't change it
-        self.setup._baseline_context_id = 'profile-Bogus:bogus'
-        self.assertEqual(self.setup.getBaselineContextID(),
-                         'profile-Bogus:bogus')
-        updateImportStepsFromBaseProfile(self.portal)
-        self.assertEqual(self.setup.getBaselineContextID(),
-                         'profile-Bogus:bogus')
-
-    def testAddGSStepsNoPloneStep(self):
-        # if the plone step is not there, don't set it
-        # first remove it from the registry
-        self.setup._baseline_context_id = ''
-        from Products.GenericSetup.registry import _profile_registry
-        _profile_registry._profile_ids.remove(_DEFAULT_PROFILE)
-        prof_info = _profile_registry._profile_info[_DEFAULT_PROFILE]
-        del _profile_registry._profile_info[_DEFAULT_PROFILE]
-
-        # Then go through the normal migration process
-        self.assertEqual(self.setup.getBaselineContextID(),
-                         '')
-        updateImportStepsFromBaseProfile(self.portal)
-        self.assertEqual(self.setup.getBaselineContextID(),
-                         '')
-        # restore registry, because this is not undone by the transaction
-        _profile_registry._profile_ids.append(_DEFAULT_PROFILE)
-        _profile_registry._profile_info[_DEFAULT_PROFILE] = prof_info
-
-    def testAddGSStepsNoTool(self):
-        # do nothing if there's no tool
-        self.portal._delObject('portal_setup')
-        updateImportStepsFromBaseProfile(self.portal)
-
 
 class TestMigrations_v3_0_Actions(MigrationTest):
 
@@ -1187,6 +1141,48 @@ class TestMigrations_v2_5_x(MigrationTest):
         self.icons = self.portal.portal_actionicons
         self.types = self.portal.portal_types
         self.properties = self.portal.portal_properties
+        self.setup = self.portal.portal_setup
+
+    def testAddGSSteps(self):
+        # unset the gs profile
+        self.setup._baseline_context_id = ''
+        self.assertEqual(self.setup.getBaselineContextID(), '')
+        updateImportStepsFromBaseProfile(self.portal)
+        self.assertEqual(self.setup.getBaselineContextID(),
+                         'profile-' + _DEFAULT_PROFILE)
+
+    def testAddGSStepsAlreadyThere(self):
+        # set a bogus existing profile, ensure we don't change it
+        self.setup._baseline_context_id = 'profile-Bogus:bogus'
+        self.assertEqual(self.setup.getBaselineContextID(),
+                         'profile-Bogus:bogus')
+        updateImportStepsFromBaseProfile(self.portal)
+        self.assertEqual(self.setup.getBaselineContextID(),
+                         'profile-Bogus:bogus')
+
+    def testAddGSStepsNoPloneStep(self):
+        # if the plone step is not there, don't set it
+        # first remove it from the registry
+        self.setup._baseline_context_id = ''
+        from Products.GenericSetup.registry import _profile_registry
+        _profile_registry._profile_ids.remove(_DEFAULT_PROFILE)
+        prof_info = _profile_registry._profile_info[_DEFAULT_PROFILE]
+        del _profile_registry._profile_info[_DEFAULT_PROFILE]
+
+        # Then go through the normal migration process
+        self.assertEqual(self.setup.getBaselineContextID(),
+                         '')
+        updateImportStepsFromBaseProfile(self.portal)
+        self.assertEqual(self.setup.getBaselineContextID(),
+                         '')
+        # restore registry, because this is not undone by the transaction
+        _profile_registry._profile_ids.append(_DEFAULT_PROFILE)
+        _profile_registry._profile_info[_DEFAULT_PROFILE] = prof_info
+
+    def testAddGSStepsNoTool(self):
+        # do nothing if there's no tool
+        self.portal._delObject('portal_setup')
+        updateImportStepsFromBaseProfile(self.portal)
 
     def disableSite(self, obj, iface=ISite):
         # We need our own disableSite method as the CMF portal implements
@@ -2586,7 +2582,6 @@ def test_suite():
     suite.addTest(makeSuite(TestMigrations_v2_5_0))
     suite.addTest(makeSuite(TestMigrations_v2_5_1))
     suite.addTest(makeSuite(TestMigrations_v2_5_2))
-    suite.addTest(makeSuite(TestMigrations_v2_5_4))
     suite.addTest(makeSuite(TestMigrations_v3_0))
     suite.addTest(makeSuite(TestMigrations_v3_0_Actions))
     suite.addTest(makeSuite(TestMigrations_v3_1))
