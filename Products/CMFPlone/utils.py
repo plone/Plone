@@ -84,10 +84,6 @@ def _getDefaultPageView(obj, request):
     return view
 
 def isDefaultPage(obj, request):
-    if context is not None:
-        warnings.warn("The context parameter for isDefaultPage is "
-                      "deprecated and will be removed in Plone 4.",
-                      DeprecationWarning, 1)
     container = parent(obj)
     if container is None:
         return False
@@ -95,10 +91,6 @@ def isDefaultPage(obj, request):
     return view.isDefaultPage(obj)
 
 def getDefaultPage(obj, request):
-    if context is not None:
-        warnings.warn("The context parameter for getDefaultPage is "
-                      "deprecated and will be removed in Plone 4.",
-                      DeprecationWarning, 1)
     # Short circuit if we are not looking at a Folder
     if not obj.isPrincipiaFolderish:
         return None

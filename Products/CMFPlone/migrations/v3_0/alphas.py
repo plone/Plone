@@ -89,7 +89,7 @@ def three0_alpha1(context):
 
     # The ATCT tool has lost all type migration functionality and quite some
     # metadata and index information stored on it needs to be updated.
-    upgradeATCTTool(portal)
+    upgradeATCTTool(portal, out=[])
 
     # Install CMFEditions and CMFDiffTool
     installProduct('CMFDiffTool', portal, hidden=True)
