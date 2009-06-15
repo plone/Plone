@@ -8,7 +8,8 @@
          shim provided for compatibility with CMF 2.1.
       -->
     <adapter
-        for="* Products.CMFCore.interfaces.ICatalogTool"
+        for="Products.CMFCore.interfaces.ICatalogAware
+             Products.CMFPlone.interfaces.IPloneCatalogTool"
         factory="plone.indexer.wrapper.IndexableObjectWrapper"
         provides="plone.indexer.interfaces.IIndexableObject"
         />

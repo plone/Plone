@@ -5,6 +5,8 @@ import re
 import time
 import urllib
 
+from zope.interface import implements
+
 from Products.CMFCore.CatalogTool import CatalogTool as BaseTool
 
 from Products.CMFCore.permissions import AccessInactivePortalContent
@@ -18,7 +20,6 @@ from Acquisition import aq_base
 from DateTime import DateTime
 from BTrees.Length import Length
 
-from Products.CMFCore.interfaces import ISiteRoot
 from Products.CMFCore.utils import _getAuthenticatedUser
 from Products.CMFCore.utils import _checkPermission
 from Products.CMFCore.utils import getToolByName
@@ -29,10 +30,11 @@ from Products.CMFPlone.interfaces import INonStructuralFolder
 from Products.CMFPlone.utils import base_hasattr
 from Products.CMFPlone.utils import safe_callable
 from Products.CMFPlone.utils import safe_unicode
+from Products.CMFPlone.interfaces import IPloneCatalogTool
+
 from OFS.interfaces import IOrderedContainer
 
 from Products.ZCatalog.ZCatalog import ZCatalog
-from Products.ZCatalog.interfaces import IZCatalog
 
 from AccessControl.Permissions import manage_zcatalog_entries as ManageZCatalogEntries
 from AccessControl.Permissions import search_zcatalog as SearchZCatalog
@@ -40,124 +42,11 @@ from AccessControl.PermissionRole import rolesForPermissionOn
 
 from zope.interface import Interface, providedBy
 from zope.component import queryMultiAdapter
-from zope.deprecation import deprecate
 
 from plone.indexer.interfaces import IIndexableObject
 from plone.indexer import indexer
 
 _marker = object()
-
-## DEPRECATED: This is for compatibility in the 3.x series and should go away
-## in Plone 4.
-
-from zope.interface import implements
-from zope.interface.declarations import Implements, implementedBy
-
-from plone.indexer.interfaces import IIndexer
-from zope.component import provideAdapter
-    
-class BBBDelegatingIndexer(object):
-    """An indexer that delegates to a given callable
-    """
-    implements(IIndexer)
-    
-    def __init__(self, context, catalog, callable):
-        self.context = context
-        self.catalog = catalog
-        self.callable = callable
-        
-    def __call__(self):
-        kwargs = {'portal': aq_parent(aq_inner(self.catalog))}
-        return self.callable(self.context, **kwargs)
-
-class BBBDelegatingIndexerFactory(object):
-    """An adapter factory for an IIndexer that works by calling a
-    BBBDelegatingIndexer.
-    """
-    
-    def __init__(self, callable):
-        self.callable = callable
-        self.__implemented__ = Implements(implementedBy(BBBDelegatingIndexer))
-        
-    def __call__(self, object, catalog=None):
-        return BBBDelegatingIndexer(object, catalog, self.callable)
-
-@deprecate("The registerIndexableAttribute hook has been deprecated and will be\n"
-           "removed in Plone 4.0. Please use the following pattern instead:\n"
-           "  >>> from plone.indexer.decorator import indexer\n"
-           "  >>> @indexer(Interface)\n"
-           "  ... def my_indexer(object):\n"
-           "  ...     return <some value>\n"
-           " Then register the indexer as an adapter in ZCML:\n"
-           "     <adapter factory='.indexers.my_indexer' name='my_attribute' />\n"
-           "Note that you can (and should) use a more specific interface for your\n"
-           "indexer to ensure that it only applies to a particular content type.\n")
-def registerIndexableAttribute(name, callable):
-    """BBB function.
-    """
-    
-    factory = BBBDelegatingIndexerFactory(callable)
-    
-    # Ideally, we'd emit a configuration action here, but we don't have access
-    # to the configuration context, so we have to do it this way
-    provideAdapter(factory, (Interface, IZCatalog,), IIndexer, name=name)
-
-from zope.interface import implements
-from zope.component import adapts
-from plone.indexer.interfaces import IIndexer
-from plone.indexer.wrapper import IndexableObjectWrapper as _BaseWrapper
-from plone.app.content.interfaces import IIndexableObjectWrapper as _old_IIndexableObjectWrapper
-
-class ExtensibleIndexableObjectWrapper(_BaseWrapper):
-    """BBB alias retaining the API of the old ExtensibleIndexableObjectWrapper.
-    This may be used as a base class. It delegates to the plone.indexer
-    wrapper, with a few assumptions.
-    """
-    
-    implements(_old_IIndexableObjectWrapper)
-    adapts(Interface, ISiteRoot)
-    
-    def __init__(self, obj, portal, registry={}):
-        catalog = getToolByName(portal, 'portal_catalog')
-        super(ExtensibleIndexableObjectWrapper, self).__init__(obj, catalog)
-        
-        # Retain old mangled name
-        self._IndexableObjectWrapper__ob = obj
-        self._kwargs = {}
-    
-    def update(self, vars, **kwargs):
-        # Note that this is not even used below, because kwargs were never
-        # passed to catalog_object() in the first place, and workflow vars
-        # are taken care of by __init__() now.
-        pass
-    
-    def beforeGetattrHook(self, vars, obj, kwargs):
-        return vars, obj, kwargs
-
-    def __getattr__(self, name):
-        
-        # Make getattr continue to call the beforeGetattrHook
-        
-        vars = self._IndexableObjectWrapper__vars
-        obj = self._IndexableObjectWrapper__ob
-        catalog = self._IndexableObjectWrapper__catalog
-        kwargs = self._kwargs
-        
-        vars, obj, kwargs = self.beforeGetattrHook(vars, obj, kwargs)
-        
-        # Use the possibly modified objects from beforeGetattrHook.
-        indexer = queryMultiAdapter((obj, catalog,), IIndexer, name=name)
-        if indexer is not None:
-            return indexer()
-        if name in vars:
-            return vars[name]                    
-        return getattr(obj, name)
-        
-    def allowedRolesAndUsers(self):
-        # Disable CMFCore version of this method; use registry hook instead
-        return self.__getattr__('allowedRolesAndUsers')
-
-## End Deprecated BBB code
 
 @indexer(Interface)
 def allowedRolesAndUsers(obj):
@@ -334,6 +223,8 @@ def getIcon(obj):
 
 class CatalogTool(PloneBaseTool, BaseTool):
 
+    implements(IPloneCatalogTool)
+
     meta_type = ToolNames.CatalogTool
     security = ClassSecurityInfo()
     toolicon = 'skins/plone_images/book_icon.gif'
@@ -377,19 +268,11 @@ class CatalogTool(PloneBaseTool, BaseTool):
         self._increment_counter()
         
         w = object
-        
         if not IIndexableObject.providedBy(object):
-            
-            # BBB: Compatibility wrapper lookup. Should be removed in Plone 4.
-            portal = aq_parent(aq_inner(self))
-            wrapper = queryMultiAdapter((object, portal), _old_IIndexableObjectWrapper)
+            # This is the CMF 2.2 compatible approach, which should be used going forward
+            wrapper = queryMultiAdapter((object, self), IIndexableObject)
             if wrapper is not None:
                 w = wrapper
-            else:
-                # This is the CMF 2.2 compatible approach, which should be used going forward
-                wrapper = queryMultiAdapter((object, self), IIndexableObject)
-                if wrapper is not None:
-                    w = wrapper
         
         ZCatalog.catalog_object(self, w, uid, idxs,
                                 update_metadata, pghandler=pghandler)

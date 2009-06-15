@@ -180,3 +180,7 @@ may need to take the following changes into account.
 
 * The 'doctype' slot has been removed from main_template.  Should this
   flexibility be required, it's recommended to customize main_template.
+
+* The 'actions' method of @@plone_context_state now takes a single parameter
+  which is the action category that should be retrieved. This should be used
+  instead of the 'keyed_actions' method which has been removed.
