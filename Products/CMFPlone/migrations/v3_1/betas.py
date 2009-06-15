@@ -14,7 +14,7 @@ from Products.CMFPlone.setuphandlers import replace_local_role_manager
 def three0_beta1(portal):
     """3.0.6 -> 3.1-beta1
     """
-    loadMigrationProfile(portal, 'profile-Products.CMFPlone.migrations:3.0.6-3.1alpha1')
+    loadMigrationProfile(portal, 'profile-Products.CMFPlone.migrations:3.0.6-3.1beta1')
 
     addBrowserLayer(portal)
     addCollectionAndStaticPortlets(portal)
