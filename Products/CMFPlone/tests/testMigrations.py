@@ -148,6 +148,9 @@ from Products.CMFPlone.migrations.v3_0.final_three0x import installNewModifiers
 
 from Products.CMFPlone.migrations.v3_1.betas import reinstallCMFPlacefulWorkflow
 
+from Products.CMFPlone.migrations import v3_2
+from Products.CMFPlone.migrations import v3_3
+
 from Products.CMFPlone.migrations.v4_0.alphas import migrateActionIcons
 
 from Products.CMFPlone.setuphandlers import replace_local_role_manager
@@ -956,7 +959,8 @@ class TestMigrations_v2_5_0(MigrationTest):
         # event registration test
         script_ids = jsreg.getResourceIds()
         self.failUnless('event-registration.js' in script_ids)
-        self.assertEqual(jsreg.getResourcePosition('event-registration.js'), 0)
+        self.failUnless(jsreg.getResourcePosition('event-registration.js') <
+            jsreg.getResourcePosition('register_function.js'))
 
     def tesFixObjDeleteAction(self):
         # Prepare delete actions test
@@ -978,7 +982,7 @@ class TestMigrations_v2_5_0(MigrationTest):
         lexicon._pipeline = (object(), object())
         # Test it twice
         for i in range(2):
-            fixupPloneLexicon(self.portal, [])
+            fixupPloneLexicon(self.portal)
             self.failUnless(isinstance(lexicon._pipeline[0], Splitter))
             self.failUnless(isinstance(lexicon._pipeline[1], CaseNormalizer))
 
@@ -2105,7 +2109,7 @@ class TestMigrations_v3_0(MigrationTest):
             title='View as presentation',
             )
         action_ids = [x.getId() for x in document.listActions()]
-        self.failIf("s5_presentation" in action_ids)
+        self.failUnless("s5_presentation" in action_ids)
         icon_ids = [x.getActionId() for x in ait.listActionIcons()]
         self.failUnless("s5_presentation" in icon_ids)
         # Test it twice
@@ -2452,14 +2456,11 @@ class TestMigrations_v3_2(MigrationTest):
         self.actions = self.portal.portal_actions
         self.migration = self.portal.portal_migration
 
-    def _upgrade(self):
-        self.migration._upgrade('3.2a1')
-
     def testIterateActionsMigratedIfIterateInstalled(self):
         self.qi.installProduct('plone.app.iterate')
         self.actions.object_buttons.iterate_checkin.permissions = (
             'Modify portal content',)
-        self._upgrade()
+        v3_2.alpha1_rc1(self.portal)
         self.failUnlessEqual(
             self.actions.object_buttons.iterate_checkin.permissions,
             ('iterate : Check in content',))
@@ -2467,7 +2468,7 @@ class TestMigrations_v3_2(MigrationTest):
     def testIterateInstalledButActionMissing(self):
         self.qi.installProduct('plone.app.iterate')
         self.actions.object_buttons.manage_delObjects(['iterate_checkin'])
-        self._upgrade()
+        v3_2.alpha1_rc1(self.portal)
         self.failIf('iterate_checkin' in
                     self.actions.object_buttons.objectIds())
 
@@ -2478,12 +2479,9 @@ class TestMigrations_v3_3(MigrationTest):
         self.properties = self.portal.portal_properties
         self.migration = self.portal.portal_migration
     
-    def _upgrade(self):
-        self.migration._upgrade('3.2.3')
-    
     def testRedirectLinksProperty(self):
         self.removeSiteProperty('redirect_links')
-        self._upgrade()
+        v3_3.three23_three3_beta1(self.portal)
         self.assertEquals(True, 
             self.properties.site_properties.getProperty('redirect_links'))
     
@@ -2491,7 +2489,7 @@ class TestMigrations_v3_3(MigrationTest):
         self.types.Link.default_view = 'link_view'
         self.types.Link.immediate_view = 'link_view'
         self.types.Link.view_methods = ('link_view',)
-        self._upgrade()
+        v3_3.three23_three3_beta1(self.portal)
         self.assertEqual(self.types.Link.default_view, 'link_redirect_view')
         self.assertEqual(self.types.Link.immediate_view, 'link_redirect_view')
         self.assertEqual(self.types.Link.view_methods, ('link_redirect_view',))
@@ -2501,16 +2499,16 @@ class TestMigrations_v3_3(MigrationTest):
         self.types.Link.default_view = 'foobar'
         self.types.Link.immediate_view = 'foobar'
         self.types.Link.view_methods = ('foobar',)
-        self._upgrade()
+        v3_3.three23_three3_beta1(self.portal)
         self.assertEqual(self.types.Link.default_view, 'foobar')
         self.assertEqual(self.types.Link.immediate_view, 'foobar')
         self.assertEqual(self.types.Link.view_methods, ('foobar',))
 
     def testLockOnTTWProperty(self):
         self.removeSiteProperty('lock_on_ttw_edit')
-        self._upgrade()
+        v3_3.three23_three3_beta1(self.portal)
         self.assertEquals(True, self.properties.site_properties.getProperty('lock_on_ttw_edit'))
-    
+
 class TestMigrations_v4_0alpha1(MigrationTest):
 
     profile = "profile-Products.CMFPlone.migrations:3-4alpha1"
