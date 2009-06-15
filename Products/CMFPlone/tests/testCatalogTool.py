@@ -479,14 +479,12 @@ class TestCatalogSorting(PloneTestCase.PloneTestCase):
         title = '1.2.3 foo document'
         doc = self.folder.doc
         doc.setTitle(title)
-        wrapped = ExtensibleIndexableObjectWrapper(doc, self.portal)
-        wrapped.update(vars={})
+        wrapped = IndexableObjectWrapper(doc, self.portal.portal_catalog)
         self.assertEqual(wrapped.sortable_title,
                          u'000001.000002.000003 foo document')
         title = '1.2.3 foo program'
         doc.setTitle(title)
-        wrapped = ExtensibleIndexableObjectWrapper(doc, self.portal)
-        wrapped.update(vars={})
+        wrapped = IndexableObjectWrapper(doc, self.portal.portal_catalog)
         self.assertEqual(wrapped.sortable_title,
                          u'000001.000002.000003 foo program')
 
