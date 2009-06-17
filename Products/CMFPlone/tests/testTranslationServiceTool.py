@@ -13,27 +13,23 @@ class TestUTranslate(PloneTestCase.PloneTestCase):
 
     def testUTranslate(self):
         # Test Unicode value
-        value = self.tool.utranslate('domain', u'foo')
+        value = self.tool.translate(u'foo', 'domain')
         self.assertEquals(value, u'foo')
 
         # Test ascii value
-        value = self.tool.utranslate('domain', 'foo')
+        value = self.tool.translate('foo', 'domain')
         self.assertEquals(value, u'foo')
 
-        # Test utf-8 value
-        value = self.tool.utranslate('domain', u'\xc3'.encode('utf-8'))
-        self.assertEquals(value, u'\xc3')
-
         # Test empty string
-        value = self.tool.utranslate('domain', '')
+        value = self.tool.translate('', 'domain')
         self.assertEquals(value, u'')
 
         # Test empty domain
-        value = self.tool.utranslate('', 'foo')
+        value = self.tool.translate('foo', 'domain')
         self.assertEquals(value, u'foo')
 
         # Test default is None
-        value = self.tool.utranslate('domain', 'foo', default=None)
+        value = self.tool.translate('foo', 'domain', default=None)
         self.assertEquals(value, u'foo')
 
 class TestTranslationServiceTool(PloneTestCase.PloneTestCase):

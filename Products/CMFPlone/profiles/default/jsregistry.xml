@@ -127,7 +127,7 @@
     id="kupuploneinit.js" inline="False"/>
 
 <!-- KSS -->
- <javascript cacheable="True" compression="none" cookable="True"
+ <!-- <javascript cacheable="True" compression="none" cookable="True"
     enabled="False" expression=""
     id="++resource++MochiKit.js" inline="False"/>
  <javascript cacheable="True" compression="safe" cookable="True"
@@ -147,5 +147,5 @@
     id="++resource++kukit.js" inline="False"/>
  <javascript cacheable="True" compression="none" cookable="True"
     enabled="True" expression="python: not object.restrictedTraverse('@@plone_portal_state').anonymous() and object.restrictedTraverse('@@kss_devel_mode').ison()"
-    id="++resource++kukit-devel.js" inline="False"/>
+    id="++resource++kukit-devel.js" inline="False"/> -->
 </object>

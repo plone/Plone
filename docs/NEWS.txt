@@ -13,6 +13,12 @@ Changelog
   object wrapper for this.
   [optilude]
 
+- Avoid dependency on the zope.app.zapi package.
+  [hannosch]
+
+- No longer depend on the PageTemplates.GlobalTranslationService but use
+  zope.i18n directly.
+
 - Replaced has_key method calls with containment checks via `in`.
   [hannosch]
 
@@ -317,6 +323,10 @@ Changelog
 
 - Removed tests for isRTL method of PTS. The method was deprecated in the 
   last release and is gone now. 
+  [hannosch]
+
+- Removed PTSTranslationDomain utilities. PTS exposes all translation files 
+  as pure Zope3 translation utilities now, so these aren't needed anymore. 
   [hannosch]
 
 - Replaced our FasterStringIO implementation by one based on 

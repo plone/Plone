@@ -13,7 +13,6 @@ from OFS.Folder import Folder
 from OFS.ObjectManager import REPLACEABLE
 from DocumentTemplate.sequence import sort
 from webdav.NullResource import NullResource
-from webdav.WriteLockInterface import WriteLockInterface
 from webdav.interfaces import IWriteLock
 
 from Products.CMFCore.utils import getToolByName
@@ -21,15 +20,11 @@ from Products.CMFCore.CMFCatalogAware import CMFCatalogAware
 from Products.CMFCore.PortalFolder import PortalFolderBase
 from Products.CMFCore.permissions import AccessContentsInformation, \
                     AddPortalContent, AddPortalFolders, ListFolderContents, \
-                    ManageProperties, ModifyPortalContent, View
+                    ModifyPortalContent
 from Products.CMFDefault.DublinCore import DefaultDublinCoreImpl
 
 from zope.interface import implements
 from zope.app.container.contained import notifyContainerModified
-
-# ATM it's safer to define our own
-from interfaces.OrderedContainer import IOrderedContainer
-from OFS.IOrderSupport import IOrderedContainer as IZopeOrderedContainer
 
 class ReplaceableWrapper:
     """A wrapper around an object to make it replaceable."""

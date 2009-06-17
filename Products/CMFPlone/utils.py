@@ -13,9 +13,12 @@ from zope.interface import implementedBy
 from zope.component import getMultiAdapter
 from zope.component import queryMultiAdapter
 from zope.component import queryUtility
+from zope.i18n import translate
+from zope.publisher.interfaces.browser import IBrowserRequest
 
 import OFS
 import Globals
+from Acquisition import aq_get
 from Acquisition import aq_base, aq_inner, aq_parent
 from DateTime import DateTime
 from Products.CMFCore.utils import ToolInit as CMFCoreToolInit
@@ -31,9 +34,6 @@ except ImportError:
 __show__.on()
 
 import transaction
-
-from Products.PageTemplates.GlobalTranslationService import \
-    getGlobalTranslationService
 
 # Canonical way to get at CMFPlone directory
 PACKAGE_HOME = Globals.package_home(globals())
@@ -190,8 +190,10 @@ def getEmptyTitle(context, translated=True):
     # The default is an extra fancy unicode elipsis
     empty = unicode('\x5b\xc2\xb7\xc2\xb7\xc2\xb7\x5d', 'utf-8')
     if translated:
-        service = getGlobalTranslationService()
-        empty = service.translate('plone', 'title_unset', context=context, default=empty)
+        if context is not None:
+            if not IBrowserRequest.providedBy(context):
+                context = aq_get(context, 'REQUEST', None)
+        empty = translate('title_unset', domain='plone', context=context, default=empty)
     return empty
 
 def typesToList(context):

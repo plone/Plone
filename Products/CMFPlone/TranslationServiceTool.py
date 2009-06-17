@@ -2,10 +2,13 @@
 This tool requires a translation service which supports
 the translate method and the default parameter.
 """
+from zope.i18n import translate
 from zope.interface import implements
+from zope.publisher.interfaces.browser import IBrowserRequest
 
 from AccessControl import ClassSecurityInfo
 from Globals import InitializeClass
+from Acquisition import aq_get
 from OFS.SimpleItem import SimpleItem
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.utils import UniqueObject
@@ -14,7 +17,7 @@ from Products.CMFPlone import ToolNames
 from Products.CMFPlone.interfaces import ITranslationServiceTool
 from Products.CMFPlone.PloneBaseTool import PloneBaseTool
 
-from i18nl10n import ulocalized_time, utranslate, \
+from i18nl10n import ulocalized_time, \
                      monthname_msgid, monthname_msgid_abbr, \
                      weekdayname_msgid, weekdayname_msgid_abbr, \
                      weekdayname_msgid_short, \
@@ -30,11 +33,17 @@ class TranslationServiceTool(PloneBaseTool, UniqueObject, SimpleItem):
     security = ClassSecurityInfo()
     implements(ITranslationServiceTool)
 
-    security.declarePublic('utranslate')
-    def utranslate(self, *args, **kw):
-        # Translate method to access the translation service
-        # from resticted code like skins.
-        return utranslate(*args, **kw)
+    security.declarePublic('translate')
+    def translate(self, msgid, domain=None, mapping=None, context=None,
+                  target_language=None, default=None):
+        # Translate method for resticted code like skins.
+        if context is not None:
+            if not IBrowserRequest.providedBy(context):
+                context = aq_get(context, 'REQUEST', None)
+
+        return translate(msgid, domain=domain, mapping=mapping,
+                         context=context, target_language=target_language,
+                         default=default)
 
     security.declarePublic('encode')
     def encode(self, m, input_encoding=None, output_encoding=None, errors='strict'):

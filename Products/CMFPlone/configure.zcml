@@ -34,9 +34,9 @@
   <include package="plone.theme" />
 
   <!-- kss -->
-  <include package="kss.core" />
+  <!-- <include package="kss.core" />
   <include package="plone.app.kss" />
-  <include package="archetypes.kss" />
+  <include package="archetypes.kss" /> -->
 
   <!-- wicked -->
   <include package="wicked.plone" file="selective-atct.zcml" />
@@ -73,24 +73,6 @@
     class="Products.PluggableAuthService.plugins.BasePlugin.BasePlugin"
     interface=".interfaces.IHideFromBreadcrumbs"
     />
-
-  <utility component=".i18nl10n.plonedomain"
-           name="plone" />
-
-  <utility component=".i18nl10n.atctdomain"
-           name="atcontenttypes" />
-
-  <utility component=".i18nl10n.pltdomain"
-           name="plonelanguagetool" />
-
-  <utility component=".i18nl10n.prtdomain"
-           name="passwordresettool" />
-
-  <utility component=".i18nl10n.cmfpwdomain"
-           name="cmfplacefulworkflow" />
-
-  <utility component=".i18nl10n.cmfedomain"
-           name="cmfeditions" />
 
   <utility factory=".factory.HiddenProfiles"
            name="Products.CMFPlone" />

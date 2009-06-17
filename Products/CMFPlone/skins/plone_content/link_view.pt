@@ -9,9 +9,7 @@
 <body>
 
 <div metal:fill-slot="main">
-    <tal:main-macro metal:define-macro="main"
-                    tal:define="kssClassesView context/@@kss_field_decorator_view;
-                                getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;">
+    <tal:main-macro metal:define-macro="main">
 
         <dl class="portalMessage info"
             tal:define="redirect_links portal/portal_properties/site_properties/redirect_links|nothing"

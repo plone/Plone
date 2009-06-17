@@ -20,13 +20,13 @@
   <dependency step="componentregistry"/>
     Import stylesheet registry
  </import-step>
- <import-step id="kssregistry" version="20070407-01"
+ <!-- <import-step id="kssregistry" version="20070407-01"
               handler="Products.ResourceRegistries.exportimport.kssregistry.importKSSRegistry"
               title="KSS registry">
   <dependency step="toolset"/>
   <dependency step="componentregistry"/>
     Import KSS registry
- </import-step>
+ </import-step> -->
  <import-step id="jsregistry" version="20051015-01"
               handler="Products.ResourceRegistries.exportimport.jsregistry.importJSRegistry"
               title="Javascript registry">
@@ -40,13 +40,13 @@
   <dependency step="componentregistry"/>
     Import viewlet settings
  </import-step>
- <import-step id="kss_mimetype" version="20061125-01"
+ <!-- <import-step id="kss_mimetype" version="20061125-01"
               handler="plone.app.kss.exportimport.setup.setupMimetype"
               title="KSS setup / mimetype">
   <dependency step="plone-archetypes"/>
   <dependency step="mimetypes-registry-various"/>
     KSS (Kinetic Style Sheet) setup. Register kss mimetype.
- </import-step>
+ </import-step> -->
  <import-step id="kupu-setup" version="20061211-01"
               handler="Products.kupu.plone.exportimport.importKupuSettings"
               title="Kupu Settings">

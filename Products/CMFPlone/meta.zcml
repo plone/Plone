@@ -6,7 +6,7 @@
     <include package="plone.app.portlets" file="meta.zcml" />
     
     <!-- kss -->
-    <include package="kss.core" file="meta.zcml" />
+    <!-- <include package="kss.core" file="meta.zcml" /> -->
 
     <!-- wicked -->
     <include package="wicked.fieldevent" file="meta.zcml" />

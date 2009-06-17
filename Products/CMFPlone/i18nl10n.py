@@ -13,21 +13,6 @@ from DateTime.interfaces import IDateTime
 
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.log import log
-from Products.CMFPlone.utils import safe_unicode
-
-# get the registered translation service
-from Products.PageTemplates.GlobalTranslationService import \
-     getGlobalTranslationService
-
-from Products.PlacelessTranslationService.utility import PTSTranslationDomain
-
-# Create a PTS surrogate domain
-plonedomain = PTSTranslationDomain('plone')
-atctdomain = PTSTranslationDomain('atcontenttypes')
-pltdomain = PTSTranslationDomain('plonelanguagetool')
-prtdomain = PTSTranslationDomain('passwordresettool')
-cmfpwdomain = PTSTranslationDomain('cmfplacefulworkflow')
-cmfedomain = PTSTranslationDomain('cmfeditions')
 
 # these are taken from PTS, used for format interpolation
 NAME_RE = r"[a-zA-Z][a-zA-Z0-9_]*"
@@ -35,11 +20,6 @@ _interp_regex = re.compile(r'(?<!\$)(\$(?:%(n)s|{%(n)s}))' %({'n': NAME_RE}))
 
 datetime_formatvariables = ('H', 'I', 'm', 'd', 'M', 'p', 'S', 'Y', 'y', 'Z')
 name_formatvariables = ('a', 'A', 'b', 'B')
-
-# unicode aware translate method (i18n)
-def utranslate(*args, **kw):
-    # safety precaution for cases where we get passed in an encoded string
-    return safe_unicode(getGlobalTranslationService().translate(*args, **kw))
 
 # unicode aware localized time method (l10n)
 def ulocalized_time(time, long_format=None, time_only=None, context=None,

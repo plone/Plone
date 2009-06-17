@@ -4,9 +4,9 @@ class ITranslationServiceTool(Interface):
     """ Utility methods to access the translation machinery
     """
 
-    def utranslate(*args, **kw):
+    def translate(*args, **kw):
         """Translate method to access the translation service
-           rom resticted code like skins.
+           from resticted code like skins.
         """
 
     def encode(m, input_encoding=None, output_encoding=None, errors='strict'):
