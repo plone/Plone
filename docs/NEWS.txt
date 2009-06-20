@@ -10,7 +10,7 @@ Changelog
 
 - Added failing tests for subtopic and the ATFriendlyDateCriteria used for
   past events. The fix is added to Products.ATContentTypes.
-  https://dev.plone.org/plone/ticket/8827 
+  http://dev.plone.org/plone/ticket/8827 
   [pelle]
 
 - Make the Groups Overview search post back to the same page, since it displays a
