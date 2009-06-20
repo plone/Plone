@@ -5,8 +5,8 @@
 Changelog
 =========
 
-3.2.3 - Unreleased
-------------------
+3.2.3 - June 20, 2009
+---------------------
 
 - Added failing tests for subtopic and the ATFriendlyDateCriteria used for
   past events. The fix is added to Products.ATContentTypes.
@@ -21,6 +21,7 @@ Changelog
 - Convert event-registration.js to use jQuery and remove it from new sites.
   This closes http://dev.plone.org/ticket/8097
   [mj]
+
 
 3.2.2 - March 3, 2009
 ---------------------
