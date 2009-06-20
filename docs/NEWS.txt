@@ -8,6 +8,10 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Include the `overrides.zcml` from `Products.PlacelessTranslationService` to
+  actually make PTS' language negotiator available to the zope.i18n machinery.
+  [hannosch]
+
 - Made sure the plone.indexer registration works by introducing a more
   specific IPloneCatalogTool marker interface and registering the indexable
   object wrapper for this.
