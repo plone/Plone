@@ -33,6 +33,10 @@ class TranslationServiceTool(PloneBaseTool, UniqueObject, SimpleItem):
     security = ClassSecurityInfo()
     implements(ITranslationServiceTool)
 
+    security.declarePublic('utranslate')
+    def utranslate(self, *args, **kw):
+        return self.translate(*args, **kw)
+
     security.declarePublic('translate')
     def translate(self, msgid, domain=None, mapping=None, context=None,
                   target_language=None, default=None):
