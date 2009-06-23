@@ -482,17 +482,17 @@ div.formControls input.hidden {
 
 
 
-.documentContent div#content-history dl#history dd {
+#content-history dl#history dd {
 	margin-top: 0.8em;
 }
 
-.documentContent div#content-history dl div.historyRecord {
+#content-history dl div.historyRecord {
 	font-size: 90%;
 	margin-bottom:10px;
 }
 
 
-.documentContent div#content-history dl div.historyRecord div.historyTools ul {
+#content-history dl div.historyRecord div.historyTools ul {
 	float:right;
 	list-style-image:none;
 	list-style-position:outside;
@@ -500,32 +500,32 @@ div.formControls input.hidden {
 	margin-top:0;
 }
 
-.documentContent div#content-history dl div.historyRecord div.historyTools ul li {
+#content-history dl div.historyRecord div.historyTools ul li {
 	display:inline;
 }
 
-.documentContent div#content-history dl div.historyRecord div.historyTools ul li a{
+#content-history dl div.historyRecord div.historyTools ul li a{
 	border-bottom:none;
 }
 
 
-.documentContent div#content-history dl div.historyRecord div.historyByLine .historyAction {
+#content-history dl div.historyRecord div.historyByLine .historyAction {
 	color: &dtml-contentViewFontColor;;
 }
 
-.documentContent div#content-history dl div.historyRecord div.historyComment {
+#content-history dl div.historyRecord div.historyComment {
 	background-color: &dtml-globalBackgroundColor;;
 	margin:0.3em 0 0;
 	padding:0.7em;
 }
 
-.documentContent div#content-history dl div.historyRecord div.historyComment p {
+#content-history dl div.historyRecord div.historyComment p {
 	color: &dtml-globalFontColor;;
 	margin:0;
 	padding-top:1px;	
 }
 
-.documentContent div#content-history dl div.historyRecord a.historyComparePrevious {
+#content-history dl div.historyRecord a.historyComparePrevious {
 	border-bottom:medium none;
 	border-top:1px dotted black;
 	display:block;
@@ -533,7 +533,7 @@ div.formControls input.hidden {
 	margin-top:11px;
 }
 
-.documentContent div#content-history dl div.historyRecord a.historyComparePrevious img {
+#content-history dl div.historyRecord a.historyComparePrevious img {
 	background-color:white;
 	left:50%;
 	position:relative;
