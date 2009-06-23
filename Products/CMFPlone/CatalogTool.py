@@ -31,7 +31,7 @@ from Products.CMFPlone.interfaces.NonStructuralFolder import \
 from Products.CMFPlone.utils import base_hasattr
 from Products.CMFPlone.utils import safe_callable
 from Products.CMFPlone.utils import safe_unicode
-from OFS.IOrderSupport import IOrderedContainer
+from OFS.interfaces import IOrderedContainer
 from ZODB.POSException import ConflictError
 
 from Products.ZCatalog.ZCatalog import ZCatalog
@@ -227,7 +227,7 @@ def getObjPositionInParent(obj):
     0
     """
     parent = aq_parent(aq_inner(obj))
-    if IOrderedContainer.isImplementedBy(parent):
+    if IOrderedContainer.providedBy(parent):
         try:
             return parent.getObjectPosition(obj.getId())
         except ConflictError:
