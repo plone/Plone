@@ -480,64 +480,67 @@ div.formControls input.hidden {
 
 /* @group content history */
 
-
-
-#content-history dl#history dd {
+#content-history #history dd {
 	margin-top: 0.8em;
 }
 
-#content-history dl div.historyRecord {
+#content-history div.historyRecord {
 	font-size: 90%;
-	margin-bottom:10px;
+	margin-bottom: 10px;
 }
 
 
-#content-history dl div.historyRecord div.historyTools ul {
-	float:right;
-	list-style-image:none;
-	list-style-position:outside;
-	list-style-type:none;
-	margin-top:0;
+#content-history div.historyTools ul {
+	float: right;
+	list-style-image: none;
+	list-style-position: outside;
+	list-style-type: none;
+	margin-top: 0;
 }
 
-#content-history dl div.historyRecord div.historyTools ul li {
-	display:inline;
+#content-history div.historyTools ul li {
+	display: inline;
 }
 
-#content-history dl div.historyRecord div.historyTools ul li a{
-	border-bottom:none;
+#content-history div.historyTools ul li a{
+	border-bottom: none;
 }
 
 
-#content-history dl div.historyRecord div.historyByLine .historyAction {
-	color: &dtml-contentViewFontColor;;
+#content-history .historyAction {
+	border: 1px solid &dtml-contentViewBorderColor;;
+	background: &dtml-contentViewBackgroundColor;;
+	padding: 0.2em 0.5em;
+	font-size: &dtml-fontSmallSize;;
 }
 
-#content-history dl div.historyRecord div.historyComment {
-	background-color: &dtml-globalBackgroundColor;;
-	margin:0.3em 0 0;
-	padding:0.7em;
+#content-history .historyByLine {
+	margin-bottom: 1em;
+}
+#content-history div.historyComment {
+	background-color: &dtml-helpBackgroundColor;;
+	padding: 0.25em 1em;
 }
 
-#content-history dl div.historyRecord div.historyComment p {
-	color: &dtml-globalFontColor;;
-	margin:0;
-	padding-top:1px;	
+#content-history div.historyComment p {
+    color: &dtml-fontColor;;
+	margin: 0;
+	padding-top: 1px;	
 }
 
-#content-history dl div.historyRecord a.historyComparePrevious {
-	border-bottom:medium none;
-	border-top:1px dotted black;
-	display:block;
-	margin-bottom:-15px;
-	margin-top:11px;
+#content-history a.historyComparePrevious {
+	border-bottom: medium none;
+	border-top: 1px dotted &dtml-globalBorderColor;;
+	display: block;
+	margin-bottom: -15px;
+	margin-top: 11px;
 }
 
-#content-history dl div.historyRecord a.historyComparePrevious img {
-	background-color:white;
-	left:50%;
-	position:relative;
-	top:-5px;
+#content-history dl div.historyRecord a.historyComparePrevious span {
+	background-color: white;
+	left: 50%;
+	position: relative;
+	top: -1em;
 }
 
 /* @end */
