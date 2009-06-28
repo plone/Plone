@@ -118,7 +118,6 @@ def register_bbb_indexers(_context):
     global BBB_INDEXER_FACTORIES
     for factory, name in BBB_INDEXER_FACTORIES:
         provideAdapter(factory, (Interface, IZCatalog,), IIndexer, name=name)
-    BBB_INDEXER_FACTORIES = []
 
 from zope.interface import implements
 from zope.component import adapts
