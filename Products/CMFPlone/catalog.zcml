@@ -1,4 +1,8 @@
-<configure xmlns="http://namespaces.zope.org/zope" i18n_domain="plone">
+<configure xmlns="http://namespaces.zope.org/zope"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="plone">
+    
+    <include file="meta.zcml" />
     
     <!-- Register the default indexable object wrapper -->
     
@@ -33,5 +37,9 @@
     <adapter factory=".CatalogTool.syndication_enabled"    name="syndication_enabled" />
     <adapter factory=".CatalogTool.is_default_page"        name="is_default_page" />
     <adapter factory=".CatalogTool.getIcon"                name="getIcon" />
+    
+    
+    <!-- BBB: load old indexers registered with registerIndexableAttribute -->
+    <plone:bbbIndexers />
     
 </configure>

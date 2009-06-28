@@ -8,6 +8,11 @@ Changelog
 3.3 - Unreleased
 ----------------
 
+- Make the BBB support for registerIndexableAttribute() more robust by only
+  registering the indexer adapters when ZCML is loaded. This should fix
+  issues with functional tests written for older versions of Plone.
+  [optilude]
+
 - Don't rely on a Zope 2 style interface in the getObjPositionInParent
   indexer - use the proper Zope 3 interface for IOrderedContainer instead.
   [optilude]

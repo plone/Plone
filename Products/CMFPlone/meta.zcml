@@ -1,4 +1,5 @@
-<configure xmlns="http://namespaces.zope.org/zope">
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:meta="http://namespaces.zope.org/meta">
     
     <include package="plone.app.portlets" file="meta.zcml" />
     
@@ -15,5 +16,20 @@
     <include package="z3c.autoinclude" file="meta.zcml" />
 
     <includePlugins package="plone" file="meta.zcml" />
+
+    <!-- BBB support for registerIndexableAttribute. Not really a directive,
+         but needed to delay loading of components until ZCML configuration
+         time. Used exactly once!
+         
+         Remove when that function is removed 
+      -->
+
+    <meta:directives namespace="http://namespaces.plone.org/plone">
+        <meta:directive
+            name="bbbIndexers"
+            schema=".CatalogTool.IBBBIndexersDirective"
+            handler=".CatalogTool.register_bbb_indexers"
+            />
+    </meta:directives>
 
 </configure>

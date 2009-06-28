@@ -937,7 +937,43 @@ class TestIndexers(PloneTestCase.PloneTestCase):
         wrapped = IndexableObjectWrapper(doc, self.portal.portal_catalog)
         self.failUnlessEqual(wrapped.getIcon, iconname)
 
-
+    
+    def test_bbb_indexer(self):
+        
+        def dummy_indexer(obj, portal=None, **kw):
+            pass
+        
+        from Products.CMFPlone.CatalogTool import registerIndexableAttribute
+        registerIndexableAttribute('dummy_indexer', dummy_indexer)
+        
+        from zope.component import getGlobalSiteManager
+        from plone.indexer.interfaces import IIndexer
+        
+        sm = getGlobalSiteManager()
+        indexers = [a for a in sm.registeredAdapters() if a.name == 'dummy_indexer']
+        
+        self.assertEquals(0, len(indexers))
+        
+        zcml = """\
+        <configure package="Products.CMFPlone"
+            xmlns:plone="http://namespaces.plone.org/plone">
+            
+            <include package="Products.CMFPlone" file="meta.zcml" />
+            
+            <plone:bbbIndexers />
+        </configure>
+        """
+        
+        from StringIO import StringIO
+        from zope.configuration import xmlconfig
+        xmlconfig.xmlconfig(StringIO(zcml))
+        
+        sm = getGlobalSiteManager()
+        indexers = [a for a in sm.registeredAdapters() if a.name == 'dummy_indexer']
+        
+        self.assertEquals(1, len(indexers))
+        self.assertEquals(IIndexer, indexers[0].provided)
+    
 class TestObjectProvidedIndexExtender(unittest.TestCase):
     
     def _index(self, object):

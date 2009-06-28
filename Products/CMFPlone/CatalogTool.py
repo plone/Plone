@@ -86,6 +86,9 @@ class BBBDelegatingIndexerFactory(object):
     def __call__(self, object, catalog=None):
         return BBBDelegatingIndexer(object, catalog, self.callable)
 
+# used by <plone:bbbIndexers /> directive to register indexers at config time
+BBB_INDEXER_FACTORIES = []
+
 @deprecate("The registerIndexableAttribute hook has been deprecated and will be\n"
            "removed in Plone 4.0. Please use the following pattern instead:\n"
            "  >>> from plone.indexer.decorator import indexer\n"
@@ -99,12 +102,23 @@ class BBBDelegatingIndexerFactory(object):
 def registerIndexableAttribute(name, callable):
     """BBB function.
     """
-    
+    global BBB_INDEXER_FACTORIES    
     factory = BBBDelegatingIndexerFactory(callable)
     
-    # Ideally, we'd emit a configuration action here, but we don't have access
-    # to the configuration context, so we have to do it this way
-    provideAdapter(factory, (Interface, IZCatalog,), IIndexer, name=name)
+    # delay registering these until ZCML configuration time
+    BBB_INDEXER_FACTORIES.append((factory, name,))
+
+# This directive is used to delay registering indexable attributes until
+# it's too late. It is used by CMFPlone only, should go away with this code.
+
+class IBBBIndexersDirective(Interface):
+    pass
+
+def register_bbb_indexers(_context):
+    global BBB_INDEXER_FACTORIES
+    for factory, name in BBB_INDEXER_FACTORIES:
+        provideAdapter(factory, (Interface, IZCatalog,), IIndexer, name=name)
+    BBB_INDEXER_FACTORIES = []
 
 from zope.interface import implements
 from zope.component import adapts
@@ -228,7 +242,7 @@ def getObjPositionInParent(obj):
     0
     """
     parent = aq_parent(aq_inner(obj))
-    if IOrderedContainer.providedBy(parent) or z2IOrderedContainer.implementedBy(parent):
+    if IOrderedContainer.providedBy(parent) or z2IOrderedContainer.isImplementedBy(parent):
         try:
             return parent.getObjectPosition(obj.getId())
         except ConflictError:
