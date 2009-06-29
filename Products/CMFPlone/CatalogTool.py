@@ -58,7 +58,7 @@ from zope.interface import implements
 from zope.interface.declarations import Implements, implementedBy
 
 from plone.indexer.interfaces import IIndexer
-from zope.component import provideAdapter
+import zope.component.zcml
     
 class BBBDelegatingIndexer(object):
     """An indexer that delegates to a given callable
@@ -117,7 +117,11 @@ class IBBBIndexersDirective(Interface):
 def register_bbb_indexers(_context):
     global BBB_INDEXER_FACTORIES
     for factory, name in BBB_INDEXER_FACTORIES:
-        provideAdapter(factory, (Interface, IZCatalog,), IIndexer, name=name)
+        zope.component.zcml.adapter(_context, 
+                factory=(factory,),
+                provides=IIndexer, 
+                for_=(Interface, IZCatalog,),
+                name=name)
 
 from zope.interface import implements
 from zope.component import adapts
