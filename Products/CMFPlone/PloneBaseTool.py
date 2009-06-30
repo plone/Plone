@@ -1,4 +1,4 @@
-from Globals import InitializeClass
+from App.class_init import InitializeClass
 from AccessControl import ClassSecurityInfo
 from Products.CMFPlone.interfaces import IPloneBaseTool
 from Acquisition import aq_base

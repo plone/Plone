@@ -1,5 +1,5 @@
 from types import StringType
-from Globals import InitializeClass
+from App.class_init import InitializeClass
 from zExceptions import NotFound
 from Acquisition import aq_base
 from Acquisition import aq_inner
@@ -8,8 +8,10 @@ from AccessControl import Permissions
 from AccessControl import Unauthorized
 from AccessControl import ClassSecurityInfo
 from ComputedAttribute import ComputedAttribute
+from zope.interface import implements
 
 from OFS.Folder import Folder
+from OFS.interfaces import IOrderedContainer
 from OFS.ObjectManager import REPLACEABLE
 from DocumentTemplate.sequence import sort
 from webdav.NullResource import NullResource
@@ -47,6 +49,8 @@ class OrderedContainer(Folder):
     """Folder with subobject ordering support."""
 
     security = ClassSecurityInfo()
+
+    implements(IOrderedContainer)
 
     security.declareProtected(ModifyPortalContent, 'moveObject')
     def moveObject(self, id, position):
@@ -154,14 +158,14 @@ class OrderedContainer(Folder):
     security.declareProtected(ModifyPortalContent, 'moveObjectsToTop')
     def moveObjectsToTop(self, ids, RESPONSE=None):
         """Move an object to the top."""
-        self.moveObjectsByDelta(ids, - len(self._objects))
+        self.moveObjectsByDelta(ids, - len(self))
         if RESPONSE is not None:
             RESPONSE.redirect('manage_workspace')
 
     security.declareProtected(ModifyPortalContent, 'moveObjectsToBottom')
     def moveObjectsToBottom(self, ids, RESPONSE=None):
         """Move an object to the bottom."""
-        self.moveObjectsByDelta(ids, len(self._objects))
+        self.moveObjectsByDelta(ids, len(self))
         if RESPONSE is not None:
             RESPONSE.redirect('manage_workspace')
 
@@ -179,7 +183,7 @@ class OrderedContainer(Folder):
                                       ((key, 'cmp', 'asc'),))]
         if reverse:
             ids.reverse()
-        return self.moveObjectsByDelta(ids, -len(self._objects))
+        return self.moveObjectsByDelta(ids, -len(self))
 
     # Here the implementation of IOrderedContainer ends
 

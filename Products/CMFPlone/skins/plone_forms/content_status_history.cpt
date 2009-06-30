@@ -68,9 +68,132 @@
 
           <div class="field" tal:condition="batch">
             <label for="" i18n:translate="label_affected_content">Affected content</label>
-            <div tal:define="dummy python:request.set('ids_checked', 1);">
-              <table summary="Affected content" i18n:attributes="summary summary_affected_content;"
-                     metal:use-macro="context/old_folder_contents/macros/folder_listing">
+            <div tal:define="dummy python:request.set('ids_checked', 1);
+                             use_view_action site_properties/typesUseViewActionInListings|python:();
+                             isExpired nocall:context/@@plone_context_state/is_expired;">
+              <table id="sortable"
+                     class="listing"
+                     summary="Affected content"
+                     i18n:attributes="summary summary_affected_content;">
+                <thead>
+                  <metal:block tal:condition="batch|nothing">
+                    <tr>
+                      <th class="nosort">
+                          <input class="noborder"
+                                 type="checkbox"
+                                 src="select_all_icon.gif"
+                                 name="selectButton"
+                                 title="Select all items"
+                                 onClick="toggleSelect(this,'paths:list');"
+                                 tal:attributes="src string:$portal_url/select_all_icon.gif"
+                                 alt="Select all items"
+                                 i18n:attributes="title label_select_all_items; alt label_select_all_items;"
+                      />
+                      </th>
+                      <th class="nosort" i18n:translate="listingheader_title">
+                        Title
+                      </th>
+                      <th class="nosort" i18n:translate="listingheader_size">
+                          Size
+                      </th>
+                      <th class="nosort" i18n:translate="listingheader_modified">
+                          Modified
+                      </th>
+                      <th class="nosort" i18n:translate="listingheader_status">
+                          State
+                      </th>
+                    </tr>
+                  </metal:block>
+                </thead>
+
+                <metal:block tal:condition="batch|nothing">
+                <tbody tal:define="portal context/@@plone_portal_state/portal;
+                                   getRelativeContentURL nocall:context/portal_url/getRelativeContentURL;
+                                   normalizeString nocall:context/@@plone/normalizeString;
+                                   wtool portal/portal_workflow;
+                                   ">
+                    <tal:items tal:repeat="item batch">
+                       <tr tal:define="oddrow               repeat/item/odd;
+                                       item_url             item/getURL|item/absolute_url;
+                                       item_id              item/getId;
+                                       item_path            item/getPath|python:'/'.join(item.getPhysicalPath());
+                                       item_title_or_id     item/pretty_title_or_id;
+                                       item_description     item/Description;
+                                       item_type            item/portal_type;
+                                       item_size            item/getObjSize;
+                                       item_modified        item/ModificationDate;
+                                       item_icon            python:plone_view.getIcon(item);
+                                       item_type_class      python:'contenttype-' + normalizeString(item_type);
+                                       item_wf_state        item/review_state|python: wtool.getInfoFor(item, 'review_state', '');
+                                       item_state_title     python:wtool.getTitleForStateOnType(item_wf_state, item_type);
+                                       item_wf_state_class  python:'state-' + normalizeString(item_wf_state);
+                                       item_use_view        python:item_type in use_view_action;
+                                       hasGetUrl            python:hasattr(item.aq_explicit, 'getURL');
+                                       item_rel_url         python:hasGetUrl and item.getURL(relative=1) or getRelativeContentURL(item);
+                                       browserDefaultResult context/browserDefault;
+                                       isBrowserDefault     python:len(browserDefaultResult[1]) == 1 and item.id == context.browserDefault()[1][0];
+                                       item_folderish       item/is_folderish|nothing"
+                           tal:attributes="class python:test(oddrow, 'draggable even', 'draggable odd');
+                                           id string:folder-contents-item-${item_id};" >
+
+                           <td class="notDraggable">
+                               <input type="checkbox"
+                                      class="noborder"
+                                      name="paths:list" id="#"
+                                      value="#"
+                                      tal:attributes="value   item_path;
+                                                      id      string:cb_$item_id;
+                                                      checked python:test(request.get('ids_checked', False), 'checked', None);
+                                                      alt     string:Select $item_title_or_id;
+                                                      title   string:Select $item_title_or_id" />
+                          <input type="hidden" name="obj_paths:list" value="#"
+                                 tal:attributes="value item_rel_url" />
+
+                        </td>
+                        <td tal:define="url python:test(item_use_view, item_url+'/view',
+                                        test(item_folderish, item_url+'/folder_contents', item_url+'/'));">
+                            <span tal:attributes="class item_type_class">
+                                <img tal:replace="structure item_icon/html_tag" />
+                                <a href="#" tal:attributes="href  url;
+                                                          title string: $item_type: $item_description;
+                                                          class item_wf_state_class;">
+                                    <strong tal:omit-tag="python:not isBrowserDefault">
+                                    <label tal:content="item_title_or_id"
+                                           tal:attributes="for string:cb_$item_id">
+                                      Item Title
+                                    </label>
+                                    </strong>
+                                </a>
+                            </span>
+
+                            <span class="state-expired"
+                                  tal:condition="python:isExpired(item)"
+                                  i18n:translate="time_expired">expired</span>
+                        </td>
+
+                        <td>
+                          <span tal:condition="not: item_size"> &nbsp; </span>
+                          <span tal:condition="python:item_size>0"
+                                tal:content="item_size"
+                                tal:attributes="class item_wf_state_class"> size </span>
+                        </td>
+                        <td tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime;"
+                            tal:content="python:toLocalizedTime(item_modified, long_format=1)"
+                            tal:attributes="class item_wf_state_class">
+                            08/19/2001 03:01 AM
+                        </td>
+                        <td>
+                            <span i18n:translate=""
+                                  tal:condition="item_state_title"
+                                  tal:content="item_state_title"
+                                  tal:attributes="class item_wf_state_class" />
+                            <span tal:condition="not: item_state_title">&nbsp;</span>
+                        </td>
+                       </tr>
+                    </tal:items>
+                </tbody>
+                </metal:block>
+            
               </table>
             </div>
           </div>

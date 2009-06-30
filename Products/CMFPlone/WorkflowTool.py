@@ -1,15 +1,13 @@
 from zope.component import getMultiAdapter
-from Products.CMFCore.interfaces import IConfigurableWorkflowTool
 
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.WorkflowTool import WorkflowTool as BaseTool
 from Products.CMFPlone import ToolNames
-from Products.CMFPlone.utils import base_hasattr
 from Products.CMFPlone.interfaces import IWorkflowChain
 from ZODB.POSException import ConflictError
-from Acquisition import aq_base, aq_parent, aq_inner
+from Acquisition import aq_base
 
-from Globals import InitializeClass
+from App.class_init import InitializeClass
 from AccessControl import getSecurityManager, ClassSecurityInfo
 from Products.CMFCore.permissions import ManagePortal
 from Products.DCWorkflow.Transitions import TRIGGER_USER_ACTION
@@ -159,12 +157,12 @@ class WorkflowTool(PloneBaseTool, BaseTool):
             wf=self.getWorkflowById(id)
             if hasattr(wf, 'worklists'):
                 wlists = []
-                for worklist in wf.worklists._objects:
-                    wlist_def=wf.worklists._mapping[worklist['id']]
+                for worklist in wf.worklists:
+                    wlist_def=wf.worklists._mapping[worklist]
                     # Make the var_matches a dict instead of PersistentMapping to enable access from scripts
                     var_matches = {}
                     for key in wlist_def.var_matches.keys(): var_matches[key] = wlist_def.var_matches[key]
-                    a_wlist = { 'id':worklist['id']
+                    a_wlist = { 'id':worklist
                               , 'guard' : wlist_def.getGuard()
                               , 'guard_permissions' : wlist_def.getGuard().permissions
                               , 'guard_roles' : wlist_def.getGuard().roles
@@ -214,11 +212,11 @@ class WorkflowTool(PloneBaseTool, BaseTool):
             wf=self.getWorkflowById(id)
             if hasattr(wf, 'worklists'):
                 wlists = []
-                for worklist in wf.worklists._objects:
-                    wlist_def=wf.worklists._mapping[worklist['id']]
+                for worklist in wf.worklists:
+                    wlist_def=wf.worklists[worklist]
                     # Make the var_matches a dict instead of PersistentMapping to enable access from scripts
                     catalog_vars = dict(portal_type=types_by_wf.get(id, []))
-                    for key in wlist_def.var_matches.keys():
+                    for key in wlist_def.var_matches:
                         catalog_vars[key] = wlist_def.var_matches[key]
                     for result in catalog.searchResults(**catalog_vars):
                         o = result.getObject()
@@ -252,7 +250,7 @@ class WorkflowTool(PloneBaseTool, BaseTool):
     def listWorkflows(self):
         """ Return the list of workflows
         """
-        return self.objectIds()
+        return self.keys()
 
     security.declarePublic('getTitleForStateOnType')
     def getTitleForStateOnType(self, state_name, p_type):
@@ -292,13 +290,13 @@ class WorkflowTool(PloneBaseTool, BaseTool):
            out states with matching title and id"""
         states = []
         dup_list = {}
-        for wf in self.objectValues():
+        for wf in self.values():
             state_folder = getattr(wf, 'states', None)
             if state_folder is not None:
                 if not filter_similar:
-                    states.extend(state_folder.objectValues())
+                    states.extend(state_folder.values())
                 else:
-                    for state in state_folder.objectValues():
+                    for state in state_folder.values():
                         key = '%s:%s'%(state.id,state.title)
                         if not key in dup_list:
                             states.append(state)

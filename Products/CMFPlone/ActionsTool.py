@@ -1,5 +1,5 @@
 from AccessControl import ClassSecurityInfo
-from Globals import InitializeClass
+from App.class_init import InitializeClass
 from Products.CMFCore.ActionInformation import ActionInfo
 from Products.CMFCore.ActionsTool import ActionsTool as BaseTool
 from Products.CMFCore.interfaces import IActionProvider
@@ -28,10 +28,10 @@ class ActionsTool(PloneBaseTool, BaseTool):
             ignore_categories = ()
 
         if categories is None:
-            categories = [cat for cat in self.objectIds()
+            categories = [cat for cat in self
                               if cat not in ignore_categories]
         else:
-            categories = [cat for cat in self.objectIds()
+            categories = [cat for cat in self
                               if cat in categories]
 
         for category in categories:

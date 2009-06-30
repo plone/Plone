@@ -44,7 +44,7 @@ class TestPloneToolBrowserDefault(PloneTestCase.FunctionalTestCase):
             else:
                 viewaction = obj.getTypeInfo().getActionInfo('object/view')['url'].split('/')[-1]
 
-        resolved = getattr(obj, viewaction)()
+        resolved = obj.restrictedTraverse(viewaction)()
         base_path = obj.absolute_url(1)
 
         response = self.publish(base_path+path, self.basic_auth)
@@ -76,7 +76,7 @@ class TestPloneToolBrowserDefault(PloneTestCase.FunctionalTestCase):
             viewaction = obj.getTypeInfo().getActionInfo('object/view')['url'].split('/')[-1]
 
         base_path = obj.absolute_url(1)
-        viewed = getattr(obj, viewaction)()
+        viewed = obj.restrictedTraverse(viewaction)()
         called = obj()
 
         # request/ACTUAL_URL is fubar in tests, remove line that depends on it

@@ -1,13 +1,15 @@
 import logging
 import os
 
-from zope.structuredtext import stx2html
+from zope.component import queryUtility
+from zope.component.interfaces import IFactory
 from zope.interface import implements
+from zope.structuredtext import stx2html
 
-import Globals
 from AccessControl import Owned, ClassSecurityInfo, getSecurityManager
-from AccessControl.Permission import Permission
 from Acquisition import aq_parent, aq_base, aq_inner, aq_get
+from App.class_init import InitializeClass
+from App.Common import package_home
 from OFS.SimpleItem import SimpleItem
 from ZPublisher.Publish import call_object, missing_name, dont_publish_class
 from ZPublisher.mapply import mapply
@@ -18,10 +20,10 @@ from Products.CMFCore.utils import UniqueObject
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces import IFactoryTool
 from Products.CMFPlone.interfaces import IHideFromBreadcrumbs
-from Products.CMFPlone.interfaces import IPloneSiteRoot
 from Products.CMFPlone.PloneFolder import PloneFolder as TempFolderBase
 from Products.CMFPlone.PloneBaseTool import PloneBaseTool
 from Products.CMFPlone.utils import base_hasattr
+from Products.CMFPlone.utils import safe_hasattr
 from Products.CMFPlone.utils import log_exc
 from ZODB.POSException import ConflictError
 
@@ -41,6 +43,51 @@ class FauxArchetypeTool(object):
 
     def __getitem__(self, id):
         return getattr(self.tool, id)
+
+
+def _createObjectByType(type_name, container, id, *args, **kw):
+    """This function replaces Products.CMFPlone.utils._createObjectByType.
+    
+    If no product is set on fti, use IFactory to lookup the factory.
+    Additionally we add 'container' as 'parent' kw argument when calling the
+    IFactory implementation. this ensures the availability of the acquisition
+    chain if needed inside the construction logic.
+    
+    The kw argument hack is some kind of semi-valid since the IFactory interface
+    promises the __call__ function to accept all given args and kw args.
+    As long as the specific IFactory implementation provides this signature
+    everything works well unless any other 3rd party factory expects another
+    kind of object as 'parent' kw arg than the provided one. 
+    """
+    id = str(id)
+    typesTool = getToolByName(container, 'portal_types')
+    fti = typesTool.getTypeInfo(type_name)
+    if not fti:
+        raise ValueError, 'Invalid type %s' % type_name
+
+    if not fti.product:
+        m = queryUtility(IFactory, fti.factory, None)
+        if m is None:
+            raise ValueError, ('Product factory for %s was invalid' %
+                               fti.getId())
+        kw['parent'] = container
+        ob = m(id, *args, **kw)
+        # its not set by factory.
+        container[id] = ob
+    else:
+        p = container.manage_addProduct[fti.product]
+        m = getattr(p, fti.factory, None)
+        if m is None:
+            raise ValueError, ('Product factory for %s was invalid' %
+                               fti.getId())
+        # construct the object
+        m(id, *args, **kw)
+        ob = container._getOb( id )
+
+    if safe_hasattr(ob, '_setPortalTypeName'):
+        ob._setPortalTypeName(fti.getId())
+
+    return ob
 
 
 # ##############################################################################
@@ -165,7 +212,7 @@ class TempFolder(TempFolderBase):
         # rewrap self
         temp_folder = aq_base(self).__of__(portal_factory)
 
-        if id in self.objectIds():
+        if id in self:
             return (aq_base(self._getOb(id)).__of__(temp_folder)).__of__(intended_parent)
         else:
             type_name = self.getId()
@@ -174,7 +221,7 @@ class TempFolder(TempFolderBase):
                 # object to be indexed in to avoid it showing up in the catalog
                 # in the first place.
                 self.archetype_tool = FauxArchetypeTool(getToolByName(self, 'archetype_tool'))
-                self.invokeFactory(id=id, type_name=type_name)
+                _createObjectByType(type_name, self, id)
             except ConflictError:
                 raise
             except:
@@ -184,15 +231,11 @@ class TempFolder(TempFolderBase):
                 log_exc(severity=logging.DEBUG)
                 raise
             obj = self._getOb(id)
-            
+
             # keep obj out of the catalog
             obj.unindexObject()
 
             # additionally keep it out of Archetypes UID and refs catalogs
-            # XXX this isn't really needed as CatalogMultiplex handles the
-            # removal from all used catalogs, but right now the catalog_map
-            # in the archetype_tool is empty for most types, so this doesn't
-            # work :(
             if base_hasattr(obj, '_uncatalogUID'):
                 obj._uncatalogUID(obj)
             if base_hasattr(obj, '_uncatalogRefs'):
@@ -237,7 +280,7 @@ class FactoryTool(PloneBaseTool, UniqueObject, SimpleItem):
     manage_docs = PageTemplateFile(os.path.join('www','portal_factory_manage_docs'), globals())
     manage_docs.__name__ = 'manage_docs'
 
-    wwwpath = os.path.join(Globals.package_home(cmfplone_globals), 'www')
+    wwwpath = os.path.join(package_home(cmfplone_globals), 'www')
     f = open(os.path.join(wwwpath, 'portal_factory_docs.stx'), 'r')
     _docs = f.read()
     f.close()
@@ -386,7 +429,7 @@ class FactoryTool(PloneBaseTool, UniqueObject, SimpleItem):
         id = stack[1]
 
         # do a passthrough if parent contains the id
-        if id in aq_parent(self).objectIds():
+        if id in aq_parent(self):
             return aq_parent(self).restrictedTraverse('/'.join(stack[1:]))(*args, **kwargs)
 
         tempFolder = self._getTempFolder(type_name)
@@ -418,57 +461,9 @@ class FactoryTool(PloneBaseTool, UniqueObject, SimpleItem):
             types_tool.TempFolder.allowed_content_types=(types_tool.listContentTypes())
 
         tempFolder = TempFolder(type_name).__of__(self)
-        intended_parent = aq_parent(self)
-        folder_roles = {} # mapping from permission name to list or tuple of roles
-                          # list if perm is acquired; tuple if not
-        n_acquired = 0    # number of permissions that are acquired
-
-        # build initial folder_roles dictionary
-        # XXX This is a list of about 200 permissions (all permissions you can
-        # see in the ZMI), which makes this extremely slow.
-        for p in intended_parent.ac_inherited_permissions(1):
-            name, value = p[:2]
-            p=Permission(name,value,intended_parent)
-            roles = p.getRoles()
-            folder_roles[name] = roles
-            if isinstance(roles, list):
-                n_acquired += 1
-
-        # If intended_parent is not the portal, walk up the acquisition hierarchy and
-        # acquire permissions explicitly so we can assign the acquired version to the
-        # temp_folder. In addition to being cumbersome, this is undoubtedly very slow.
-        # XXX This is indeed slow again :(
-        if not IPloneSiteRoot.providedBy(intended_parent):
-            parent = aq_parent(aq_inner(intended_parent))
-            while(n_acquired and not IPloneSiteRoot.providedBy(parent)):
-                n_acquired = 0
-                for p in parent.ac_inherited_permissions(1):
-                    name, value = p[:2]
-                    roles = folder_roles[name]
-                    if isinstance(roles, list):
-                        p=Permission(name,value,parent)
-                        aq_roles=p.getRoles()
-                        for r in aq_roles:
-                            if not r in roles:
-                                roles.append(r)
-                        if isinstance(aq_roles, list):
-                            n_acquired += 1
-                        else:
-                            roles = tuple(roles)
-                        folder_roles[name] = roles
-                parent = aq_parent(aq_inner(parent))
-
-        # XXX Setting the permissions this way is insane.
-        # The manage_permission method internally iterates over all permissions
-        # itself, so we end up with another 200 x 100 (mean) method calls. All
-        # of these nowadays have the @requestmethod('POST') protection... :(
-        # I think we need to work around the API here and directly set some
-        # attributes...
-        for name, roles in folder_roles.items():
-            tempFolder.manage_permission(name, roles, acquire=isinstance(roles, list))
 
         factory_info[type_name] = tempFolder
         self.REQUEST.set(FACTORY_INFO, factory_info)
         return tempFolder
 
-Globals.InitializeClass(FactoryTool)
+InitializeClass(FactoryTool)

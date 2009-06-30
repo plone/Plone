@@ -3,7 +3,7 @@ from Products.CMFActionIcons.permissions import View
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone import ToolNames
 from AccessControl import ClassSecurityInfo
-from Globals import InitializeClass
+from App.class_init import InitializeClass
 from Products.CMFPlone.PloneBaseTool import PloneBaseTool
 from Products.CMFPlone.PloneTool import _icons as iconcache
 

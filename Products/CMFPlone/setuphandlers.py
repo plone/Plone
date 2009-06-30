@@ -110,7 +110,7 @@ class PloneGenerator:
 
     def addCacheForResourceRegistry(self, portal):
         ram_cache_id = 'ResourceRegistryCache'
-        if ram_cache_id in portal.objectIds():
+        if ram_cache_id in portal:
             cache = getattr(portal, ram_cache_id)
             settings = cache.getSettings()
             settings['max_age'] = 24*3600 # keep for up to 24 hours
@@ -498,7 +498,6 @@ def importVarious(context):
     gen.installProducts(site)
     gen.addCacheHandlers(site)
     gen.addCacheForResourceRegistry(site)
-    replace_local_role_manager(site)
 
 def importFinalSteps(context):
     """
@@ -517,6 +516,7 @@ def importFinalSteps(context):
     gen.assignTitles(site, out)
     pmembership.memberareaCreationFlag = False
     gen.installDependencies(site)
+    replace_local_role_manager(site)
 
 def importContent(context):
     """

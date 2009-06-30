@@ -5,7 +5,7 @@ from Products.CMFPlone import ToolNames
 
 from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 from OFS.Folder import Folder
-from Globals import InitializeClass
+from App.class_init import InitializeClass
 from zope.interface import implements
 
 from OFS.PropertyManager import PropertyManager

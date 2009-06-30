@@ -73,7 +73,7 @@
  <!-- Sarissa is used by both Kupu and KSS -->
  <javascript cacheable="True" compression="safe" cookable="True"
     enabled="True"
-    expression="python:portal.kupu_library_tool.isKupuEnabled(REQUEST=request) or not object.restrictedTraverse('@@plone_portal_state').anonymous()"
+    expression="python:portal.kupu_library_tool.isKupuEnabled(REQUEST=request) or not context.restrictedTraverse('@@plone_portal_state').anonymous()"
     id="sarissa.js" inline="False"/>
 
  <!-- Kupu -->
@@ -143,9 +143,9 @@
     enabled="True" expression=""
     id="++resource++base2-dom-fp.js" inline="False"/>
  <javascript cacheable="True" compression="none" cookable="True"
-    enabled="True" expression="python: not object.restrictedTraverse('@@plone_portal_state').anonymous() and object.restrictedTraverse('@@kss_devel_mode').isoff()"
+    enabled="True" expression="python: not context.restrictedTraverse('@@plone_portal_state').anonymous() and context.restrictedTraverse('@@kss_devel_mode').isoff()"
     id="++resource++kukit.js" inline="False"/>
  <javascript cacheable="True" compression="none" cookable="True"
-    enabled="True" expression="python: not object.restrictedTraverse('@@plone_portal_state').anonymous() and object.restrictedTraverse('@@kss_devel_mode').ison()"
+    enabled="True" expression="python: not context.restrictedTraverse('@@plone_portal_state').anonymous() and context.restrictedTraverse('@@kss_devel_mode').ison()"
     id="++resource++kukit-devel.js" inline="False"/> -->
 </object>

@@ -122,8 +122,7 @@ class TestContentTypeInformation(PloneTestCase.PloneTestCase):
         self.types = self.portal.portal_types
 
     def testTypeTitlesAreMessages(self):
-        types = self.types.objectValues()
-        for t in types:
+        for t in self.types.values():
             # If the title is empty we get back the id
             if t.title:
                 self.failUnless(isinstance(t.Title(), Message))

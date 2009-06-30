@@ -9,21 +9,18 @@
   <body>
 
         <metal:title_view define-macro="generic_title_view">
-        <tal:defines define="context_state context/@@plone_context_state;
-                             object_title context_state/object_title">
         <tal:archetypes condition="exists:context/getField">
         <h1 metal:define-macro="title-field-view"
             id="parent-fieldname-title"
             class="documentFirstHeading">
             <span metal:define-slot="inside" 
-                  tal:replace="object_title">title</span>
+                  tal:replace="context/Title">title</span>
         </h1>
         </tal:archetypes>
-        <h1 tal:content="object_title" class="documentFirstHeading"
+        <h1 tal:content="context/Title" class="documentFirstHeading"
             tal:condition="not:exists:context/getField">
             Title or id
         </h1>
-        </tal:defines>
         </metal:title_view>
 
         <!-- XXX Beware. The outer node of the macro description-field-view,

@@ -3,10 +3,13 @@
 #
 
 from Products.CMFPlone.tests import PloneTestCase
-from Products.CMFPlone.tests import dummy
 
 from Products.CMFPlone.UnicodeSplitter import Splitter
 from Products.CMFPlone.UnicodeSplitter import CaseNormalizer
+
+from Products.CMFCore.utils import getToolByName
+from Products.CMFCore.tests.base.dummy import DummyContent
+
 
 import locale
 LATIN1 = ('en_US.ISO8859-15', 'en_GB.ISO8859-15', 'de_DE@euro', 'fr_FR@euro', 'nl_NL@euro')
@@ -123,10 +126,12 @@ class TestCaseNormalizer(PloneTestCase.PloneTestCase):
 class TestQuery(PloneTestCase.PloneTestCase):
 
     def afterSetUp(self):
-        self.catalog = self.portal.portal_catalog
-        self.folder._setObject('doc1', dummy.Item('doc1'))
+        self.catalog = getToolByName(self.portal, 'portal_catalog')
+        self.folder._setObject('doc1',
+            DummyContent('doc1', catalog=self.catalog))
         self.doc1 = self.folder.doc1
-        self.folder._setObject('doc2', dummy.Item('doc2'))
+        self.folder._setObject('doc2',
+            DummyContent('doc2', catalog=self.catalog))
         self.doc2 = self.folder.doc2
 
     def testQueryByUmlaut(self):

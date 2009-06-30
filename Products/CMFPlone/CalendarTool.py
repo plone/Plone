@@ -2,7 +2,7 @@ from Products.CMFCalendar.CalendarTool import CalendarTool as BaseTool
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone import ToolNames
 from AccessControl import ClassSecurityInfo
-from Globals import InitializeClass
+from App.class_init import InitializeClass
 from Products.CMFPlone.PloneBaseTool import PloneBaseTool
 
 from plone.app.layout.navigation.root import getNavigationRoot

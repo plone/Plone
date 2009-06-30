@@ -11,7 +11,7 @@ from AccessControl import ClassSecurityInfo, Unauthorized
 from Acquisition import aq_base, aq_inner, aq_parent
 from ComputedAttribute import ComputedAttribute
 from DateTime import DateTime
-from Globals import InitializeClass
+from App.class_init import InitializeClass
 from OFS.SimpleItem import SimpleItem
 from OFS.ObjectManager import bad_id
 from ZODB.POSException import ConflictError
@@ -1254,7 +1254,7 @@ class PloneTool(PloneBaseTool, UniqueObject, SimpleItem):
                 else:
                     raise
             if getattr(o, 'isPrincipiaFolderish', None) and include_children:
-                subobject_paths = ["%s/%s" % (path, id) for id in o.objectIds()]
+                subobject_paths = ["%s/%s" % (path, id) for id in o]
                 self.transitionObjectsByPaths(workflow_action, subobject_paths,
                                               comment, expiration_date,
                                               effective_date, include_children,

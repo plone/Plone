@@ -115,16 +115,8 @@ class PlonePropertiesToolXMLAdapter(XMLAdapterBase, ObjectManagerHelpers):
             parent = self.context
 
             obj_id = str(child.getAttribute('name'))
-            if obj_id not in parent.objectIds():
+            if obj_id not in parent:
                 parent._setObject(obj_id, SimpleItemWithProperties(obj_id))
-##                 Original _initObjects code:
-##                 meta_type = str(child.getAttribute('meta_type'))
-##                 for mt_info in Products.meta_types:
-##                     if mt_info['name'] == meta_type:
-##                         parent._setObject(obj_id, mt_info['instance'](obj_id))
-##                         break
-##                 else:
-##                     raise ValueError('unknown meta_type \'%s\'' % obj_id)
 
             if child.hasAttribute('insert-before'):
                 insert_before = child.getAttribute('insert-before')

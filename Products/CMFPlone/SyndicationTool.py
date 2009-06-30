@@ -3,7 +3,7 @@ from Products.CMFPlone import ToolNames
 from Products.CMFCore.permissions import ManageProperties
 from Products.CMFCore.utils import getToolByName
 from AccessControl import ClassSecurityInfo, Unauthorized
-from Globals import InitializeClass
+from App.class_init import InitializeClass
 from Products.CMFPlone.PloneBaseTool import PloneBaseTool
 
 

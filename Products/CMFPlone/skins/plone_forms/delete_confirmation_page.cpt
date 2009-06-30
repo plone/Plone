@@ -27,7 +27,7 @@
       </h1>
 
       <ul>
-          <li tal:content="object_title">The item title (ID)</li>
+          <li tal:content="context/@@plone_context_state/object_title">The item title (ID)</li>
       </ul>
 
       <form method="POST"

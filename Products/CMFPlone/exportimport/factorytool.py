@@ -4,11 +4,6 @@ from Products.GenericSetup.utils import importObjects
 from Products.GenericSetup.utils import exportObjects
 from Products.CMFCore.utils import getToolByName
 
-try:
-    set()
-except NameError:
-    from sets import Set as set
-
 
 class PortalFactoryXMLAdapter(XMLAdapterBase):
     """In- and exporter for FactoryTool.

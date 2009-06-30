@@ -4,7 +4,6 @@
 
 from Products.CMFPlone.tests import PloneTestCase
 
-from sets import Set
 from traceback import format_exception
 from zope.i18nmessageid.message import Message
 

@@ -17,9 +17,10 @@ from zope.i18n import translate
 from zope.publisher.interfaces.browser import IBrowserRequest
 
 import OFS
-import Globals
 from Acquisition import aq_get
 from Acquisition import aq_base, aq_inner, aq_parent
+from App.Common import package_home
+from App.ImageFile import ImageFile
 from DateTime import DateTime
 from Products.CMFCore.utils import ToolInit as CMFCoreToolInit
 from Products.CMFCore.utils import getToolByName
@@ -36,7 +37,7 @@ __show__.on()
 import transaction
 
 # Canonical way to get at CMFPlone directory
-PACKAGE_HOME = Globals.package_home(globals())
+PACKAGE_HOME = package_home(globals())
 WWW_DIR = join(PACKAGE_HOME, 'www')
 
 # Log methods
@@ -289,13 +290,13 @@ class ToolInit(CMFCoreToolInit):
         # This variable is just used for the log message
         icon_path = path
         try:
-            icon = Globals.ImageFile(path, pack.__dict__)
+            icon = ImageFile(path, pack.__dict__)
         except (IOError, OSError):
             # Fallback:
             # Assume path is relative to CMFPlone directory
             path = abspath(join(PACKAGE_HOME, path))
             try:
-                icon = Globals.ImageFile(path, pack.__dict__)
+                icon = ImageFile(path, pack.__dict__)
             except (IOError, OSError):
                 # if there is some problem loading the fancy image
                 # from the tool then  tell someone about it

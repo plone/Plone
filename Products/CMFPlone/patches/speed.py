@@ -1,4 +1,5 @@
 from plone.memoize import forever
+from Acquisition import aq_base
 
 # Remember the installed products and packages
 from App import FactoryDispatcher
@@ -16,3 +17,22 @@ def wrap_init(func):
 
 from zope.tal.talinterpreter import TALInterpreter
 TALInterpreter.__init__ = wrap_init(TALInterpreter.__init__)
+
+# This is an optimization based on the fact, that apart from talkback
+# items, opaque items are completely unused inside Plone
+def opaqueItems(self):
+    """
+        Return opaque items (subelements that are contained
+        using something that is not an ObjectManager).
+    """
+    # Call 'talkback' knowing that it is an opaque item.
+    # This will remain here as long as the discussion item does
+    # not implement ICallableOpaqueItem (backwards compatibility).
+    if hasattr(aq_base(self), 'talkback'):
+        talkback = self.talkback
+        if talkback is not None:
+            return [(talkback.id, talkback)]
+    return ()
+
+from Products.CMFCore.CMFCatalogAware import CMFCatalogAware
+CMFCatalogAware.opaqueItems = opaqueItems

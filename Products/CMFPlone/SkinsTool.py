@@ -1,5 +1,5 @@
 from AccessControl import ClassSecurityInfo
-from Globals import InitializeClass
+from App.class_init import InitializeClass
 from Products.CMFCore.SkinsTool import SkinsTool as BaseTool
 from Products.CMFPlone import ToolNames
 from Products.CMFPlone.PloneBaseTool import PloneBaseTool

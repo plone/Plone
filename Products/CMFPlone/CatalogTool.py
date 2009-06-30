@@ -12,8 +12,8 @@ from Products.CMFCore.CatalogTool import CatalogTool as BaseTool
 from Products.CMFCore.permissions import AccessInactivePortalContent
 from Products.CMFPlone import ToolNames
 from AccessControl import ClassSecurityInfo
-from Globals import InitializeClass
-from Globals import DTMLFile
+from App.class_init import InitializeClass
+from App.special_dtml import DTMLFile
 from Acquisition import aq_inner
 from Acquisition import aq_parent
 from Acquisition import aq_base

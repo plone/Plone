@@ -92,7 +92,7 @@ class TestPortalCreation(PloneTestCase.PloneTestCase, WarningInterceptor):
 
     def testNoIndexHtmlDocument(self):
         # The portal should not contain an index_html Document
-        self.failIf('index_html' in self.portal.objectIds())
+        self.failIf('index_html' in self.portal)
 
     def testCanViewManagementScreen(self):
         # Make sure the ZMI management screen works
@@ -176,19 +176,19 @@ class TestPortalCreation(PloneTestCase.PloneTestCase, WarningInterceptor):
 
     def testNoPortalFormTool(self):
         # portal_form should have been removed
-        self.failIf('portal_form' in self.portal.objectIds())
+        self.failIf('portal_form' in self.portal)
 
     def testNoPortalNavigationTool(self):
         # portal_navigation should have been removed
-        self.failIf('portal_navigation' in self.portal.objectIds())
+        self.failIf('portal_navigation' in self.portal)
 
     def testNoFormProperties(self):
         # form_properties should have been removed
-        self.failIf('form_properties' in self.properties.objectIds())
+        self.failIf('form_properties' in self.properties)
 
     def testNoNavigationProperties(self):
         # navigation_properties should have been removed
-        self.failIf('navigation_properties' in self.properties.objectIds())
+        self.failIf('navigation_properties' in self.properties)
 
     def testFullScreenAction(self):
         # There should be a full_screen action
@@ -410,8 +410,8 @@ class TestPortalCreation(PloneTestCase.PloneTestCase, WarningInterceptor):
 
     def testChangeStateIsLastFolderButton(self):
         # Change state button should be the last
-        actions = self.actions._getOb('folder_buttons').objectIds()
-        self.assertEqual(actions[-1], 'change_state')
+        actions = self.actions['folder_buttons']
+        self.assertEqual(actions.values()[-1].id, 'change_state')
 
     def testTypesUseViewActionInListingsProperty(self):
         # site_properties should have the typesUseViewActionInListings property
@@ -622,7 +622,7 @@ class TestPortalCreation(PloneTestCase.PloneTestCase, WarningInterceptor):
 
     def testCustomSkinFolderExists(self):
         # the custom skin needs to be created
-        self.failUnless('custom' in self.skins.objectIds())
+        self.failUnless('custom' in self.skins)
 
     def testCustomSkinFolderComesFirst(self):
         firstInDefaultSkin = (
@@ -841,7 +841,7 @@ class TestPortalCreation(PloneTestCase.PloneTestCase, WarningInterceptor):
     def testWorkflowsInstalled(self):
         for wf in ['intranet_workflow', 'intranet_folder_workflow',
                 'one_state_workflow', 'simple_publication_workflow']:
-            self.failUnless(wf in self.portal.portal_workflow.objectIds())
+            self.failUnless(wf in self.portal.portal_workflow)
 
     def testAddPermisssionsGivenToContributorRole(self):
         self.failUnless('Contributor' in self.portal.valid_roles())
@@ -856,10 +856,10 @@ class TestPortalCreation(PloneTestCase.PloneTestCase, WarningInterceptor):
 
     def testSharingAction(self):
         # Should be in portal_actions
-        self.failUnless('local_roles' in self.actions.object.objectIds())
+        self.failUnless('local_roles' in self.actions.object)
 
         # Should not be in any of the default FTIs
-        for fti in self.types.objectValues():
+        for fti in self.types.values():
             self.failIf('local_roles' in [a.id for a in fti.listActions()])
 
     def testSecondaryEditorPermissionsGivenToEditorRole(self):

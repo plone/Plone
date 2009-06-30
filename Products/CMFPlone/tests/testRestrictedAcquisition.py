@@ -13,7 +13,7 @@ from Products.CMFPlone.tests import PloneTestCase
 PloneTestCase.installProduct('PythonScripts')
 
 
-from Globals import InitializeClass
+from App.class_init import InitializeClass
 from AccessControl import ClassSecurityInfo
 from OFS.SimpleItem import SimpleItem
 

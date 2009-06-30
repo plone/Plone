@@ -14,7 +14,7 @@ class TestCSSRegistry(PloneTestCase.PloneTestCase):
         self.tool = getToolByName(self.portal, CSSTOOLNAME)
 
     def testToolExists(self):
-        self.failUnless(CSSTOOLNAME in self.portal.objectIds())
+        self.failUnless(CSSTOOLNAME in self.portal)
 
     def testDefaultCssIsInstalled(self):
         installedStylesheetIds = self.tool.getResourceIds()
@@ -54,7 +54,7 @@ class TestJSRegistry(PloneTestCase.PloneTestCase):
         self.tool = getToolByName(self.portal, JSTOOLNAME)
 
     def testToolExists(self):
-        self.failUnless(JSTOOLNAME in self.portal.objectIds())
+        self.failUnless(JSTOOLNAME in self.portal)
 
     def testDefaultJSIsInstalled(self):
         installedScriptIds = self.tool.getResourceIds()

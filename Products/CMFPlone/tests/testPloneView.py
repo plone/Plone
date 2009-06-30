@@ -5,28 +5,16 @@
 from zope.interface import directlyProvides, noLongerProvides
 
 from Products.CMFPlone.interfaces import INonStructuralFolder
-from Products.CMFPlone.interfaces.NonStructuralFolder import \
-     INonStructuralFolder as z2INonStructuralFolder
 from Products.CMFPlone.tests import PloneTestCase
 from Products.CMFPlone.tests import dummy
 
 from Products.CMFPlone.browser.ploneview import Plone
 
-from Products.CMFPlone.ActionsTool import ActionsTool
-from Products.CMFPlone.InterfaceTool import InterfaceTool
-from Products.CMFPlone.MembershipTool import MembershipTool
-from Products.CMFPlone.SyndicationTool import SyndicationTool
-from Products.CMFPlone.URLTool import URLTool
-from Products.CMFCore.WorkflowTool import WorkflowTool
-
-from zope.publisher.browser import setDefaultSkin
 
 class TestPloneView(PloneTestCase.PloneTestCase):
     """Tests the global plone view."""
 
     def afterSetUp(self):
-        # We need to fiddle the request for zope 2.9+
-        setDefaultSkin(self.app.REQUEST)
         self.folder.invokeFactory('Document', 'test',
                                   title='Test default page')
         self.view = Plone(self.portal, self.app.REQUEST)

@@ -146,7 +146,7 @@ class TestContentTypeScripts(PloneTestCase.PloneTestCase):
         self.setupAuthenticator()
         self.setRequestMethod('POST')
         self.folder.doc.object_delete()
-        self.failIf('doc' in self.folder.objectIds())
+        self.failIf('doc' in self.folder)
 
 
 class TestEditShortName(PloneTestCase.PloneTestCase):
@@ -196,12 +196,12 @@ class TestEditShortName(PloneTestCase.PloneTestCase):
     def testFileEditShortName(self):
         transaction.savepoint(optimistic=True) # make rename work
         self.folder.file.file_edit(id='fred')
-        self.failUnless('fred' in self.folder.objectIds())
+        self.failUnless('fred' in self.folder)
 
     def testImageEditShortName(self):
         transaction.savepoint(optimistic=True) # make rename work
         self.folder.image.image_edit(id='fred')
-        self.failUnless('fred' in self.folder.objectIds())
+        self.failUnless('fred' in self.folder)
 
 
 class TestEditFileKeepsMimeType(PloneTestCase.PloneTestCase):
@@ -296,21 +296,21 @@ class TestFileExtensions(PloneTestCase.PloneTestCase):
 
     def testUploadFile(self):
         self.folder[self.file_id].file_edit(file=dummy.File('fred.txt'))
-        self.failUnless('fred.txt' in self.folder.objectIds())
+        self.failUnless('fred.txt' in self.folder)
 
     def testUploadImage(self):
         self.folder[self.image_id].image_edit(file=dummy.Image('fred.gif'))
-        self.failUnless('fred.gif' in self.folder.objectIds())
+        self.failUnless('fred.gif' in self.folder)
 
     def DISABLED_testFileRenameKeepsExtension(self):
         # XXX Wishful thinking
         self.folder[self.file_id].file_edit(id='barney')
-        self.failUnless('barney.txt' in self.folder.objectIds())
+        self.failUnless('barney.txt' in self.folder)
 
     def DISABLED_testImageRenameKeepsExtension(self):
         # XXX Wishful thinking
         self.folder[self.image_id].image_edit(id='barney')
-        self.failUnless('barney.gif' in self.folder.objectIds())
+        self.failUnless('barney.gif' in self.folder)
 
 
 class TestBadFileIds(PloneTestCase.PloneTestCase):
@@ -332,7 +332,7 @@ class TestBadFileIds(PloneTestCase.PloneTestCase):
             # when running tests... since all we're testing is that the
             # object doesn't get renamed, this shouldn't matter
             pass
-        self.failIf('fred%.txt' in self.folder.objectIds())
+        self.failIf('fred%.txt' in self.folder)
 
     def testUploadBadImage(self):
         # http://dev.plone.org/plone/ticket/3518
@@ -341,7 +341,7 @@ class TestBadFileIds(PloneTestCase.PloneTestCase):
         except CopyError:
             # (ditto - see above)
             pass
-        self.failIf('fred%.gif' in self.folder.objectIds())
+        self.failIf('fred%.gif' in self.folder)
 
     # TODO: Dang! No easy way to get at the validator state...
 

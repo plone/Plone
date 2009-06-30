@@ -6,8 +6,6 @@
     directory="Products.ATContentTypes:skins/ATContentTypes"/>
  <object name="ATReferenceBrowserWidget" meta_type="Filesystem Directory View"
     directory="Products.ATReferenceBrowserWidget:skins/ATReferenceBrowserWidget"/>
- <object name="ResourceRegistries" meta_type="Filesystem Directory View"
-    directory="Products.ResourceRegistries:skins/ResourceRegistries"/>
  <object name="LanguageTool" meta_type="Filesystem Directory View"
     directory="Products.PloneLanguageTool:skins/LanguageTool"/>
  <object name="archetypes" meta_type="Filesystem Directory View"
@@ -67,7 +65,6 @@
   <layer name="ATReferenceBrowserWidget"/>
   <layer name="archetypes"/>
   <layer name="mimetypes_icons"/>
-  <layer name="ResourceRegistries"/>
   <layer name="PasswordReset"/>
   <layer name="LanguageTool"/>
   <layer name="gruf"/>

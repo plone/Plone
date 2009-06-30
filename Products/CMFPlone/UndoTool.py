@@ -1,7 +1,7 @@
 from Products.CMFCore.UndoTool import UndoTool as BaseTool
 from Products.CMFPlone import ToolNames
 from AccessControl import ClassSecurityInfo
-from Globals import InitializeClass
+from App.class_init import InitializeClass
 from Products.CMFPlone.PloneBaseTool import PloneBaseTool
 
 class UndoTool(PloneBaseTool, BaseTool):

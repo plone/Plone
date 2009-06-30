@@ -218,8 +218,8 @@ class TestOrderSupportInPortal(PloneTestCase.PloneTestCase):
         self.portal.invokeFactory('Document', id='baz')
         # Move them to the top
         self.portal.moveObjectsByDelta(ids=['foo', 'bar', 'baz'],
-                                       delta=-len(self.portal._objects),
-                                       subset_ids=self.portal.objectIds())
+                                       delta=-len(self.portal),
+                                       subset_ids=self.portal)
 
     def testRenameObject(self):
         # Renaming should not change position

@@ -1,6 +1,6 @@
 import sys
 import os
-import Globals
+from App.ImageFile import ImageFile
 
 cmfplone_globals = globals()
 this_module = sys.modules[ __name__ ]
@@ -8,7 +8,7 @@ _marker = []
 
 ADD_CONTENT_PERMISSION = 'Add portal content'
 
-misc_ = {'plone_icon': Globals.ImageFile(
+misc_ = {'plone_icon': ImageFile(
                        os.path.join('skins', 'plone_images', 'logoIcon.gif'),
                        cmfplone_globals)}
 
@@ -184,7 +184,7 @@ def initialize(context):
                                         factory.addPloneSite),
                           icon='skins/plone_images/logoIcon.gif')
 
-# Import "PloneMessageFactory as _" to create messages in the plone domain
+# Import PloneMessageFactory to create messages in the plone domain
 from zope.i18nmessageid import MessageFactory
 PloneMessageFactory = MessageFactory('plone')
 

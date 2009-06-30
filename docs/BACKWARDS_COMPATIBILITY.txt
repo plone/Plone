@@ -169,6 +169,8 @@ may need to take the following changes into account.
     python:context.portal_actions.listFilteredActionsFor(context)
   isContextDefaultPage
     context/@@plone_context_state/is_default_page
+  object_title
+    context/@@plone_context_state/object_title
 
 * The "Favorite" content type has been removed.
 
@@ -184,3 +186,7 @@ may need to take the following changes into account.
 * The 'actions' method of @@plone_context_state now takes a single parameter
   which is the action category that should be retrieved. This should be used
   instead of the 'keyed_actions' method which has been removed.
+
+* Products.CMFPlone.interfaces.OrderedContainer.IOrderedContainer has been
+  replaced with the canonical version of the interface in
+  OFS.interfaces.IOrderedContainer

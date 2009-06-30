@@ -1,7 +1,11 @@
 import re
 import random
-import md5
 from smtplib import SMTPRecipientsRefused
+
+try:
+    from hashlib import md5
+except:
+    from md5 import new as md5
 
 from zope.component import getUtility
 
@@ -13,7 +17,7 @@ from Products.CMFPlone import ToolNames
 
 from Products.CMFCore.permissions import AddPortalMember
 
-from Globals import InitializeClass
+from App.class_init import InitializeClass
 from AccessControl import ClassSecurityInfo, Unauthorized
 from Products.CMFPlone.PloneBaseTool import PloneBaseTool
 from Products.SecureMailHost.SecureMailHost import EMAIL_RE
@@ -63,7 +67,7 @@ class RegistrationTool(PloneBaseTool, BaseTool):
 
     def _md5base(self):
         if self._v_md5base is None:
-            self._v_md5base = md5.new(self.md5key)
+            self._v_md5base = md5(self.md5key)
         return self._v_md5base
 
     # Get a password of the prescribed length

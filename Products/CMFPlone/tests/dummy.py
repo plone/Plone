@@ -6,7 +6,8 @@
 
 import os
 
-from zope.interface import Interface, implements, implementer
+from zope.interface import implementer
+from zope.interface import implements
 from zope.interface import Interface
 
 from Products.CMFPlone.interfaces import INonStructuralFolder
@@ -17,7 +18,7 @@ from OFS.SimpleItem import SimpleItem
 from OFS.Folder import Folder as SimpleFolder
 from ZPublisher.HTTPRequest import FileUpload
 
-from Globals import package_home
+from App.Common import package_home
 from Products.CMFPlone.tests import GLOBALS
 PACKAGE_HOME = package_home(GLOBALS)
 

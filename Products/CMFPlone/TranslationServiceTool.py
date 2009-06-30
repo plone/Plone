@@ -7,7 +7,7 @@ from zope.interface import implements
 from zope.publisher.interfaces.browser import IBrowserRequest
 
 from AccessControl import ClassSecurityInfo
-from Globals import InitializeClass
+from App.class_init import InitializeClass
 from Acquisition import aq_get
 from OFS.SimpleItem import SimpleItem
 from Products.CMFCore.utils import getToolByName

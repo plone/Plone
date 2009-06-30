@@ -1,6 +1,6 @@
 from AccessControl import ClassSecurityInfo
 from Acquisition import aq_base
-from Globals import InitializeClass
+from App.class_init import InitializeClass
 
 from Products.CMFCore.ActionInformation import ActionInfo
 from Products.CMFCore.TypesTool import TypesTool as BaseTool
