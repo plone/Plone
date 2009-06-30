@@ -2,7 +2,6 @@
 # Test methods used to make ...
 #
 
-from zope.publisher.browser import setDefaultSkin
 from zope.interface import directlyProvides
 
 from Products.CMFPlone.tests import PloneTestCase
@@ -28,8 +27,6 @@ class TestBaseNavTree(PloneTestCase.PloneTestCase):
 
     def afterSetUp(self):
         self.request = self.app.REQUEST
-        # Apply a default layer for view lookups to work in Zope 2.9+
-        setDefaultSkin(self.request)
         self.populateSite()
         self.setupAuthenticator()
         
@@ -358,7 +355,6 @@ class TestBaseSiteMap(PloneTestCase.PloneTestCase):
     def afterSetUp(self):
         self.request = self.app.REQUEST
         # Apply a default layer for view lookups to work in Zope 2.9+
-        setDefaultSkin(self.request)
         self.populateSite()
         
     def populateSite(self):
@@ -484,7 +480,6 @@ class TestBasePortalTabs(PloneTestCase.PloneTestCase):
 
     def afterSetUp(self):
         self.request = self.app.REQUEST
-        setDefaultSkin(self.request)
         self.populateSite()
 
     def populateSite(self):
@@ -695,7 +690,6 @@ class TestBaseBreadCrumbs(PloneTestCase.PloneTestCase):
 
     def afterSetUp(self):
         self.request = self.app.REQUEST
-        setDefaultSkin(self.request)
         self.populateSite()
 
     def populateSite(self):
