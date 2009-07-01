@@ -143,11 +143,14 @@ class MemberDataTool(PloneBaseTool, BaseTool):
         this is mainly used for the localrole form
         """
         s=s.strip().lower()
-        mu = getToolByName(self, 'portal_membership')
+        portal = self.portal_url.getPortalObject()
+        mu = self.portal_membership
 
         res = []
         for member in mu.listMembers():
             u = member.getUser()
+            if not (member.listed or is_manager):
+                continue
             if u.getUserName().lower().find(s) != -1 \
                 or member.getProperty('fullname').lower().find(s) != -1 \
                 or member.getProperty('email').lower().find(s) != -1:

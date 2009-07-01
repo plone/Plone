@@ -5,7 +5,7 @@
 ##bind script=script
 ##bind state=state
 ##bind subpath=traverse_subpath
-##parameters=visible_ids=None, portrait=None, REQUEST=None, ext_editor=None
+##parameters=visible_ids=None, portrait=None, REQUEST=None, ext_editor=None, listed=None
 ##title=Personalization Handler.
 
 from Products.CMFPlone.utils import transaction_note
@@ -31,6 +31,12 @@ else:
     ext_editor=1
 REQUEST.set('ext_editor', ext_editor)
 
+if listed is None and REQUEST is not None:    
+    listed=0
+else:
+    listed=1
+REQUEST.set('listed', listed)
+
 if (portrait and portrait.filename):
     context.portal_membership.changeMemberPortrait(portrait)
 
@@ -38,7 +44,7 @@ delete_portrait = context.REQUEST.get('delete_portrait', None)
 if delete_portrait:
     context.portal_membership.deletePersonalPortrait(member.getId())
 
-member.setProperties(ext_editor=ext_editor, visible_ids=visible_ids)
+member.setProperties(ext_editor=ext_editor, listed=listed, visible_ids=visible_ids)
 
 tmsg='Edited personal settings for %s' % member.getId()
 transaction_note(tmsg)

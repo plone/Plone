@@ -2,6 +2,7 @@
 <object name="portal_memberdata" meta_type="Plone Memberdata Tool">
  <property name="email" type="string"></property>
  <property name="portal_skin" type="string"></property>
+ <property name="listed" type="boolean">True</property>
  <property name="login_time" type="date">2000/01/01</property>
  <property name="last_login_time" type="date">2000/01/01</property>
  <property name="fullname" type="string"></property>
