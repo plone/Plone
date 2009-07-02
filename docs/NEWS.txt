@@ -8,13 +8,20 @@ Changelog
 3.3 - Unreleased
 ----------------
 
+- Upgrade to jQuery 1.3.2. This fixes multiple bugs on various browsers,
+  allows use of more jQuery plugins (particularly current versions of
+  jQuery UI). The only BBB problem I am aware of is use of the @ in
+  attribute selectors (as in a[@target=_blank]), which has been deprecated
+  for a long time and is no longer supported in jQuery 1.3. 
+  [wichert]
+
 - Make the BBB support for registerIndexableAttribute() more robust by only
   registering the indexer adapters when ZCML is loaded. This should fix
   issues with functional tests written for older versions of Plone.
   [optilude]
 
 - Don't rely on a Zope 2 style interface in the getObjPositionInParent
-  indexer - use the proper Zope 3 interface for IOrderedContainer instead.
+  indexer - accept the proper Zope 3 interface for IOrderedContainer as well.
   [optilude]
 
 - When viewing the prefs_install_products_form, do not do inline
