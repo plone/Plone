@@ -9,10 +9,12 @@
 <body>
 
 <div metal:fill-slot="main">
-    <tal:main-macro metal:define-macro="main">
+    <tal:main-macro metal:define-macro="main"
+                    tal:define="kssClassesView context/@@kss_field_decorator_view; 
+                                getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;">
 
         <dl class="portalMessage info"
-            tal:define="redirect_links portal/portal_properties/site_properties/redirect_links|nothing"
+            tal:define="redirect_links site_properties/redirect_links|nothing"
             tal:condition="python: redirect_links and checkPermission('Modify portal content', context)">
             <dt i18n:translate="">Info</dt>
             <dd i18n:translate="message_permissions_blocking_link_redirect">

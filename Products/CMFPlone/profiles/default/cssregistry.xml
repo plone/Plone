@@ -53,9 +53,9 @@
  <stylesheet title="" cacheable="True" compression="safe" cookable="True"
     enabled="1" expression="" id="forms.css" media="screen" rel="stylesheet"
     rendering="import"/>
- <!-- <stylesheet title="" cacheable="True" compression="safe" cookable="True"
+ <stylesheet title="" cacheable="True" compression="safe" cookable="True"
     enabled="1" expression="" id="ploneKss.css" media="screen"
-    rel="stylesheet" rendering="import"/> -->
+    rel="stylesheet" rendering="import"/>
 
  <stylesheet title="" cacheable="True" compression="safe" cookable="True"
     enabled="1" expression="python:portal.restrictedTraverse('@@plone_portal_state').is_rtl()"

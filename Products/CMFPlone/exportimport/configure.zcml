@@ -53,7 +53,7 @@
       handler="Products.CMFPlone.setuphandlers.importFinalSteps"
       title="Final Plone Config"
       description="Final Plone configuration.">
-   <!-- <depends name="kss_mimetype" /> -->
+   <depends name="kss_mimetype" />
    <depends name="plone_various" />
    <depends name="portlets" />
   </genericsetup:importStep>
