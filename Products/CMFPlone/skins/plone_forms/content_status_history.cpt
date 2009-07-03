@@ -69,8 +69,7 @@
           <div class="field" tal:condition="batch">
             <label for="" i18n:translate="label_affected_content">Affected content</label>
             <div tal:define="dummy python:request.set('ids_checked', 1);
-                             use_view_action site_properties/typesUseViewActionInListings|python:();
-                             isExpired nocall:context/@@plone_context_state/is_expired;">
+                             use_view_action site_properties/typesUseViewActionInListings|python:();">
               <table id="sortable"
                      class="listing"
                      summary="Affected content"
@@ -167,7 +166,7 @@
                             </span>
 
                             <span class="state-expired"
-                                  tal:condition="python:isExpired(item)"
+                                  tal:condition="python:context.isExpired(item)"
                                   i18n:translate="time_expired">expired</span>
                         </td>
 
