@@ -32,7 +32,7 @@
 
       <form method="POST"
             action="#"
-            tal:attributes="action current_page_url">
+            tal:attributes="action context_state/current_page_url">
         <div class="formControls">
 
           <input type="hidden"

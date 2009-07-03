@@ -69,6 +69,9 @@ def initialize(context):
     # Make Unauthorized importable TTW
     ModuleSecurityInfo('AccessControl').declarePublic('Unauthorized')
 
+    # Make Forbidden importable TTW
+    ModuleSecurityInfo('zExceptions').declarePublic('Forbidden')
+
     # Make ConflictError importable TTW
     ModuleSecurityInfo('ZODB.POSException').declarePublic('ConflictError')
 
