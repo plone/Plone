@@ -8,6 +8,11 @@ Changelog
 3.3 - Unreleased
 ----------------
 
+- Added migration step to fix missing cooked expressions in
+  portal_css, which could mess up the site UI.  Fix by Tom Gross.
+  Fixes http://dev.plone.org/plone/ticket/9141
+  [maurits]
+
 - Upgrade to jQuery 1.3.2. This fixes multiple bugs on various browsers,
   allows use of more jQuery plugins (particularly current versions of
   jQuery UI). The only BBB problem I am aware of is use of the @ in
