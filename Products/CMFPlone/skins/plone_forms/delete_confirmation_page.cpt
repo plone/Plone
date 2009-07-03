@@ -11,7 +11,7 @@
   <body>
     
     <div metal:fill-slot="main"
-         tal:define="useSelf python:isStructuralFolder and not isContextDefaultPage;
+         tal:define="useSelf python:context_state.is_structural_folder() and not context_state.is_default_page();
                      folder_warning python:useSelf and context.portal_type != 'Topic';">
 
       <h1 class="documentFirstHeading"
