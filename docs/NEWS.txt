@@ -139,10 +139,6 @@ Changelog
 - Added uniqueItemIndex as a method to the plone view. 
   [hannosch]
 
-- Added dependency on plone.keyring and load its GS profile, so we get a 
-  default KeyManager utility.
-  [hannosch]
-
 - Added back ``global_defines.pt`` as a template including the (empty)
   macro definition. This allows main templates to be compatible with both 
   Plone 3.x and 4.0 at the same time. 
