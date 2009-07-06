@@ -9,6 +9,7 @@ from Products.CMFPlone.UnicodeSplitter import CaseNormalizer
 
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.tests.base.dummy import DummyContent
+from Products.Five.eventconfigure import setDeprecatedManageAddDelete
 
 
 import locale
@@ -126,6 +127,7 @@ class TestCaseNormalizer(PloneTestCase.PloneTestCase):
 class TestQuery(PloneTestCase.PloneTestCase):
 
     def afterSetUp(self):
+        setDeprecatedManageAddDelete(DummyContent)
         self.catalog = getToolByName(self.portal, 'portal_catalog')
         self.folder._setObject('doc1',
             DummyContent('doc1', catalog=self.catalog))

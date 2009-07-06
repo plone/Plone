@@ -1,12 +1,5 @@
 <?xml version="1.0"?>
 <import-steps>
- <import-step id="atcttool" version="20060603-01"
-              handler="Products.ATContentTypes.exportimport.atcttool.importATCTTool"
-              title="ATContentTypes Tool">
-  <dependency step="componentregistry"/>
-  <dependency step="catalog"/>
-    Import ATContentTypes specific configuration.
- </import-step>
  <import-step id="content" version="20050927-01"
               handler="Products.CMFCore.exportimport.content.importSiteStructure"
               title="Content">
