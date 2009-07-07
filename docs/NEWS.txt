@@ -5,6 +5,13 @@
 Changelog
 =========
 
+3.3 - unreleased
+----------------
+
+- Modified the history viewlet style so actions are green without
+  background and border. Messages are on a blue background.
+  [vincentfretin]
+
 3.3rc4 - July 7, 2009
 ---------------------
 
