@@ -203,9 +203,11 @@
                             </span>
                             <span i18n:translate="label_product_no_upgrade_action"
                               tal:condition="not:upgrade_info/available">
-                              There is no upgrade available for this product.
-                              Please contact the product documentation for
-                              upgrade information or contact the product author.
+                              There is no upgrade procedure defined for this
+                              add-on.
+                              Please consult the product documentation for
+                              upgrade information, or contact the product
+                              author.
                             </span>
                           </span>
                         </li>

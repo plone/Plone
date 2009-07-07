@@ -2504,6 +2504,17 @@ class TestMigrations_v3_3(MigrationTest):
         self.removeSiteProperty('lock_on_ttw_edit')
         v3_3.three23_three3_beta1(self.portal)
         self.assertEquals(True, self.properties.site_properties.getProperty('lock_on_ttw_edit'))
+    def test_bug9141(self):
+        css = self.portal.portal_css
+        for resource in css.resources:
+            del resource._data['cooked_expression']
+        self.migration._upgrade('3.3rc3')
+        # cooked_expression should be there again with proper value
+        for resource in css.resources:
+            self.assertEqual(
+                    resource._data['cooked_expression'].text,
+                    resource._data['expression'])
+        
 
 class TestMigrations_v4_0alpha1(MigrationTest):
 

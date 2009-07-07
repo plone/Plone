@@ -35,22 +35,20 @@
           tal:define="charset site_properties/default_charset|string:utf-8"
           tal:attributes="content string:text/html;;charset=${charset}" />
 
+    <meta name="generator" content="Plone - http://plone.org" />
+
+    <!-- Internet Explorer fix, forces IE8 into newest possible rendering
+         engine even if it's on an intranet. This has to be defined before any
+         script/style tags. -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
+
     <metal:baseslot define-slot="base">
       <base tal:attributes="href context/renderBase" /><!--[if lt IE 7]></base><![endif]-->
     </metal:baseslot>
 
-    <meta name="generator" content="Plone - http://plone.org" />
-
     <div tal:replace="structure provider:plone.htmlhead" />
 
-    <meta tal:define="metatags python:context.plone_utils.listMetaTags(context).items()"
-          tal:condition="metatags"
-          tal:repeat="keyval metatags"
-          tal:attributes="name python:keyval[0];
-                          content python:keyval[1];" />
-
-    <!-- Internet Explorer Fixes, force IE8 forces into standards mode, IE5/6/7 get workaround CSS/JS -->
-    <meta name="IE" content="EmulateIE8" />
+    <!-- IE6 workaround CSS/JS  -->
     <tal:iefixstart replace="structure string:&lt;!-- [if lte IE7]&gt;" />
         <style type="text/css" media="all" tal:condition="exists:context/IEFixes.css"
                tal:content="string:@import url($portal_url/IEFixes.css);">
