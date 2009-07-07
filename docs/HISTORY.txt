@@ -25,6 +25,10 @@ Older releases:
   issues with functional tests written for older versions of Plone.
   [optilude]
 
+- Don't rely on a Zope 2 style interface in the getObjPositionInParent
+  indexer - use the proper Zope 3 interface for IOrderedContainer instead.
+  [optilude]
+
 - When viewing the prefs_install_products_form, do not do inline
   migration for profiles that were previously unknown as this may hide
   valid upgrade steps in some cases.
