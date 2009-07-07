@@ -155,4 +155,5 @@ def registerMigrations():
     registerUpgradePath('3.3rc1', '3.3rc2', null)
     registerUpgradePath('3.3rc2', '3.3rc3', null)
     registerUpgradePath('3.3rc3', '3.3rc4', v3_3.three3_rc3_three3_rc4)
+    registerUpgradePath('3.3rc4', '3.3 (svn/unreleased)', null)
 
