@@ -1,5 +1,3 @@
-from collections import deque
-
 def _unicode_replace(structure):
     if isinstance(structure, str):
         text = structure.decode('utf-8')
@@ -24,29 +22,18 @@ def new__call__(self, econtext):
     return self._expr % tuple([_unicode_replace(var(econtext)) for var in self._vars])
 
 
-class FasterStringIO(object):
-    """Append-only version of StringIO, which ignores any initial buffer.
-
-    Implemented by using an internal deque instead.
+class FasterStringIO(list):
+    """Append-only version of StringIO.
     """
-    def __init__(self, buf=None):
-        self.buf = buf = deque()
-        self.bufappend = buf.append
+    write = list.append
 
-    def close(self):
-        self.buf.clear()
-
-    def seek(self, pos, mode=0):
-        raise RuntimeError("FasterStringIO.seek() not allowed")
-
-    def write(self, s):
-        self.bufappend(s)
+    def __init__(self, value=None):
+        list.__init__(self)
+        if value is not None:
+            self.append(_unicode_replace(value))
 
     def getvalue(self):
-        buf = self.buf
         try:
-            result = u''.join(buf)
+            return u''.join(self)
         except UnicodeDecodeError:
-            result = u''.join([_unicode_replace(value) for value in buf])
-        buf.clear()
-        return result
+            return u''.join([_unicode_replace(value) for value in self])
