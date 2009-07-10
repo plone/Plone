@@ -8,6 +8,12 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Removed the calendar and review portlets from the standard global
+  assignments. The review list is better put onto a personal dashboard and the
+  calendar is exceptionally slow and rather user unfriendly. The news and
+  events portlets are a better fit to show-case the portlets system.
+  [hannosch]
+
 - Include the `overrides.zcml` from `Products.PlacelessTranslationService` to
   actually make PTS' language negotiator available to the zope.i18n machinery.
   [hannosch]
