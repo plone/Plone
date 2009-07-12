@@ -87,7 +87,7 @@ class BBBDelegatingIndexerFactory(object):
         return BBBDelegatingIndexer(object, catalog, self.callable)
 
 # used by <plone:bbbIndexers /> directive to register indexers at config time
-BBB_INDEXER_FACTORIES = []
+BBB_INDEXER_FACTORIES = {}
 
 @deprecate("The registerIndexableAttribute hook has been deprecated and will be\n"
            "removed in Plone 4.0. Please use the following pattern instead:\n"
@@ -106,7 +106,7 @@ def registerIndexableAttribute(name, callable):
     factory = BBBDelegatingIndexerFactory(callable)
     
     # delay registering these until ZCML configuration time
-    BBB_INDEXER_FACTORIES.append((factory, name,))
+    BBB_INDEXER_FACTORIES[name] = factory
 
 # This directive is used to delay registering indexable attributes until
 # it's too late. It is used by CMFPlone only, should go away with this code.
@@ -116,7 +116,7 @@ class IBBBIndexersDirective(Interface):
 
 def register_bbb_indexers(_context):
     global BBB_INDEXER_FACTORIES
-    for factory, name in BBB_INDEXER_FACTORIES:
+    for name, factory in BBB_INDEXER_FACTORIES.iteritems():
         zope.component.zcml.adapter(_context, 
                 factory=(factory,),
                 provides=IIndexer, 

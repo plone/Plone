@@ -30,9 +30,12 @@ base_content = ['Members', 'aggregator', 'aggregator',
 
 
 # For BBB test - remove when registerIndexableAttribute() is gone
+def bad_indexer(obj, portal=None, **kw):
+    raise Exception('Bad indexer!')
 def dummy_indexer(obj, portal=None, **kw):
     return "dummy!"
 from Products.CMFPlone.CatalogTool import registerIndexableAttribute
+registerIndexableAttribute('dummy_indexer', bad_indexer)
 registerIndexableAttribute('dummy_indexer', dummy_indexer)
 # End BBB
 
