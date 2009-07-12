@@ -27,6 +27,8 @@
     <tal:main-macro metal:define-macro="main"
                     tal:define="site_properties here/portal_properties/site_properties;
                                 allowAnonymousViewAbout python:site_properties.getProperty('allowAnonymousViewAbout', True);
+                                isAnon context/@@plone_portal_state/anonymous;
+                                raiseUnauthorized python:(not isAnon or allowAnonymousViewAbout) or here.raiseUnauthorized();
                                 url_unquote_plus python:modules['Products.PythonScripts.standard'].url_unquote_plus;
                                 author python:(len(request.traverse_subpath) > 0 and url_unquote_plus(request.traverse_subpath[0])) or request.get('author', None);
                                 mtool python:context.portal_membership;
