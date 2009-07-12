@@ -97,6 +97,11 @@ class TestFolderRename(PloneTestCase.PloneTestCase):
         self.assertRaises(Forbidden, self.folder.folder_rename,
                           [doc1_path], ['bar'], ['Baz'])
 
+    def testGetObjectsFromPathList(self):
+        doc1_path = unicode('/'.join(self.folder.foo.doc1.getPhysicalPath()))
+        doc2_path = unicode('/'.join(self.folder.bar.doc2.getPhysicalPath()))
+        self.assertEqual(len(self.folder.getObjectsFromPathList([doc1_path, doc2_path])),2)
+
 
 class TestFolderDelete(PloneTestCase.PloneTestCase):
     # Tests for folder_delete.py
