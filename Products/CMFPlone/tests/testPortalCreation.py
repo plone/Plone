@@ -780,7 +780,7 @@ class TestPortalCreation(PloneTestCase.PloneTestCase, WarningInterceptor):
         right = getMultiAdapter((self.portal, rightColumn,), IPortletAssignmentMapping)
 
         self.assertEquals(len(left), 2)
-        self.assertEquals(len(right), 4)
+        self.assertEquals(len(right), 2)
 
     def testPortletBlockingForMembersFolder(self):
         members = self.portal.Members
