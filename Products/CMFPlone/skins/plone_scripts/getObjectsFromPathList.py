@@ -10,7 +10,7 @@
 contents = []
 portal = context.portal_url.getPortalObject()
 for path in paths:
-    obj = portal.restrictedTraverse(src(path), None)
+    obj = portal.restrictedTraverse(str(path), None)
     if obj is not None: contents.append(obj)
 
 if batch:

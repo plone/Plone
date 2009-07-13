@@ -10,7 +10,6 @@ from Products.CMFPlone.tests import dummy
 
 from Products.CMFPlone.browser.ploneview import Plone
 
-
 class TestPloneView(PloneTestCase.PloneTestCase):
     """Tests the global plone view."""
 

@@ -80,6 +80,19 @@ Changelog
   for content items instead of relying on Acquisition.
   [hannosch]
 
+- Moved the `scale_image` function from utils into the PlonePAS.utils
+  module, as PlonePAS is the only user of it.
+  [hannosch]
+
+- The remaining functionality from GroupUserFolder has been merged into
+  the PlonePAS package. GroupUserFolder is no longer required.
+  [hannosch]
+
+- Removed the groups, groupdata, membership and memberdata tools from this
+  package. All code is now in a central place inside PlonePAS. The persistent
+  tools have been from the PlonePAS package since Plone 2.5.
+  [hannosch]
+
 - Replaced has_key method calls with containment checks via `in`.
   [hannosch]
 

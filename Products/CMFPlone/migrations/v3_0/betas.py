@@ -105,7 +105,7 @@ def addAutoGroupToPAS(context):
         manage_addAutoGroup(portal.acl_users, 'auto_group',
                 'Automatic Group Provider',
                 'AuthenticatedUsers', "Logged-in users (Virtual Group)")
-        activatePluginInterfaces(portal, "auto_group", sout)
+        activatePluginInterfaces(portal, "auto_group")
         logger.info("Added automatic group PAS plugin")
 
 def removeS5Actions(context):

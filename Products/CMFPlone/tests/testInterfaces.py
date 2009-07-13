@@ -4,16 +4,11 @@
 
 from Testing import ZopeTestCase
 
-import traceback
-
 from types import TupleType, TypeType, ClassType
 from zope.interface.interface import InterfaceClass
 from ExtensionClass import ExtensionClass
 
 from zope.interface import implementedBy, providedBy
-from zope.interface.verify import verifyClass, verifyObject
-from zope.interface.exceptions import BrokenImplementation, DoesNotImplement,\
-    BrokenMethodImplementation
 
 ###############################################################################
 ###               import classes and interfaces for testing                 ###
@@ -25,11 +20,7 @@ from Products.CMFPlone.CalendarTool import CalendarTool
 from Products.CMFPlone.CatalogTool import CatalogTool
 from Products.CMFPlone.DiscussionTool import DiscussionTool
 from Products.CMFPlone.FactoryTool import FactoryTool, TempFolder
-from Products.CMFPlone.GroupDataTool import GroupDataTool
-from Products.CMFPlone.GroupsTool import GroupsTool
 from Products.CMFPlone.InterfaceTool import InterfaceTool
-from Products.CMFPlone.MemberDataTool import MemberDataTool
-from Products.CMFPlone.MembershipTool import MembershipTool
 from Products.CMFPlone.MetadataTool import MetadataTool
 from Products.CMFPlone.MigrationTool import MigrationTool
 from Products.CMFPlone.PloneControlPanel import PloneControlPanel, PloneConfiglet
@@ -99,11 +90,6 @@ class InterfaceTest(ZopeTestCase.ZopeTestCase):
                 BrokenMethodImplementation), errmsg:
             self.fail('The class %s does not implement %s correctly: \n%s'
                       % (dottedName(klass), dottedName(interface), errmsg))
-	except AttributeError, errmsg:
-	    self.fail('There was a problem while checking the implementation of '
-	              'class %s and interface %s: \nAttributeError %s\n%s'
-		      % (dottedName(klass), dottedName(interface), errmsg,
-                         ''.join(traceback.format_tb(sys.exc_traceback))))
 
     def interfaceImplementedBy(self, instance, interface):
         """ tests if the instance implements the interface in the right way """
@@ -206,11 +192,6 @@ class zope_interface_test(ZopeTestCase.ZopeTestCase):
                 BrokenMethodImplementation), errmsg:
             self.fail('The class %s does not implement %s correctly: \n%s'
                       % (dottedName(klass), dottedName(interface), errmsg))
-	except AttributeError, errmsg:
-	    self.fail('There was a problem while checking the implementation of '
-	              'class %s and interface %s: \nAttributeError %s\n%s'
-		      % (dottedName(klass), dottedName(interface), errmsg,
-                         ''.join(traceback.format_tb(sys.exc_traceback))))
 
     def interfaceProvidedBy(self, instance, interface):
         """ tests if the instance implements the interface in the right way """
@@ -284,11 +265,7 @@ testClasses = [
     (CatalogTool, ()),
     (DiscussionTool, ()),
     (FactoryTool, ()), (TempFolder, ()),
-    (GroupDataTool, ()),
-    (GroupsTool, ()),
     (InterfaceTool, ()),
-    (MemberDataTool, ()),
-    (MembershipTool, ()),
     (MetadataTool, ()),
     (MigrationTool, ()),
     (PloneControlPanel, ()), (PloneConfiglet, ()),
@@ -304,12 +281,6 @@ testClasses = [
     (UndoTool, ()),
     (URLTool, ()),
     (WorkflowTool, ()),
-]
-
-# format: (instance object, (list interface objects))
-# take care: you must provide an instance, not a class!
-testInstances = [
-    # (, ()),
 ]
 
 for testClass in testClasses:
@@ -334,26 +305,6 @@ for testClass in testClasses:
     # add the testing method to the class to get a nice name
     setattr(KlassInterfaceTest, funcName, lambda self: self._testStuff())
     tests.append(KlassInterfaceTest)
-
-
-for testInstance in testInstances:
-    instance, forcedImpl = testInstance
-    name = className(instance)
-    funcName = 'test%sInterface' % name
-
-    class InstanceInterfaceTest(InterfaceTest):
-        """ implementation for %s """ % name
-        instance   = instance
-        forcedImpl = forcedImpl
-
-    # add the testing method to the class to get a nice name
-    setattr(InstanceInterfaceTest, funcName, lambda self: self._testStuff())
-    tests.append(InstanceInterfaceTest)
-
-    class InstanceInterfaceTest(zope_interface_test):
-        """ implementation for %s """ % name
-        instance   = instance
-        forcedImpl = forcedImpl
 
 import unittest
 

@@ -22,11 +22,8 @@ def applyPatches():
     from Products.CMFCore.RegistrationTool import RegistrationTool
     RegistrationTool.addMember = patch(RegistrationTool.addMember)
 
-    # break circular import
-    import Products.PlonePAS
-
     from Products.CMFCore.MembershipTool import MembershipTool as MT
-    from Products.CMFPlone.MembershipTool import MembershipTool as PMT
+    from Products.PlonePAS.tools.membership import MembershipTool as PMT
     MT.setPassword = patch(MT.setPassword)
     PMT.setPassword = patch(PMT.setPassword)
     MT.setRoleMapping = patch(MT.setRoleMapping)

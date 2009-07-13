@@ -190,3 +190,6 @@ may need to take the following changes into account.
 * Products.CMFPlone.interfaces.OrderedContainer.IOrderedContainer has been
   replaced with the canonical version of the interface in
   OFS.interfaces.IOrderedContainer
+
+* Products.CMFPlone.utils.scale_image has been moved to the PlonePAS package,
+  as that is the only place it was used.
