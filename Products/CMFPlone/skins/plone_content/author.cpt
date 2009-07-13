@@ -35,7 +35,7 @@
                                 portrait python: mtool.getPersonalPortrait(author);
                                 portal_types context/portal_types;
                                 authorinfo python: mtool.getMemberInfo(author);
-                                portal_url context/portal_url;
+                                portal_url context/@@plone_portal_state/navigation_root_url;
                                 here_url context/@@plone_context_state/object_url;
                                 member context/@@plone_portal_state/member;">
 

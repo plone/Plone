@@ -17,7 +17,7 @@
 
 <metal:main fill-slot="content"
             tal:define="errors options/state/getErrors;
-                        portal_url context/portal_url;
+                        portal_url context/@@plone_portal_state/navigation_root_url;
                         member context/@@plone_portal_state/member;">
     <tal:main-macro metal:define-macro="main">
 
