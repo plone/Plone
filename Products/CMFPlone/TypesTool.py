@@ -33,17 +33,18 @@ class TypesTool(PloneBaseTool, BaseTool):
         # List ActionInfo objects.
         # (method is without docstring to disable publishing)
         #
-        ec = self._getExprContext(object)
         actions = self.listActions(object=object)
         if categories is not None:
             result = []
             for action in actions:
-                cat = getattr(aq_base(action), 'category', None)
-                if cat is None:
-                    cat = 'folder/add'
+                cat = getattr(aq_base(action), 'category', 'folder/add')
                 if cat in categories:
                     result.append(action)
+            if len(result) == 0:
+                return []
+            actions = result
 
+        ec = self._getExprContext(object)
         actions = [ ActionInfo(action, ec) for action in actions ]
 
         if action_chain:

@@ -34,6 +34,10 @@ Changelog
   This takes the idea of experimental.opaquespeedup one step further.
   [hannosch]
 
+- Actually made the types tool action lookup optimization effective. Slightly
+  optimized the add items drop-down menu.
+  [hannosch]
+
 - Removed the `ResourceRegistries` skin layer. It only contained test code.
   [hannosch]
 

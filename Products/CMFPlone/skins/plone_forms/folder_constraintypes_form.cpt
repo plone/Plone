@@ -140,18 +140,19 @@
                     <div style="float:left; margin-right: 2em;"
                          tal:define="typeLists python:context.createMultiColumnList(availableTypes, numCols=3, sort_on='title_or_id');"
                          tal:repeat="sublist typeLists">
-                        <tal:block tal:repeat="type sublist">
+                        <tal:block tal:repeat="ctype sublist">
                             <input name="currentPrefer:list"
                                    class="noborder"
                                    type="checkbox"
-                                   tal:attributes="value type/getId;
-                                                   id type/getId;
-                                                   onclick string:check_mode('${type/getId}');
-                                                   checked python:test(type.getId() in currentPrefer or type.getId() in currentAllow, 'checked', None);"
+                                   tal:define="cid ctype/getId"
+                                   tal:attributes="value cid;
+                                                   id cid;
+                                                   onclick string:check_mode('${cid}');
+                                                   checked python:test(cid in currentPrefer or cid in currentAllow, 'checked', None);"
                             />
                             <label for="#"
-                                   tal:attributes="for type/getId"
-                                   tal:content="type/Title"
+                                   tal:attributes="for ctype/getId"
+                                   tal:content="ctype/Title"
                                    i18n:translate="">Type</label>
                             <br/>
                         </tal:block>
@@ -185,22 +186,22 @@
                     <div style="float:left; margin-right: 2em;"
                          tal:define="typeLists python:context.createMultiColumnList(availableTypes, numCols=3, sort_on='title_or_id');"
                          tal:repeat="sublist typeLists">
-                        <tal:block tal:repeat="type sublist">
+                        <tal:block tal:repeat="ctype sublist">
                             <input name="currentAllow:list"
                                    class="noborder"
                                    type="checkbox"
-                                   tal:define="tid      type/getId;
-                                               disabled python:test(tid not in currentAllow, 'disabled', None);
-                                               checked  python:test(tid in currentAllow and tid not in currentPrefer, 'checked', None);"
-                                   tal:attributes="value type/getId;
-                                                   id string:${type/getId}_allowed;
-                                                   onclick string:check_mode('${type/getId}');
+                                   tal:define="cid ctype/getId;
+                                               disabled python:test(cid not in currentAllow, 'disabled', None);
+                                               checked  python:test(cid in currentAllow and cid not in currentPrefer, 'checked', None);"
+                                   tal:attributes="value cid;
+                                                   id string:${cid}_allowed;
+                                                   onclick string:check_mode('${cid}');
                                                    disabled disabled;
                                                    checked checked;"
                             />
                             <label for="#"
-                                   tal:attributes="for string:${type/getId}_allowed"
-                                   tal:content="type/Title"
+                                   tal:attributes="for string:${ctype/getId}_allowed"
+                                   tal:content="ctype/Title"
                                    i18n:translate="">Type</label>
                             <br/>
                         </tal:block>
