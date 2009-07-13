@@ -8,8 +8,6 @@ from Products.CMFPlone.tests import dummy
 from Products.CMFCore.tests.base.testcase import WarningInterceptor
 
 from tempfile import mkstemp
-from zope.app.component.hooks import setSite, clearSite
-from zope.app.component.interfaces import ISite
 from zope.component import getGlobalSiteManager
 from zope.component import getSiteManager
 from zope.component import getMultiAdapter
@@ -17,6 +15,8 @@ from zope.component import getUtility
 from zope.component import queryUtility
 from zope.component.interfaces import IComponentLookup
 from zope.component.interfaces import IComponentRegistry
+from zope.location.interfaces import ISite
+from zope.site.hooks import setSite, clearSite
 
 from Acquisition import aq_base
 from DateTime import DateTime
@@ -26,9 +26,7 @@ from Products.CMFCore.permissions import AccessInactivePortalContent
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone import setuphandlers
 from Products.CMFPlone.factory import _DEFAULT_PROFILE
-from Products.CMFPlone.interfaces import IControlPanel
 from Products.CMFPlone.UnicodeSplitter import Splitter, CaseNormalizer
-from Products.GenericSetup.interfaces import ISetupTool
 from Products.GenericSetup.browser.manage import ExportStepsView
 from Products.GenericSetup.browser.manage import ImportStepsView
 
@@ -37,11 +35,11 @@ from Products.StandardCacheManagers.AcceleratedHTTPCacheManager import \
 from Products.StandardCacheManagers.RAMCacheManager import \
      RAMCacheManager
 
-from plone.portlets.interfaces import IPortletManager
 from plone.portlets.interfaces import IPortletAssignmentMapping
 from plone.portlets.interfaces import IPortletManager
 from plone.portlets.interfaces import ILocalPortletAssignmentManager
 from plone.portlets.constants import CONTEXT_CATEGORY as CONTEXT_PORTLETS
+
 
 class TestPortalCreation(PloneTestCase.PloneTestCase, WarningInterceptor):
 

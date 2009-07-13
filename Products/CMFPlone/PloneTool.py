@@ -25,6 +25,7 @@ from Products.CMFCore.interfaces import IDublinCore, IMutableDublinCore
 from Products.CMFCore.interfaces import IDiscussable
 from Products.CMFCore.WorkflowCore import WorkflowException
 from Products.CMFDefault.DublinCore import DefaultDublinCoreImpl
+from Products.CMFDynamicViewFTI.interfaces import IBrowserDefault
 from Products.CMFPlone.interfaces import IPloneTool
 from Products.CMFPlone.interfaces import INonStructuralFolder
 from Products.CMFPlone.PloneBaseTool import PloneBaseTool
@@ -36,7 +37,6 @@ from Products.CMFPlone.utils import log_exc
 from Products.CMFPlone.utils import transaction_note
 from Products.CMFPlone.utils import base_hasattr
 from Products.CMFPlone.utils import safe_hasattr
-from Products.CMFPlone.interfaces import IBrowserDefault
 from Products.statusmessages.interfaces import IStatusMessage
 from AccessControl.requestmethod import postonly
 from plone.app.linkintegrity.exceptions import LinkIntegrityNotificationException

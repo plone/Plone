@@ -5,14 +5,14 @@ CMFPlone setup handlers.
 from borg.localrole.utils import setup_localrole_plugin
 from five.localsitemanager import make_objectmanager_site
 from plone.i18n.normalizer.interfaces import IURLNormalizer
-from zope.app.component.interfaces import ISite
-from zope.app.component.hooks import setSite
 from zope.component import queryUtility
 from zope.event import notify
 from zope.i18n.interfaces import ITranslationDomain
 from zope.i18n.interfaces import IUserPreferredLanguages
 from zope.i18n.locales import locales, LoadLocaleError
 from zope.interface import implements
+from zope.location.interfaces import ISite
+from zope.site.hooks import setSite
 
 from Acquisition import aq_base, aq_get
 from Products.CMFCore.utils import getToolByName

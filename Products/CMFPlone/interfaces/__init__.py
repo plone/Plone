@@ -16,11 +16,27 @@ from siteroot import ITestCasePloneSiteRoot
 from constrains import IConstrainTypes
 from constrains import ISelectableConstrainTypes
 from structure import INonStructuralFolder
-from view import IBrowserDefault
-from view import ISelectableBrowserDefault
-from view import IDynamicViewTypeInformation
 from factory import IFactoryTool
 from translationservice import ITranslationServiceTool
 from breadcrumbs import IHideFromBreadcrumbs
 from workflow import IWorkflowChain
 
+import zope.deferredimport
+
+zope.deferredimport.deprecated(
+    "It has been moved to Products.CMFDynamicViewFTI.interfaces. " 
+    "This alias will be removed in Plone 5.0",
+    IBrowserDefault = 'Products.CMFDynamicViewFTI.interfaces:IBrowserDefault',
+    )
+
+zope.deferredimport.deprecated(
+    "It has been moved to Products.CMFDynamicViewFTI.interfaces. " 
+    "This alias will be removed in Plone 5.0",
+    IDynamicViewTypeInformation = 'Products.CMFDynamicViewFTI.interfaces:IDynamicViewTypeInformation',
+    )
+
+zope.deferredimport.deprecated(
+    "It has been moved to Products.CMFDynamicViewFTI.interfaces. " 
+    "This alias will be removed in Plone 5.0",
+    ISelectableBrowserDefault = 'Products.CMFDynamicViewFTI.interfaces:ISelectableBrowserDefault',
+    )

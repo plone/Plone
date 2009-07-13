@@ -49,6 +49,11 @@ Changelog
   actually using any of it.
   [hannosch]
 
+- Added proper deprecation warnings for the IBrowserDefault,
+  IDynamicViewTypeInformation and ISelectableBrowserDefault interfaces, who
+  has always come from Products.CMFDynamicViewFTI.
+  [hannosch]
+
 - Deprecate our own IOrderedContainer interface in favor of the original one
   from OFS.
   [hannosch]
