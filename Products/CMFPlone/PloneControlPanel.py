@@ -15,7 +15,6 @@ from Products.CMFCore.permissions import ManagePortal, View
 from Products.CMFCore.utils import _checkPermission, getToolByName, UniqueObject
 from Products.CMFCore.utils import registerToolInterface
 
-import ToolNames
 from interfaces import IControlPanel
 from Products.CMFPlone.PloneBaseTool import PloneBaseTool
 
@@ -52,7 +51,7 @@ class PloneControlPanel(PloneBaseTool, UniqueObject,
     id = 'portal_controlpanel'
     title = 'Control Panel'
     toolicon = 'skins/plone_images/site_icon.gif'
-    meta_type = ToolNames.ControlPanelTool
+    meta_type = 'Plone Control Panel Tool'
     _actions_form = DTMLFile( 'www/editPloneConfiglets', globals() )
 
     _properties=(

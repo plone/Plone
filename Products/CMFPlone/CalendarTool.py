@@ -1,6 +1,5 @@
 from Products.CMFCalendar.CalendarTool import CalendarTool as BaseTool
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone import ToolNames
 from AccessControl import ClassSecurityInfo
 from App.class_init import InitializeClass
 from Products.CMFPlone.PloneBaseTool import PloneBaseTool
@@ -9,7 +8,7 @@ from plone.app.layout.navigation.root import getNavigationRoot
 
 class CalendarTool(PloneBaseTool, BaseTool):
 
-    meta_type = ToolNames.CalendarTool
+    meta_type = 'Plone Calendar Tool'
     security = ClassSecurityInfo()
     toolicon = 'skins/plone_images/event_icon.gif'
 

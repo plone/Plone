@@ -4,7 +4,6 @@ from Products.CMFCore.permissions import ManagePortal
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.utils import registerToolInterface
 from Products.CMFPlone.PloneBaseTool import PloneBaseTool
-from Products.CMFPlone import ToolNames
 from Products.CMFQuickInstallerTool.QuickInstallerTool \
    import QuickInstallerTool as BaseTool
 from Products.CMFQuickInstallerTool.interfaces import IQuickInstallerTool
@@ -13,7 +12,7 @@ from Products.CMFQuickInstallerTool.interfaces import IQuickInstallerTool
 class QuickInstallerTool(PloneBaseTool, BaseTool):
     """ A tool to ease installing/uninstalling all sorts of products """
 
-    meta_type = ToolNames.QuickInstallerTool
+    meta_type = 'Plone QuickInstaller Tool'
     security = ClassSecurityInfo()
     toolicon = 'skins/plone_images/product_icon.gif'
 

@@ -1,12 +1,11 @@
 from Products.CMFDefault.MetadataTool import MetadataTool as BaseTool
-from Products.CMFPlone import ToolNames
 from App.class_init import InitializeClass
 from AccessControl import ClassSecurityInfo
 from Products.CMFPlone.PloneBaseTool import PloneBaseTool
 
 class MetadataTool(PloneBaseTool, BaseTool):
 
-    meta_type = ToolNames.MetadataTool
+    meta_type = 'Plone Metadata Tool'
     security = ClassSecurityInfo()
     toolicon = 'skins/plone_images/info_icon.gif'
 

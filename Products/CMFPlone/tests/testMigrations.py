@@ -1953,14 +1953,13 @@ class TestMigrations_v3_0_alpha2(MigrationTest):
             self.failUnless(sheet.external_links_open_new_window == 'false')
 
     def testMigratePloneTool(self):
-        from Products.CMFPlone import ToolNames
         tool = self.portal.plone_utils
         tool.meta_type = 'PlonePAS Utilities Tool'
         # Test it twice
         for i in range(2):
             restorePloneTool(self.portal)
             tool = self.portal.plone_utils
-            self.assertEquals(ToolNames.UtilsTool, tool.meta_type)
+            self.assertEquals('Plone Utility Tool', tool.meta_type)
 
     def testInstallPloneLanguageTool(self):
         CMFSite.manage_delObjects(self.portal, ['portal_languages'])
