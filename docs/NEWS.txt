@@ -8,6 +8,11 @@ Changelog
 3.3 - unreleased
 ----------------
 
+- Remove trailing space from 
+  history_compare_with_previous_inline.png.metadata filename.
+  This fixes http://dev.plone.org/old/plone/ticket/9367
+  [wichert].
+
 - Modified the history viewlet style so actions are green without
   background and border. Messages are on a blue background.
   [vincentfretin]
