@@ -2,7 +2,6 @@ from zope.component import getMultiAdapter
 
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.WorkflowTool import WorkflowTool as BaseTool
-from Products.CMFPlone import ToolNames
 from Products.CMFPlone.interfaces import IWorkflowChain
 from ZODB.POSException import ConflictError
 from Acquisition import aq_base
@@ -16,7 +15,7 @@ from Products.CMFPlone.PloneBaseTool import PloneBaseTool
 
 class WorkflowTool(PloneBaseTool, BaseTool):
 
-    meta_type = ToolNames.WorkflowTool
+    meta_type = 'Plone Workflow Tool'
     security = ClassSecurityInfo()
     plone_tool = 1
     toolicon = 'skins/plone_images/workflow_icon.gif'

@@ -1,5 +1,4 @@
 from Products.CMFDefault.SyndicationTool import SyndicationTool as BaseTool
-from Products.CMFPlone import ToolNames
 from Products.CMFCore.permissions import ManageProperties
 from Products.CMFCore.utils import getToolByName
 from AccessControl import ClassSecurityInfo, Unauthorized
@@ -9,7 +8,7 @@ from Products.CMFPlone.PloneBaseTool import PloneBaseTool
 
 class SyndicationTool(PloneBaseTool, BaseTool):
 
-    meta_type = ToolNames.SyndicationTool
+    meta_type = 'Plone Syndication Tool'
     security = ClassSecurityInfo()
     toolicon = 'skins/plone_images/rss.gif'
 

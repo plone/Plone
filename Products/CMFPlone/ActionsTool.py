@@ -3,13 +3,12 @@ from App.class_init import InitializeClass
 from Products.CMFCore.ActionInformation import ActionInfo
 from Products.CMFCore.ActionsTool import ActionsTool as BaseTool
 from Products.CMFCore.interfaces import IActionProvider
-from Products.CMFPlone import ToolNames
 from Products.CMFPlone.PloneBaseTool import PloneBaseTool
 
 
 class ActionsTool(PloneBaseTool, BaseTool):
 
-    meta_type = ToolNames.ActionsTool
+    meta_type = 'Plone Actions Tool'
     toolicon = 'skins/plone_images/confirm_icon.gif'
 
     security = ClassSecurityInfo()

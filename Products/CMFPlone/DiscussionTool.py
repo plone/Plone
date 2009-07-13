@@ -1,5 +1,4 @@
 from Products.CMFDefault.DiscussionTool import DiscussionTool as BaseTool
-from Products.CMFPlone import ToolNames
 from AccessControl import ClassSecurityInfo
 from App.class_init import InitializeClass
 from Products.CMFPlone.PloneBaseTool import PloneBaseTool
@@ -13,7 +12,7 @@ from plone.intelligenttext.transforms import convertWebIntelligentPlainTextToHtm
 
 class DiscussionTool(PloneBaseTool, BaseTool):
 
-    meta_type = ToolNames.DiscussionTool
+    meta_type = 'Plone Discussion Tool'
     security = ClassSecurityInfo()
     toolicon = 'skins/plone_images/discussionitem_icon.gif'
 

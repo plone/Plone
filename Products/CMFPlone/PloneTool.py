@@ -30,7 +30,6 @@ from Products.CMFPlone.interfaces import IPloneTool
 from Products.CMFPlone.interfaces import INonStructuralFolder
 from Products.CMFPlone.PloneBaseTool import PloneBaseTool
 from Products.CMFPlone.PloneFolder import ReplaceableWrapper
-from Products.CMFPlone import ToolNames
 from Products.CMFPlone import utils
 from Products.CMFPlone.utils import log
 from Products.CMFPlone.utils import log_exc
@@ -93,7 +92,7 @@ class PloneTool(PloneBaseTool, UniqueObject, SimpleItem):
     """Various utility methods."""
 
     id = 'plone_utils'
-    meta_type = ToolNames.UtilsTool
+    meta_type = 'Plone Utility Tool'
     toolicon = 'skins/plone_images/site_icon.gif'
     security = ClassSecurityInfo()
     plone_tool = 1

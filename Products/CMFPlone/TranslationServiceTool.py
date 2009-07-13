@@ -13,7 +13,6 @@ from OFS.SimpleItem import SimpleItem
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.utils import UniqueObject
 from Products.CMFPlone import PloneLocalesMessageFactory as PLMF
-from Products.CMFPlone import ToolNames
 from Products.CMFPlone.interfaces import ITranslationServiceTool
 from Products.CMFPlone.PloneBaseTool import PloneBaseTool
 
@@ -28,7 +27,7 @@ class TranslationServiceTool(PloneBaseTool, UniqueObject, SimpleItem):
     """ Utility methods to access the translation machinery """
 
     id = 'translation_service'
-    meta_type = ToolNames.TranslationServiceTool
+    meta_type = 'Portal Translation Service Tool'
     toolicon = 'skins/plone_images/site_icon.gif'
     security = ClassSecurityInfo()
     implements(ITranslationServiceTool)

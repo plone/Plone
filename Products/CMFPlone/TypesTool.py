@@ -5,13 +5,12 @@ from App.class_init import InitializeClass
 from Products.CMFCore.ActionInformation import ActionInfo
 from Products.CMFCore.TypesTool import TypesTool as BaseTool
 
-from Products.CMFPlone import ToolNames
 from Products.CMFPlone.PloneBaseTool import PloneBaseTool
 
 
 class TypesTool(PloneBaseTool, BaseTool):
 
-    meta_type = ToolNames.TypesTool
+    meta_type = 'Plone Types Tool'
     security = ClassSecurityInfo()
     toolicon = 'skins/plone_images/document_icon.gif'
 

@@ -18,6 +18,10 @@ Changelog
   actually make PTS' language negotiator available to the zope.i18n machinery.
   [hannosch]
 
+- Got rid of the ToolNames indirection and declared the meta_types directly
+  in the relevant tool class themselves.
+  [hannosch]
+
 - Moved ATCT specific exportimport code into the ATCT package itself.
   [hannosch]
 

@@ -10,7 +10,6 @@ from zope.interface import implements
 from Products.CMFCore.CatalogTool import CatalogTool as BaseTool
 
 from Products.CMFCore.permissions import AccessInactivePortalContent
-from Products.CMFPlone import ToolNames
 from AccessControl import ClassSecurityInfo
 from App.class_init import InitializeClass
 from App.special_dtml import DTMLFile
@@ -225,7 +224,7 @@ class CatalogTool(PloneBaseTool, BaseTool):
 
     implements(IPloneCatalogTool)
 
-    meta_type = ToolNames.CatalogTool
+    meta_type = 'Plone Catalog Tool'
     security = ClassSecurityInfo()
     toolicon = 'skins/plone_images/book_icon.gif'
     _counter = None

@@ -1,14 +1,14 @@
 from Products.CMFCore.URLTool import URLTool as BaseTool
-from Products.CMFPlone import ToolNames
 from AccessControl import ClassSecurityInfo
 from App.class_init import InitializeClass
 from Products.CMFPlone.PloneBaseTool import PloneBaseTool
 
 from urlparse import urlparse
 
+
 class URLTool(PloneBaseTool, BaseTool):
 
-    meta_type = ToolNames.URLTool
+    meta_type = 'Plone URL Tool'
     security = ClassSecurityInfo()
     toolicon = 'skins/plone_images/link_icon.gif'
 

@@ -1,7 +1,6 @@
 from Acquisition import aq_parent, aq_inner
 from Products.CMFCore.permissions import ManagePortal
 from Products.CMFDefault.PropertiesTool import PropertiesTool as BaseTool
-from Products.CMFPlone import ToolNames
 
 from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 from OFS.Folder import Folder
@@ -20,7 +19,7 @@ class PropertiesTool(PloneBaseTool, Folder, BaseTool):
     id = BaseTool.id
     toolicon = 'skins/plone_images/topic_icon.gif'
 
-    meta_type = ToolNames.PropertiesTool
+    meta_type = 'Plone Properties Tool'
     meta_types = ((
         {'name' : 'Plone Property Sheet',
          'action' : 'manage_addPropertySheetForm'

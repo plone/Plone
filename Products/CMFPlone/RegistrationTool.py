@@ -13,7 +13,6 @@ from Products.CMFCore.interfaces import ISiteRoot
 
 from Products.CMFCore.utils import getToolByName
 from Products.CMFDefault.RegistrationTool import RegistrationTool as BaseTool
-from Products.CMFPlone import ToolNames
 
 from Products.CMFCore.permissions import AddPortalMember
 
@@ -50,7 +49,7 @@ random.seed()
 
 class RegistrationTool(PloneBaseTool, BaseTool):
 
-    meta_type = ToolNames.RegistrationTool
+    meta_type = 'Plone Registration Tool'
     security = ClassSecurityInfo()
     toolicon = 'skins/plone_images/pencil_icon.gif'
     plone_tool = 1
