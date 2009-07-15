@@ -8,6 +8,9 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Added the _IMREALLYPLONE4 hint to factory.py for PloneTestCase to use.
+  [hannosch]
+
 - Removed the calendar and review portlets from the standard global
   assignments. The review list is better put onto a personal dashboard and the
   calendar is exceptionally slow and rather user unfriendly. The news and
