@@ -38,8 +38,4 @@
     <adapter factory=".CatalogTool.is_default_page"        name="is_default_page" />
     <adapter factory=".CatalogTool.getIcon"                name="getIcon" />
     
-    
-    <!-- BBB: load old indexers registered with registerIndexableAttribute -->
-    <plone:bbbIndexers />
-    
 </configure>

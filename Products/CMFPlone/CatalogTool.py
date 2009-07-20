@@ -114,14 +114,12 @@ def registerIndexableAttribute(name, callable):
 class IBBBIndexersDirective(Interface):
     pass
 
-def register_bbb_indexers(_context):
+def register_bbb_indexers():
     global BBB_INDEXER_FACTORIES
     for name, factory in BBB_INDEXER_FACTORIES.iteritems():
-        zope.component.zcml.adapter(_context, 
-                factory=(factory,),
-                provides=IIndexer, 
-                for_=(Interface, IZCatalog,),
-                name=name)
+        zope.component.getGlobalSiteManager().registerAdapter(
+            factory, (Interface, IZCatalog,), IIndexer, name)
+    BBB_INDEXER_FACTORIES.clear()
 
 from zope.interface import implements
 from zope.component import adapts
@@ -167,6 +165,7 @@ class ExtensibleIndexableObjectWrapper(_BaseWrapper):
         vars, obj, kwargs = self.beforeGetattrHook(vars, obj, kwargs)
         
         # Use the possibly modified objects from beforeGetattrHook.
+        register_bbb_indexers()
         indexer = queryMultiAdapter((obj, catalog,), IIndexer, name=name)
         if indexer is not None:
             return indexer()
@@ -422,6 +421,7 @@ class CatalogTool(PloneBaseTool, BaseTool):
             
             # BBB: Compatibility wrapper lookup. Should be removed in Plone 4.
             portal = aq_parent(aq_inner(self))
+            register_bbb_indexers()
             wrapper = queryMultiAdapter((object, portal), _old_IIndexableObjectWrapper)
             if wrapper is not None:
                 w = wrapper
