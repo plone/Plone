@@ -157,7 +157,7 @@ from Products.CMFPlone.setuphandlers import replace_local_role_manager
 
 from five.localsitemanager.registry import FiveVerifyingAdapterLookup
 
-from zope.app.cache.interfaces.ram import IRAMCache
+from zope.ramcache.interfaces.ram import IRAMCache
 from zope.app.component.hooks import clearSite
 from zope.app.component.interfaces import ISite
 from zope.component import getGlobalSiteManager
