@@ -1,6 +1,6 @@
-from Globals import DTMLFile
-from Globals import InitializeClass
 from AccessControl import ClassSecurityInfo
+from App.special_dtml import DTMLFile
+from App.class_init import InitializeClass
 from OFS.Folder import Folder
 from OFS.PropertyManager import PropertyManager
 

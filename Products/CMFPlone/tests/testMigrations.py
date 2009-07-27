@@ -159,7 +159,7 @@ from five.localsitemanager.registry import FiveVerifyingAdapterLookup
 
 from zope.ramcache.interfaces.ram import IRAMCache
 from zope.app.component.hooks import clearSite
-from zope.app.component.interfaces import ISite
+from zope.location.interfaces import ISite
 from zope.component import getGlobalSiteManager
 from zope.component import getSiteManager
 from zope.component import getUtility, getMultiAdapter, queryUtility

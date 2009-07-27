@@ -7,13 +7,13 @@ from plone.app.portlets.utils import convert_legacy_portlets
 from plone.portlets.interfaces import IPortletManager
 from plone.portlets.interfaces import ILocalPortletAssignmentManager
 from plone.portlets.constants import CONTEXT_CATEGORY as CONTEXT_PORTLETS
-from zope.app.component.interfaces import ISite
+from zope.location.interfaces import ISite
 from zope.component import getMultiAdapter
 from zope.component import getSiteManager
 from zope.component import getUtility
 
 from Acquisition import aq_base
-from Globals import package_home
+from App.Common import package_home
 from Products.Archetypes.interfaces import IArchetypeTool
 from Products.Archetypes.interfaces import IReferenceCatalog
 from Products.Archetypes.interfaces import IUIDCatalog
