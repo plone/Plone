@@ -2,7 +2,6 @@ from Globals import DTMLFile
 from Globals import InitializeClass
 from AccessControl import ClassSecurityInfo
 from OFS.Folder import Folder
-from OFS.SimpleItem import SimpleItem
 from OFS.PropertyManager import PropertyManager
 
 from zope.interface import implements
@@ -91,6 +90,15 @@ class PloneControlPanel(PloneBaseTool, UniqueObject,
         return [{'id':g.split('|')[1], 'title':g.split('|')[2]}
                 for g in self.groups
                 if category=='' or g.split('|')[0]==category]
+
+    security.declarePrivate('listActions')
+    def listActions(self, info=None, object=None):
+        # This exists here to shut up a deprecation warning about old-style
+        # actions in CMFCore's ActionProviderBase.  It was decided not to
+        # move configlets to be based on action tool categories for Plone 4
+        # (see PLIP #8804), but that (or an alternative) will have to happen
+        # before CMF 2.4 when support for old-style actions is removed.
+        return self._actions or ()
 
     security.declarePublic( 'enumConfiglets' )
     def enumConfiglets(self, group=None):

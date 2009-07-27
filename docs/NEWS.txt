@@ -8,6 +8,10 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Silenced the deprecation warning about old-style actions from CMFCore's
+  ActionProviderBase when listing configlets with the control panel tool.
+  [davisagli]
+
 - Added the _IMREALLYPLONE4 hint to factory.py for PloneTestCase to use.
   [hannosch]
 
