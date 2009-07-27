@@ -8,6 +8,12 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Use the new zope.ramcache in favor of zope.app.cache.
+  [hannosch]
+
+- Removed GroupUserFolder skin layers.
+  [davisagli]
+
 - Silenced the deprecation warning about old-style actions from CMFCore's
   ActionProviderBase when listing configlets with the control panel tool.
   [davisagli]
