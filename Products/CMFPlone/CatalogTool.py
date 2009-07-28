@@ -32,8 +32,6 @@ from Products.CMFPlone.utils import safe_unicode
 from Products.CMFPlone.interfaces import IPloneCatalogTool
 
 from OFS.interfaces import IOrderedContainer
-from OFS.IOrderSupport import IOrderedContainer as z2IOrderedContainer
-from ZODB.POSException import ConflictError
 
 from Products.ZCatalog.ZCatalog import ZCatalog
 
@@ -114,14 +112,9 @@ def getObjPositionInParent(obj):
     0
     """
     parent = aq_parent(aq_inner(obj))
-    if IOrderedContainer.providedBy(parent) or z2IOrderedContainer.implementedBy(parent):
-        try:
-            return parent.getObjectPosition(obj.getId())
-        except ConflictError:
-            raise
-        except:
-            pass
-            # XXX log
+    ordered = IOrderedContainer(parent, None)
+    if ordered is not None: 
+        return ordered.getObjectPosition(obj.getId())
     return 0
 
 SIZE_CONST = {'kB': 1024, 'MB': 1024*1024, 'GB': 1024*1024*1024}
