@@ -508,22 +508,19 @@ div.formControls input.hidden {
 
 
 #content-history .historyAction {
-	border: 1px solid &dtml-contentViewBorderColor;;
-	background: &dtml-contentViewBackgroundColor;;
-	padding: 0.2em 0.5em;
-	font-size: &dtml-fontSmallSize;;
+	color: &dtml-contentViewFontColor;;
 }
 
 #content-history .historyByLine {
 	margin-bottom: 1em;
 }
 #content-history div.historyComment {
-	background-color: &dtml-helpBackgroundColor;;
+	background-color: &dtml-globalBackgroundColor;;
 	padding: 0.25em 1em;
 }
 
 #content-history div.historyComment p {
-    color: &dtml-fontColor;;
+	color: &dtml-fontColor;;
 	margin: 0;
 	padding-top: 1px;	
 }
