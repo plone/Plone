@@ -5,8 +5,20 @@ See NEWS.txt for changes included in the current release.
 
 Older releases:
 
-3.3 - Unreleased
+3.3 - unreleased
 ----------------
+
+- Remove trailing space from 
+  history_compare_with_previous_inline.png.metadata filename.
+  This fixes http://dev.plone.org/old/plone/ticket/9367
+  [wichert].
+
+- Modified the history viewlet style so actions are green without
+  background and border. Messages are on a blue background.
+  [vincentfretin]
+
+3.3rc4 - July 7, 2009
+---------------------
 
 - Added migration step to fix missing cooked expressions in 
   portal_css, which could mess up the site UI.  Fix by Tom Gross. 
@@ -26,7 +38,7 @@ Older releases:
   [optilude]
 
 - Don't rely on a Zope 2 style interface in the getObjPositionInParent
-  indexer - use the proper Zope 3 interface for IOrderedContainer instead.
+  indexer - accept the proper Zope 3 interface for IOrderedContainer as well.
   [optilude]
 
 - When viewing the prefs_install_products_form, do not do inline

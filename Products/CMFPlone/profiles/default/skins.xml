@@ -13,10 +13,6 @@
  <object name="cmf_legacy" meta_type="Filesystem Directory View"
     directory="Products.CMFPlone:skins/cmf_legacy"/>
  <object name="custom" meta_type="Folder"/>
- <object name="gruf" meta_type="Filesystem Directory View"
-    directory="Products.GroupUserFolder:skins/gruf"/>
- <object name="gruf_plone_2_0" meta_type="Filesystem Directory View"
-    directory="Products.GroupUserFolder:skins/gruf_plone_2_0"/>
  <object name="kupu" meta_type="Filesystem Directory View"
     directory="Products.kupu:common"/>
  <object name="kupu_plone" meta_type="Filesystem Directory View"
@@ -67,7 +63,6 @@
   <layer name="mimetypes_icons"/>
   <layer name="PasswordReset"/>
   <layer name="LanguageTool"/>
-  <layer name="gruf"/>
   <layer name="plone_ecmascript"/>
   <layer name="plone_wysiwyg"/>
   <layer name="plone_prefs"/>

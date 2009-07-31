@@ -193,3 +193,6 @@ may need to take the following changes into account.
 
 * Products.CMFPlone.utils.scale_image has been moved to the PlonePAS package,
   as that is the only place it was used.
+
+* zope.app.cache.interfaces.ram.IRAMCache is now
+  zope.ramcache.interfaces.ram.IRAMCache

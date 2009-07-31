@@ -8,6 +8,19 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Use the new zope.ramcache in favor of zope.app.cache.
+  [hannosch]
+
+- Removed GroupUserFolder skin layers.
+  [davisagli]
+
+- Silenced the deprecation warning about old-style actions from CMFCore's
+  ActionProviderBase when listing configlets with the control panel tool.
+  [davisagli]
+
+- Added the _IMREALLYPLONE4 hint to factory.py for PloneTestCase to use.
+  [hannosch]
+
 - Removed the calendar and review portlets from the standard global
   assignments. The review list is better put onto a personal dashboard and the
   calendar is exceptionally slow and rather user unfriendly. The news and

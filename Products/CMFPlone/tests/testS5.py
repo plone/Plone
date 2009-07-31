@@ -21,7 +21,7 @@ class TestS5(PloneTestCase.PloneTestCase):
 
     def testNoHead(self):
         for bad in bad_ones:
-            self.ob.setText(bad, mimetype='text/html')
+            self.ob.setText(bad)
             view = self.ob.restrictedTraverse("@@presentation_view")
             assert view.enabled() == False
             del self.app.REQUEST.__annotations__
@@ -33,7 +33,7 @@ class TestS5(PloneTestCase.PloneTestCase):
 
     def testHaveHead(self):
         for good in good_ones:
-            self.ob.setText(good, mimetype='text/html')
+            self.ob.setText(good)
             view = self.ob.restrictedTraverse("@@presentation_view")
             assert view.enabled() == False
             del self.app.REQUEST.__annotations__

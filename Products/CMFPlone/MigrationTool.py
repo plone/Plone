@@ -6,7 +6,9 @@ from zope.interface import implements
 
 from AccessControl import ClassSecurityInfo
 from AccessControl.requestmethod import postonly
-from Globals import InitializeClass, DTMLFile, DevelopmentMode
+from App.class_init import InitializeClass
+from App.special_dtml import DTMLFile
+from Globals import DevelopmentMode
 from OFS.SimpleItem import SimpleItem
 from ZODB.POSException import ConflictError
 
