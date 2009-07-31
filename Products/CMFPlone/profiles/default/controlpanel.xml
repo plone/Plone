@@ -134,4 +134,14 @@
     i18n:attributes="title">
   <permission>Content rules: Manage rules</permission>
  </configlet>
+ <configlet title="User Registration Settings" 
+    action_id="UserRegistrationSettings" 
+    appId="Plone"
+    category="Plone" 
+    condition_expr=""
+    url_expr="string:${portal_url}/@@member-registration" 
+    visible="True"
+    i18n:attributes="title">
+  <permission>Manage portal</permission>
+ </configlet>
 </object>
