@@ -19,8 +19,12 @@ from Products.CMFCore.permissions import ManagePortal
 
 from Products.CMFPlone.factory import _DEFAULT_PROFILE
 from Products.CMFPlone.interfaces import IMigrationTool
-from Products.CMFPlone.migrations import logger
 from Products.CMFPlone.PloneBaseTool import PloneBaseTool
+
+try:
+    from plone.app.upgrade.utils import logger
+except ImportError:
+    pass
 
 _upgradePaths = {}
 

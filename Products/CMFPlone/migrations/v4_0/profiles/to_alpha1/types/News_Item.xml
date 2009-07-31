@@ -1,4 +1,0 @@
-<?xml version="1.0"?>
-<object name="News Item">
- <property name="content_icon">newsitem_icon.png</property>
-</object>

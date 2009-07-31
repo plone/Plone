@@ -75,6 +75,9 @@ Changelog
   has always come from Products.CMFDynamicViewFTI.
   [hannosch]
 
+- Use the `replace_local_role_manager` method from borg.localrole. 
+  [hannosch]
+
 - Deprecate our own IOrderedContainer interface in favor of the original one
   from OFS.
   [hannosch]

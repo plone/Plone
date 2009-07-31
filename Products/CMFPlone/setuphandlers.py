@@ -2,7 +2,7 @@
 CMFPlone setup handlers.
 """
 
-from borg.localrole.utils import setup_localrole_plugin
+from borg.localrole.utils import replace_local_role_manager
 from five.localsitemanager import make_objectmanager_site
 from plone.i18n.normalizer.interfaces import IURLNormalizer
 from zope.component import queryUtility
@@ -18,7 +18,6 @@ from Acquisition import aq_base, aq_get
 from Products.CMFCore.utils import getToolByName
 from Products.ATContentTypes.lib import constraintypes
 from Products.CMFQuickInstallerTool.interfaces import INonInstallable
-from Products.PlonePAS.plugins.local_role import LocalRolesManager
 from Products.StandardCacheManagers.AcceleratedHTTPCacheManager import \
      AcceleratedHTTPCacheManager
 from Products.StandardCacheManagers.RAMCacheManager import RAMCacheManager
@@ -27,7 +26,6 @@ from Products.CMFPlone.utils import _createObjectByType
 from Products.CMFPlone.events import SiteManagerCreatedEvent
 from Products.CMFPlone.factory import _DEFAULT_PROFILE
 from Products.CMFPlone.interfaces import IMigrationTool
-from Products.CMFPlone.migrations import logger
 from Products.CMFPlone.Portal import member_indexhtml
 
 
@@ -538,18 +536,3 @@ def updateWorkflowRoleMappings(context):
     site = context.getSite()
     portal_workflow = getToolByName(site, 'portal_workflow')
     portal_workflow.updateRoleMappings()
-
-def replace_local_role_manager(portal):
-    """Installs the borg local role manager in place of the standard one from
-    PlonePAS"""
-    uf = getToolByName(portal, 'acl_users', None)
-    # Make sure we have a PAS user folder
-    if uf is not None and hasattr(aq_base(uf), 'plugins'):
-        # Remove the original plugin if it's there
-        if 'local_roles' in uf.objectIds():
-            orig_lr = getattr(uf, 'local_roles')
-            if isinstance(orig_lr, LocalRolesManager):
-                uf.plugins.removePluginById('local_roles')
-                logger.info("Deactivated original 'local_roles' plugin")
-        # Install the borg.localrole plugin if it's not already there
-        logger.info(setup_localrole_plugin(portal))
