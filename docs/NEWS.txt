@@ -5,8 +5,8 @@
 Changelog
 =========
 
-3.3 - unreleased
-----------------
+3.3rc5 - August 1, 2009
+-----------------------
 
 - Remove trailing space from 
   history_compare_with_previous_inline.png.metadata filename.
@@ -16,6 +16,7 @@ Changelog
 - Modified the history viewlet style so actions are green without
   background and border. Messages are on a blue background.
   [vincentfretin]
+
 
 3.3rc4 - July 7, 2009
 ---------------------
