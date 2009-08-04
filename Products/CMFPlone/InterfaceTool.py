@@ -3,14 +3,13 @@ from zope.interface import implements
 from zope.interface import Interface
 from zope.interface.interfaces import IMethod
 
-from types import ModuleType, ListType, TupleType
 from Products.CMFPlone.interfaces import IInterfaceTool
 from Acquisition import aq_base
 from Products.CMFCore.utils import registerToolInterface
 from Products.CMFCore.utils import UniqueObject
 
 from OFS.SimpleItem import SimpleItem
-from Globals import InitializeClass
+from App.class_init import InitializeClass
 from AccessControl import ClassSecurityInfo
 from Products.CMFPlone.PloneBaseTool import PloneBaseTool
 

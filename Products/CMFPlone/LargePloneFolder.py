@@ -1,6 +1,6 @@
 from Acquisition import aq_base, aq_inner, aq_parent
 from ComputedAttribute import ComputedAttribute
-from Globals import InitializeClass
+from App.class_init import InitializeClass
 from PloneFolder import BasePloneFolder, ReplaceableWrapper
 from Products.BTreeFolder2.BTreeFolder2 import BTreeFolder2Base
 from Products.CMFPlone.utils import log_deprecated
