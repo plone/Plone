@@ -15,11 +15,13 @@ from zope.i18n import translate
 from zope.publisher.interfaces.browser import IBrowserRequest
 
 import OFS
+from AccessControl import getSecurityManager, Unauthorized
 from Acquisition import aq_get
 from Acquisition import aq_base, aq_inner, aq_parent
 from App.Common import package_home
 from App.ImageFile import ImageFile
 from DateTime import DateTime
+from Products.CMFCore.permissions import SetOwnProperties
 from Products.CMFCore.utils import ToolInit as CMFCoreToolInit
 from Products.CMFCore.utils import getToolByName
 
@@ -635,3 +637,25 @@ def isLinked(obj):
     # which creates a funny exception when using zeo (see #6666)
     transaction.begin()
     return linked
+
+
+def set_own_login_name(member, loginname):
+    """Allow the user to set his/her own login name.
+
+    XXX Does someone know a better spot to put this function?  It
+    could be added to Products.CMFCore.MemberDataTool.MemberData.
+    """
+    secman = getSecurityManager()
+    if not secman.checkPermission(SetOwnProperties, member):
+        raise Unauthorized('You are not allowed to update this login name')
+    membership = getToolByName(member, 'portal_membership')
+    if member != membership.getAuthenticatedMember():
+        raise Unauthorized('You can only change your OWN login name.')
+    acl_users = getToolByName(member, 'acl_users')
+    userfolder = acl_users.source_users
+    try:
+        userfolder.updateUser(member.id, loginname)
+    except KeyError:
+        raise ValueError('You are not a Plone member. You are probably '
+                         'registered on the root user folder. Please '
+                         'notify an administrator if this is unexpected.')

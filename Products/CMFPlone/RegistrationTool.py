@@ -9,14 +9,12 @@ except:
 
 from zope.component import getUtility
 
-from AccessControl import getSecurityManager
 from Products.CMFCore.interfaces import ISiteRoot
 
 from Products.CMFCore.utils import getToolByName
 from Products.CMFDefault.RegistrationTool import RegistrationTool as BaseTool
 
 from Products.CMFCore.permissions import AddPortalMember
-from Products.CMFCore.permissions import SetOwnProperties
 
 from App.class_init import InitializeClass
 from AccessControl import ClassSecurityInfo, Unauthorized
@@ -371,25 +369,3 @@ def _checkEmail( address ):
         if matched != expected:
             return False, message
     return True, ''
-
-
-def set_own_login_name(member, loginname):
-    """Allow the user to set his/her own login name.
-
-    XXX Does someone know a better spot to put this function?  It
-    could be added to Products.CMFCore.MemberDataTool.MemberData.
-    """
-    secman = getSecurityManager()
-    if not secman.checkPermission(SetOwnProperties, member):
-        raise Unauthorized('You are not allowed to update this login name')
-    membership = getToolByName(member, 'portal_membership')
-    if member != membership.getAuthenticatedMember():
-        raise Unauthorized('You can only change your OWN login name.')
-    acl_users = getToolByName(member, 'acl_users')
-    userfolder = acl_users.source_users
-    try:
-        userfolder.updateUser(member.id, loginname)
-    except KeyError:
-        raise ValueError('You are not a Plone member. You are probably '
-                         'registered on the root user folder. Please '
-                         'notify an administrator if this is unexpected.')
