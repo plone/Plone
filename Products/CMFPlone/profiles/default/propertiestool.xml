@@ -134,6 +134,6 @@
   <property name="icon_visibility" type="string">enabled</property>
   <property name="mark_special_links" type="string">false</property>
   <property name="redirect_links" type="boolean">True</property>
-  <property name="allow_email_logins" type="boolean">False</property>
+  <property name="use_email_as_login" type="boolean">False</property>
  </object>
 </object>
