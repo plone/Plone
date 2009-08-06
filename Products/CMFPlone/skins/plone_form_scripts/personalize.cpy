@@ -8,7 +8,8 @@
 ##parameters=visible_ids=None, portrait=None, REQUEST=None, ext_editor=None, listed=None
 ##title=Personalization Handler.
 
-from Products.CMFPlone.utils import transaction_note
+from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.utils import transaction_note, set_own_login_name
 from Products.CMFPlone import PloneMessageFactory as _
 
 member=context.portal_membership.getAuthenticatedMember()
@@ -43,6 +44,12 @@ if (portrait and portrait.filename):
 delete_portrait = context.REQUEST.get('delete_portrait', None)
 if delete_portrait:
     context.portal_membership.deletePersonalPortrait(member.getId())
+
+email = context.REQUEST.get('email')
+if email:
+    props = getToolByName(context, 'portal_properties').site_properties
+    if props.getProperty('use_email_as_login'):
+        set_own_login_name(member, email)
 
 member.setProperties(ext_editor=ext_editor, listed=listed, visible_ids=visible_ids)
 
