@@ -45,6 +45,35 @@ def getValidPasswordChars():
 
 password_chars = getValidPasswordChars()
 
+
+def get_member_by_login_name(context, login_name, raise_exceptions=True):
+    """Get a member by his login name.
+
+    If raise_exceptions is False, we silently return None.
+    """
+    membership = getToolByName(context, 'portal_membership')
+    # First the easy case: it may be a userid after all.
+    member = membership.getMemberById(login_name)
+
+    if member is not None:
+        return member
+
+    # Try to find this user via the login name.
+    acl = getToolByName(context, 'acl_users')
+    userids = [user.get('userid') for user in
+               acl.searchUsers(login=login_name)
+               if user.get('userid')]
+    if len(userids) == 1:
+        userid = userids[0]
+        member = membership.getMemberById(userid)
+    elif len(userids) > 1:
+        if raise_exceptions:
+            raise ValueError(
+                'Multiple users found with the same login name.')
+    if member is None and raise_exceptions:
+        raise ValueError('The username you entered could not be found')
+    return member
+
 # seed the random number generator
 random.seed()
 
@@ -207,10 +236,20 @@ class RegistrationTool(PloneBaseTool, BaseTool):
             raise Unauthorized, "Mailing forgotten passwords has been disabled"
 
         utils = getToolByName(self, 'plone_utils')
-        member = membership.getMemberById(forgotten_userid)
+        # Try to find this user via the login name.
+        # XXX Only do this when email logins have been enabled.
+        # Well, this might actually work in the normal case as well.
+        member = get_member_by_login_name(self, forgotten_userid)
 
         if member is None:
             raise ValueError, 'The username you entered could not be found'
+
+        # We use the member id as new forgotten_userid, because in
+        # resetPassword we ask for the real member id too, instead of
+        # the login name.
+        #
+        # XXX Only do this when email logins have been enabled.
+        forgotten_userid = member.getId()
 
         # assert that we can actually get an email address, otherwise
         # the template will be made with a blank To:, this is bad
