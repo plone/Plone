@@ -49,6 +49,9 @@ password_chars = getValidPasswordChars()
 def get_member_by_login_name(context, login_name, raise_exceptions=True):
     """Get a member by his login name.
 
+    If a member with this login_name as userid exists, we happily
+    return that member.
+
     If raise_exceptions is False, we silently return None.
     """
     membership = getToolByName(context, 'portal_membership')
