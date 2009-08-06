@@ -25,8 +25,6 @@
                  came_from request/came_from|request/HTTP_REFERER|nothing;
                  came_from python:test(context.portal_url.isURLInPortal(came_from), came_from, None);
                  errors options/state/getErrors;
-                 site_properties context/portal_properties/site_properties;
-                 use_email_as_login site_properties/use_email_as_login|nothing;
                  ac_name auth/name_cookie|string:__ac_name;
                  ac_password auth/pw_cookie|string:__ac_password;
                  ac_persist auth/persist_cookie|nothing;
@@ -50,6 +48,8 @@
 
 <metal:login define-macro="login"
     tal:define="checkPermission nocall: context/portal_membership/checkPermission;
+                site_properties context/portal_properties/site_properties;
+                use_email_as_login site_properties/use_email_as_login|nothing;
                 ztu modules/ZTUtils;">
 <form tal:attributes="action python:context.absolute_url()+'/'+template.id"
       class="enableAutoFocus"
