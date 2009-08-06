@@ -55,6 +55,8 @@ class RegistrationTool(PloneBaseTool, BaseTool):
     plone_tool = 1
     md5key = None
     _v_md5base = None
+    default_member_id_pattern = r'^\w[\w\.\-@]+[a-zA-Z]$'
+    _ALLOWED_MEMBER_ID_PATTERN = re.compile(default_member_id_pattern)
 
     def __init__(self):
         if hasattr(BaseTool, '__init__'):
