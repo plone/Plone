@@ -22,7 +22,7 @@
                  site_properties context/portal_properties/site_properties;
                  allowEnterPassword not:context/portal_url/getPortalObject/validate_email|nothing;
                  mailpw site_properties/validate_email;
-                 use_email_as_login site_properties/use_email_as_login;
+                 use_email_as_login site_properties/use_email_as_login|nothing;
                  mailconfigured python:allowEnterPassword or (mailhost and mailfrom)">
 
   <h1 class="documentFirstHeading"
