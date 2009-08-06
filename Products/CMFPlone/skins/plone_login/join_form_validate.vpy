@@ -31,6 +31,7 @@ if not email:
     missing('email')
 elif email_login:
     username = email
+    context.REQUEST.set('username', email)
 if username and username == portal.getId():
     notallowed('username')
 
