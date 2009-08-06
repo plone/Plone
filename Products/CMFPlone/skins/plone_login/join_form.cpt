@@ -22,6 +22,7 @@
                  site_properties context/portal_properties/site_properties;
                  allowEnterPassword not:context/portal_url/getPortalObject/validate_email|nothing;
                  mailpw site_properties/validate_email;
+                 allow_email_logins site_properties/allow_email_logins;
                  mailconfigured python:allowEnterPassword or (mailhost and mailfrom)">
 
   <h1 class="documentFirstHeading"
@@ -78,6 +79,7 @@
       <div class="field"
            tal:define="error errors/username| nothing;
                        username request/username | nothing;"
+           tal:condition="not:allow_email_logins"
            tal:attributes="class python:test(error, 'field error', 'field')">
 
         <label for="username"
@@ -108,7 +110,7 @@
       </div>
 
       <div class="field"
-           tal:define="error errors/email | nothing;
+           tal:define="error python:errors.get('email') or (allow_email_logins and errors.get('username'));
                        email request/email | nothing;"
            tal:attributes="class python:test(error, 'field error', 'field')">
 
