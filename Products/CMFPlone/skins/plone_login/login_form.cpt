@@ -25,6 +25,8 @@
                  came_from request/came_from|request/HTTP_REFERER|nothing;
                  came_from python:test(context.portal_url.isURLInPortal(came_from), came_from, None);
                  errors options/state/getErrors;
+                 site_properties context/portal_properties/site_properties;
+                 use_email_as_login site_properties/use_email_as_login;
                  ac_name auth/name_cookie|string:__ac_name;
                  ac_password auth/pw_cookie|string:__ac_password;
                  ac_persist auth/persist_cookie|nothing;
@@ -75,7 +77,12 @@
              tal:attributes="class python:test(error, 'field error', 'field')">
 
             <label i18n:translate="label_login_name"
+                   tal:condition="not:use_email_as_login"
                    tal:attributes="for ac_name">Login Name</label>
+
+            <label i18n:translate="label_email"
+                   tal:condition="use_email_as_login"
+                   tal:attributes="for ac_name">E-mail</label>
 
             <div tal:condition="error"
                  tal:content="error">Validation error output</div>
@@ -117,12 +124,23 @@
                                    checked python:request.get(ac_name, '') and 'checked' or None;"
                    />
 
+            <tal:username tal:condition="not:use_email_as_login">
             <label for="cb_remember" i18n:translate="label_remember_my_name">Remember my name.</label>
 
             <div i18n:translate="help_remember_my_name"
                  class="formHelp">
                 Check this to have your user name filled in automatically when you log in later.
             </div>
+            </tal:username>
+
+            <tal:email tal:condition="use_email_as_login">
+            <label for="cb_remember" i18n:translate="label_remember_my_email">Remember my email address.</label>
+
+            <div i18n:translate="help_remember_my_email"
+                 class="formHelp">
+                Check this to have your email address filled in automatically when you log in later.
+            </div>
+            </tal:email>
 
         </div>
 
