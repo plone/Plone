@@ -496,10 +496,10 @@ def flatten(interfaces):
     return tuple(flattened)
 
 def directlyProvides(obj, *interfaces):
-    return zope.interface.directlyProvides(obj, *normalized_interfaces)
+    return zope.interface.directlyProvides(obj, *interfaces)
 
 def classImplements(class_, *interfaces):
-    return zope.interface.classImplements(class_, *normalized_interfaces)
+    return zope.interface.classImplements(class_, *interfaces)
 
 def classDoesNotImplement(class_, *interfaces):
     # convert any Zope 2 interfaces to Zope 3 using fromZ2Interface
