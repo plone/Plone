@@ -3,7 +3,6 @@ from Products.CMFDefault.Portal import CMFSite
 from Products.CMFCore import permissions
 from Products.CMFCore.utils import _checkPermission
 from Products.CMFCore.utils import getToolByName
-from Products.CMFDefault import DublinCore
 from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
 from Products.CMFPlone import PloneMessageFactory as _
 from Products.CMFPlone.PloneFolder import OrderedContainer
@@ -37,8 +36,8 @@ class PloneSite(CMFSite, OrderedContainer, BrowserDefaultMixin):
     implements(IPloneSiteRoot)
 
     manage_options = (
-        CMFSite.manage_options[:1] +
-        CMFSite.manage_options[2:]
+        CMFSite.manage_options[:2] +
+        CMFSite.manage_options[3:]
         )
 
     manage_renameObject = OrderedContainer.manage_renameObject

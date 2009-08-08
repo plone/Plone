@@ -43,10 +43,6 @@ Changelog
   object wrapper for this.
   [optilude]
 
-- Expose the `site management folder` aka `++etc++site` or `_components` as a
-  tab in the ZMI including the full OFS manage_main functionality.
-  [hannosch]
-
 - Added a restricted version of the opaqueItems method for CMFCatalogAware.
   This takes the idea of experimental.opaquespeedup one step further.
   [hannosch]
