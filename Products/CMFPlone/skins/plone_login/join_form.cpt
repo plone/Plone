@@ -121,9 +121,17 @@
               i18n:attributes="title title_required;"
               i18n:translate="label_required">(Required)</span>
 
-              <div class="formHelp" i18n:translate="help_email_creation">
+              <div class="formHelp" i18n:translate="help_email_creation"
+                tal:condition="not:use_email_as_login">
                 Enter an email address. This is necessary in case the password
                 is lost. We respect your privacy, and will not give the address
+                away to any third parties or expose it anywhere.
+              </div>
+
+              <div class="formHelp" i18n:translate="help_email_creation_for_login"
+                tal:condition="use_email_as_login">
+                Enter an email address. This will be your login name.
+                We respect your privacy, and will not give the address
                 away to any third parties or expose it anywhere.
               </div>
 
