@@ -110,7 +110,7 @@
       </div>
 
       <div class="field"
-           tal:define="error python:errors.get('email') or (use_email_as_login and errors.get('username'));
+           tal:define="error python:errors.get('email') or (use_email_as_login and errors.get('username') or '');
                        email request/email | nothing;"
            tal:attributes="class python:test(error, 'field error', 'field')">
 
