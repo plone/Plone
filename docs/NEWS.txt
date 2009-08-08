@@ -8,6 +8,9 @@ Changelog
 3.3 - Unreleased
 ----------------
 
+- Fix ITranslatable to use the canonical interface from LinguaPlone or fall
+  back to a Zope3-style interface.
+  [hannosch, witsch]
 
 
 3.3rc5 - August 1, 2009
