@@ -1095,7 +1095,7 @@ class PloneTool(PloneBaseTool, UniqueObject, SimpleItem):
             else:
                 exp_str = ''
 
-            if exp_str or exp_str:
+            if eff_str or exp_str:
                 result['DC.date.valid_range'] = '%s - %s' % (eff_str, exp_str)
 
         return result
