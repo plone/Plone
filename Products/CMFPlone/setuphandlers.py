@@ -80,7 +80,6 @@ class PloneGenerator:
         qi = getToolByName(p, 'portal_quickinstaller')
         qi.installProduct('PlonePAS', locked=1, hidden=1, forceProfile=True)
         qi.installProduct('kupu', locked=0, forceProfile=True)
-        qi.installProduct('CMFDiffTool', locked=0, forceProfile=True)
         qi.installProduct('CMFEditions', locked=0, forceProfile=True)
         qi.installProduct('PloneLanguageTool', locked=1, hidden=1, forceProfile=True)
 

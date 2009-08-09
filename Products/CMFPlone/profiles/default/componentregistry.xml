@@ -54,6 +54,9 @@
      interface="Products.CMFUid.interfaces.IUniqueIdGenerator"
      object="portal_uidgenerator"/>
   <utility
+     interface="Products.CMFDiffTool.interfaces.IDiffTool"
+     object="portal_diff"/>
+  <utility
      interface="Products.CMFPlone.interfaces.IPloneSiteRoot"
      object=""/>
   <utility

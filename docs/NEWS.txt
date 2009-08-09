@@ -8,6 +8,10 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Moved the diff tool registration to this package, so it can still be a tool
+  for Plone 4.
+  [davisagli]
+
 - Use the new zope.ramcache in favor of zope.app.cache.
   [hannosch]
 
