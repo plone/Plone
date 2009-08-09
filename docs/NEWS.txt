@@ -455,3 +455,5 @@ Changelog
 - Removed lots of deprecated code and zcml registrations.
   [hannosch]
 
+- Fixed ticket #9420 DC.date.valid_range not emitted if only Publishing Date is set.
+  [jaroel]
