@@ -33,13 +33,13 @@
   <dependency step="componentregistry"/>
     Import viewlet settings
  </import-step>
- <!-- <import-step id="kss_mimetype" version="20061125-01"
+ <import-step id="kss_mimetype" version="20061125-01"
               handler="plone.app.kss.exportimport.setup.setupMimetype"
               title="KSS setup / mimetype">
   <dependency step="plone-archetypes"/>
   <dependency step="mimetypes-registry-various"/>
     KSS (Kinetic Style Sheet) setup. Register kss mimetype.
- </import-step> -->
+ </import-step>
  <import-step id="kupu-setup" version="20061211-01"
               handler="Products.kupu.plone.exportimport.importKupuSettings"
               title="Kupu Settings">
