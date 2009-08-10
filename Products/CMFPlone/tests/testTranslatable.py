@@ -1,4 +1,3 @@
-from zope.interface import implements
 from Products.CMFPlone.tests import PloneTestCase
 from Products.CMFCore.tests.base.dummy import DummyContent
 from Products.CMFPlone import interfaces
@@ -6,7 +5,6 @@ from Products.CMFPlone import interfaces
 
 class DummyTranslatable(DummyContent):
     __implements__ = (interfaces.Translatable.ITranslatable,)
-    implements(interfaces.ITranslatable)
 
 
 class TestITranslatable(PloneTestCase.PloneTestCase):
