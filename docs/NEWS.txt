@@ -103,6 +103,9 @@ Changelog
   only care about the permissions of the actual target folder.
   [hannosch]
 
+- Use the new `icon_expr` for specifying icons for content types instead. 
+  [hannosch]
+
 - Prefer path expressions over Python expressions for persistent expressions.
   [hannosch]
 

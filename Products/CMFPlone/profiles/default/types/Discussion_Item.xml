@@ -5,7 +5,7 @@
  <property name="description"
     i18n:translate="">Discussion Items are documents which reply to other content.
   They should *not* be addable through the standard 'folder_factories' interface.</property>
- <property name="content_icon">discussionitem_icon.png</property>
+ <property name="icon_expr">string:${portal_url}/discussionitem_icon.png</property>
  <property name="content_meta_type">Discussion Item</property>
  <property name="product"></property>
  <property name="factory"></property>
