@@ -48,7 +48,7 @@ ol.visualNoMarker {
 
 /* Accessibility and visual enhancement elements */
 .hiddenStructure {
-    display: none;
+    display: block;
     background: transparent;
     background-image: none; /* safari bug */
     border: none;
