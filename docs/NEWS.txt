@@ -8,6 +8,10 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Added backwards compatibility patches and deprecation warnings
+  for people using the SecureMailHost API.
+  [alecm]
+
 - Replaced mail host with a standard mail host. This completes the basic
   implementation of http://dev.plone.org/plone/ticket/8814.
   [hannosch]
