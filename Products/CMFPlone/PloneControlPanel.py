@@ -16,6 +16,7 @@ from Products.CMFCore.utils import registerToolInterface
 
 from interfaces import IControlPanel
 from Products.CMFPlone.PloneBaseTool import PloneBaseTool
+from Products.CMFPlone.log import log_deprecated
 
 class PloneConfiglet(ActionInformation):
 
@@ -130,9 +131,11 @@ class PloneControlPanel(PloneBaseTool, UniqueObject,
         selection=[actids.index(a) for a in actids if a==id]
         self.deleteActions(selection)
 
-        actionicons=getToolByName(self,'portal_actionicons')
-        if actionicons.queryActionInfo('controlpanel', id, None):
-            actionicons.removeActionIcon('controlpanel', id)
+        # BBB
+        actionicons=getToolByName(self, 'portal_actionicons', None)
+        if actionicons is not None:
+            if actionicons.queryActionInfo('controlpanel', id, None):
+                actionicons.removeActionIcon('controlpanel', id)
 
 
     security.declareProtected( ManagePortal, 'unregisterApplication' )
@@ -141,11 +144,13 @@ class PloneControlPanel(PloneBaseTool, UniqueObject,
         selection=[acts.index(a) for a in acts if a.appId==appId]
         self.deleteActions(selection)
 
-        actionicons=getToolByName(self,'portal_actionicons')
-        for a in acts:
-            if (a.appId == appId and
-                actionicons.queryActionInfo('controlpanel', a.id, None)):
-                actionicons.removeActionIcon('controlpanel', a.id)
+        # BBB
+        actionicons=getToolByName(self, 'portal_actionicons', None)
+        if actionicons is not None:
+            for a in acts:
+                if (a.appId == appId and
+                    actionicons.queryActionInfo('controlpanel', a.id, None)):
+                    actionicons.removeActionIcon('controlpanel', a.id)
 
 
     def _extractAction( self, properties, index ):
@@ -160,6 +165,7 @@ class PloneControlPanel(PloneBaseTool, UniqueObject,
         permissions =      properties.get( 'permission_%d'  % index, () )
         appId       =      properties.get( 'appId_%d'  % index, '' )
         description =      properties.get( 'description_%d'  % index, '' )
+        icon_expr   =      properties.get( 'icon_expr_%d'   % index, '' )
 
         if not name:
             raise ValueError('A name is required.')
@@ -191,6 +197,7 @@ class PloneControlPanel(PloneBaseTool, UniqueObject,
                                 , visible=visible
                                 , appId = appId
                                 , description = description
+                                , icon_expr = icon_expr
                                 )
     security.declareProtected( ManagePortal, 'addAction' )
     def addAction( self
@@ -203,6 +210,7 @@ class PloneControlPanel(PloneBaseTool, UniqueObject,
                  , visible=1
                  , appId=None
                  , imageUrl=None
+                 , icon_expr = ''
                  , description=''
                  , REQUEST=None
                  ):
@@ -218,6 +226,13 @@ class PloneControlPanel(PloneBaseTool, UniqueObject,
         if type( permission ) != type( () ):
             permission = permission and (str(permission),) or ()
 
+        if imageUrl:
+            log_deprecated("The imageUrl parameter of the control panel tool's "
+                           "addAction/registerConfiglet method has been "
+                           "deprecated and will be removed in Plone 5. "
+                           "Please use the icon_expr parameter instead.")
+            icon_expr = 'string:${portal_url}/%s' % imageUrl
+
         new_actions = self._cloneActions()
 
         new_action = PloneConfiglet( id=str(id)
@@ -229,16 +244,11 @@ class PloneControlPanel(PloneBaseTool, UniqueObject,
                                       , visible=int(visible)
                                       , appId=appId
                                       , description=description
+                                      , icon_expr = icon_expr
                                       )
 
         new_actions.append( new_action )
         self._actions = tuple( new_actions )
-
-        if imageUrl:
-            actionicons=getToolByName(self,'portal_actionicons')
-            actionicons.addActionIcon('controlpanel', new_action.id,
-                                      imageUrl, new_action.title)
-
 
         if REQUEST is not None:
             return self.manage_editActionsForm(
@@ -268,6 +278,7 @@ class PloneControlPanel(PloneBaseTool, UniqueObject,
             a1['condition'] = a.getCondition()
             a1['appId'] = a.getAppId()
             a1['description']=a.getDescription()
+            a1['icon_expr'] = a.getIconExpression()
             actions.append(a1)
 
         # possible_permissions is in AccessControl.Role.RoleManager.

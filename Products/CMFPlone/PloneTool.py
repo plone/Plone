@@ -361,9 +361,13 @@ class PloneTool(PloneBaseTool, UniqueObject, SimpleItem):
         """
         if context is None:
             context = aq_parent(self)
-        atool = getToolByName(context, 'portal_actions')
-        actions = atool.listActionInfos(action_chain='%s/%s' % (category, id),
-                                        object=context)
+        if category == 'controlpanel':
+            tool = getToolByName(context, 'portal_controlpanel')
+            actions = [ai for ai in tool.listActionInfos() if ai['id'] == id]
+        else:
+            tool = getToolByName(context, 'portal_actions')
+            actions = tool.listActionInfos(action_chain='%s/%s' % (category, id),
+                                           object=context)
         if len(actions) > 0:
             icon = actions[0].get('icon', None)
             if icon:

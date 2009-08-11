@@ -447,14 +447,6 @@ class TestPortalCreation(PloneTestCase.PloneTestCase, WarningInterceptor):
         self.failUnless(self.properties.site_properties.hasProperty('lock_on_ttw_edit'))
         self.assertEquals(True, self.properties.site_properties.lock_on_ttw_edit)
 
-    def testSearchSettingsActionIcon(self):
-        # There should be a SearchSettings action icon
-        for icon in self.icons.listActionIcons():
-            if icon.getActionId() == 'SearchSettings':
-                break
-        else:
-            self.fail("Action icons tool has no 'SearchSettings' icon")
-
     def testPortalFTIIsDynamicFTI(self):
         # Plone Site FTI should be a DynamicView FTI
         fti = self.portal.getTypeInfo()
@@ -503,14 +495,6 @@ class TestPortalCreation(PloneTestCase.PloneTestCase, WarningInterceptor):
                 self.assertEqual(action.getActionExpression(), 'string:${object_url}/edit')
             if action.getId() == 'sharing':
                 self.assertEqual(action.getActionExpression(), 'string:${object_url}/sharing')
-
-    def testNavigationSettingsActionIcon(self):
-        # There should be a NavigationSettings action icon
-        for icon in self.icons.listActionIcons():
-            if icon.getActionId() == 'NavigationSettings':
-                break
-        else:
-            self.fail("Action icons tool has no 'NavigationSettings' icon")
 
     def testNavigationAndSearchPanelsInstalled(self):
         # Navigation and search panels should be installed

@@ -83,6 +83,7 @@ class ControlPanelXMLAdapter(XMLAdapterBase):
             child.setAttribute('url_expr', mapping['action'])
             child.setAttribute('visible', str(mapping['visible']))
             child.setAttribute('appId', ai.getAppId())
+            child.setAttribute('icon_expr', mapping['icon_expr'])
             for permission in mapping['permissions']:
                 sub = self._doc.createElement('permission')
                 sub.appendChild(self._doc.createTextNode(permission))
@@ -101,6 +102,7 @@ class ControlPanelXMLAdapter(XMLAdapterBase):
             title = str(child.getAttribute('title'))
             url_expr = str(child.getAttribute('url_expr'))
             condition_expr = str(child.getAttribute('condition_expr'))
+            icon_expr = str(child.getAttribute('icon_expr'))
             category = str(child.getAttribute('category'))
             visible = str(child.getAttribute('visible'))
             appId = str(child.getAttribute('appId'))
@@ -131,7 +133,8 @@ class ControlPanelXMLAdapter(XMLAdapterBase):
                                            condition=condition_expr,
                                            category=category,
                                            permission=permission,
-                                           visible=visible)
+                                           visible=visible,
+                                           icon_expr=icon_expr)
 
 
 def importControlPanel(context):
