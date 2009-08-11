@@ -8,6 +8,9 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Moved membershipRolemapping.dtml and portrait_fix.dtml to PlonePAS.
+  [davisagli]
+
 - Added icon_expr property to the Plone control panel tool actions, and
   switched to registering configlet icons here instead of in the action
   icons tool.
