@@ -1,32 +1,29 @@
-from Products.SecureMailHost.SecureMailHost import SecureMailHost as Base
 import re
+
+from Products.MailHost.MailHost import _encode
+from Products.MailHost.MailHost import _mungeHeaders
+from Products.MailHost.MailHost import MailBase
 
 # regexp for a valid CSS identifier without the leading #
 VALID_CSS_ID = re.compile("[A-Za-z_@][A-Za-z0-9_@-]*")
 
-class MockMailHost(Base):
-    """A MailHost that collects messages instead of sending them.
 
-    Thanks to Rocky Burt for inspiration.
+class MockMailHost(MailBase):
+    """A MailHost that collects messages instead of sending them.
     """
-    
+
     def __init__(self, id):
-        Base.__init__(self, id, smtp_notls=True)
         self.reset()
-    
+
     def reset(self):
         self.messages = []
 
-    def send(self, message, mto=None, mfrom=None, subject=None, encode=None):
-        self.messages.append(message)
-
-    def secureSend(self, message, mto, mfrom, **kwargs):
-        kwargs['debug'] = True
-        result = Base.secureSend(self, message=message, mto=mto, mfrom=mfrom, **kwargs)
-        self.messages.append(result)
-
-    def validateSingleEmailAddress(self, address):
-        return True # why not
+    def send(self, messageText, mto=None, mfrom=None, subject=None,
+             encode=None, immediate=False):
+        messageText, mto, mfrom = _mungeHeaders(messageText,
+                                                mto, mfrom, subject)
+        messageText = _encode(messageText, encode)
+        self.messages.append(messageText)
 
 
 # a function to test if a string is a valid CSS identifier

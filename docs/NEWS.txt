@@ -8,6 +8,10 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Replaced mail host with a standard mail host. This completes the basic
+  implementation of http://dev.plone.org/plone/ticket/8814.
+  [hannosch]
+
 - Added icon_expr property to the Plone control panel tool actions, and
   switched to registering configlet icons here instead of in the action
   icons tool.
