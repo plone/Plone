@@ -5,6 +5,7 @@
  <property name="title" i18n:translate="">Large Folder</property>
  <property name="description"
       i18n:translate="">A folder suitable for holding a very large number of items</property>
+ <property name="content_icon">folder_icon.png</property>
  <property name="icon_expr">string:${portal_url}/folder_icon.png</property>
  <property name="content_meta_type">ATBTreeFolder</property>
  <property name="product">ATContentTypes</property>

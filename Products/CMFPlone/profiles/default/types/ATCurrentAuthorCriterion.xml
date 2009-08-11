@@ -5,6 +5,7 @@
  <property name="title" i18n:translate="">Current Author Criterion</property>
  <property name="description"
     i18n:translate="">A criterion that searches for the currently logged in user's id</property>
+ <property name="content_icon">document_icon.png</property>
  <property name="icon_expr">string:${portal_url}/document_icon.png</property>
  <property name="content_meta_type">ATCurrentAuthorCriterion</property>
  <property name="product">ATContentTypes</property>
