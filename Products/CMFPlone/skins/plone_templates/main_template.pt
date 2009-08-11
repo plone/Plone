@@ -80,8 +80,8 @@
   </head>
 
   <body tal:define="isRTL portal_state/is_rtl;
-                    sl python:plone_view.have_portlets('plone.leftcolumn');
-                    sr python:plone_view.have_portlets('plone.rightcolumn');"
+                    sl python:plone_view.have_portlets('plone.leftcolumn', view);
+                    sr python:plone_view.have_portlets('plone.rightcolumn', view);"
         tal:attributes="class string:${context/getSectionFromURL} template-${template/id};
                         dir python:test(isRTL, 'rtl', 'ltr')">
     <div id="visual-portal-wrapper">
