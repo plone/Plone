@@ -215,7 +215,6 @@ class PloneControlPanel(PloneBaseTool, UniqueObject,
                  , REQUEST=None
                  ):
         """ Add an action to our list.
-            attention: must be called AFTER portal_actionicons is installed
         """
         if not name:
             raise ValueError('A name is required.')

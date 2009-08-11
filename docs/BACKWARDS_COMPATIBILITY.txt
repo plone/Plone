@@ -196,3 +196,6 @@ may need to take the following changes into account.
 
 * zope.app.cache.interfaces.ram.IRAMCache is now
   zope.ramcache.interfaces.ram.IRAMCache
+
+* The action icons tool has been deprecated.  You should register action icons
+  directly on the action now, using the icon_expr setting.

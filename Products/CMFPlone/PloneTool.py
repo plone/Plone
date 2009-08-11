@@ -372,11 +372,12 @@ class PloneTool(PloneBaseTool, UniqueObject, SimpleItem):
             icon = actions[0].get('icon', None)
             if icon:
                 return icon
- 
+
         # Short circuit the lookup
         if (category, id) in _icons.keys():
             return _icons[(category, id)]
         try:
+            # BBB icon lookup on action icons tool
             actionicons = getToolByName(context, 'portal_actionicons')
             iconinfo = actionicons.getActionIcon(category, id)
             icon = _icons.setdefault((category, id), iconinfo)

@@ -5,6 +5,7 @@ from AccessControl import ClassSecurityInfo
 from App.class_init import InitializeClass
 from Products.CMFPlone.PloneBaseTool import PloneBaseTool
 from Products.CMFPlone.PloneTool import _icons as iconcache
+from Products.CMFPlone.log import log_deprecated
 
 def removeAICacheEntry(category, id):
     if (category, id) in iconcache.keys():
@@ -37,6 +38,44 @@ class ActionIconsTool(PloneBaseTool, BaseTool):
 
         return default
 
+    def getActionIcon( self, category, action_id, context=None ):
+        ai = BaseTool.getActionIcon(self, category, action_id,
+                                    context=context)
+        log_deprecated("The icon for the '%s/%s' action was obtained from "
+                       "the action icons tool. The action icons tool has "
+                       "been deprecated and will be removed in Plone 5. "
+                       "You should register action icons directly on the "
+                       "action now, using the 'icon_expr' "
+                       "setting." % (category, action_id))
+        return ai
+
+    def queryActionIcon( self, category, action_id
+                       , default=None, context=None ):
+        log_deprecated("The icon for the '%s/%s' action was obtained from "
+                       "the action icons tool. The action icons tool has "
+                       "been deprecated and will be removed in Plone 5. "
+                       "You should register action icons directly on the "
+                       "action now, using the 'icon_expr' "
+                       "setting." % (category, action_id))
+        return BaseTool.queryActionIcon(self, category, action_id,
+                                        default=default, context=context)
+
+    def addActionIcon( self
+                     , category
+                     , action_id
+                     , icon_expr
+                     , title=None
+                     , priority=0
+                     ):
+        log_deprecated("An icon for the '%s/%s' action is being added to "
+                       "the action icons tool. The action icons tool has "
+                       "been deprecated and will be removed in Plone 5. "
+                       "You should register action icons directly on the "
+                       "action now, using the 'icon_expr' "
+                       "setting." % (category, action_id))
+        return BaseTool.addActionIcon(self, category, action_id, icon_expr,
+                                      title, priority)
+
     #Below we need to invalidate the cache for icons.  We have to
     #hardocde the module dict because we do not have events, yet.
     def updateActionIcon( self
@@ -47,6 +86,12 @@ class ActionIconsTool(PloneBaseTool, BaseTool):
                         , priority=0
                         ):
         """ update ActionIcons and remove cache entry """
+        log_deprecated("The icon for the '%s/%s' action is being updated on "
+                       "the action icons tool. The action icons tool has "
+                       "been deprecated and will be removed in Plone 5. "
+                       "You should register action icons directly on the "
+                       "action now, using the 'icon_expr' "
+                       "setting." % (category, action_id))
         BaseTool.updateActionIcon(self, category, action_id, icon_expr,
                                   title, priority)
         removeAICacheEntry(category, action_id)
