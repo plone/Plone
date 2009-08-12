@@ -106,5 +106,6 @@ setup(name='Plone',
           'five.customerize',
           'five.localsitemanager',
           'z3c.autoinclude',
+          'zope.app.locales',
       ],
       )
