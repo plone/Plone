@@ -55,8 +55,8 @@
 
     <form action=""
           method="post"
-          tal:define="username request/username;
-                      password request/password;
+          tal:define="username request/form.username;
+                      password request/form.password;
                       ac_name auth/name_cookie|string:__ac_name;
                       ac_password auth/pw_cookie|string:__ac_password;
                       portal_url context/portal_url;"
