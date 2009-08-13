@@ -134,5 +134,14 @@
   <property name="icon_visibility" type="string">enabled</property>
   <property name="mark_special_links" type="string">false</property>
   <property name="redirect_links" type="boolean">True</property>
+  <property name="join_form_fields" type="lines">
+    <element value="username"/>
+    <element value="password"/>
+    <element value="mail_me"/>
+    <element value="fullname"/>
+    <element value="email"/>
+    <element value="home_page"/>
+    <element value="location"/>
+  </property>
  </object>
 </object>

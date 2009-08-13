@@ -27,6 +27,11 @@
               icon_expr="user.gif"
               i18n:attributes="title"/>
  <action-icon category="controlpanel"
+              action_id="MemberRegistration"
+              title="Member Registration" priority="0"
+              icon_expr="register.gif"
+              i18n:attributes="title"/>
+ <action-icon category="controlpanel"
               action_id="MemberPassword"
               title="Change Password" priority="0"
               icon_expr="lock_icon.gif"
