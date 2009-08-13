@@ -238,7 +238,7 @@ class RegistrationTool(PloneBaseTool, BaseTool):
 
         utils = getToolByName(self, 'plone_utils')
         # Try to find this user via the login name.
-        # XXX Only do this when email logins have been enabled.
+        # PLIP9214 Only do this when email logins have been enabled.
         # Well, this might actually work in the normal case as well.
         member = get_member_by_login_name(self, forgotten_userid)
 
@@ -249,7 +249,7 @@ class RegistrationTool(PloneBaseTool, BaseTool):
         # resetPassword we ask for the real member id too, instead of
         # the login name.
         #
-        # XXX Only do this when email logins have been enabled.
+        # PLIP9214 Only do this when email logins have been enabled?
         forgotten_userid = member.getId()
 
         # assert that we can actually get an email address, otherwise
