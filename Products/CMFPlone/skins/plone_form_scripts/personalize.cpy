@@ -49,7 +49,11 @@ email = context.REQUEST.get('email')
 if email:
     props = getToolByName(context, 'portal_properties').site_properties
     if props.getProperty('use_email_as_login'):
-        set_own_login_name(member, email)
+        try:
+            set_own_login_name(member, email)
+        except KeyError:
+            # Probably user in zope root
+            pass
 
 member.setProperties(ext_editor=ext_editor, listed=listed, visible_ids=visible_ids)
 

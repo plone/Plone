@@ -652,10 +652,20 @@ def set_own_login_name(member, loginname):
     if member != membership.getAuthenticatedMember():
         raise Unauthorized('You can only change your OWN login name.')
     acl_users = getToolByName(member, 'acl_users')
+    # PLIP9214 Should we iterate of the list of user management plugins
+    # instead, to make this more flexible?
+    # acl_users.plugins.listPlugins(IUserManagement)
     userfolder = acl_users.source_users
     try:
         userfolder.updateUser(member.id, loginname)
     except KeyError:
-        raise ValueError('You are not a Plone member. You are probably '
-                         'registered on the root user folder. Please '
-                         'notify an administrator if this is unexpected.')
+        # XXX For a user in the zope root we could do something like this:
+        # userfolder = member.getUser().__parent__.users
+        # userfolder.updateUser(member.id, loginname)
+        # But it is probably best not to touch root zope users.
+        message = ('You are not a Plone member. You are probably '
+                   'registered on the root user folder. Please '
+                   'notify an administrator if this is unexpected.')
+        log(message,
+            summary='Could not update login name of user %s.' % member.id)
+        raise KeyError(message)
