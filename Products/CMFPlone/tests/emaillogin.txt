@@ -36,10 +36,17 @@ their own passwords to ease testing.
     >>> browser.getControl(name='form.actions.save').click()
     >>> self.failUnless('Changes saved' in browser.contents)
 
-We logout again and then visit the registration form.  We can fill in
-a user name there:
+We logout:
 
     >>> browser.open('http://nohost/plone/logout')
+
+
+Registration
+------------
+
+We then visit the registration form.  We can fill in a user name
+there:
+
     >>> browser.open('http://nohost/plone/join_form')
     >>> browser.getControl(name='username').value='username'
     >>> browser.getControl(name='email').value='username@example.org'
@@ -63,11 +70,11 @@ their own passwords to ease testing.
     >>> browser.getControl(name='form.use_email_as_login').value = True
     >>> browser.getControl(name='form.actions.save').click()
     >>> self.failUnless('Changes saved' in browser.contents)
-
-We logout again and then visit the registration form.  The user name
-field is no longer there:
-
     >>> browser.open('http://nohost/plone/logout')
+
+Now we visit the registration form.  The user name field is no longer
+there:
+
     >>> browser.open('http://nohost/plone/join_form')
     >>> self.assertRaises(LookupError, browser.getControl, name='username')
 
@@ -77,13 +84,117 @@ We fill in the rest of the form:
     >>> browser.getControl(name='password').value = default_password
     >>> browser.getControl(name='password_confirm').value = default_password
     >>> browser.getControl('Register').click()
-    >>> open('/tmp/test3.html', 'w').write(browser.contents)
     >>> self.failUnless('You have been registered.' in browser.contents)
 
-Can we now login with this email address?
+
+Login
+-----
+
+We can now login with this email address:
 
     >>> browser.open('http://nohost/plone/login_form')
     >>> self.assertRaises(LookupError, browser.getControl, 'Login Name')
     >>> browser.getControl('E-mail').value = 'email@example.org'
     >>> browser.getControl('Password').value = default_password
     >>> browser.getControl('Log in').click()
+    >>> self.failUnless('You are now logged in' in browser.contents)
+    >>> browser.open('http://nohost/plone/logout')
+
+The first registered user can still login with his non-email login name:
+
+    >>> browser.open('http://nohost/plone/login_form')
+    >>> browser.getControl('E-mail').value = 'username'
+    >>> browser.getControl('Password').value = default_password
+    >>> browser.getControl('Log in').click()
+    >>> self.failUnless('You are now logged in' in browser.contents)
+
+He cannot login with his email address though, as his account was
+created before the policy to use emails as logins was used.  This can
+be remedied be going to the personalize form.  No changes are even
+necessary:
+
+    >>> browser.open('http://nohost/plone/personalize_form')
+    >>> browser.getControl('Save').click()
+    >>> self.failUnless('Your personal settings have been saved.' in browser.contents)
+
+Now we try logging out and in again with the given email address.
+
+    >>> browser.open('http://nohost/plone/logout')
+    >>> browser.open('http://nohost/plone/login_form')
+    >>> browser.getControl('E-mail').value = 'username@example.org'
+    >>> browser.getControl('Password').value = default_password
+    >>> browser.getControl('Log in').click()
+    >>> self.failUnless('You are now logged in' in browser.contents)
+
+Logging in with the initial user name still works as well:
+
+    >>> browser.open('http://nohost/plone/logout')
+    >>> browser.open('http://nohost/plone/login_form')
+    >>> browser.getControl('E-mail').value = 'username'
+    >>> browser.getControl('Password').value = default_password
+    >>> browser.getControl('Log in').click()
+    >>> self.failUnless('You are now logged in' in browser.contents)
+    >>> browser.open('http://nohost/plone/logout')
+
+
+Changing the email address
+--------------------------
+
+We again log in as the user created after using email as login was
+switched on.
+
+    >>> browser.open('http://nohost/plone/login_form')
+    >>> browser.getControl('E-mail').value = 'email@example.org'
+    >>> browser.getControl('Password').value = default_password
+    >>> browser.getControl('Log in').click()
+    >>> self.failUnless('You are now logged in' in browser.contents)
+
+We change the email address.
+
+    >>> browser.open('http://nohost/plone/personalize_form')
+    >>> browser.getControl('E-mail').value = 'email2@example.org'
+    >>> browser.getControl('Save').click()
+    >>> self.failUnless('Your personal settings have been saved.' in browser.contents)
+    >>> browser.getControl('E-mail').value
+    'email2@example.org'
+
+We change the email address again, as saving the personalize form
+twice in a row can subtly go wrong (personalize.cpy.metadata should
+not traverse to personalize_form but redirect to it):
+
+    >>> browser.url
+    'http://nohost/plone/personalize_form'
+    >>> browser.getControl('E-mail').value = 'email3@example.org'
+    >>> browser.getControl('Save').click()
+    >>> self.failUnless('Your personal settings have been saved.' in browser.contents)
+    >>> browser.getControl('E-mail').value
+    'email3@example.org'
+
+After those two changes, we can still login with our first email
+address as that is always remembered:
+
+    >>> browser.open('http://nohost/plone/logout')
+    >>> browser.open('http://nohost/plone/login_form')
+    >>> browser.getControl('E-mail').value = 'email@example.org'
+    >>> browser.getControl('Password').value = default_password
+    >>> browser.getControl('Log in').click()
+    >>> self.failUnless('You are now logged in' in browser.contents)
+
+The second email address is completely forgotten:
+
+    >>> browser.open('http://nohost/plone/logout')
+    >>> browser.open('http://nohost/plone/login_form')
+    >>> browser.getControl('E-mail').value = 'email2@example.org'
+    >>> browser.getControl('Password').value = default_password
+    >>> browser.getControl('Log in').click()
+    >>> self.failUnless('Login failed' in browser.contents)
+
+The current email address of course works fine for logging in:
+
+    >>> browser.open('http://nohost/plone/logout')
+    >>> browser.open('http://nohost/plone/login_form')
+    >>> browser.getControl('E-mail').value = 'email3@example.org'
+    >>> browser.getControl('Password').value = default_password
+    >>> browser.getControl('Log in').click()
+    >>> self.failUnless('You are now logged in' in browser.contents)
+    >>> browser.open('http://nohost/plone/logout')
