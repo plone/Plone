@@ -1,11 +1,12 @@
 from plone.memoize import forever
 from Acquisition import aq_base
+from os import environ
 
-# Remember the installed products and packages
-from App import FactoryDispatcher
-
-FactoryDispatcher._product_packages = \
-    forever.memoize(FactoryDispatcher._product_packages)
+# Remember the installed products and packages (unless running tests)
+if not 'ZOPETESTCASE' in environ:
+    from App import FactoryDispatcher
+    FactoryDispatcher._product_packages = \
+        forever.memoize(FactoryDispatcher._product_packages)
 
 # Avoid unneeded line breaks in TAL output, by effectively disabling the
 # internal beautified wrapping inside tags
