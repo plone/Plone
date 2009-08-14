@@ -1,0 +1,89 @@
+Email login
+===========
+
+Tests I can think of:
+
+* Is the username field visible on the join_form or not?
+
+* Change personalize form twice
+
+
+Instead of the normal userid or login name, you can let Plone use the
+email address of the user as login id. If the email address is changed,
+so is the login name.  Of course, this email address will have to be
+unique across the site.
+
+Some bootstrapping::
+
+    >>> from Products.Five.testbrowser import Browser
+    >>> browser = Browser()
+
+First we login as admin.
+    >>> from Products.PloneTestCase.ptc import portal_owner
+    >>> from Products.PloneTestCase.ptc import default_user
+    >>> from Products.PloneTestCase.ptc import default_password
+    >>> browser.open('http://nohost/plone/login_form')
+    >>> browser.getControl('Login Name').value = portal_owner
+    >>> browser.getControl('Password').value = default_password
+    >>> browser.getControl('Log in').click()
+
+Now we allow users to register themselves.  We also allow them to pick
+their own passwords to ease testing.
+
+    >>> browser.open('http://nohost/plone/@@security-controlpanel')
+    >>> browser.getControl(name='form.enable_self_reg').value = True
+    >>> browser.getControl(name='form.enable_user_pwd_choice').value = True
+    >>> browser.getControl(name='form.actions.save').click()
+    >>> self.failUnless('Changes saved' in browser.contents)
+
+We logout again and then visit the registration form.  We can fill in
+a user name there:
+
+    >>> browser.open('http://nohost/plone/logout')
+    >>> browser.open('http://nohost/plone/join_form')
+    >>> browser.getControl(name='username').value='username'
+    >>> browser.getControl(name='email').value='username@example.org'
+    >>> browser.getControl(name='password').value = default_password
+    >>> browser.getControl(name='password_confirm').value = default_password
+    >>> browser.getControl('Register').click()
+    >>> self.failUnless('You have been registered.' in browser.contents)
+
+So that still works.  Now we become admin and switch on using the
+email address as login name.
+
+    >>> browser.open('http://nohost/plone/login_form')
+    >>> browser.getControl('Login Name').value = portal_owner
+    >>> browser.getControl('Password').value = default_password
+    >>> browser.getControl('Log in').click()
+
+Now we allow users to register themselves.  We also allow them to pick
+their own passwords to ease testing.
+
+    >>> browser.open('http://nohost/plone/@@security-controlpanel')
+    >>> browser.getControl(name='form.use_email_as_login').value = True
+    >>> browser.getControl(name='form.actions.save').click()
+    >>> self.failUnless('Changes saved' in browser.contents)
+
+We logout again and then visit the registration form.  The user name
+field is no longer there:
+
+    >>> browser.open('http://nohost/plone/logout')
+    >>> browser.open('http://nohost/plone/join_form')
+    >>> self.assertRaises(LookupError, browser.getControl, name='username')
+
+We fill in the rest of the form:
+
+    >>> browser.getControl(name='email').value='email@example.org'
+    >>> browser.getControl(name='password').value = default_password
+    >>> browser.getControl(name='password_confirm').value = default_password
+    >>> browser.getControl('Register').click()
+    >>> open('/tmp/test3.html', 'w').write(browser.contents)
+    >>> self.failUnless('You have been registered.' in browser.contents)
+
+Can we now login with this email address?
+
+    >>> browser.open('http://nohost/plone/login_form')
+    >>> self.assertRaises(LookupError, browser.getControl, 'Login Name')
+    >>> browser.getControl('E-mail').value = 'email@example.org'
+    >>> browser.getControl('Password').value = default_password
+    >>> browser.getControl('Log in').click()
