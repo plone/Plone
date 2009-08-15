@@ -49,16 +49,14 @@ there:
     >>> browser.getControl('Register').click()
     >>> self.failUnless('You have been registered.' in browser.contents)
 
-So that still works.  Now we become admin and switch on using the
-email address as login name.
+So that still works.  Now we become admin again.
 
     >>> browser.open('http://nohost/plone/login_form')
     >>> browser.getControl('Login Name').value = portal_owner
     >>> browser.getControl('Password').value = default_password
     >>> browser.getControl('Log in').click()
 
-Now we allow users to register themselves.  We also allow them to pick
-their own passwords to ease testing.
+We switch on using the email address as login name.
 
     >>> browser.open('http://nohost/plone/@@security-controlpanel')
     >>> browser.getControl(name='form.use_email_as_login').value = True
@@ -112,7 +110,7 @@ The first registered user can still login with his non-email login name:
 He cannot login with his email address though, as his account was
 created before the policy to use emails as logins was used.  This can
 be remedied be going to the personalize form.  No changes are even
-necessary:
+necessary; the form just needs to be saved:
 
     >>> browser.open('http://nohost/plone/personalize_form')
     >>> browser.getControl('Save').click()
