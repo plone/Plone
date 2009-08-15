@@ -180,7 +180,8 @@ class PloneTool(PloneBaseTool, UniqueObject, SimpleItem):
                            comment=comment, subject=subject, **kwargs)
         message = message.encode(encoding)
         result = host.send(message, mto=send_to_address,
-                           mfrom=envelope_from, subject=subject)
+                           mfrom=envelope_from, subject=subject,
+                           charset=self.getSiteEncoding())
 
     security.declarePublic('validateSingleNormalizedEmailAddress')
     def validateSingleNormalizedEmailAddress(self, address):

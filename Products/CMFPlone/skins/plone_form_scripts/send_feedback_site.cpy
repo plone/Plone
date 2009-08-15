@@ -50,7 +50,7 @@ try:
     message = context.site_feedback_template(context, **variables)
     message = message.encode(encoding)
     result = host.send(message, send_to_address, envelope_from,
-                       subject=subject)
+                       subject=subject, charset=encoding)
 except ConflictError:
     raise
 except: # TODO Too many things could possibly go wrong. So we catch all.

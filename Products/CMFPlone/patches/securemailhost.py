@@ -2,7 +2,7 @@
 SecureMailHost API.  It should be removed entirely for Plone 5.0."""
 import sys
 from copy import deepcopy
-from email.Utils import formataddr
+from email.Utils import formataddr, getaddresses
 from email.Header import Header
 from email.Message import Message
 from email.MIMEText import MIMEText
@@ -13,12 +13,17 @@ from AccessControl.Permissions import use_mailhost_services
 from AccessControl.SecurityInfo import ClassSecurityInfo
 from App.class_init import InitializeClass
 from Products.CMFPlone import PloneTool
-from Products.MailHost.MailHost import MailHost
+from Products.MailHost.MailHost import MailHost, _encode_address_string
 
 
 # The method we care about is now in PloneTool, we allow it to be imported from
-# the original location which has been removed
-fake_module = ModuleProxy(sys.modules[__name__])
+# the original location which has potentially been removed
+try:
+    from Products.SecureMailHost import SecureMailHost
+    smh_module = SecureMailHost
+except ImportError:
+    smh_module = None
+fake_module = ModuleProxy(smh_module or sys.modules[__name__])
 deferred = fake_module.__deferred_definitions__
 deferred['EMAIL_RE'] = DeferredAndDeprecated('EMAIL_RE',
                      'Products.CMFPlone.PloneTool:EMAIL_RE',
@@ -31,30 +36,30 @@ deferred['EMAIL_CUTOFF_RE'] = DeferredAndDeprecated('EMAIL_CUTOFF_RE',
                      'which is no longer shipped with Plone.  It can be '
                      'imported from Products.CMFPlone.utils.EMAIL_CUTOFF_RE')
 
+# We can't depend on SecureMailHost, so we have to reimplement
+# a couple methods for BBB
 def email_list_to_string(addr_list, charset='us-ascii'):
     """SecureMailHost's secureSend can take a list of email addresses
     in addition to a simple string.  We convert any email input into a
     properly encoded string."""
-    header = Header()
     if addr_list is None:
-        return
+        return ''
     if isinstance(addr_list, basestring):
         addr_str = addr_list
     else:
         # if the list item is a string include it, otherwise assume it's a
         # (name, address) tuple and turn it into an RFC compliant string
 
-        addr_str = ', '.join(isinstance(a, basestring) and
-                             a or formataddr(a) for a in addr_list)
-    # split on word boundaries and encode piecewise, because making
-    # the entire header encoded will result in SMTP errors
-    for part in addr_str.split(' '):
-        try:
-            part.decode('ascii')
-            header.append(part)
-        except UnicodeDecodeError:
-            header.append(part, charset)
-    return str(header)
+        addresses = (isinstance(a, basestring) and a or formataddr(a)
+                     for a in addr_list)
+        addr_str = ', '.join(str(_encode_address_string(a, charset))
+                             for a in addresses)
+    return addr_str
+
+def _addHeaders(message, **kwargs):
+    for key, value in kwargs.iteritems():
+        del message[key]
+        message[key] = value
 
 @deprecate('The MailHost secureSend method is deprecated, '
            'use send instead.  secureSend will be removed in Plone 5')
@@ -78,16 +83,16 @@ def secureSend(self, message, mto, mfrom, subject='[No Subject]',
     else:
         message = deepcopy(message)
 
-    # Add headers
-    if mcc:
-        message['CC'] = mcc
-    if mbcc:
-        message['BCC'] = mbcc
-    for key, val in kwargs.iteritems():
-        message[key] = val
+    # Add extra headers
+    _addHeaders(message, Subject=Header(subject, charset),
+                To=mto, CC=mcc, From=mfrom, BCC=mbcc,
+                **dict((k, Header(v,charset)) for k, v in kwargs.iteritems()))
+
+    all_recipients = [formataddr(pair) for pair in
+                      getaddresses((mto, mcc, mbcc))]
 
     # Convert message back to string for sending
-    self.send(str(message), mto, mfrom, subject, immediate=True)
+    self._send(mfrom, all_recipients, message.as_string(), immediate=True)
 
 ORIG_PERMS = MailHost.__ac_permissions__
 
@@ -112,7 +117,8 @@ def applyPatches():
             pt.validateEmailAddresses.im_func)
         MailHost.emailListToString = deprecate(
             'The MailHost method emailListToString is deprecated and '
-            'will be removed in Plone 5')(classmethod(email_list_to_string))
+            'will be removed in Plone 5')(
+                lambda self, *args: email_list_to_string(*args))
         # set permissions
         MailHost.security = ClassSecurityInfo()
         MailHost.security.declareProtected(use_mailhost_services, 'secureSend')
@@ -128,17 +134,18 @@ def applyPatches():
         MailHost.__ac_permissions__ = tuple(updated_perms.iteritems())
         # apply permisisons settings by reinitializing the class
         InitializeClass(MailHost)
-    try:
-        from Products.SecureMailHost.SecureMailHost import EMAIL_RE
-    except ImportError:
-        sys.modules['Products.SecureMailHost'] = fake_module
+        if not smh_module:
+            sys.modules['Products.SecureMailHost'] = fake_module
         sys.modules['Products.SecureMailHost.SecureMailHost'] = fake_module
 
 def removePatches():
     smh = sys.modules.get('Products.SecureMailHost.SecureMailHost')
     if type(smh) is ModuleProxy:
-        del sys.modules['Products.SecureMailHost']
-        del sys.modules['Products.SecureMailHost.SecureMailHost']
+        if not smh_module:
+            del sys.modules['Products.SecureMailHost']
+            del sys.modules['Products.SecureMailHost.SecureMailHost']
+        else:
+            sys.modules['Products.SecureMailHost.SecureMailHost'] = smh_module
     patched = getattr(MailHost, 'secureSend', None)
     if patched is not None and patched.im_func is secureSend:
         del MailHost.secureSend

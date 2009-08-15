@@ -1,6 +1,5 @@
 import re
 
-from Products.MailHost.MailHost import _encode
 from Products.MailHost.MailHost import _mungeHeaders
 from Products.MailHost.MailHost import MailBase
 
@@ -19,10 +18,11 @@ class MockMailHost(MailBase):
         self.messages = []
 
     def send(self, messageText, mto=None, mfrom=None, subject=None,
-             encode=None, immediate=False):
+             encode=None, immediate=False, charset=None, msg_type=None):
         messageText, mto, mfrom = _mungeHeaders(messageText,
-                                                mto, mfrom, subject)
-        messageText = _encode(messageText, encode)
+                                                mto, mfrom, subject,
+                                                charset=charset,
+                                                msg_type=msg_type)
         self.messages.append(messageText)
 
 
