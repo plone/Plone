@@ -244,20 +244,21 @@ class RegistrationTool(PloneBaseTool, BaseTool):
             raise Unauthorized, "Mailing forgotten passwords has been disabled"
 
         utils = getToolByName(self, 'plone_utils')
-        # Try to find this user via the login name.
-        # PLIP9214 Only do this when email logins have been enabled.
-        # Well, this might actually work in the normal case as well.
-        member = get_member_by_login_name(self, forgotten_userid)
+        props = getToolByName(self, 'portal_properties').site_properties
+        emaillogin = props.getProperty('use_email_as_login', False)
+        if emaillogin:
+            member = get_member_by_login_name(self, forgotten_userid)
+        else:
+            member = membership.getMemberById(forgotten_userid)
 
         if member is None:
             raise ValueError, 'The username you entered could not be found'
 
-        # We use the member id as new forgotten_userid, because in
-        # resetPassword we ask for the real member id too, instead of
-        # the login name.
-        #
-        # PLIP9214 Only do this when email logins have been enabled?
-        forgotten_userid = member.getId()
+        if emaillogin:
+            # We use the member id as new forgotten_userid, because in
+            # resetPassword we ask for the real member id too, instead of
+            # the login name.
+            forgotten_userid = member.getId()
 
         # assert that we can actually get an email address, otherwise
         # the template will be made with a blank To:, this is bad
