@@ -205,14 +205,6 @@ Picking the e-mail address of another user should of course fail:
     >>> browser.getControl('E-mail').value = 'username@example.org'
     >>> browser.getControl('Save').click()
     >>> self.failIf('Your personal settings have been saved.' in browser.contents)
-
-XXX If the previous test failed, it is best to fix it here:
-
-    >>> browser.open('http://nohost/plone/personalize_form')
-    >>> browser.getControl('E-mail').value = 'email3@example.org'
-    >>> browser.getControl('Save').click()
-    >>> self.failUnless('Your personal settings have been saved.' in browser.contents)
-
     >>> browser.open('http://nohost/plone/logout')
 
 
