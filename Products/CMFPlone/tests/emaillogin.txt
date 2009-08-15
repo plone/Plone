@@ -1,13 +1,6 @@
 Email login
 ===========
 
-Tests I can think of:
-
-* Is the username field visible on the join_form or not?
-
-* Change personalize form twice
-
-
 Instead of the normal userid or login name, you can let Plone use the
 email address of the user as login id. If the email address is changed,
 so is the login name.  Of course, this email address will have to be
@@ -19,6 +12,7 @@ Some bootstrapping::
     >>> browser = Browser()
 
 First we login as admin.
+
     >>> from Products.PloneTestCase.ptc import portal_owner
     >>> from Products.PloneTestCase.ptc import default_user
     >>> from Products.PloneTestCase.ptc import default_password
@@ -198,3 +192,111 @@ The current email address of course works fine for logging in:
     >>> browser.getControl('Log in').click()
     >>> self.failUnless('You are now logged in' in browser.contents)
     >>> browser.open('http://nohost/plone/logout')
+
+
+Resetting the password
+----------------------
+
+These tests are partly copied from... PasswordResetTool.  (surprise!)
+
+Now it is time to forget our password and click the ``Forgot your
+password`` link in the login form.  This should work by just filling
+in our current email address:
+
+    >>> browser.open('http://nohost/plone/login')
+    >>> browser.getLink('we can send you a new one').click()
+    >>> browser.url.startswith('http://nohost/plone/mail_password_form')
+    True
+    >>> form = browser.getForm(name='mail_password')
+    >>> 'My email address is' in browser.contents
+    True
+    >>> form.getControl(name='userid').value = 'email3@example.org'
+    >>> form.getControl('Start password reset').click()
+    >>> self.failUnless('Password reset confirmation sent' in browser.contents)
+
+As part of our test setup, we replaced the original MailHost with our
+own version.  Our version doesn't mail messages, it just collects them
+in a list called ``messages``:
+
+    >>> mailhost = self.portal.MailHost
+    >>> len(mailhost.messages)
+    1
+    >>> msg = mailhost.messages[0]
+
+Now that we have the message, we want to look at its contents, and
+then we extract the address that lets us reset our password:
+
+    >>> "To: email3@example.org" in msg
+    True
+
+Now get the link:
+
+    >>> url_index = msg.index('http://nohost/plone/passwordreset/')
+    >>> address = msg[url_index:].split()[0]
+
+Now that we have the address, we will reset our password:
+
+    >>> browser.open(address)
+    >>> "Set your password" in browser.contents
+    True
+    >>> form = browser.getForm(name='pwreset_action')
+    >>> form.getControl(name='userid').value = 'email3@example.org'
+    >>> form.getControl(name='password').value = 'secretion'
+    >>> form.getControl(name='password2').value = 'secretion'
+    >>> form.submit()
+    >>> "Your password has been set successfully." in browser.contents
+    True
+
+We can now login using our new password:
+
+    >>> browser.open('http://nohost/plone/login_form')
+    >>> browser.getControl('E-mail').value = 'email3@example.org'
+    >>> browser.getControl('Password').value = 'secretion'
+    >>> browser.getControl('Log in').click()
+    >>> self.failUnless('You are now logged in' in browser.contents)
+    >>> browser.open('http://nohost/plone/logout')
+
+The first user can still reset his password with his user id:
+
+    >>> browser.open('http://nohost/plone/mail_password_form')
+    >>> form = browser.getForm(name='mail_password')
+    >>> form.getControl(name='userid').value = 'username'
+    >>> form.getControl('Start password reset').click()
+    >>> self.failUnless('Password reset confirmation sent' in browser.contents)
+
+The email is sent to the correct email address:
+
+    >>> len(mailhost.messages)
+    2
+    >>> msg = mailhost.messages[-1]
+    >>> "To: username@example.org" in msg
+    True
+
+Now get the link:
+
+    >>> url_index = msg.index('http://nohost/plone/passwordreset/')
+    >>> address = msg[url_index:].split()[0]
+
+Now that we have the address, we will reset our password:
+
+    >>> browser.open(address)
+    >>> "Set your password" in browser.contents
+    True
+    >>> form = browser.getForm(name='pwreset_action')
+    >>> form.getControl(name='userid').value = 'username'
+    >>> form.getControl(name='password').value = 'secretion'
+    >>> form.getControl(name='password2').value = 'secretion'
+    >>> form.submit()
+    >>> "Your password has been set successfully." in browser.contents
+    True
+
+We can now login using our new password:
+
+    >>> browser.open('http://nohost/plone/login_form')
+    >>> browser.getControl('E-mail').value = 'username'
+    >>> browser.getControl('Password').value = 'secretion'
+    >>> browser.getControl('Log in').click()
+    >>> self.failUnless('You are now logged in' in browser.contents)
+    >>> browser.open('http://nohost/plone/logout')
+
+
