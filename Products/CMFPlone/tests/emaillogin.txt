@@ -92,10 +92,13 @@ We can now login with this email address:
     >>> self.failUnless('You are now logged in' in browser.contents)
 
 Due to some subtlety the message 'You are now logged in' can appear in
-the browser even when the user is not actually logged in.  That may be
-fixable by changing PluggableAuthService if we want. (See PLIP9214
-notes.)  This test is better:
+the browser even when the user is not actually logged in: the text
+'Log in' still appears and no link to the user's dashboard is
+available.  Or even more subtle: that text and that link are there,
+but visiting another page will show that the user does not remain
+logged it.  This test should be enough:
 
+    >>> browser.open('http://nohost/plone')
     >>> self.failIf('Log in' in browser.contents)
     >>> browser.open('http://nohost/plone/logout')
 
@@ -105,6 +108,7 @@ The first registered user can still login with his non-email login name:
     >>> browser.getControl('E-mail').value = 'username'
     >>> browser.getControl('Password').value = default_password
     >>> browser.getControl('Log in').click()
+    >>> browser.open('http://nohost/plone')
     >>> self.failIf('Log in' in browser.contents)
 
 He cannot login with his email address though, as his account was
@@ -123,17 +127,12 @@ Now we try logging out and in again with the given email address.
     >>> browser.getControl('E-mail').value = 'username@example.org'
     >>> browser.getControl('Password').value = default_password
     >>> browser.getControl('Log in').click()
+    >>> browser.open('http://nohost/plone')
     >>> self.failIf('Log in' in browser.contents)
 
-Logging in with the initial user name still works as well:
-
-    >>> browser.open('http://nohost/plone/logout')
-    >>> browser.open('http://nohost/plone/login_form')
-    >>> browser.getControl('E-mail').value = 'username'
-    >>> browser.getControl('Password').value = default_password
-    >>> browser.getControl('Log in').click()
-    >>> self.failIf('Log in' in browser.contents)
-    >>> browser.open('http://nohost/plone/logout')
+Logging in with the initial user name no longer works.
+This may be fixable by changing PluggableAuthService if we
+want. (See PLIP9214 notes.)
 
 
 Changing the email address
@@ -146,6 +145,7 @@ switched on.
     >>> browser.getControl('E-mail').value = 'email@example.org'
     >>> browser.getControl('Password').value = default_password
     >>> browser.getControl('Log in').click()
+    >>> browser.open('http://nohost/plone')
     >>> self.failIf('Log in' in browser.contents)
 
 We change the email address.
@@ -169,15 +169,9 @@ not traverse to personalize_form but redirect to it):
     >>> browser.getControl('E-mail').value
     'email3@example.org'
 
-After those two changes, we can still login with our first email
-address as that is always remembered:
-
-    >>> browser.open('http://nohost/plone/logout')
-    >>> browser.open('http://nohost/plone/login_form')
-    >>> browser.getControl('E-mail').value = 'email@example.org'
-    >>> browser.getControl('Password').value = default_password
-    >>> browser.getControl('Log in').click()
-    >>> self.failIf('Log in' in browser.contents)
+After those two changes, we can no longer login with our first email
+address.  This may be fixable by changing PluggableAuthService if we
+want. (See PLIP9214 notes.)
 
 The second email address is completely forgotten:
 
@@ -195,6 +189,7 @@ The current email address of course works fine for logging in:
     >>> browser.getControl('E-mail').value = 'email3@example.org'
     >>> browser.getControl('Password').value = default_password
     >>> browser.getControl('Log in').click()
+    >>> browser.open('http://nohost/plone')
     >>> self.failIf('Log in' in browser.contents)
 
 Picking the e-mail address of another user should of course fail:
@@ -265,6 +260,7 @@ We can now login using our new password:
     >>> browser.getControl('E-mail').value = 'email3@example.org'
     >>> browser.getControl('Password').value = 'secretion'
     >>> browser.getControl('Log in').click()
+    >>> browser.open('http://nohost/plone')
     >>> self.failIf('Log in' in browser.contents)
     >>> browser.open('http://nohost/plone/logout')
 
@@ -302,13 +298,14 @@ Now that we have the address, we will reset our password:
     >>> "Your password has been set successfully." in browser.contents
     True
 
-We can now login using our new password:
+We can now login using our new password.  We cannot use the initial
+login name though, but have to use our current email address as that
+is our login name:
 
     >>> browser.open('http://nohost/plone/login_form')
-    >>> browser.getControl('E-mail').value = 'username'
+    >>> browser.getControl('E-mail').value = 'username@example.org'
     >>> browser.getControl('Password').value = 'secretion'
     >>> browser.getControl('Log in').click()
+    >>> browser.open('http://nohost/plone')
     >>> self.failIf('Log in' in browser.contents)
     >>> browser.open('http://nohost/plone/logout')
-
-
