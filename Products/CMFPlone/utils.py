@@ -24,6 +24,7 @@ from DateTime import DateTime
 from Products.CMFCore.permissions import SetOwnProperties
 from Products.CMFCore.utils import ToolInit as CMFCoreToolInit
 from Products.CMFCore.utils import getToolByName
+from Products.PlonePAS.interfaces.plugins import IUserManagement
 
 # BBB Plone 4.0
 from zope.deprecation import __show__
@@ -642,7 +643,7 @@ def isLinked(obj):
 def set_own_login_name(member, loginname):
     """Allow the user to set his/her own login name.
 
-    XXX Does someone know a better spot to put this function?  It
+    PLIP9214 Does someone know a better spot to put this function?  It
     could be added to Products.CMFCore.MemberDataTool.MemberData.
     """
     secman = getSecurityManager()
@@ -652,20 +653,22 @@ def set_own_login_name(member, loginname):
     if member != membership.getAuthenticatedMember():
         raise Unauthorized('You can only change your OWN login name.')
     acl_users = getToolByName(member, 'acl_users')
-    # PLIP9214 Should we iterate of the list of user management plugins
-    # instead, to make this more flexible?
-    # acl_users.plugins.listPlugins(IUserManagement)
-    userfolder = acl_users.source_users
-    try:
-        userfolder.updateUser(member.id, loginname)
-    except KeyError:
-        # XXX For a user in the zope root we could do something like this:
-        # userfolder = member.getUser().__parent__.users
-        # userfolder.updateUser(member.id, loginname)
-        # But it is probably best not to touch root zope users.
-        message = ('You are not a Plone member. You are probably '
-                   'registered on the root user folder. Please '
-                   'notify an administrator if this is unexpected.')
-        log(message,
-            summary='Could not update login name of user %s.' % member.id)
-        raise KeyError(message)
+    for plugin_id, userfolder in acl_users.plugins.listPlugins(IUserManagement):
+        if not hasattr(userfolder, 'updateUser'):
+            continue
+        try:
+            userfolder.updateUser(member.id, loginname)
+        except KeyError:
+            continue
+        else:
+            return
+    # PLIP9214: For a user in the zope root we could do something like this:
+    # userfolder = member.getUser().__parent__.users
+    # userfolder.updateUser(member.id, loginname)
+    # But it is probably best not to touch root zope users.
+    message = ('You are not a Plone member. You are probably '
+               'registered on the root user folder. Please '
+               'notify an administrator if this is unexpected.')
+    log(message,
+        summary='Could not update login name of user %s.' % member.id)
+    raise KeyError(message)
