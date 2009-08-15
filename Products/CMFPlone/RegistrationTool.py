@@ -62,7 +62,7 @@ def get_member_by_login_name(context, login_name, raise_exceptions=True):
     # Try to find this user via the login name.
     acl = getToolByName(context, 'acl_users')
     userids = [user.get('userid') for user in
-               acl.searchUsers(login=login_name)
+               acl.searchUsers(login=login_name, exact_match=True)
                if user.get('userid')]
     if len(userids) == 1:
         userid = userids[0]
