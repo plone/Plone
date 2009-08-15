@@ -26,26 +26,26 @@ if props.getProperty('use_email_as_login'):
             'input_required')
     else:
         username = email
-        if username == portal.getId():
-            state.setError(
-                'email',
-                _(u'This email address is reserved. Please choose a different name.'),
-                'not_allowed')
-        else:
-            context.REQUEST.set('username', email)
 
-    if not state.getError('email') and not reg_tool.isMemberIdAllowed(username):
+    if not state.getError('email'):
+        # Email address is valid, but it is valid as login name?
         member = membership_tool.getAuthenticatedMember()
         # Keeping your email the same (which happens when you change
         # something else on the personalize form) or changing it back to
         # your login name, is fine.
         if email not in (member.getId(), member.getProperty('email')):
-            state.setError(
-                'email',
-                _('message_email_in_use',
-                  u"The email address you selected is already in use or is not "
-                  "valid as login name. Please choose another."),
-                'email_invalid')
+            if not reg_tool.isMemberIdAllowed(username):
+                state.setError(
+                    'email',
+                    _('message_email_in_use',
+                      u"The email address you selected is already in use or "
+                      "is not valid as login name. Please choose another."),
+                    'email_invalid')
+    
+    if not state.getError('email'):
+        # All checks have been done, so finally we can safely signal
+        # that this email is the new username.
+        context.REQUEST.set('username', email)
 
 if state.getErrors():
     portal.plone_utils.addPortalMessage(
