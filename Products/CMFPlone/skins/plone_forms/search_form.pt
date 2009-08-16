@@ -69,7 +69,10 @@
             </div>
             --></tal:comment>
 
-            <div class="field">
+            <div class="field"
+		 tal:define="usedSubjects python:context.portal_catalog.uniqueValuesFor('Subject');"
+		 tal:condition="usedSubjects">
+
                 <label for="Subject" i18n:translate="label_categories">Categories</label>
 
                 <div class="formHelp" i18n:translate="help_search_categories">
@@ -83,9 +86,7 @@
                         id="Subject"
                         size="7"
                         multiple="multiple"
-                        tal:define="contentSubjects context/Subject;
-                                    usedSubjects python:context.portal_catalog.uniqueValuesFor('Subject');"
-                        >
+                        tal:define="contentSubjects context/Subject;">
                     <option value="#"
                             tal:repeat="subject usedSubjects"
                             tal:content="subject"
