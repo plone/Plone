@@ -134,4 +134,17 @@ class PloneSite(CMFSite, OrderedContainer, BrowserDefaultMixin):
         languages.insert(0,(u'',_(u'Language neutral (site default)')))
         return languages
 
+    # Ensure portals don't get cataloged.
+    def indexObject(self):
+        pass
+
+    def unindexObject(self):
+        pass
+
+    def reindexObject(self, idxs=[]):
+        pass
+
+    def reindexObjectSecurity(self, skip_self=False):
+        pass
+
 InitializeClass(PloneSite)

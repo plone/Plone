@@ -35,5 +35,5 @@ def opaqueItems(self):
             return [(talkback.id, talkback)]
     return ()
 
-from Products.CMFCore.CMFCatalogAware import CMFCatalogAware
-CMFCatalogAware.opaqueItems = opaqueItems
+from Products.CMFCore.CMFCatalogAware import OpaqueItemManager
+OpaqueItemManager.opaqueItems = opaqueItems

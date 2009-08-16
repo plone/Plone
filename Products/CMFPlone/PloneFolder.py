@@ -18,7 +18,8 @@ from webdav.NullResource import NullResource
 from webdav.interfaces import IWriteLock
 
 from Products.CMFCore.utils import getToolByName
-from Products.CMFCore.CMFCatalogAware import CMFCatalogAware
+from Products.CMFCore.CMFCatalogAware import CatalogAware, WorkflowAware, \
+                    OpaqueItemManager
 from Products.CMFCore.PortalFolder import PortalFolderBase
 from Products.CMFCore.permissions import AccessContentsInformation, \
                     AddPortalContent, AddPortalFolders, ListFolderContents, \
@@ -199,7 +200,7 @@ class OrderedContainer(Folder):
 
 InitializeClass(OrderedContainer)
 
-class BasePloneFolder(CMFCatalogAware, PortalFolderBase, DefaultDublinCoreImpl):
+class BasePloneFolder(CatalogAware, WorkflowAware, OpaqueItemManager, PortalFolderBase, DefaultDublinCoreImpl):
     """Implements basic Plone folder functionality except ordering support.
     """
 
@@ -208,7 +209,7 @@ class BasePloneFolder(CMFCatalogAware, PortalFolderBase, DefaultDublinCoreImpl):
     implements(IWriteLock)
 
     manage_options = Folder.manage_options + \
-                     CMFCatalogAware.manage_options
+                     WorkflowAware.manage_options
 
     # Fix permissions set by CopySupport.py
     __ac_permissions__ = (

@@ -8,6 +8,10 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Adjust to CMF's splitting of CMFCatalogAware into separate CatalogAware,
+  WorkflowAware, and OpaqueItemManager mixins.
+  [davisagli]
+
 - Added zope.app.locales dependency, some strings are in zope domain such as
   'Invalid value' and '(no value)' found in portlet EditForm.
   [vincentfretin]
