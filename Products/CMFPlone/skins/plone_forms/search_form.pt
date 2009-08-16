@@ -268,7 +268,9 @@
                 <tal:states define="
                                 navtree_props portal/portal_properties/navtree_properties;
                                 states python:portal.portal_workflow.listWFStatesByTitle(filter_similar=1);
-                                state_lists python:context.createMultiColumnList(states, numCols=1, sort_on='self');
+				used_states python:portal.portal_catalog.uniqueValuesFor('review_state');
+				filtered_states python:[state for state in states if state[1] in used_states];
+                                state_lists python:context.createMultiColumnList(filtered_states, numCols=1, sort_on='self');
                                 normalizeString nocall:context/@@plone/normalizeString;"
                             repeat="sublist state_lists">
                     <tal:items repeat="state sublist">
