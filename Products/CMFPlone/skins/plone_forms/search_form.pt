@@ -139,36 +139,6 @@
             </div>
             --></tal:comment>
 
-            <div class="field">
-                <label for="created" i18n:translate="label_new_items_since">New items since</label>
-
-                <div class="formHelp" i18n:translate="help_search_new_items_since">
-                Return items added since you were last logged on, the last week, etc.
-                </div>
-    
-                <tal:datetime define="today python:DateTime().earliestTime();
-                                      isAnon context/@@plone_portal_state/anonymous;
-                                      member context/@@plone_portal_state/member;">
-                <select name="created:list:date"
-                        id="created"
-                        tal:define="yesterday python:(today-1).Date();
-                                    lastweek python:(today-7).Date();
-                                    lastmonth python:(today-31).Date();
-                                    ever string:1970/02/01;">
-                    <option value="#"
-                            tal:condition="not: isAnon"
-                            tal:attributes="value python:member is not None and member.getProperty('last_login_time') or today"
-                            i18n:translate="last_login">Last log-in</option>
-                    <option value="#" tal:attributes="value yesterday" i18n:translate="time_yesterday"> Yesterday </option>
-                    <option value="#" tal:attributes="value lastweek" i18n:translate="time_last_week"> Last week </option>
-                    <option value="#" tal:attributes="value lastmonth" i18n:translate="time_last_month"> Last month </option>
-                    <option value="#" tal:attributes="value ever" selected="selected" i18n:translate="time_ever"> Ever </option>
-                </select>
-                </tal:datetime>
-
-                <input type="hidden" name="created_usage" value="range:min" />
-            </div>
-    
             <div class="field" tal:define="portal_types portal/portal_types;">
                 <label i18n:translate="label_item_type">Item type</label>
 
@@ -238,6 +208,36 @@
                 </tal:creators>
             </div>
     
+            <div class="field">
+                <label for="created" i18n:translate="label_new_items_since">New items since</label>
+
+                <div class="formHelp" i18n:translate="help_search_new_items_since">
+                Return items added since you were last logged on, the last week, etc.
+                </div>
+    
+                <tal:datetime define="today python:DateTime().earliestTime();
+                                      isAnon context/@@plone_portal_state/anonymous;
+                                      member context/@@plone_portal_state/member;">
+                <select name="created:list:date"
+                        id="created"
+                        tal:define="yesterday python:(today-1).Date();
+                                    lastweek python:(today-7).Date();
+                                    lastmonth python:(today-31).Date();
+                                    ever string:1970/02/01;">
+                    <option value="#"
+                            tal:condition="not: isAnon"
+                            tal:attributes="value python:member is not None and member.getProperty('last_login_time') or today"
+                            i18n:translate="last_login">Last log-in</option>
+                    <option value="#" tal:attributes="value yesterday" i18n:translate="time_yesterday"> Yesterday </option>
+                    <option value="#" tal:attributes="value lastweek" i18n:translate="time_last_week"> Last week </option>
+                    <option value="#" tal:attributes="value lastmonth" i18n:translate="time_last_month"> Last month </option>
+                    <option value="#" tal:attributes="value ever" selected="selected" i18n:translate="time_ever"> Ever </option>
+                </select>
+                </tal:datetime>
+
+                <input type="hidden" name="created_usage" value="range:min" />
+            </div>
+
             <div class="field"
 		 tal:define="isAnon context/@@plone_portal_state/anonymous;"
 		 tal:condition="not:isAnon">
