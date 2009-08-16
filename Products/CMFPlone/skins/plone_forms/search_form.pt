@@ -303,7 +303,7 @@
             </div>
 
             <div class="field">
-              <label for="created" i18n:translate="">Sort Results</label>
+              <label for="sort_on" i18n:translate="">Sort Results</label>
               
               <div class="formHelp" i18n:translate="">
                 Sort the Search Results based on the selected criterion
@@ -313,7 +313,7 @@
                       id="sort_on">
                 <option value="">Relevance</option>
                 <option value="created" i18n:translate="">Creation Date (newest first)</option>
-                <option value="modified" i18n:translate="">Last Modification Date (newest first)</option>
+                <option value="modified" i18n:translate="">Modification Date (newest first)</option>
                 <option value="sortable_title" i18n:translate="">Titles (alphabetically)</option>
               </select>
               
