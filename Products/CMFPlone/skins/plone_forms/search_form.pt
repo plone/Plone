@@ -51,6 +51,9 @@
                        />
             </div>
 
+	    <tal:comment replace="nothing"><!--
+	        Input box to search in the title only. Remove the surrounding tal:comment tags and 
+                html comments to enable it in this form.
             <div class="field">
                 <label for="Title" i18n:translate="label_title">Title</label>
 
@@ -64,6 +67,7 @@
                        size="25"
                        />
             </div>
+            --></tal:comment>
 
             <div class="field">
                 <label for="Subject" i18n:translate="label_categories">Categories</label>
@@ -114,6 +118,9 @@
                 </label>
             </div>
     
+	    <tal:comment replace="nothing"><!--
+	      Input box to search in the description only. Remove the surrounding tal:comment tags and
+              html comments to enable it in this form.
             <div class="field">
                 <label for="Description" i18n:translate="label_description">Description</label>
 
@@ -129,7 +136,8 @@
                        size="25"
                        />
             </div>
-    
+            --></tal:comment>
+
             <div class="field">
                 <label for="created" i18n:translate="label_new_items_since">New items since</label>
 
