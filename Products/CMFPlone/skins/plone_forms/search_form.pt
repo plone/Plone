@@ -319,6 +319,22 @@
               
             </div>
 
+            <div class="field">
+              <label for="b_size" i18n:translate="">Results per Page</label>
+              
+              <div class="formHelp" i18n:translate="">
+                The number of results that is displayed on one page.
+              </div>
+              
+              <select name="b_size:int"
+                      id="b_size">
+                <option value="30" i18n:translate="">30</option>
+                <option value="60" i18n:translate="">60</option>
+                <option value="90" i18n:translate="">90</option>
+              </select>
+              
+            </div>
+
             <div class="visualClear" id="clear-space-before-submit"><!-- --></div>
 
             <div class="formControls">
