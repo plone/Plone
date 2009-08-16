@@ -186,9 +186,12 @@
             <div class="visualClear" id="clear-space-before-author"><!-- --></div>
             <br />
 
-            <div class="field">
-                <label for="Creator" i18n:translate="label_author">Author</label>
+            <div class="field collapsible">
+                <label for="Creator" 
+		       class="collapser"
+		       i18n:translate="label_author">Author</label>
 
+		<div class="collapse">
                 <div class="formHelp" i18n:translate="help_search_author">
                 Return items created by a particular person.
                 </div>
@@ -206,11 +209,15 @@
                     <input name="Creator"
                            tal:condition="python: len(creators) &gt; 30 " />
                 </tal:creators>
+		</div>
             </div>
     
-            <div class="field">
-                <label for="created" i18n:translate="label_new_items_since">New items since</label>
+            <div class="field collapsible">
+                <label for="created" 
+		       class="collapser"
+		       i18n:translate="label_new_items_since">New items since</label>
 
+		<div class="collapse">
                 <div class="formHelp" i18n:translate="help_search_new_items_since">
                 Return items added since you were last logged on, the last week, etc.
                 </div>
@@ -234,16 +241,20 @@
                     <option value="#" tal:attributes="value ever" selected="selected" i18n:translate="time_ever"> Ever </option>
                 </select>
                 </tal:datetime>
-
+	        </div>
+	    
                 <input type="hidden" name="created_usage" value="range:min" />
             </div>
 
-            <div class="field"
+            <div class="field collapsible"
 		 tal:define="isAnon context/@@plone_portal_state/anonymous;"
 		 tal:condition="not:isAnon">
     
-                <label for="review_state" i18n:translate="label_review_status">Review status</label>
-
+                <label for="review_state" 
+		       class="collapser"
+		       i18n:translate="label_review_status">Review status</label>
+		
+		<div class="collapse">
                 <div class="formHelp" i18n:translate="help_search_review_status">
                 You may search for items based on their
                 review state. If you wish to constrain results to items
@@ -288,6 +299,7 @@
                     <br />
                     </tal:items>
                 </tal:states>
+		</div>
             </div>
 
             <div class="field">
@@ -318,6 +330,29 @@
                        />
             </div>
 
+            <script type="text/javascript">
+
+var $coll = jq('.collapsible')
+$coll.each(function() {
+        var $indicator =  jq(this).find('.collapser:first')
+        $indicator.click(function() {
+        var $container = jq(this).parent() ;
+        $target = $container.find('.collapse:first');
+        $target.toggle('normal');
+	jq(this).toggleClass('expanded');
+	jq(this).toggleClass('collapsed');
+	    })});
+
+$coll.each(function() {
+        var $collapse = jq(this).find('.collapse:first');
+        $collapse.hide();
+        var $indicator = jq(this).find('.collapser:first');
+        $indicator.addClass('collapsed');
+	});
+
+            </script>
+
+	    
     </form>
 
 </div>
