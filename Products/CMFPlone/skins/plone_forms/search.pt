@@ -23,6 +23,9 @@
 <div metal:fill-slot="main"
      tal:define="use_types_blacklist request/use_types_blacklist | python:True;
                  use_navigation_root request/use_navigation_root | python:True;
+                 sort_on request/sort_on|nothing;
+                 sort_order python:(sort_on == 'created' or sort_on == 'modified') and 'descending' or 'ascending';
+                 dummy python:request.form.update({'sort_order': sort_order});
                  results python:context.queryCatalog(REQUEST=request,use_types_blacklist=use_types_blacklist, use_navigation_root=use_navigation_root);
                  Batch python:modules['Products.CMFPlone'].Batch;
                  b_size python:30;b_start python:0;b_start request/b_start | b_start;
