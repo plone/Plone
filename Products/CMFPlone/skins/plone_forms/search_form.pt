@@ -191,8 +191,9 @@
                 </span>
                 <br />
                 <div style="float:left; margin-right: 2em;"
-                     tal:define="allTypes python:context.plone_utils.getUserFriendlyTypes();
-                                 typeLists python:context.createMultiColumnList(allTypes, numCols=2, sort_on='self');"
+                     tal:define="all_used_types  python:context.portal_catalog.uniqueValuesFor('portal_type');
+				 used_types  python:context.plone_utils.getUserFriendlyTypes(all_used_types);
+                                 typeLists python:context.createMultiColumnList(used_types, numCols=2, sort_on='self');"
                      tal:repeat="sublist typeLists">
                     <tal:items repeat="type sublist">
                     <input type="checkbox"
