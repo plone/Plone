@@ -97,6 +97,18 @@
    <element value="ATPathCriterion"/>
    <element value="ATRelativePathCriterion"/>
   </property>
+  <property name="search_review_state_for_anon" type="boolean">False</property>
+  <property name="search_enable_title_search" type="lines"></property>
+  <property name="search_enable_description_search" type="lines"></property>
+  <property name="search_enable_sort_order" type="lines">
+    <element value="auth"/>
+    <element value="anon"/>
+  </property>
+  <property name="search_enable_batch_size" type="lines">
+    <element value="auth"/>
+    <element value="anon"/>
+  </property>
+  <property name="search_collapse_options" type="boolean">True</property>
   <property name="disable_folder_sections" type="boolean">False</property>
   <property name="disable_nonfolderish_sections" type="boolean">False</property>
   <property name="typesUseViewActionInListings" type="lines">
