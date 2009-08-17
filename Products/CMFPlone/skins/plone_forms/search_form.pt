@@ -252,8 +252,7 @@
 
             <div class="field collapsible"
 		 tal:attributes="class field_collapsible_class"
-		 tal:define="isAnon context/@@plone_portal_state/anonymous;"
-		 tal:condition="not:isAnon">
+		 tal:condition="options/show_review_state">
     
                 <label for="review_state" 
 		       class="collapser"
