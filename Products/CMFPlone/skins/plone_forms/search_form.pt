@@ -30,7 +30,9 @@
           name="search"
           id="searchform"
           tal:define="DateTime python:modules['DateTime'].DateTime;
-                      portal context/@@plone_portal_state/portal;">
+                      portal context/@@plone_portal_state/portal;
+		      options context/@@searchform-options;
+		      field_collapsible_class  python:'field'+(options.collapse() and ' collapsible' or '');">
 
             <div class="field">
                 <label for="SearchableText" i18n:translate="label_search_text">Search Text</label>
@@ -186,7 +188,8 @@
             <div class="visualClear" id="clear-space-before-author"><!-- --></div>
             <br />
 
-            <div class="field collapsible">
+            <div class="field collapsible"
+		 tal:attributes="class field_collapsible_class">
                 <label for="Creator" 
 		       class="collapser"
 		       i18n:translate="label_author">Author</label>
@@ -212,7 +215,8 @@
 		</div>
             </div>
     
-            <div class="field collapsible">
+            <div class="field collapsible"
+		 tal:attributes="class field_collapsible_class">
                 <label for="created" 
 		       class="collapser"
 		       i18n:translate="label_new_items_since">New items since</label>
@@ -247,6 +251,7 @@
             </div>
 
             <div class="field collapsible"
+		 tal:attributes="class field_collapsible_class"
 		 tal:define="isAnon context/@@plone_portal_state/anonymous;"
 		 tal:condition="not:isAnon">
     
@@ -302,7 +307,8 @@
 		</div>
             </div>
 
-            <div class="field">
+            <div class="field"
+		 tal:condition="options/show_sort_on">
               <label for="sort_on" i18n:translate="">Sort Results</label>
               
               <div class="formHelp" i18n:translate="">
@@ -319,7 +325,8 @@
               
             </div>
 
-            <div class="field">
+            <div class="field"
+		 tal:condition="options/show_batch_size">
               <label for="b_size" i18n:translate="">Results per Page</label>
               
               <div class="formHelp" i18n:translate="">
