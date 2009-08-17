@@ -100,7 +100,7 @@
   <property name="search_review_state_for_anon" type="boolean">False</property>
   <property name="search_enable_title_search" type="lines"></property>
   <property name="search_enable_description_search" type="lines"></property>
-  <property name="search_enable_sort_order" type="lines">
+  <property name="search_enable_sort_on" type="lines">
     <element value="auth"/>
     <element value="anon"/>
   </property>
