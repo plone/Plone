@@ -5,6 +5,13 @@
 Changelog
 =========
 
+3.3 - August 18, 2009
+---------------------
+
+- Fix broken IE6 CSS support.
+  [spliter]
+
+
 3.3rc5 - August 1, 2009
 -----------------------
 
