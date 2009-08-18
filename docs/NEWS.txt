@@ -5,7 +5,7 @@
 Changelog
 =========
 
-3.3 - Unreleased
+3.3.1 - Unreleased
 ----------------
 
 - Fix ITranslatable to use the canonical interface from LinguaPlone or fall
@@ -15,6 +15,14 @@ Changelog
 - Fixed a bug which deletes an object in the acquisition path instead of 
   the original object in case of a catalog inconsistency. This closes #9046.
   [pilz]
+
+
+3.3 - August 18, 2009
+---------------------
+
+- Fix broken IE6 CSS support.
+  [spliter]
+
 
 3.3rc5 - August 1, 2009
 -----------------------
