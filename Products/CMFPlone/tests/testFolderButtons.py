@@ -177,6 +177,14 @@ class TestFolderDelete(PloneTestCase.PloneTestCase):
         self.setRequestMethod('GET')
         self.assertRaises(Forbidden, self.folder.folder_delete)
 
+    def testDeleteDeletesCorrectObject(self): 
+        # we add a folder 
+        self.folder.invokeFactory('Folder', id='dupe') 
+        # then we request do delete an imaginary subfolder, which does not 
+        # exist but has the same id 
+        self.app.REQUEST.set('paths', ['%s/dupe/dupe' % '/'.join(self.folder.getPhysicalPath())]) 
+        self.folder.folder_delete() 
+        self.failUnless( getattr(self.folder, 'dupe', None) )
 
 
 class TestFolderPublish(PloneTestCase.PloneTestCase):

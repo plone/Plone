@@ -1216,6 +1216,18 @@ class PloneTool(PloneBaseTool, UniqueObject, SimpleItem):
                 sp = transaction.savepoint(optimistic=True)
             try:
                 obj = traverse(path)
+
+                # Check for the case where a path to a nonexisting object 
+                # deletes an acquired object 
+                if path.startswith('/'): 
+                    absolute_path = path 
+                else: 
+                    portal_path = '/'.join(portal.getPhysicalPath()) 
+                    absolute_path = "%s/%s" %(portal_path, path)                    
+                if '/'.join(obj.getPhysicalPath()) != absolute_path: 
+                    raise 
+                # end check
+
                 obj_parent = aq_parent(aq_inner(obj))
                 obj_parent.manage_delObjects([obj.getId()])
                 success.append('%s (%s)' % (obj.title_or_id(), path))
