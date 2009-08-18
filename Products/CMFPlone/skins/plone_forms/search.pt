@@ -35,11 +35,14 @@
                  desc_ellipsis site_properties/ellipsis;
                  searchterm request/SearchableText|nothing;
                  use_view_action site_properties/typesUseViewActionInListings|python:();
-                 portal_url context/portal_url;">
+                 portal_url context/portal_url;
+                 is_advanced_search request/form/advanced_search|nothing;
+                 advanced_search_url string:${context/@@plone_portal_state/navigation_root_url}/search_form">
 
-    <form name="searchform" 
+    <form name="searchform"
           action="search"
-          class="searchPage">
+          class="searchPage"
+          tal:condition="not:is_advanced_search">
         <input class="searchPage"
                name="SearchableText"
                type="text"
@@ -59,13 +62,21 @@
         <span i18n:name="advanced_search">
         <a href=""
            i18n:translate="search_results_advanced_link"
-           tal:attributes="href string:${context/@@plone_portal_state/navigation_root_url}/search_form?SearchableText=${request/SearchableText|python:''}">Advanced Search</a>
+           tal:attributes="href string:${advanced_search_url}?${request/QUERY_STRING}">Advanced Search</a>
         </span>
         to refine your search.
         </p>
     </form>
 
-
+    <div class="search-advanced"
+         tal:condition="is_advanced_search">
+        <p>
+            <a href=""
+               tal:attributes="href string:${advanced_search_url}?${request/QUERY_STRING}">
+                Edit your search options
+            </a>
+      </p>
+    </div>
     <h1 class="documentFirstHeading">
         <span i18n:translate="heading_search_results">
             Search results
