@@ -24,6 +24,8 @@
     good enough, this search form is just if you want to be more specific.
     </p>
 
+    <metal:define define-macro="form">
+
     <form action="search"
           class="enableAutoFocus"
           method="get"
@@ -427,9 +429,11 @@ $coll.each(function() {
 
             </script>
 
+
         
     </form>
 
+    </metal:define>
 </div>
 
 </html>

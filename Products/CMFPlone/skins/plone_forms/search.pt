@@ -70,13 +70,41 @@
 
     <div class="search-advanced"
          tal:condition="is_advanced_search">
+        <div id="hide-form" style="display:none;">
         <p>
+            <a href=""
+               tal:attributes="href string:${advanced_search_url}?${request/QUERY_STRING}">
+                hide the search form
+            </a>
+      </p>
+            <metal:use use-macro="context/search_form/macros/form" />
+        </div>
+        <p id="show-form">
             <a href=""
                tal:attributes="href string:${advanced_search_url}?${request/QUERY_STRING}">
                 Edit your search options
             </a>
-      </p>
+        </p>
     </div>
+    <script type="text/javascript">
+
+        jq(document).ready(function(){
+          jq('#show-form a').click(function(event) {
+             event.preventDefault();
+             jq('#hide-form').show('slow');
+             jq('#show-form').hide('slow');
+          });
+        });
+        jq(document).ready(function(){
+          jq('#hide-form a').click(function(event) {
+             event.preventDefault();
+             jq('#show-form').show('slow');
+             jq('#hide-form').hide('slow');
+          });
+        });
+
+
+    </script>
     <h1 class="documentFirstHeading">
         <span i18n:translate="heading_search_results">
             Search results
