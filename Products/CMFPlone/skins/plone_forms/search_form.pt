@@ -58,29 +58,6 @@
                        />
             </div>
 
-            
-            <div class="field collapsible"
-                 tal:attributes="class field_collapsible_class"
-                 tal:condition="options/show_title">
-                <label for="Title" 
-                       class="collapser" 
-                       i18n:translate="label_title">Title</label>
-
-                <div class="collapse">
-                <div class="formHelp" i18n:translate="help_search_title">
-                Return items matching this title.
-                </div>
-
-                <input type="text"
-                       id="Title"
-                       name="Title"
-                       size="25"
-                       value=""
-                       tal:attributes="value request/Title|nothing"
-                       />
-                </div>
-            </div>
-
             <div class="field"
          tal:define="usedSubjects python:context.portal_catalog.uniqueValuesFor('Subject');"
          tal:condition="usedSubjects">
@@ -131,31 +108,6 @@
                 </label>
             </div>
     
-            <div class="field collapsible"               
-                 tal:attributes="class field_collapsible_class"
-                 tal:condition="options/show_description">
-
-                <label for="Description"
-                       class="collapser"
-                       i18n:translate="label_description">Description</label>
-
-                <div class="collapse">
-                <div class="formHelp" i18n:translate="help_search_description">
-                Return items matching this description.
-                Multiple words may be found
-                by combining them with <strong>AND</strong> and <strong>OR</strong>.
-                </div>
-    
-                <input type="text"
-                       id="Description"
-                       name="Description"
-                       size="25"
-                       value=""
-                       tal:attributes="value request/Description|nothing"
-                       />
-                </div>
-            </div>
-
             <div class="field" 
                  tal:define="portal_types portal/portal_types;
                              all_used_types  python:context.portal_catalog.uniqueValuesFor('portal_type');
@@ -208,6 +160,54 @@
 
             <div class="visualClear" id="clear-space-before-author"><!-- --></div>
             <br />
+
+            
+            <div class="field collapsible"
+                 tal:attributes="class field_collapsible_class"
+                 tal:condition="options/show_title">
+                <label for="Title" 
+                       class="collapser" 
+                       i18n:translate="label_title">Title</label>
+
+                <div class="collapse">
+                <div class="formHelp" i18n:translate="help_search_title">
+                Return items matching this title.
+                </div>
+
+                <input type="text"
+                       id="Title"
+                       name="Title"
+                       size="25"
+                       value=""
+                       tal:attributes="value request/Title|nothing"
+                       />
+                </div>
+            </div>
+
+            <div class="field collapsible"               
+                 tal:attributes="class field_collapsible_class"
+                 tal:condition="options/show_description">
+
+                <label for="Description"
+                       class="collapser"
+                       i18n:translate="label_description">Description</label>
+
+                <div class="collapse">
+                <div class="formHelp" i18n:translate="help_search_description">
+                Return items matching this description.
+                Multiple words may be found
+                by combining them with <strong>AND</strong> and <strong>OR</strong>.
+                </div>
+    
+                <input type="text"
+                       id="Description"
+                       name="Description"
+                       size="25"
+                       value=""
+                       tal:attributes="value request/Description|nothing"
+                       />
+                </div>
+            </div>
 
             <div class="field collapsible"
                  tal:attributes="class field_collapsible_class">
