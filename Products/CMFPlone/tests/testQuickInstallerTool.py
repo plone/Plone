@@ -27,6 +27,8 @@ class TestQuickInstallerTool(PloneTestCase.PloneTestCase):
         self.failUnless('CMFPlacefulWorkflow' in self._available())
         self.failIf('CMFPlacefulWorkflow' in self._installed())
 
+    def testMigrationProfilesNotShown(self):
+        self.failIf('plone.app.upgrade.v30' in self._available())
 
 def test_suite():
     from unittest import TestSuite, makeSuite
