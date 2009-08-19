@@ -58,12 +58,15 @@
                        />
             </div>
 
-        <tal:comment replace="nothing"><!--
-            Input box to search in the title only. Remove the surrounding tal:comment tags and 
-            html comments to enable it in this form.
-            <div class="field">
-                <label for="Title" i18n:translate="label_title">Title</label>
+            
+            <div class="field collapsible"
+                 tal:attributes="class field_collapsible_class"
+                 tal:condition="options/show_title">
+                <label for="Title" 
+                       class="collapser" 
+                       i18n:translate="label_title">Title</label>
 
+                <div class="collapse">
                 <div class="formHelp" i18n:translate="help_search_title">
                 Return items matching this title.
                 </div>
@@ -75,8 +78,8 @@
                        value=""
                        tal:attributes="value request/Title|nothing"
                        />
+                </div>
             </div>
-            --></tal:comment>
 
             <div class="field"
          tal:define="usedSubjects python:context.portal_catalog.uniqueValuesFor('Subject');"
@@ -128,12 +131,15 @@
                 </label>
             </div>
     
-        <tal:comment replace="nothing"><!--
-          Input box to search in the description only. Remove the surrounding tal:comment tags and
-              html comments to enable it in this form.
-            <div class="field">
-                <label for="Description" i18n:translate="label_description">Description</label>
+            <div class="field collapsible"               
+                 tal:attributes="class field_collapsible_class"
+                 tal:condition="options/show_description">
 
+                <label for="Description"
+                       class="collapser"
+                       i18n:translate="label_description">Description</label>
+
+                <div class="collapse">
                 <div class="formHelp" i18n:translate="help_search_description">
                 Return items matching this description.
                 Multiple words may be found
@@ -147,8 +153,8 @@
                        value=""
                        tal:attributes="value request/Description|nothing"
                        />
+                </div>
             </div>
-            --></tal:comment>
 
             <div class="field" 
                  tal:define="portal_types portal/portal_types;
@@ -204,12 +210,12 @@
             <br />
 
             <div class="field collapsible"
-         tal:attributes="class field_collapsible_class">
+                 tal:attributes="class field_collapsible_class">
                 <label for="Creator" 
-               class="collapser"
-               i18n:translate="label_author">Author</label>
+                       class="collapser"
+                       i18n:translate="label_author">Author</label>
 
-        <div class="collapse">
+                <div class="collapse">
                 <div class="formHelp" i18n:translate="help_search_author">
                 Return items created by a particular person.
                 </div>
