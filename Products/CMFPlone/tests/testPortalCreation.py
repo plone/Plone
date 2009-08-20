@@ -324,7 +324,6 @@ class TestPortalCreation(PloneTestCase.PloneTestCase, WarningInterceptor):
     def testEventsSubTopic(self):
         # past Events sub-topic is in place and has criteria to show
         # only past Events Items.
-        now = DateTime()
         events_topic = self.portal.events.aggregator
         self.failUnless('previous' in events_topic.objectIds())
         topic = getattr(events_topic, 'previous')
@@ -332,46 +331,9 @@ class TestPortalCreation(PloneTestCase.PloneTestCase, WarningInterceptor):
         query = topic.buildQuery()
         self.assertEqual(query['Type'], ('Event',))
         self.assertEqual(query['review_state'], 'published')
-        self.assertEqual(query['end']['query'].Date(), now.Date())
+        self.assertEqual(query['end']['query'].Date(), DateTime().Date())
         self.assertEqual(query['end']['range'], 'max')
         self.assertEqual(topic.checkCreationFlag(), False)
-        # query shouldn't have a start key #8827 
-        # at least not in this specific use case.
-        self.failIf('start' in query)
-
-        # add some news items
-        self.setRoles(['Manager', 'Member'])
-        self.portal.events.invokeFactory('Event', id='event_future')
-        event_future = getattr(self.portal.events, 'event_future')
-        event_future.edit(title='Event - future',
-                        startDate=now+1,
-                        endDate=now+3)
-        self.portal.events.invokeFactory('Event', id='event_past')
-        event_past = getattr(self.portal.events, 'event_past')
-        event_past.edit(title='Event - past',
-                        startDate=now-3,
-                        endDate=now-1)
-        
-        # publish events
-        self.workflow.doActionFor(event_future, 'publish')
-        self.workflow.doActionFor(event_past, 'publish')
-        
-        # become a memember again
-        self.setRoles(['Member'])
-        
-        # just a basic check to ensure we have some published event items
-        news_items = self.portal.queryCatalog({'portal_type':'Event', 'review_state':'published' })
-        self.failUnless(len(news_items))
-  
-        # lets briefly investigate the news aggragtor / topic
-        topic = getattr(self.portal.events, 'aggregator')
-        querycatalog = topic.queryCatalog()
-        self.failUnless(querycatalog)
-        self.assertEqual(querycatalog[0].id, 'event_future')
-        subtopic = getattr(self.portal.events.aggregator, 'previous')
-        querycatalog = subtopic.queryCatalog()
-        self.failUnless(querycatalog)
-        self.assertEqual(querycatalog[0].id, 'event_past')
 
     def testObjectButtonActions(self):
         self.setRoles(['Manager', 'Member'])

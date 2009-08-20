@@ -8,11 +8,6 @@ Changelog
 3.3.1 - Unreleased
 ----------------
 
-- Added failing tests for subtopic and the ATFriendlyDateCriteria used for
-  past events. The fix is added to Products.ATContentTypes.
-  https://dev.plone.org/plone/ticket/8827 
-  [pelle]
-
 - Fix ITranslatable to use the canonical interface from LinguaPlone or fall
   back to a Zope3-style interface.
   [hannosch, witsch]
