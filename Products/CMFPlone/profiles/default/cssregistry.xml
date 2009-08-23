@@ -39,7 +39,7 @@
     enabled="1" expression="" id="print.css" media="print" rel="stylesheet"
     rendering="import"/>
  <stylesheet title="" cacheable="True" compression="safe" cookable="True"
-    enabled="1" expression="" id="mobile.css" media="handheld, screen and (max-width: 480px)"
+    enabled="1" expression="" id="mobile.css" media="handheld, screen and (max-device-width: 480px)"
     rel="stylesheet" rendering="import"/>
  <stylesheet title="" cacheable="True" compression="safe" cookable="True"
     enabled="1" expression="" id="deprecated.css" media="screen"
