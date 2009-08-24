@@ -5,6 +5,15 @@ See NEWS.txt for changes included in the current release.
 
 Older releases:
 
+3.3.1 - Unreleased
+------------------
+
+- Changed portal_url to context/@@plone_portal_state/navigation_root_url
+  for author.cpt and personalize_form.cpt. This closes
+  http://dev.plone.org/plone/ticket/9453
+  [vincentfretin]
+
+
 3.3 - unreleased
 ----------------
 
