@@ -7,6 +7,14 @@ Changelog
 
 4.0 - Unreleased
 ----------------
+- Changed the stylesheets to use link instead of @import. Netscape 4 is dead. ;)
+  [limi]
+
+- Adjusted the @media selector on mobile.css to address devices with a 
+  device-width of 480px or less, which in practice means it will kick in on the
+  iPhone, Android and Palm Pre. When invoked, it adjusts the fonts, and puts the
+  portlets on the bottom when supported.
+  [limi]
 
 - Moved "Site Setup" to the personal bar, as it's related to who you are.
   Minimal impact to documentation, since it's still in the same area (top right)
