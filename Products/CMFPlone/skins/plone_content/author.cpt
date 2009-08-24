@@ -31,7 +31,8 @@
                                 url_unquote_plus python:modules['Products.PythonScripts.standard'].url_unquote_plus;
                                 author python:(len(request.traverse_subpath) > 0 and url_unquote_plus(request.traverse_subpath[0])) or request.get('author', None);
                                 portrait python: mtool.getPersonalPortrait(author);
-                                authorinfo python: mtool.getMemberInfo(author);">
+                                authorinfo python: mtool.getMemberInfo(author);
+                                portal_url context/@@plone_portal_state/navigation_root_url;">
 
         <tal:noAuthor condition="not: authorinfo">
         <div id="region-content">
@@ -62,12 +63,12 @@
             <a href=""
                 tal:define="url_quote_plus python:modules['Products.PythonScripts.standard'].url_quote_plus;
                             memberurl python:url_quote_plus(member.getId())"
-               tal:attributes="href string:${context/@@plone_portal_state/navigation_root_url}/author/${memberurl}"
+               tal:attributes="href string:${portal_url}/author/${memberurl}"
                i18n:translate="label_view">View</a>
           </li>
           <li>
             <a href=""
-               tal:attributes="href string:${context/@@plone_portal_state/navigation_root_url}/personalize_form"
+               tal:attributes="href string:${portal_url}/personalize_form"
                i18n:translate="label_edit">Edit</a>
           </li>
         </ul>
@@ -145,7 +146,7 @@
             <div class="formControls" tal:condition="isAnon">
             <form 
               tal:define="pss modules/Products/PythonScripts/standard"
-              tal:attributes="action string:${context/@@plone_portal_state/navigation_root_url}/login_form">
+              tal:attributes="action string:$portal_url/login_form">
                <input class="standalone"
                    type="submit"
                    value="Log in to send feedback"
