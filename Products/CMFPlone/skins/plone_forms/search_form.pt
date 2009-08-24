@@ -161,7 +161,10 @@
             <div class="visualClear" id="clear-space-before-author"><!-- --></div>
             <br />
 
-            
+
+            <h2>More search options</h2>
+            <p>Click on the arrow to show or collape a search option.</p>
+
             <div class="field collapsible"
                  tal:attributes="class field_collapsible_class"
                  tal:condition="options/show_title">
@@ -351,6 +354,8 @@
                 </tal:states>
         </div>
             </div>
+
+            <h2>Display options</h2>
 
             <div class="field"
                  tal:condition="options/show_sort_on">
