@@ -7,6 +7,12 @@ Changelog
 
 4.0 - Unreleased
 ----------------
+
+- Move prefs_users_overview and prefs_groups_overview pages to 
+  plone.app.controlpanel (@@usergroup-userprefs and @@usergroup-groupprefs
+  respectively).
+  [esteele]
+  
 - Changed the stylesheets to use link instead of @import. Netscape 4 is dead. ;)
   [limi]
 
