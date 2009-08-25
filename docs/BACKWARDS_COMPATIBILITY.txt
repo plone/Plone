@@ -196,3 +196,9 @@ may need to take the following changes into account.
 
 * zope.app.cache.interfaces.ram.IRAMCache is now
   zope.ramcache.interfaces.ram.IRAMCache
+
+* Archetypes' auto-detection of text mimetypes (via the zope.contenttype
+  package) is now stricter and won't recognize text as HTML unless it
+  begins with a doctype declaration or <html> tag.  You can force the
+  HTML mimetype in an Archetypes mutator using the mimetype parameter;
+  e.g. obj.setText('<b>foo</b>', mimetype='text/html')
