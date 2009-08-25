@@ -2,66 +2,66 @@
 <object name="portal_css" meta_type="Stylesheets Registry">
  <stylesheet title="" cacheable="True" compression="safe" cookable="True"
     enabled="1" expression="not: portal/portal_membership/isAnonymousUser"
-    id="member.css" media="screen" rel="stylesheet" rendering="link"/>
+    id="member.css" media="screen" rel="stylesheet" rendering="import"/>
 
  <stylesheet title="" cacheable="True" compression="safe" cookable="True"
     enabled="True"
     expression="python:portal.kupu_library_tool.isKupuEnabled(REQUEST=request)"
-    id="kupustyles.css" media="" rel="stylesheet" rendering="link"/>
+    id="kupustyles.css" media="" rel="stylesheet" rendering="import"/>
  <stylesheet title="" cacheable="True" compression="safe" cookable="True"
     enabled="True"
     expression="python:portal.kupu_library_tool.isKupuEnabled(REQUEST=request)"
-    id="kupuplone.css" media="" rel="stylesheet" rendering="link"/>
+    id="kupuplone.css" media="" rel="stylesheet" rendering="import"/>
  <stylesheet title="" cacheable="True" compression="safe" cookable="True"
     enabled="True"
     expression="python:portal.kupu_library_tool.isKupuEnabled(REQUEST=request)"
-    id="kupudrawerstyles.css" media="" rel="stylesheet" rendering="link"/>
+    id="kupudrawerstyles.css" media="" rel="stylesheet" rendering="import"/>
 
  <stylesheet title="" cacheable="True" compression="safe" cookable="True"
     enabled="1" expression="" id="base.css" media="screen" rel="stylesheet"
-    rendering="link"/>
+    rendering="import"/>
  <stylesheet title="" cacheable="True" compression="safe" cookable="True"
     enabled="1" expression="" id="public.css" media="screen" rel="stylesheet"
-    rendering="link"/>
+    rendering="import"/>
  <stylesheet title="" cacheable="True" compression="safe" cookable="True"
     enabled="1" expression="" id="columns.css" media="screen" rel="stylesheet"
-    rendering="link"/>
+    rendering="import"/>
  <stylesheet title="" cacheable="True" compression="safe" cookable="True"
     enabled="1" expression="" id="authoring.css" media="screen"
-    rel="stylesheet" rendering="link"/>
+    rel="stylesheet" rendering="import"/>
  <stylesheet title="" cacheable="True" compression="safe" cookable="True"
     enabled="1" expression="" id="portlets.css" media="screen"
-    rel="stylesheet" rendering="link"/>
+    rel="stylesheet" rendering="import"/>
  <stylesheet title="" cacheable="True" compression="safe" cookable="True"
     enabled="1" expression="" id="controlpanel.css" media="screen" rel="stylesheet"
-    rendering="link"/>
+    rendering="import"/>
  <stylesheet title="" cacheable="True" compression="safe" cookable="True"
     enabled="1" expression="" id="print.css" media="print" rel="stylesheet"
-    rendering="link"/>
+    rendering="import"/>
  <stylesheet title="" cacheable="True" compression="safe" cookable="True"
-    enabled="1" expression="" id="mobile.css" media="handheld, screen and (max-device-width: 480px)"
-    rel="stylesheet" rendering="link"/>
+    enabled="0" expression="" id="mobile.css" media="handheld"
+    rel="stylesheet" rendering="import"/>
  <stylesheet title="" cacheable="True" compression="safe" cookable="True"
     enabled="1" expression="" id="deprecated.css" media="screen"
-    rel="stylesheet" rendering="link"/>
+    rel="stylesheet" rendering="import"/>
  <stylesheet title="" cacheable="True" compression="safe" cookable="True"
     enabled="1" expression="" id="navtree.css" media="screen" rel="stylesheet"
-    rendering="link"/>
+    rendering="import"/>
  <stylesheet title="" cacheable="True" compression="safe" cookable="True"
     enabled="1" expression="" id="invisibles.css" media="screen" rel="stylesheet"
-    rendering="link"/>
+    rendering="import"/>
  <stylesheet title="" cacheable="True" compression="safe" cookable="True"
     enabled="1" expression="" id="forms.css" media="screen" rel="stylesheet"
-    rendering="link"/>
+    rendering="import"/>
  <stylesheet title="" cacheable="True" compression="safe" cookable="True"
     enabled="1" expression="" id="ploneKss.css" media="screen"
-    rel="stylesheet" rendering="link"/>
+    rel="stylesheet" rendering="import"/>
 
  <stylesheet title="" cacheable="True" compression="safe" cookable="True"
     enabled="1" expression="python:portal.restrictedTraverse('@@plone_portal_state').is_rtl()"
-    id="RTL.css" media="screen" rel="stylesheet" rendering="link"/>
+    id="RTL.css" media="screen" rel="stylesheet" rendering="import"/>
 
  <stylesheet title="" cacheable="True" compression="safe" cookable="True"
     enabled="1" expression="" id="ploneCustom.css" media="all"
-    rel="stylesheet" rendering="link"/>
+    rel="stylesheet" rendering="import"/>
 </object>
