@@ -18,14 +18,14 @@
  <configlet title="Users and Groups" action_id="UsersGroups"
     appId="UsersGroups" category="Plone" condition_expr=""
     icon_expr="string:$portal_url/group.png"
-    url_expr="string:${portal_url}/prefs_users_overview" visible="True"
+    url_expr="string:${portal_url}/@@usergroup-userprefs" visible="True"
     i18n:attributes="title">
   <permission>Manage portal</permission>
  </configlet>
  <configlet title="Users and Groups" action_id="UsersGroups2"
     appId="UsersGroups" category="Plone" condition_expr=""
     icon_expr="string:$portal_url/group.png"
-    url_expr="string:${portal_url}/prefs_groups_overview" visible="False"
+    url_expr="string:${portal_url}/@@usergroup-groupprefs" visible="False"
     i18n:attributes="title">
   <permission>Manage portal</permission>
  </configlet>
