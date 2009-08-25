@@ -242,7 +242,7 @@ Members" tab:
 
   >>> browser.open('http://nohost/plone/plone_control_panel')
   >>> browser.getLink('Users and Groups').click()
-  >>> browser.getLink(url='/prefs_groups_overview').click()
+  >>> browser.getLink(url='/@@usergroup-groupprefs').click()
   >>> browser.getLink('Administrators').click()
   >>> browser.getControl('Show all').click()
   >>> browser.getControl(name='add:list').getControl(value='johnny').selected = True
