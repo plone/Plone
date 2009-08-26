@@ -65,7 +65,7 @@
 
         <a href=""
            class="link-parent"
-           tal:attributes="href string:$portal_url/prefs_users_overview"
+           tal:attributes="href string:$portal_url/@@usergroup-userprefs"
            i18n:translate="label_up_to_usersoverview">
           Up to Users Overview
         </a>

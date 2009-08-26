@@ -97,7 +97,7 @@
 
         <a href=""
            class="link-parent"
-           tal:attributes="href string:$portal_url/prefs_groups_overview"
+           tal:attributes="href string:$portal_url/@@usergroup-groupprefs"
            i18n:translate="label_up_to_groups_overview">
         Up to Groups Overview
         </a>
@@ -107,7 +107,7 @@
         They are not directly related to permissions on a global level, you normally
         use Roles for that - and let certain Groups have a particular role.
         </p>
-        
+
         <form action=""
               name="groups"
               method="post"

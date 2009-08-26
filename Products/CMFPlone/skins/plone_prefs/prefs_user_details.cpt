@@ -30,7 +30,7 @@
               User Properties
             </a>
       </li>
-            
+
       <li>
             <a href=""
                tal:attributes="href string:$portal_url/prefs_user_memberships?${userquery}"
@@ -39,14 +39,14 @@
             </a>
       </li>
     </ul>
-    
+
     <div class="contentActions">
       &nbsp;
-    </div>        
-    
+    </div>
+
     <div id="region-content" class="documentContent">
       <a name="documentContent"></a>
-      
+
       <div metal:use-macro="context/global_statusmessage/macros/portal_message">
         Portal status message
       </div>
@@ -59,10 +59,10 @@
                 tal:omit-tag=""
                 i18n:name="username">username</span>
         </h1>
-    
+
         <a href=""
            class="link-parent"
-           tal:attributes="href string:$portal_url/prefs_users_overview"
+           tal:attributes="href string:$portal_url/@@usergroup-userprefs"
            i18n:translate="label_up_to_usersoverview">
           Up to Users Overview
         </a>
@@ -70,7 +70,7 @@
         <p i18n:translate="label_change_member_properties">
           Change user properties.
         </p>
-    
+
         <form action=""
                   name="users"
                   method="post"

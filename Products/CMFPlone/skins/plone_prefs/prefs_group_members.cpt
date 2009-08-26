@@ -70,7 +70,7 @@
               i18n:translate="heading_group_members">Group Members</h1>
           <a href=""
              class="link-parent"
-             tal:attributes="href string:$portal_url/prefs_groups_overview"
+             tal:attributes="href string:$portal_url/@@usergroup-groupprefs"
              i18n:translate="label_up_to_groups_overview">
             Up to Groups Overview
           </a>
@@ -78,7 +78,7 @@
           <p i18n:translate="label_no_group_specified">No group was specified.</p>
 
           <p>
-            <a href="prefs_groups_overview" i18n:translate="label_find_group">Find a group here</a>
+            <a href="@@usergroup-groupprefs" i18n:translate="label_find_group">Find a group here</a>
           </p>
         </tal:ifnogroups>
 
@@ -90,7 +90,7 @@
 
           <a href=""
              class="link-parent"
-             tal:attributes="href string:$portal_url/prefs_groups_overview"
+             tal:attributes="href string:$portal_url/@@usergroup-groupprefs"
              i18n:translate="label_up_to_groups_overview">
             Up to Groups Overview
           </a>
@@ -267,7 +267,7 @@
                   </td>
                 </tr>
               </tal:block>
-              
+
               <tr tal:condition="not:batch">
 
                 <td tal:condition="searchstring"
