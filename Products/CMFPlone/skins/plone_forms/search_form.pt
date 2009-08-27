@@ -225,7 +225,9 @@
                     <select name="Creator"
                             id="Creator"
                             tal:condition="python: len(creators) &lt;= 30">
-                        <option value="" i18n:translate="label_any_author">Any Author</option>
+                        <option value="" 
+				class="default_option" 
+				i18n:translate="label_any_author">Any Author</option>
                         <metal:block tal:repeat="creator creators">
                             <option value="" 
                                     tal:attributes="value creator;
@@ -280,7 +282,8 @@
                     <option value="#" tal:attributes="value lastmonth;
                                                       selected python:selected==lastmonth and 'selected' or '';" 
                             i18n:translate="time_last_month"> Last month </option>
-                    <option value="#" 
+                    <option value="#"
+			    class="default_option"
                             tal:attributes="value ever;
                                             selected python:selected==ever and 'selected' or '';" 
                             i18n:translate="time_ever"> Ever </option>
