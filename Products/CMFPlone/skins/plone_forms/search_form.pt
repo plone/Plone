@@ -263,9 +263,9 @@
                         tal:define="yesterday python:(today-1).Date();
                                     lastweek python:(today-7).Date();
                                     lastmonth python:(today-31).Date();
-                                    ever string:1970/02/01;
+                                    ever python:DateTime('1970/02/01').Date();
                                     selected python:request.get('created', []);
-                                    selected python:(len(selected) == 1) and selected[0] or ever">
+                                    selected python:(len(selected) == 1) and selected[0].Date() or ever;">
                     <option value="#"
                             tal:condition="not: isAnon"
                             tal:define="value python:member is not None and member.getProperty('last_login_time') or today"
