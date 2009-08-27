@@ -417,26 +417,33 @@
                        i18n:attributes="value label_search;"
                        />
             </div>
+	    
+	    <script type="text/javascript">
+	      
+jQuery.fn.do_search_collapse = function() 
+{
 
-            <script type="text/javascript">
+    return this.each(
+	function() {
 
-var $coll = jq('.collapsible')
-$coll.each(function() {
-        var $indicator =  jq(this).find('.collapser:first')
-        $indicator.click(function() {
-        var $container = jq(this).parent() ;
-        $target = $container.find('.collapse:first');
-        $target.toggle('normal');
-    jq(this).toggleClass('expanded');
-    jq(this).toggleClass('collapsed');
-        })});
+            var indicator =  jq(this).find('.collapser:first');
+            var collapse = jq(this).find('.collapse:first');
+            indicator.click(function()
+		{
+		    var container = jq(this).parent();
+		    target = container.find('.collapse:first');
+		    target.toggle('normal');
+		    jq(this).toggleClass('expanded');
+		    jq(this).toggleClass('collapsed');
+		});
+	    
+	    collapse.hide();
+	    indicator.addClass('collapsed');
+	}
+    );
+};
 
-$coll.each(function() {
-        var $collapse = jq(this).find('.collapse:first');
-        $collapse.hide();
-        var $indicator = jq(this).find('.collapser:first');
-        $indicator.addClass('collapsed');
-    });
+jq('.collapsible').do_search_collapse()
 
             </script>
 
