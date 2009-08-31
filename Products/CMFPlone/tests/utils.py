@@ -1,4 +1,5 @@
 from Products.SecureMailHost.SecureMailHost import SecureMailHost as Base
+from persistent.list import PersistentList
 import re
 
 # regexp for a valid CSS identifier without the leading #
@@ -15,7 +16,7 @@ class MockMailHost(Base):
         self.reset()
     
     def reset(self):
-        self.messages = []
+        self.messages = PersistentList()
 
     def send(self, message, mto=None, mfrom=None, subject=None, encode=None):
         self.messages.append(message)
