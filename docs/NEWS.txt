@@ -8,6 +8,10 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Exclude some of the CMFDefault functionality, that isn't used or usable
+  inside Plone sites. The CMFDefault types are no longer supported.
+  [hannosch]
+
 - Move prefs_users_overview and prefs_groups_overview pages to 
   plone.app.controlpanel (@@usergroup-userprefs and @@usergroup-groupprefs
   respectively).
