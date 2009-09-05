@@ -21,11 +21,7 @@ from Products.CMFPlone.factory import _DEFAULT_PROFILE
 from Products.CMFPlone.interfaces import IMigrationTool
 from Products.CMFPlone.PloneBaseTool import PloneBaseTool
 
-try:
-    from plone.app.upgrade.utils import logger
-except ImportError:
-    pass
-
+logger = logging.getLogger('plone.app.upgrade')
 _upgradePaths = {}
 
 
