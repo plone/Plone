@@ -5,8 +5,12 @@
 Changelog
 =========
 
-3.3.1 - Unreleased
+3.3.2 - Unreleased
 ------------------
+
+
+3.3.1 - September 9, 2009
+-------------------------
 
 - Defined the portal_url variable to
   context/@@plone_portal_state/navigation_root_url
