@@ -159,5 +159,5 @@ def registerMigrations():
     registerUpgradePath('3.3rc5', '3.3', null)
 
     # Plone 3.3.x
-    registerUpgradePath('3.3', '3.3.1 (svn/unreleased)', null)
+    registerUpgradePath('3.3', '3.3.1', null)
 
