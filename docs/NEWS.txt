@@ -8,6 +8,10 @@ Changelog
 3.3.2 - Unreleased
 ------------------
 
+- Fixed handling of URL fragment identifiers in form-tabbing. This closes
+  http://dev.plone.org/plone/ticket/9500
+  [mj]
+
 
 3.3.1 - September 9, 2009
 -------------------------
