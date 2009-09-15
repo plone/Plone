@@ -8,6 +8,9 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Removed the AT graphviz references action from all content types.
+  [davisagli]
+
 - Finished switching tool and action icons to use PNG format.
   [davisagli]
 

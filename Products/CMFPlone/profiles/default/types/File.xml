@@ -33,13 +33,6 @@
     i18n:attributes="title">
   <permission value="Modify portal content"/>
  </action>
- <action title="References" action_id="references" category="object"
-    condition_expr="object/archetype_tool/has_graphviz"
-    url_expr="string:${object_url}/reference_graph" visible="True"
-    i18n:attributes="title">
-  <permission value="Modify portal content"/>
-  <permission value="Review portal content"/>
- </action>
  <action title="Download" action_id="download" category="object"
     condition_expr="member" url_expr="string:${object_url}/download"
     visible="False" i18n:attributes="title">

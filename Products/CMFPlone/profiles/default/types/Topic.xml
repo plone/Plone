@@ -39,13 +39,6 @@
     i18n:attributes="title">
   <permission value="Change portal topics"/>
  </action>
- <action title="References" action_id="references" category="object"
-    condition_expr="object/archetype_tool/has_graphviz"
-    url_expr="string:${object_url}/reference_graph" visible="True"
-    i18n:attributes="title">
-  <permission value="Modify portal content"/>
-  <permission value="Review portal content"/>
- </action>
  <action title="Criteria" action_id="criteria" category="object"
     condition_expr="" url_expr="string:${folder_url}/criterion_edit_form"
     visible="True" i18n:attributes="title">
