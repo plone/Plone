@@ -1,32 +1,5 @@
 from zope.interface import Interface
 
-import zope.deferredimport
-import zope.deprecation
-
-zope.deferredimport.deprecated(
-    "It has been moved to plone.app.layout.navigation.interfaces. " 
-    "This alias will be removed in Plone 4.0",
-    INavigationRoot = 'plone.app.layout.navigation.interfaces:INavigationRoot',
-    )
-
-zope.deferredimport.deprecated(
-    "It has been moved to plone.app.layout.navigation.interfaces. " 
-    "This alias will be removed in Plone 4.0",
-    IDefaultPage = 'plone.app.layout.navigation.interfaces:IDefaultPage',
-    )
-
-zope.deferredimport.deprecated(
-    "It has been moved to plone.app.layout.navigation.interfaces. " 
-    "This alias will be removed in Plone 4.0",
-    INavigationQueryBuilder = 'plone.app.layout.navigation.interfaces:INavigationQueryBuilder',
-    )
-
-zope.deferredimport.deprecated(
-    "It has been moved to plone.app.layout.navigation.interfaces. " 
-    "This alias will be removed in Plone 4.0",
-    INavtreeStrategy = 'plone.app.layout.navigation.interfaces:INavtreeStrategy',
-    )
-
 
 class INavigationBreadcrumbs(Interface):
 

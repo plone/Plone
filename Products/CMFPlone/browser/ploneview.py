@@ -287,10 +287,10 @@ class Plone(BrowserView):
             icon = getMultiAdapter((context, self.request, item), IContentIcon)
         return icon
 
-    def normalizeString(self, text, relaxed=False):
+    def normalizeString(self, text):
         """Normalizes a title to an id.
         """
-        return utils.normalizeString(text, context=self, relaxed=relaxed)
+        return utils.normalizeString(text, context=self)
 
     def cropText(self, text, length, ellipsis='...'):
         """Crop text on a word boundary

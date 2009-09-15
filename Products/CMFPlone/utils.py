@@ -197,8 +197,8 @@ def typesToList(context):
     wl = [t for t in all_types if not t in bl_dict]
     return wl
 
-def normalizeString(text, context=None, encoding=None, relaxed=None):
-    # The relaxed mode was removed in Plone 3.5. You should use either the url
+def normalizeString(text, context=None, encoding=None):
+    # The relaxed mode was removed in Plone 4.0. You should use either the url
     # or file name normalizer from the plone.i18n package instead.
     return queryUtility(IIDNormalizer).normalize(text)
 

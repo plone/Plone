@@ -114,7 +114,7 @@ def initialize(context):
 
     # Plone content
 
-    # LargePloneFolder is deprectated and will be removed in Plone 4.0.
+    # LargePloneFolder is deprectated and will be removed in Plone 5.0.
     # Usage of PloneFolder is discouraged.
     import PloneFolder, LargePloneFolder
     import Portal

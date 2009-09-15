@@ -20,12 +20,6 @@ from plone.app.layout.navigation.interfaces import INavtreeStrategy
 from plone.app.layout.navigation.root import getNavigationRoot
 from plone.app.layout.navigation.navtree import buildFolderTree
 
-import zope.deferredimport
-zope.deferredimport.deprecated(
-    "It has been moved to plone.app.layout.navigation.defaultpage. " 
-    "This alias will be removed in Plone 4.0",
-    DefaultPage = 'plone.app.layout.navigation.defaultpage:DefaultPage',
-    )
 
 def get_url(item):
     if hasattr(aq_base(item), 'getURL'):
@@ -67,7 +61,7 @@ class CatalogNavigationTree(BrowserView):
 
         currentFolderOnlyInNavtree = navtree_properties.getProperty('currentFolderOnlyInNavtree', False)
         if currentFolderOnlyInNavtree:
-            if context.is_folderish():
+            if context.restrictedTraverse('@@plone').isStructuralFolder():
                 return '/'.join(context.getPhysicalPath())
             else:
                 return '/'.join(utils.parent(context).getPhysicalPath())
