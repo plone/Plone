@@ -164,7 +164,6 @@ def is_folderish(obj):
 
       >>> from Products.CMFPlone.CatalogTool import is_folderish
       >>> from Products.CMFPlone.interfaces import INonStructuralFolder
-      >>> from Products.CMFPlone.interfaces.NonStructuralFolder import INonStructuralFolder as z2INonStructuralFolder
       >>> from zope.interface import directlyProvidedBy, directlyProvides
 
     A Folder is folderish generally::

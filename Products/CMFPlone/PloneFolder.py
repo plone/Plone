@@ -1,4 +1,3 @@
-from types import StringType
 from App.class_init import InitializeClass
 from zExceptions import NotFound
 from Acquisition import aq_base
@@ -74,7 +73,7 @@ class OrderedContainer(Folder):
     def moveObjectsByDelta(self, ids, delta, subset_ids=None,
                            suppress_events=False):
         """Move specified sub-objects by delta."""
-        if type(ids) is StringType:
+        if isinstance(ids, basestring):
             ids = (ids,)
         min_position = 0
         objects = list(self._objects)
@@ -280,7 +279,7 @@ class BasePloneFolder(CatalogAware, WorkflowAware, OpaqueItemManager, PortalFold
     def manage_delObjects(self, ids=[], REQUEST=None):
         """We need to enforce security."""
         mt = getToolByName(self, 'portal_membership')
-        if type(ids) is StringType:
+        if isinstance(ids, basestring):
             ids = [ids]
         for id in ids:
             item = self._getOb(id)

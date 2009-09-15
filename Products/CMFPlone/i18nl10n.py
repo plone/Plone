@@ -5,7 +5,6 @@ import re
 import logging
 
 from zope.i18n import translate
-from zope.publisher.interfaces.browser import IBrowserRequest
 
 from Acquisition import aq_acquire
 from DateTime import DateTime

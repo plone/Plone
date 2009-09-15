@@ -1,7 +1,6 @@
 from zope.component import getAllUtilitiesRegisteredFor
 from zope.interface import implements
 
-from Products.GenericSetup.interfaces import ISetupTool
 from Products.GenericSetup.tool import SetupTool
 from Products.GenericSetup import profile_registry
 from Products.GenericSetup import BASE, EXTENSION
