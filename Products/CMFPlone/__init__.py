@@ -9,7 +9,7 @@ _marker = []
 ADD_CONTENT_PERMISSION = 'Add portal content'
 
 misc_ = {'plone_icon': ImageFile(
-                       os.path.join('skins', 'plone_images', 'logoIcon.gif'),
+                       os.path.join('skins', 'plone_images', 'logoIcon.png'),
                        cmfplone_globals)}
 
 
@@ -180,7 +180,7 @@ def initialize(context):
     context.registerClass(Portal.PloneSite,
                           constructors=(factory.addPloneSiteForm,
                                         factory.addPloneSite),
-                          icon='skins/plone_images/logoIcon.gif')
+                          icon='skins/plone_images/logoIcon.png')
 
 # Import PloneMessageFactory to create messages in the plone domain
 from zope.i18nmessageid import MessageFactory

@@ -12,7 +12,7 @@
 
 <p>
 <dtml-if needUpgrading>
-<img src="error_icon.gif" />
+<img src="error_icon.png" />
 <strong>Your Plone site is <em>not</em> up to date with the latest version.</strong>
 Click "upgrade" to bring your Plone site configuration in sync with what's on
 your file system.</p>
@@ -46,7 +46,7 @@ writing anything to the database.
 
 <dtml-else>
 
-<img src="confirm_icon.gif" />
+<img src="confirm_icon.png" />
 <strong>Your Plone site is up to date.</strong>
 </dtml-if>
 </p>

@@ -14,7 +14,7 @@ class QuickInstallerTool(PloneBaseTool, BaseTool):
 
     meta_type = 'Plone QuickInstaller Tool'
     security = ClassSecurityInfo()
-    toolicon = 'skins/plone_images/product_icon.gif'
+    toolicon = 'skins/plone_images/product_icon.png'
 
 
     security.declareProtected(ManagePortal, 'upgradeInfo')

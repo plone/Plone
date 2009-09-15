@@ -253,7 +253,7 @@ class FactoryTool(PloneBaseTool, UniqueObject, SimpleItem):
     """ """
     id = 'portal_factory'
     meta_type= 'Plone Factory Tool'
-    toolicon = 'skins/plone_images/add_icon.gif'
+    toolicon = 'skins/plone_images/add_icon.png'
     security = ClassSecurityInfo()
     isPrincipiaFolderish = 0
 

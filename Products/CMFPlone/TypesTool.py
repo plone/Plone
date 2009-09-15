@@ -12,7 +12,7 @@ class TypesTool(PloneBaseTool, BaseTool):
 
     meta_type = 'Plone Types Tool'
     security = ClassSecurityInfo()
-    toolicon = 'skins/plone_images/document_icon.gif'
+    toolicon = 'skins/plone_images/document_icon.png'
 
     security.declarePublic('listTypeTitles')
     def listTypeTitles(self, container=None):

@@ -226,7 +226,7 @@ class CatalogTool(PloneBaseTool, BaseTool):
 
     meta_type = 'Plone Catalog Tool'
     security = ClassSecurityInfo()
-    toolicon = 'skins/plone_images/book_icon.gif'
+    toolicon = 'skins/plone_images/book_icon.png'
     _counter = None
 
     manage_catalogAdvanced = DTMLFile('www/catalogAdvanced', globals())

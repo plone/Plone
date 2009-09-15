@@ -10,7 +10,7 @@ class CalendarTool(PloneBaseTool, BaseTool):
 
     meta_type = 'Plone Calendar Tool'
     security = ClassSecurityInfo()
-    toolicon = 'skins/plone_images/event_icon.gif'
+    toolicon = 'skins/plone_images/event_icon.png'
 
     firstweekday = 0 # 0 is Monday
 

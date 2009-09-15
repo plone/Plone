@@ -226,7 +226,7 @@ ul.configletDetails {
     float: none;
 }
 .comment h3 a {
-    background: url(&dtml-portal_url;/discussionitem_icon.gif) no-repeat scroll right center;
+    background: url(&dtml-portal_url;/discussionitem_icon.png) no-repeat scroll right center;
     float: right;
     padding-left: none;
     padding-right: 18px;

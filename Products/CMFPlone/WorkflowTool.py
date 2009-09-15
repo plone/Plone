@@ -18,7 +18,7 @@ class WorkflowTool(PloneBaseTool, BaseTool):
     meta_type = 'Plone Workflow Tool'
     security = ClassSecurityInfo()
     plone_tool = 1
-    toolicon = 'skins/plone_images/workflow_icon.gif'
+    toolicon = 'skins/plone_images/workflow_icon.png'
 
     # TODO this should not make it into 1.0
     # Refactor me, my maker was tired

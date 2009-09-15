@@ -50,7 +50,7 @@ class PloneControlPanel(PloneBaseTool, UniqueObject,
 
     id = 'portal_controlpanel'
     title = 'Control Panel'
-    toolicon = 'skins/plone_images/site_icon.gif'
+    toolicon = 'skins/plone_images/site_icon.png'
     meta_type = 'Plone Control Panel Tool'
     _actions_form = DTMLFile( 'www/editPloneConfiglets', globals() )
 

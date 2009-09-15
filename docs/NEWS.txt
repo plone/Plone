@@ -8,6 +8,9 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Finished switching tool and action icons to use PNG format.
+  [davisagli]
+
 - Exclude some of the CMFDefault functionality, that isn't used or usable
   inside Plone sites. The CMFDefault types are no longer supported.
   [hannosch]

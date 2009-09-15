@@ -14,7 +14,7 @@ class DiscussionTool(PloneBaseTool, BaseTool):
 
     meta_type = 'Plone Discussion Tool'
     security = ClassSecurityInfo()
-    toolicon = 'skins/plone_images/discussionitem_icon.gif'
+    toolicon = 'skins/plone_images/discussionitem_icon.png'
 
     security.declareProtected(ReplyToItem, 'cookReply')
     def cookReply(self, reply, text_format=None):

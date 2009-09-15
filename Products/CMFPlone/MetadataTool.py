@@ -7,7 +7,7 @@ class MetadataTool(PloneBaseTool, BaseTool):
 
     meta_type = 'Plone Metadata Tool'
     security = ClassSecurityInfo()
-    toolicon = 'skins/plone_images/info_icon.gif'
+    toolicon = 'skins/plone_images/info_icon.png'
 
 
 MetadataTool.__doc__ = BaseTool.__doc__

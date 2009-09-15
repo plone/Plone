@@ -15,7 +15,7 @@ class TestActionIconsTool(PloneTestCase.PloneTestCase):
         length = len(self.actionicons.listActionIcons())
         self.actionicons.addActionIcon('content_actions',
                                        'preview',
-                                       'lock_icon.gif',
+                                       'lock_icon.png',
                                        title='preview')
         action_icons=self.actionicons.listActionIcons()
         preview=action_icons[-1]
@@ -28,14 +28,14 @@ class TestActionIconsTool(PloneTestCase.PloneTestCase):
         self.testAddActionIcon()
         icon=self.actionicons.renderActionIcon('content_actions',
                                                'preview')
-        obj=self.portal.restrictedTraverse('lock_icon.gif')
+        obj=self.portal.restrictedTraverse('lock_icon.png')
         self.assertEqual(obj, icon)
 
     def testRenderDefaultActionIcon(self):
         icon=self.actionicons.renderActionIcon('content_actions',
                                                'doesnotexist',
-                                               default='document_icon.gif')
-        obj=self.portal.restrictedTraverse('document_icon.gif')
+                                               default='document_icon.png')
+        obj=self.portal.restrictedTraverse('document_icon.png')
         self.assertEqual(obj, icon)
 
     def testRenderNoneActionIcon(self):

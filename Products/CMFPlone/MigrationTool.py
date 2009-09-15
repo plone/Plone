@@ -32,7 +32,7 @@ class MigrationTool(PloneBaseTool, UniqueObject, SimpleItem):
 
     id = 'portal_migration'
     meta_type = 'Plone Migration Tool'
-    toolicon = 'skins/plone_images/site_icon.gif'
+    toolicon = 'skins/plone_images/site_icon.png'
 
     _needRecatalog = 0
     _needUpdateRole = 0

@@ -10,7 +10,7 @@ class SyndicationTool(PloneBaseTool, BaseTool):
 
     meta_type = 'Plone Syndication Tool'
     security = ClassSecurityInfo()
-    toolicon = 'skins/plone_images/rss.gif'
+    toolicon = 'skins/plone_images/rss.png'
 
     security.declarePublic('getSyndicatableContent')
     def getSyndicatableContent(self, obj):

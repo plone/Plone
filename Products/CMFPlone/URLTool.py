@@ -10,7 +10,7 @@ class URLTool(PloneBaseTool, BaseTool):
 
     meta_type = 'Plone URL Tool'
     security = ClassSecurityInfo()
-    toolicon = 'skins/plone_images/link_icon.gif'
+    toolicon = 'skins/plone_images/link_icon.png'
 
     security.declarePublic('isURLInPortal')
     def isURLInPortal(self, url, context=None):

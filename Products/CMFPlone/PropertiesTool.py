@@ -17,7 +17,7 @@ from Products.CMFPlone.interfaces import IPropertiesTool, ISimpleItemWithPropert
 class PropertiesTool(PloneBaseTool, Folder, BaseTool):
 
     id = BaseTool.id
-    toolicon = 'skins/plone_images/topic_icon.gif'
+    toolicon = 'skins/plone_images/topic_icon.png'
 
     meta_type = 'Plone Properties Tool'
     meta_types = ((

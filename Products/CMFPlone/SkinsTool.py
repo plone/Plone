@@ -8,7 +8,7 @@ class SkinsTool(PloneBaseTool, BaseTool):
 
     meta_type = 'Plone Skins Tool'
     security = ClassSecurityInfo()
-    toolicon = 'skins/plone_images/skins_icon.gif'
+    toolicon = 'skins/plone_images/skins_icon.png'
 
     default_skin = ''
     request_varname = 'plone_skin'

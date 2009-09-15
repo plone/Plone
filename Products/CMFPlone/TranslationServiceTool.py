@@ -28,7 +28,7 @@ class TranslationServiceTool(PloneBaseTool, UniqueObject, SimpleItem):
 
     id = 'translation_service'
     meta_type = 'Portal Translation Service Tool'
-    toolicon = 'skins/plone_images/site_icon.gif'
+    toolicon = 'skins/plone_images/site_icon.png'
     security = ClassSecurityInfo()
     implements(ITranslationServiceTool)
 

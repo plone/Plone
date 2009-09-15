@@ -10,7 +10,7 @@
    <property name="title" i18n:translate="">RSS feed</property>
    <property name="description" i18n:translate=""></property>
    <property name="url_expr">string:$object_url/RSS</property>
-   <property name="icon_expr">string:$portal_url/rss.gif</property>
+   <property name="icon_expr">string:$portal_url/rss.png</property>
    <property
       name="available_expr">python:portal.portal_syndication.isSyndicationAllowed(object)</property>
    <property name="permissions">
@@ -22,7 +22,7 @@
    <property name="title" i18n:translate="">Send this</property>
    <property name="description" i18n:translate=""></property>
    <property name="url_expr">string:$object_url/sendto_form</property>
-   <property name="icon_expr">string:$portal_url/mail_icon.gif</property>
+   <property name="icon_expr">string:$portal_url/mail_icon.png</property>
    <property name="available_expr"></property>
    <property name="permissions">
     <element value="Allow sendto"/>
@@ -33,7 +33,7 @@
    <property name="title" i18n:translate="">Print this</property>
    <property name="description" i18n:translate=""></property>
    <property name="url_expr">string:javascript:this.print();</property>
-   <property name="icon_expr">string:$portal_url/print_icon.gif</property>
+   <property name="icon_expr">string:$portal_url/print_icon.png</property>
    <property name="available_expr"></property>
    <property name="permissions">
     <element value="View"/>
@@ -46,7 +46,7 @@
    <property
       name="url_expr">string:javascript:toggleFullScreenMode();</property>
    <property
-      name="icon_expr">string:$portal_url/fullscreenexpand_icon.gif</property>
+      name="icon_expr">string:$portal_url/fullscreenexpand_icon.png</property>
    <property name="available_expr">python:member is not None</property>
    <property name="permissions">
     <element value="View"/>
@@ -58,7 +58,7 @@
        i18n:translate="">Edit with external application</property>
    <property name="description" i18n:translate=""></property>
    <property name="url_expr">string:$object_url/external_edit</property>
-   <property name="icon_expr">string:$portal_url/extedit_icon.gif</property>
+   <property name="icon_expr">string:$portal_url/extedit_icon.png</property>
    <property name="available_expr">object/externalEditorEnabled</property>
    <property name="permissions">
     <element value="Modify portal content"/>
@@ -121,7 +121,7 @@
    <property name="title" i18n:translate="">Copy</property>
    <property name="description" i18n:translate=""></property>
    <property name="url_expr">string:folder_copy:method</property>
-   <property name="icon_expr">string:$portal_url/copy_icon.gif</property>
+   <property name="icon_expr">string:$portal_url/copy_icon.png</property>
    <property name="available_expr"></property>
    <property name="permissions">
     <element value="Copy or Move"/>
@@ -132,7 +132,7 @@
    <property name="title" i18n:translate="">Cut</property>
    <property name="description" i18n:translate=""></property>
    <property name="url_expr">string:folder_cut:method</property>
-   <property name="icon_expr">string:$portal_url/cut_icon.gif</property>
+   <property name="icon_expr">string:$portal_url/cut_icon.png</property>
    <property
       name="available_expr">python:checkPermission("Delete objects", object)</property>
    <property name="permissions">
@@ -155,7 +155,7 @@
    <property name="title" i18n:translate="">Paste</property>
    <property name="description" i18n:translate=""></property>
    <property name="url_expr">string:folder_paste:method</property>
-   <property name="icon_expr">string:$portal_url/paste_icon.gif</property>
+   <property name="icon_expr">string:$portal_url/paste_icon.png</property>
    <property name="available_expr">folder/cb_dataValid</property>
    <property name="permissions">
     <element value="Add portal content"/>
@@ -166,7 +166,7 @@
    <property name="title" i18n:translate="">Delete</property>
    <property name="description" i18n:translate=""></property>
    <property name="url_expr">string:folder_delete:method</property>
-   <property name="icon_expr">string:$portal_url/delete_icon.gif</property>
+   <property name="icon_expr">string:$portal_url/delete_icon.png</property>
    <property name="available_expr"></property>
    <property name="permissions">
     <element value="Delete objects"/>
@@ -244,7 +244,7 @@
    <property name="description" i18n:translate=""></property>
    <property
       name="url_expr">string:${globals_view/getCurrentObjectUrl}/object_cut</property>
-   <property name="icon_expr">string:$portal_url/cut_icon.gif</property>
+   <property name="icon_expr">string:$portal_url/cut_icon.png</property>
    <property
       name="available_expr">python:checkPermission("Delete objects", globals_view.getParentObject()) and checkPermission("Copy or Move", object) and not globals_view.isPortalOrPortalDefaultPage()</property>
    <property name="permissions">
@@ -257,7 +257,7 @@
    <property name="description" i18n:translate=""></property>
    <property
       name="url_expr">string:${globals_view/getCurrentObjectUrl}/object_copy</property>
-   <property name="icon_expr">string:$portal_url/copy_icon.gif</property>
+   <property name="icon_expr">string:$portal_url/copy_icon.png</property>
    <property
       name="available_expr">python:checkPermission("Copy or Move", object) and not globals_view.isPortalOrPortalDefaultPage()</property>
    <property name="permissions">
@@ -270,7 +270,7 @@
    <property name="description" i18n:translate=""></property>
    <property
       name="url_expr">string:${globals_view/getCurrentFolderUrl}/object_paste</property>
-   <property name="icon_expr">string:$portal_url/paste_icon.gif</property>
+   <property name="icon_expr">string:$portal_url/paste_icon.png</property>
    <property name="available_expr">folder/cb_dataValid|nothing</property>
    <property name="permissions">
     <element value="View"/>
@@ -282,7 +282,7 @@
    <property name="description" i18n:translate=""></property>
    <property
       name="url_expr">string:${globals_view/getCurrentObjectUrl}/delete_confirmation</property>
-   <property name="icon_expr">string:$portal_url/delete_icon.gif</property>
+   <property name="icon_expr">string:$portal_url/delete_icon.png</property>
    <property
       name="available_expr">python:checkPermission("Delete objects", globals_view.getParentObject()) and not globals_view.isPortalOrPortalDefaultPage()</property>
    <property name="permissions">

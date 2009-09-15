@@ -93,7 +93,7 @@ class PloneTool(PloneBaseTool, UniqueObject, SimpleItem):
 
     id = 'plone_utils'
     meta_type = 'Plone Utility Tool'
-    toolicon = 'skins/plone_images/site_icon.gif'
+    toolicon = 'skins/plone_images/site_icon.png'
     security = ClassSecurityInfo()
     plone_tool = 1
     # Prefix for forms fields!?
