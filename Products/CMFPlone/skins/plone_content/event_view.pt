@@ -11,6 +11,7 @@
     <tal:main-macro metal:define-macro="main" 
          tal:define="kssClassesView context/@@kss_field_decorator_view; 
                      getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
+                     templateId template/getId;
                      toLocalizedTime nocall:context/@@plone/toLocalizedTime;">
 
         <div tal:replace="structure provider:plone.abovecontenttitle" />
@@ -53,7 +54,7 @@
                         <tal:differentday tal:condition="python:not context.start().Date() == context.end().Date()">
                             <abbr metal:define-macro="startdate-field-view"
                                   tal:define="kss_class python:getKssClasses('startDate', 
-                                              templateId='event_view', macro='startdate-field-view');"
+                                              templateId=templateId, macro='startdate-field-view');"
                                   id="parent-fieldname-startDate"
                                   tal:attributes="class string:$kss_class dtstart;
                                                   title python:context.start().ISO8601()">
@@ -65,7 +66,7 @@
                             <span i18n:translate="event_to">to</span> <br />
                             <abbr metal:define-macro="enddate-field-view"
                                   tal:define="kss_class python:getKssClasses('endDate', 
-                                              templateId='event_view', macro='enddate-field-view');"
+                                              templateId=templateId, macro='enddate-field-view');"
                                   id="parent-fieldname-endDate"
                                   tal:attributes="class string:$kss_class dtend;
                                                   title python:context.end().ISO8601()">
@@ -82,7 +83,7 @@
                             <span i18n:translate="event_from">from</span>  
                             <abbr metal:define-macro="startdatesame-field-view"
                                   tal:define="kss_class python:getKssClasses('startDate', 
-                                              templateId='event_view', macro='startdatesame-field-view');"
+                                              templateId=templateId, macro='startdatesame-field-view');"
                                   id="parent-fieldname-startDate"
                                   tal:attributes="class string:$kss_class dtstart;
                                                   title python:context.start().ISO8601()">
@@ -93,7 +94,7 @@
                             <span i18n:translate="event_to">to</span>
                             <abbr metal:define-macro="enddatesame-field-view"
                                   tal:define="kss_class python:getKssClasses('endDate', 
-                                              templateId='event_view', macro='enddatesame-field-view');"
+                                              templateId=templateId, macro='enddatesame-field-view');"
                                   id="parent-fieldname-endDate"
                                   tal:attributes="class string:$kss_class dtend;
                                                   title python:context.end().ISO8601()">
