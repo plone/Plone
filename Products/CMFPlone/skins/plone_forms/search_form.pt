@@ -66,10 +66,10 @@
             </div>
 
             <div class="field">
-                <label for="Subject" i18n:translate="label_categories">Categories</label>
+                <label for="Subject" i18n:translate="label_tags">Tags</label>
 
-                <div class="formHelp" i18n:translate="help_search_categories">
-                Return items matching some or all of these Categories.
+                <div class="formHelp" i18n:translate="help_search_tags">
+                Return items matching some or all of these tags.
                 Multiple words may be found by pressing <strong>Ctrl</strong>
                 (or <strong>Apple</strong> key on Mac) while clicking the
                 keywords.

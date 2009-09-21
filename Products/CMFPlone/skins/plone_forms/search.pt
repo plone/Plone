@@ -143,18 +143,18 @@
                 </span>
 
 
-                <span tal:define="categories result/Subject|nothing"
-                      tal:condition="categories">
+                <span tal:define="tags result/Subject|nothing"
+                      tal:condition="tags">
                     &mdash;
                     <tal:filedunder i18n:translate="label_filed_under">filed under:</tal:filedunder>
-                        <span tal:repeat="category categories">
+                        <span tal:repeat="tag tags">
                             <a href=""
-                               class="link-category"
+                               class="link-tag"
                                rel="tag"
-                               tal:content="category"
-                               tal:attributes="href string:${context/@@plone_portal_state/navigation_root_url}/search?Subject%3Alist=${category}">
-                               Category
-                            </a><tal:separator condition="not: repeat/category/end">,</tal:separator>
+                               tal:content="tag"
+                               tal:attributes="href string:${context/@@plone_portal_state/navigation_root_url}/search?Subject%3Alist=${tag}">
+                               Tag
+                            </a><tal:separator condition="not: repeat/tag/end">,</tal:separator>
                         </span>
                 </span>
 

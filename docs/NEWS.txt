@@ -8,6 +8,9 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- "Categories" are now "Tags", in line with common usage and terminology. 
+  [limi]
+
 - Changed workflow actor variable from user/getUserName to user/getId. 
   http://dev.plone.org/plone/ticket/7398.
   [hannosch]
