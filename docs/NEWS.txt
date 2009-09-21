@@ -8,6 +8,10 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Changed workflow actor variable from user/getUserName to user/getId. 
+  http://dev.plone.org/plone/ticket/7398.
+  [hannosch]
+
 - Removed the AT graphviz references action from all content types.
   [davisagli]
 
