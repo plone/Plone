@@ -158,19 +158,19 @@
 
                     <dd>
                         <span tal:omit-tag=""
-                              tal:condition="not:item_description"> 
-                            &nbsp; 
-                        </span> 
+                              tal:condition="not:item_description">
+                            &nbsp;
+                        </span>
                         <span class="description"
-                               tal:condition="not:item_description"
+                               tal:condition="item_description"
                                tal:content="item_description">
-                            description 
-                        </span> 
+                            description
+                        </span>
                     </dd>
                 </tal:block>
                 </tal:entry>
             </dl>
-            
+
             <!-- Navigation -->
             <tal:block condition="python:not is_a_topic and not batch">
                 <div metal:use-macro="context/batch_macros/macros/navigation" />
