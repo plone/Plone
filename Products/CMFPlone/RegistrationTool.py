@@ -1,11 +1,7 @@
 import re
 import random
+from hashlib import md5
 from smtplib import SMTPRecipientsRefused
-
-try:
-    from hashlib import md5
-except:
-    from md5 import new as md5
 
 from zope.component import getUtility
 
