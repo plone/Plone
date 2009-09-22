@@ -38,7 +38,7 @@
 
           <div class="field"
                tal:condition="python:context.portal_properties.site_properties.getProperty('visible_ids', None) and
-                              len(context.portal_url.getRelativeContentPath(here))"
+                              len(context.portal_url.getRelativeContentPath(context))"
                tal:define="error errors/id | nothing;
                            id python:request.get('id', test(context.show_id(),context.getId(),''));"
                tal:attributes="class python:test(error, 'field error', 'field')">
@@ -65,7 +65,7 @@
           <input type="hidden"
                  name="id"
                  tal:condition="python:not context.portal_properties.site_properties.getProperty('visible_ids', '') or
-                                not len(context.portal_url.getRelativeContentPath(here))"
+                                not len(context.portal_url.getRelativeContentPath(context))"
                  tal:define="id python:request.get('id', context.getId())"
                  tal:attributes="value id"
                  />
