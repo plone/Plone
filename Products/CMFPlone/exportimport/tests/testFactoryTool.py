@@ -2,7 +2,6 @@
 # Exportimport adapter tests
 #
 
-from Products.CMFPlone.tests import PloneTestCase
 from Products.CMFPlone.exportimport.tests.base import BodyAdapterTestCase
 
 from zope.app.component.hooks import setHooks, setSite

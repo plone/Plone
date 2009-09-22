@@ -1,7 +1,6 @@
 from zope.interface import Interface, implementer
 from zope.component import adapter
-from Acquisition import aq_base, aq_inner
-from Persistence import PersistentMapping
+from Acquisition import aq_base
 from Products.CMFCore.interfaces import IWorkflowTool
 from Products.CMFPlone.interfaces import IWorkflowChain
 

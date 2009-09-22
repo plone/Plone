@@ -7,7 +7,6 @@ from AccessControl import Permissions
 from AccessControl import Unauthorized
 from AccessControl import ClassSecurityInfo
 from ComputedAttribute import ComputedAttribute
-from zope.interface import implements
 
 from OFS.Folder import Folder
 from OFS.interfaces import IOrderedContainer

@@ -4,8 +4,6 @@ from AccessControl import ClassSecurityInfo
 from App.class_init import InitializeClass
 from Products.CMFPlone.PloneBaseTool import PloneBaseTool
 
-from plone.app.layout.navigation.root import getNavigationRoot
-
 class CalendarTool(PloneBaseTool, BaseTool):
 
     meta_type = 'Plone Calendar Tool'

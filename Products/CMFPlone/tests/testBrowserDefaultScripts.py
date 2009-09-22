@@ -3,8 +3,6 @@
 #
 
 from Products.CMFPlone.tests import PloneTestCase
-from Products.CMFPlone.utils import _createObjectByType
-
 
 class TestBrowserDefaultScripts(PloneTestCase.PloneTestCase):
     """Tests the browser default and folder-default page scripts"""

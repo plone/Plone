@@ -1,5 +1,4 @@
 import re
-import warnings
 from types import ClassType
 from os.path import join, abspath, split
 

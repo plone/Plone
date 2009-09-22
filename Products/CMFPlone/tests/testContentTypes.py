@@ -7,7 +7,6 @@ from Products.CMFPlone.tests import dummy
 
 from zope.i18nmessageid.message import Message
 
-from Acquisition import aq_base
 from Products.ATContentTypes.interfaces import IATContentType
 
 AddPortalTopics = 'Add portal topics'
