@@ -8,7 +8,9 @@ from zope.component import queryAdapter
 from zope.interface import implements
 
 from AccessControl import ClassSecurityInfo, Unauthorized
-from Acquisition import aq_base, aq_inner, aq_parent
+from Acquisition import aq_base
+from Acquisition import aq_inner
+from Acquisition import aq_parent
 from ComputedAttribute import ComputedAttribute
 from DateTime import DateTime
 from App.class_init import InitializeClass
@@ -582,7 +584,7 @@ class PloneTool(PloneBaseTool, UniqueObject, SimpleItem):
         result = []
         cont = 1
         if portal != context:
-            parent = context.aq_parent
+            parent = aq_parent(context)
             while cont:
                 if not getattr(parent, 'acl_users', False):
                     break
@@ -608,7 +610,7 @@ class PloneTool(PloneBaseTool, UniqueObject, SimpleItem):
                     # Role acquired check here
                     cont = 0
                 else:
-                    parent = parent.aq_parent
+                    parent = aq_parent(parent)
 
         # Tuplize all inner roles
         for pos in range(len(result)-1,-1,-1):
