@@ -8,6 +8,10 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Make use of the new `authenticated` flag for ResourceRegistries entries 
+  instead of specifying verbose condition expressions. 
+  [hannosch]
+
 - "Categories" are now "Tags", in line with common usage and terminology. 
   [limi]
 

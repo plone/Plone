@@ -49,25 +49,25 @@
 
 <!-- Only for logged-in users -->
  <javascript cacheable="True" compression="safe" cookable="True"
-    enabled="True" expression="not: portal/portal_membership/isAnonymousUser"
+    enabled="True" expression="" authenticated="True"
     id="dropdown.js" inline="False"/>
  <javascript cacheable="True" compression="safe" cookable="True"
-    enabled="True" expression="not: portal/portal_membership/isAnonymousUser" 
+    enabled="True" expression="" authenticated="True"
     id="table_sorter.js" inline="False"/>
  <javascript cacheable="True" compression="safe" cookable="True"
-    enabled="True" expression="not: portal/portal_membership/isAnonymousUser" 
+    enabled="True" expression="" authenticated="True"
     id="calendar_formfield.js" inline="False"/>
  <javascript cacheable="True" compression="safe" cookable="True"
-    enabled="False" expression="not: portal/portal_membership/isAnonymousUser" 
+    enabled="False" expression="" authenticated="True"
     id="calendarpopup.js" inline="False"/>
  <javascript cacheable="True" compression="safe" cookable="True"
-    enabled="True" expression="not: portal/portal_membership/isAnonymousUser" 
+    enabled="True" expression="" authenticated="True"
     id="formUnload.js" inline="False"/>
  <javascript cacheable="True" compression="safe" cookable="True"
-    enabled="True" expression="not: portal/portal_membership/isAnonymousUser" 
+    enabled="True" expression="" authenticated="True"
     id="formsubmithelpers.js" inline="False"/>
  <javascript cacheable="True" compression="safe" cookable="True"
-    enabled="True" expression="not: portal/portal_membership/isAnonymousUser"
+    enabled="True" expression="" authenticated="True"
     id="unlockOnFormUnload.js" inline="False"/>
 
  <!-- Sarissa is used by both Kupu and KSS -->
