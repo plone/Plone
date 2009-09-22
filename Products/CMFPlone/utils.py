@@ -515,11 +515,6 @@ def webdav_enabled(obj, container):
     if IWriteLock.providedBy(obj):
         return True
 
-    # BBB for Zope2 webdav interface
-    interface_tool = getToolByName(container, 'portal_interface')
-    if interface_tool.objectImplements(obj, 'webdav.WriteLockInterface.WriteLockInterface'):
-        return True
-
     return False
 
 
