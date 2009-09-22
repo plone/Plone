@@ -157,7 +157,7 @@ class WorkflowTool(PloneBaseTool, BaseTool):
             if hasattr(wf, 'worklists'):
                 wlists = []
                 for worklist in wf.worklists:
-                    wlist_def=wf.worklists._mapping[worklist]
+                    wlist_def=wf.worklists[worklist]
                     # Make the var_matches a dict instead of PersistentMapping to enable access from scripts
                     var_matches = {}
                     for key in wlist_def.var_matches.keys(): var_matches[key] = wlist_def.var_matches[key]
