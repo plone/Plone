@@ -28,7 +28,7 @@
 ## NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 ## SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-from zope.interface import implements, Interface
+from zope.interface import implements
 from Products.ZCTextIndex.ISplitter import ISplitter
 from Products.ZCTextIndex.PipelineFactory import element_factory
 
@@ -37,10 +37,7 @@ enc = 'utf-8'
 
 class Splitter:
 
-    if issubclass(ISplitter, Interface):
-        implements(ISplitter)
-    else:
-        __implements__ = ISplitter
+    implements(ISplitter)
 
     rx_L = re.compile(r"\w+", re.LOCALE)
     rxGlob_L = re.compile(r"\w+[\w*?]*", re.LOCALE)
