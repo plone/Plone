@@ -24,7 +24,7 @@
 
     <div metal:fill-slot="main"
          tal:define="errors options/state/getErrors;
-                     lockable python:hasattr(here, 'wl_isLocked');
+                     lockable python:hasattr(context, 'wl_isLocked');
                      isLocked python:lockable and context.wl_isLocked();">
 
     <div tal:replace="structure provider:plone.documentactions" />
@@ -60,8 +60,8 @@
               'Default' will use the site-wide setting for comments.
             </div>
 
-            <metal:block tal:define="val request/allowDiscussion | python: context.portal_discussion.isDiscussionAllowedFor(here);
-                                     val python:test(not hasattr(here,'allow_discussion'),None,val);
+            <metal:block tal:define="val request/allowDiscussion | python: context.portal_discussion.isDiscussionAllowedFor(context);
+                                     val python:test(not hasattr(context,'allow_discussion'),None,val);
                                      val python:test(val=='off',0,val);
                                      val python:test(val=='on',1,val);">
               <input class="noborder"
@@ -112,13 +112,13 @@
                 </div>
 
                 <div tal:define="contentSubjects context/Subject;
-                                 allowedSubjects python:context.portal_metadata.listAllowedSubjects(here);
+                                 allowedSubjects python:context.portal_metadata.listAllowedSubjects(context);
                                  catalogSubjects python:context.portal_catalog.uniqueValuesFor('Subject');
                                  allowedSubjects python:list(context.unique(allowedSubjects+catalogSubjects));
                                  dummy python:allowedSubjects.sort( lambda x,y: cmp(x,y) );">
 
                 <tal:block define="allowRolesToAddKeywords context/portal_properties/site_properties/allowRolesToAddKeywords"
-                           condition="python:[role for role in user.getRolesInContext(here) if role in allowRolesToAddKeywords]">
+                           condition="python:[role for role in user.getRolesInContext(context) if role in allowRolesToAddKeywords]">
 
                     <div style="width: 45%; float: right;">
 
