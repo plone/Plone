@@ -293,7 +293,7 @@
 
             <div tal:define="error_workflow_action errors/workflow_action|nothing;
                              objs request/paths|nothing;
-                             target python:test(objs, objs, here);"
+                             target python:test(objs, objs, context);"
                  tal:attributes="class python:test(error_workflow_action, 'field error', 'field')">
 
               <div tal:condition="error_workflow_action">
@@ -321,7 +321,7 @@
                      i18n:translate="label_no_change">No change</label>
               <br />
 
-              <tal:block define="transitions python:context.portal_workflow.getTransitionsFor(target, here)"
+              <tal:block define="transitions python:context.portal_workflow.getTransitionsFor(target, context)"
                          repeat="transition transitions">
                   <input class="noborder"
                          id=""
