@@ -491,12 +491,6 @@ class TestBasePortalTabs(PloneTestCase.PloneTestCase):
         self.portal.invokeFactory('Folder', 'folder2')
         self.setRoles(['Member'])
 
-    def _invalidateRequestMemoizations(self):
-        try:
-            del self.request.__annotations__
-        except AttributeError:
-            pass
-
     def testCreateTopLevelTabs(self):
         # See if we can create one at all
         view = self.view_class(self.portal, self.request)
@@ -508,7 +502,6 @@ class TestBasePortalTabs(PloneTestCase.PloneTestCase):
         
         #Only the folders show up (Members, news, events, folder1, folder2)
         self.portal.portal_properties.site_properties.disable_nonfolderish_sections = True
-        self._invalidateRequestMemoizations
         tabs = view.topLevelTabs(actions=[])
         self.assertEqual(len(tabs), 5)
 
@@ -519,7 +512,6 @@ class TestBasePortalTabs(PloneTestCase.PloneTestCase):
         # Must be manager to change order on portal itself
         self.setRoles(['Manager','Member'])
         self.portal.folder_position('up', 'folder2')
-        self._invalidateRequestMemoizations
         view = self.view_class(self.portal, self.request)
         tabs2 = view.topLevelTabs(actions=[])
         #Same number of objects
@@ -547,7 +539,6 @@ class TestBasePortalTabs(PloneTestCase.PloneTestCase):
         #change workflow for folder1
         workflow.doActionFor(self.portal.folder1, 'publish')
         self.portal.folder1.reindexObject()
-        self._invalidateRequestMemoizations
         view = self.view_class(self.portal, self.request)
         tabs = view.topLevelTabs(actions=[])
         #Should only contain the published folder
@@ -569,7 +560,6 @@ class TestBasePortalTabs(PloneTestCase.PloneTestCase):
         #change workflow for folder1
         workflow.doActionFor(self.portal.folder1, 'publish')
         self.portal.folder1.reindexObject()
-        self._invalidateRequestMemoizations
         view = self.view_class(self.portal, self.request)
         tabs = view.topLevelTabs(actions=[])
         #Should only contain the published folder
@@ -591,7 +581,6 @@ class TestBasePortalTabs(PloneTestCase.PloneTestCase):
         orig_len = len(tabs)
         self.portal.folder2.setExcludeFromNav(True)
         self.portal.folder2.reindexObject()
-        self._invalidateRequestMemoizations
         view = self.view_class(self.portal, self.request)
         tabs = view.topLevelTabs(actions=[])
         self.failUnless(tabs)
@@ -612,7 +601,6 @@ class TestBasePortalTabs(PloneTestCase.PloneTestCase):
         props.manage_changeProperties(
             typesUseViewActionInListings=['Image','File','Folder'])
         # Verify that we have '/view'
-        self._invalidateRequestMemoizations
         view = self.view_class(self.portal, self.request)
         tabs = view.topLevelTabs(actions=[])
         self.failUnless(tabs)
@@ -626,7 +614,6 @@ class TestBasePortalTabs(PloneTestCase.PloneTestCase):
         orig_len = len(tabs)
         ntp=self.portal.portal_properties.navtree_properties
         ntp.manage_changeProperties(idsNotToList=['folder2'])
-        self._invalidateRequestMemoizations
         view = self.view_class(self.portal, self.request)
         tabs = view.topLevelTabs(actions=[])
         self.failUnless(tabs)
@@ -641,8 +628,6 @@ class TestBasePortalTabs(PloneTestCase.PloneTestCase):
         orig_len = len(tabs)
         self.setRoles(['Manager','Member'])
         self.portal.invokeFactory('Document','foo')
-
-        self._invalidateRequestMemoizations
         view = self.view_class(self.portal, self.request)
         tabs = view.topLevelTabs(actions=[])
         self.failUnless(tabs)
