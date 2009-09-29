@@ -8,6 +8,7 @@
 ##parameters=email=''
 ##title=validates user preferences
 
+from AccessControl import Unauthorized
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone import PloneMessageFactory as _
 
@@ -34,14 +35,24 @@ if props.getProperty('use_email_as_login'):
         # something else on the personalize form) or changing it back to
         # your login name, is fine.
         if email not in (member.getId(), member.getProperty('email')):
-            if not reg_tool.isMemberIdAllowed(username):
+            try:
+                id_allowed = reg_tool.isMemberIdAllowed(username)
+            except Unauthorized:
                 state.setError(
                     'email',
-                    _('message_email_in_use',
-                      u"The email address you selected is already in use or "
-                      "is not valid as login name. Please choose another."),
-                    'email_invalid')
-    
+                    _('message_email_cannot_change',
+                      u"Sorry, you are not allowed to change your email address."),
+                    'message_email_cannot_change')
+            else:
+                if not id_allowed:
+                    state.setError(
+                        'email',
+                        _('message_email_in_use',
+                          u"The email address you selected is already in use "
+                          "or is not valid as login name. Please choose "
+                          "another."),
+                        'message_email_in_use')
+
     if not state.getError('email'):
         # All checks have been done, so finally we can safely signal
         # that this email is the new username.
