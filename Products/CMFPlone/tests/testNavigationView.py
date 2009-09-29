@@ -3,7 +3,7 @@
 #
 
 from zope.publisher.browser import setDefaultSkin
-from zope.interface import directlyProvides
+from zope.interface import directlyProvides, noLongerProvides
 
 from Products.CMFPlone.tests import PloneTestCase
 from Products.CMFPlone.tests import dummy
@@ -734,6 +734,15 @@ class TestPhysicalBreadCrumbs(TestBaseBreadCrumbs):
         newcrumbs = view.breadcrumbs()
         self.assertEqual(len(crumbs)-1, len(newcrumbs))
         self.assertEqual(newcrumbs[0]['absolute_url'], self.portal.folder1.doc11.absolute_url())
+
+    def testBreadcrumbsIHideFromNavigation(self):
+        self.portal.folder1[self.portal.folder1.invokeFactory('Folder','folder1_1')]
+        self.portal.folder1.folder1_1[self.portal.folder1.folder1_1.invokeFactory('Document','doc2')]
+        noLongerProvides(self.portal.folder1, IHideFromBreadcrumbs)
+        directlyProvides(self.portal.folder1.folder1_1, IHideFromBreadcrumbs)
+        view = self.view_class(self.portal.folder1.folder1_1.doc2, self.request)
+        crumbs = view.breadcrumbs()
+        self.assertEqual(crumbs[-1]['absolute_url'], self.portal.folder1.folder1_1.doc2.absolute_url())
 
 
 def test_suite():
