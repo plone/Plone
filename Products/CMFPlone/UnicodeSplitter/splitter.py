@@ -152,6 +152,7 @@ except ValueError:
 class CaseNormalizer(object):
 
     def process(self, lst):
+        enc = getSiteEncoding(self)
         result = []
         for s in lst:
             # This is a hack to get the normalizer working with
