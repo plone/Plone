@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<import-steps>
- <import-step id="content" version="20050927-01"
-              handler="Products.CMFCore.exportimport.content.importSiteStructure"
-              title="Content">
-  <dependency step="plone-final"/>
-    Import the site's structure and content.
- </import-step>
-</import-steps>
