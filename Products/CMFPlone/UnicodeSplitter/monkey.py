@@ -12,8 +12,7 @@ from Products.ZCTextIndex.Lexicon import _text2list
 def termToWordIds(self, text):
     last = _text2list(text)
     for element in self._pipeline:
-        process = getattr(element, "process_post_glob", 
-                    getattr(element, "processGlob", element.process))
+        process = getattr(element, "process_post_glob", element.process)
         last = process(last)
     wids = []
     for word in last:
