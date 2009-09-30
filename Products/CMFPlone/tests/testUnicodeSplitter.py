@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #
 # Tests the UnicodeSplitter
 #
@@ -235,7 +236,7 @@ class TestQuery(PloneTestCase.PloneTestCase):
 
 
 # adding UnicodeSplitterPatcth
-from Products.UnicodeSplitterPatch.main \
+from Products.CMFPlone.UnicodeSplitter \
      import process_str, process_str_post, process_str_glob,\
      process_unicode,process_unicode_glob
 
@@ -333,7 +334,7 @@ class TestSearchingJapanese(PloneTestCase.PloneTestCase):
         items15 = catalog(SearchableText="予想*")
         self.assertEqual(len(items15), 1)
         items16 = catalog(SearchableText=u"予想")
-        self.assertEqual(len(items16), 0)
+        self.assertEqual(len(items16), 1)
         self.portal.manage_delObjects(['doc1'])
         items2 = catalog(SearchableText="予想")
         self.assertEqual(len(items2), 0)
