@@ -10,7 +10,7 @@
 <body>
 
 <div tal:define="checkPermission nocall:context/portal_membership/checkPermission;
-                 actions python:context.portal_actions.listFilteredActionsFor(context);
+                 actions python:context.portal_actions.listActionInfos('user/join', object=context);
                  Iterator python:modules['Products.CMFPlone'].IndexIterator;
                  auth nocall:context/acl_users/credentials_cookie_auth|nothing;
                  came_from request/came_from|request/HTTP_REFERER|nothing;
@@ -26,7 +26,7 @@ To access this part of the site, you need to log in with your user name and pass
 </p>
 
 <p i18n:translate="description_no_account"
-   tal:define="join python:[a['url'] for a in actions['user'] if a['id']=='join']"
+   tal:define="join python:[a['url'] for a in actions"
    tal:condition="python: join and checkPermission('Add portal member', context)">
 
 If you do not have an account here, head over to the

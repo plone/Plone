@@ -154,8 +154,8 @@
 </div>
 
 <div
-   tal:define="actions python:context.portal_actions.listFilteredActionsFor(context);
-               join python:[a['url'] for a in actions['user'] if a['id']=='join'];"
+   tal:define="actions python:context.portal_actions.listActionInfos('user/join', object=context);
+               join python:[a['url'] for a in actions];"
    tal:condition="python: join and checkPermission('Add portal member', context)">
     <h3 i18n:translate="heading_new_user">
     New user?
