@@ -8,6 +8,10 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Removed the wysiwyg_support.pt from Plone. It now lives inside the
+  Products.Archetypes package.
+  [hannosch]
+
 - Make use of the new `authenticated` flag for ResourceRegistries entries 
   instead of specifying verbose condition expressions. 
   [hannosch]
