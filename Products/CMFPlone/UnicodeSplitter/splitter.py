@@ -35,7 +35,10 @@ def process_str_post(s, enc):
     If decode gets failed, process str as ASCII.
     """
     try:
-        uni = s.decode(enc, "strict")
+        if not isinstance(s, unicode):
+            uni = s.decode(enc, "strict")
+        else:
+            uni = s
     except UnicodeDecodeError, e:
         return s.replace("?", "").replace("*", "")
     try:
@@ -51,7 +54,10 @@ def process_str(s, enc):
     Splitting depends on locale specified by rx_L.
     """
     try:
-        uni = s.decode(enc, "strict")
+        if not isinstance(s, unicode):
+            uni = s.decode(enc, "strict")
+        else:
+            uni = s
     except UnicodeDecodeError, e:
         return [x for x in rx_L.findall(s)]
     bigrams = process_unicode(uni)
@@ -65,7 +71,10 @@ def process_str_glob(s, enc):
     Splitting depends on locale specified by rxGlob_L.
     """
     try:
-        uni = s.decode(enc, "strict")
+        if not isinstance(s, unicode):
+            uni = s.decode(enc, "strict")
+        else:
+            uni = s
     except UnicodeDecodeError, e:
         return [x for x in rxGlob_L.findall(s)]
     bigrams = process_unicode_glob(uni)

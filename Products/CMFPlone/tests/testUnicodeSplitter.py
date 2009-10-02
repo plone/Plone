@@ -339,6 +339,35 @@ class TestSearchingJapanese(PloneTestCase.PloneTestCase):
         items2 = catalog(SearchableText="予想")
         self.assertEqual(len(items2), 0)
 
+class TestSearchingUnicodeJapanese(PloneTestCase.PloneTestCase):
+    """ Install Unicode Japanese test """ 
+    def afterSetUp(self):
+        self.setRoles(('Manager',))
+        self.portal.invokeFactory('Document', 'doc1')
+        self.doc1 = getattr(self.portal, 'doc1')
+        self.doc1.setTitle(u"Ploneは素晴らしい。")
+        self.doc1.setText(u"このページは予想している通り、テストです。 Pages Testing.")
+        self.doc1.reindexObject()
+
+    def testSearch(self):
+        catalog = getToolByName(self.portal, 'portal_catalog')
+        items1 = catalog(SearchableText=u"予想")
+        self.assertEqual(len(items1), 1)
+        items12 = catalog(SearchableText=u"素晴らしい")
+        self.assertEqual(len(items12), 1)
+        items13 = catalog(SearchableText=u"Pages")
+        self.assertEqual(len(items13), 1)
+        items14 = catalog(SearchableText=u"ページ")
+        self.assertEqual(len(items14), 1)
+        items15 = catalog(SearchableText=u"予想*")
+        self.assertEqual(len(items15), 1)
+        items16 = catalog(SearchableText="予想")
+        self.assertEqual(len(items16), 1)
+        self.portal.manage_delObjects(['doc1'])
+        items2 = catalog(SearchableText=u"予想")
+        self.assertEqual(len(items2), 0)
+
+
 def test_suite():
     from unittest import TestSuite, makeSuite
     suite = TestSuite()
@@ -348,4 +377,5 @@ def test_suite():
     suite.addTest(makeSuite(TestBigramFunctions))
     suite.addTest(makeSuite(TestReplaceSplitter))
     suite.addTest(makeSuite(TestSearchingJapanese))
+    suite.addTest(makeSuite(TestSearchingUnicodeJapanese))
     return suite
