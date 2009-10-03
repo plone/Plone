@@ -40,7 +40,7 @@
         <input type="hidden" name="advanced_search" value="True" />
         
             <div class="field">
-                <label for="SearchableText" i18n:translate="label_search_text">Search Text</label>
+                <label for="SearchableText" i18n:translate="label_search_text">Search text</label>
 
                 <div class="formHelp" i18n:translate="help_search_text">
                 For a simple text search, enter your search term
@@ -357,7 +357,7 @@
 
             <div class="field"
                  tal:condition="options/show_sort_on">
-              <label for="sort_on" i18n:translate="">Sort Results</label>
+              <label for="sort_on" i18n:translate="">Sort results</label>
               
               <div class="formHelp" i18n:translate="">
                 Sort the Search Results based on the selected criterion
@@ -383,7 +383,7 @@
 
             <div class="field"
                  tal:condition="options/show_batch_size">
-              <label for="b_size" i18n:translate="">Results per Page</label>
+              <label for="b_size" i18n:translate="">Results per page</label>
               
               <div class="formHelp" i18n:translate="">
                 The number of results that is displayed on one page.
