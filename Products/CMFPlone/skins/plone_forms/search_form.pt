@@ -59,28 +59,6 @@
             </div>
 
             
-            <div class="field collapsible"
-                 tal:attributes="class field_collapsible_class"
-                 tal:condition="options/show_title">
-                <label for="Title" 
-                       class="collapser" 
-                       i18n:translate="label_title">Title</label>
-
-                <div class="collapse">
-                <div class="formHelp" i18n:translate="help_search_title">
-                Return items matching this title.
-                </div>
-
-                <input type="text"
-                       id="Title"
-                       name="Title"
-                       size="25"
-                       value=""
-                       tal:attributes="value request/Title|nothing"
-                       />
-                </div>
-            </div>
-
             <div class="field"
          tal:define="usedSubjects python:context.portal_catalog.uniqueValuesFor('Subject');"
          tal:condition="usedSubjects">
@@ -131,39 +109,21 @@
                 </label>
             </div>
     
-            <div class="field collapsible"               
-                 tal:attributes="class field_collapsible_class"
-                 tal:condition="options/show_description">
 
-                <label for="Description"
-                       class="collapser"
-                       i18n:translate="label_description">Description</label>
+            <h2>More search options</h2>
 
-                <div class="collapse">
-                <div class="formHelp" i18n:translate="help_search_description">
-                Return items matching this description.
-                Multiple words may be found
-                by combining them with <strong>AND</strong> and <strong>OR</strong>.
-                </div>
-    
-                <input type="text"
-                       id="Description"
-                       name="Description"
-                       size="25"
-                       value=""
-                       tal:attributes="value request/Description|nothing"
-                       />
-                </div>
-            </div>
 
-            <div class="field" 
+            <div class="field collapsible"
+                 tal:attributes="class field_collapsible_class" 
                  tal:define="portal_types portal/portal_types;
                              all_used_types  python:context.portal_catalog.uniqueValuesFor('portal_type');
                              used_types  python:context.plone_utils.getUserFriendlyTypes(all_used_types);
                              all_checked python:(len(used_types) == len(request.get('portal_type', []))) or first_call;
                              toggle_select_state python:all_checked and 'true' or 'false';">
-                <label i18n:translate="label_item_type">Item type</label>
+                <label i18n:translate="label_item_type"
+                       class="collapser">Item type</label>
 
+		<div class="collapse">
                 <div class="formHelp" i18n:translate="help_search_item_type">
                 Return items of a specific type.
                 </div>
@@ -204,44 +164,10 @@
                     <br />
                     </tal:items>
                 </div>
+            <div class="visualClear" id="clear-after-item-type"><!-- --></div>
             </div>
-
-            <div class="visualClear" id="clear-space-before-author"><!-- --></div>
-            <br />
-
-            <div class="field collapsible"
-                 tal:attributes="class field_collapsible_class">
-                <label for="Creator" 
-                       class="collapser"
-                       i18n:translate="label_author">Author</label>
-
-                <div class="collapse">
-                <div class="formHelp" i18n:translate="help_search_author">
-                Return items created by a particular person.
-                </div>
-    
-                <tal:creators tal:define="creators python:portal.portal_catalog.uniqueValuesFor('Creator');
-                                          selected request/Creator|nothing">
-                    <select name="Creator"
-                            id="Creator"
-                            tal:condition="python: len(creators) &lt;= 30">
-                        <option value="" 
-				class="default_option" 
-				i18n:translate="label_any_author">Any Author</option>
-                        <metal:block tal:repeat="creator creators">
-                            <option value="" 
-                                    tal:attributes="value creator;
-                                                    selected python:selected == creator and 'selected' or '';" 
-                                    tal:content="creator">username </option>
-                        </metal:block>
-                    </select>
-    
-                    <input name="Creator"
-                           tal:condition="python: len(creators) &gt; 30 "
-                           tal:attributes="value selected" />
-                </tal:creators>
-        </div>
-            </div>
+	  </div>
+          
     
             <div class="field collapsible"
                  tal:attributes="class field_collapsible_class">
@@ -354,6 +280,89 @@
                 </tal:states>
         </div>
             </div>
+
+            <div class="field collapsible"
+                 tal:attributes="class field_collapsible_class">
+                <label for="Creator" 
+                       class="collapser"
+                       i18n:translate="label_author">Author</label>
+
+                <div class="collapse">
+                <div class="formHelp" i18n:translate="help_search_author">
+                Return items created by a particular person.
+                </div>
+    
+                <tal:creators tal:define="creators python:portal.portal_catalog.uniqueValuesFor('Creator');
+                                          selected request/Creator|nothing">
+                    <select name="Creator"
+                            id="Creator"
+                            tal:condition="python: len(creators) &lt;= 30">
+                        <option value="" 
+				class="default_option" 
+				i18n:translate="label_any_author">Any Author</option>
+                        <metal:block tal:repeat="creator creators">
+                            <option value="" 
+                                    tal:attributes="value creator;
+                                                    selected python:selected == creator and 'selected' or '';" 
+                                    tal:content="creator">username </option>
+                        </metal:block>
+                    </select>
+    
+                    <input name="Creator"
+                           tal:condition="python: len(creators) &gt; 30 "
+                           tal:attributes="value selected" />
+                </tal:creators>
+        </div>
+            </div>
+
+            <div class="field collapsible"
+                 tal:attributes="class field_collapsible_class"
+                 tal:condition="options/show_title">
+                <label for="Title" 
+                       class="collapser" 
+                       i18n:translate="label_title">Title</label>
+
+                <div class="collapse">
+                <div class="formHelp" i18n:translate="help_search_title">
+                Return items matching this title.
+                </div>
+
+                <input type="text"
+                       id="Title"
+                       name="Title"
+                       size="25"
+                       value=""
+                       tal:attributes="value request/Title|nothing"
+                       />
+                </div>
+            </div>
+
+            <div class="field collapsible"               
+                 tal:attributes="class field_collapsible_class"
+                 tal:condition="options/show_description">
+
+                <label for="Description"
+                       class="collapser"
+                       i18n:translate="label_description">Description</label>
+
+                <div class="collapse">
+                <div class="formHelp" i18n:translate="help_search_description">
+                Return items matching this description.
+                Multiple words may be found
+                by combining them with <strong>AND</strong> and <strong>OR</strong>.
+                </div>
+    
+                <input type="text"
+                       id="Description"
+                       name="Description"
+                       size="25"
+                       value=""
+                       tal:attributes="value request/Description|nothing"
+                       />
+                </div>
+            </div>
+
+            <h2>Display options</h2>
 
             <div class="field"
                  tal:condition="options/show_sort_on">
