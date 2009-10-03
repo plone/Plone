@@ -22,24 +22,28 @@ class HiddenProfiles(object):
     implements(INonInstallable)
 
     def getNonInstallableProfiles(self):
-        return [_CONTENT_PROFILE,
+        return [_DEFAULT_PROFILE,
+                _CONTENT_PROFILE,
                 u'Products.Archetypes:Archetypes',
                 u'Products.CMFDiffTool:CMFDiffTool',
                 u'Products.CMFEditions:CMFEditions',
                 u'Products.CMFFormController:CMFFormController',
+                u'Products.CMFPlone:dependencies',
+                u'Products.CMFPlone:testfixture',
                 u'Products.CMFQuickInstallerTool:CMFQuickInstallerTool',
+                u'Products.NuPlone:uninstall',
                 u'Products.MimetypesRegistry:MimetypesRegistry',
                 u'Products.PasswordResetTool:PasswordResetTool',
                 u'Products.PortalTransforms:PortalTransforms',
                 u'Products.PloneLanguageTool:PloneLanguageTool',
                 u'Products.PlonePAS:PlonePAS',
-                u'plone.browserlayer:default',
                 u'borg.localrole:default',
+                u'kupu:default',
+                u'plone.browserlayer:default',
+                u'plone.keyring:default',
                 u'plone.portlet.static:default',
                 u'plone.portlet.collection:default',
-                u'kupu:default',
-                u'Products.CMFPlone:dependencies',
-                u'Products.NuPlone:uninstall',
+                u'plone.protect:default',
                 ]
 
 
@@ -66,8 +70,7 @@ def addPloneSiteForm(dispatcher):
     for info in profile_registry.listProfileInfo():
         if info.get('type') == BASE and \
            info.get('for') in (IPloneSiteRoot, None):
-            if info.get('id') not in not_installable:
-                base_profiles.append(info)
+            base_profiles.append(info)
 
     return wrapped(base_profiles=tuple(base_profiles),
                    extension_profiles=tuple(extension_profiles),

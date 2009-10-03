@@ -8,6 +8,12 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Made sure to have a complete list of non-installable profiles. No longer
+  apply the filter to base profiles and ignore our default profile. This works
+  in combination with the corresponding changes in quick installer to reduce
+  portal creation time.
+  [hannosch]
+
 - Removed the wysiwyg_support.pt from Plone. It now lives inside the
   Products.Archetypes package.
   [hannosch]
