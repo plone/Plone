@@ -6,7 +6,6 @@ splitter.py
 Created by Manabu Terada on 2009-09-30.
 Copyright (c) 2009 CMScom. All rights reserved.
 """
-import re
 import unicodedata
 
 from zope.interface import implements
@@ -16,6 +15,7 @@ from Products.CMFPlone.utils import getSiteEncoding
 
 from Products.CMFPlone.UnicodeSplitter.config import rx_U, rxGlob_U, \
             rx_L, rxGlob_L, rx_all, pattern, pattern_g
+
 
 def bigram(u, limit=1):
     """ Split into bi-gram.
@@ -29,9 +29,10 @@ def bigram(u, limit=1):
     """
     return [u[i:i+2] for i in xrange(len(u) - limit)]
 
+
 def process_str_post(s, enc):
     """Receive str, remove ? and *, then return str.
-    If decode gets sucessful, process str as unicode.
+    If decode gets successful, process str as unicode.
     If decode gets failed, process str as ASCII.
     """
     try:
@@ -46,8 +47,9 @@ def process_str_post(s, enc):
     except UnicodeEncodeError, e:
         return s.replace("?", "").replace("*", "")
 
+
 def process_str(s, enc):
-    """ Receive str and encoding, then return the list 
+    """Receive str and encoding, then return the list 
     of str as bi-grammed result.
     Decode str into unicode and pass it to process_unicode.
     When decode failed, return the result splitted per word.
@@ -59,12 +61,13 @@ def process_str(s, enc):
         else:
             uni = s
     except UnicodeDecodeError, e:
-        return [x for x in rx_L.findall(s)]
+        return rx_L.findall(s)
     bigrams = process_unicode(uni)
     return [x.encode(enc, "strict") for x in bigrams]
 
+
 def process_str_glob(s, enc):
-    """ Receive str and encoding, then return the list
+    """Receive str and encoding, then return the list
     of str considering glob processing.
     Decode str into unicode and pass it to process_unicode_glob.
     When decode failed, return the result splitted per word.
@@ -76,12 +79,13 @@ def process_str_glob(s, enc):
         else:
             uni = s
     except UnicodeDecodeError, e:
-        return [x for x in rxGlob_L.findall(s)]
+        return rxGlob_L.findall(s)
     bigrams = process_unicode_glob(uni)
     return [x.encode(enc, "strict") for x in bigrams]
 
+
 def process_unicode(uni):
-    """ Receive unicode string, then return a list of unicode
+    """Receive unicode string, then return a list of unicode
     as bi-grammed result.
     """
     normalized = unicodedata.normalize('NFKC', uni)
@@ -94,15 +98,16 @@ def process_unicode(uni):
                 for x in bigram(sword, 0):
                     yield x
 
+
 def process_unicode_glob(uni):
-    """ Receive unicode string, then return a list of unicode
+    """Receive unicode string, then return a list of unicode
     as bi-grammed result.  Considering globbing.
     """
     normalized = unicodedata.normalize('NFKC', uni)
     for word in rxGlob_U.findall(normalized):
         swords = [g.group() for g in pattern_g.finditer(word)
                   if g.group() not in u"*?"]
-        for i,sword in enumerate(swords):
+        for i, sword in enumerate(swords):
             if not rx_all.match(sword[0]):
                 yield sword
             else:
@@ -121,7 +126,7 @@ def process_unicode_glob(uni):
 class Splitter(object):
 
     implements(ISplitter)
-    
+
     def process(self, lst):
         """ Will be called when indexing.
         Receive list of str, make it bi-grammed, then return
@@ -130,7 +135,7 @@ class Splitter(object):
         enc = getSiteEncoding(self)
         result = [x for s in lst for x in process_str(s, enc)]
         return result
-    
+
     def processGlob(self, lst):
         """ Will be called once when searching.
         Receive list of str, make it bi-grammed considering
@@ -180,4 +185,3 @@ try:
 except ValueError:
     # In case the normalizer is already registered, ValueError is raised
     pass
-

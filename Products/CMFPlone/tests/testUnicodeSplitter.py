@@ -238,29 +238,29 @@ class TestQuery(PloneTestCase.PloneTestCase):
 # adding UnicodeSplitterPatcth
 from Products.CMFPlone.UnicodeSplitter \
      import process_str, process_str_post, process_str_glob,\
-     process_unicode,process_unicode_glob
+     process_unicode, process_unicode_glob
 
 class TestBigramFunctions(PloneTestCase.PloneTestCase):
-    """  """
+
     def afterSetUp(self):
         pass
-            
+
     def test_process_str(self):
         lsts = [
             ("日本", ["日本", "本"]),
             ("日", ["日"]),
             ("日本語", ["日本", "本語", "語"]),
-            ("日本語python", ["日本", "本語","語","python"]),
+            ("日本語python", ["日本", "本語", "語", "python"]),
             ]
         for lst, rst in lsts:
             self.assertEqual(rst, process_str(lst, "utf8"))
-        
+
     def test_process_unicode(self):
         lsts = [
             (u"日本", [u"日本", u"本"]),
             (u"日", [u"日"]),
             (u"日本語", [u"日本", u"本語", u"語"]),
-            (u"日本語python", [u"日本", u"本語",u"語",u"python"]),
+            (u"日本語python", [u"日本", u"本語", u"語", u"python"]),
             ]
         for lst, rst in lsts:
             self.assertEqual(rst, list(process_unicode(lst)))
@@ -271,11 +271,11 @@ class TestBigramFunctions(PloneTestCase.PloneTestCase):
             ("日本", ["日本"]),
             ("日", ["日*"]),
             ("日本語", ["日本", "本語"]),
-            ("日本語python", ["日本", "本語","語","python"]),
+            ("日本語python", ["日本", "本語", "語", "python"]),
             ]
-        for lst, rst in lsts:            
+        for lst, rst in lsts:
             self.assertEqual(rst, process_str_glob(lst, enc))
-            for x,y in zip(rst, process_str_glob(lst, enc)):
+            for x, y in zip(rst, process_str_glob(lst, enc)):
                 self.assertEqual(x, y)
                 self.assertEqual(type(x), type(y))
 
@@ -285,7 +285,7 @@ class TestBigramFunctions(PloneTestCase.PloneTestCase):
             (u"日本", [u"日本"]),
             (u"日", [u"日*"]),
             (u"日本語", [u"日本", u"本語"]),
-            (u"日本語python", [u"日本", u"本語",u"語",u"python"]),
+            (u"日本語python", [u"日本", u"本語", u"語", u"python"]),
             ]
         for lst, rst in lsts:
             self.assertEqual(rst, list(process_unicode_glob(lst)))
@@ -303,18 +303,22 @@ class TestBigramFunctions(PloneTestCase.PloneTestCase):
             self.assertEqual(rst, process_str_post(lst, enc))
 
 class TestReplaceSplitter(PloneTestCase.PloneTestCase):
-    """ Install basic test """ 
+    """Install basic test
+    """
+
     def afterSetUp(self):
         pass
-    
+
     def test_adding_method(self):
         from Products.CMFPlone.UnicodeSplitter import Splitter
         self.failUnless(hasattr(Splitter, 'process_post_glob'))
 
 class TestSearchingJapanese(PloneTestCase.PloneTestCase):
-    """ Install Japanese test """ 
+    """Install Japanese test
+    """
+
     def afterSetUp(self):
-        self.setRoles(('Manager',))
+        self.setRoles(('Manager', ))
         self.portal.invokeFactory('Document', 'doc1')
         self.doc1 = getattr(self.portal, 'doc1')
         self.doc1.setTitle("Ploneは素晴らしい。")
