@@ -370,13 +370,13 @@
                         tal:attributes="selected python:selected == '' and 'selected' or ''">Relevance</option>
                 <option value="created" 
                         tal:attributes="selected python:selected == 'created' and 'selected' or ''"
-                        i18n:translate="">Creation Date (newest first)</option>
+                        i18n:translate="">Creation Date</option>
                 <option value="modified" 
                         tal:attributes="selected python:selected == 'modified' and 'selected' or ''"
-                        i18n:translate="">Modification Date (newest first)</option>
+                        i18n:translate="">Modification Date</option>
                 <option value="sortable_title" 
                         tal:attributes="selected python:selected == 'sortable_title' and 'selected' or ''"
-                        i18n:translate="">Titles (alphabetically)</option>
+                        i18n:translate="">Title</option>
               </select>
               
             </div>
