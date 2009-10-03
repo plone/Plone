@@ -110,7 +110,7 @@
             </div>
     
 
-            <h2>More search options</h2>
+            <h2 i18n:translate="">More search options</h2>
 
 
             <div class="field collapsible"
@@ -362,7 +362,7 @@
                 </div>
             </div>
 
-            <h2>Display options</h2>
+            <h2 i18n:translate="">Display options</h2>
 
             <div class="field"
                  tal:condition="options/show_sort_on">
