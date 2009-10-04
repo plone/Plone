@@ -176,7 +176,7 @@
                         below.
                     </p>
 
-                    <form name="feedback_form"
+                    <form id="feedback_form"
                           action=""
                           method="post"
                           tal:attributes="action string:$here_url/$template_id">
@@ -234,12 +234,12 @@
 
                     </div>
 
-                    </fieldset>
-
                     <input type="hidden" name="author" value="" tal:attributes="value author" />
                     <input type="hidden" name="referer" value="" 
                       tal:attributes="value python:request.get('referer', request.get('HTTP_REFERER', 'unknown url') )" />
                     <input type="hidden" name="form.submitted" value="1" />
+
+                    </fieldset>
 
                     </form>
                 </tal:owner>

@@ -31,7 +31,7 @@
                  show_about python:not isAnon or site_properties.allowAnonymousViewAbout">
 
 
-    <form name="searchresults" action="" method="post" tal:condition="results"
+    <form id="searchresults" action="" method="post" tal:condition="results"
                       tal:define="batch python:Batch(results, 15, int(b_start), orphan=1)">
 
         <metal:block tal:repeat="result batch">
