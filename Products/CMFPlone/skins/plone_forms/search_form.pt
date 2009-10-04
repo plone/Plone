@@ -472,7 +472,7 @@ jQuery.fn.do_search_collapse = function()
 		{
 		    var container = jq(this).parent();
 		    target = container.find('.collapse:first');
-		    target.toggle('normal');
+		    target.slideToggle('normal');
 		    jq(this).toggleClass('expanded');
 		    jq(this).toggleClass('collapsed');
 		});
