@@ -30,9 +30,10 @@
                  searchterm request/SearchableText|nothing;
                  use_view_action site_properties/typesUseViewActionInListings|python:();">
 
-    <form name="searchform" 
+    <form id="searchform" 
           action="search"
           class="searchPage">
+        <div>
         <input class="searchPage"
                name="SearchableText"
                type="text"
@@ -45,6 +46,7 @@
                type="submit"
                value="Search"
                i18n:attributes="value label_search;"/>
+        </div>
 
         <p class="discreet"
            i18n:translate="search_results_advanced">

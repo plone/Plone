@@ -27,7 +27,6 @@
     <form action="search"
           class="enableAutoFocus"
           method="get"
-          name="search"
           id="searchform"
           tal:define="DateTime python:modules['DateTime'].DateTime">
 
@@ -64,7 +63,10 @@
                        />
             </div>
 
-            <div class="field">
+            <div class="field"
+                 tal:define="contentSubjects here/Subject;
+                             usedSubjects python:here.portal_catalog.uniqueValuesFor('Subject');"
+		         tal:condition="usedSubjects">
                 <label for="Subject" i18n:translate="label_categories">Categories</label>
 
                 <div class="formHelp" i18n:translate="help_search_categories">
@@ -78,8 +80,6 @@
                         id="Subject"
                         size="7"
                         multiple="multiple"
-                        tal:define="contentSubjects here/Subject;
-                                    usedSubjects python:here.portal_catalog.uniqueValuesFor('Subject');"
                         >
                     <option value="#"
                             tal:repeat="subject usedSubjects"
@@ -200,8 +200,7 @@
                 </div>
             </div>
 
-            <div class="visualClear" id="clear-space-before-author"><!-- --></div>
-            <br />
+            <div class="visualClear" id="clear-space-before-author">&nbsp;</div>
 
             <div class="field">
                 <label for="Creator" i18n:translate="label_author">Author</label>
@@ -227,7 +226,7 @@
     
             <div class="field">
     
-                <label for="review_state" i18n:translate="label_review_status">Review status</label>
+                <label i18n:translate="label_review_status">Review status</label>
 
                 <div class="formHelp" i18n:translate="help_search_review_status">
                 You may search for items based on their
