@@ -8,6 +8,12 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Stop pretending to use GenericSetup's content import. As a last item we now
+  create the translated front-page purely in imperative code. As a bonus we
+  moved the body text of the front-page to a page template, so i18ndude can
+  automatically extract it.
+  [hannosch]
+
 - Create and configure `Members` folder purely in setupPortalContent.
   [hannosch]
 

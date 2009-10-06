@@ -96,7 +96,6 @@
       handler="Products.CMFPlone.setuphandlers.importContent"
       title="Plone Content Import"
       description="Plone content import.">
-   <depends name="content" />
    <depends name="plone-final" />
   </genericsetup:importStep>
 

@@ -161,11 +161,13 @@ class TestBaseNavTree(PloneTestCase.PloneTestCase):
         self.folder._setObject('ns_folder', f)
         self.portal.portal_catalog.reindexObject(self.folder.ns_folder)
         self.portal.portal_catalog.reindexObject(self.folder)
+        ntp=self.portal.portal_properties.navtree_properties
+        ntp.manage_changeProperties(root='/Members/test_user_1_')
         view = self.view_class(self.folder.ns_folder, self.request)
         tree = view.navigationTree()
-        self.assertEqual(tree['children'][0]['children'][0]['children'][0]['item'].getPath(),
+        self.assertEqual(tree['children'][0]['item'].getPath(),
                                 '/plone/Members/test_user_1_/ns_folder')
-        self.assertEqual(len(tree['children'][0]['children'][0]['children'][0]['children']), 0)
+        self.assertEqual(len(tree['children'][0]['children']), 0)
 
     def testTopLevel(self):
         ntp=self.portal.portal_properties.navtree_properties

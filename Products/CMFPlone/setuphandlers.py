@@ -5,6 +5,7 @@ CMFPlone setup handlers.
 from borg.localrole.utils import replace_local_role_manager
 from five.localsitemanager import make_objectmanager_site
 from plone.i18n.normalizer.interfaces import IURLNormalizer
+from zope.component import queryMultiAdapter
 from zope.component import queryUtility
 from zope.event import notify
 from zope.i18n.interfaces import ITranslationDomain
@@ -17,6 +18,7 @@ from zope.site.hooks import setSite
 from Acquisition import aq_base, aq_get
 from Products.CMFCore.utils import getToolByName
 from Products.ATContentTypes.lib import constraintypes
+from Products.CMFDefault.utils import bodyfinder
 from Products.CMFQuickInstallerTool.interfaces import INonInstallable
 from Products.StandardCacheManagers.AcceleratedHTTPCacheManager import \
      AcceleratedHTTPCacheManager
@@ -196,17 +198,16 @@ class PloneGenerator:
             if normalizer is not None:
                 sheet.visible_ids = False
 
-        # Special handling of the front-page, as we want to translate it
-        if 'front-page' in existing:
+        # The front-page
+        if 'front-page' not in existing:
+            front_title = u'Welcome to Plone'
+            front_desc = u'Congratulations! You have successfully installed Plone.'
+            front_text = None
+            _createObjectByType('Document', p, id='front-page',
+                                title=front_title, description=front_desc)
             fp = p['front-page']
             if wftool.getInfoFor(fp, 'review_state') != 'published':
                 wftool.doActionFor(fp, 'publish')
-
-            # Show off presentation mode
-            fp.setPresentation(True)
-
-            # Mark as fully created
-            fp.unmarkCreationFlag()
 
             if target_language is not None:
                 util = queryUtility(ITranslationDomain, 'plonefrontpage')
@@ -217,13 +218,30 @@ class PloneGenerator:
                     front_desc = util.translate(u'front-description',
                                        target_language=target_language,
                                        default="Congratulations! You have successfully installed Plone.")
-                    front_text = util.translate(u'front-text',
+                    translated_text = util.translate(u'front-text',
                                        target_language=target_language)
                     fp.setLanguage(language)
-                    fp.setTitle(front_title)
-                    fp.setDescription(front_desc)
-                    if front_text != u'front-text':
-                        fp.setText(front_text)
+                    if translated_text != u'front-text':
+                        front_text = translated_text
+
+            if front_text is None and request is not None:
+                view = queryMultiAdapter((p, request),
+                    name='plone_frontpage_setup')
+                if view is not None:
+                    front_text = bodyfinder(view.index()).strip()
+
+            fp.setTitle(front_title)
+            fp.setDescription(front_desc)
+            fp.setText(front_text, mimetype='text/html')
+
+            # Show off presentation mode
+            fp.setPresentation(True)
+
+            # Mark as fully created
+            fp.unmarkCreationFlag()
+
+            p.setDefaultPage('front-page')
+            fp.reindexObject()
 
         # News topic
         if 'news' not in existing:

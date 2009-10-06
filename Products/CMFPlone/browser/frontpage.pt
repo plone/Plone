@@ -1,23 +1,12 @@
-id: front-page
-title: Welcome to Plone
-excludeFromNav: False
-subject: 
-description: Congratulations! You have successfully installed Plone.
-contributors: 
-effectiveDate: None
-expirationDate: None
-language: 
-rights: 
-creation_date: 2007/08/18 19:28:30 US/Central
-modification_date: 2007/08/18 19:28:30 US/Central
-relatedItems: 
-allowDiscussion: None
-Content-Type: text/html
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      i18n:domain="plonefrontpage">
 
-<p class="discreet">
+<body i18n:translate="front-text"><p class="discreet">
 If you're seeing this instead of the web site you were expecting, the owner of
-this web site has just installed Plone. Do not contact the Plone Team 
-or the Plone mailing lists about this.
+this web site has just installed Plone. Do not contact the Plone Team or the
+Plone mailing lists about this.
 </p>
 
 <h2>Get started</h2>
@@ -138,4 +127,5 @@ individuals and hundreds of companies. The Plone Foundation:
 <p>
 &mdash;
 <a class="link-plain" href="http://plone.org/about/team" target="_blank">The Plone Team</a>
-</p>
+</p></body>
+</html>
