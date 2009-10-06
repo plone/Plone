@@ -521,7 +521,6 @@ def importContent(context):
     # Only run step if a flag file is present
     if context.readDataFile('plone-content.txt') is None:
         return
-    out = []
     site = context.getSite()
     gen = PloneGenerator()
     gen.setupPortalContent(site)
@@ -532,6 +531,9 @@ def updateWorkflowRoleMappings(context):
     workflows, this import handler will make sure object security works
     properly.
     """
+    # Only run step if a flag file is present
+    if context.readDataFile('plone-update-workflow-rolemap.txt') is None:
+        return
     site = context.getSite()
     portal_workflow = getToolByName(site, 'portal_workflow')
     portal_workflow.updateRoleMappings()
