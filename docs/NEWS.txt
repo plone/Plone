@@ -8,6 +8,9 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Create and configure `Members` folder purely in setupPortalContent.
+  [hannosch]
+
 - Converted import and export steps XML files to use ZCML registrations.
   [hannosch]
 

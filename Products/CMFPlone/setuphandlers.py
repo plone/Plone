@@ -127,12 +127,11 @@ class PloneGenerator:
             reg.ZCacheable_setManagerId(ram_cache_id)
             reg.ZCacheable_setEnabled(1)
 
-    # XXX: This should all be done by custom setuphandlers
     def setupPortalContent(self, p):
         """
         Import default plone content
         """
-        existing = p.objectIds()
+        existing = p.keys()
 
         wftool = getToolByName(p, "portal_workflow")
 
@@ -357,10 +356,14 @@ class PloneGenerator:
             if wftool.getInfoFor(topic, 'review_state') != 'published':
                 wftool.doActionFor(topic, 'publish')
 
-        if 'Members' in existing:
-            # configure Members folder (already added by the content import)
-            members_title = 'Users'
-            members_desc = "Container for users' home directories"
+        # configure Members folder
+        members_title = 'Users'
+        members_desc = "Container for users' home directories"
+        if 'Members' not in existing:
+            _createObjectByType('Large Plone Folder', p, id='Members',
+                                title=members_title, description=members_desc)
+
+        if 'Members' in p.keys():
             if target_language is not None:
                 util = queryUtility(ITranslationDomain, 'plonefrontpage')
                 if util is not None:
