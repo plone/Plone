@@ -8,6 +8,10 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Extend the language specific default configuration to set a reasonable first
+  day of week on the calendar tool.
+  [hannosch]
+
 - Stop pretending to use GenericSetup's content import. As a last item we now
   create the translated front-page purely in imperative code. As a bonus we
   moved the body text of the front-page to a page template, so i18ndude can
