@@ -135,13 +135,11 @@
   <property name="mark_special_links" type="string">false</property>
   <property name="redirect_links" type="boolean">True</property>
   <property name="join_form_fields" type="lines">
-    <element value="username"/>
     <element value="fullname"/>
-    <element value="password"/>
+    <element value="username"/>
     <element value="email"/>
+    <element value="password"/>
     <element value="mail_me"/>
-    <element value="home_page"/>
-    <element value="location"/>
   </property>
  </object>
 </object>
