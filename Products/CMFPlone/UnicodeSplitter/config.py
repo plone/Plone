@@ -2,8 +2,7 @@
 """
 config.py
 
-Created by Manabu Terada on 2009-08-08.
-Copyright (c) 2009 CMScom. All rights reserved.
+Created by Manabu Terada, CMScom on 2009-08-08.
 """
 import re
 
