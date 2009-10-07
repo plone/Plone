@@ -9,5 +9,6 @@ moved to (much faster) Python code in CMFPlone/browser/ploneview.py
       tal:define="
         global plone_view context/@@plone;
         global view nocall:view | nocall:plone_view;
+        econtext rcontext | econtext;
         foo plone_view/globalize;
         " />
