@@ -35,10 +35,10 @@ class TestBrowserLayerPrecedence(PloneTestCase.FunctionalTestCase):
 
     def testThemeSpecificLayerTakesHighestPrecedence(self):
         gsm = getGlobalSiteManager()
-        gsm.registerUtility(IThemeSpecific, IBrowserSkinType, 'Plone Default')
+        gsm.registerUtility(IThemeSpecific, IBrowserSkinType, 'Sunburst Theme')
         register_layer(IAdditiveLayer, 'Plone.testlayer')
         iro = self._get_request_interfaces()
-        gsm.unregisterUtility(IThemeSpecific, IBrowserSkinType, 'Plone Default')
+        gsm.unregisterUtility(IThemeSpecific, IBrowserSkinType, 'Sunburst Theme')
         unregister_layer('Plone.testlayer')
         
         self.failUnless(iro.index(IThemeSpecific) < iro.index(IAdditiveLayer),
