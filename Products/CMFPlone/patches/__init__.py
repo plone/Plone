@@ -1,4 +1,4 @@
-import addplonesitebutton       # Add an explicit button to add a new Plone
+import addzmiplonesite          # Add an explicit link to add a new Plone
                                 # site to the ZMI for faster access
 
 import addzmisecuritywarning    # Add a warning to the ZMI security tab

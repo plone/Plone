@@ -8,7 +8,12 @@ Changelog
 4.0 - Unreleased
 ----------------
 
-- Add jQueryTools integration, using plone.app.jquerytools. [smcmahon]
+- Turned the new add Plone site button in the ZMI into a link. This allows us
+  to get out of the frameset to the top.
+  [hannosch]
+
+- Add jQueryTools integration, using plone.app.jquerytools.
+  [smcmahon]
 
 - Updated our add site ZMI screen.
   [hannosch]

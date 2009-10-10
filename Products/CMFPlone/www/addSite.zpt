@@ -61,7 +61,7 @@
 </head>
 <body>
 
-  <h1 i18n:translate="">Add a new Plone site</h1>
+  <h1 i18n:translate="">Add Plone site</h1>
 
   <form action="addPloneSite" method="post">
 
