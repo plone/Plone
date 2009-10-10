@@ -26,7 +26,7 @@ class TestDAVProperties(PloneTestCase.PloneTestCase):
         default = psets['webdav']
         items = dict(default.propertyItems())
         self.failUnless('displayname' in items.keys())
-        self.assertEquals(items['displayname'], self.portal.title)
+        self.assertEquals(items['displayname'], ptool.title)
 
 
 class TestDAVMetadata(PloneTestCase.FunctionalTestCase):
