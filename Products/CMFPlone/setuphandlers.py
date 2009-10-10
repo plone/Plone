@@ -85,6 +85,7 @@ class PloneGenerator:
         qi.installProduct('kupu', locked=0, forceProfile=True)
         qi.installProduct('CMFEditions', locked=0, forceProfile=True)
         qi.installProduct('PloneLanguageTool', locked=1, hidden=1, forceProfile=True)
+        qi.installProduct('archetypes.referencebrowserwidget', locked=1, hidden=1, forceProfile=True)
 
     def installDependencies(self, p):
         st=getToolByName(p, "portal_setup")

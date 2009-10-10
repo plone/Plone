@@ -42,6 +42,9 @@
   <include package="plone.app.kss" />
   <include package="archetypes.kss" />
 
+  <!-- referencebrowser -->
+  <include package="archetypes.referencebrowserwidget" />
+
   <!-- wicked -->
   <include package="wicked.plone" file="selective-atct.zcml" />
   
