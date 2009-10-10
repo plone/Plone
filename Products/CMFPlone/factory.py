@@ -37,6 +37,7 @@ class HiddenProfiles(object):
                 u'Products.PortalTransforms:PortalTransforms',
                 u'Products.PloneLanguageTool:PloneLanguageTool',
                 u'Products.PlonePAS:PlonePAS',
+                u'archetypes.referencebrowserwidget:default',
                 u'borg.localrole:default',
                 u'kupu:default',
                 u'plone.browserlayer:default',
