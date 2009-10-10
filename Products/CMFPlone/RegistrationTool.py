@@ -39,6 +39,38 @@ def getValidPasswordChars():
 
 password_chars = getValidPasswordChars()
 
+
+def get_member_by_login_name(context, login_name, raise_exceptions=True):
+    """Get a member by his login name.
+
+    If a member with this login_name as userid exists, we happily
+    return that member.
+
+    If raise_exceptions is False, we silently return None.
+    """
+    membership = getToolByName(context, 'portal_membership')
+    # First the easy case: it may be a userid after all.
+    member = membership.getMemberById(login_name)
+
+    if member is not None:
+        return member
+
+    # Try to find this user via the login name.
+    acl = getToolByName(context, 'acl_users')
+    userids = [user.get('userid') for user in
+               acl.searchUsers(login=login_name, exact_match=True)
+               if user.get('userid')]
+    if len(userids) == 1:
+        userid = userids[0]
+        member = membership.getMemberById(userid)
+    elif len(userids) > 1:
+        if raise_exceptions:
+            raise ValueError(
+                'Multiple users found with the same login name.')
+    if member is None and raise_exceptions:
+        raise ValueError('The username you entered could not be found')
+    return member
+
 # seed the random number generator
 random.seed()
 
@@ -51,6 +83,8 @@ class RegistrationTool(PloneBaseTool, BaseTool):
     plone_tool = 1
     md5key = None
     _v_md5base = None
+    default_member_id_pattern = r'^\w[\w\.\-@]+\w$'
+    _ALLOWED_MEMBER_ID_PATTERN = re.compile(default_member_id_pattern)
 
     def __init__(self):
         if hasattr(BaseTool, '__init__'):
@@ -168,6 +202,13 @@ class RegistrationTool(PloneBaseTool, BaseTool):
             results = pas.searchPrincipals(id=id, exact_match=True)
             if results:
                 return 0
+            # When email address are used as logins, we need to check
+            # if there are any users with the requested login.
+            props = getToolByName(self, 'portal_properties').site_properties
+            if props.use_email_as_login:
+                results = pas.searchUsers(login=id, exact_match=True)
+                if results:
+                    return 0
         else:
             membership = getToolByName(self, 'portal_membership')
             if membership.getMemberById(id) is not None:
@@ -199,10 +240,21 @@ class RegistrationTool(PloneBaseTool, BaseTool):
             raise Unauthorized, "Mailing forgotten passwords has been disabled"
 
         utils = getToolByName(self, 'plone_utils')
-        member = membership.getMemberById(forgotten_userid)
+        props = getToolByName(self, 'portal_properties').site_properties
+        emaillogin = props.getProperty('use_email_as_login', False)
+        if emaillogin:
+            member = get_member_by_login_name(self, forgotten_userid)
+        else:
+            member = membership.getMemberById(forgotten_userid)
 
         if member is None:
             raise ValueError, 'The username you entered could not be found'
+
+        if emaillogin:
+            # We use the member id as new forgotten_userid, because in
+            # resetPassword we ask for the real member id too, instead of
+            # the login name.
+            forgotten_userid = member.getId()
 
         # assert that we can actually get an email address, otherwise
         # the template will be made with a blank To:, this is bad
@@ -321,4 +373,3 @@ def _checkEmail( address ):
         if matched != expected:
             return False, message
     return True, ''
-

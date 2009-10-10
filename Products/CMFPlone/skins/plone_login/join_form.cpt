@@ -22,6 +22,7 @@
                  site_properties context/portal_properties/site_properties;
                  allowEnterPassword not:context/portal_url/getPortalObject/validate_email|nothing;
                  mailpw site_properties/validate_email;
+                 use_email_as_login site_properties/use_email_as_login|nothing;
                  mailconfigured python:allowEnterPassword or (mailhost and mailfrom)">
 
   <h1 class="documentFirstHeading"
@@ -78,6 +79,7 @@
       <div class="field"
            tal:define="error errors/username| nothing;
                        username request/username | nothing;"
+           tal:condition="not:use_email_as_login"
            tal:attributes="class python:test(error, 'field error', 'field')">
 
         <label for="username"
@@ -108,7 +110,7 @@
       </div>
 
       <div class="field"
-           tal:define="error errors/email | nothing;
+           tal:define="error python:errors.get('email') or (use_email_as_login and errors.get('username') or '');
                        email request/email | nothing;"
            tal:attributes="class python:test(error, 'field error', 'field')">
 
@@ -119,9 +121,17 @@
               i18n:attributes="title title_required;"
               i18n:translate="label_required">(Required)</span>
 
-              <div class="formHelp" i18n:translate="help_email_creation">
+              <div class="formHelp" i18n:translate="help_email_creation"
+                tal:condition="not:use_email_as_login">
                 Enter an email address. This is necessary in case the password
                 is lost. We respect your privacy, and will not give the address
+                away to any third parties or expose it anywhere.
+              </div>
+
+              <div class="formHelp" i18n:translate="help_email_creation_for_login"
+                tal:condition="use_email_as_login">
+                Enter an email address. This will be your login name.
+                We respect your privacy, and will not give the address
                 away to any third parties or expose it anywhere.
               </div>
 

@@ -8,6 +8,11 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Allow email addresses as login name, with a switch on the security
+  panel.  This is plip 9214:
+  Refs http://dev.plone.org/plone/ticket/9214
+  [maurits]
+
 - Extend the language specific default configuration to set a reasonable first
   day of week on the calendar tool.
   [hannosch]

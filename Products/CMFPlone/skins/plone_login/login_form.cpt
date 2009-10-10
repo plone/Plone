@@ -48,6 +48,8 @@
 
 <metal:login define-macro="login"
     tal:define="checkPermission nocall: context/portal_membership/checkPermission;
+                site_properties context/portal_properties/site_properties;
+                use_email_as_login site_properties/use_email_as_login|nothing;
                 ztu modules/ZTUtils;">
 <form tal:attributes="action python:context.absolute_url()+'/'+template.id"
       class="enableAutoFocus"
@@ -75,7 +77,12 @@
              tal:attributes="class python:test(error, 'field error', 'field')">
 
             <label i18n:translate="label_login_name"
+                   tal:condition="not:use_email_as_login"
                    tal:attributes="for ac_name">Login Name</label>
+
+            <label i18n:translate="label_email"
+                   tal:condition="use_email_as_login"
+                   tal:attributes="for ac_name">E-mail</label>
 
             <div tal:condition="error"
                  tal:content="error">Validation error output</div>
@@ -117,12 +124,23 @@
                                    checked python:request.get(ac_name, '') and 'checked' or None;"
                    />
 
+            <tal:username tal:condition="not:use_email_as_login">
             <label for="cb_remember" i18n:translate="label_remember_my_name">Remember my name.</label>
 
             <div i18n:translate="help_remember_my_name"
                  class="formHelp">
                 Check this to have your user name filled in automatically when you log in later.
             </div>
+            </tal:username>
+
+            <tal:email tal:condition="use_email_as_login">
+            <label for="cb_remember" i18n:translate="label_remember_my_email">Remember my email address.</label>
+
+            <div i18n:translate="help_remember_my_email"
+                 class="formHelp">
+                Check this to have your email address filled in automatically when you log in later.
+            </div>
+            </tal:email>
 
         </div>
 
