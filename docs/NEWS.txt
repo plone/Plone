@@ -8,6 +8,10 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Removed the zserverPatch. There's not many people running ZServer as the
+  front-end web server anymore, so this isn't particular useful.
+  [hannosch]
+
 - Fixed the default portlet blacklisting for the `Members` folder.
   [hannosch]
 

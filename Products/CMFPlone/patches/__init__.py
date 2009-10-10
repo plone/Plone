@@ -1,6 +1,3 @@
-import zserverPatch             # Identify Plone in HTTP Headers - netcraft
-                                # here we come!
-
 import addplonesitebutton       # Add an explicit button to add a new Plone
                                 # site to the ZMI for faster access
 
