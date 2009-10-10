@@ -8,7 +8,8 @@ Changelog
 4.0 - Unreleased
 ----------------
 
-- Default to plonetheme.sunburst for new sites. (esteele)
+- Default to plonetheme.sunburst for new sites.
+  [esteele]
 
 - Allow email addresses as login name, with a switch on the security
   panel.  This is plip 9214:
