@@ -8,6 +8,10 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Removed the `plone-archetypes` import step. This is handled via a normal
+  GenericSetup dependency in metadata.xml.
+  [hannosch]
+
 - Merged the `plone_various` import step into the `plone-final` step and
   install more packages directly by their profiles.
   [hannosch]

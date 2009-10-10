@@ -53,7 +53,6 @@
       title="KSS setup / mimetype"
       description="KSS (Kinetic Style Sheet) setup. Register kss mimetype."
       handler="plone.app.kss.exportimport.setup.setupMimetype">
-    <depends name="plone-archetypes"/>
     <depends name="mimetypes-registry-various"/>
   </genericsetup:importStep>
 
@@ -80,14 +79,6 @@
       handler="Products.CMFPlone.exportimport.memberdata_properties.importMemberDataProperties"
       title="MemberData Properties"
       description="Import MemberData properties.">
-   <depends name="componentregistry" />
-  </genericsetup:importStep>
-
-  <genericsetup:importStep
-      name="plone-archetypes"
-      handler="Products.CMFPlone.setuphandlers.importArchetypes"
-      title="Plone Archetypes Import"
-      description="Plone Archetypes import.">
    <depends name="componentregistry" />
   </genericsetup:importStep>
 

@@ -72,15 +72,6 @@ class HiddenProducts(object):
 
 class PloneGenerator:
 
-    def installArchetypes(self, p):
-        """QuickInstaller install of Archetypes and required dependencies."""
-        qi = getToolByName(p, "portal_quickinstaller")
-        qi.installProduct('CMFFormController', locked=1, hidden=1, forceProfile=True)
-        qi.installProduct('MimetypesRegistry', locked=1, hidden=1, forceProfile=True)
-        qi.installProduct('PortalTransforms', locked=1, hidden=1, forceProfile=True)
-        qi.installProduct('Archetypes', locked=1, hidden=1,
-            profile=u'Products.Archetypes:Archetypes')
-
     def installDependencies(self, p):
         st=getToolByName(p, "portal_setup")
         st.runAllImportStepsFromProfile("profile-Products.CMFPlone:dependencies")
@@ -431,9 +422,9 @@ class PloneGenerator:
                 assignable.setBlacklistStatus('content_type', True)
 
 
-    def performMigrationActions(self, portal):
+    def setProfileVersion(self, portal):
         """
-        Perform any necessary migration steps.
+        Set profile version.
         """
         mt = queryUtility(IMigrationTool)
         mt.setInstanceVersion(mt.getFileSystemVersion())
@@ -509,17 +500,6 @@ def importSite(context):
     gen.enableSite(site)
     setSite(site)
 
-def importArchetypes(context):
-    """
-    Install Archetypes and it's dependencies.
-    """
-    # Only run step if a flag file is present (e.g. not an extension profile)
-    if context.readDataFile('plone_archetypes.txt') is None:
-        return
-    site = context.getSite()
-    gen = PloneGenerator()
-    gen.installArchetypes(site)
-
 def importFinalSteps(context):
     """
     Final Plone import steps.
@@ -532,11 +512,11 @@ def importFinalSteps(context):
     pprop = getToolByName(site, 'portal_properties')
     pmembership = getToolByName(site, 'portal_membership')
     gen = PloneGenerator()
-    gen.performMigrationActions(site)
+    gen.setProfileVersion(site)
     gen.enableSyndication(site, out)
-    gen.assignTitles(site, out)
     pmembership.memberareaCreationFlag = False
     gen.installDependencies(site)
+    gen.assignTitles(site, out)
     replace_local_role_manager(site)
     gen.addCacheHandlers(site)
     gen.addCacheForResourceRegistry(site)

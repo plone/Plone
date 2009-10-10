@@ -6,6 +6,7 @@
     <dependency>profile-kupu:default</dependency>
     <dependency>profile-Products.PlonePAS:PlonePAS</dependency>
     <dependency>profile-Products.PloneLanguageTool:PloneLanguageTool</dependency>
+    <dependency>profile-Products.Archetypes:Archetypes</dependency>
     <dependency>profile-Products.CMFEditions:CMFEditions</dependency>
     <dependency>profile-archetypes.referencebrowserwidget:default</dependency>
     <dependency>profile-plone.portlet.static:default</dependency>
