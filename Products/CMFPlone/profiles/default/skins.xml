@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <object name="portal_skins" meta_type="Plone Skins Tool" allow_any="False"
-   cookie_persistence="False" default_skin="Plone Default"
-   request_varname="plone_skin">
+   cookie_persistence="False" request_varname="plone_skin">
  <object name="ATContentTypes" meta_type="Filesystem Directory View"
     directory="Products.ATContentTypes:skins/ATContentTypes"/>
  <object name="ATReferenceBrowserWidget" meta_type="Filesystem Directory View"
