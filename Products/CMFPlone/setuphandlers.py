@@ -14,7 +14,7 @@ from zope.i18n.interfaces import IUserPreferredLanguages
 from zope.i18n.locales import locales, LoadLocaleError
 from zope.interface import implements
 
-from Acquisition import aq_base, aq_get
+from Acquisition import aq_base
 from Products.CMFCore.utils import getToolByName
 from Products.ATContentTypes.lib import constraintypes
 from Products.CMFDefault.utils import bodyfinder
@@ -470,11 +470,10 @@ def assignTitles(portal):
      'translation_service':'Provides access to the translation machinery',
      'uid_catalog':'Catalog of unique content identifiers',
      }
-
-    for oid in portal.keys():
-        title=titles.get(oid, None)
+    for oid, obj in portal.items():
+        title = titles.get(oid, None)
         if title:
-            setattr(aq_get(portal, oid), 'title', title)
+            setattr(aq_base(obj), 'title', title)
 
 def importFinalSteps(context):
     """
