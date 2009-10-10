@@ -8,6 +8,8 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Add jQueryTools integration, using plone.app.jquerytools. [smcmahon]
+
 - Updated our add site ZMI screen.
   [hannosch]
 
