@@ -8,6 +8,22 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Hide the TinyMCE profiles hidden from the Plone site add form.
+ [robgietema]
+
+ Added 'Use site default' to the wysiwyg_editor field in the Personal
+ Preferences view.
+ [robgietema]
+
+ Set default value of wysiwyg_editor to blank (use site default).
+ [robgietema]
+
+ Added default editor property to the site properties.
+ [robgietema]
+
+ Added TinyMCE and set TinyMCE as default visual editor.
+ [robgietema]
+
 - Removed getProductInfo method from the migration tool. It wasn't used
   anymore and depended on the persistent product registry.
   [hannosch]

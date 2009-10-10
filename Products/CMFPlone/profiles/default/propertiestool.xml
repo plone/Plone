@@ -53,7 +53,9 @@
   <property name="available_editors" type="lines">
    <element value="None"/>
    <element value="Kupu"/>
+   <element value="TinyMCE"/>
   </property>
+  <property name="default_editor" type="string">TinyMCE</property>
   <property name="allowRolesToAddKeywords" type="lines">
    <element value="Manager"/>
    <element value="Reviewer"/>

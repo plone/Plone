@@ -51,6 +51,7 @@ class HiddenProducts(object):
             'kupu', 'Products.kupu',
             'PloneLanguageTool', 'Products.PloneLanguageTool',
             'Kupu', 'Products.Kupu',
+            'TinyMCE', 'Products.TinyMCE',
             'CMFFormController', 'Products.CMFFormController',
             'MimetypesRegistry', 'Products.MimetypesRegistry',
             'PortalTransforms', 'Products.PortalTransforms',

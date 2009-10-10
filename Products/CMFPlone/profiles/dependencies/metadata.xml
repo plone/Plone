@@ -11,5 +11,6 @@
     <dependency>profile-archetypes.referencebrowserwidget:default</dependency>
     <dependency>profile-plone.portlet.static:default</dependency>
     <dependency>profile-plone.portlet.collection:default</dependency>
+    <dependency>profile-Products.TinyMCE:TinyMCE</dependency>
   </dependencies>
 </metadata>

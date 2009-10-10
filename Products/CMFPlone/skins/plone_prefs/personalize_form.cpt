@@ -255,6 +255,11 @@
                             <select name="wysiwyg_editor"
                                     id="wysiwyg_editor"
                                     tal:attributes="disabled python:member.canWriteProperty('wysiwyg_editor') and default or 'disabled'">
+                                <option value="" 
+                                        tal:attributes="selected python:test(wysiwyg_editor=='', 'selected', None);" 
+                                        i18n:translate="label_default_content_editor"> 
+                                Use site default 
+                                </option> 
                                 <tal:block tal:repeat="editor site_properties/available_editors">
                                 <option tal:condition="python:editor != 'None'"
                                         value="None"
