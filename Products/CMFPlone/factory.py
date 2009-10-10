@@ -90,20 +90,19 @@ def addPloneSiteForm(dispatcher):
                    extension_profiles=tuple(extension_profiles),
                    default_profile=_DEFAULT_PROFILE)
 
-def addPloneSite(dispatcher, id, title='', description='',
-                 create_userfolder=1, email_from_address='',
-                 email_from_name='', validate_email=0,
+def addPloneSite(dispatcher, site_id, title='', description='',
+                 create_userfolder=True, email_from_address='',
+                 email_from_name='', validate_email=False,
                  profile_id=_DEFAULT_PROFILE, snapshot=False,
                  RESPONSE=None, extension_ids=(),
                  setup_content=True):
     """ Add a PloneSite to 'dispatcher', configured according to 'profile_id'.
     """
-    site = PloneSite(id)
-    dispatcher._setObject(id, site)
-    site = dispatcher._getOb(id)
+    dispatcher._setObject(site_id, PloneSite(site_id))
+    site = dispatcher._getOb(site_id)
 
-    site._setObject(_TOOL_ID, SetupTool(_TOOL_ID))
-    setup_tool = getattr(site, _TOOL_ID)
+    site[_TOOL_ID] = SetupTool(_TOOL_ID)
+    setup_tool = site[_TOOL_ID]
 
     notify(SiteManagerCreatedEvent(site))
     setSite(site)
@@ -114,6 +113,10 @@ def addPloneSite(dispatcher, id, title='', description='',
         setup_tool.runAllImportStepsFromProfile('profile-%s' % _CONTENT_PROFILE)
     for extension_id in extension_ids:
         setup_tool.runAllImportStepsFromProfile('profile-%s' % extension_id)
+
+    # Try to make the title work with Unicode
+    if isinstance(title, str):
+        title = unicode(title, 'utf-8', 'ignore')
 
     props = {}
     prop_keys = ['title', 'description', 'email_from_address',
@@ -129,5 +132,4 @@ def addPloneSite(dispatcher, id, title='', description='',
         setup_tool.createSnapshot('initial_configuration')
 
     if RESPONSE is not None:
-        RESPONSE.redirect('%s/manage_main?update_menu=1'
-                         % dispatcher.absolute_url())
+        RESPONSE.redirect(site.absolute_url())

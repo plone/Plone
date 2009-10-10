@@ -1,101 +1,154 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
-<html>
-<head>
-<meta http-equiv="content-type" content="text/html;charset=utf-8"
-      tal:define="charset context/management_page_charset | string:utf-8;"
-      tal:attributes="content string:text/html;;charset=$charset;"/>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      i18n:domain="plone">
 
-<title>Zope</title>
-<link rel="stylesheet" type="text/css" href="/manage_page_style.css" />
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+
+  <title i18n:translate="">Add a new Plone site</title>
+
+  <style type="text/css" media="screen">
+    body {
+      font: 80% Arial, FreeSans, sans-serif;
+      line-height: 1.5em;
+      clear: both;
+    }
+    h1 {
+      font-family: "Helvetica Neue", Arial, FreeSans, sans-serif; 
+      margin-top: 0.5em;
+    }
+    dt {
+      font-weight: bold;
+    }
+    dd {
+      margin: 0 0 1em 1em;
+    }
+    input {
+      font-size: 150%;
+      width: inherit;
+    }
+    input[type="text"]:focus {
+      background-color: #ffffe0;
+    }
+    label {
+      font-weight: bold;
+    }
+    .field {
+      clear: both;
+      margin-top: 1em;
+    }
+    .formHelp {
+      color: #555;
+      margin: 0 0 0.2em 0;
+    }
+    div.formControls {
+      margin-top: 1em;
+    }
+  </style>
+
+  <script type="text/javascript">
+    function siteid_focus() {
+      siteid = document.getElementById('site_id')
+      siteid.focus()
+    }
+    window.onload = siteid_focus;
+  </script>
 
 </head>
-<body bgcolor="#ffffff" link="#000099" alink="#000099" vlink="#000099" onload="siteid.focus()">
+<body>
 
-  <div class="form-title">
-  Add Plone Site
-  </div>
-  
-<form action="addPloneSite" method="post">
-    <div class="form-help">
-    Enter an ID and click the button below to create a new Plone site.
-    </div>
-    <div class="form-label">
-    Id
-    </div>
-    <input type="text" name="id" size="40" id="siteid" /> <span class="form-help">(No special characters or spaces)</span>
+  <h1 i18n:translate="">Add a new Plone site</h1>
 
-    <div class="form-label">
-    Title
-    </div>
-    <input type="text" name="title" size="40" value="Site" />
+  <form action="addPloneSite" method="post">
 
-    <input type="hidden" name="create_userfolder" value="1" />
+      <div class="field">
+        <label for="site_id" i18n:translate="">
+          Technical identifier
+        </label>
 
-    <div class="form-label">
-    Description
-    </div>
-    
-    <textarea name="description" cols="60" rows="10"
-     style="width: 95%"></textarea>
+        <div class="formHelp" i18n:translate="">
+          The id of the site. No special characters or spaces are allowed.
+          Generally an all lower-case id is recommended.
+        </div>
 
-    <tal:baseprofile condition="python: len(options['base_profiles']) > 1">
-      <div class="form-label">
-        Base Profile
-      </div>
-      <div class="form-help">
-        You normally don't need to change anything here unless you have 
-        specific reasons and know what you are doing.
+        <input type="text" name="site_id" size="20" id="site_id" />
       </div>
 
-      <tal:profiles tal:repeat="info options/base_profiles">
-        <input type="radio"
-               name="profile_id:string"
-               value="profile"
-               tal:attributes="value info/id;
-                               checked python: options['default_profile']==info['id'] and 'checked' or nothing"
-               />
-        <span tal:replace="info/title">profile title</span>
-        <br />
-      </tal:profiles>
-    </tal:baseprofile>
+      <div class="field">
+        <label for="title" i18n:translate="label_title">Title</label>
 
-    <tal:extensionprofiles condition="options/extension_profiles">
-      <div class="form-label">
-        Extension Profiles
+        <div class="formHelp" i18n:translate="">
+          A short title for the site. This will be shown in the title of the
+          browser window on each page.
+        </div>
+
+        <input type="text" name="title" size="40" value="Site"
+               i18n:attributes="value text_default_site_title;" />
       </div>
-      <div class="form-help">
-          <p>Select any GenericSetup extension profiles you want to run immediately.
-          You don't need to change anything here unless you know what you're doing.</p>
-          
-          <p>Note: It is generally safer to wait and install an add-on product via the
-          quick installer or Add/Remove Products panel following creation of the site,
-          since some products have old-style installation code that should run in
-          addition to the GenericSetup profile.</p>
+
+      <tal:baseprofile condition="python: len(options['base_profiles']) > 1">
+        <div class="field">
+          <label for="profile_id" i18n:translate="">
+            Base configuration
+          </label>
+
+          <div class="formHelp" i18n:translate="">
+            You normally don't need to change anything here unless you have
+            specific reasons and know what you are doing.
+          </div>
+
+          <dl tal:repeat="info options/base_profiles">
+            <dt>
+              <input type="radio"
+                     name="profile_id:string"
+                     value="profile"
+                     tal:attributes="id info/id;
+                                     value info/id;
+                                     checked python: options['default_profile']==info['id'] and 'checked' or nothing"
+                     />
+              <label tal:attributes="for info/id"
+                     tal:content="info/title">
+                  Profile title
+              </label>
+            </dt>
+            <dd tal:content="info/description">
+              Profile description
+            </dd>
+          </dl>
+        </div>
+      </tal:baseprofile>
+
+      <tal:extensionprofiles condition="options/extension_profiles">
+        <div class="field">
+          <label for="extension_ids" i18n:translate="">
+            Add-ons
+          </label>
+
+          <div class="formHelp" i18n:translate="">
+              Select any add-ons you want to activate immediately. You can
+              also activate add-ons after the site has been created using the
+              Add-on Products control panel.
+          </div>
+
+          <select name="extension_ids:list"
+                  id="extension_ids" multiple="True" size="5">
+            <option tal:repeat="info options/extension_profiles"
+                    tal:attributes="value info/id;
+                                    selected info/selected|nothing"
+                    tal:content="info/title">profile title</option>
+          </select>
+        </div>
+      </tal:extensionprofiles>
+
+      <div class="formControls">
+        <input type="submit" name="submit" value="Add Plone Site"
+               i18n:attributes="value label_add_plone_site;" />
       </div>
-      <select name="extension_ids:list"
-              id="extension_ids" multiple="True" size="5">
-        <option tal:repeat="info options/extension_profiles"
-                tal:attributes="value info/id;
-                                selected info/selected|nothing"
-                tal:content="info/title">PROFILE TITLE</option>
-      </select>
-    </tal:extensionprofiles>
-    
-    <div class="form-element">
-    <input class="form-element" type="submit" name="submit" 
-     value=" Add Plone Site " />
-    </div>
 
   </form>
-
-  <p>
-  <strong>NOTE:</strong>
-  You may only use ASCII characters for <code>Id</code>, <code>Title</code>, 
-  and <code>Description</code> in this form!
-  You can change the values later from the Plone UI, but during creation of a
-  Plone site characters outside the A-Z and numbers range are not allowed.
-  </p>
-
   </body>
 </html>
-

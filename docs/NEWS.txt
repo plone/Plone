@@ -8,7 +8,10 @@ Changelog
 4.0 - Unreleased
 ----------------
 
-- Changed search.pt (plone_forms) and rss_template.pt (plone_templates) so they 
+- Updated our add site ZMI screen.
+  [hannosch]
+
+- Changed search.pt (plone_forms) and rss_template.pt (plone_templates) so they
   display fullname instead of creator. 
   [ralphjacobs]
 
