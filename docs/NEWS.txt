@@ -8,6 +8,11 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Replaced Products.ATReferenceBrowserWidget with
+  archetypes.referencebrowserwidget. This is PLIP 9258
+  http://dev.plone.org/plone/ticket/9258
+  [tom_gross]
+
 - Clarified help text for extension profiles on the add site form.
   [davisagli]
 
