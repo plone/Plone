@@ -33,26 +33,4 @@
      name="events"
      />
 
- <!-- Clear the right portlet column in the /Members folder -->
- <blacklist
-     manager="plone.rightcolumn"
-     location="/Members"
-     category="context"
-     status="block"
-     />
-
- <blacklist
-     manager="plone.rightcolumn"
-     location="/Members"
-     category="group"
-     status="block"
-     />
-
- <blacklist
-     manager="plone.rightcolumn"
-     location="/Members"
-     category="content_type"
-     status="block"
-     />
-
 </portlets>

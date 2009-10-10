@@ -5,6 +5,9 @@ CMFPlone setup handlers.
 from borg.localrole.utils import replace_local_role_manager
 from five.localsitemanager import make_objectmanager_site
 from plone.i18n.normalizer.interfaces import IURLNormalizer
+from plone.portlets.interfaces import ILocalPortletAssignmentManager
+from plone.portlets.interfaces import IPortletManager
+
 from zope.component import queryMultiAdapter
 from zope.component import queryUtility
 from zope.event import notify
@@ -428,6 +431,15 @@ class PloneGenerator:
                 index_html = getattr(members, 'index_html')
                 index_html.write(member_indexhtml)
                 index_html.ZPythonScript_setTitle('User Search')
+
+            # Block all right column portlets by default
+            manager = queryUtility(IPortletManager, name='plone.rightcolumn')
+            if manager is not None:
+                assignable = queryMultiAdapter((members, manager), ILocalPortletAssignmentManager)
+                assignable.setBlacklistStatus('context', True)
+                assignable.setBlacklistStatus('group', True)
+                assignable.setBlacklistStatus('content_type', True)
+
 
     def performMigrationActions(self, portal):
         """

@@ -8,6 +8,9 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Fixed the default portlet blacklisting for the `Members` folder.
+  [hannosch]
+
 - Replaced Products.ATReferenceBrowserWidget with
   archetypes.referencebrowserwidget. This is PLIP 9258
   http://dev.plone.org/plone/ticket/9258
@@ -17,7 +20,7 @@ Changelog
   [davisagli]
 
 - Added a mechanism for specifying profiles that are selected by default on
-  the add site form.  This should be kept in sync with PloneTestCase's list
+  the add site form. This should be kept in sync with PloneTestCase's list
   of default extension profiles.
   [davisagli]
 
@@ -28,8 +31,7 @@ Changelog
   [esteele, davisagli]
 
 - Allow email addresses as login name, with a switch on the security
-  panel.  This is plip 9214:
-  Refs http://dev.plone.org/plone/ticket/9214
+  panel. This is plip 9214: Refs http://dev.plone.org/plone/ticket/9214.
   [maurits]
 
 - Extend the language specific default configuration to set a reasonable first

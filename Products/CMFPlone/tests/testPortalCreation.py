@@ -764,10 +764,7 @@ class TestPortalCreation(PloneTestCase.PloneTestCase, WarningInterceptor):
         self.assertEquals(len(left), 2)
         self.assertEquals(len(right), 2)
 
-    def DISABLED_testPortletBlockingForMembersFolder(self):
-        # XXX This doesn't work right now. We need to break the
-        # content -> portlet -> content GS dependency mess. Easy way out is to
-        # move the default portlets.xml into Python code in setupPortalContent
+    def testPortletBlockingForMembersFolder(self):
         members = self.portal.Members
         rightColumn = getUtility(IPortletManager, name=u'plone.rightcolumn')
         portletAssignments = getMultiAdapter((members, rightColumn,), ILocalPortletAssignmentManager)
