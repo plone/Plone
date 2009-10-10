@@ -8,6 +8,10 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Inlined the enableSyndication function into importFinalSteps in
+  setuphandlers. Avoid an unneeded catalog search.
+  [hannosch]
+
 - Simplified portal creation code and got rid of the PloneGenerator class in
   setuphandlers. It was a useless closure for independent functions.
   [hannosch]

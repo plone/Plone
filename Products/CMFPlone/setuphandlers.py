@@ -109,7 +109,6 @@ def setupPortalContent(p):
     Import default plone content
     """
     existing = p.keys()
-
     wftool = getToolByName(p, "portal_workflow")
 
     # Figure out the current user preferred language
@@ -421,19 +420,6 @@ def setProfileVersion(portal):
     version = setup.getVersionForProfile(_DEFAULT_PROFILE)
     setup.setLastVersionForProfile(_DEFAULT_PROFILE, version)
 
-def enableSyndication(portal):
-    syn = getToolByName(portal, 'portal_syndication', None)
-    if syn is not None:
-        syn.editProperties(isAllowed=True)
-        cat = getToolByName(portal, 'portal_catalog', None)
-        if cat is not None:
-            topics = cat(portal_type='Topic')
-            for b in topics:
-                topic = b.getObject()
-                # If syndication is already enabled then another nasty string
-                # exception gets raised in CMFDefault
-                if topic is not None and not syn.isSyndicationAllowed(topic):
-                    syn.enableSyndication(topic)
 
 def assignTitles(portal):
     titles={
@@ -499,7 +485,10 @@ def importFinalSteps(context):
         return
     site = context.getSite()
     setProfileVersion(site)
-    enableSyndication(site)
+
+    # Enable syndication
+    syn = getToolByName(site, 'portal_syndication')
+    syn.editProperties(isAllowed=True)
 
     # Install our dependencies
     st = getToolByName(site, "portal_setup")
