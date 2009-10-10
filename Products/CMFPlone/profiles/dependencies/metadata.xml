@@ -5,6 +5,5 @@
     <dependency>profile-plone.portlet.static:default</dependency>
     <dependency>profile-plone.portlet.collection:default</dependency>
     <dependency>profile-plone.protect:default</dependency>
-    <dependency>profile-plonetheme.sunburst:default</dependency>
   </dependencies>
 </metadata>

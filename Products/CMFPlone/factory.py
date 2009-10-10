@@ -44,6 +44,7 @@ class HiddenProfiles(object):
                 u'plone.portlet.static:default',
                 u'plone.portlet.collection:default',
                 u'plone.protect:default',
+                u'plonetheme.sunburst:uninstall',
                 ]
 
 
@@ -56,6 +57,9 @@ def addPloneSiteForm(dispatcher):
     base_profiles = []
     extension_profiles = []
     not_installable = []
+    default_extension_profiles = [
+        'plonetheme.sunburst:default',
+        ]
 
     utils = getAllUtilitiesRegisteredFor(INonInstallable)
     for util in utils:
@@ -64,7 +68,10 @@ def addPloneSiteForm(dispatcher):
     for info in profile_registry.listProfileInfo():
         if info.get('type') == EXTENSION and \
            info.get('for') in (IPloneSiteRoot, None):
-            if info.get('id') not in not_installable:
+            profile_id = info.get('id')
+            if profile_id not in not_installable:
+                if profile_id in default_extension_profiles:
+                    info['selected'] = 'selected'
                 extension_profiles.append(info)
 
     for info in profile_registry.listProfileInfo():
