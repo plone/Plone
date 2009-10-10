@@ -39,6 +39,7 @@ class HiddenProducts(object):
             'Archetypes', 'Products.Archetypes',
             'ATContentTypes', 'Products.ATContentTypes',
             'ATReferenceBrowserWidget', 'Products.ATReferenceBrowserWidget',
+            'archetypes.referencebrowserwidget',
             'CMFActionIcons', 'Products.CMFActionIcons',
             'CMFCalendar', 'Products.CMFCalendar',
             'CMFDefault', 'Products.CMFDefault',

@@ -4,8 +4,8 @@
    request_varname="plone_skin">
  <object name="ATContentTypes" meta_type="Filesystem Directory View"
     directory="Products.ATContentTypes:skins/ATContentTypes"/>
- <object name="ATReferenceBrowserWidget" meta_type="Filesystem Directory View"
-    directory="Products.ATReferenceBrowserWidget:skins/ATReferenceBrowserWidget"/>
+ <object name="referencebrowser" meta_type="Filesystem Directory View"
+    directory="archetypes.referencebrowserwidget:skins/referencebrowser"/>
  <object name="LanguageTool" meta_type="Filesystem Directory View"
     directory="Products.PloneLanguageTool:skins/LanguageTool"/>
  <object name="archetypes" meta_type="Filesystem Directory View"
@@ -58,7 +58,7 @@
   <layer name="kupu_plone"/>
   <layer name="kupu"/>
   <layer name="ATContentTypes"/>
-  <layer name="ATReferenceBrowserWidget"/>
+  <layer name="referencebrowser"/>
   <layer name="archetypes"/>
   <layer name="mimetypes_icons"/>
   <layer name="PasswordReset"/>
