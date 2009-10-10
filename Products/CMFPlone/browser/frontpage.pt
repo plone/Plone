@@ -103,7 +103,7 @@ language. More about these technologies:
 <ul>
 <li>The <a class="link-plain" href="http://plone.org" target="_blank">Plone open source 
     Content Management System</a> web site.</li>
-<li>The <a class="link-plain" href="http://www.zope.org" target="_blank">Zope 
+<li>The <a class="link-plain" href="http://zope2.zope.org" target="_blank">Zope 
     application server</a> web site.</li>
 <li>The <a class="link-plain" href="http://www.python.org" target="_blank">Python 
     programming language</a> web site.</li>
@@ -124,8 +124,6 @@ individuals and hundreds of companies. The Plone Foundation:
 
 <p>Thanks for using our product, we hope you like it!</p>
 
-<p>
-&mdash;
-<a class="link-plain" href="http://plone.org/about/team" target="_blank">The Plone Team</a>
-</p></body>
+<p>&mdash;The Plone Team</p>
+</body>
 </html>
