@@ -1,15 +1,18 @@
 from zope.component import getAllUtilitiesRegisteredFor
+from zope.event import notify
 from zope.interface import implements
+from zope.site.hooks import setSite
 
 from Products.GenericSetup.tool import SetupTool
 from Products.GenericSetup import profile_registry
 from Products.GenericSetup import BASE, EXTENSION
 from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 
-from Portal import PloneSite
-from utils import WWW_DIR
-from interfaces import INonInstallable
-from interfaces import IPloneSiteRoot
+from Products.CMFPlone.events import SiteManagerCreatedEvent
+from Products.CMFPlone.interfaces import INonInstallable
+from Products.CMFPlone.interfaces import IPloneSiteRoot
+from Products.CMFPlone.Portal import PloneSite
+from Products.CMFPlone.utils import WWW_DIR
 
 _TOOL_ID = 'portal_setup'
 _DEFAULT_PROFILE = 'Products.CMFPlone:plone'
@@ -98,6 +101,9 @@ def addPloneSite(dispatcher, id, title='', description='',
 
     site._setObject(_TOOL_ID, SetupTool(_TOOL_ID))
     setup_tool = getattr(site, _TOOL_ID)
+
+    notify(SiteManagerCreatedEvent(site))
+    setSite(site)
 
     setup_tool.setBaselineContext('profile-%s' % profile_id)
     setup_tool.runAllImportStepsFromProfile('profile-%s' % profile_id)

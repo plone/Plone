@@ -3,20 +3,16 @@ CMFPlone setup handlers.
 """
 
 from borg.localrole.utils import replace_local_role_manager
-from five.localsitemanager import make_objectmanager_site
 from plone.i18n.normalizer.interfaces import IURLNormalizer
 from plone.portlets.interfaces import ILocalPortletAssignmentManager
 from plone.portlets.interfaces import IPortletManager
 
 from zope.component import queryMultiAdapter
 from zope.component import queryUtility
-from zope.event import notify
 from zope.i18n.interfaces import ITranslationDomain
 from zope.i18n.interfaces import IUserPreferredLanguages
 from zope.i18n.locales import locales, LoadLocaleError
 from zope.interface import implements
-from zope.location.interfaces import ISite
-from zope.site.hooks import setSite
 
 from Acquisition import aq_base, aq_get
 from Products.CMFCore.utils import getToolByName
@@ -28,7 +24,6 @@ from Products.StandardCacheManagers.AcceleratedHTTPCacheManager import \
 from Products.StandardCacheManagers.RAMCacheManager import RAMCacheManager
 
 from Products.CMFPlone.utils import _createObjectByType
-from Products.CMFPlone.events import SiteManagerCreatedEvent
 from Products.CMFPlone.factory import _DEFAULT_PROFILE
 from Products.CMFPlone.interfaces import IMigrationTool
 from Products.CMFPlone.Portal import member_indexhtml
@@ -447,16 +442,6 @@ class PloneGenerator:
                         syn.enableSyndication(topic)
                         out.append('Enabled syndication on %s'%b.getPath())
 
-    def enableSite(self, portal):
-        """
-        Make the portal a Zope3 site and create a site manager.
-        """
-        if not ISite.providedBy(portal):
-            make_objectmanager_site(portal)
-        # The following event is primarily useful for setting the site hooks
-        # during test runs.
-        notify(SiteManagerCreatedEvent(portal))
-
     def assignTitles(self, portal, out):
         titles={
          'acl_users':'User / Group storage and authentication settings',
@@ -512,15 +497,6 @@ class PloneGenerator:
             if title:
                 setattr(aq_get(portal, oid), 'title', title)
         out.append('Assigned titles to portal tools.')
-
-def importSite(context):
-    """
-    Import site settings.
-    """
-    site = context.getSite()
-    gen = PloneGenerator()
-    gen.enableSite(site)
-    setSite(site)
 
 def importFinalSteps(context):
     """

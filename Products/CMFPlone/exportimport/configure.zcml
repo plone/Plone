@@ -100,13 +100,6 @@
   </genericsetup:importStep>
 
   <genericsetup:importStep
-      name="plone-site"
-      handler="Products.CMFPlone.setuphandlers.importSite"
-      title="Plone Site Config"
-      description="Plone site configuration.">
-  </genericsetup:importStep>
-
-  <genericsetup:importStep
       name="propertiestool"
       handler="Products.CMFPlone.exportimport.propertiestool.importPloneProperties"
       title="Plone Properties"

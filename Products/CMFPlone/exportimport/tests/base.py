@@ -6,8 +6,6 @@ from Products.PloneTestCase import layer
 from Products.PloneTestCase import setup
 
 
-# Disable PlacelessSetup as PTC does not like it
-
 class BodyAdapterTestCase(BodyAdapterTestCase, unittest.TestCase):
 
     if setup.USELAYER:

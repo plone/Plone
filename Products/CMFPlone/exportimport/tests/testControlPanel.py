@@ -2,18 +2,16 @@
 # Exportimport adapter tests
 #
 
-import os, sys
-if __name__ == '__main__':
-    execfile(os.path.join(sys.path[0], 'framework.py'))
-
 from Products.CMFPlone.exportimport.tests.base import BodyAdapterTestCase
 
-from zope.app.component.hooks import setHooks, setSite
+from five.localsitemanager import make_objectmanager_site
+from zope.site.hooks import setHooks, setSite
 from zope.component import getSiteManager
+
+from OFS.Folder import Folder
+
 from Products.CMFPlone.interfaces import IControlPanel
 from Products.CMFPlone.PloneControlPanel import PloneControlPanel
-from Products.CMFPlone.setuphandlers import PloneGenerator
-from OFS.Folder import Folder
 
 _CONTROLPANEL_XML = """\
 <?xml version="1.0"?>
@@ -50,8 +48,7 @@ class ControlPanelXMLAdapterTests(BodyAdapterTestCase):
     def setUp(self):
         setHooks()
         self.site = Folder('site')
-        gen = PloneGenerator()
-        gen.enableSite(self.site)
+        make_objectmanager_site(self.site)
         setSite(self.site)
         sm = getSiteManager()
         self.site.portal_control_panel = PloneControlPanel()
@@ -66,7 +63,3 @@ def test_suite():
     suite = TestSuite()
     suite.addTest(makeSuite(ControlPanelXMLAdapterTests))
     return suite
-
-if __name__ == '__main__':
-    framework()
-

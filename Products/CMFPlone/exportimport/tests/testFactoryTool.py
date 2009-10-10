@@ -4,12 +4,14 @@
 
 from Products.CMFPlone.exportimport.tests.base import BodyAdapterTestCase
 
-from zope.app.component.hooks import setHooks, setSite
+from five.localsitemanager import make_objectmanager_site
+from zope.site.hooks import setHooks, setSite
 from zope.component import getSiteManager
-from Products.CMFCore.interfaces import ITypesTool
-from Products.CMFPlone.FactoryTool import FactoryTool
-from Products.CMFPlone.setuphandlers import PloneGenerator
+
 from OFS.Folder import Folder
+from Products.CMFCore.interfaces import ITypesTool
+
+from Products.CMFPlone.FactoryTool import FactoryTool
 
 _FACTORYTOOL_XML = """\
 <?xml version="1.0"?>
@@ -44,8 +46,7 @@ class PortalFactoryXMLAdapterTests(BodyAdapterTestCase):
     def setUp(self):
         setHooks()
         self.site = Folder('site')
-        gen = PloneGenerator()
-        gen.enableSite(self.site)
+        make_objectmanager_site(self.site)
         setSite(self.site)
         sm = getSiteManager()
         self.site.portal_types = DummyTypesTool()

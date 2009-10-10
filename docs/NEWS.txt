@@ -8,6 +8,12 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Removed the `plone-site` import step and stop overriding the
+  `componentregistry` step. The portal object directly implements the
+  IObjectManagerSite interface, so we don't need to activate it as a site
+  manager in an extra step anymore.
+  [hannosch]
+
 - Updated and added various ZMI-visible tool titles.
   [hannosch]
 

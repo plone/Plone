@@ -15,15 +15,4 @@
     <!-- include plone plugins with z3c.autoinclude -->
     <includePluginsOverrides package="plone" file="overrides.zcml" />
 
-    <!-- Our version depends on the plone-site step, which sets up the
-         local site manager during tests. -->
-    <genericsetup:importStep
-        name="componentregistry"
-        handler="Products.GenericSetup.components.importComponentRegistry"
-        title="Local Component Registry"
-        description="Import local component registry configuration.">
-      <depends name="plone-site"/>
-      <depends name="toolset"/>
-    </genericsetup:importStep>
-
 </configure>
