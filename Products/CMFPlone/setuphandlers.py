@@ -81,18 +81,9 @@ class PloneGenerator:
         qi.installProduct('Archetypes', locked=1, hidden=1,
             profile=u'Products.Archetypes:Archetypes')
 
-    def installProducts(self, p):
-        """QuickInstaller install of required Products"""
-        qi = getToolByName(p, 'portal_quickinstaller')
-        qi.installProduct('PlonePAS', locked=1, hidden=1, forceProfile=True)
-        qi.installProduct('kupu', locked=0, forceProfile=True)
-        qi.installProduct('CMFEditions', locked=0, forceProfile=True)
-        qi.installProduct('PloneLanguageTool', locked=1, hidden=1, forceProfile=True)
-
     def installDependencies(self, p):
         st=getToolByName(p, "portal_setup")
         st.runAllImportStepsFromProfile("profile-Products.CMFPlone:dependencies")
-
 
     def addCacheHandlers(self, p):
         """ Add RAM and AcceleratedHTTP cache handlers """
@@ -529,22 +520,6 @@ def importArchetypes(context):
     gen = PloneGenerator()
     gen.installArchetypes(site)
 
-def importVarious(context):
-    """
-    Import various settings.
-
-    Provisional handler that does initialization that is not yet taken
-    care of by other handlers.
-    """
-    # Only run step if a flag file is present (e.g. not an extension profile)
-    if context.readDataFile('plone_various.txt') is None:
-        return
-    site = context.getSite()
-    gen = PloneGenerator()
-    gen.installProducts(site)
-    gen.addCacheHandlers(site)
-    gen.addCacheForResourceRegistry(site)
-
 def importFinalSteps(context):
     """
     Final Plone import steps.
@@ -563,6 +538,8 @@ def importFinalSteps(context):
     pmembership.memberareaCreationFlag = False
     gen.installDependencies(site)
     replace_local_role_manager(site)
+    gen.addCacheHandlers(site)
+    gen.addCacheForResourceRegistry(site)
 
 def importContent(context):
     """

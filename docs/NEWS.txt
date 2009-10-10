@@ -8,6 +8,10 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Merged the `plone_various` import step into the `plone-final` step and
+  install more packages directly by their profiles.
+  [hannosch]
+
 - Removed the zserverPatch. There's not many people running ZServer as the
   front-end web server anymore, so this isn't particular useful.
   [hannosch]
