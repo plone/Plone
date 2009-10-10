@@ -73,6 +73,11 @@
       permission="zope.Public"
       />
 
+  <browser:resource
+      file="plone-logo.png"
+      name="plone-logo.png"
+      />
+
    <adapter for="*
                 .interfaces.INavigationTree"
             factory=".navtree.DefaultNavtreeStrategy"

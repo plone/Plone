@@ -17,9 +17,12 @@
       line-height: 1.5em;
       clear: both;
     }
+    img {
+      margin-top: 0.5em;
+    }
     h1 {
       font-family: "Helvetica Neue", Arial, FreeSans, sans-serif; 
-      margin-top: 0.5em;
+      margin-top: 1em;
     }
     dt {
       font-weight: bold;
@@ -60,6 +63,8 @@
 
 </head>
 <body>
+
+  <img src="/++resource++plone-logo.png" width="215" height="56" />
 
   <h1 i18n:translate="">Add Plone site</h1>
 
