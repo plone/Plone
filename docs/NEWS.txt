@@ -13,6 +13,9 @@ Changelog
   of default extension profiles.
   [davisagli]
 
+- Hide the plonetheme.sunburst uninstall profile from the add site form.
+  [davisagli]
+
 - Default to plonetheme.sunburst for new sites.
   [esteele, davisagli]
 
