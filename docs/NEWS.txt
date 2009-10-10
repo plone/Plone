@@ -8,6 +8,10 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Simplified portal creation code and got rid of the PloneGenerator class in
+  setuphandlers. It was a useless closure for independent functions.
+  [hannosch]
+
 - Removed the `plone-site` import step and stop overriding the
   `componentregistry` step. The portal object directly implements the
   IObjectManagerSite interface, so we don't need to activate it as a site

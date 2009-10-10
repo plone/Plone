@@ -865,21 +865,20 @@ class TestPortalCreation(PloneTestCase.PloneTestCase, WarningInterceptor):
         pfp = SimpleTranslationDomain('plonefrontpage', messages)
         provideUtility(ITranslationDomain, pfp, 'plonefrontpage')
 
-        # Setup the generator and the new placeholder folders
-        gen = setuphandlers.PloneGenerator()
+        # Setup the new placeholder folders
         self.folder.invokeFactory('Folder', 'brazilian')
         self.folder.invokeFactory('Folder', 'german')
 
         # Check if the content is being created in German
         self.app.REQUEST['HTTP_ACCEPT_LANGUAGE'] = 'de'
         self.loginAsPortalOwner()
-        gen.setupPortalContent(self.folder.german)
+        setuphandlers.setupPortalContent(self.folder.german)
         self.failUnlessEqual(self.folder.german.news.Title(), 'Foo')
 
         # Check if the content is being created in a composite
         # language code, in this case Brazilian Portuguese
         self.app.REQUEST['HTTP_ACCEPT_LANGUAGE'] = 'pt-br'
-        gen.setupPortalContent(self.folder.brazilian)
+        setuphandlers.setupPortalContent(self.folder.brazilian)
         self.failUnlessEqual(self.folder.brazilian.news.Title(), 'Bar')
 
     def testNoDoubleGenericSetupImportSteps(self):
