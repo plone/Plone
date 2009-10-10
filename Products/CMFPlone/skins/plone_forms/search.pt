@@ -122,14 +122,16 @@
                 <span class="documentAuthor"
                     i18n:translate="label_by_author">
                 by
-                <a href="#"
-                   tal:attributes="href string:${context/@@plone_portal_state/navigation_root_url}/author/${result/Creator}"
-                   tal:content="result/Creator"
-                   tal:omit-tag="not:result/Creator"
-                   i18n:name="author">
-                Bob Dobalina
-                </a>
-
+                    <tal:block tal:condition="result/Creator"
+                        tal:define="author python:context.portal_membership.getMemberInfo(result.Creator)">
+                      <a href="#"
+                         tal:attributes="href string:${context/@@plone_portal_state/navigation_root_url}/author/${result/Creator}"
+                         tal:content="python:author and author['fullname'] or result.Creator"
+                         tal:omit-tag="not:result/Creator"
+                         i18n:name="author">
+                        Bob Dobalina
+                      </a>
+                    </tal:block>  
                 </span>
 
                 <span class="documentModified">

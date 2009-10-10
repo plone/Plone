@@ -8,6 +8,10 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Changed search.pt (plone_forms) and rss_template.pt (plone_templates) so they 
+  display fullname instead of creator. 
+  [ralphjacobs]
+
 - Cleaned up old an unused scripts to edit the plone site object itself. This
   is done via the site control panel now.
   [hannosch]
