@@ -27,8 +27,5 @@ class IMigrationTool(Interface):
     def needRecatalog():
         """Does this thing now need recataloging?"""
 
-    def getProductInfo():
-        """Provide information about installed products for error reporting"""
-
     def upgrade(REQUEST=None, dry_run=None, swallow_errors=1):
         """Perform the upgrade."""

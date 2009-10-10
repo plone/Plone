@@ -8,6 +8,10 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Removed getProductInfo method from the migration tool. It wasn't used
+  anymore and depended on the persistent product registry.
+  [hannosch]
+
 - Inlined the enableSyndication function into importFinalSteps in
   setuphandlers. Avoid an unneeded catalog search.
   [hannosch]

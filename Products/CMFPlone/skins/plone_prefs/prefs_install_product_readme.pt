@@ -32,8 +32,8 @@
     Back to Add/Remove Products
     </a>
 
-    <tal:readme define="transform nocall:portal/portal_transforms|nothing;
-                        readme python:portal.portal_quickinstaller.getProductFile(request['filereadme']);
+    <tal:readme define="transform nocall:context/portal_transforms|nothing;
+                        readme python:context.portal_quickinstaller.getProductFile(request['filereadme']);
                         converted python: transform is not None and transform.convertTo('text/html', readme, mimetype='text/structured')">
         <div class="stx"
              tal:condition="converted"
