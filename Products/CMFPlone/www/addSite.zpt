@@ -64,9 +64,13 @@
         Extension Profiles
       </div>
       <div class="form-help">
-          You normally don't need to select anything here unless you have 
-          specific reasons and know what you are doing. Leave it blank if you
-          want a default Plone site.
+          <p>Select any GenericSetup extension profiles you want to run immediately.
+          You don't need to change anything here unless you know what you're doing.</p>
+          
+          <p>Note: It is generally safer to wait and install an add-on product via the
+          quick installer or Add/Remove Products panel following creation of the site,
+          since some products have old-style installation code that should run in
+          addition to the GenericSetup profile.</p>
       </div>
       <select name="extension_ids:list"
               id="extension_ids" multiple="True" size="5">

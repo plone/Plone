@@ -8,6 +8,9 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Clarified help text for extension profiles on the add site form.
+  [davisagli]
+
 - Added a mechanism for specifying profiles that are selected by default on
   the add site form.  This should be kept in sync with PloneTestCase's list
   of default extension profiles.
