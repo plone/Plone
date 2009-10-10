@@ -8,6 +8,9 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Updated and added various ZMI-visible tool titles.
+  [hannosch]
+
 - Removed the `plone-archetypes` import step. This is handled via a normal
   GenericSetup dependency in metadata.xml.
   [hannosch]
