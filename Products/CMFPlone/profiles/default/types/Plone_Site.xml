@@ -10,7 +10,7 @@
  <property name="content_meta_type">Plone Site</property>
  <property name="product">CMFPlone</property>
  <property name="factory">manage_addSite</property>
- <property name="immediate_view">folder_edit_form</property>
+ <property name="immediate_view">folder_listing</property>
  <property name="global_allow">False</property>
  <property name="filter_content_types">False</property>
  <property name="allowed_content_types"/>
@@ -23,27 +23,12 @@
   <element value="atct_album_view"/>
  </property>
  <alias from="(Default)" to="(dynamic view)"/>
- <alias from="edit" to="folder_edit_form"/>
+ <alias from="edit" to="@@site-controlpanel"/>
  <alias from="sharing" to="@@sharing"/>
  <alias from="view" to="(selected layout)"/>
  <action title="View" action_id="view" category="object" condition_expr=""
     url_expr="string:${object_url}" visible="True"
     i18n:attributes="title">
   <permission value="View"/>
- </action>
- <action title="Edit" action_id="edit" category="object" condition_expr=""
-    url_expr="string:${object_url}/edit" visible="True"
-    i18n:attributes="title">
-  <permission value="Manage properties"/>
- </action>
- <action title="Folder view" action_id="folderlisting" category="folder"
-    condition_expr="" url_expr="string:${folder_url}/view" visible="False"
-    i18n:attributes="title">
-  <permission value="View"/>
- </action>
- <action title="External Edit" action_id="external_edit" category="object"
-    condition_expr="" url_expr="string:$object_url/external_edit"
-    visible="False" i18n:attributes="title">
-  <permission value="Modify portal content"/>
  </action>
 </object>

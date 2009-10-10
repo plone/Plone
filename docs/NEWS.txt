@@ -8,6 +8,10 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Cleaned up old an unused scripts to edit the plone site object itself. This
+  is done via the site control panel now.
+  [hannosch]
+
 - Hide the TinyMCE profiles hidden from the Plone site add form.
   [robgietema]
 

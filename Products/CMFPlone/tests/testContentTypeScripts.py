@@ -92,12 +92,6 @@ class TestContentTypeScripts(PloneTestCase.PloneTestCase):
         self.assertEqual(self.folder.folder.Title(), 'Foo')
         self.assertEqual(self.folder.folder.Description(), 'Bar')
 
-    def testFolderEdit(self):
-        self.folder.invokeFactory('Folder', id='folder')
-        self.folder.folder.folder_edit('Foo', 'Bar')
-        self.assertEqual(self.folder.folder.Title(), 'Foo')
-        self.assertEqual(self.folder.folder.Description(), 'Bar')
-
     def testLinkCreate(self):
         self.folder.invokeFactory('Link', id='link', remote_url='http://foo.com', title='Foo')
         self.assertEqual(self.folder.link.Title(), 'Foo')

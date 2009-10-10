@@ -6,7 +6,6 @@ from Products.CMFPlone.tests import PloneTestCase
 from Products.CMFPlone.tests import dummy
 
 from Products.CMFPlone.utils import _createObjectByType
-import transaction
 
 from AccessControl import Unauthorized
 from Products.CMFCore.permissions import DeleteObjects
@@ -32,23 +31,6 @@ class TestPloneFolder(PloneTestCase.PloneTestCase):
     def testSortOrder(self):
         self.assertEqual(self.folder.objectIds(),
             ['sub1', 'sub2', 'sub3'])
-
-    def testEditFolderKeepsPosition(self):
-        # Cover http://dev.plone.org/plone/ticket/2796
-        self.folder.sub2.folder_edit('Foo', 'Description')
-        self.assertEqual(self.folder.sub2.Title(), 'Foo')
-        # Order should remain the same
-        self.assertEqual(self.folder.objectIds(),
-            ['sub1', 'sub2', 'sub3'])
-
-    def testRenameFolderKeepsPosition(self):
-        # Cover http://dev.plone.org/plone/ticket/2796
-        transaction.savepoint(optimistic=True) # make rename work
-        self.folder.sub2.folder_edit('Foo', 'Description', id='foo')
-        self.assertEqual(self.folder.foo.Title(), 'Foo')
-        # Order should remain the same
-        self.assertEqual(self.folder.objectIds(),
-            ['sub1', 'foo', 'sub3'])
 
     def testCanViewManagementScreen(self):
         # Make sure the ZMI management screen works

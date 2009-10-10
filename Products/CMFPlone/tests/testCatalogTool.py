@@ -493,35 +493,12 @@ class TestCatalogSorting(PloneTestCase.PloneTestCase):
 
 class TestFolderCataloging(PloneTestCase.PloneTestCase):
     # Tests for http://dev.plone.org/plone/ticket/2876
-    # folder_edit must recatalog. folder_rename must recatalog.
+    # folder_rename must recatalog.
 
     def afterSetUp(self):
         self.catalog = self.portal.portal_catalog
         self.folder.invokeFactory('Folder', id='foo')
         self.setupAuthenticator()
-
-    def testFolderTitleIsUpdatedOnEdit(self):
-        # Test for catalog that searches to ensure folder titles are
-        # updated in the catalog.
-        title = 'Test Folder - Snooze!'
-        self.folder.foo.folder_edit(title, '')
-        results = self.catalog(Title='Snooze')
-        self.failUnless(results)
-        for result in results:
-            self.assertEqual(result.Title, title)
-            self.assertEqual(result.getId, 'foo')
-
-    def testFolderTitleIsUpdatedOnRename(self):
-        # Test for catalog that searches to ensure folder titles are
-        # updated in the catalog.
-        title = 'Test Folder - Snooze!'
-        transaction.savepoint(optimistic=True) # make rename work
-        self.folder.foo.folder_edit(title, '', id='bar')
-        results = self.catalog(Title='Snooze')
-        self.failUnless(results)
-        for result in results:
-            self.assertEqual(result.Title, title)
-            self.assertEqual(result.getId, 'bar')
 
     def testFolderTitleIsUpdatedOnFolderTitleChange(self):
         # The bug in fact talks about folder_rename
@@ -688,15 +665,6 @@ class TestCatalogBugs(PloneTestCase.PloneTestCase):
     def afterClear(self):
         CatalogTool.__replaceable__ = self._saved
 
-    def testCanPastePortalIfLexiconExists(self):
-        # Should be able to copy/paste a portal containing
-        # a catalog tool. Triggers manage_afterAdd of portal_catalog
-        # thereby exposing a bug which is now going to be fixed.
-        self.loginAsPortalOwner()
-        cb = self.app.manage_copyObjects([portal_name])
-        self.app.manage_pasteObjects(cb)
-        self.failUnless(hasattr(self.app, 'copy_of_'+portal_name))
-
     def testCanPasteCatalog(self):
         # Should be able to copy/paste a portal_catalog. Triggers
         # manage_afterAdd of portal_catalog thereby exposing another bug :-/
@@ -715,14 +683,6 @@ class TestCatalogBugs(PloneTestCase.PloneTestCase):
         self.failUnless('SearchableText' in cat.indexes())
         # CMF added lexicons should stick around too
         self.failUnless(hasattr(aq_base(cat), 'plaintext_lexicon'))
-
-    def testCanRenamePortalIfLexiconExists(self):
-        # Should be able to rename a Plone portal
-        # This test is to demonstrate that http://dev.plone.org/plone/ticket/1745
-        # is fixed and can be closed.
-        self.loginAsPortalOwner()
-        self.app.manage_renameObjects([portal_name], ['foo'])
-        self.failUnless(hasattr(self.app, 'foo'))
 
 
 class TestCatalogUnindexing(PloneTestCase.PloneTestCase):

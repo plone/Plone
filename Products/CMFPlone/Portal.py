@@ -3,6 +3,7 @@ from Products.CMFDefault.Portal import CMFSite
 from Products.CMFCore import permissions
 from Products.CMFCore.utils import _checkPermission
 from Products.CMFCore.utils import getToolByName
+from Products.CMFCore.utils import UniqueObject
 from Products.CMFDynamicViewFTI.browserdefault import BrowserDefaultMixin
 from Products.CMFPlone import PloneMessageFactory as _
 from Products.CMFPlone.PloneFolder import OrderedContainer
@@ -25,12 +26,10 @@ member_search=context.restrictedTraverse('member_search_form')
 return member_search()
 """
 
-class PloneSite(CMFSite, OrderedContainer, BrowserDefaultMixin):
-    """
-    Make PloneSite subclass CMFSite and add some methods.
-    This will be useful for adding more things later on.
-    """
-    security=ClassSecurityInfo()
+class PloneSite(CMFSite, OrderedContainer, BrowserDefaultMixin, UniqueObject):
+    """Make PloneSite subclass CMFSite and add some methods."""
+
+    security = ClassSecurityInfo()
     meta_type = portal_type = 'Plone Site'
 
     implements(IPloneSiteRoot)
@@ -48,12 +47,24 @@ class PloneSite(CMFSite, OrderedContainer, BrowserDefaultMixin):
     # Switch off ZMI ordering interface as it assumes a slightly
     # different functionality
     has_order_support = 0
+    management_page_charset = 'utf-8'
     _default_sort_key = 'id'
+    _properties = (
+        {'id':'title', 'type':'string', 'mode': 'w'},
+        {'id':'description', 'type':'text', 'mode': 'w'},
+        )
+    title = ''
+    description = ''
 
     def __browser_default__(self, request):
         """ Set default so we can return whatever we want instead
         of index_html """
         return getToolByName(self, 'plone_utils').browserDefault(self)
+
+    def _canCopy(self, op=0):
+        """Make the site not copyable.
+        """
+        return 0
 
     def index_html(self):
         """ Acquire if not present. """
@@ -92,21 +103,6 @@ class PloneSite(CMFSite, OrderedContainer, BrowserDefaultMixin):
                     "Do not have permissions to remove this object")
         return CMFSite.manage_delObjects(self, ids, REQUEST=REQUEST)
 
-    def _management_page_charset(self):
-        """ Returns default_charset for management screens """
-        properties = getToolByName(self, 'portal_properties', None)
-        # Let's be a bit careful here because we don't want to break the ZMI
-        # just because people screw up their Plone sites (however thoroughly).
-        if properties is not None:
-            site_properties = getattr(properties, 'site_properties', None)
-            if site_properties is not None:
-                getProperty = getattr(site_properties, 'getProperty', None)
-                if getProperty is not None:
-                    return getProperty('default_charset', 'utf-8')
-        return 'utf-8'
-
-    management_page_charset = ComputedAttribute(_management_page_charset, 1)
-
     def view(self):
         """ Ensure that we get a plain view of the object, via a delegation to
         __call__(), which is defined in BrowserDefaultMixin
@@ -114,7 +110,7 @@ class PloneSite(CMFSite, OrderedContainer, BrowserDefaultMixin):
         return self()
 
     security.declareProtected(permissions.AccessContentsInformation,
-			     'folderlistingFolderContents')
+        'folderlistingFolderContents')
     def folderlistingFolderContents(self, contentFilter=None):
         """Calls listFolderContents in protected only by ACI so that
         folder_listing can work without the List folder contents permission,
