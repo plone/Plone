@@ -26,6 +26,9 @@ ul {
 ul li {
     margin-bottom: 1em;
 }
+ul ul{
+    margin: .5em 2em;
+}
 dt {
     font-weight: bold;
 }

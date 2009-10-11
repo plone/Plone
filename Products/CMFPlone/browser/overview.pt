@@ -59,30 +59,32 @@
                     <span id="multiple-sites" i18n:translate="">
                         You have multiple Plone sites. View one of them:
                     </span>
-                </li>
-                <li tal:repeat="site sites">
-                    <span class="prominent">
-                        <a href="#"
-                           tal:attributes="href site/absolute_url;
-                                           title site/Title;"
-                           tal:content="site/Title">
-                            Site title
-                        </a>
-                    </span>
-                    <div class="upgrade-warning"
-                         i18n:translate=""
-                         tal:condition="python:view.outdated(site)">
-                        The site configuration is outdated and needs to be
-                        upgraded. Please
-                        <a href="#"
-                           tal:attributes="href string:${site/absolute_url}/portal_migration/manage_migrate"
-                           title="Go to the upgrade page"
-                           i18n:attributes="title;"
-                           i18n:name="link_continue_with_the_upgrade"
-                           i18n:translate="">
-                          continue with the upgrade.
-                        </a>
-                    </div>
+                    <ul>
+                        <li tal:repeat="site sites">
+                            <span class="prominent">
+                                <a href="#"
+                                   tal:attributes="href site/absolute_url;
+                                                   title site/Title;"
+                                   tal:content="site/Title">
+                                    Site title
+                                </a>
+                            </span>
+                            <div class="upgrade-warning"
+                                 i18n:translate=""
+                                 tal:condition="python:view.outdated(site)">
+                                The site configuration is outdated and needs to be
+                                upgraded. Please
+                                <a href="#"
+                                   tal:attributes="href string:${site/absolute_url}/portal_migration/manage_migrate"
+                                   title="Go to the upgrade page"
+                                   i18n:attributes="title;"
+                                   i18n:name="link_continue_with_the_upgrade"
+                                   i18n:translate="">
+                                  continue with the upgrade.
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
                 </li>
                 </tal:many>
             </tal:block>
@@ -94,7 +96,7 @@
                        title="Create a new Plone site"
                        i18n:attributes="title;"
                        i18n:translate="">
-                        Create a Plone site.
+                        Create a new Plone site.
                     </a>
                 </div>
             </li>
