@@ -6,7 +6,7 @@ ADD_PLONE_SITE_HTML = '''
   <div style="text-align: right; margin-top:0.5em; margin-bottom:0em;
               font-size: 120%; text-decoration: underline;
   ">
-  <a href="&dtml-URL1;/?:method=manage_addProduct/CMFPlone/addPloneSiteForm?site_id=Plone"
+  <a href="&dtml-URL1;/?:method=manage_addProduct/CMFPlone/addPloneSiteForm&site_id=Plone"
      target="_top">
     Add Plone Site
   </a></div>
