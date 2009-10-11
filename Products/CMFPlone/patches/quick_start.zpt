@@ -70,7 +70,7 @@
                     <a href="/manage_addProduct/CMFPlone/addPloneSiteForm?site_id=Plone"
                        title="Create a new Plone site"
                        tal:attributes="href string:${context/absolute_url}/manage_addProduct/CMFPlone/addPloneSiteForm?site_id=Plone">
-                    Click here to create a Plone site.
+                    Create a Plone site.
                     </a>
                 </div>
             </li>
