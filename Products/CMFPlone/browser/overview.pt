@@ -35,7 +35,7 @@
                                title="Go to your instance"
                                i18n:attributes="title;"
                                i18n:translate="">
-                                View your Plone site.
+                                View your Plone site
                             </a>
                         </span>
                         <div class="upgrade-warning"
@@ -49,8 +49,8 @@
                                i18n:attributes="title;"
                                i18n:name="link_continue_with_the_upgrade"
                                i18n:translate="">
-                              continue with the upgrade.
-                            </a>
+                              continue with the upgrade
+                            </a>.
                         </div>
                     </li>
                 </tal:one>
@@ -80,8 +80,8 @@
                                    i18n:attributes="title;"
                                    i18n:name="link_continue_with_the_upgrade"
                                    i18n:translate="">
-                                  continue with the upgrade.
-                                </a>
+                                  continue with the upgrade
+                                </a>.
                             </div>
                         </li>
                     </ul>
