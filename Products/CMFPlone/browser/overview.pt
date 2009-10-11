@@ -98,7 +98,7 @@
                        title="Create a new Plone site"
                        i18n:attributes="title;"
                        i18n:translate="">
-                        Create a new Plone site.
+                        Create a new Plone site
                     </a>
                 </div>
             </li>
