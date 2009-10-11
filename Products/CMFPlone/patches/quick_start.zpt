@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+  <title>Plone</title>
+
+  <style type="text/css" media="screen">
+      body {
+          font-family: Arial, FreeSans, sans-serif;
+          line-height: 1.5em;
+          clear: both;
+      }
+      h1 {
+          font-family: "Helvetica Neue", Arial, FreeSans, sans-serif; 
+      }
+      a {
+          border-bottom:1px solid #0072B5;
+          color:#0072B5;
+          text-decoration:none;
+      }
+      #box {
+          margin: 2em auto;
+          width:498px;
+          text-align:center;
+      }
+      img {
+          margin: 0 auto 2em;
+          border: none;
+      }
+      #text {
+          font: Arial, FreeSans, sans-serif;
+          text-align:left;
+      }
+      ul {
+          margin-left: 0;
+          padding-left:0;
+          list-style-position:inside;
+      }
+      ul li {
+          margin-bottom: 1em;
+      }
+      #create-link {
+          font-size: 125%;
+          margin-top: 0.5em;
+      }
+  </style>
+
+</head>
+
+<body>
+<div id="box" tal:define="site python:getattr(context, 'Plone', None)">
+    <img src="/++resource++plone-logo.png" width="215" height="56" />
+    <div id="text">
+        <h1>
+            Plone is up and running
+        </h1>
+        <ul tal:define="hasSite python:'Plone' in context.objectIds()">
+            <li tal:condition="hasSite"><a href="#"
+                tal:attributes="href context/Plone/absolute_url"
+                       title="Go to your instance">View your Plone site.</a>
+            </li>
+            <li tal:condition="not:hasSite">
+                Your Plone site has not been added yet:
+                <div id="create-link">
+                    <a href="/manage_addProduct/CMFPlone/addPloneSiteForm?site_id=Plone"
+                       title="Create a new Plone site"
+                       tal:attributes="href string:${context/absolute_url}/manage_addProduct/CMFPlone/addPloneSiteForm?site_id=Plone">
+                    Click here to create a Plone site.
+                    </a>
+                </div>
+            </li>
+            <li><a href="#" tal:attributes="href string:${context/absolute_url}/manage"
+                   title="Go to ZMI">Use the Zope Management Interface.</a></li>
+            <li><a href="http://plone.org" title="Plone Home">Plone.Org</a> &#151; documentation, add-ons, support, community.</li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

@@ -1,3 +1,5 @@
+import addzmiquickstart         # Replace the standard Zope start page
+
 import addzmiplonesite          # Add an explicit link to add a new Plone
                                 # site to the ZMI for faster access
 

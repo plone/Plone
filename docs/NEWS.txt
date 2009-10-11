@@ -8,6 +8,10 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Overwrote the Zope quick start page, with a more helpful Plone specific
+  version as already found in the unified installer.
+  [hannosch]
+
 - Turned the new add Plone site button in the ZMI into a link. This allows us
   to get out of the frameset to the top.
   [hannosch]

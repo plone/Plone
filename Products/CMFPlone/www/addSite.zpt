@@ -9,16 +9,18 @@
 <head>
   <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 
-  <title i18n:translate="">Add a new Plone site</title>
+  <title i18n:translate="">Create Plone site</title>
 
   <style type="text/css" media="screen">
     body {
       font: 80% Arial, FreeSans, sans-serif;
       line-height: 1.5em;
       clear: both;
+      margin-left: 1em;
     }
     img {
       margin-top: 0.5em;
+      border: none;
     }
     h1 {
       font-family: "Helvetica Neue", Arial, FreeSans, sans-serif; 
@@ -66,7 +68,7 @@
 
   <img src="/++resource++plone-logo.png" width="215" height="56" />
 
-  <h1 i18n:translate="">Add Plone site</h1>
+  <h1 i18n:translate="">Create a Plone site</h1>
 
   <form action="addPloneSite" method="post">
 
@@ -77,10 +79,10 @@
 
         <div class="formHelp" i18n:translate="">
           The id of the site. No special characters or spaces are allowed.
-          Generally an all lower-case id is recommended.
         </div>
 
-        <input type="text" name="site_id" size="20" id="site_id" />
+        <input type="text" name="site_id" size="20" id="site_id"
+               tal:attributes="value request/site_id|nothing" />
       </div>
 
       <div class="field">
@@ -150,8 +152,8 @@
       </tal:extensionprofiles>
 
       <div class="formControls">
-        <input type="submit" name="submit" value="Add Plone Site"
-               i18n:attributes="value label_add_plone_site;" />
+        <input type="submit" name="submit" value="Create Plone Site"
+               i18n:attributes="value;" />
       </div>
 
   </form>
