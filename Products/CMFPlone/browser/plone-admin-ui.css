@@ -57,14 +57,25 @@ div.formControls {
     font-size: 125%;
     margin-top: 0.5em;
 }
-#text {
-    font: Arial, FreeSans, sans-serif;
-    text-align:left;
+.upgrade-warning {
+    background: url(/misc_/PageTemplates/exclamation.gif) top left no-repeat;
+    padding: 0 0 0 1.2em;
+    font-weight: bold;
+    margin-top: 0.5em;
 }
 #box {
     margin: 2em auto;
-    width:498px;
+    width:430px;
     text-align:center;
+}
+#multiple-sites {
+    font-size: 125%;
+    margin-top: 0.5em;
+    color: #555;
+}
+#text {
+    font: Arial, FreeSans, sans-serif;
+    text-align:left;
 }
 #sitelist {
     margin: 1em;

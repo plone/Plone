@@ -19,9 +19,10 @@
 
 <body tal:define="sites view/sites">
 <div id="box">
-    <img src="/++resource++plone-logo.png" width="215" height="56" />
+    <img src="/++resource++plone-logo.png" width="215" height="56"
+         alt="Plone Logo"/>
     <div id="text">
-        <h1>
+        <h1 i18n:translate="">
             Plone is up and running
         </h1>
         <ul>
@@ -29,46 +30,96 @@
                 <tal:one tal:condition="python:len(sites) == 1">
                     <li tal:repeat="site sites">
                         <span class="prominent">
-                            <a href="#" tal:attributes="href site/absolute_url"
-                               title="Go to your instance">View your Plone site.</a>
+                            <a href="#"
+                               tal:attributes="href site/absolute_url"
+                               title="Go to your instance"
+                               i18n:attributes="title;"
+                               i18n:translate="">
+                                View your Plone site.
+                            </a>
                         </span>
+                        <div class="upgrade-warning"
+                             tal:condition="python:view.outdated(site)"
+                             i18n:translate="">
+                            The site configuration is outdated and needs to be
+                            upgraded. Please
+                            <a href="#"
+                               tal:attributes="href string:${site/absolute_url}/portal_migration/manage_migrate"
+                               title="Go to the upgrade page"
+                               i18n:attributes="title;"
+                               i18n:name="link_continue_with_the_upgrade"
+                               i18n:translate="">
+                              continue with the upgrade.
+                            </a>
+                        </div>
                     </li>
                 </tal:one>
                 <tal:many tal:condition="python:len(sites) &gt; 1">
                 <li>
-                    <span class="prominent">
+                    <span id="multiple-sites" i18n:translate="">
                         You have multiple Plone sites. View one of them:
                     </span>
-                    <dl id="sitelist">
-                        <tal:sites tal:repeat="site sites">
-                            <dt>
-                                <a href="#"
-                                   tal:attributes="href site/absolute_url"
-                                   tal:content="site/Title">
-                                    Site title
-                                </a>
-                            </dt>
-                            <dd tal:content="site/Description">
-                              Site description
-                            </dd>
-                        </tal:sites>
-                    </dl>
+                </li>
+                <li tal:repeat="site sites">
+                    <span class="prominent">
+                        <a href="#"
+                           tal:attributes="href site/absolute_url;
+                                           title site/Title;"
+                           tal:content="site/Title">
+                            Site title
+                        </a>
+                    </span>
+                    <div class="upgrade-warning"
+                         i18n:translate=""
+                         tal:condition="python:view.outdated(site)">
+                        The site configuration is outdated and needs to be
+                        upgraded. Please
+                        <a href="#"
+                           tal:attributes="href string:${site/absolute_url}/portal_migration/manage_migrate"
+                           title="Go to the upgrade page"
+                           i18n:attributes="title;"
+                           i18n:name="link_continue_with_the_upgrade"
+                           i18n:translate="">
+                          continue with the upgrade.
+                        </a>
+                    </div>
                 </li>
                 </tal:many>
             </tal:block>
-            <li tal:condition="not:sites">
+            <li tal:condition="not:sites" i18n:translate="">
                 Your Plone site has not been added yet:
-                <div class="prominent">
-                    <a href="/manage_addProduct/CMFPlone/addPloneSiteForm?site_id=Plone"
+                <div class="prominent" i18n:name="link_create_a_plone_site">
+                    <a href="#"
+                       tal:attributes="href string:${context/absolute_url}/manage_addProduct/CMFPlone/addPloneSiteForm?site_id=Plone"
                        title="Create a new Plone site"
-                       tal:attributes="href string:${context/absolute_url}/manage_addProduct/CMFPlone/addPloneSiteForm?site_id=Plone">
-                    Create a Plone site.
+                       i18n:attributes="title;"
+                       i18n:translate="">
+                        Create a Plone site.
                     </a>
                 </div>
             </li>
-            <li><a href="#" tal:attributes="href string:${context/absolute_url}/manage"
-                   title="Go to ZMI">Use the Zope Management Interface.</a></li>
-            <li><a href="http://plone.org" title="Plone Home">Plone.Org</a> &#151; documentation, add-ons, support, community.</li>
+            <li>
+                <a href="#"
+                   tal:attributes="href string:${context/absolute_url}/manage"
+                   title="Go to the ZMI"
+                   i18n:attributes="title;"
+                   i18n:translate="">
+                    Zope Management Interface
+                </a>
+                <span class="formHelp" i18n:translate="">
+                    &#151; low-level technical configuration.
+                </span>
+            </li>
+            <li>
+                <a href="http://plone.org"
+                   title="Plone Community Home"
+                   i18n:attributes="title;">
+                    Plone.Org
+                </a>
+                <span class="formHelp" i18n:translate="">
+                    &#151; documentation, add-ons, support, community.
+                </span>
+            </li>
         </ul>
     </div>
 </div>

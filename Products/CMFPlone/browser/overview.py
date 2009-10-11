@@ -34,3 +34,9 @@ class Overview(BrowserView):
                 if secman.checkPermission(View, obj):
                     result.append(obj)
         return result
+
+    def outdated(self, obj):
+        mig = obj.get('portal_migration', None)
+        if mig is not None:
+            return mig.needUpgrading()
+        return False
