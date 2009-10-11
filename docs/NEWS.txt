@@ -8,6 +8,10 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Added the upgrade warning to the main control panel screen. This is the same
+  as found on the new overview page.
+  [hannosch]
+
 - Changed the new default overview page to be a normal browser page and made
   it aware of multiple Plone sites in the root.
   [hannosch]
