@@ -1,0 +1,71 @@
+body {
+    font: 80% Arial, FreeSans, sans-serif;
+    line-height: 1.5em;
+    clear: both;
+    margin-left: 1em;
+}
+h1 {
+    font-family: "Helvetica Neue", Arial, FreeSans, sans-serif; 
+    margin-top: 1em;
+}
+img {
+/*    margin: 0 auto 2em;*/
+    margin-top: 0.5em;
+    border: none;
+}
+a {
+    border-bottom:1px solid #0072B5;
+    color:#0072B5;
+    text-decoration:none;
+}
+ul {
+    margin-left: 0;
+    padding-left:0;
+    list-style-position:inside;
+}
+ul li {
+    margin-bottom: 1em;
+}
+dt {
+    font-weight: bold;
+}
+dd {
+    margin: 0 0 1em 1em;
+}
+input {
+    font-size: 150%;
+    width: inherit;
+}
+input[type="text"]:focus {
+    background-color: #ffffe0;
+}
+label {
+    font-weight: bold;
+}
+.field {
+    clear: both;
+    margin-top: 1em;
+}
+.formHelp {
+    color: #555;
+    margin: 0 0 0.2em 0;
+}
+div.formControls {
+    margin-top: 1em;
+}
+.prominent {
+    font-size: 125%;
+    margin-top: 0.5em;
+}
+#text {
+    font: Arial, FreeSans, sans-serif;
+    text-align:left;
+}
+#box {
+    margin: 2em auto;
+    width:498px;
+    text-align:center;
+}
+#sitelist {
+    margin: 1em;
+}

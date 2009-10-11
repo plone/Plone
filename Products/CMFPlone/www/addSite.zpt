@@ -1,4 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
@@ -11,49 +12,8 @@
 
   <title i18n:translate="">Create a Plone site</title>
 
-  <style type="text/css" media="screen">
-    body {
-      font: 80% Arial, FreeSans, sans-serif;
-      line-height: 1.5em;
-      clear: both;
-      margin-left: 1em;
-    }
-    img {
-      margin-top: 0.5em;
-      border: none;
-    }
-    h1 {
-      font-family: "Helvetica Neue", Arial, FreeSans, sans-serif; 
-      margin-top: 1em;
-    }
-    dt {
-      font-weight: bold;
-    }
-    dd {
-      margin: 0 0 1em 1em;
-    }
-    input {
-      font-size: 150%;
-      width: inherit;
-    }
-    input[type="text"]:focus {
-      background-color: #ffffe0;
-    }
-    label {
-      font-weight: bold;
-    }
-    .field {
-      clear: both;
-      margin-top: 1em;
-    }
-    .formHelp {
-      color: #555;
-      margin: 0 0 0.2em 0;
-    }
-    div.formControls {
-      margin-top: 1em;
-    }
-  </style>
+  <link rel="stylesheet" type="text/css"
+        href="/++resource++plone-admin-ui.css" />
 
   <script type="text/javascript">
     function siteid_focus() {
@@ -108,23 +68,25 @@
             specific reasons and know what you are doing.
           </div>
 
-          <dl tal:repeat="info options/base_profiles">
-            <dt>
-              <input type="radio"
-                     name="profile_id:string"
-                     value="profile"
-                     tal:attributes="id info/id;
-                                     value info/id;
-                                     checked python: options['default_profile']==info['id'] and 'checked' or nothing"
-                     />
-              <label tal:attributes="for info/id"
-                     tal:content="info/title">
-                  Profile title
-              </label>
-            </dt>
-            <dd tal:content="info/description">
-              Profile description
-            </dd>
+          <dl>
+            <tal:bases tal:repeat="info options/base_profiles">
+              <dt>
+                <input type="radio"
+                       name="profile_id:string"
+                       value="profile"
+                       tal:attributes="id info/id;
+                                       value info/id;
+                                       checked python: options['default_profile']==info['id'] and 'checked' or nothing"
+                       />
+                <label tal:attributes="for info/id"
+                       tal:content="info/title">
+                    Profile title
+                </label>
+              </dt>
+              <dd tal:content="info/description">
+                Profile description
+              </dd>
+            </tal:bases>
           </dl>
         </div>
       </tal:baseprofile>

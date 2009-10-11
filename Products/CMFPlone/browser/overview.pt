@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      i18n:domain="plone">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+  <title>Plone</title>
+
+  <link rel="stylesheet" type="text/css"
+        href="/++resource++plone-admin-ui.css" />
+
+</head>
+
+<body tal:define="sites view/sites">
+<div id="box">
+    <img src="/++resource++plone-logo.png" width="215" height="56" />
+    <div id="text">
+        <h1>
+            Plone is up and running
+        </h1>
+        <ul>
+            <tal:block tal:condition="sites">
+                <tal:one tal:condition="python:len(sites) == 1">
+                    <li tal:repeat="site sites">
+                        <span class="prominent">
+                            <a href="#" tal:attributes="href site/absolute_url"
+                               title="Go to your instance">View your Plone site.</a>
+                        </span>
+                    </li>
+                </tal:one>
+                <tal:many tal:condition="python:len(sites) &gt; 1">
+                <li>
+                    <span class="prominent">
+                        You have multiple Plone sites. View one of them:
+                    </span>
+                    <dl id="sitelist">
+                        <tal:sites tal:repeat="site sites">
+                            <dt>
+                                <a href="#"
+                                   tal:attributes="href site/absolute_url"
+                                   tal:content="site/Title">
+                                    Site title
+                                </a>
+                            </dt>
+                            <dd tal:content="site/Description">
+                              Site description
+                            </dd>
+                        </tal:sites>
+                    </dl>
+                </li>
+                </tal:many>
+            </tal:block>
+            <li tal:condition="not:sites">
+                Your Plone site has not been added yet:
+                <div class="prominent">
+                    <a href="/manage_addProduct/CMFPlone/addPloneSiteForm?site_id=Plone"
+                       title="Create a new Plone site"
+                       tal:attributes="href string:${context/absolute_url}/manage_addProduct/CMFPlone/addPloneSiteForm?site_id=Plone">
+                    Create a Plone site.
+                    </a>
+                </div>
+            </li>
+            <li><a href="#" tal:attributes="href string:${context/absolute_url}/manage"
+                   title="Go to ZMI">Use the Zope Management Interface.</a></li>
+            <li><a href="http://plone.org" title="Plone Home">Plone.Org</a> &#151; documentation, add-ons, support, community.</li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

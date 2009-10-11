@@ -73,9 +73,24 @@
       permission="zope.Public"
       />
 
+  <browser:page
+      for="OFS.interfaces.IApplication"
+      name="plone-overview"
+      class=".overview.Overview"
+      permission="zope.Public"
+      template="overview.pt"
+      />
+
+  <adapter factory=".overview.AppTraverser" />
+
   <browser:resource
       file="plone-logo.png"
       name="plone-logo.png"
+      />
+
+  <browser:resource
+      file="plone-admin-ui.css"
+      name="plone-admin-ui.css"
       />
 
    <adapter for="*
