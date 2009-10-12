@@ -26,13 +26,18 @@ class AppTraverser(DefaultPublishTraverse):
 
 class Overview(BrowserView):
 
-    def sites(self):
+    def sites(self, root=None):
+        if root is None:
+            root = self.context
+        
         result = []
         secman = getSecurityManager()
-        for obj in self.context.values():
+        for obj in root.values():
             if IPloneSiteRoot.providedBy(obj):
                 if secman.checkPermission(View, obj):
                     result.append(obj)
+            elif obj.getId() in getattr(root, '_mount_points', {}):
+                result.extend(self.sites(root=obj))
         return result
 
     def outdated(self, obj):

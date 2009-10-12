@@ -13,8 +13,8 @@ Changelog
   [hannosch]
 
 - Changed the new default overview page to be a normal browser page and made
-  it aware of multiple Plone sites in the root.
-  [hannosch]
+  it aware of multiple Plone sites in the root or in ZODB mountpoints.
+  [hannosch, davisagli]
 
 - Overwrote the Zope quick start page, with a more helpful Plone specific
   version as already found in the unified installer.
