@@ -129,16 +129,15 @@
 
     <tal:versions define="mt here/portal_migration;
                           sys mt/coreVersions">
-            <h2 i18n:translate="heading_plone_version_overview">Plone Version Overview</h2>
-            
-            <ul>
-                <li>Plone <span tal:replace="mt/getInstanceVersion" /></li>
-                <li>CMF <span tal:replace="sys/CMF" /></li>
-                <li>Zope <span tal:replace="sys/Zope" /></li>
-                <li>Python <span tal:replace="sys/Python" /></li>
-            <tal:pil condition="sys/PIL">
-                <li>PIL <span tal:replace="sys/PIL" /></li>
-            </tal:pil>
+        <h2 i18n:translate="heading_plone_version_overview">
+            Plone Version Overview
+        </h2>
+
+        <ul>
+            <li>Plone <span tal:replace="mt/getInstanceVersion" /></li>
+            <li>CMF <span tal:replace="sys/CMF" /></li>
+            <li>Zope <span tal:replace="sys/Zope" /></li>
+            <li>Python <span tal:replace="sys/Python" /></li>
         </ul>
     </tal:versions>
     
