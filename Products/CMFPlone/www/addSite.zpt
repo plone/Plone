@@ -103,13 +103,21 @@
               Add-on Products control panel.
           </div>
 
-          <select name="extension_ids:list"
-                  id="extension_ids" multiple="True" size="5">
-            <option tal:repeat="info options/extension_profiles"
-                    tal:attributes="value info/id;
-                                    selected info/selected|nothing"
-                    tal:content="info/title">profile title</option>
-          </select>
+          <dl id="extension_ids">
+            <tal:addons tal:repeat="info options/extension_profiles">
+              <dt>
+                <input type="checkbox" name="extension_ids:list" value=""
+                       tal:attributes="value info/id;
+                                       checked info/selected|nothing;" />
+                <span tal:content="info/title">
+                  profile title
+                </span>
+              </dt>
+              <dd tal:content="info/description">
+                profile description
+              </dd>
+            </tal:addons>
+          </dl>
         </div>
       </tal:extensionprofiles>
 

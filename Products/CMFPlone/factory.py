@@ -1,3 +1,5 @@
+from operator import itemgetter
+
 from zope.component import getAllUtilitiesRegisteredFor
 from zope.event import notify
 from zope.interface import implements
@@ -80,6 +82,8 @@ def addPloneSiteForm(dispatcher):
                 if profile_id in default_extension_profiles:
                     info['selected'] = 'selected'
                 extension_profiles.append(info)
+
+    extension_profiles.sort(key=itemgetter('title'))
 
     for info in profile_registry.listProfileInfo():
         if info.get('type') == BASE and \
