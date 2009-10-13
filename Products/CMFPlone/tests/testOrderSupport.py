@@ -185,7 +185,12 @@ class TestOrderSupport(PloneTestCase.PloneTestCase):
         self.assertEqual(self.folder.getObjectPosition('foo'), 1)
         self.assertEqual(self.folder.getObjectPosition('baz'), 2)
 
-    def testMoveCMFObjectsOnly(self):
+    # NOTE: These tests are disabled, as the new unified, BTree-based,
+    # ordered-by-adapter folder implementation doesn't support this. It's
+    # not used anywhere, causes the re-ordering to be needlessly slow and
+    # generally shouldn't be necessary.
+
+    def DISABLED_testMoveCMFObjectsOnly(self):
         # Plone speciality
         self.folder.manage_addProduct['OFSP'].manage_addDTMLMethod('wilma', file='')
         self.folder.moveObject('wilma', 2)
@@ -196,7 +201,7 @@ class TestOrderSupport(PloneTestCase.PloneTestCase):
         self.assertEqual(self.folder.getObjectPosition('wilma'), 2) # Did not move
         self.assertEqual(self.folder.getObjectPosition('foo'), 3)
 
-    def testMoveUpCMFObjectsOnly(self):
+    def DISABLED_testMoveUpCMFObjectsOnly(self):
         # Plone speciality
         self.folder.manage_addProduct['OFSP'].manage_addDTMLMethod('wilma', file='')
         self.folder.moveObject('wilma', 2)

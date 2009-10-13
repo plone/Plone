@@ -25,8 +25,8 @@ class TestPloneFolder(PloneTestCase.PloneTestCase):
     def testGetObjectPosition(self):
         self.assertEqual(self.folder.getObjectPosition('sub1'), 0)
 
-    def testGetObjectPositionRaisesNotFound(self):
-        self.assertRaises(NotFound, self.folder.getObjectPosition, 'foobar')
+    def testGetObjectPositionRaisesError(self):
+        self.assertRaises(ValueError, self.folder.getObjectPosition, 'foobar')
 
     def testSortOrder(self):
         self.assertEqual(self.folder.objectIds(),
