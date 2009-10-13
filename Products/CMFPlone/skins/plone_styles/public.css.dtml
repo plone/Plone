@@ -213,6 +213,18 @@ form.searchPage input.searchButton {
     padding:1px 10px 1px 25px;
 }
 
+/* Collapsible elements in search_form */
+
+.collapsible .collapser.collapsed {
+    padding-right: 14px;
+    background: url('&dtml-portal_url;/arrowRight.png') center right no-repeat;
+} 
+
+.collapsible .collapser.expanded {
+    padding-right: 14px;
+    background: url('&dtml-portal_url;/arrowDown.png') center right no-repeat;
+} 
+
 /* LiveSearch styles */
 .LSRes {
     font-family:  <dtml-var fontFamily>;
