@@ -4,6 +4,7 @@
 
 # $Id$
 
+from plone.app.blob.tests import bbb
 from Products.PloneTestCase.ptc import *
 
 # Make the test fixture extension profile active
@@ -25,6 +26,8 @@ class PloneTestCase(PloneTestCase):
        something fancy on Your Branch (tm), put it here.
     """
 
+    layer = bbb.plone
+
     def setRequestMethod(self, method):
         self.app.REQUEST.set('REQUEST_METHOD', method)
         self.app.REQUEST.method = method
@@ -43,3 +46,5 @@ class FunctionalTestCase(Functional, PloneTestCase):
     """This is a stub now, but in case you want to try
        something fancy on Your Branch (tm), put it here.
     """
+
+    layer = bbb.plone
