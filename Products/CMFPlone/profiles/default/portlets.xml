@@ -38,8 +38,8 @@
    addview="portlets.Calendar"
    title="Calendar portlet"
    description="A portlet which can render a calendar."
-   i18n:attributes="title title_calendar_portlet;
-                    description description_calendar_portlet"
+   i18n:attributes="title;
+                    description"
    >
    <for interface="plone.app.portlets.interfaces.IColumn" />
    <for interface="plone.app.portlets.interfaces.IDashboard" />
@@ -49,8 +49,8 @@
    addview="portlets.Classic"
    title="Classic portlet"
    description="A portlet which can render a classic template-based portlet"
-   i18n:attributes="title title_classic_portlet;
-                    description description_classic_portlet"
+   i18n:attributes="title;
+                    description"
    >
    <for interface="plone.app.portlets.interfaces.IColumn" /> 
    <for interface="plone.app.portlets.interfaces.IDashboard" />  
@@ -60,8 +60,8 @@
    addview="portlets.News"
    title="News"
    description="A portlet which can render a listing of recent news"
-   i18n:attributes="title title_news_portlet;
-                    description description_news_portlet"
+   i18n:attributes="title;
+                    description"
    >
    <for interface="plone.app.portlets.interfaces.IColumn" /> 
    <for interface="plone.app.portlets.interfaces.IDashboard" />  
@@ -71,8 +71,8 @@
    addview="portlets.Events"
    title="Events"
    description="A portlet which can render a listing of recent events"
-   i18n:attributes="title title_events_portlet;
-                    description description_events_portlet"
+   i18n:attributes="title;
+                    description"
    >
    <for interface="plone.app.portlets.interfaces.IColumn" />
    <for interface="plone.app.portlets.interfaces.IDashboard" />
@@ -82,8 +82,8 @@
    addview="portlets.Login"
    title="Login"
    description="A portlet which can render a log-in box"
-   i18n:attributes="title title_login_portlet;
-                    description description_login_portlet"
+   i18n:attributes="title;
+                    description"
    >
    <for interface="plone.app.portlets.interfaces.IColumn" />
  </portlet>
@@ -92,8 +92,8 @@
    addview="portlets.Navigation"
    title="Navigation"
    description="A portlet which can render a navigation tree"
-   i18n:attributes="title title_navigation_portlet;
-                    description description_navigation_portlet"
+   i18n:attributes="title;
+                    description"
    >
    <for interface="plone.app.portlets.interfaces.IColumn" />
  </portlet>
@@ -102,8 +102,8 @@
    addview="portlets.Recent"
    title="Recent items"
    description="A portlet which can render a listing of recently changed items."
-   i18n:attributes="title title_recent_portlet;
-                    description description_recent_portlet"
+   i18n:attributes="title;
+                    description"
    >
    <for interface="plone.app.portlets.interfaces.IColumn" />
    <for interface="plone.app.portlets.interfaces.IDashboard" />
@@ -113,8 +113,8 @@
    addview="portlets.Review"
    title="Review list"
    description="A portlet which can render a listing on the review queue."
-   i18n:attributes="title title_review_portlet;
-                    description description_review_portlet"
+   i18n:attributes="title;
+                    description"
    >
    <for interface="plone.app.portlets.interfaces.IColumn" />
    <for interface="plone.app.portlets.interfaces.IDashboard" />
@@ -124,8 +124,8 @@
    addview="portlets.rss"
    title="RSS Feed"
    description="A portlet which can receive and render an RSS feed."
-   i18n:attributes="title title_rss_portlet;
-                    description description_rss_portlet"
+   i18n:attributes="title;
+                    description"
    >
    <for interface="plone.app.portlets.interfaces.IColumn" />
    <for interface="plone.app.portlets.interfaces.IDashboard" />
@@ -135,8 +135,8 @@
    addview="portlets.Search"
    title="Search"
    description="A portlet which shows a search box."
-   i18n:attributes="title title_search_portlet;
-                    description description_search_portlet"
+   i18n:attributes="title;
+                    description"
    >
    <for interface="plone.app.portlets.interfaces.IColumn" />
    <for interface="plone.app.portlets.interfaces.IDashboard" />

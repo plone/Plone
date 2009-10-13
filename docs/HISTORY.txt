@@ -4,6 +4,12 @@ Changelog
 3.3.2 - Unreleased
 ------------------
 
+- Removed msgids in portlets.xml. There is no support for
+  msgids in the import of portlets.xml implementation.
+  This allow to extract translatable strings with i18ndude.
+  This closes http://dev.plone.org/plone/ticket/9631
+  [vincentfretin]
+
 - Fixed some duplicated msgids with different defaults.
   There is no new strings to translate.
   See http://dev.plone.org/plone/ticket/9633
