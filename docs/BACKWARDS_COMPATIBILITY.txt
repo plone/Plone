@@ -199,3 +199,6 @@ may need to take the following changes into account.
 
 * The action icons tool has been deprecated.  You should register action icons
   directly on the action now, using the icon_expr setting.
+
+* Products.CMFPlone.CatalogTool.registerIndexableAttribute has been removed. 
+  Use plone.indexer
