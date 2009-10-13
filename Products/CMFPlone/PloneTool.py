@@ -88,7 +88,7 @@ METADATA_DCNAME = {
     'Language'         : 'DC.language',
     'Rights'           : 'DC.rights',
     }
-
+METADATA_DC_AUTHORFIELDS = ('Creator', 'Contributors', 'Publisher')
 
 class PloneTool(PloneBaseTool, UniqueObject, SimpleItem):
     """Various utility methods."""
@@ -1031,7 +1031,10 @@ class PloneTool(PloneBaseTool, UniqueObject, SimpleItem):
         """
         result = {}
         site_props = getToolByName(self, 'portal_properties').site_properties
+        mt = getToolByName(self, 'portal_membership')
+        
         use_all = site_props.getProperty('exposeDCMetaTags', None)
+        view_about = site_props.getProperty('allowAnonymousViewAbout', False) or not mt.isAnonymousUser()
 
         if not use_all:
             metadata_names = {'Description': METADATA_DCNAME['Description']}
@@ -1039,6 +1042,14 @@ class PloneTool(PloneBaseTool, UniqueObject, SimpleItem):
             metadata_names = METADATA_DCNAME
 
         for accessor, key in metadata_names.items():
+            # check non-public properties
+            if not view_about and accessor in METADATA_DC_AUTHORFIELDS:
+                continue
+            
+            # short circuit non-special cases
+            if not use_all and accessor not in ('Description', 'Subject'):
+                continue
+            
             method = getattr(aq_inner(context).aq_explicit, accessor, None)
             if not callable(method):
                 continue
@@ -1055,6 +1066,20 @@ class PloneTool(PloneBaseTool, UniqueObject, SimpleItem):
             if accessor == 'Publisher' and value == 'No publisher':
                 # No publisher is hardcoded (TODO: still?)
                 continue
+            
+            # Check for fullnames
+            if view_about and accessor in METADATA_DC_AUTHORFIELDS:
+                if not isinstance(value, (list, tuple)):
+                    value=[value]
+                tmp=[]
+                for userid in value:
+                    member=mt.getMemberInfo(userid)
+                    name=userid
+                    if member:
+                        name=member['fullname'] or userid
+                    tmp.append(name)
+                value=tmp
+            
             if isinstance(value, (list, tuple)):
                 # convert a list to a string
                 value = ', '.join(value)
