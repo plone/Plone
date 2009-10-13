@@ -8,6 +8,11 @@ Changelog
 3.3.2 - Unreleased
 ------------------
 
+- Fixed some duplicated msgids with different defaults.
+  There is no new strings to translate.
+  See http://dev.plone.org/plone/ticket/9633
+  [vincentfretin]
+
 - Make the external_editor link on OS X use the .zem extension.
   Fixes http://dev.plone.org/plone/ticket/7291
   [optilude]

@@ -88,7 +88,7 @@
                     <ul class="newsFooter" tal:define="is_discussable python: isDiscussionAllowedFor(resultObject);">
                         <li>
                             <a href="/view" tal:attributes="href resulturl" i18n:translate="read_more">
-                                Read More</a>
+                                Read More&hellip;</a>
                         </li>
 
                         <tal:discussable condition="is_discussable">

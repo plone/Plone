@@ -25,10 +25,10 @@
              i18n:name="author">
             Bob Dobalina
           </a>
+          </span>
 
           &mdash;
           
-          </span>
         </tal:name>
 
         <span class="documentModified">
