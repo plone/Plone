@@ -61,12 +61,6 @@
     <tal:iefixend replace="structure string:&lt;![endif]--&gt;" />
 
     <link tal:replace="structure provider:plone.htmlhead.links" />
-    
-    <meta tal:define="metatags python:context.plone_utils.listMetaTags(here).items()"
-      tal:condition="metatags"
-      tal:repeat="keyval metatags"
-      tal:attributes="name python:keyval[0]; content python:keyval[1];"
-    />
 
     <!-- Disable IE6 image toolbar -->
     <meta http-equiv="imagetoolbar" content="no" />
