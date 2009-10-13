@@ -47,7 +47,7 @@
 
             <p tal:condition="not:configlets"
                i18n:translate="label_no_prefs_panels_available">
-              No Preference Panels available.
+              No preference panels available.
             </p>
         </tal:block>
     </tal:block>

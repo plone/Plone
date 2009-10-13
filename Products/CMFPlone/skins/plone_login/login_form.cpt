@@ -42,7 +42,7 @@
 </dl>
 
 <div tal:condition="python: not auth" i18n:translate="login_form_disabled">
-    While cookie authentication is disabled, cookie-based login is not available.
+    Since cookie authentication is disabled, cookie-based login is not available.
 </div>
 
 
