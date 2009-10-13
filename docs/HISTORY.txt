@@ -1,12 +1,59 @@
 Changelog
 =========
 
-See NEWS.txt for changes included in the current release.
+3.3.2 - Unreleased
+------------------
 
-Older releases:
+- Fixed some duplicated msgids with different defaults.
+  There is no new strings to translate.
+  See http://dev.plone.org/plone/ticket/9633
+  [vincentfretin]
 
-3.3 - unreleased
-----------------
+- Make the external_editor link on OS X use the .zem extension.
+  Fixes http://dev.plone.org/plone/ticket/7291
+  [optilude]
+
+- Minor or trivial changes and fixes to many templates for obtain
+  code that is also XHTML Strict
+  See http://dev.plone.org/plone/ticket/4379
+  [keul]
+  
+- Fixed *folder_constraintypes_form.cpt* template; was XHTML invalid when
+  showing portal type with whitespaces (like "News Item")
+  [keul]
+
+- Fixed handling of URL fragment identifiers in form-tabbing. This closes
+  http://dev.plone.org/plone/ticket/9500
+  [mj]
+
+
+3.3.1 - September 9, 2009
+-------------------------
+
+- Defined the portal_url variable to
+  context/@@plone_portal_state/navigation_root_url
+  in author.cpt and personalize_form.cpt. Plone 4 and trunk are not impacted.
+  This closes http://dev.plone.org/plone/ticket/9453
+  [vincentfretin]
+
+- Fix ITranslatable to use the canonical interface from LinguaPlone or fall
+  back to a Zope3-style interface.
+  [hannosch, witsch]
+
+- Fixed a bug which deletes an object in the acquisition path instead of 
+  the original object in case of a catalog inconsistency. This closes #9046.
+  [pilz]
+
+
+3.3 - August 18, 2009
+---------------------
+
+- Fix broken IE6 CSS support.
+  [spliter]
+
+
+3.3rc5 - August 1, 2009
+-----------------------
 
 - Remove trailing space from 
   history_compare_with_previous_inline.png.metadata filename.
@@ -16,6 +63,7 @@ Older releases:
 - Modified the history viewlet style so actions are green without
   background and border. Messages are on a blue background.
   [vincentfretin]
+
 
 3.3rc4 - July 7, 2009
 ---------------------
