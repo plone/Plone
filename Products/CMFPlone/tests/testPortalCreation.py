@@ -136,10 +136,10 @@ class TestPortalCreation(PloneTestCase.PloneTestCase, WarningInterceptor):
         self.assertEqual(res[0].getId, 'Members')
         self.assertEqual(res[0].Title, 'Users')
 
-    def testSecureMailHost(self):
-        # MailHost should be of the SMH variety
-        mailhost = self.portal.plone_utils.getMailHost()
-        self.assertEqual(mailhost.meta_type, 'Secure Mail Host')
+    def testMailHost(self):
+        # MailHost should be of the standard variety
+        mailhost = self.portal.MailHost
+        self.assertEqual(mailhost.meta_type, 'Mail Host')
 
     def testUseFolderContentsProperty(self):
         # The use_folder_contents site property should be emtpy

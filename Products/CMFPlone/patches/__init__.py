@@ -13,3 +13,6 @@ import csrf                     # Protects most important methods from
 csrf.applyPatches()             # CSRF attacks
 
 import speed                    # Various caching patches to improve speed
+
+import securemailhost           # SecureMailHost BBB, remove in Plone 5.0
+securemailhost.applyPatches()

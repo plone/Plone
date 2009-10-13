@@ -1,3 +1,4 @@
+from email.Utils import getaddresses
 import re
 import sys
 from types import UnicodeType, StringType
@@ -61,6 +62,10 @@ _icons = {}
 CEILING_DATE = DefaultDublinCoreImpl._DefaultDublinCoreImpl__CEILING_DATE
 FLOOR_DATE = DefaultDublinCoreImpl._DefaultDublinCoreImpl__FLOOR_DATE
 BAD_CHARS = re.compile(r'[^a-zA-Z0-9-_~,.$\(\)# ]').findall
+
+EMAIL_RE = re.compile(r"^(\w&.%#$&'\*+-/=?^_`{}|~]+!)*[\w&.%#$&'\*+-/=?^_`{}|~]+@(([0-9a-z]([0-9a-z-]*[0-9a-z])?\.)+[a-z]{2,6}|([0-9]{1,3}\.){3}[0-9]{1,3})$", re.IGNORECASE)
+# used to find double new line (in any variant)
+EMAIL_CUTOFF_RE = re.compile(r".*[\n\r][\n\r]")
 
 # XXX Remove this when we don't depend on python2.1 any longer,
 # use email.Utils.getaddresses instead
@@ -155,7 +160,7 @@ class PloneTool(PloneBaseTool, UniqueObject, SimpleItem):
         >>> ptool = self.portal.plone_utils
 
         >>> ptool.getMailHost()
-        <SecureMailHost ...>
+        <MailHost ...>
         """
         return getattr(aq_parent(self), 'MailHost')
 
@@ -175,32 +180,71 @@ class PloneTool(PloneBaseTool, UniqueObject, SimpleItem):
         message = template(self, send_to_address=send_to_address,
                            send_from_address=send_from_address,
                            comment=comment, subject=subject, **kwargs)
-        result = host.secureSend(message, send_to_address,
-                                 envelope_from, subject=subject,
-                                 subtype='plain', charset=encoding,
-                                 debug=False, From=send_from_address)
+        message = message.encode(encoding)
+        result = host.send(message, mto=send_to_address,
+                           mfrom=envelope_from, subject=subject,
+                           charset=self.getSiteEncoding())
 
     security.declarePublic('validateSingleNormalizedEmailAddress')
     def validateSingleNormalizedEmailAddress(self, address):
         """Lower-level function to validate a single normalized email address,
         see validateEmailAddress.
         """
-        host = self.getMailHost()
-        return host.validateSingleNormalizedEmailAddress(address)
+        if not isinstance(address, basestring):
+            return False
+
+        sub = EMAIL_CUTOFF_RE.match(address);
+        if sub != None:
+            # Address contains two newlines (possible spammer relay attack)
+            return False
+
+        # sub is an empty string if the address is valid
+        sub = EMAIL_RE.sub('', address)
+        if sub == '':
+            return True
+        return False
 
     security.declarePublic('validateSingleEmailAddress')
     def validateSingleEmailAddress(self, address):
         """Validate a single email address, see also validateEmailAddresses."""
-        host = self.getMailHost()
-        return host.validateSingleEmailAddress(address)
+        if not isinstance(address, basestring):
+            return False
+
+        sub = EMAIL_CUTOFF_RE.match(address);
+        if sub != None:
+            # Address contains two newlines (spammer attack using
+            # "address\n\nSpam message")
+            return False
+
+        if len(getaddresses([address])) != 1:
+            # none or more than one address
+            return False
+
+        # Validate the address
+        for name,addr in getaddresses([address]):
+            if not self.validateSingleNormalizedEmailAddress(addr):
+                return False
+        return True
 
     security.declarePublic('validateEmailAddresses')
     def validateEmailAddresses(self, addresses):
         """Validate a list of possibly several email addresses, see also
         validateSingleEmailAddress.
         """
-        host = self.getMailHost()
-        return host.validateEmailAddresses(addresses)
+        if not isinstance(addresses, basestring):
+            return False
+
+        sub = EMAIL_CUTOFF_RE.match(addresses);
+        if sub != None:
+            # Addresses contains two newlines (spammer attack using
+            # "To: list\n\nSpam message")
+            return False
+
+        # Validate each address
+        for name,addr in getaddresses([addresses]):
+            if not self.validateSingleNormalizedEmailAddress(addr):
+                return False
+        return True
 
     security.declarePublic('editMetadata')
     def editMetadata(self

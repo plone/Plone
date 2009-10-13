@@ -15,7 +15,7 @@ from Products.CMFCore.permissions import AddPortalMember
 from App.class_init import InitializeClass
 from AccessControl import ClassSecurityInfo, Unauthorized
 from Products.CMFPlone.PloneBaseTool import PloneBaseTool
-from Products.SecureMailHost.SecureMailHost import EMAIL_RE
+from Products.CMFPlone.PloneTool import EMAIL_RE
 from Products.CMFDefault.utils import checkEmailAddress
 from Products.CMFDefault.exceptions import EmailAddressInvalid
 
@@ -189,7 +189,6 @@ class RegistrationTool(PloneBaseTool, BaseTool):
 
         return None
 
-
     security.declareProtected(AddPortalMember, 'isMemberIdAllowed')
     def isMemberIdAllowed(self, id):
         if len(id) < 1 or id == 'Anonymous User':
@@ -218,7 +217,6 @@ class RegistrationTool(PloneBaseTool, BaseTool):
                 return 0
 
         return 1
-
 
     security.declarePublic('generatePassword')
     def generatePassword(self):
