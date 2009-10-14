@@ -22,16 +22,14 @@ var ploneInputLabel = {
     },
 
     submit: function() {
-        jq('input[title].inputLabelActive').filter(function() {
-            return jq(this).val() == this.title;
-        }).val('').removeClass('inputLabelActive');
+        jq('input[title].inputLabelActive').trigger('focus.ploneInputLabel');
     }
 };
 
 jq(function() {
     jq('form:has(input[title].inputLabel)').submit(ploneInputLabel.submit);
     jq('input[title].inputLabel')
-        .focus(ploneInputLabel.focus)
+        .bind('focus.ploneInputLabel', ploneInputLabel.focus)
         .bind('blur.ploneInputLabel', ploneInputLabel.blur)
         .trigger('blur.ploneInputLabel'); // Apply the title
 });
