@@ -8,8 +8,8 @@
  <property name="content_icon">file_icon.png</property>
  <property name="icon_expr">string:${portal_url}/file_icon.png</property>
  <property name="content_meta_type">ATFile</property>
- <property name="product">ATContentTypes</property>
- <property name="factory">addATFile</property>
+ <property name="product">plone.app.blob</property>
+ <property name="factory">addATBlobFile</property>
  <property name="immediate_view">file_view</property>
  <property name="global_allow">True</property>
  <property name="filter_content_types">True</property>

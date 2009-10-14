@@ -12,7 +12,5 @@
     <dependency>profile-plone.portlet.collection:default</dependency>
     <dependency>profile-Products.TinyMCE:TinyMCE</dependency>
     <dependency>profile-plone.app.jquerytools:default</dependency>
-    <dependency>profile-plone.app.blob:default</dependency>
-    <dependency>profile-plone.app.blob:image-replacement</dependency>
   </dependencies>
 </metadata>
