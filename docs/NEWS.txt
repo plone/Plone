@@ -8,14 +8,18 @@ Changelog
 4.0 - Unreleased
 ----------------
 
-- Moved happytalk in site_feedback_template.pt and author_feedback_template.pt to bottom of emails,
-  per https://dev.plone.org/plone/ticket/7001
+- Removed the now empty plone_wysiwyg skin layer.
+  [davisagli]
+
+- Moved happytalk in site_feedback_template.pt and author_feedback_template.pt
+  to bottom of emails, per http://dev.plone.org/plone/ticket/7001
   [jonstahl]
   
-- Added precedence: bulk header to several PasswordReset's mail_password_template, per
-  https://dev.plone.org/plone/ticket/7000 - still haven't added this header to CMFPlone templates
-  [jon]
-  
+- Added precedence: bulk header to several PasswordReset's
+  mail_password_template, per http://dev.plone.org/plone/ticket/7000 - still
+  haven't added this header to CMFPlone templates.
+  [jonstahl]
+
 - Added the upgrade warning to the main control panel screen. This is the same
   as found on the new overview page.
   [hannosch]

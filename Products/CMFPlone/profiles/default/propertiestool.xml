@@ -52,7 +52,6 @@
   <property name="ext_editor" type="boolean">False</property>
   <property name="available_editors" type="lines">
    <element value="None"/>
-   <element value="Kupu"/>
    <element value="TinyMCE"/>
   </property>
   <property name="default_editor" type="string">TinyMCE</property>

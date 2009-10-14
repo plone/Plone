@@ -3,20 +3,6 @@
  <stylesheet title="" cacheable="True" compression="safe" cookable="True"
     enabled="1" expression="" authenticated="True"
     id="member.css" media="screen" rel="stylesheet" rendering="import"/>
-
- <stylesheet title="" cacheable="True" compression="safe" cookable="True"
-    enabled="True"
-    expression="python:portal.kupu_library_tool.isKupuEnabled(REQUEST=request)"
-    id="kupustyles.css" media="" rel="stylesheet" rendering="import"/>
- <stylesheet title="" cacheable="True" compression="safe" cookable="True"
-    enabled="True"
-    expression="python:portal.kupu_library_tool.isKupuEnabled(REQUEST=request)"
-    id="kupuplone.css" media="" rel="stylesheet" rendering="import"/>
- <stylesheet title="" cacheable="True" compression="safe" cookable="True"
-    enabled="True"
-    expression="python:portal.kupu_library_tool.isKupuEnabled(REQUEST=request)"
-    id="kupudrawerstyles.css" media="" rel="stylesheet" rendering="import"/>
-
  <stylesheet title="" cacheable="True" compression="safe" cookable="True"
     enabled="1" expression="" id="base.css" media="screen" rel="stylesheet"
     rendering="import"/>

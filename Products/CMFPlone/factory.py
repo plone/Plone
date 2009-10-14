@@ -44,7 +44,6 @@ class HiddenProfiles(object):
                 u'Products.PlonePAS:PlonePAS',
                 u'archetypes.referencebrowserwidget:default',
                 u'borg.localrole:default',
-                u'kupu:default',
                 u'Products.TinyMCE:TinyMCE',
                 u'Products.TinyMCE:upgrade_10_to_11',
                 u'Products.TinyMCE:uninstall',

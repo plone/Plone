@@ -75,58 +75,8 @@
  <!-- Sarissa is used by both Kupu and KSS -->
  <javascript cacheable="True" compression="safe" cookable="True"
     enabled="True"
-    expression="python:portal.kupu_library_tool.isKupuEnabled(REQUEST=request) or not context.restrictedTraverse('@@plone_portal_state').anonymous()"
+    expression="python:not context.restrictedTraverse('@@plone_portal_state').anonymous() or (getattr(portal, 'kupu_library_tool', None) and portal.kupu_library_tool.isKupuEnabled(REQUEST=request))"
     id="sarissa.js" inline="False"/>
-
- <!-- Kupu -->
- <javascript cacheable="True" compression="safe" cookable="True"
-    enabled="True"
-    expression="python:portal.kupu_library_tool.isKupuEnabled(REQUEST=request)"
-    id="kupunoi18n.js" inline="False"/>
- <javascript cacheable="True" compression="safe" cookable="True"
-    enabled="True"
-    expression="python:portal.kupu_library_tool.isKupuEnabled(REQUEST=request)"
-    id="sarissa_ieemu_xpath.js" inline="False"/>
- <javascript cacheable="True" compression="safe" cookable="True"
-    enabled="True"
-    expression="python:portal.kupu_library_tool.isKupuEnabled(REQUEST=request)"
-    id="kupuhelpers.js" inline="False"/>
- <javascript cacheable="True" compression="safe" cookable="True"
-    enabled="True"
-    expression="python:portal.kupu_library_tool.isKupuEnabled(REQUEST=request)"
-    id="kupueditor.js" inline="False"/>
- <javascript cacheable="True" compression="safe" cookable="True"
-    enabled="True"
-    expression="python:portal.kupu_library_tool.isKupuEnabled(REQUEST=request)"
-    id="kupubasetools.js" inline="False"/>
- <javascript cacheable="True" compression="safe" cookable="True"
-    enabled="True"
-    expression="python:portal.kupu_library_tool.isKupuEnabled(REQUEST=request)"
-    id="kupuloggers.js" inline="False"/>
- <javascript cacheable="True" compression="safe" cookable="True"
-    enabled="True"
-    expression="python:portal.kupu_library_tool.isKupuEnabled(REQUEST=request)"
-    id="kupucontentfilters.js" inline="False"/>
- <javascript cacheable="True" compression="safe" cookable="True"
-    enabled="True"
-    expression="python:portal.kupu_library_tool.isKupuEnabled(REQUEST=request)"
-    id="kupuploneeditor.js" inline="False"/>
- <javascript cacheable="True" compression="safe" cookable="True"
-    enabled="True"
-    expression="python:portal.kupu_library_tool.isKupuEnabled(REQUEST=request)"
-    id="kupuploneui.js" inline="False"/>
- <javascript cacheable="True" compression="safe" cookable="True"
-    enabled="True"
-    expression="python:portal.kupu_library_tool.isKupuEnabled(REQUEST=request)"
-    id="kupusourceedit.js" inline="False"/>
- <javascript cacheable="True" compression="safe" cookable="True"
-    enabled="True"
-    expression="python:portal.kupu_library_tool.isKupuEnabled(REQUEST=request)"
-    id="kupudrawers.js" inline="False"/>
- <javascript cacheable="True" compression="safe" cookable="True"
-    enabled="True"
-    expression="python:portal.kupu_library_tool.isKupuEnabled(REQUEST=request)"
-    id="kupuploneinit.js" inline="False"/>
 
 <!-- KSS -->
  <javascript cacheable="True" compression="none" cookable="True"

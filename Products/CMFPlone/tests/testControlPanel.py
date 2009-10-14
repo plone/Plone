@@ -18,7 +18,7 @@ class TestControlPanel(PloneTestCase.PloneTestCase):
                            'UsersGroups', 'MemberPrefs', 'PortalSkin',
                            'MemberPassword', 'ZMI', 'SecuritySettings',
                            'NavigationSettings', 'SearchSettings',
-                           'errorLog', 'kupu', 'PloneReconfig',
+                           'errorLog', 'PloneReconfig',
                            'CalendarSettings', 'TypesSettings', 
                            'PloneLanguageTool', 'CalendarSettings',
                            'HtmlFilter', 'Maintenance']
