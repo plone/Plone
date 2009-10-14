@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #
 # Tests the UnicodeSplitter
 #
@@ -234,10 +235,151 @@ class TestQuery(PloneTestCase.PloneTestCase):
         self.assertEqual(len(brains), 1)
 
 
+# adding UnicodeSplitterPatcth
+from Products.CMFPlone.UnicodeSplitter \
+     import process_str, process_str_post, process_str_glob,\
+     process_unicode, process_unicode_glob
+
+class TestBigramFunctions(PloneTestCase.PloneTestCase):
+
+    def afterSetUp(self):
+        pass
+
+    def test_process_str(self):
+        lsts = [
+            ("日本", ["日本", "本"]),
+            ("日", ["日"]),
+            ("日本語", ["日本", "本語", "語"]),
+            ("日本語python", ["日本", "本語", "語", "python"]),
+            ]
+        for lst, rst in lsts:
+            self.assertEqual(rst, process_str(lst, "utf8"))
+
+    def test_process_unicode(self):
+        lsts = [
+            (u"日本", [u"日本", u"本"]),
+            (u"日", [u"日"]),
+            (u"日本語", [u"日本", u"本語", u"語"]),
+            (u"日本語python", [u"日本", u"本語", u"語", u"python"]),
+            ]
+        for lst, rst in lsts:
+            self.assertEqual(rst, list(process_unicode(lst)))
+
+    def test_process_str_glob(self):
+        enc = "utf8"
+        lsts = [
+            ("日本", ["日本"]),
+            ("日", ["日*"]),
+            ("日本語", ["日本", "本語"]),
+            ("日本語python", ["日本", "本語", "語", "python"]),
+            ]
+        for lst, rst in lsts:
+            self.assertEqual(rst, process_str_glob(lst, enc))
+            for x, y in zip(rst, process_str_glob(lst, enc)):
+                self.assertEqual(x, y)
+                self.assertEqual(type(x), type(y))
+
+    def test_process_unicode_glob(self):
+        enc = "utf8"
+        lsts = [
+            (u"日本", [u"日本"]),
+            (u"日", [u"日*"]),
+            (u"日本語", [u"日本", u"本語"]),
+            (u"日本語python", [u"日本", u"本語", u"語", u"python"]),
+            ]
+        for lst, rst in lsts:
+            self.assertEqual(rst, list(process_unicode_glob(lst)))
+            for x, y in zip(rst, process_unicode_glob(lst)):
+                self.assertEqual(x, y)
+                self.assertEqual(type(x), type(y))
+
+    def test_process_str_post(self):
+        enc = "utf8"
+        lsts = [
+            ("日本", "日本"),
+            ("日本*", "日本"),
+            ]
+        for lst, rst in lsts:
+            self.assertEqual(rst, process_str_post(lst, enc))
+
+class TestReplaceSplitter(PloneTestCase.PloneTestCase):
+    """Install basic test
+    """
+
+    def afterSetUp(self):
+        pass
+
+    def test_adding_method(self):
+        from Products.CMFPlone.UnicodeSplitter import Splitter
+        self.failUnless(hasattr(Splitter, 'process_post_glob'))
+
+class TestSearchingJapanese(PloneTestCase.PloneTestCase):
+    """Install Japanese test
+    """
+
+    def afterSetUp(self):
+        self.setRoles(('Manager', ))
+        self.portal.invokeFactory('Document', 'doc1')
+        self.doc1 = getattr(self.portal, 'doc1')
+        self.doc1.setTitle("Ploneは素晴らしい。")
+        self.doc1.setText("このページは予想している通り、テストです。 Pages Testing.")
+        self.doc1.reindexObject()
+
+    def testSearch(self):
+        catalog = getToolByName(self.portal, 'portal_catalog')
+        items1 = catalog(SearchableText="予想")
+        self.assertEqual(len(items1), 1)
+        items12 = catalog(SearchableText="素晴らしい")
+        self.assertEqual(len(items12), 1)
+        items13 = catalog(SearchableText="Pages")
+        self.assertEqual(len(items13), 1)
+        items14 = catalog(SearchableText="ページ")
+        self.assertEqual(len(items14), 1)
+        items15 = catalog(SearchableText="予想*")
+        self.assertEqual(len(items15), 1)
+        items16 = catalog(SearchableText=u"予想")
+        self.assertEqual(len(items16), 1)
+        self.portal.manage_delObjects(['doc1'])
+        items2 = catalog(SearchableText="予想")
+        self.assertEqual(len(items2), 0)
+
+class TestSearchingUnicodeJapanese(PloneTestCase.PloneTestCase):
+    """ Install Unicode Japanese test """ 
+    def afterSetUp(self):
+        self.setRoles(('Manager',))
+        self.portal.invokeFactory('Document', 'doc1')
+        self.doc1 = getattr(self.portal, 'doc1')
+        self.doc1.setTitle(u"Ploneは素晴らしい。")
+        self.doc1.setText(u"このページは予想している通り、テストです。 Pages Testing.")
+        self.doc1.reindexObject()
+
+    def testSearch(self):
+        catalog = getToolByName(self.portal, 'portal_catalog')
+        items1 = catalog(SearchableText=u"予想")
+        self.assertEqual(len(items1), 1)
+        items12 = catalog(SearchableText=u"素晴らしい")
+        self.assertEqual(len(items12), 1)
+        items13 = catalog(SearchableText=u"Pages")
+        self.assertEqual(len(items13), 1)
+        items14 = catalog(SearchableText=u"ページ")
+        self.assertEqual(len(items14), 1)
+        items15 = catalog(SearchableText=u"予想*")
+        self.assertEqual(len(items15), 1)
+        items16 = catalog(SearchableText="予想")
+        self.assertEqual(len(items16), 1)
+        self.portal.manage_delObjects(['doc1'])
+        items2 = catalog(SearchableText=u"予想")
+        self.assertEqual(len(items2), 0)
+
+
 def test_suite():
     from unittest import TestSuite, makeSuite
     suite = TestSuite()
     suite.addTest(makeSuite(TestSplitter))
     suite.addTest(makeSuite(TestCaseNormalizer))
     suite.addTest(makeSuite(TestQuery))
+    suite.addTest(makeSuite(TestBigramFunctions))
+    suite.addTest(makeSuite(TestReplaceSplitter))
+    suite.addTest(makeSuite(TestSearchingJapanese))
+    suite.addTest(makeSuite(TestSearchingUnicodeJapanese))
     return suite
