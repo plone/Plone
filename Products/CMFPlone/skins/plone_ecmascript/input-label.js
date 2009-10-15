@@ -13,16 +13,38 @@ var ploneInputLabel = {
         var t = jq(this);
         if (t.hasClass('inputLabelActive') && t.val() == t.attr('title'))
             t.val('').removeClass('inputLabelActive');
+        if (t.hasClass('inputLabelPassword'))
+            ploneInputLabel._setInputType(t.removeClass('inputLabelPassword'), 
+                'password').focus().bind('blur.ploneInputLabel', ploneInputLabel.blur);
     },
 
     blur: function() {
         var t = jq(this);
+        if (t.is(':password[value=""]')) {
+            t = ploneInputLabel._setInputType(this, 'text')
+                .addClass('inputLabelPassword')
+                .bind('focus.ploneInputLabel', ploneInputLabel.focus);
+            if (e.originalEvent && e.originalEvent.explicitOriginalTarget)
+                // Re-focus next element in Gecko browsers
+                jq(e.originalEvent.explicitOriginalTarget).trigger('focus!');
+        }
         if (!t.val())
             t.addClass('inputLabelActive').val(t.attr('title'));
     },
 
     submit: function() {
         jq('input[title].inputLabelActive').trigger('focus.ploneInputLabel');
+    },
+
+    _setInputType: function(elem, ntype) {
+        // You can't change the type on an <input> element, but you can 
+        // replace the element itself. Following .replace dance is to make it
+        // work correctly in IE, as usual.
+        var otype = new RegExp('type="?' + jq(elem).attr('type') + '"?')
+        var nelem = jq(jq('<div></div>').append(jq(elem).clone()).html()
+                .replace(otype, '').replace(/\/?>/, 'type="' + ntype + '" />'));
+        jq(elem).replaceWith(nelem);
+        return nelem;
     }
 };
 
