@@ -72,6 +72,8 @@
                                    tal:content="site/Title">
                                     Site title
                                 </a>
+                                <span class="discreet"
+                                      tal:content="string:(${site/getId})"/>
                             </span>
                             <div class="upgrade-warning"
                                  i18n:translate=""

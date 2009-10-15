@@ -60,6 +60,10 @@ div.formControls {
     font-size: 125%;
     margin-top: 0.5em;
 }
+.discreet {
+    font-size: 80%;
+    color: #ccc;
+}
 .upgrade-warning {
     background: url(/misc_/PageTemplates/exclamation.gif) top left no-repeat;
     padding: 0 0 0 1.2em;
