@@ -121,7 +121,6 @@
    <property name="title" i18n:translate="">Copy</property>
    <property name="description" i18n:translate=""></property>
    <property name="url_expr">string:folder_copy:method</property>
-   <property name="icon_expr">string:$portal_url/copy_icon.png</property>
    <property name="available_expr"></property>
    <property name="permissions">
     <element value="Copy or Move"/>
@@ -132,7 +131,6 @@
    <property name="title" i18n:translate="">Cut</property>
    <property name="description" i18n:translate=""></property>
    <property name="url_expr">string:folder_cut:method</property>
-   <property name="icon_expr">string:$portal_url/cut_icon.png</property>
    <property
       name="available_expr">python:checkPermission("Delete objects", object)</property>
    <property name="permissions">
@@ -155,7 +153,6 @@
    <property name="title" i18n:translate="">Paste</property>
    <property name="description" i18n:translate=""></property>
    <property name="url_expr">string:folder_paste:method</property>
-   <property name="icon_expr">string:$portal_url/paste_icon.png</property>
    <property name="available_expr">folder/cb_dataValid</property>
    <property name="permissions">
     <element value="Add portal content"/>
@@ -166,7 +163,6 @@
    <property name="title" i18n:translate="">Delete</property>
    <property name="description" i18n:translate=""></property>
    <property name="url_expr">string:folder_delete:method</property>
-   <property name="icon_expr">string:$portal_url/delete_icon.png</property>
    <property name="available_expr"></property>
    <property name="permissions">
     <element value="Delete objects"/>
@@ -244,7 +240,6 @@
    <property name="description" i18n:translate=""></property>
    <property
       name="url_expr">string:${globals_view/getCurrentObjectUrl}/object_cut</property>
-   <property name="icon_expr">string:$portal_url/cut_icon.png</property>
    <property
       name="available_expr">python:checkPermission("Delete objects", globals_view.getParentObject()) and checkPermission("Copy or Move", object) and not globals_view.isPortalOrPortalDefaultPage()</property>
    <property name="permissions">
@@ -257,7 +252,6 @@
    <property name="description" i18n:translate=""></property>
    <property
       name="url_expr">string:${globals_view/getCurrentObjectUrl}/object_copy</property>
-   <property name="icon_expr">string:$portal_url/copy_icon.png</property>
    <property
       name="available_expr">python:checkPermission("Copy or Move", object) and not globals_view.isPortalOrPortalDefaultPage()</property>
    <property name="permissions">
@@ -268,9 +262,7 @@
   <object name="paste" meta_type="CMF Action" i18n:domain="plone">
    <property name="title" i18n:translate="">Paste</property>
    <property name="description" i18n:translate=""></property>
-   <property
-      name="url_expr">string:${globals_view/getCurrentFolderUrl}/object_paste</property>
-   <property name="icon_expr">string:$portal_url/paste_icon.png</property>
+   <property name="url_expr">string:${globals_view/getCurrentFolderUrl}/object_paste</property>
    <property name="available_expr">folder/cb_dataValid|nothing</property>
    <property name="permissions">
     <element value="View"/>
@@ -282,7 +274,6 @@
    <property name="description" i18n:translate=""></property>
    <property
       name="url_expr">string:${globals_view/getCurrentObjectUrl}/delete_confirmation</property>
-   <property name="icon_expr">string:$portal_url/delete_icon.png</property>
    <property
       name="available_expr">python:checkPermission("Delete objects", globals_view.getParentObject()) and not globals_view.isPortalOrPortalDefaultPage()</property>
    <property name="permissions">

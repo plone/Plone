@@ -8,6 +8,10 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Removed the cut/copy/paste icons from the action menu in new sites, as they
+  just add noise + more HTTP requests.
+  [limi]
+
 - Removed the now empty plone_wysiwyg skin layer.
   [davisagli]
 
