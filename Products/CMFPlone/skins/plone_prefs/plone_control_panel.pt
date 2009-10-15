@@ -13,10 +13,16 @@
 
 <body>
 
-<div metal:fill-slot="prefs_configlet_main"
+<div metal:fill-slot="prefs_configlet_content"
      tal:define="controlPanel python:modules['Products.CMFCore.utils'].getToolByName(here, 'portal_controlpanel');
                  groups python:controlPanel.getGroups('site');
                  getIconFor nocall:context/plone_utils/getIconFor">
+
+<tal:main-macro metal:define-macro="main">
+    <div id="portal-column-content" class="cell width-full position-0">
+    <div id="region-content">
+    <div id="content">
+
 
     <h1 class="documentFirstHeading"
         i18n:translate="heading_control_panel">Site Setup</h1>
@@ -163,6 +169,8 @@
           say 'debug-mode off' &mdash; then restart the server process.
         </p>
     </tal:debugmode>
+
+</div></div></div></tal:main-macro>
 
 </div>
 
