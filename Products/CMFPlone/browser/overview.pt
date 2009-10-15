@@ -30,6 +30,8 @@
                 <tal:one tal:condition="python:len(sites) == 1">
                     <li tal:repeat="site sites">
                         <span class="prominent">
+                            <img tal:attributes="src string:${site/absolute_url}/favicon.ico"
+                                 height="16" width="16"/>
                             <a href="#"
                                tal:attributes="href site/absolute_url"
                                title="Go to your instance"
@@ -62,6 +64,8 @@
                     <ul>
                         <li tal:repeat="site sites">
                             <span class="prominent">
+                                <img tal:attributes="src string:${site/absolute_url}/favicon.ico"
+                                     height="16" width="16"/>
                                 <a href="#"
                                    tal:attributes="href site/absolute_url;
                                                    title site/Title;"
