@@ -19,10 +19,14 @@
             tal:define="errors options/state/getErrors;
                         portal_url context/@@plone_portal_state/navigation_root_url;
                         member context/@@plone_portal_state/member;">
-    <tal:main-macro metal:define-macro="main">
+<tal:main-macro metal:define-macro="main">
+<div id="portal-column-content" class="cell width-full position-0">
+<div id="region-content" class="documentEditable">
 
         <h5 class="hiddenStructure">Views</h5>
 
+
+        <div id="edit-bar">
         <ul id="content-views"
             class="contentViews">
           <li>
@@ -42,7 +46,7 @@
         <div class="contentActions">
           &nbsp;
         </div>
-
+        </div>
 
      <div id="region-content" class="documentEditable">
 
@@ -420,7 +424,9 @@
                 </form>
             </div>
      </div>
-    </tal:main-macro>
+
+</div></div>
+</tal:main-macro>
     
 </metal:main>
 
