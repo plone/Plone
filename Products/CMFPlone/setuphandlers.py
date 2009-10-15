@@ -62,6 +62,8 @@ class HiddenProducts(object):
             'plone.keyring',
             'plone.protect',
             'plone.app.jquerytools',
+            'plone.app.blob',
+            'plone.app.imaging',
             ]
 
 
