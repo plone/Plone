@@ -3,13 +3,13 @@ from OFS.ObjectManager import ObjectManager
 ADD_PLONE_SITE_HTML = '''
 <dtml-if "_.len(this().getPhysicalPath()) == 1">
   <!-- Add Plone site action-->
-  <div style="text-align: right; margin-top:0.5em; margin-bottom:0em;
-              font-size: 120%; text-decoration: underline;
-  ">
-  <a href="&dtml-URL1;/?:method=manage_addProduct/CMFPlone/addPloneSiteForm&site_id=Plone"
-     target="_top">
-    Add Plone Site
-  </a></div>
+  <form method="get" 
+        action="&dtml-URL1;/manage_addProduct/CMFPlone/addPloneSiteForm"
+        style="text-align: right; margin-top:0.5em; margin-bottom:0em;"
+        target="_top">
+    <input type="hidden" name="site_id" value="Plone" />
+    <input type="submit" value="Add Plone Site" />
+  </form>
 </dtml-if>
 '''
 
