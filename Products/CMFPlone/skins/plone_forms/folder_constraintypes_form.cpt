@@ -78,7 +78,7 @@
                    Select the restriction policy in this location.
                 </div>
 
-                <tal:mode condition="python:context.portal_interface.objectImplements(parent,'Products.CMFPlone.interfaces.ConstrainTypes.IConstrainTypes')">
+                <tal:mode condition="python:context.portal_interface.objectImplements(parent,'Products.CMFPlone.interfaces.constrains.IConstrainTypes')">
                     <input type="radio"
                            name="constrainTypesMode:int"
                            id="mode_acquire"
