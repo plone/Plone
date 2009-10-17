@@ -4,6 +4,11 @@ Changelog
 3.3.2 - Unreleased
 ------------------
 
+- Added helper methods to the i18nl10n method, to change the default date and
+  time formats used by zope.i18n.locales. This makes it easier to use a 24
+  hour clock in the date/time widgets for English speakers.
+  [hannosch]
+
 - Removed msgids in portlets.xml. There is no support for
   msgids in the import of portlets.xml implementation.
   This allow to extract translatable strings with i18ndude.
