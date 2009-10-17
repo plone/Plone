@@ -5,7 +5,7 @@ import re
 import logging
 
 from zope.i18n import translate
-from zope.publisher.interfaces.browser import IBrowserRequest
+from zope.i18n.locales import locales
 
 from Acquisition import aq_acquire
 from DateTime import DateTime
@@ -36,10 +36,48 @@ _interp_regex = re.compile(r'(?<!\$)(\$(?:%(n)s|{%(n)s}))' %({'n': NAME_RE}))
 datetime_formatvariables = ('H', 'I', 'm', 'd', 'M', 'p', 'S', 'Y', 'y', 'Z')
 name_formatvariables = ('a', 'A', 'b', 'B')
 
+
+# The following are helper methods to change the default date and time formats
+# for a specific locale. These locale dependent formats are used in the
+# date/time widgets to determine the format and decide if a 24 hour or 12 hour
+# AM/PM widget should be used. If 'a' is part of the pattern the AM/PM widget
+# will be used, otherwise a 24 hour clock.
+#
+# localeid is a tuple of the form: (language, country, variant)
+# for example: (None, ) or ('en', ) or ('en', 'US', None)
+#
+# value is in the format described by zope.i18n.interfaces.IDateTimeFormat
+# for example u'yyyy-MM-dd' or u'HH:mm:ss'
+# 
+# Note that this is a different format than used for the other methods in
+# this module.
+# 
+# locales uses a module level cache, so any changes you make with these
+# methods will apply to the entire process and only need to be made once.
+# You can use them in any code imported at startup, for example in a packages
+# __init__ method.
+# 
+# In order to use a 24 hour clock for English speakers, you would do:
+# 
+# from Products.CMFPlone import i18nl10n
+# i18nl10n.setDefaultTimeFormat(('en',), u'HH:mm:ss')
+
+def setDefaultDateFormat(localeid, value):
+    gregorian = locales.getLocale(*localeid).dates.calendars[u'gregorian']
+    date_format = gregorian.dateFormats['medium'].formats[None]
+    date_format.pattern = value
+
+def setDefaultTimeFormat(localeid, value):
+    gregorian = locales.getLocale(*localeid).dates.calendars[u'gregorian']
+    time_format = gregorian.timeFormats['medium'].formats[None]
+    time_format.pattern = value
+
+
 # unicode aware translate method (i18n)
 def utranslate(*args, **kw):
     # safety precaution for cases where we get passed in an encoded string
     return safe_unicode(getGlobalTranslationService().translate(*args, **kw))
+
 
 # unicode aware localized time method (l10n)
 def ulocalized_time(time, long_format=None, time_only=None, context=None,
