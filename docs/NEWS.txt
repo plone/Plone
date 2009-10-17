@@ -8,6 +8,11 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Added helper methods to the i18nl10n method, to change the default date and
+  time formats used by zope.i18n.locales. This makes it easier to use a 24
+  hour clock in the date/time widgets for English speakers.
+  [hannosch]
+
 - Removed the cut/copy/paste icons from the action menu in new sites, as they
   just add noise + more HTTP requests.
   [limi]
