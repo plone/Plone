@@ -12,9 +12,6 @@ Changelog
   just add noise + more HTTP requests.
   [limi]
 
-- Removed the now empty plone_wysiwyg skin layer.
-  [davisagli]
-
 - Moved happytalk in site_feedback_template.pt and author_feedback_template.pt
   to bottom of emails, per http://dev.plone.org/plone/ticket/7001
   [jonstahl]
@@ -149,10 +146,6 @@ Changelog
   apply the filter to base profiles and ignore our default profile. This works
   in combination with the corresponding changes in quick installer to reduce
   portal creation time.
-  [hannosch]
-
-- Removed the wysiwyg_support.pt from Plone. It now lives inside the
-  Products.Archetypes package.
   [hannosch]
 
 - Make use of the new `authenticated` flag for ResourceRegistries entries 
