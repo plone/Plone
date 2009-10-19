@@ -109,7 +109,7 @@
               
               <div class="formHelp" i18n:translate="help_syndication_update_frequency">
                 Controls the frequency of the updates. For example, 
-                if you want it to update every second week,
+                if you want it to update twice a week,
                 select "weekly" above, and "2" here.
               </div>
 
