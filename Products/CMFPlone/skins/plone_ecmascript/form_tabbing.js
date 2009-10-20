@@ -109,8 +109,10 @@ ploneFormTabbing.initializeForm = function() {
         count += 1;
     });
 
+    // console.log(jq(this).children('ul.formTabs').contents().length, jq('form.enableFormTabbing fieldset').length);
+
     jq(this).children('ul.formTabs')
-        .tabs('form.enableFormTabbing fieldset', ploneFormTabbing.jqtConfig || {'initialIndex':initialIndex});
+        .tabs('form.enableFormTabbing fieldset.formPanel', ploneFormTabbing.jqtConfig || {'initialIndex':initialIndex});
 
     jq("#archetypes-schemata-links").addClass('hiddenStructure');
     jq("div.formControls input[name=form.button.previous]," +
