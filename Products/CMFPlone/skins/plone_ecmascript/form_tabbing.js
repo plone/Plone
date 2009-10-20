@@ -17,7 +17,6 @@
  *
  */
 
-// TODO: selection lists not yet updated
 
 var ploneFormTabbing = {
         // standard jQueryTools configuration options for all form tabs
@@ -65,7 +64,7 @@ ploneFormTabbing._buildTabs = function(container, legends) {
         tabs = jq('<ul class="formTabs">'+tabs+'</ul>');
     }
 
-    return tabs.get(0);
+    return tabs;
 };
 
 
@@ -79,7 +78,8 @@ ploneFormTabbing.initializeDL = function() {
 
 
 ploneFormTabbing.initializeForm = function() {
-    var fieldsets = jq(this).children('fieldset');
+    jqForm = jq(this);
+    var fieldsets = jqForm.children('fieldset');
 
     if (!fieldsets.length) {return;}
 
@@ -102,17 +102,30 @@ ploneFormTabbing.initializeForm = function() {
     var count = 0;
     var found = false;
     jq(this).find('.formPanel').each(function() {
-        if (!found && jq(this).find('div.field.error, input[name=fieldset.current][value^=#]')) {
+        if (!found && jq(this).find('div.field.error')) {
             initialIndex = count;
             found = true;
         }
         count += 1;
     });
 
-    // console.log(jq(this).children('ul.formTabs').contents().length, jq('form.enableFormTabbing fieldset').length);
-
-    jq(this).children('ul.formTabs')
-        .tabs('form.enableFormTabbing fieldset.formPanel', ploneFormTabbing.jqtConfig || {'initialIndex':initialIndex});
+    var tabSelector = 'ul.formTabs'
+    if (ftabs.is('select.formTabs')) {
+        tabSelector = 'select.formTabs'
+    }
+    jqForm.children(tabSelector).tabs(
+        'form.enableFormTabbing fieldset.formPanel', 
+        ploneFormTabbing.jqtConfig || {'initialIndex':initialIndex}
+        );
+    
+    // save selected tab on submit
+    jqForm.submit(function() {
+        var selected = ftabs.find('a.selected').attr('href').replace(/^#fieldsetlegend-/, "#fieldset-");
+        var fsInput = jqForm.find('input[name=fieldset.current]');
+        if (selected && fsInput) {
+            fsInput.val(selected);
+        }
+    });
 
     jq("#archetypes-schemata-links").addClass('hiddenStructure');
     jq("div.formControls input[name=form.button.previous]," +
@@ -124,9 +137,11 @@ jq(function() {
     jq("form.enableFormTabbing,div.enableFormTabbing").each(ploneFormTabbing.initializeForm);
     jq("dl.enableFormTabbing").each(ploneFormTabbing.initializeDL);
 
-    //Select tab if it's part of the URL
-    if (window.location.hash) {
-        var id = window.location.hash.replace(/^#fieldset-/, "#fieldsetlegend-");
-        jq(".enableFormTabbing .formtab a[href='" + id + "']").click();
+    //Select tab if it's part of the URL or designated in a hidden input
+    var targetPane = jqForm.find('input[name=fieldset.current]').val() || window.location.hash;
+    if (targetPane) {
+        jq(".enableFormTabbing .formtab a[href='" +
+         targetPane.replace("'", "").replace(/^#fieldset-/, "#fieldsetlegend-") +
+         "']").click();
     }
 });
