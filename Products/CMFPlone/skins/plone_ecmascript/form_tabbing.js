@@ -17,23 +17,12 @@
  *
  */
 
-var ploneFormTabbing = {};
+// TODO: selection lists not yet updated
 
-ploneFormTabbing._toggleFactory = function(container, tab_ids, panel_ids) {
-    return function(e) {
-        jq(tab_ids).removeClass('selected');
-        jq(panel_ids).addClass('hidden');
-
-        var orig_id = this.tagName.toLowerCase() == 'a' ? 
-            '#' + this.id : jq(this).val();
-        var id = orig_id.replace(/^#fieldsetlegend-/, "#fieldset-");
-        jq(orig_id).addClass('selected');
-        jq(id).removeClass('hidden');
-
-        jq(container).find("input[name=fieldset.current]").val(orig_id);
-        return false;
+var ploneFormTabbing = {
+        // standard jQueryTools configuration options for all form tabs
+        jqtConfig:{effect:'fade',current:'selected'}
     };
-};
 
 ploneFormTabbing._buildTabs = function(container, legends) {
     var threshold = legends.length > 6;
@@ -44,25 +33,22 @@ ploneFormTabbing._buildTabs = function(container, legends) {
         tab_ids[i] = '#' + lid;
 
         switch (i) {
-            case 0: {
+            case (0):
                 className = 'class="formTab firstFormTab"';
                 break;
-            }
-            case (legends.length-1): {
+            case (legends.length-1):
                 className = 'class="formTab lastFormTab"';
                 break;
-            }
-            default: {
+            default:
                 className = 'class="formTab"';
                 break;
-            }
         }
 
         if (threshold) {
             tab = '<option '+className+' id="'+lid+'" value="'+lid+'">';
             tab += jq(legend).text()+'</option>';
         } else {
-            tab = '<li '+className+'><a id="'+lid+'" href="#'+lid+'"><span>';
+            tab = '<li '+className+'><a href="#'+lid+'"><span>';
             tab += jq(legend).text()+'</span></a></li>';
         }
 
@@ -75,99 +61,70 @@ ploneFormTabbing._buildTabs = function(container, legends) {
 
     if (threshold) {
         tabs = jq('<select class="formTabs">'+tabs+'</select>');
-        tabs.change(ploneFormTabbing._toggleFactory(container, tab_ids, panel_ids));
     } else {
         tabs = jq('<ul class="formTabs">'+tabs+'</ul>');
-        tabs.find('a').click(ploneFormTabbing._toggleFactory(container, tab_ids, panel_ids));
     }
 
     return tabs.get(0);
 };
 
-ploneFormTabbing.select = function($which) {
-    if (typeof $which == "string")
-        $which = jq($which.replace(/^#fieldset-/, "#fieldsetlegend-"));
-
-    if ($which[0].tagName.toLowerCase() == 'a') {
-        $which.click();
-        return true;
-    } else if ($which[0].tagName.toLowerCase() == 'option') {
-        $which.attr('selected', true);
-        $which.parent().change();
-        return true;
-    } else {
-        $which.change();
-        return true;
-    }
-    return false;
-};
 
 ploneFormTabbing.initializeDL = function() {
-    var tabs = jq(ploneFormTabbing._buildTabs(this, jq(this).children('dt')));
-    jq(this).before(tabs);
-    jq(this).children('dd').addClass('formPanel');
-
-    tabs = tabs.find('li.formTab a,option.formTab');
-    if (tabs.length)
-        ploneFormTabbing.select(tabs.filter(':first'));
+    var ftabs = jq(ploneFormTabbing._buildTabs(this, jq(this).children('dt')));
+    var targets = jq(this).children('dd');
+    jq(this).before(ftabs);
+    targets.addClass('formPanel');
+    ftabs.tabs(targets, ploneFormTabbing.jqtConfig);
 };
+
 
 ploneFormTabbing.initializeForm = function() {
     var fieldsets = jq(this).children('fieldset');
-    
-    if (!fieldsets.length) return;
-    
-    var tabs = ploneFormTabbing._buildTabs(
+
+    if (!fieldsets.length) {return;}
+
+    var ftabs = ploneFormTabbing._buildTabs(
         this, fieldsets.children('legend'));
-    jq(this).prepend(tabs);
+    jq(this).prepend(ftabs);
     fieldsets.addClass("formPanel");
-    
+
+
     // The fieldset.current hidden may change, but is not content
     jq(this).find('input[name=fieldset.current]').addClass('noUnloadProtection');
 
-    var tab_inited = false;
-
-    jq(this).find('.formPanel:has(div.field.error)').each(function() {
-        var id = this.id.replace(/^fieldset-/, "#fieldsetlegend-");
-        var tab = jq(id);
-        tab.addClass("notify");
-        if (tab.length && !tab_inited)
-            tab_inited = ploneFormTabbing.select(tab);
-    });
-
-    jq(this).find('.formPanel:has(div.field span.fieldRequired)')
-        .each(function() {
+    jq(this).find('.formPanel:has(div.field span.fieldRequired)').each(function() {
         var id = this.id.replace(/^fieldset-/, "#fieldsetlegend-");
         jq(id).addClass('required');
     });
 
-    if (!tab_inited) {
-        jq('input[name=fieldset.current][value^=#]').each(function() {
-            tab_inited = ploneFormTabbing.select(jq(this).val());
-        });
-    }
+    // set the initial tab
+    var initialIndex = 0;
+    var count = 0;
+    var found = false;
+    jq(this).find('.formPanel').each(function() {
+        if (!found && jq(this).find('div.field.error, input[name=fieldset.current][value^=#]')) {
+            initialIndex = count;
+            found = true;
+        }
+        count += 1;
+    });
 
-    if (!tab_inited) {
-        var tabs = jq("form.enableFormTabbing li.formTab a,"+
-                     "form.enableFormTabbing option.formTab,"+
-                     "div.enableFormTabbing li.formTab a,"+
-                     "div.enableFormTabbing option.formTab");
-        if (tabs.length)
-            ploneFormTabbing.select(tabs.filter(':first'));
-    }
+    jq(this).children('ul.formTabs')
+        .tabs('form.enableFormTabbing fieldset', ploneFormTabbing.jqtConfig || {'initialIndex':initialIndex});
 
     jq("#archetypes-schemata-links").addClass('hiddenStructure');
     jq("div.formControls input[name=form.button.previous]," +
       "div.formControls input[name=form.button.next]").remove();
+
 };
 
 jq(function() {
-    jq("form.enableFormTabbing,div.enableFormTabbing")
-        .each(ploneFormTabbing.initializeForm);
+    jq("form.enableFormTabbing,div.enableFormTabbing").each(ploneFormTabbing.initializeForm);
     jq("dl.enableFormTabbing").each(ploneFormTabbing.initializeDL);
-    
+
     //Select tab if it's part of the URL
-    if (window.location.hash && jq(".enableFormTabbing fieldset" + window.location.hash).length) {
-        ploneFormTabbing.select(window.location.hash);
+    if (window.location.hash) {
+        var id = window.location.hash.replace(/^#fieldset-/, "#fieldsetlegend-");
+        jq(".enableFormTabbing .formtab a[href='" + id + "']").click();
     }
 });
