@@ -20,7 +20,7 @@
 
 var ploneFormTabbing = {
         // standard jQueryTools configuration options for all form tabs
-        jqtConfig:{effect:'fade',current:'selected'}
+        jqtConfig:{current:'selected'}
     };
 
 ploneFormTabbing._buildTabs = function(container, legends) {
@@ -138,7 +138,7 @@ jq(function() {
     jq("dl.enableFormTabbing").each(ploneFormTabbing.initializeDL);
 
     //Select tab if it's part of the URL or designated in a hidden input
-    var targetPane = jqForm.find('input[name=fieldset.current]').val() || window.location.hash;
+    var targetPane = jq('.enableFormTabbing input[name=fieldset.current]').val() || window.location.hash;
     if (targetPane) {
         jq(".enableFormTabbing .formtab a[href='" +
          targetPane.replace("'", "").replace(/^#fieldset-/, "#fieldsetlegend-") +
