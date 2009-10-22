@@ -8,6 +8,10 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Add a link to log out from the logged_out template if logged in as a Zope
+  user via basic HTTP Authentication and the standard logout failed.
+  [davisagli]
+
 - Removed the cut/copy/paste icons from the action menu in new sites, as they
   just add noise + more HTTP requests.
   [limi]
