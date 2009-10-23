@@ -1,0 +1,25 @@
+Browser tests
+=============
+
+  Test for "template id" in <body> tag. See ticket #9111
+
+    >>> from Products.Five.testbrowser import Browser
+    >>> browser = Browser()
+    >>> browser.open('http://nohost/plone/front-page')
+    >>> browser.contents
+    '...<body class="section-front-page template-document_view"...'
+    >>> browser.open('http://nohost/plone/news')
+    >>> browser.contents
+    '...<body class="section-news template-folder_summary_view"...'
+
+    Login 
+    >>> browser.getLink('Log in').click()
+    >>> browser.getControl('Login Name').value = 'test_user_1_'
+    >>> browser.getControl('Password').value = 'secret'
+    >>> browser.getControl('Log in').click()
+
+    Test explicit browser view 
+    >>> browser.open('http://nohost/plone/@@dashboard')
+    >>> browser.contents
+    '...<body class=" template-dashboard"...'
+
