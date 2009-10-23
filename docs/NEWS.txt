@@ -8,6 +8,11 @@ Changelog
 3.3.2 - Unreleased
 ------------------
 
+- Show template id or view name in <body class="template-..">. There was 
+  template id only before.
+  http://dev.plone.org/plone/ticket/9111
+  [naro]
+
 - Check AddPortalContent permission before calling invokeFactory from
   FactoryTool.
   http://dev.plone.org/plone/ticket/8748
