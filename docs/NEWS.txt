@@ -8,6 +8,11 @@ Changelog
 3.3.2 - Unreleased
 ------------------
 
+- Check AddPortalContent permission before calling invokeFactory from
+  FactoryTool.
+  http://dev.plone.org/plone/ticket/8748
+  [naro]
+
 - Added helper methods to the i18nl10n method, to change the default date and
   time formats used by zope.i18n.locales. This makes it easier to use a 24
   hour clock in the date/time widgets for English speakers.
