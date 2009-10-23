@@ -153,7 +153,7 @@ def pretty_title_or_id(context, obj, empty_value=_marker):
 
 def getSiteEncoding(context):
     default = 'utf-8'
-    pprop = getToolByName(context, 'portal_properties')
+    pprop = getToolByName(context, 'portal_properties', None)
     site_props = getToolByName(pprop, 'site_properties', None)
     if site_props is None:
         return default
