@@ -828,9 +828,9 @@ def isLinked(obj):
         pass
     # since this function is called first thing in `delete_confirmation.cpy`
     # and therefore nothing can possibly have changed yet at this point, we
-    # might as well "begin" a new transaction instead of using a savepoint,
+    # might as well "abort" the transaction instead of using a savepoint,
     # which creates a funny exception when using zeo (see #6666)
-    transaction.begin()
+    transaction.abort()
     return linked
 
 # BBB Plone 4.0: Cyclic import errors are bad, deprecate these import locations.
