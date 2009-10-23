@@ -35,7 +35,7 @@
  <javascript cacheable="True" compression="safe" cookable="True"
    enabled="True" expression="" id="input-label.js" inline="False"/>
  <javascript cacheable="True" compression="safe" cookable="True"
-    enabled="True" expression="" id="highlightsearchterms.js" inline="False"/>
+   enabled="True" expression="" id="jquery.highlightsearchterms.js" inline="False"/>
  <javascript cacheable="True" compression="safe" cookable="True"
     enabled="True" expression="" id="se-highlight.js" inline="False"/>
  <javascript cacheable="True" compression="safe" cookable="True"

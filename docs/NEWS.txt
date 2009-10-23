@@ -8,6 +8,12 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Replaced highlightsearchterms.js with the Plone trunk
+  jquery.highlightsearchterms.js plugin. This removes the need to add
+  searchterm= query parameters to search.pt results.
+  Refs. http://dev.plone.org/plone/ticket/8770
+  [mj]
+
 - Add a link to log out from the logged_out template if logged in as a Zope
   user via basic HTTP Authentication and the standard logout failed.
   [davisagli]
