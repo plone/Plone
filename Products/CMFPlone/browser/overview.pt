@@ -124,7 +124,7 @@
                 <a href="http://plone.org"
                    title="Plone Community Home"
                    i18n:attributes="title;">
-                    Plone.Org
+                    Plone.org
                 </a>
                 <span class="formHelp" i18n:translate="">
                     &#151; documentation, add-ons, support, community.
