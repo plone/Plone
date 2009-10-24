@@ -12,7 +12,7 @@ Changelog
   as for listing group membership. These methods are PAS aware and thus work
   correctly with PAS plugins other than the GroupUserFolder. Thanks to 
   Giovanni Toffoli for the initial patch.
-  Fixes https://dev.plone.org/plone/ticket/9163
+  Fixes http://dev.plone.org/plone/ticket/9163
   [mj]
 
 - Fix linkintegrity-related issue regarding missing undo log entries after
