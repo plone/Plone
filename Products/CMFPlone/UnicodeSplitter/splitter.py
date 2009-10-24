@@ -10,7 +10,6 @@ import unicodedata
 from zope.interface import implements
 from Products.ZCTextIndex.ISplitter import ISplitter
 from Products.ZCTextIndex.PipelineFactory import element_factory
-from Products.CMFPlone.utils import getSiteEncoding
 
 from Products.CMFPlone.UnicodeSplitter.config import rx_U, rxGlob_U, \
             rx_L, rxGlob_L, rx_all, pattern, pattern_g
@@ -131,7 +130,9 @@ class Splitter(object):
         Receive list of str, make it bi-grammed, then return
         the list of str.
         """
-        enc = getSiteEncoding(self)
+        # XXX: Hanno says we only support utf-8 getSiteEncoding won't
+        # work from here without some nasty tricks
+        enc = 'utf-8'
         result = [x for s in lst for x in process_str(s, enc)]
         return result
 
@@ -140,7 +141,7 @@ class Splitter(object):
         Receive list of str, make it bi-grammed considering
         globbing, then return the list of str.
         """
-        enc = getSiteEncoding(self)
+        enc = 'utf-8'
         result = [x for s in lst for x in process_str_glob(s, enc)]
         return result
 
@@ -149,7 +150,7 @@ class Splitter(object):
         Receive list of str, Remove ? and *, then return
         the list of str.
         """
-        enc = getSiteEncoding(self)
+        enc = 'utf-8'
         result = [process_str_post(s, enc) for s in lst]
         return result
 
@@ -164,7 +165,7 @@ except ValueError:
 class CaseNormalizer(object):
 
     def process(self, lst):
-        enc = getSiteEncoding(self)
+        enc = 'utf-8'
         result = []
         for s in lst:
             # This is a hack to get the normalizer working with

@@ -8,6 +8,10 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Hardcode utf-8 for UnicodeSplitter, since Hanno says that's all we
+  can accept and there's no way to use getSiteEncoding from the splitter.
+  [alecm]
+
 - Added option to skip the creation of the default example content in the new
   add site form. Grouped the add-ons selection via a fieldset.
   [hannosch]
