@@ -8,6 +8,10 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Added option to skip the creation of the default example content in the new
+  add site form. Grouped the add-ons selection via a fieldset.
+  [hannosch]
+
 - Refactored the old factory dispatcher / addPloneSiteForm to use a modern
   browser page instead.
   [hannosch]

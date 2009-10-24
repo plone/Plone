@@ -73,6 +73,9 @@ div.formControls {
 #add-plone-site {
     margin: 1em;
 }
+#add-on-list {
+    margin: 1em 0em;
+}
 #box {
     margin: 2em auto;
     width:430px;

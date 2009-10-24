@@ -63,6 +63,19 @@
                i18n:attributes="value text_default_site_title;" />
       </div>
 
+      <div class="field">
+        <label for="setup_content" i18n:translate="">Example content</label>
+
+        <div class="formHelp" />
+
+        <input type="checkbox" name="setup_content:boolean"
+               checked="checked" />
+
+        <span i18n:translate="">
+            Should the default example content be added to the site?
+        </span>
+      </div>
+
       <tal:baseprofile condition="python: len(base_profiles) > 1">
         <div class="field">
           <label for="profile_id" i18n:translate="">
@@ -98,10 +111,10 @@
       </tal:baseprofile>
 
       <tal:extensionprofiles condition="extension_profiles">
-        <div class="field">
-          <label for="extension_ids" i18n:translate="">
+        <fieldset id="add-on-list">
+          <legend i18n:translate="">
             Add-ons
-          </label>
+          </legend>
 
           <div class="formHelp" i18n:translate="">
               Select any add-ons you want to activate immediately. You can
@@ -124,7 +137,7 @@
               </dd>
             </tal:addons>
           </dl>
-        </div>
+        </fieldset>
       </tal:extensionprofiles>
 
       <div class="formControls">
