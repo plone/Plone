@@ -55,11 +55,10 @@ class HiddenProfiles(object):
 
 def addPloneSite(context, site_id, title='', description='',
                  create_userfolder=True, email_from_address='',
-                 email_from_name='', validate_email=False,
+                 email_from_name='', validate_email=True,
                  profile_id=_DEFAULT_PROFILE, snapshot=False,
                  extension_ids=(), setup_content=True, default_language='en'):
-    """ Add a PloneSite to 'dispatcher', configured according to 'profile_id'.
-    """
+    """Add a PloneSite to the context."""
     context._setObject(site_id, PloneSite(site_id))
     site = context._getOb(site_id)
     site.setLanguage(default_language)
@@ -81,15 +80,14 @@ def addPloneSite(context, site_id, title='', description='',
     if isinstance(title, str):
         title = unicode(title, 'utf-8', 'ignore')
 
-    props = {}
-    prop_keys = ['title', 'description', 'email_from_address',
-                 'email_from_name', 'validate_email']
-    loc_dict = locals()
-    for key in prop_keys:
-        if loc_dict[key]:
-            props[key] = loc_dict[key]
-    if props:
-        site.manage_changeProperties(**props)
+    props = dict(
+        title=title,
+        description=description,
+        email_from_address=email_from_address,
+        email_from_name=email_from_name,
+        validate_email=validate_email,
+    )
+    site.manage_changeProperties(**props)
 
     if snapshot is True:
         setup_tool.createSnapshot('initial_configuration')
