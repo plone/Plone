@@ -8,6 +8,11 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Expose the site language in the add site form and refactor the language
+  guessing based on the browser language into that view. The addPloneSite
+  function takes an explicit argument for the language now.
+  [hannosch]
+
 - Hardcode utf-8 for UnicodeSplitter, since Hanno says that's all we
   can accept and there's no way to use getSiteEncoding from the splitter.
   [alecm]

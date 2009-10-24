@@ -10,6 +10,7 @@ class TestCalendarTool(PloneTestCase.PloneTestCase):
 
     def afterSetUp(self):
         self.calendar = self.portal.portal_calendar
+        self.calendar.firstweekday = 0
         self.workflow = self.portal.portal_workflow
         self.event_date = DateTime('2008-02-08 0:00:00')
         self.populateSite()

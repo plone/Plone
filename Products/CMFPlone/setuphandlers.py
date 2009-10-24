@@ -10,8 +10,7 @@ from plone.portlets.interfaces import IPortletManager
 from zope.component import queryMultiAdapter
 from zope.component import queryUtility
 from zope.i18n.interfaces import ITranslationDomain
-from zope.i18n.interfaces import IUserPreferredLanguages
-from zope.i18n.locales import locales, LoadLocaleError
+from zope.i18n.locales import locales
 from zope.interface import implements
 
 from Acquisition import aq_base
@@ -113,83 +112,60 @@ def setupPortalContent(p):
     existing = p.keys()
     wftool = getToolByName(p, "portal_workflow")
 
-    # Figure out the current user preferred language
-    language = None
-    locale = None
-    target_language = None
+    language = p.Language()
+    parts = (language.split('-') + [None, None])[:3]
+    locale = locales.getLocale(*parts)
+    base_language = locale.id.language
+
+    # If we get a territory, we enable the combined language codes
+    use_combined = False
+    if locale.id.territory:
+        use_combined = True
+
+    # As we have a sensible language code set now, we disable the
+    # start neutral functionality
+    tool = getToolByName(p, "portal_languages")
+    pprop = getToolByName(p, "portal_properties")
+    sheet = pprop.site_properties
+
+    tool.manage_setLanguageSettings(language,
+        [language],
+        setUseCombinedLanguageCodes=use_combined,
+        startNeutral=False)
+
+    # Set the first day of the week, defaulting to Sunday, as the
+    # locale data doesn't provide a value for English. European
+    # languages / countries have an entry of Monday, though.
+    calendar = getToolByName(p, "portal_calendar", None)
+    if calendar is not None:
+        first = 6
+        gregorian = locale.dates.calendars.get(u'gregorian', None)
+        if gregorian is not None:
+            first = gregorian.week.get('firstDay', None)
+            # on the locale object we have: mon : 1 ... sun : 7
+            # on the calendar tool we have: mon : 0 ... sun : 6
+            if first is not None:
+                first = first - 1
+
+        calendar.firstweekday = first
+
+    # Enable visible_ids for non-latin scripts
+
+    # See if we have an url normalizer
+    normalizer = queryUtility(IURLNormalizer, name=base_language)
+    if normalizer is None:
+        normalizer = queryUtility(IURLNormalizer, name=base_language)
+
+    # If we get a script other than Latn we enable visible_ids
+    if locale.id.script is not None:
+        if locale.id.script.lower() != 'latn':
+            sheet.visible_ids = True
+
+    # If we have a normalizer it is safe to disable the visible ids
+    if normalizer is not None:
+        sheet.visible_ids = False
+
     request = getattr(p, 'REQUEST', None)
-    if request is not None:
-        pl = IUserPreferredLanguages(request)
-        if pl is not None:
-            languages = pl.getPreferredLanguages()
-            for httplang in languages:
-                parts = (httplang.split('-') + [None, None])[:3]
-                try:
-                    locale = locales.getLocale(*parts)
-                    break
-                except LoadLocaleError:
-                    # Just try the next combination
-                    pass
-            if len(languages) > 0:
-                language = languages[0]
-
-    # Language to be used to translate the content
-    target_language = language
-
-    # Set the default language of the portal
-    if language is not None and locale is not None:
-        localeid = locale.getLocaleID()
-        base_language = locale.id.language
-        target_language = localeid
-
-        # If we get a territory, we enable the combined language codes
-        use_combined = False
-        if locale.id.territory:
-            use_combined = True
-
-        # As we have a sensible language code set now, we disable the
-        # start neutral functionality
-        tool = getToolByName(p, "portal_languages")
-        pprop = getToolByName(p, "portal_properties")
-        sheet = pprop.site_properties
-
-        tool.manage_setLanguageSettings(language,
-            [language],
-            setUseCombinedLanguageCodes=use_combined,
-            startNeutral=False)
-
-        # Set the first day of the week, defaulting to Sunday, as the
-        # locale data doesn't provide a value for English. European
-        # languages / countries have an entry of Monday, though.
-        calendar = getToolByName(p, "portal_calendar", None)
-        if calendar is not None:
-            first = 6
-            gregorian = locale.dates.calendars.get(u'gregorian', None)
-            if gregorian is not None:
-                first = gregorian.week.get('firstDay', None)
-                # on the locale object we have: mon : 1 ... sun : 7
-                # on the calendar tool we have: mon : 0 ... sun : 6
-                if first is not None:
-                    first = first - 1
-
-            calendar.firstweekday = first
-
-        # Enable visible_ids for non-latin scripts
-
-        # See if we have an url normalizer
-        normalizer = queryUtility(IURLNormalizer, name=localeid)
-        if normalizer is None:
-            normalizer = queryUtility(IURLNormalizer, name=base_language)
-
-        # If we get a script other than Latn we enable visible_ids
-        if locale.id.script is not None:
-            if locale.id.script.lower() != 'latn':
-                sheet.visible_ids = True
-
-        # If we have a normalizer it is safe to disable the visible ids
-        if normalizer is not None:
-            sheet.visible_ids = False
-
     # The front-page
     if 'front-page' not in existing:
         front_title = u'Welcome to Plone'
@@ -201,17 +177,17 @@ def setupPortalContent(p):
         if wftool.getInfoFor(fp, 'review_state') != 'published':
             wftool.doActionFor(fp, 'publish')
 
-        if target_language is not None:
+        if base_language != 'en':
             util = queryUtility(ITranslationDomain, 'plonefrontpage')
             if util is not None:
                 front_title = util.translate(u'front-title',
-                                   target_language=target_language,
+                                   target_language=language,
                                    default="Welcome to Plone")
                 front_desc = util.translate(u'front-description',
-                                   target_language=target_language,
+                                   target_language=language,
                                    default="Congratulations! You have successfully installed Plone.")
                 translated_text = util.translate(u'front-text',
-                                   target_language=target_language)
+                                   target_language=language)
                 fp.setLanguage(language)
                 if translated_text != u'front-text':
                     front_text = translated_text
@@ -239,14 +215,14 @@ def setupPortalContent(p):
     if 'news' not in existing:
         news_title = 'News'
         news_desc = 'Site News'
-        if target_language is not None:
+        if base_language != 'en':
             util = queryUtility(ITranslationDomain, 'plonefrontpage')
             if util is not None:
                 news_title = util.translate(u'news-title',
-                                       target_language=target_language,
+                                       target_language=language,
                                        default='News')
                 news_desc = util.translate(u'news-description',
-                                      target_language=target_language,
+                                      target_language=language,
                                       default='Site News')
 
         _createObjectByType('Large Plone Folder', p, id='news',
@@ -285,14 +261,14 @@ def setupPortalContent(p):
     if 'events' not in existing:
         events_title = 'Events'
         events_desc = 'Site Events'
-        if target_language is not None:
+        if base_language != 'en':
             util = queryUtility(ITranslationDomain, 'plonefrontpage')
             if util is not None:
                 events_title = util.translate(u'events-title',
-                                       target_language=target_language,
+                                       target_language=language,
                                        default='Events')
                 events_desc = util.translate(u'events-description',
-                                      target_language=target_language,
+                                      target_language=language,
                                       default='Site Events')
 
         _createObjectByType('Large Plone Folder', p, id='events',
@@ -336,14 +312,14 @@ def setupPortalContent(p):
     if 'previous' not in topic.objectIds():
         prev_events_title = 'Past Events'
         prev_events_desc = 'Events which have already happened.'
-        if target_language is not None:
+        if base_language != 'en':
             util = queryUtility(ITranslationDomain, 'plonefrontpage')
             if util is not None:
                 prev_events_title = util.translate(u'prev-events-title',
-                                       target_language=target_language,
+                                       target_language=language,
                                        default='Past Events')
                 prev_events_desc = util.translate(u'prev-events-description',
-                                      target_language=target_language,
+                                      target_language=language,
                                       default='Events which have already happened.')
 
         _createObjectByType('Topic', topic, id='previous',
@@ -374,14 +350,14 @@ def setupPortalContent(p):
                             title=members_title, description=members_desc)
 
     if 'Members' in p.keys():
-        if target_language is not None:
+        if base_language != 'en':
             util = queryUtility(ITranslationDomain, 'plonefrontpage')
             if util is not None:
                 members_title = util.translate(u'members-title',
-                                       target_language=target_language,
+                                       target_language=language,
                                        default='Users')
                 members_desc = util.translate(u'members-description',
-                                      target_language=target_language,
+                                      target_language=language,
                                       default="Container for users' home directories")
 
         members = getattr(p , 'Members')

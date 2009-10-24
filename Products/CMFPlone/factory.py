@@ -57,11 +57,12 @@ def addPloneSite(context, site_id, title='', description='',
                  create_userfolder=True, email_from_address='',
                  email_from_name='', validate_email=False,
                  profile_id=_DEFAULT_PROFILE, snapshot=False,
-                 extension_ids=(), setup_content=True):
+                 extension_ids=(), setup_content=True, default_language='en'):
     """ Add a PloneSite to 'dispatcher', configured according to 'profile_id'.
     """
     context._setObject(site_id, PloneSite(site_id))
     site = context._getOb(site_id)
+    site.setLanguage(default_language)
 
     site[_TOOL_ID] = SetupTool(_TOOL_ID)
     setup_tool = site[_TOOL_ID]

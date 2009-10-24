@@ -64,6 +64,17 @@
       </div>
 
       <div class="field">
+        <label for="default_language" i18n:translate="">Language</label>
+
+        <div class="formHelp" i18n:translate="">
+          The main language of the site.
+        </div>
+
+        <input type="text" name="default_language" size="10" value="en"
+               tal:attributes="value view/browser_language;" />
+      </div>
+
+      <div class="field">
         <label for="setup_content" i18n:translate="">Example content</label>
 
         <div class="formHelp" />

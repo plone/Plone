@@ -4,6 +4,8 @@ from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
 from zope.component import adapts
 from zope.component import getAllUtilitiesRegisteredFor
 from zope.component import queryMultiAdapter
+from zope.i18n.interfaces import IUserPreferredLanguages
+from zope.i18n.locales import locales, LoadLocaleError
 from zope.interface import Interface
 from zope.publisher.interfaces import IRequest
 from zope.publisher.browser import BrowserView
@@ -97,6 +99,28 @@ class AddPloneSite(BrowserView):
             extensions = tuple(extension_profiles),
         )
 
+    def browser_language(self):
+        language = 'en'
+        pl = IUserPreferredLanguages(self.request)
+        if pl is not None:
+            languages = pl.getPreferredLanguages()
+            for httplang in languages:
+                parts = (httplang.split('-') + [None, None])[:3]
+                if parts[0] == parts[1]:
+                    # Avoid creating a country code for simple languages codes
+                    parts = [parts[0], None, None]
+                elif parts[0] == 'en':
+                    # Avoid en-us as a language
+                    parts = ['en', None, None]
+                try:
+                    locale = locales.getLocale(*parts)
+                    language = locale.getLocaleID()
+                    break
+                except LoadLocaleError:
+                    # Just try the next combination
+                    pass
+        return language
+
     def __call__(self):
         context = self.context
         form = self.request.form
@@ -109,6 +133,7 @@ class AddPloneSite(BrowserView):
                 profile_id=form.get('profile_id', _DEFAULT_PROFILE),
                 extension_ids=form.get('extension_ids', ()),
                 setup_content=form.get('setup_content', False),
+                default_language=form.get('default_language', 'en'),
                 )
             self.request.response.redirect(site.absolute_url())
 
