@@ -16,6 +16,14 @@
       template="templates/plone-overview.pt"
       />
 
+  <browser:page
+      for="OFS.interfaces.IApplication"
+      name="plone-addsite"
+      class=".admin.AddPloneSite"
+      permission="zope2.ViewManagementScreens"
+      template="templates/plone-addsite.pt"
+      />
+
   <adapter factory=".admin.AppTraverser" />
 
   <browser:resource

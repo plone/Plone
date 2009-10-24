@@ -101,7 +101,7 @@
                 <form id="add-plone-site"
                       method="get"
                       action="#"
-                      tal:attributes="action string:${context/absolute_url}/manage_addProduct/CMFPlone/addPloneSiteForm">
+                      tal:attributes="action string:${context/absolute_url}/@@plone-addsite">
                     <input type="hidden" name="site_id" value="Plone" />
                     <input type="submit"
                            i18n:attributes="value;"

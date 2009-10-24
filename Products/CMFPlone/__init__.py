@@ -117,7 +117,6 @@ def initialize(context):
     # LargePloneFolder is deprectated and will be removed in Plone 5.0.
     # Usage of PloneFolder is discouraged.
     import PloneFolder, LargePloneFolder
-    import Portal
 
     contentClasses      = ( PloneFolder.PloneFolder,
                             LargePloneFolder.LargePloneFolder, )
@@ -175,12 +174,6 @@ def initialize(context):
                 , permission=ADD_CONTENT_PERMISSION
                 , extra_constructors=contentConstructors
                 ).initialize( context )
-
-    import factory
-    context.registerClass(Portal.PloneSite,
-                          constructors=(factory.addPloneSiteForm,
-                                        factory.addPloneSite),
-                          icon='skins/plone_images/logoIcon.png')
 
 # Import PloneMessageFactory to create messages in the plone domain
 from zope.i18nmessageid import MessageFactory

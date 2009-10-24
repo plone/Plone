@@ -1,20 +1,12 @@
-from operator import itemgetter
-
-from zope.component import getAllUtilitiesRegisteredFor
 from zope.event import notify
 from zope.interface import implements
 from zope.site.hooks import setSite
 
 from Products.GenericSetup.tool import SetupTool
-from Products.GenericSetup import profile_registry
-from Products.GenericSetup import BASE, EXTENSION
-from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 
 from Products.CMFPlone.events import SiteManagerCreatedEvent
 from Products.CMFPlone.interfaces import INonInstallable
-from Products.CMFPlone.interfaces import IPloneSiteRoot
 from Products.CMFPlone.Portal import PloneSite
-from Products.CMFPlone.utils import WWW_DIR
 
 _TOOL_ID = 'portal_setup'
 _DEFAULT_PROFILE = 'Products.CMFPlone:plone'
@@ -61,53 +53,15 @@ class HiddenProfiles(object):
                 ]
 
 
-def addPloneSiteForm(dispatcher):
-    """
-    Wrap the PTF in 'dispatcher'.
-    """
-    wrapped = PageTemplateFile('addSite', WWW_DIR).__of__(dispatcher)
-
-    base_profiles = []
-    extension_profiles = []
-    not_installable = []
-    default_extension_profiles = [
-        'plonetheme.sunburst:default',
-        ]
-
-    utils = getAllUtilitiesRegisteredFor(INonInstallable)
-    for util in utils:
-        not_installable.extend(util.getNonInstallableProfiles())
-
-    for info in profile_registry.listProfileInfo():
-        if info.get('type') == EXTENSION and \
-           info.get('for') in (IPloneSiteRoot, None):
-            profile_id = info.get('id')
-            if profile_id not in not_installable:
-                if profile_id in default_extension_profiles:
-                    info['selected'] = 'selected'
-                extension_profiles.append(info)
-
-    extension_profiles.sort(key=itemgetter('title'))
-
-    for info in profile_registry.listProfileInfo():
-        if info.get('type') == BASE and \
-           info.get('for') in (IPloneSiteRoot, None):
-            base_profiles.append(info)
-
-    return wrapped(base_profiles=tuple(base_profiles),
-                   extension_profiles=tuple(extension_profiles),
-                   default_profile=_DEFAULT_PROFILE)
-
-def addPloneSite(dispatcher, site_id, title='', description='',
+def addPloneSite(context, site_id, title='', description='',
                  create_userfolder=True, email_from_address='',
                  email_from_name='', validate_email=False,
                  profile_id=_DEFAULT_PROFILE, snapshot=False,
-                 RESPONSE=None, extension_ids=(),
-                 setup_content=True):
+                 extension_ids=(), setup_content=True):
     """ Add a PloneSite to 'dispatcher', configured according to 'profile_id'.
     """
-    dispatcher._setObject(site_id, PloneSite(site_id))
-    site = dispatcher._getOb(site_id)
+    context._setObject(site_id, PloneSite(site_id))
+    site = context._getOb(site_id)
 
     site[_TOOL_ID] = SetupTool(_TOOL_ID)
     setup_tool = site[_TOOL_ID]
@@ -139,5 +93,4 @@ def addPloneSite(dispatcher, site_id, title='', description='',
     if snapshot is True:
         setup_tool.createSnapshot('initial_configuration')
 
-    if RESPONSE is not None:
-        RESPONSE.redirect(site.absolute_url())
+    return site

@@ -8,6 +8,10 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Refactored the old factory dispatcher / addPloneSiteForm to use a modern
+  browser page instead.
+  [hannosch]
+
 - Removed the special default page and translation handling. LinguaPlone uses
   a content language negotiator per default instead.
   [hannosch]

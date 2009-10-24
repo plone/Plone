@@ -4,7 +4,7 @@ ADD_PLONE_SITE_HTML = '''
 <dtml-if "_.len(this().getPhysicalPath()) == 1">
   <!-- Add Plone site action-->
   <form method="get" 
-        action="&dtml-URL1;/manage_addProduct/CMFPlone/addPloneSiteForm"
+        action="&dtml-URL1;/@@plone-addsite"
         style="text-align: right; margin-top:0.5em; margin-bottom:0em;"
         target="_top">
     <input type="hidden" name="site_id" value="Plone" />

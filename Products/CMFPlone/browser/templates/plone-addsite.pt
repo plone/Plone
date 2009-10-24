@@ -30,7 +30,13 @@
 
   <h1 i18n:translate="">Create a Plone site</h1>
 
-  <form action="addPloneSite" method="post">
+  <form action="#"
+        method="post"
+        tal:attributes="action string:${context/absolute_url}/@@plone-addsite"
+        tal:define="profiles view/profiles;
+                    base_profiles profiles/base;
+                    default_profile profiles/default;
+                    extension_profiles profiles/extensions;">
 
       <div class="field">
         <label for="site_id" i18n:translate="">
@@ -57,7 +63,7 @@
                i18n:attributes="value text_default_site_title;" />
       </div>
 
-      <tal:baseprofile condition="python: len(options['base_profiles']) > 1">
+      <tal:baseprofile condition="python: len(base_profiles) > 1">
         <div class="field">
           <label for="profile_id" i18n:translate="">
             Base configuration
@@ -69,14 +75,14 @@
           </div>
 
           <dl>
-            <tal:bases tal:repeat="info options/base_profiles">
+            <tal:bases tal:repeat="info base_profiles">
               <dt>
                 <input type="radio"
                        name="profile_id:string"
                        value="profile"
                        tal:attributes="id info/id;
                                        value info/id;
-                                       checked python: options['default_profile']==info['id'] and 'checked' or nothing"
+                                       checked python: default_profile==info['id'] and 'checked' or nothing"
                        />
                 <label tal:attributes="for info/id"
                        tal:content="info/title">
@@ -91,7 +97,7 @@
         </div>
       </tal:baseprofile>
 
-      <tal:extensionprofiles condition="options/extension_profiles">
+      <tal:extensionprofiles condition="extension_profiles">
         <div class="field">
           <label for="extension_ids" i18n:translate="">
             Add-ons
@@ -104,7 +110,7 @@
           </div>
 
           <dl id="extension_ids">
-            <tal:addons tal:repeat="info options/extension_profiles">
+            <tal:addons tal:repeat="info extension_profiles">
               <dt>
                 <input type="checkbox" name="extension_ids:list" value=""
                        tal:attributes="value info/id;
@@ -122,6 +128,7 @@
       </tal:extensionprofiles>
 
       <div class="formControls">
+        <input type="hidden" name="form.submitted:boolean" value="True" />
         <input type="submit" name="submit" value="Create Plone Site"
                i18n:attributes="value;" />
       </div>

@@ -55,6 +55,7 @@ class PloneSite(CMFSite, OrderedContainer, BrowserDefaultMixin, UniqueObject):
         )
     title = ''
     description = ''
+    icon = 'misc_/CMFPlone/tool.gif'
 
     def __browser_default__(self, request):
         """ Set default so we can return whatever we want instead
