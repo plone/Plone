@@ -815,26 +815,6 @@ class PloneTool(PloneBaseTool, UniqueObject, SimpleItem):
         portal = getToolByName(self, 'portal_url').getPortalObject()
         wftool = getToolByName(self, 'portal_workflow')
 
-        # Looking up translatable is done several places so we make a
-        # method for it.
-        def returnPage(obj, page):
-            # Only look up for untranslated folderish content,
-            # in translated containers we assume the container has default page
-            # in the correct language.
-            implemented = ITranslatable.providedBy(obj)
-            if not implemented or implemented and not obj.isTranslation():
-                pageobj = getattr(obj, page, None)
-                if pageobj is not None and ITranslatable.providedBy(pageobj):
-                    translation = pageobj.getTranslation()
-                    if translation is not None and \
-                       (not wftool.getChainFor(pageobj) or\
-                           wftool.getInfoFor(pageobj, 'review_state') == wftool.getInfoFor(translation, 'review_state')):
-                        if translation.getId() in obj:
-                            return obj, [translation.getId()]
-                        else:
-                            return translation, ['view']
-            return obj, [page]
-
         #
         # 1. Get an attribute or contained object index_html
         #
@@ -849,7 +829,7 @@ class PloneTool(PloneBaseTool, UniqueObject, SimpleItem):
         if not isinstance(getattr(obj, 'index_html', None), ReplaceableWrapper):
             index_obj = getattr(aq_base(obj), 'index_html', None)
             if index_obj is not None and not isinstance(index_obj, ComputedAttribute):
-                return returnPage(obj, 'index_html')
+                return obj, ['index_html']
 
         #
         # 2. Look for a default_page managed by an IBrowserDefault-implementing
@@ -864,7 +844,7 @@ class PloneTool(PloneBaseTool, UniqueObject, SimpleItem):
             defaultPage = self.getDefaultPage(obj)
             if defaultPage is not None:
                 if defaultPage in obj:
-                    return returnPage(obj, defaultPage)
+                    return obj, [defaultPage]
                 # Avoid infinite recursion in the case that the page id == the
                 # object id
                 elif defaultPage != obj.getId() and \

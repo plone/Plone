@@ -8,6 +8,10 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Removed the special default page and translation handling. LinguaPlone uses
+  a content language negotiator per default instead.
+  [hannosch]
+
 - Replaced highlightsearchterms.js with the Plone trunk
   jquery.highlightsearchterms.js plugin. This removes the need to add
   searchterm= query parameters to search.pt results.
