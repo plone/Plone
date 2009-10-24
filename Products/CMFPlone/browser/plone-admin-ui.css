@@ -70,6 +70,9 @@ div.formControls {
     font-weight: bold;
     margin-top: 0.5em;
 }
+#add-plone-site {
+    margin: 1em;
+}
 #box {
     margin: 2em auto;
     width:430px;

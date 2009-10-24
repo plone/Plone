@@ -94,17 +94,19 @@
                 </li>
                 </tal:many>
             </tal:block>
-            <li tal:condition="not:sites" i18n:translate="">
-                Your Plone site has not been added yet:
-                <div class="prominent" i18n:name="link_create_a_plone_site">
-                    <a href="#"
-                       tal:attributes="href string:${context/absolute_url}/manage_addProduct/CMFPlone/addPloneSiteForm?site_id=Plone"
-                       title="Create a new Plone site"
-                       i18n:attributes="title;"
-                       i18n:translate="">
-                        Create a new Plone site
-                    </a>
-                </div>
+            <li tal:condition="not:sites">
+                <span i18n:translate="">
+                    Your Plone site has not been added yet:
+                </span>
+                <form id="add-plone-site"
+                      method="get"
+                      action="#"
+                      tal:attributes="action string:${context/absolute_url}/manage_addProduct/CMFPlone/addPloneSiteForm">
+                    <input type="hidden" name="site_id" value="Plone" />
+                    <input type="submit"
+                           i18n:attributes="value;"
+                           value="Create a new Plone site" />
+                </form>
             </li>
             <li>
                 <a href="#"
