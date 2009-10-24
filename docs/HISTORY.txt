@@ -4,6 +4,13 @@ Changelog
 3.3.2 - Unreleased
 ------------------
 
+- Make sure the folder_listing, folder_summary_view, and folder_tabular_view
+  call getText with a full acquisition chain (but make the conditional for
+  whether to display text test for the existence of getText on the aq_base'd
+  context to avoid accidental acquisition).  This fixes
+  http://dev.plone.org/plone/ticket/8463
+  [davisagli]
+
 - Added helper methods to the i18nl10n method, to change the default date and
   time formats used by zope.i18n.locales. This makes it easier to use a 24
   hour clock in the date/time widgets for English speakers.
