@@ -8,6 +8,13 @@ Changelog
 3.3.2 - Unreleased
 ------------------
 
+- Use PlonePAS methods for adding and removing members from groups, as well
+  as for listing group membership. These methods are PAS aware and thus work
+  correctly with PAS plugins other than the GroupUserFolder. Thanks to 
+  Giovanni Toffoli for the initial patch.
+  Fixes https://dev.plone.org/plone/ticket/9163
+  [mj]
+
 - Fix linkintegrity-related issue regarding missing undo log entries after
   removing content via the "delete" action.
   This fixes http://dev.plone.org/plone/ticket/7784

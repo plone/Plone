@@ -20,9 +20,10 @@
                 groupname request/groupname|nothing;
                 grouproles python:request.set('grouproles', []);
                 gtool context/portal_groups;
+                mtool context/portal_membership;
                 group python:gtool.getGroupById(groupname);
                 grouptitle group/getGroupTitleOrName|groupname;
-                groupMembers group/getGroupMembers|nothing;
+                groupMembers python:[mtool.getMemberById(m) for m in gtool.getGroupMembers(groupname)];
                 isGroup nocall:gtool/isGroup;
                 mq python:modules['ZTUtils'].make_query;
                 groupquery python:mq(groupname=groupname);
