@@ -1,3 +1,4 @@
+from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
 from zope.component import adapts
 from zope.component import queryMultiAdapter
 from zope.interface import Interface
@@ -45,3 +46,8 @@ class Overview(BrowserView):
         if mig is not None:
             return mig.needUpgrading()
         return False
+
+
+class FrontPage(BrowserView):
+
+    index = ViewPageTemplateFile('templates/plone-frontpage.pt')

@@ -218,7 +218,7 @@ def setupPortalContent(p):
 
         if front_text is None and request is not None:
             view = queryMultiAdapter((p, request),
-                name='plone_frontpage_setup')
+                name='plone-frontpage-setup')
             if view is not None:
                 front_text = bodyfinder(view.index()).strip()
 

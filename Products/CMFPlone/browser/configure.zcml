@@ -2,6 +2,8 @@
            xmlns:browser="http://namespaces.zope.org/browser"
            xmlns:five="http://namespaces.zope.org/five">
 
+  <include file="admin.zcml" />
+
   <class class="Products.CMFPlone.Portal.PloneSite">
     <implements interface="plone.app.layout.navigation.interfaces.INavigationRoot" />
   </class>
@@ -64,33 +66,6 @@
       class=".sitemap.SitemapView"
       permission="zope.Public"
       allowed_interface=".interfaces.ISitemapView"
-      />
-
-  <browser:view
-      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-      name="plone_frontpage_setup"
-      class=".frontpage.FrontPage"
-      permission="zope.Public"
-      />
-
-  <browser:page
-      for="OFS.interfaces.IApplication"
-      name="plone-overview"
-      class=".overview.Overview"
-      permission="zope.Public"
-      template="overview.pt"
-      />
-
-  <adapter factory=".overview.AppTraverser" />
-
-  <browser:resource
-      file="plone-logo.png"
-      name="plone-logo.png"
-      />
-
-  <browser:resource
-      file="plone-admin-ui.css"
-      name="plone-admin-ui.css"
       />
 
    <adapter for="*

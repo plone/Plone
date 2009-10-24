@@ -1,0 +1,31 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:browser="http://namespaces.zope.org/browser">
+
+  <browser:view
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      name="plone-frontpage-setup"
+      class=".admin.FrontPage"
+      permission="zope.Public"
+      />
+
+  <browser:page
+      for="OFS.interfaces.IApplication"
+      name="plone-overview"
+      class=".admin.Overview"
+      permission="zope.Public"
+      template="templates/plone-overview.pt"
+      />
+
+  <adapter factory=".admin.AppTraverser" />
+
+  <browser:resource
+      file="plone-logo.png"
+      name="plone-logo.png"
+      />
+
+  <browser:resource
+      file="plone-admin-ui.css"
+      name="plone-admin-ui.css"
+      />
+
+</configure>
