@@ -8,6 +8,13 @@ Changelog
 3.3.2 - Unreleased
 ------------------
 
+- Make sure the folder_listing, folder_summary_view, and folder_tabular_view
+  call getText with a full acquisition chain (but make the conditional for
+  whether to display text test for the existence of getText on the aq_base'd
+  context to avoid accidental acquisition).  This fixes
+  http://dev.plone.org/plone/ticket/8463
+  [davisagli]
+
 - Use PlonePAS methods for adding and removing members from groups, as well
   as for listing group membership. These methods are PAS aware and thus work
   correctly with PAS plugins other than the GroupUserFolder. Thanks to 
