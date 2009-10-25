@@ -28,11 +28,14 @@ ul li {
 ul ul{
     margin: .5em 2em;
 }
+.upgrade-steps li, .version-list li {
+    margin-bottom: 0.5em;
+}
 dt {
     font-weight: bold;
 }
 dd {
-    margin: 0 0 1em 1em;
+    margin: 0 1em;
 }
 input {
     font-size: 150%;

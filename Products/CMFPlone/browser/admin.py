@@ -155,6 +155,10 @@ class AddPloneSite(BrowserView):
 
 class Upgrade(BrowserView):
 
+    def upgrades(self):
+        ps = getattr(self.context, 'portal_setup')
+        return ps.listUpgrades(_DEFAULT_PROFILE)
+
     def versions(self):
         pm = getattr(self.context, 'portal_migration')
         result = {}

@@ -24,6 +24,19 @@
     Upgrade this Plone site
   </h1>
 
+  <div class="prominent">
+      <img tal:attributes="src string:${context/absolute_url}/favicon.ico"
+           height="16" width="16"/>
+      <a href="#"
+         tal:attributes="href context/absolute_url;
+                         title context/Title;"
+         tal:content="context/Title">
+          Site title
+      </a>
+      <span class="discreet"
+            tal:content="string:(${context/getId})"/>
+  </div>
+
   <p i18n:translate="">
     More information about the upgrade procedure can be found in the
     documentation section of plone.org in the
@@ -81,10 +94,52 @@
           </dd>
         </dl>
 
-        <div class="formHelp" i18n:translate="">
-          Upgrading sometimes performs a catalog/security update, which may
-          take a long time on large sites. Be patient.
-        </div>
+        <fieldset id="upgrade-steps">
+
+          <legend i18n:translate="">
+            Upgrade steps
+          </legend>
+
+          <div class="formHelp" i18n:translate="">
+            The following list shows which upgrade steps are going to be run.
+            Upgrading sometimes performs a catalog/security update, which may
+            take a long time on large sites. Be patient.
+          </div>
+
+          <dl class="upgrade-steps">
+            <tal:block tal:repeat="upgrade_info view/upgrades">
+
+                <tal:single condition="python:not isinstance(upgrade_info, list)"
+                            define="info upgrade_info">
+                  <dt tal:content="structure string:(${info/ssource} &amp;#8594; ${info/sdest})">
+                    path
+                  </dt>
+                  <dd>
+                    <ul>
+                      <li tal:content="info/title">
+                        title
+                      </li>
+                    </ul>
+                  </dd>
+                </tal:single>
+
+                <tal:multiple condition="python: isinstance(upgrade_info, list)">
+                  <dt tal:define="info python:upgrade_info[0]"
+                      tal:content="structure string:(${info/ssource} &amp;#8594; ${info/sdest})">
+                    path
+                  </dt>
+                  <dd>
+                    <ul>
+                      <li tal:repeat="info upgrade_info"
+                          tal:content="info/title">
+                          title
+                      </li>
+                    </ul>
+                  </dd>
+                </tal:multiple>
+            </tal:block>
+          </dl>
+        </fieldset>
 
         <div class="field">
           <label for="dry_run" i18n:translate="">Dry run mode</label>
@@ -124,7 +179,7 @@
       Plone Version Overview
   </h2>
 
-  <ul tal:define="corelist versions/corelist">
+  <ul class="version-list" tal:define="corelist versions/corelist">
       <li>Plone <span tal:replace="versions/instance" /></li>
       <li>CMF <span tal:replace="corelist/CMF" /></li>
       <li>Zope <span tal:replace="corelist/Zope" /></li>
