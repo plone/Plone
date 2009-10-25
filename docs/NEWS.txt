@@ -8,6 +8,10 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Added a new ``@@plone-upgrade`` view, which replaces the old migration tool
+  DTML ZMI screens.
+  [hannosch]
+
 - Added a simple ``advanced`` mode to the add site form. If advanced is passed
   as a query argument to the ``@@plone-addsite`` more options are available.
   The button in the ZMI uses the advanced mode by default. Currently the choice

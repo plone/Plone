@@ -10,18 +10,26 @@
 
   <browser:page
       for="OFS.interfaces.IApplication"
-      name="plone-overview"
-      class=".admin.Overview"
-      permission="zope.Public"
-      template="templates/plone-overview.pt"
-      />
-
-  <browser:page
-      for="OFS.interfaces.IApplication"
       name="plone-addsite"
       class=".admin.AddPloneSite"
       permission="zope2.ViewManagementScreens"
       template="templates/plone-addsite.pt"
+      />
+
+  <browser:page
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      name="plone-upgrade"
+      class=".admin.Upgrade"
+      permission="cmf.ManagePortal"
+      template="templates/plone-upgrade.pt"
+      />
+
+  <browser:page
+      for="OFS.interfaces.IApplication"
+      name="plone-overview"
+      class=".admin.Overview"
+      permission="zope.Public"
+      template="templates/plone-overview.pt"
       />
 
   <adapter factory=".admin.AppTraverser" />

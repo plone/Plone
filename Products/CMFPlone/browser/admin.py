@@ -151,3 +151,29 @@ class AddPloneSite(BrowserView):
             self.request.response.redirect(site.absolute_url())
 
         return self.index()
+
+
+class Upgrade(BrowserView):
+
+    def versions(self):
+        pm = getattr(self.context, 'portal_migration')
+        result = {}
+        result['instance'] = pm.getInstanceVersion()
+        result['fs'] = pm.getFileSystemVersion()
+        result['equal'] = result['instance'] == result['fs']
+        result['corelist'] = pm.coreVersionsList()
+        return result
+
+    def __call__(self):
+        context = self.context
+        form = self.request.form
+        submitted = form.get('form.submitted', False)
+        if submitted:
+            pm = getattr(self.context, 'portal_migration')
+            report = pm.upgrade(
+                REQUEST=self.request,
+                dry_run=form.get('dry_run', False),
+                )
+            return self.index(report=report)
+
+        return self.index()

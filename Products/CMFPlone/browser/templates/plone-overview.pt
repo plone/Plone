@@ -46,7 +46,7 @@
                             The site configuration is outdated and needs to be
                             upgraded. Please
                             <a href="#"
-                               tal:attributes="href string:${site/absolute_url}/portal_migration/manage_migrate"
+                               tal:attributes="href string:${site/absolute_url}/@@plone-upgrade"
                                title="Go to the upgrade page"
                                i18n:attributes="title;"
                                i18n:name="link_continue_with_the_upgrade"
@@ -81,7 +81,7 @@
                                 The site configuration is outdated and needs to be
                                 upgraded. Please
                                 <a href="#"
-                                   tal:attributes="href string:${site/absolute_url}/portal_migration/manage_migrate"
+                                   tal:attributes="href string:${site/absolute_url}/@@plone-upgrade"
                                    title="Go to the upgrade page"
                                    i18n:attributes="title;"
                                    i18n:name="link_continue_with_the_upgrade"

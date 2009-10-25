@@ -7,7 +7,6 @@ from zope.interface import implements
 from AccessControl import ClassSecurityInfo
 from AccessControl.requestmethod import postonly
 from App.class_init import InitializeClass
-from App.special_dtml import DTMLFile
 from Globals import DevelopmentMode
 from OFS.SimpleItem import SimpleItem
 from ZODB.POSException import ConflictError
@@ -37,42 +36,7 @@ class MigrationTool(PloneBaseTool, UniqueObject, SimpleItem):
     _needRecatalog = 0
     _needUpdateRole = 0
 
-    manage_options = (
-        { 'label' : 'Upgrade', 'action' : 'manage_migrate' },
-        )
-
     security = ClassSecurityInfo()
-
-    security.declareProtected(ManagePortal, 'manage_overview')
-    security.declareProtected(ManagePortal, 'manage_results')
-    security.declareProtected(ManagePortal, 'manage_migrate')
-
-    manage_migrate = DTMLFile('www/migrationRun', globals())
-    manage_overview = DTMLFile('www/migrationTool', globals())
-    manage_results = DTMLFile('www/migrationResults', globals())
-
-    # Add a visual note
-    def om_icons(self):
-        icons = ({
-                    'path':'misc_/CMFPlone/tool.gif',
-                    'alt':self.meta_type,
-                    'title':self.meta_type,
-                 },)
-        if self.needUpgrading() \
-           or self.needUpdateRole() \
-           or self.needRecatalog():
-            icons = icons + ({
-                     'path':'misc_/PageTemplates/exclamation.gif',
-                     'alt':'Error',
-                     'title':'This Plone instance needs updating'
-                  },)
-
-        return icons
-
-    ##############################################################
-    # Public methods
-    #
-    # versions methods
 
     security.declareProtected(ManagePortal, 'getInstanceVersion')
     def getInstanceVersion(self):
@@ -245,7 +209,7 @@ class MigrationTool(PloneBaseTool, UniqueObject, SimpleItem):
                 logger.info("Dry run selected, transaction aborted")
                 transaction.abort()
 
-            return self.manage_results(self, out=stream.getvalue())
+            return stream.getvalue()
 
         finally:
             logger.removeHandler(handler)

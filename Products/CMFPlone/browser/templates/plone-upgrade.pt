@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      i18n:domain="plone">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+  <title i18n:translate="">Upgrade this Plone site</title>
+
+  <link rel="stylesheet" type="text/css"
+        href="/++resource++plone-admin-ui.css" />
+
+</head>
+<body tal:define="versions view/versions; report options/report|nothing;">
+
+  <img src="/++resource++plone-logo.png" width="215" height="56" />
+
+  <h1 i18n:translate="">Upgrade this Plone site</h1>
+
+  <p>
+    <b>Current active configuration:</b>
+    <code tal:content="versions/instance">instance version</code>
+    <br />
+
+    <b>Latest available configuration:</b>
+    <code tal:content="versions/fs">file system version</code>
+    <br />
+  </p>
+
+  <hr />
+
+  <tal:upgrade tal:condition="not:versions/equal">
+
+    <p>
+      <img src="error_icon.png" />
+
+      <strong>
+        Your Plone site is <em>not</em> up to date with the latest version.
+      </strong>
+      Click "upgrade" to bring your Plone site configuration in sync with
+      what's on your file system.
+    </p>
+
+    <p>
+      More information about the upgrade procedure can be found in the
+      documentation section of plone.org in the
+      <a href="http://plone.org/upgrade">
+        Upgrade Guide
+      </a>.
+    </p>
+
+    <hr />
+
+    <h4>Note:</h4>
+
+    <p>
+      <span style="background-color:red; color: white; font-weight: bold">
+        Please ensure you have a backup of your Plone site before performing
+        the upgrade.
+      </span><br />
+      Also make sure you are not doing this upgrade as an Emergency user.
+      Upgrading sometimes performs a catalog/security update, which may take a
+      long time on large sites. Be patient.
+    </p>
+
+    <form action="#"
+          method="post"
+          tal:attributes="action string:${context/absolute_url}/@@plone-upgrade">
+
+      <p>
+        <input name="dry_run" type="checkbox" value="1:int" />
+        Dry run mode &mdash; run the migration and show the result without
+        actually writing anything to the database.
+      </p>
+
+      <div class="formControls">
+        <input type="hidden" name="form.submitted:boolean" value="True" />
+        <input type="submit" name="submit" value="Upgrade"
+               i18n:attributes="value;" />
+      </div>
+
+    </form>
+
+  </tal:upgrade>
+
+  <tal:current tal:condition="versions/equal">
+
+    <p>
+      <img src="confirm_icon.png" />
+
+      <strong>Your Plone site is up to date.</strong>
+    </p>
+
+  </tal:current>
+
+  <tal:report tal:condition="report">
+
+    <h3>Result of the attempt...</h3>
+
+    <pre tal:content="report">
+    </pre>
+
+  </tal:report>
+
+  <hr />
+
+  <h3>
+    Current version information
+  </h3>
+
+  <ul>
+    <li tal:repeat="item versions/corelist">
+      <span>
+        <span tal:replace="python:item[0]" /> :
+        <span tal:replace="python:item[1]" />
+      </span>
+    </li>
+  </ul>
+
+</body>
+</html>
