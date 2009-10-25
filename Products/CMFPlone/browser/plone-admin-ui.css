@@ -4,12 +4,11 @@ body {
     clear: both;
     margin-left: 1em;
 }
-h1 {
+h1, h2 {
     font-family: "Helvetica Neue", Arial, FreeSans, sans-serif; 
     margin-top: 1em;
 }
 img {
-/*    margin: 0 auto 2em;*/
     margin-top: 0.5em;
     border: none;
 }
@@ -63,6 +62,12 @@ div.formControls {
 .discreet {
     font-size: 80%;
     color: #ccc;
+}
+.backup-warning {
+    background-color:red;
+    color: white;
+    padding: 0.1em;
+    font-weight: bold;
 }
 .upgrade-warning {
     background: url(/misc_/PageTemplates/exclamation.gif) top left no-repeat;

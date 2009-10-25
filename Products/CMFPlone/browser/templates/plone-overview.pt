@@ -76,17 +76,17 @@
                                       tal:content="string:(${site/getId})"/>
                             </span>
                             <div class="upgrade-warning"
-                                 i18n:translate=""
                                  tal:condition="python:view.outdated(site)">
-                                The site configuration is outdated and needs to be
-                                upgraded. Please
+                                <span i18n:translate="">
+                                    The site configuration is outdated and
+                                    needs to be upgraded.
+                                </span>
                                 <a href="#"
                                    tal:attributes="href string:${site/absolute_url}/@@plone-upgrade"
                                    title="Go to the upgrade page"
                                    i18n:attributes="title;"
-                                   i18n:name="link_continue_with_the_upgrade"
                                    i18n:translate="">
-                                  continue with the upgrade
+                                  Please continue with the upgrade
                                 </a>.
                             </div>
                         </li>

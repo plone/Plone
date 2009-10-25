@@ -161,7 +161,7 @@ class Upgrade(BrowserView):
         result['instance'] = pm.getInstanceVersion()
         result['fs'] = pm.getFileSystemVersion()
         result['equal'] = result['instance'] == result['fs']
-        result['corelist'] = pm.coreVersionsList()
+        result['corelist'] = pm.coreVersions()
         return result
 
     def __call__(self):
