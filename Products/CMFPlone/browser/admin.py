@@ -1,9 +1,10 @@
 from operator import itemgetter
 
-from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
+from plone.i18n.locales.interfaces import IContentLanguageAvailability
 from zope.component import adapts
 from zope.component import getAllUtilitiesRegisteredFor
 from zope.component import queryMultiAdapter
+from zope.component import queryUtility
 from zope.i18n.interfaces import IUserPreferredLanguages
 from zope.i18n.locales import locales, LoadLocaleError
 from zope.interface import Interface
@@ -13,6 +14,7 @@ from zope.publisher.browser import BrowserView
 from AccessControl import getSecurityManager
 from AccessControl.Permissions import view as View
 from OFS.interfaces import IApplication
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.GenericSetup import profile_registry
 from Products.GenericSetup import BASE, EXTENSION
 from ZPublisher.BaseRequest import DefaultPublishTraverse
@@ -114,12 +116,23 @@ class AddPloneSite(BrowserView):
                     parts = ['en', None, None]
                 try:
                     locale = locales.getLocale(*parts)
-                    language = locale.getLocaleID()
+                    language = locale.getLocaleID().replace('_', '-').lower()
                     break
                 except LoadLocaleError:
                     # Just try the next combination
                     pass
         return language
+
+    def languages(self, default='en'):
+        util = queryUtility(IContentLanguageAvailability)
+        if '-' in default:
+            available = util.getLanguages(combined=True)
+        else:
+            available = util.getLanguages()
+        languages = [(code, v.get(u'native', v.get(u'name'))) for
+                     code,v in available.items()]
+        languages.sort(key=itemgetter(1))
+        return languages
 
     def __call__(self):
         context = self.context
