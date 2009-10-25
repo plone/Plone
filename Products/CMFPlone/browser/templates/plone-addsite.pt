@@ -89,8 +89,7 @@
 
         <div class="formHelp" />
 
-        <input type="checkbox" name="setup_content:boolean"
-               checked="checked" />
+        <input type="checkbox" name="setup_content:boolean" />
 
         <span i18n:translate="">
             Should the default example content be added to the site?
