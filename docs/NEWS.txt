@@ -8,6 +8,13 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Added a simple ``advanced`` mode to the add site form. If advanced is passed
+  as a query argument to the ``@@plone-addsite`` more options are available.
+  The button in the ZMI uses the advanced mode by default. Currently the choice
+  of omitting the default content and deselecting any of the default extension
+  profiles are limited to the advanced mode.
+  [hannosch]
+
 - Expose the site language in the add site form and refactor the language
   guessing based on the browser language into that view. The addPloneSite
   function takes an explicit argument for the language now.

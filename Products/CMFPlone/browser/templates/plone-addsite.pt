@@ -36,7 +36,8 @@
         tal:define="profiles view/profiles;
                     base_profiles profiles/base;
                     default_profile profiles/default;
-                    extension_profiles profiles/extensions;">
+                    extension_profiles profiles/extensions;
+                    advanced request/advanced|nothing;">
 
       <div class="field">
         <label for="site_id" i18n:translate="">
@@ -83,7 +84,7 @@
         </select>
       </div>
 
-      <div class="field">
+      <div class="field" tal:condition="advanced">
         <label for="setup_content" i18n:translate="">Example content</label>
 
         <div class="formHelp" />
@@ -95,6 +96,9 @@
             Should the default example content be added to the site?
         </span>
       </div>
+      <tal:content tal:condition="not:advanced">
+        <input type="hidden" name="setup_content:boolean" checked="checked" />
+      </tal:content>
 
       <tal:baseprofile condition="python: len(base_profiles) > 1">
         <div class="field">
@@ -144,17 +148,26 @@
 
           <dl id="extension_ids">
             <tal:addons tal:repeat="info extension_profiles">
-              <dt>
-                <input type="checkbox" name="extension_ids:list" value=""
-                       tal:attributes="value info/id;
-                                       checked info/selected|nothing;" />
-                <span tal:content="info/title">
-                  profile title
-                </span>
-              </dt>
-              <dd tal:content="info/description">
-                profile description
-              </dd>
+              <tal:info tal:define="selected info/selected|nothing">
+                <tal:normal tal:condition="python: not selected or advanced">
+                  <dt>
+                    <input type="checkbox" name="extension_ids:list" value=""
+                           tal:attributes="value info/id;
+                                           checked info/selected|nothing;" />
+                    <span tal:content="info/title">
+                      profile title
+                    </span>
+                  </dt>
+                  <dd tal:content="info/description">
+                    profile description
+                  </dd>
+                </tal:normal>
+                <tal:hidden tal:condition="python: selected and not advanced">
+                  <input type="hidden" name="extension_ids:list" value=""
+                         tal:attributes="value info/id;
+                                         checked info/selected|nothing;" />
+                </tal:hidden>
+              </tal:info>
             </tal:addons>
           </dl>
         </fieldset>
