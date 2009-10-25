@@ -63,10 +63,6 @@ class ActionsTool(PloneBaseTool, BaseTool):
                         filtered_actions.append(ai)
             actions = filtered_actions
 
-        if categories is not None:
-            actions = [ai for ai in actions
-                          if ai['category'] in categories]
-
         if ignore_categories is not None:
             actions = [ai for ai in actions
                           if ai['category'] not in ignore_categories]
