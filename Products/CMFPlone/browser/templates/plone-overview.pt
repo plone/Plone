@@ -86,8 +86,8 @@
                                    title="Go to the upgrade page"
                                    i18n:attributes="title;"
                                    i18n:translate="">
-                                  Please continue with the upgrade
-                                </a>.
+                                  Please continue with the upgrade.
+                                </a>
                             </div>
                         </li>
                     </ul>

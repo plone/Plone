@@ -8,6 +8,10 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Added a more prominent upgrade warning to the top of the ZMI screen, instead
+  of the old tiny note on the portal migration tool.
+  [hannosch]
+
 - Added a new ``@@plone-upgrade`` view, which replaces the old migration tool
   DTML ZMI screens.
   [hannosch]

@@ -12,6 +12,19 @@ ADD_PLONE_SITE_HTML = '''
     <input type="submit" value="Add Plone Site" />
   </form>
 </dtml-if>
+<dtml-if "this().meta_type == 'Plone Site'">
+  <!-- Warn if outdated -->
+  <dtml-if "this().portal_migration.needUpgrading()">
+    <div style="background: url(/misc_/PageTemplates/exclamation.gif) top left no-repeat;
+                padding: 0 0 0 1.2em; font-weight: bold; font-size: 125%;
+                margin-top: 1em;">
+      The site configuration is outdated and needs to be upgraded.
+      <a href="&dtml-URL1;/@@plone-upgrade" title="Go to the upgrade page">
+        Please continue with the upgrade.
+      </a>
+    </div>
+  </dtml-if>
+</dtml-if>
 '''
 
 main = ObjectManager.manage_main
