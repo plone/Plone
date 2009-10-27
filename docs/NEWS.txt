@@ -8,6 +8,10 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Deprecated the ``selectedTabs`` script in favor of a method on the
+  GlobalSectionsViewlet.
+  [hannosch]
+
 - Micro-optimize the CatalogNavigationTabs view.
   [hannosch]
 
