@@ -8,6 +8,13 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Changed ``listActions`` on the workflow tool to no longer call the
+  ``listGlobalActions`` method on every installed workflow. This method would
+  internally call and calculate the worklist (reviewer_queue) for every
+  workflow. The listActions method is called by the workflow menu to show the
+  state drop down menu on almost all pages.
+  [hannosch]
+
 - Deprecated the ``selectedTabs`` script in favor of a method on the
   GlobalSectionsViewlet.
   [hannosch]

@@ -311,6 +311,33 @@ class WorkflowTool(PloneBaseTool, BaseTool):
         """
         return getMultiAdapter( (ob, self), IWorkflowChain )
 
+    security.declarePrivate('listActions')
+    def listActions(self, info=None, object=None):
+
+        """ Returns a list of actions to be displayed to the user.
+
+        o Invoked by the portal_actions tool.
+
+        o Allows workflows to include actions to be displayed in the
+          actions box.
+
+        o Object actions are supplied by workflows that apply to the object.
+        """
+        if object is not None or info is None:
+            info = self._getOAI(object)
+        chain = self.getChainFor(info.object)
+        did = {}
+        actions = []
+
+        for wf_id in chain:
+            wf = self.getWorkflowById(wf_id)
+            if wf is not None:
+                a = wf.listObjectActions(info)
+                if a is not None:
+                    actions.extend(a)
+        return actions
+
+
 WorkflowTool.__doc__ = BaseTool.__doc__
 
 InitializeClass(WorkflowTool)
