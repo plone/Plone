@@ -143,7 +143,9 @@ class CatalogNavigationTabs(BrowserView):
         rootPath = getNavigationRoot(context)
         query['path'] = {'query' : rootPath, 'depth' : 1}
 
-        query['portal_type'] = utils.typesToList(context)
+        blacklist = navtree_properties.getProperty('metaTypesNotToList', ())
+        all_types = portal_catalog.uniqueValuesFor('portal_type')
+        query['portal_type'] = [t for t in all_types if t not in blacklist]
 
         sortAttribute = navtree_properties.getProperty('sortAttribute', None)
         if sortAttribute is not None:
@@ -157,21 +159,16 @@ class CatalogNavigationTabs(BrowserView):
             query['review_state'] = navtree_properties.getProperty('wf_states_to_show', [])
 
         query['is_default_page'] = False
-        
+
         if site_properties.getProperty('disable_nonfolderish_sections', False):
             query['is_folderish'] = True
-
-        # Get ids not to list and make a dict to make the search fast
-        idsNotToList = navtree_properties.getProperty('idsNotToList', ())
-        excludedIds = {}
-        for id in idsNotToList:
-            excludedIds[id]=1
 
         rawresult = portal_catalog.searchResults(**query)
 
         # now add the content to results
+        idsNotToList = navtree_properties.getProperty('idsNotToList', ())
         for item in rawresult:
-            if not (item.getId in excludedIds or item.exclude_from_nav):
+            if not (item.getId in idsNotToList or item.exclude_from_nav):
                 id, item_url = get_view_url(item)
                 data = {'name'      : utils.pretty_title_or_id(context, item),
                         'id'         : item.getId,
