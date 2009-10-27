@@ -188,7 +188,6 @@ def setupPortalContent(p):
                                    default="Congratulations! You have successfully installed Plone.")
                 translated_text = util.translate(u'front-text',
                                    target_language=language)
-                fp.setLanguage(language)
                 if translated_text != u'front-text':
                     front_text = translated_text
 
@@ -200,6 +199,7 @@ def setupPortalContent(p):
 
         fp.setTitle(front_title)
         fp.setDescription(front_desc)
+        fp.setLanguage(language)
         fp.setText(front_text, mimetype='text/html')
 
         # Show off presentation mode
@@ -236,15 +236,13 @@ def setupPortalContent(p):
         folder.setImmediatelyAddableTypes(['News Item'])
         folder.setDefaultPage('aggregator')
         folder.unmarkCreationFlag()
-        if language is not None:
-            folder.setLanguage(language)
+        folder.setLanguage(language)
 
         if wftool.getInfoFor(folder, 'review_state') != 'published':
             wftool.doActionFor(folder, 'publish')
 
         topic = p.news.aggregator
-        if language is not None:
-            topic.setLanguage(language)
+        topic.setLanguage(language)
         type_crit = topic.addCriterion('Type','ATPortalTypeCriterion')
         type_crit.setValue('News Item')
         sort_crit = topic.addCriterion('created','ATSortCriterion')
@@ -281,16 +279,14 @@ def setupPortalContent(p):
         folder.setImmediatelyAddableTypes(['Event'])
         folder.setDefaultPage('aggregator')
         folder.unmarkCreationFlag()
-        if language is not None:
-            folder.setLanguage(language)
+        folder.setLanguage(language)
 
         if wftool.getInfoFor(folder, 'review_state') != 'published':
             wftool.doActionFor(folder, 'publish')
 
         topic = folder.aggregator
         topic.unmarkCreationFlag()
-        if language is not None:
-            topic.setLanguage(language)
+        topic.setLanguage(language)
         type_crit = topic.addCriterion('Type','ATPortalTypeCriterion')
         type_crit.setValue('Event')
         sort_crit = topic.addCriterion('start','ATSortCriterion')
@@ -326,8 +322,7 @@ def setupPortalContent(p):
                             title=prev_events_title,
                             description=prev_events_desc)
         topic = topic.previous
-        if language is not None:
-            topic.setLanguage(language)
+        topic.setLanguage(language)
         topic.setAcquireCriteria(True)
         topic.unmarkCreationFlag()
         sort_crit = topic.addCriterion('end','ATSortCriterion')
@@ -364,8 +359,7 @@ def setupPortalContent(p):
         members.setTitle(members_title)
         members.setDescription(members_desc)
         members.unmarkCreationFlag()
-        if language is not None:
-            members.setLanguage(language)
+        members.setLanguage(language)
         members.reindexObject()
 
         if wftool.getInfoFor(members, 'review_state') != 'published':
