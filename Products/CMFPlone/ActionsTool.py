@@ -44,11 +44,13 @@ class ActionsTool(PloneBaseTool, BaseTool):
                         categories=None, ignore_categories=None):
         # List ActionInfo objects.
         # (method is without docstring to disable publishing)
-        #
-        ec = self._getExprContext(object)
         actions = self.listActions(object=object,
                                    categories=categories,
                                    ignore_categories=ignore_categories)
+        if not actions:
+            return []
+
+        ec = self._getExprContext(object)
         actions = [ ActionInfo(action, ec) for action in actions ]
 
         if action_chain:
