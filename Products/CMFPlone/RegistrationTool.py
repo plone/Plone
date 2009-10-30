@@ -1,6 +1,7 @@
 import re
 import random
 from hashlib import md5
+from email import message_from_string
 from smtplib import SMTPRecipientsRefused
 
 from zope.component import getUtility
@@ -273,20 +274,27 @@ class RegistrationTool(PloneBaseTool, BaseTool):
         reset_tool = getToolByName(self, 'portal_password_reset')
         reset = reset_tool.requestReset(forgotten_userid)
 
-        
-        email_charset = getattr(self, 'email_charset', 'UTF-8')
+
+        encoding = getUtility(ISiteRoot).getProperty('email_charset', 'utf-8')
         mail_text = self.mail_password_template( self
                                                , REQUEST
                                                , member=member
                                                , reset=reset
                                                , password=member.getPassword()
-                                               , charset=email_charset
+                                               , charset=encoding
                                                )
+        # The mail headers are not properly encoded we need to extract
+        # them and let MailHost manage the encoding.
         if isinstance(mail_text, unicode):
-            mail_text = mail_text.encode(email_charset)
-        host = self.MailHost
+            mail_text = mail_text.encode(encoding)
+        message_obj = message_from_string(mail_text)
+        subject = message_obj['Subject']
+        m_to = message_obj['To']
+        m_from = message_obj['From']
+        host = getToolByName(self, 'MailHost')
         try:
-            host.send( mail_text )
+            host.send( mail_text, m_to, m_from, subject=subject,
+                       charset=encoding)
 
             return self.mail_password_response( self, REQUEST )
         except SMTPRecipientsRefused:
@@ -324,9 +332,17 @@ class RegistrationTool(PloneBaseTool, BaseTool):
                                                    , email=email
                                                    )
 
-        host = self.MailHost
-        encoding = getUtility(ISiteRoot).getProperty('email_charset')
-        host.send(mail_text.encode(encoding))
+        encoding = getUtility(ISiteRoot).getProperty('email_charset', 'utf-8')
+        # The mail headers are not properly encoded we need to extract
+        # them and let MailHost manage the encoding.
+        if isinstance(mail_text, unicode):
+            mail_text = mail_text.encode(encoding)
+        message_obj = message_from_string(mail_text)
+        subject = message_obj['Subject']
+        m_to = message_obj['To']
+        m_from = message_obj['From']
+        host = getToolByName(self, 'MailHost')
+        host.send(mail_text, m_to, m_from, subject=subject, charset=encoding)
 
         return self.mail_password_response( self, self.REQUEST )
 

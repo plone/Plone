@@ -2,10 +2,14 @@
 # Tests the registration tool
 #
 
+from email import message_from_string
+from zope.component import getSiteManager
 from Products.CMFPlone.tests import PloneTestCase
 
 from AccessControl import Unauthorized
 from Products.CMFCore.permissions import AddPortalMember
+from Products.CMFPlone.tests.utils import MockMailHost
+from Products.MailHost.interfaces import IMailHost
 
 member_id = 'new_member'
 
@@ -90,7 +94,61 @@ class TestRegistrationTool(PloneTestCase.PloneTestCase):
     def testIsMemberIdAllowedIfSubstringOfExisting(self):
         # http://dev.plone.org/plone/ticket/6396
         self.failUnless(self.registration.isMemberIdAllowed('useri'))
-        
+
+    def testRegisteredNotify(self):
+        # tests email sending on registration
+        # First install a fake mailhost utility
+        mails = self.portal.MailHost = MockMailHost('MailHost')
+        sm = getSiteManager(self.portal)
+        sm.unregisterUtility(provided=IMailHost)
+        sm.registerUtility(mails, IMailHost)
+        # Register a user
+        self.registration.addMember(member_id, 'secret',
+                          properties={'username': member_id, 'email': 'foo@bar.com'})
+        # Set the portal email info
+        self.portal.setTitle('T\xc3\xa4st Portal')
+        self.portal.email_from_name = 'T\xc3\xa4st Admin'
+        self.portal.email_from_address = 'bar@baz.com'
+        self.registration.registeredNotify(member_id)
+        self.assertEqual(len(mails.messages), 1)
+        msg = message_from_string(mails.messages[0])
+        # We get an encoded subject
+        self.assertEqual(msg['Subject'],
+                         '=?utf-8?q?User_Account_Information_for_T=C3=A4st_Portal?=')
+        # Also a partially encoded from header
+        self.assertEqual(msg['From'],
+                         '=?utf-8?q?T=C3=A4st_Admin?= <bar@baz.com>')
+        self.assertEqual(msg['Content-Type'], 'text/plain; charset="utf-8"')
+        # And a Quoted Printable encoded body
+        self.failUnless('T=C3=A4st Admin' in msg.get_payload())
+
+    def testMailPassword(self):
+        # tests email sending for password emails
+        # First install a fake mailhost utility
+        mails = self.portal.MailHost = MockMailHost('MailHost')
+        sm = getSiteManager(self.portal)
+        sm.unregisterUtility(provided=IMailHost)
+        sm.registerUtility(mails, IMailHost)
+        # Register a user
+        self.registration.addMember(member_id, 'secret',
+                          properties={'username': member_id, 'email': 'foo@bar.com'})
+        # Set the portal email info
+        self.portal.setTitle('T\xc3\xa4st Portal')
+        self.portal.email_from_name = 'T\xc3\xa4st Admin'
+        self.portal.email_from_address = 'bar@baz.com'
+        self.registration.mailPassword(member_id, self.app['REQUEST'])
+        self.assertEqual(len(mails.messages), 1)
+        msg = message_from_string(mails.messages[0])
+        # We get an encoded subject
+        self.assertEqual(msg['Subject'],
+                         '=?utf-8?q?Password_reset_request?=')
+        # Also a partially encoded from header
+        self.assertEqual(msg['From'],
+                         '=?utf-8?q?T=C3=A4st_Admin?= <bar@baz.com>')
+        self.assertEqual(msg['Content-Type'], 'text/plain; charset="utf-8"')
+        # And a Quoted Printable encoded body
+        self.failUnless('T=C3=A4st Porta' in msg.get_payload())
+
 
 class TestPasswordGeneration(PloneTestCase.PloneTestCase):
 

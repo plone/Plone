@@ -8,6 +8,10 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- registerNotify and mailPassword now send properly encoded emails.
+  Fixes http://dev.plone.org/old/plone/ticket/9659
+  [alecm]
+
 - Deprecated register.py and join_form.cpt. This functionality has been moved 
   to plone.app.users.
   [esteele]
