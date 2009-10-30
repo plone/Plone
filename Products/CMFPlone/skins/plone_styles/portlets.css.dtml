@@ -201,6 +201,15 @@ div.managedPortlet {
     color:red !important;
 }
 
+.blockedPortlet .portletHeader {
+    border-color: &dtml-discreetColor;;
+}
+
+.blockedPortlet .portletBlockedMessage {
+    color: &dtml-discreetColor;;
+}
+
+
 /* Table of Contents styling - essentially a portlet with smaller fonts and aligned right + limited in width */
 .toc {
     float: right;
