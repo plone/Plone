@@ -8,6 +8,10 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Deprecated register.py and join_form.cpt. This functionality has been moved 
+  to plone.app.users.
+  [esteele]
+
 - Changed ``listActions`` on the workflow tool to no longer call the
   ``listGlobalActions`` method on every installed workflow. This method would
   internally call and calculate the worklist (reviewer_queue) for every
