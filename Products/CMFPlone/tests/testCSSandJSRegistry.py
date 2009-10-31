@@ -63,7 +63,7 @@ class TestJSRegistry(PloneTestCase.PloneTestCase):
              'calendarpopup.js',
              'collapsiblesections.js',
              'first_input_focus.js',
-             'highlightsearchterms.js',
+             'jquery.highlightsearchterms.js',
              'mark_special_links.js',
              'select_all.js',
              'styleswitcher.js',
