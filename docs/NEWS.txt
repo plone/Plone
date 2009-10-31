@@ -8,6 +8,10 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Use the new ``pas_member`` view in the overview templates. This avoids
+  getting the member info for each item in the listing from the PAS internals.
+  [hannosch]
+
 - registerNotify and mailPassword now send properly encoded emails.
   Fixes http://dev.plone.org/old/plone/ticket/9659
   [alecm]
