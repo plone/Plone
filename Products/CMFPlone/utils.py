@@ -845,9 +845,9 @@ zope.deprecation.deprecated(
     ". Please import it from Products.PageTemplates.GlobalTranslationService.")
 zope.deprecation.deprecated(
     ('utranslate'),
-    "This reference to the utranslate method has been deprecated will be "
-    "removed in Plone 4.0. Please use the translate method of the "
-    "GlobalTranslationService instead.")
+    "This reference to the utranslate method has been deprecated and will be "
+    "removed in Plone 4.0. Please use the translate method of zope.i18n "
+    "instead.")
 zope.deprecation.deprecated(
     ('ulocalized_time'),
     "This reference to the ulocalized_time method has been deprecated will be "
