@@ -8,7 +8,7 @@
                  dummy python:request.RESPONSE.setHeader('Content-Type', 'text/html;;charset=%s' % options['encoding'])"
 >
 
-<span i18n:name="message" tal:omit-tag="" tal:content="options/message | nothing" />
+<span tal:omit-tag="" tal:content="options/message | nothing" />
 
 </div>
 -- 
