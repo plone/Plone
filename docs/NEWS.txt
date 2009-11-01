@@ -8,6 +8,11 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Changed default message for label_show_all msgid from "Show all..." to
+  "Show all items" in livesearch_reply.py to be the same as in folder_contents
+  view which use the same msgid.
+  [vincentfretin]  
+
 - Use the new ``pas_member`` view in the overview templates. This avoids
   getting the member info for each item in the listing from the PAS internals.
   [hannosch]

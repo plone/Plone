@@ -82,7 +82,7 @@ RESPONSE.setHeader('Content-Type', 'text/xml;charset=%s' % site_encoding)
 legend_livesearch = _('legend_livesearch', default='LiveSearch &#8595;')
 label_no_results_found = _('label_no_results_found', default='No matching results found.')
 label_advanced_search = _('label_advanced_search', default='Advanced Search&#8230;')
-label_show_all = _('label_show_all', default='Show all&#8230;')
+label_show_all = _('label_show_all', default='Show all items')
 
 ts = getToolByName(context, 'translation_service')
 
