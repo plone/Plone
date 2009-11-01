@@ -81,9 +81,10 @@
     </p>
     <ol>
       <li i18n:translate="">Visit
-        <a tal:attributes="href string:${portal_url}/manage_zmi_logout">/manage_zmi_logout</a>.
+        <a i18n:name="url"
+           tal:attributes="href string:${portal_url}/manage_zmi_logout">/manage_zmi_logout</a>.
       </li>
-      <li i18n:translate="">Click "Cancel" when prompted with an authentication prompt.</li>
+      <li i18n:translate="">Click 'Cancel' when prompted with an authentication prompt.</li>
     </ol>
 </tal:notloggedoutafterall>
 

@@ -8,6 +8,9 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Fixed bad internationalized messages in logged_out.pt
+  [vincentfretin]
+
 - Changed default message for label_show_all msgid from "Show all..." to
   "Show all items" in livesearch_reply.py to be the same as in folder_contents
   view which use the same msgid.
