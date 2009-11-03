@@ -146,6 +146,7 @@
                 <br />
                 <div style="float:left; margin-right: 2em;"
                      tal:define="typeLists python:context.createMultiColumnList(used_types, numCols=2, sort_on='self');"
+                     tal:attributes="style python:test(isRTL, 'float: right;; margin-left: 2em;;', 'float: left;; margin-right: 2em;;');"
                      tal:repeat="sublist typeLists">
                     <tal:items repeat="type sublist">
                     <input type="checkbox"

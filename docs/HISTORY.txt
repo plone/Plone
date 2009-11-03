@@ -4,6 +4,11 @@ Changelog
 3.3.2 - Unreleased
 ------------------
 
+- Shift "Item type" options under the advanced search page to the right 
+  when viewed for RTL scripts. This fixes 
+  http://dev.plone.org/plone/ticket/9666 
+  [emanlove] 
+
 - Make sure the folder_listing, folder_summary_view, and folder_tabular_view
   call getText with a full acquisition chain (but make the conditional for
   whether to display text test for the existence of getText on the aq_base'd
