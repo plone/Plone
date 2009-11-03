@@ -5,8 +5,8 @@
 Changelog
 =========
 
-3.3.2 - Unreleased
-------------------
+3.3.2 - November 3, 2009
+------------------------
 
 - Shift "Item type" options under the advanced search page to the right
   when viewed for RTL scripts. This fixes
