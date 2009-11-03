@@ -36,7 +36,7 @@
             Fill in this form to contact the site owners.
         </p>
 
-        <form id="feedback_form"
+        <form name="feedback_form"
             class="enableAutoFocus"
             action=""
             method="post"
