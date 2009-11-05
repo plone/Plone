@@ -1,10 +1,12 @@
-// To avoid conflicts, use the 'jq' variable instead of the $ variable
+// DEPRECATION WARNING: The jq alias will be removed in Plone 5.
+// Do not use jq(), but use proper wrapping. 
+// See http://docs.jquery.com/Plugins/Authoring#Custom_Alias
 var jq = jQuery.noConflict();
 
 // If cssQuery is not defined (loaded earlier), redefine it in terms of jQuery
 // For everything but corner cases, this is good enough
 if (typeof cssQuery == 'undefined') {
-    function cssQuery(s, f) { return jq.makeArray(jq(s, f)) };
+    function cssQuery(s, f) { return jQuery.makeArray(jQuery(s, f)) };
 };
 
 // load jQuery Plone plugins on load

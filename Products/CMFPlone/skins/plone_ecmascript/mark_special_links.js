@@ -22,12 +22,12 @@ function scanforlinks() {
 
     if (elonw)
         // all http links (without the link-plain class), not within this site
-        jq('a[href^=http]:not(.link-plain):not([href^=' + url + '])')
+        jQuery('a[href^=http]:not(.link-plain):not([href^=' + url + '])')
             .attr('target', '_blank');
 
     if (mslinks) {
       var protocols = /^(mailto|ftp|news|irc|h323|sip|callto|https|feed|webcal)/;
-      var contentarea = jq(getContentArea());
+      var contentarea = jQuery(getContentArea());
 
       // All links with an http href (without the link-plain class), not within this site,
       // and no img children should be wrapped in a link-external span
@@ -42,8 +42,8 @@ function scanforlinks() {
               // those without a http link may have another interesting protocol
               // wrap these in a link-[protocol] span
               if (res = protocols.exec(this.href))
-                  jq(this).wrap('<span></span>').parent().addClass('link-' + res[0]);
+                  jQuery(this).wrap('<span></span>').parent().addClass('link-' + res[0]);
           });
     }
 };
-jq(scanforlinks);
+jQuery(scanforlinks);

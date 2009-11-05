@@ -1,5 +1,5 @@
-jq(function() {
-    var dest = jq('dl.toc dd.portletItem');
+(function($) { $(function() {
+    var dest = $('dl.toc dd.portletItem');
     var content = getContentArea();
     if (!content || !dest.length) return;
     
@@ -11,37 +11,37 @@ jq(function() {
 
     var stack = [];
     // Get headers in document order
-    jq(content).find('*').filter(function() { return /^h[1234]$/.test(this.tagName.toLowerCase()) })
+    $(content).find('*').filter(function() { return /^h[1234]$/.test(this.tagName.toLowerCase()) })
               .not('.documentFirstHeading').each(function(i) {
         var level = this.nodeName.charAt(1) - 1;
         // size the stack to the current level
         while (stack.length < level) {
-            var ol = jq('<ol>');
+            var ol = $('<ol>');
             if (stack.length) {
-                var li = jq(stack[stack.length - 1]).children('li:last');
+                var li = $(stack[stack.length - 1]).children('li:last');
                 if (!li.length)
                     // create a blank li for cases where, e.g., we have a subheading before any headings
-                    li = jq('<li>').appendTo(jq(stack[stack.length - 1]));
+                    li = $('<li>').appendTo($(stack[stack.length - 1]));
                 li.append(ol);
             }
             stack.push(ol);
         }
         while (stack.length > level) stack.pop();
         
-        jq(this).before(jq('<a name="section-' + i + '" />'));
+        $(this).before($('<a name="section-' + i + '" />'));
 
-        jq('<li>').append(
-            jq('<a />').attr('href', location + '#section-' + i)
-                    .text(jq(this).text()))
-            .appendTo(jq(stack[stack.length - 1]));
+        $('<li>').append(
+            $('<a />').attr('href', location + '#section-' + i)
+                    .text($(this).text()))
+            .appendTo($(stack[stack.length - 1]));
     });
 
     if (stack.length) {
-        jq('dl.toc').show();
-        oltoc = jq(stack[0]);
+        $('dl.toc').show();
+        oltoc = $(stack[0]);
         numdigits = oltoc.children().length.toString().length;
         //Use a clever class name to add margin that's MUCH easier to customize
         oltoc.addClass("TOC"+numdigits+"Digit");
         dest.append(oltoc);
     }
-});
+}); })(jQuery);

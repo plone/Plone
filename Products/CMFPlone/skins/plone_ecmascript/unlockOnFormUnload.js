@@ -2,17 +2,18 @@
 if (typeof(plone)=='undefined')
     var plone = {};
 
+(function($){
 plone.UnlockHandler = {
     init: function() {
         // set up the handler, if there are any forms
-        if (jq('form.enableUnlockProtection').length) {
-            jq(window).unload(plone.UnlockHandler.execute);
+        if ($('form.enableUnlockProtection').length) {
+            $(window).unload(plone.UnlockHandler.execute);
             plone.UnlockHandler._refresher = setInterval(plone.UnlockHandler.refresh, 300000);
         }
     },
     
     cleanup: function() {
-        jq(window).unbind('unload', plone.UnlockHandler.execute);
+        $(window).unbind('unload', plone.UnlockHandler.execute);
         clearInterval(plone.UnlockHandler._refresher);
     },
     
@@ -22,16 +23,16 @@ plone.UnlockHandler = {
         // form submit process. This means: no unlock needed,
         // and it also would be harmful (ConflictError)
         if (this.submitting) return;
-        jq.get(plone.UnlockHandler._baseUrl() + '/@@plone_lock_operations/safe_unlock');
+        $.get(plone.UnlockHandler._baseUrl() + '/@@plone_lock_operations/safe_unlock');
     },
     
     refresh: function() {
         if (this.submitting) return;
-        jq.get(plone.UnlockHandler._baseUrl() + '/@@plone_lock_operations/refresh_lock');
+        $.get(plone.UnlockHandler._baseUrl() + '/@@plone_lock_operations/refresh_lock');
     },
     
     _baseUrl: function() {
-        var baseUrl = jq('base').attr('href');
+        var baseUrl = $('base').attr('href');
         if (!baseUrl) {
             var pieces = window.location.href.split('/');
             pieces.pop();
@@ -41,4 +42,6 @@ plone.UnlockHandler = {
     }
 };
 
-jq(plone.UnlockHandler.init);
+$(plone.UnlockHandler.init);
+
+})(jQuery);

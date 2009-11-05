@@ -8,13 +8,15 @@
  * 
  */
 
-jQuery.fn.do_search_collapse = function() 
+(function($) {
+
+$.fn.do_search_collapse = function() 
 {
     return this.each(
 	function() {
 	    function check_used(element)
 	    {
-		e = jq(element);
+		e = $(element);
 		
 		// is there a number of checkboxs with a toggle box
 		if (e.find('input[id$=_toggle]:checkbox').length > 0)
@@ -22,7 +24,6 @@ jQuery.fn.do_search_collapse = function()
 		    // and the toggle checkbox is not checked.
 		    if (e.find('input[id$=_toggle]:checkbox:checked').length == 0)
 		    {
-			console.log('box: > 0, box_not_checked == 0');
 			return true;
 		    }
 		};
@@ -45,15 +46,15 @@ jQuery.fn.do_search_collapse = function()
 		return false;
 	    };
 
-            var indicator =  jq(this).find('.collapser:first');
-            var collapse = jq(this).find('.collapse:first');
+            var indicator =  $(this).find('.collapser:first');
+            var collapse = $(this).find('.collapse:first');
             indicator.click(function()
 		{
-		    var container = jq(this).parent();
+		    var container = $(this).parent();
 		    target = container.find('.collapse:first');
 		    target.slideToggle('normal');
-		    jq(this).toggleClass('expanded');
-		    jq(this).toggleClass('collapsed');
+		    $(this).toggleClass('expanded');
+		    $(this).toggleClass('collapsed');
 		});
 	    
 	    if(check_used(this)){
@@ -65,3 +66,6 @@ jQuery.fn.do_search_collapse = function()
 	}
     );
 };
+
+
+})(jQuery);

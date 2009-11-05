@@ -10,20 +10,20 @@ function sortable(a) {
 }
 
 function sort() {
-    var name = jq(this).text();
-    var table = jq(this).parents('table:first');
+    var name = jQuery(this).text();
+    var table = jQuery(this).parents('table:first');
     var tbody = table.find('tbody:first');
     var reverse = table.attr('sorted') == name;
 
-    jq(this).parent().find('th:not(.nosort) img.sortdirection')
+    jQuery(this).parent().find('th:not(.nosort) img.sortdirection')
         .attr('src', portal_url + '/arrowBlank.png');
-    jq(this).children('img.sortdirection').attr('src', portal_url + 
+    jQuery(this).children('img.sortdirection').attr('src', portal_url + 
         (reverse ? '/arrowDown.png' : '/arrowUp.png'));
     
-    var index = jq(this).parent().children('th').index(this);
+    var index = jQuery(this).parent().children('th').index(this);
     var data = [];
     tbody.find('tr').each(function() {
-        var cells = jq(this).children('td');
+        var cells = jQuery(this).children('td');
         data.push([
             sortable(cells.slice(index,index+1).text()),
             // crude way to sort by surname and name after first choice
@@ -37,7 +37,7 @@ function sort() {
         table.attr('sorted', reverse ? '' : name);
 
         // appending the tr nodes in sorted order will remove them from their old ordering
-        tbody.append(jq.map(data, function(a) { return a[3]; }));
+        tbody.append(jQuery.map(data, function(a) { return a[3]; }));
         // jquery :odd and :even are 0 based
         tbody.find('tr').removeClass('odd').removeClass('even')
             .filter(':odd').addClass('even').end()
@@ -45,15 +45,15 @@ function sort() {
     }    
 }
 
-jq(function() {
+jQuery(function() {
     // set up blank spaceholder gif
-    var blankarrow = jq('<img>')
+    var blankarrow = jQuery('<img>')
         .attr('src', portal_url + '/arrowBlank.png')
         .attr('width', 6).attr('height', 9).addClass('sortdirection');
     // all listing tables not explicitly nosort, all sortable th cells
     // give them a pointer cursor and  blank cell and click event handler
     // the first one of the cells gets a up arrow instead.
-    jq('table.listing:not(.nosort) thead th:not(.nosort)')
+    jQuery('table.listing:not(.nosort) thead th:not(.nosort)')
         .append(blankarrow.clone())
         .css('cursor', 'pointer')
         .click(sort)

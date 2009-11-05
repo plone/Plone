@@ -10,6 +10,8 @@
 if (typeof(plone)=='undefined')
     var plone = {};
 
+(function($) { 
+
 plone.jscalendar = {
     _calendar: null,
     _current_input: null,
@@ -18,18 +20,18 @@ plone.jscalendar = {
     // All calendar fields
     _fields: function(selector) {
         if (selector === undefined) selector = plone.jscalendar._current_input;
-        var fields = {field: jq(selector)};
-        jq.each(plone.jscalendar._field_names, function() {
-            fields[this] = jq(selector + '_' + this);
+        var fields = {field: $(selector)};
+        $.each(plone.jscalendar._field_names, function() {
+            fields[this] = $(selector + '_' + this);
         });
         return fields;
     },
     
     // Attach event handlers on load
     init: function() {
-        jq('.plone_jscalendar > input:hidden').each(function() {
+        $('.plone_jscalendar > input:hidden').each(function() {
             var selector = '#' + this.id;
-            jq.each(plone.jscalendar._fields(selector), function() {
+            $.each(plone.jscalendar._fields(selector), function() {
                 this.filter('select').bind(
                     'change.plone.jscalendar', {selector: selector}, 
                     plone.jscalendar.update_hidden);
@@ -69,7 +71,7 @@ plone.jscalendar = {
         var fields = plone.jscalendar._fields();
         var yearValue = date.substring(0,4);
         
-        if (jq.nodeName(fields.year.get(0), 'select') && 
+        if ($.nodeName(fields.year.get(0), 'select') && 
             !fields.year.children('option[value=' + yearValue + ']').length) {
             // insert missing year into the options list
             var options = fields.year.get(0).options;
@@ -101,9 +103,9 @@ plone.jscalendar = {
         if (e && e.target.selectedIndex === 0) {
             // Reset widgets; only the time widgets if this is a time select box.
             var type = e.target.id.substr(e.data.selector.length);
-            var filter = jq.inArray(type, ['hour', 'minute', 'ampm']) > -1 ?
+            var filter = $.inArray(type, ['hour', 'minute', 'ampm']) > -1 ?
                 'select[id$=hour],select[id$=minute],select[id$=ampm]': 'select';
-            jq.each(f, function() { this.filter(filter).attr('selectedIndex', 0); });
+            $.each(f, function() { this.filter(filter).attr('selectedIndex', 0); });
         } else if (f.year.val() > 0 && f.month.val() > 0 && f.day.val() > 0) {
             // ISO date string
             val = [f.year.val(), f.month.val(), f.day.val()].join('-');
@@ -128,5 +130,9 @@ plone.jscalendar = {
     }
 };
 
+})(jQuery);
+
 // initialize fields
-jq(plone.jscalendar.init);
+(function($) { 
+    $(plone.jscalendar.init);
+})(jQuery);

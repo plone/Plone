@@ -22,6 +22,9 @@ var ploneFormTabbing = {
         // standard jQueryTools configuration options for all form tabs
         jqtConfig:{current:'selected'}
     };
+    
+    
+(function($) {
 
 ploneFormTabbing._buildTabs = function(container, legends) {
     var threshold = legends.length > 6;
@@ -45,23 +48,23 @@ ploneFormTabbing._buildTabs = function(container, legends) {
 
         if (threshold) {
             tab = '<option '+className+' id="'+lid+'" value="'+lid+'">';
-            tab += jq(legend).text()+'</option>';
+            tab += $(legend).text()+'</option>';
         } else {
             tab = '<li '+className+'><a href="#'+lid+'"><span>';
-            tab += jq(legend).text()+'</span></a></li>';
+            tab += $(legend).text()+'</span></a></li>';
         }
 
         tabs += tab;
-        jq(legend).hide();
+        $(legend).hide();
     }
 
     tab_ids = tab_ids.join(',');
     panel_ids = tab_ids.replace(/#fieldsetlegend-/g, "#fieldset-");
 
     if (threshold) {
-        tabs = jq('<select class="formTabs">'+tabs+'</select>');
+        tabs = $('<select class="formTabs">'+tabs+'</select>');
     } else {
-        tabs = jq('<ul class="formTabs">'+tabs+'</ul>');
+        tabs = $('<ul class="formTabs">'+tabs+'</ul>');
     }
 
     return tabs;
@@ -69,40 +72,40 @@ ploneFormTabbing._buildTabs = function(container, legends) {
 
 
 ploneFormTabbing.initializeDL = function() {
-    var ftabs = jq(ploneFormTabbing._buildTabs(this, jq(this).children('dt')));
-    var targets = jq(this).children('dd');
-    jq(this).before(ftabs);
+    var ftabs = $(ploneFormTabbing._buildTabs(this, $(this).children('dt')));
+    var targets = $(this).children('dd');
+    $(this).before(ftabs);
     targets.addClass('formPanel');
     ftabs.tabs(targets, ploneFormTabbing.jqtConfig);
 };
 
 
 ploneFormTabbing.initializeForm = function() {
-    jqForm = jq(this);
+    jqForm = $(this);
     var fieldsets = jqForm.children('fieldset');
 
     if (!fieldsets.length) {return;}
 
     var ftabs = ploneFormTabbing._buildTabs(
         this, fieldsets.children('legend'));
-    jq(this).prepend(ftabs);
+    $(this).prepend(ftabs);
     fieldsets.addClass("formPanel");
 
 
     // The fieldset.current hidden may change, but is not content
-    jq(this).find('input[name=fieldset.current]').addClass('noUnloadProtection');
+    $(this).find('input[name=fieldset.current]').addClass('noUnloadProtection');
 
-    jq(this).find('.formPanel:has(div.field span.fieldRequired)').each(function() {
+    $(this).find('.formPanel:has(div.field span.fieldRequired)').each(function() {
         var id = this.id.replace(/^fieldset-/, "#fieldsetlegend-");
-        jq(id).addClass('required');
+        $(id).addClass('required');
     });
 
     // set the initial tab
     var initialIndex = 0;
     var count = 0;
     var found = false;
-    jq(this).find('.formPanel').each(function() {
-        if (!found && jq(this).find('div.field.error')) {
+    $(this).find('.formPanel').each(function() {
+        if (!found && $(this).find('div.field.error')) {
             initialIndex = count;
             found = true;
         }
@@ -127,21 +130,25 @@ ploneFormTabbing.initializeForm = function() {
         }
     });
 
-    jq("#archetypes-schemata-links").addClass('hiddenStructure');
-    jq("div.formControls input[name=form.button.previous]," +
+    $("#archetypes-schemata-links").addClass('hiddenStructure');
+    $("div.formControls input[name=form.button.previous]," +
       "div.formControls input[name=form.button.next]").remove();
 
 };
 
-jq(function() {
-    jq("form.enableFormTabbing,div.enableFormTabbing").each(ploneFormTabbing.initializeForm);
-    jq("dl.enableFormTabbing").each(ploneFormTabbing.initializeDL);
+})(jQuery);
+
+(function($) {    
+$(function() {
+    $("form.enableFormTabbing,div.enableFormTabbing").each(ploneFormTabbing.initializeForm);
+    $("dl.enableFormTabbing").each(ploneFormTabbing.initializeDL);
 
     //Select tab if it's part of the URL or designated in a hidden input
-    var targetPane = jq('.enableFormTabbing input[name=fieldset.current]').val() || window.location.hash;
+    var targetPane = $('.enableFormTabbing input[name=fieldset.current]').val() || window.location.hash;
     if (targetPane) {
-        jq(".enableFormTabbing .formtab a[href='" +
+        $(".enableFormTabbing .formtab a[href='" +
          targetPane.replace("'", "").replace(/^#fieldset-/, "#fieldsetlegend-") +
          "']").click();
     }
 });
+})(jQuery);
