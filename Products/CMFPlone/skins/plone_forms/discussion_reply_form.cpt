@@ -12,7 +12,8 @@
 <metal:block fill-slot="sub" />
 
 <div metal:fill-slot="main"
-     tal:define="errors options/state/getErrors;
+     tal:define="portal context/@@plone_portal_state/portal;
+                 errors options/state/getErrors;
                  thread python:context.plone_utils.getDiscussionThread(here);
                  discussable python:thread[0];
                  replies python:thread[1:];
