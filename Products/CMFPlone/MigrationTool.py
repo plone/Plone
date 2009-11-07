@@ -93,7 +93,14 @@ class MigrationTool(PloneBaseTool, UniqueObject, SimpleItem):
         vars['Platform'] = cp.sys_platform()
         vars['Plone Instance'] = self.getInstanceVersion()
         vars['Plone File System'] = self.getFileSystemVersion()
-        vars['CMF'] = cp.Products.CMFCore.version
+        try:
+            vars['CMF'] = cp.Products.CMFCore.version
+        except AttributeError:
+            # In Zope 2.12 the Products control panel may be empty,
+            # zope-conf-additional = enable-product-installation off.
+            # XXX Perhaps we can get the version by asking setuptools,
+            # distribute, distutils, pkg_resources or something?
+            vars['CMF'] = 'unknown'
         vars['Debug mode'] = DevelopmentMode and 'Yes' or 'No'
         try:
             from PIL.Image import VERSION

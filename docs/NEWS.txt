@@ -8,6 +8,11 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Avoid AttributeError while getting the CMF version for the
+  plone_control_panel when enable-product-installation is off in
+  zope.conf.
+  [maurits]
+
 - Fixed bad internationalized messages in logged_out.pt
   [vincentfretin]
 
