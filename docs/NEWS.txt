@@ -8,6 +8,15 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Moved all CSS styles to plonetheme.classic package. plonetheme.sunburst is
+  now default theme, both are installed by default, classic theme may be
+  uninstalled, sunburst theme can't be uninstalled. 
+  [limi, naro]
+
+- Added site_encoding and bodyClass methods to the @@plone view. These should
+  simplify main template a bit.
+  [naro]
+
 - Avoid AttributeError while getting the CMF version for the
   plone_control_panel when enable-product-installation is off in
   zope.conf.

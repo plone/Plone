@@ -2,6 +2,8 @@ from urllib import unquote
 
 from Acquisition import aq_inner
 from Products.Five import BrowserView
+from Products.Five.browser.pagetemplatefile import ZopeTwoPageTemplateFile
+
 from Products.CMFCore.permissions import AddPortalContent
 from Products.CMFCore.permissions import DeleteObjects
 from Products.CMFCore.permissions import ListFolderContents
@@ -383,3 +385,14 @@ class Plone(BrowserView):
             renderer = getMultiAdapter((context, self.request, self, manager), IPortletManagerRenderer)
 
         return renderer.visible
+
+    @memoize
+    def site_encoding(self):
+        return utils.getSiteEncoding(self.context)
+
+    def bodyClass(self, template, view):
+        if isinstance(template, ZopeTwoPageTemplateFile):
+            # Browser view
+            return view.__name__
+        else:
+            return template.getId()

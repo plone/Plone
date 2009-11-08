@@ -10,6 +10,7 @@ from Products.CMFPlone.tests import dummy
 
 from Products.CMFPlone.browser.ploneview import Plone
 
+
 class TestPloneView(PloneTestCase.PloneTestCase):
     """Tests the global plone view."""
 
@@ -195,6 +196,10 @@ class TestPloneView(PloneTestCase.PloneTestCase):
         tabs = view.prepareObjectTabs()
         self.assertEquals(0, len([t for t in tabs if t['id'] == 'folderContents']))
         self.assertEquals(['edit'], [t['id'] for t in tabs if t['selected']])
+
+    def testSiteEncoding(self):
+        view = Plone(self.portal, self.app.REQUEST)
+        self.assertEqual('utf-8', view.site_encoding())
 
 
 class TestVisibleIdsEnabled(PloneTestCase.PloneTestCase):

@@ -277,3 +277,13 @@ class IPlone(Interface):
         """ Adds a marker interface to the view if it is "the" view for the context
             May only be called from a template.
         """
+
+    def site_encoding():
+        """ returns site encoding """
+
+    def bodyClass(template, view):
+        """ returns template or view name to mark body tag with 
+            template-${template_id} CSS class 
+        """
+
+        
