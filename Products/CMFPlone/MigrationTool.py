@@ -98,8 +98,7 @@ class MigrationTool(PloneBaseTool, UniqueObject, SimpleItem):
         except AttributeError:
             # In Zope 2.12 the Products control panel may be empty,
             # zope-conf-additional = enable-product-installation off.
-            # XXX Perhaps we can get the version by asking setuptools,
-            # distribute, distutils, pkg_resources or something?
+            # Note that this is not recommended.
             vars['CMF'] = 'unknown'
         vars['Debug mode'] = DevelopmentMode and 'Yes' or 'No'
         try:
