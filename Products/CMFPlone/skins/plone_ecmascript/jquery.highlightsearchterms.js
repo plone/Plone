@@ -51,6 +51,7 @@
             if (uri.indexOf('?') < 0) return '';
             uri = uri.substr(uri.indexOf('?') + 1);
             while (uri.indexOf('=') >= 0) {
+                uri = uri.replace(/^\&*/, '');
                 var pair = uri.split('&', 1)[0];
                 uri = uri.substr(pair.length);
                 var match = pair.match(regexp);
@@ -63,8 +64,8 @@
         
         termsFromReferrer: function() {
             // Find search terms from the referrer, if a recognized search engine
-            var ref = $.fn.highlightSearchTerms.test_referrer !== null ? 
-                $.fn.highlightSearchTerms.test_referrer : 
+            var ref = $.fn.highlightSearchTerms._test_referrer !== null ? 
+                $.fn.highlightSearchTerms._test_referrer : 
                 document.referrer;
             if (!ref) return '';
 
@@ -83,8 +84,8 @@
         
         getSearchTerms: function() {
             var terms = [];
-            var uri = $.fn.highlightSearchTerms.test_location !== null ? 
-                $.fn.highlightSearchTerms.test_location : 
+            var uri = $.fn.highlightSearchTerms._test_location !== null ? 
+                $.fn.highlightSearchTerms._test_location : 
                 location.href;
             if (this.useReferrer) 
                 $.merge(terms, this.termsFromReferrer().split(/\s+/));
@@ -115,8 +116,8 @@
             })
         });
         if (options.includeOwnDomain) {
-            var hostname = $.fn.highlightSearchTerms.test_location !== null ?
-                $.fn.highlightSearchTerms.test_location : location.hostname;
+            var hostname = $.fn.highlightSearchTerms._test_location !== null ?
+                $.fn.highlightSearchTerms._test_location : location.hostname;
             options.referrers.push({
                 address: makeAddress(hostname.replace(/\./g, '\\.')),
                 key: options.searchKey,
@@ -173,6 +174,7 @@
     };
     
     // Internal use only, test framework hooks.
-    $.fn.highlightSearchTerms.test_location = null;
-    $.fn.highlightSearchTerms.test_referrer = null;
+    $.fn.highlightSearchTerms._test_location = null;
+    $.fn.highlightSearchTerms._test_referrer = null;
+    $.fn.highlightSearchTerms._highlighter = Highlighter;
 })(jQuery);
