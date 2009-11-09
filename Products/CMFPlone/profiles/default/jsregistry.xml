@@ -1,103 +1,48 @@
 <?xml version="1.0"?>
 <object name="portal_javascripts" meta_type="JavaScripts Registry">
 
- <javascript cacheable="True" compression="none" cookable="True"
-    enabled="True" expression="" id="jquery.js" inline="False"/>
- <javascript cacheable="True" compression="full-encode" cookable="True"
-    enabled="False" expression="" id="cssQuery.js" inline="False"/>
- <javascript cacheable="True" compression="safe" cookable="True"
-    enabled="True" expression="" id="jquery-integration.js" inline="False"/>
- <javascript cacheable="True" compression="safe" cookable="True"
-    enabled="False" expression="" id="event-registration.js" inline="False"/>
- <javascript cacheable="True" compression="safe" cookable="True"
-    enabled="True" expression="" id="register_function.js" inline="False"/>
- <javascript cacheable="True" compression="safe" cookable="True"
-    enabled="True" expression="" id="plone_javascript_variables.js"
-    inline="False"/>
- <javascript cacheable="True" compression="safe" cookable="True"
-    enabled="True" expression="" id="nodeutilities.js" inline="False"/>
- <javascript cacheable="True" compression="safe" cookable="True"
-    enabled="True" expression="" id="cookie_functions.js" inline="False"/>
- <javascript cacheable="True" compression="full" cookable="True"
-    enabled="True" expression="" id="livesearch.js" inline="False"/>
- <javascript cacheable="True" compression="safe" cookable="True" 
-    enabled="False" expression="" id="fullscreenmode.js" inline="False"/>
- <javascript cacheable="True" compression="safe" cookable="True"
-    enabled="True" expression="" id="select_all.js" inline="False"/>
- <javascript cacheable="True" compression="safe" cookable="True"
-    enabled="True" expression="" id="dragdropreorder.js" inline="False"/>
- <javascript cacheable="True" compression="safe" cookable="True"
-    enabled="False" expression="" id="mark_special_links.js" inline="False"/>
- <javascript cacheable="True" compression="full" cookable="True"
-    enabled="True" expression="" id="collapsiblesections.js" inline="False"/>
- <javascript cacheable="True" compression="safe" cookable="True"
-    enabled="True" expression="" id="form_tabbing.js" inline="False"/>
- <javascript cacheable="True" compression="safe" cookable="True"
-   enabled="True" expression="" id="input-label.js" inline="False"/>
- <javascript cacheable="True" compression="safe" cookable="True"
-   enabled="True" expression="" id="jquery.highlightsearchterms.js" inline="False"/>
- <javascript cacheable="True" compression="safe" cookable="True"
-    enabled="True" expression="" id="se-highlight.js" inline="False"/>
- <javascript cacheable="True" compression="safe" cookable="True"
-    enabled="True" expression="" id="first_input_focus.js" inline="False"/>
- <javascript cacheable="True" compression="full" cookable="True"
-    enabled="True" expression="" id="accessibility.js" inline="False"/>
- <javascript cacheable="True" compression="safe" cookable="True"
-    enabled="True" expression="" id="styleswitcher.js" inline="False"/>
- <javascript cacheable="True" compression="safe" cookable="True" enabled="True"
-    expression="" id="toc.js" inline="False"/>    
- <javascript cacheable="True" compression="safe" cookable="True" enabled="True"
-    expression="" id="collapsibleformfields.js" inline="False"/>    
-
-<!-- Only for logged-in users -->
- <javascript cacheable="True" compression="safe" cookable="True"
-    enabled="True" expression="" authenticated="True"
-    id="dropdown.js" inline="False"/>
- <javascript cacheable="True" compression="safe" cookable="True"
-    enabled="True" expression="" authenticated="True"
-    id="table_sorter.js" inline="False"/>
- <javascript cacheable="True" compression="safe" cookable="True"
-    enabled="True" expression="" authenticated="True"
-    id="calendar_formfield.js" inline="False"/>
- <javascript cacheable="True" compression="safe" cookable="True"
-    enabled="False" expression="" authenticated="True"
-    id="calendarpopup.js" inline="False"/>
- <javascript cacheable="True" compression="safe" cookable="True"
-    enabled="True" expression="" authenticated="True"
-    id="formUnload.js" inline="False"/>
- <javascript cacheable="True" compression="safe" cookable="True"
-    enabled="True" expression="" authenticated="True"
-    id="formsubmithelpers.js" inline="False"/>
- <javascript cacheable="True" compression="safe" cookable="True"
-    enabled="True" expression="" authenticated="True"
-    id="unlockOnFormUnload.js" inline="False"/>
+ <javascript id="jquery.js" compression="none" />
+ <javascript id="cssQuery.js" compression="full-encode" enabled="False" />
+ <javascript id="jquery-integration.js" />
+ <javascript id="event-registration.js" enabled="False" />
+ <javascript id="register_function.js" />
+ <javascript id="plone_javascript_variables.js" />
+ <javascript id="nodeutilities.js" />
+ <javascript id="cookie_functions.js" />
+ <javascript id="livesearch.js" compression="full" />
+ <javascript id="fullscreenmode.js" enabled="False" />
+ <javascript id="select_all.js" />
+ <javascript id="dragdropreorder.js" />
+ <javascript id="mark_special_links.js" enabled="False" />
+ <javascript id="collapsiblesections.js" compression="full" />
+ <javascript id="form_tabbing.js" />
+ <javascript id="input-label.js" />
+ <javascript id="jquery.highlightsearchterms.js" />
+ <javascript id="first_input_focus.js" />
+ <javascript id="accessibility.js" compression="full" />
+ <javascript id="styleswitcher.js" />
+ <javascript id="toc.js" />    
+ <javascript id="collapsibleformfields.js" />
 
  <!-- Sarissa is used by both Kupu and KSS -->
- <javascript cacheable="True" compression="safe" cookable="True"
-    enabled="True"
-    expression="python:not context.restrictedTraverse('@@plone_portal_state').anonymous() or (getattr(portal, 'kupu_library_tool', None) and portal.kupu_library_tool.isKupuEnabled(REQUEST=request))"
-    id="sarissa.js" inline="False"/>
+ <javascript id="sarissa.js"
+    expression="python:not context.restrictedTraverse('@@plone_portal_state').anonymous() or (getattr(portal, 'kupu_library_tool', None) and portal.kupu_library_tool.isKupuEnabled(REQUEST=request))" />
 
-<!-- KSS -->
- <javascript cacheable="True" compression="none" cookable="True"
-    enabled="False" expression=""
-    id="++resource++MochiKit.js" inline="False"/>
- <javascript cacheable="True" compression="safe" cookable="True"
-    enabled="False" expression=""
-    id="++resource++prototype.js" inline="False"/>
- <javascript cacheable="True" compression="safe" cookable="True"
-    enabled="False" expression=""
-    id="++resource++effects.js" inline="False"/>
- <javascript cacheable="True" compression="safe" cookable="True"
-    enabled="False" expression=""
-    id="++resource++cssQuery-compat.js" inline="False"/>
- <javascript cacheable="True" compression="none" cookable="True"
-    enabled="True" expression=""
-    id="++resource++base2-dom-fp.js" inline="False"/>
- <javascript cacheable="True" compression="none" cookable="True"
-    enabled="True" expression="python: not context.restrictedTraverse('@@plone_portal_state').anonymous() and context.restrictedTraverse('@@kss_devel_mode').isoff()"
-    id="++resource++kukit.js" inline="False"/>
- <javascript cacheable="True" compression="none" cookable="True"
-    enabled="True" expression="python: not context.restrictedTraverse('@@plone_portal_state').anonymous() and context.restrictedTraverse('@@kss_devel_mode').ison()"
-    id="++resource++kukit-devel.js" inline="False"/>
+ <!-- Only for logged-in users -->
+ <javascript id="dropdown.js" authenticated="True" />
+ <javascript id="table_sorter.js" authenticated="True" />
+ <javascript id="calendar_formfield.js" authenticated="True" />
+ <javascript id="calendarpopup.js" authenticated="True" enabled="False" />
+ <javascript id="formUnload.js" authenticated="True" />
+ <javascript id="formsubmithelpers.js" authenticated="True" />
+ <javascript id="unlockOnFormUnload.js" authenticated="True" />
+
+ <!-- KSS -->
+ <javascript id="++resource++MochiKit.js" compression="none" enabled="False" />
+ <javascript id="++resource++prototype.js" enabled="False" />
+ <javascript id="++resource++effects.js" enabled="False" />
+ <javascript id="++resource++cssQuery-compat.js" enabled="False" />
+ <javascript id="++resource++base2-dom-fp.js" compression="none" authenticated="True" />
+ <javascript id="++resource++kukit.js" compression="none" authenticated="True" />
+ <javascript id="++resource++kukit-devel.js" compression="none" enabled="False" />
 </object>
