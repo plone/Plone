@@ -8,6 +8,10 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Make sure the mock MailHost used in tests is registered as a local utility
+  so that it can be found via getToolByName.
+  [davisagli]
+
 - Moved all CSS styles to plonetheme.classic package. plonetheme.sunburst is
   now default theme, both are installed by default, classic theme may be
   uninstalled, sunburst theme can't be uninstalled. 
