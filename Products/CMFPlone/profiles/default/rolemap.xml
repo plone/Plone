@@ -154,6 +154,11 @@
       <role name="Manager"/>
       <role name="Member"/>
     </permission>
+    <permission name="Portlets: View dashboard"
+                acquire="True">
+      <role name="Manager"/>
+      <role name="Member"/>
+    </permission>
     <permission name="Content rules: Manage rules"
                 acquire="False">
       <role name="Manager"/>

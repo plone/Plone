@@ -8,6 +8,9 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Make sure the 'Portlets: View dashboard' permission is set for Members.
+  [davisagli]
+
 - Make sure the mock MailHost used in tests is registered as a local utility
   so that it can be found via getToolByName.
   [davisagli]
