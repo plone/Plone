@@ -863,14 +863,14 @@ class TestPortalCreation(PloneTestCase.PloneTestCase, WarningInterceptor):
         self.folder.invokeFactory('Folder', 'german')
 
         # Check if the content is being created in German
-        self.app.REQUEST['HTTP_ACCEPT_LANGUAGE'] = 'de'
+        self.folder.german.setLanguage('de')
         self.loginAsPortalOwner()
         setuphandlers.setupPortalContent(self.folder.german)
         self.failUnlessEqual(self.folder.german.news.Title(), 'Foo')
 
         # Check if the content is being created in a composite
         # language code, in this case Brazilian Portuguese
-        self.app.REQUEST['HTTP_ACCEPT_LANGUAGE'] = 'pt-br'
+        self.folder.brazilian.setLanguage('pt-br')
         setuphandlers.setupPortalContent(self.folder.brazilian)
         self.failUnlessEqual(self.folder.brazilian.news.Title(), 'Bar')
 

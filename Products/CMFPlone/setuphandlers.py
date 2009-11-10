@@ -116,12 +116,13 @@ def setupPortalContent(p):
     language = p.Language()
     parts = (language.split('-') + [None, None])[:3]
     locale = locales.getLocale(*parts)
-    base_language = locale.id.language
+    target_language = base_language = locale.id.language
 
     # If we get a territory, we enable the combined language codes
     use_combined = False
     if locale.id.territory:
         use_combined = True
+        target_language += '_' + locale.id.territory
 
     # As we have a sensible language code set now, we disable the
     # start neutral functionality
@@ -153,7 +154,7 @@ def setupPortalContent(p):
     # Enable visible_ids for non-latin scripts
 
     # See if we have an url normalizer
-    normalizer = queryUtility(IURLNormalizer, name=base_language)
+    normalizer = queryUtility(IURLNormalizer, name=target_language)
     if normalizer is None:
         normalizer = queryUtility(IURLNormalizer, name=base_language)
 
@@ -182,13 +183,13 @@ def setupPortalContent(p):
             util = queryUtility(ITranslationDomain, 'plonefrontpage')
             if util is not None:
                 front_title = util.translate(u'front-title',
-                                   target_language=language,
+                                   target_language=target_language,
                                    default="Welcome to Plone")
                 front_desc = util.translate(u'front-description',
-                                   target_language=language,
+                                   target_language=target_language,
                                    default="Congratulations! You have successfully installed Plone.")
                 translated_text = util.translate(u'front-text',
-                                   target_language=language)
+                                   target_language=target_language)
                 if translated_text != u'front-text':
                     front_text = translated_text
 
@@ -220,10 +221,10 @@ def setupPortalContent(p):
             util = queryUtility(ITranslationDomain, 'plonefrontpage')
             if util is not None:
                 news_title = util.translate(u'news-title',
-                                       target_language=language,
+                                       target_language=target_language,
                                        default='News')
                 news_desc = util.translate(u'news-description',
-                                      target_language=language,
+                                      target_language=target_language,
                                       default='Site News')
 
         _createObjectByType('Large Plone Folder', p, id='news',
@@ -264,10 +265,10 @@ def setupPortalContent(p):
             util = queryUtility(ITranslationDomain, 'plonefrontpage')
             if util is not None:
                 events_title = util.translate(u'events-title',
-                                       target_language=language,
+                                       target_language=target_language,
                                        default='Events')
                 events_desc = util.translate(u'events-description',
-                                      target_language=language,
+                                      target_language=target_language,
                                       default='Site Events')
 
         _createObjectByType('Large Plone Folder', p, id='events',
@@ -313,10 +314,10 @@ def setupPortalContent(p):
             util = queryUtility(ITranslationDomain, 'plonefrontpage')
             if util is not None:
                 prev_events_title = util.translate(u'prev-events-title',
-                                       target_language=language,
+                                       target_language=target_language,
                                        default='Past Events')
                 prev_events_desc = util.translate(u'prev-events-description',
-                                      target_language=language,
+                                      target_language=target_language,
                                       default='Events which have already happened.')
 
         _createObjectByType('Topic', topic, id='previous',
@@ -350,10 +351,10 @@ def setupPortalContent(p):
             util = queryUtility(ITranslationDomain, 'plonefrontpage')
             if util is not None:
                 members_title = util.translate(u'members-title',
-                                       target_language=language,
+                                       target_language=target_language,
                                        default='Users')
                 members_desc = util.translate(u'members-description',
-                                      target_language=language,
+                                      target_language=target_language,
                                       default="Container for users' home directories")
 
         members = getattr(p , 'Members')
