@@ -11,13 +11,15 @@ import difflib
 import re
 
 from Acquisition import aq_base
+from zope.event import notify
+from zope.app.publication.interfaces import BeforeTraverseEvent
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import _createObjectByType
 from Products.CMFPlone.PloneFolder import ReplaceableWrapper
 
 RE_REMOVE_DOCCONT = re.compile('\s*href="http://.*?#documentContent"')
 RE_REMOVE_NAVTREE = re.compile('\s*href="http://.*?#portlet-navigation-tree"')
-RE_REMOVE_TABS = re.compile('<ul id="portal-globalnav">.*</ul>', re.S)
+RE_REMOVE_TABS = re.compile('<ul id="portal-globalnav">.*?</ul>', re.S)
 
 
 class TestPloneToolBrowserDefault(PloneTestCase.FunctionalTestCase):
@@ -30,6 +32,9 @@ class TestPloneToolBrowserDefault(PloneTestCase.FunctionalTestCase):
     def afterSetUp(self):
         self.setRoles(['Manager'])
         self.basic_auth = '%s:%s' % (default_user, default_password)
+
+        # make sure the test request gets marked with the default theme layer
+        notify(BeforeTraverseEvent(self.portal, self.app.REQUEST))
 
         _createObjectByType('Folder',       self.portal, 'atctfolder')
         _createObjectByType('Document',     self.portal, 'atctdocument')
@@ -49,7 +54,7 @@ class TestPloneToolBrowserDefault(PloneTestCase.FunctionalTestCase):
 
         response = self.publish(base_path+path, self.basic_auth)
         body = response.getBody().decode('utf-8')
-
+        
         # request/ACTUAL_URL is fubar in tests, remove lines that depend on it
         resolved = RE_REMOVE_DOCCONT.sub('', resolved)
         resolved = RE_REMOVE_NAVTREE.sub('', resolved)
