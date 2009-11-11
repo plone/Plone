@@ -2,7 +2,6 @@
 <object name="portal_javascripts" meta_type="JavaScripts Registry">
 
  <javascript id="jquery.js" compression="none" />
- <javascript id="cssQuery.js" compression="full-encode" enabled="False" />
  <javascript id="jquery-integration.js" />
  <javascript id="event-registration.js" enabled="False" />
  <javascript id="register_function.js" />

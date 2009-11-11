@@ -71,7 +71,6 @@ class TestJSRegistry(PloneTestCase.PloneTestCase):
              'table_sorter.js',
              'dropdown.js',
              'dragdropreorder.js',
-             'cssQuery.js',
              'cookie_functions.js',
              'nodeutilities.js',
              'plone_javascript_variables.js',
