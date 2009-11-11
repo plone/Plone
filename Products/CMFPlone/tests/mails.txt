@@ -16,10 +16,7 @@ Contact form
 
 Let's go to the contact form:
 
-  >>> browser.open('http://nohost/plone')
-  >>> browser.getLink('Contact').click()
-  >>> browser.url
-  'http://nohost/plone/contact-info'
+  >>> browser.open('http://nohost/plone/contact-info')
 
 Now fill in the form:
 
