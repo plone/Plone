@@ -15,10 +15,6 @@ def applyPatches():
     PT.transitionObjectsByPaths = patch(PT.transitionObjectsByPaths)
     PT.renameObjectsByPaths = patch(PT.renameObjectsByPaths)
 
-    from plone.session.plugins.session import SessionPlugin as SP
-    SP.manage_clearSecrets = patch(SP.manage_clearSecrets)
-    SP.manage_createNewSecret = patch(SP.manage_createNewSecret)
-
     from Products.CMFCore.RegistrationTool import RegistrationTool
     RegistrationTool.addMember = patch(RegistrationTool.addMember)
 

@@ -71,14 +71,6 @@ class AuthenticatorTestCase(ptc.FunctionalTestCase):
             'paths:list=events&new_ids:list=foo&new_titles:list=Foo')
         self.failUnless(self.portal.get('foo', None))
 
-    def test_plone_session_manage_clearSecrets(self):
-        self.checkAuthenticator('/acl_users/session/manage_clearSecrets',
-            status=302)
-
-    def test_plone_session_manage_createNewSecret(self):
-        self.checkAuthenticator('/acl_users/session/manage_createNewSecret',
-            status=302)
-
     def test_RegistrationTool_addMember(self):
         self.checkAuthenticator('/portal_registration/addMember',
             'id=john&password=y0d4Wg')
