@@ -7,13 +7,10 @@ from zope.publisher.browser import TestRequest
 
 from zope.event import notify
 from zope.interface import Interface
-from zope.component import getGlobalSiteManager
-from zope.publisher.interfaces.browser import IBrowserSkinType, IDefaultBrowserLayer
+from zope.publisher.interfaces.browser import IDefaultBrowserLayer
 from zope.app.publication.interfaces import BeforeTraverseEvent
 from plone.browserlayer.utils import register_layer, unregister_layer
-
-class IThemeSpecific(Interface):
-    pass
+from plonetheme.sunburst.browser.interfaces import IThemeSpecific
 
 class IAdditiveLayer(Interface):
     pass
@@ -34,11 +31,8 @@ class TestBrowserLayerPrecedence(PloneTestCase.FunctionalTestCase):
         self.failUnless(iro.index(IAdditiveLayer) < iro.index(IDefaultBrowserLayer))
 
     def testThemeSpecificLayerTakesHighestPrecedence(self):
-        gsm = getGlobalSiteManager()
-        gsm.registerUtility(IThemeSpecific, IBrowserSkinType, 'Sunburst Theme')
         register_layer(IAdditiveLayer, 'Plone.testlayer')
         iro = self._get_request_interfaces()
-        gsm.unregisterUtility(IThemeSpecific, IBrowserSkinType, 'Sunburst Theme')
         unregister_layer('Plone.testlayer')
         
         self.failUnless(iro.index(IThemeSpecific) < iro.index(IAdditiveLayer),
