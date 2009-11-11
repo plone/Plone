@@ -16,7 +16,9 @@
                  results python:container.portal_catalog(sort_on='modified',sort_order='reverse',path=path);
                  Batch python:modules['Products.CMFPlone'].Batch;
                  DateTime python:modules['DateTime'].DateTime;
-                 b_start python:request.get('b_start',0);">
+                 b_start python:request.get('b_start',0);
+                 normalizeString nocall:context/@@plone/normalizeString;
+                 toLocalizedTime nocall:context/@@plone/toLocalizedTime;">
 
     <h1 class="documentFirstHeading"
         i18n:translate="heading_recently_modified">
