@@ -192,20 +192,6 @@
       </div>
 
       <div class="field"
-           tal:condition="not: allowEnterPassword"
-           tal:define="mail_me request/mail_me|nothing">
-
-        <input type="checkbox"
-               class="noborder"
-               name="mail_me"
-               size="30"
-               id="cb_mailme"
-               tal:attributes="checked python:test(mail_me, 'checked', None);"
-               />
-        <label for="cb_mailme" i18n:translate="label_mail_password">Send a mail with the password</label>
-      </div>
-
-      <div class="field"
            tal:condition="allowEnterPassword">
 
         <div class="formHelp" i18n:translate="label_password_change_mail">

@@ -8,9 +8,15 @@ Changelog
 3.3.3 - Unreleased
 ------------------
 
+- Removed option "Send a mail with the password" from the join form,
+  as we never send an email with the password.
+  Refs http://dev.plone.org/plone/ticket/9670
+  [maurits,vincentpretre,jladage]
+
 - Buttons on discussion form are now hidden from print view.
   Fixes http://dev.plone.org/plone/ticket/8460
   [lzdych]
+
 
 3.3.2 - November 3, 2009
 ------------------------
