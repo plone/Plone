@@ -16,6 +16,11 @@ Changelog
 - Buttons on discussion form are now hidden from print view.
   Fixes http://dev.plone.org/plone/ticket/8460
   [lzdych]
+  
+- Added missing migration step to update permissions on "legacy" 
+  workflows for new roles. Thanks to Vitaliy Podoba for the patch.
+  This fixes http://dev.plone.org/plone/ticket/8905
+  [amleczko]
 
 
 3.3.2 - November 3, 2009

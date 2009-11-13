@@ -11,6 +11,16 @@ def three3_rc3_three3_rc4(portal):
     loadMigrationProfile(portal,'profile-Products.CMFPlone.migrations:3.3rc3-3.3')
     cookCSSRegistries(portal)
 
+def three32_three33(portal):
+    """3.2.3 -> 3.3.3
+    """
+    out = []
+    
+    loadMigrationProfile(portal,'profile-Products.CMFPlone.migrations:3.3.2-3.3.3')
+    out.append("Updated plone_workflow and folder_workflow workflow definitions")
+    
+    return out
+
 def maybeUpdateLinkView(portal):
     ttool = getToolByName(portal, 'portal_types')
     link_fti = ttool.Link

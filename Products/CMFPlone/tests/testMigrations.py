@@ -3277,6 +3277,7 @@ class TestMigrations_v3_3(MigrationTest):
     def afterSetUp(self):
         self.types = self.portal.portal_types
         self.properties = self.portal.portal_properties
+        self.workflow = self.portal.portal_workflow
         self.migration = self.portal.portal_migration
     
     def _upgrade(self):
@@ -3322,7 +3323,88 @@ class TestMigrations_v3_3(MigrationTest):
             self.assertEqual(
                     resource._data['cooked_expression'].text,
                     resource._data['expression'])
+    
+    def testUpdateLegacyWorkflows(self):
+        # Test for ticket http://dev.plone.org/plone/ticket/8905
+        # In this test only 'private' state and 'hide' transition are tested
+        # from folder_workflow and plone_workflow definitions.
+        # It'll take a whole bunch of code to test each line in definition.xml
+        # files.
         
+        # set plone2.5 values for folder_workflow definition
+        folder_workflow = self.workflow.folder_workflow
+        
+        # set permissions for 'private' state
+        folder_private = folder_workflow.states.private.permission_roles
+        folder_private['Access contents information'] = ('Manager', 'Owner')
+        folder_private['List folder contents'] = ('Manager', 'Owner')
+        folder_private['Modify portal content'] = ('Manager', 'Owner')
+        folder_private['View'] = ('Manager', 'Owner')
+        
+        # set properties for 'hide' transition
+        folder_hide = folder_workflow.transitions.hide
+        folder_hide.actbox_url = '%(content_url)s/content_hide_form'
+        folder_guard = folder_hide.getGuard()
+        folder_guard.permissions = ()
+        folder_guard.roles = ('Owner',)
+        
+        # set plone2.5 values for plone_workflow definition
+        plone_workflow = self.workflow.plone_workflow
+        
+        # set permissions for 'private' state
+        plone_private = plone_workflow.states.private.permission_roles
+        plone_private['Access contents information'] = ('Manager', 'Owner')
+        plone_private['Change portal events'] = ('Manager', 'Owner')
+        plone_private['Modify portal content'] = ('Manager', 'Owner')
+        plone_private['View'] = ('Manager', 'Owner')
+        
+        # set properties for 'hide' transition
+        plone_hide = plone_workflow.transitions.hide
+        plone_hide.actbox_url = '%(content_url)s/content_hide_form'
+        plone_guard = plone_hide.getGuard()
+        plone_guard.permissions = ()
+        plone_guard.roles = ('Owner',)
+
+        # time to upgrade
+        self.migration._upgrade('3.3.2')
+
+        # check whether folder_workflow migrated
+        # firstly check private state permissions
+        self.assertEquals(set(folder_private['Access contents information']),
+            set(('Contributor', 'Editor', 'Manager', 'Owner', 'Reader')))
+        self.assertEquals(set(folder_private['List folder contents']),
+            set(('Contributor', 'Editor', 'Manager', 'Owner', 'Reader')))
+        self.assertEquals(set(folder_private['Modify portal content']),
+            set(('Editor', 'Manager', 'Owner')))
+        self.assertEquals(set(folder_private['View']),
+            set(('Contributor', 'Editor', 'Manager', 'Owner', 'Reader')))
+        
+        # check 'hide' transition properties
+        self.assertEquals(folder_hide.actbox_url,
+            '%(content_url)s/content_status_modify?workflow_action=hide')
+        folder_guard = folder_hide.getGuard()
+        self.failUnless('Modify portal content' in folder_guard.permissions)
+        self.assertEquals(len(folder_guard.roles), 0)
+        
+        
+        # check whether plone_workflow migrated
+        # firstly check private state permissions
+        self.assertEquals(set(plone_private['Access contents information']),
+            set(('Contributor', 'Editor', 'Manager', 'Owner', 'Reader')))
+        self.assertEquals(set(plone_private['Change portal events']),
+            set(('Editor', 'Manager', 'Owner')))
+        self.assertEquals(set(plone_private['Modify portal content']),
+            set(('Editor', 'Manager', 'Owner')))
+        self.assertEquals(set(plone_private['View']),
+            set(('Contributor', 'Editor', 'Manager', 'Owner', 'Reader')))
+        
+        # and finally check 'hide' transition properties
+        self.assertEquals(plone_hide.actbox_url,
+            '%(content_url)s/content_status_modify?workflow_action=hide')
+        plone_guard = plone_hide.getGuard()
+        self.failUnless('Modify portal content' in plone_guard.permissions)
+        self.assertEquals(len(plone_guard.roles), 0)
+
 
 def test_suite():
     from unittest import TestSuite, makeSuite
