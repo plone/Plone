@@ -8,6 +8,15 @@ Changelog
 3.3.3 - Unreleased
 ------------------
 
+
+- plone.css will now output stylesheets with link rendering
+  Fixes http://dev.plone.org/plone/ticket/9366
+
+  sitemap template now displays objects without a value for Title
+  applied patch from crchemist
+  Fixes http://dev.plone.org/plone/ticket/9775
+  [aaronv]
+
 - Removed option "Send a mail with the password" from the join form,
   as we never send an email with the password.
   Refs http://dev.plone.org/plone/ticket/9670
