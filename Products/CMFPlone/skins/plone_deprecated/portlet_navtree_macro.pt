@@ -15,7 +15,8 @@
                 useView    python:item.portal_type in viewActions;
                 item_icon  python:plone_view.getIcon(item);
                 itemUrl    python:test(useView, item.getURL() + '/view', item.getURL());
-                isCurrent  node/currentItem;"
+                isCurrent  node/currentItem;
+								pretty_title_or_id nocall:context/plone_utils/pretty_title_or_id;"
     tal:condition="python: bottomLevel &lt;= 0 or level &lt; bottomLevel-1">
 
     <tal:level define="item_wf_state_class python: 'state-' + normalizeString(item.review_state);">
@@ -34,7 +35,7 @@
                                  title item_icon/title;
                                  width item_icon/width;
                                  height item_icon/height;" />
-            <span tal:replace="item/Title">Selected Item Title</span>
+					 <span tal:replace="python:pretty_title_or_id(item)">Selected Item Title</span>
         </a>
         
     </div>
