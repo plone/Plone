@@ -8,6 +8,9 @@ Changelog
 3.3.3 - Unreleased
 ------------------
 
+- Better validation and error messages for group create/edit form.
+  Fixes http://dev.plone.org/plone/ticket/9667
+  [lzdych]
 
 - plone.css will now output stylesheets with link rendering
   Fixes http://dev.plone.org/plone/ticket/9366

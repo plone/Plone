@@ -12,6 +12,7 @@ from Products.CMFPlone import PloneMessageFactory as _
 
 REQUEST=context.REQUEST
 msg = _(u'No changes made.')
+group = None
 
 if addname:
     success = context.portal_groups.addGroup(addname,(),(),REQUEST=context.REQUEST)
@@ -23,9 +24,12 @@ if addname:
     group=context.portal_groups.getGroupById(addname)
     msg = _(u'Group ${name} has been added.',
             mapping={u'name' : addname})
-else:
+elif groupname:
     group=context.portal_groups.getGroupById(groupname)
     msg = _(u'Changes saved.')
+
+else:
+    msg = _(u'Group name required.')
 
 processed={}
 for id, property in context.portal_groupdata.propertyItems():
@@ -35,6 +39,9 @@ if group:
     # for what reason ever, the very first group created does not exist
     group.setGroupProperties(processed)
 
-context.plone_utils.addPortalMessage(msg)
+context.plone_utils.addPortalMessage(msg, type=group and 'info' or 'error')
 
-return REQUEST.RESPONSE.redirect(context.prefs_groups_overview.absolute_url())
+target_url = group and context.prefs_groups_overview.absolute_url() or \
+                context.prefs_group_details.absolute_url()
+
+return REQUEST.RESPONSE.redirect(target_url)
