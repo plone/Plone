@@ -14,23 +14,49 @@
 </head>
 
 <body>
-<metal:main fill-slot="main">
+    
+    <div id="portal-column-content" metal:fill-slot="content" class="cell width-full position-0">
 
-    <h1 class="documentFirstHeading"
-        i18n:translate="label_site_map">Site map</h1>
+        <div tal:define="show_border context/@@plone/showEditableBorder"
+             tal:attributes="class python:test(show_border,'documentEditable','')">
 
-    <p class="documentDescription"
-       i18n:translate="description_site_map">
-    An overview of the available content on this site. Keep the pointer still
-    over an item for a few seconds to get its description.
-    </p>
+            <div id="edit-bar" 
+                tal:condition="show_border"
+                tal:content="structure provider:plone.contentviews" />
 
-    <ul id="portal-sitemap"
-        class="navTreeLevel0 visualNoMarker"
-        tal:define="view context/@@sitemap_view;">
-        <tal:sitemap replace="structure view/createSiteMap" />
-    </ul>
+            <div id="region-content" class="documentContent">
 
-</metal:main>
+                <a name="documentContent"></a>
+
+                <div metal:use-macro="context/global_statusmessage/macros/portal_message">
+                    Portal status message
+                </div>
+
+                <div id="viewlet-above-content" tal:content="structure provider:plone.abovecontent" />
+
+                <div id="content">
+                    
+                        <h1 class="documentFirstHeading"
+                            i18n:translate="label_site_map">Site map</h1>
+
+                        <p class="documentDescription"
+                           i18n:translate="description_site_map">
+                        An overview of the available content on this site. Keep the pointer still
+                        over an item for a few seconds to get its description.
+                        </p>
+
+                        <ul id="portal-sitemap"
+                            class="navTreeLevel0 visualNoMarker"
+                            tal:define="view context/@@sitemap_view;">
+                            <tal:sitemap replace="structure view/createSiteMap" />
+                        </ul>
+                </div>
+
+                <div tal:replace="structure provider:plone.belowcontent" />
+            </div>
+        </div>
+    
+    </div>
+
 </body>
 </html>
