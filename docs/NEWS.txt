@@ -8,6 +8,9 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Fixed a DYNAMIC_CONTENT in site_feedback_template.pt
+  [vincentfretin]
+
 - Make sure the 'Portlets: View dashboard' permission is set for Members.
   [davisagli]
 
