@@ -6,9 +6,7 @@
 
     <metal:override fill-slot="column_one_slot">
         <metal:override define-slot="column_one_slot">
-        <div class="cell position-0 width-1:4">
             <metal:prefs use-macro="here/portlet_prefs/macros/portlet" />
-        </div>
         </metal:override>
     </metal:override>
 
