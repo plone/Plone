@@ -53,7 +53,7 @@ class HiddenProfiles(object):
                 ]
 
 
-def addPloneSite(context, site_id, title='', description='',
+def addPloneSite(context, site_id, title='Plone site', description='',
                  create_userfolder=True, email_from_address='',
                  email_from_name='', validate_email=True,
                  profile_id=_DEFAULT_PROFILE, snapshot=False,
