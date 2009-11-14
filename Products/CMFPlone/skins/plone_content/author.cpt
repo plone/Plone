@@ -39,10 +39,6 @@
                                 here_url context/@@plone_context_state/object_url;
                                 member context/@@plone_portal_state/member;">
 
-    <div id="portal-column-content" class="cell width-full position-0">
-    <div id="region-content" class="documentEditable">
-
-
         <tal:noAuthor condition="not: authorinfo">
         <div id="region-content">
         <div id="content">
@@ -302,8 +298,6 @@
         
     </tal:haveAuthor>
 
-    </div>
-    </div>
     </tal:main-macro>
 
 </metal:main>
