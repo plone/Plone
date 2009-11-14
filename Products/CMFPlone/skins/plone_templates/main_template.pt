@@ -178,7 +178,8 @@
             tal:condition="python:not sl and not sr and portlet_assignable and checkPermission('Portlets: Manage portlets', context)">
           <a class="managePortletsFallback"
              tal:attributes="href string:${context_state/canonical_object_url}/@@manage-portlets"
-             i18n:translate="manage_portlets_fallback">
+             i18n:domain="plone"
+             i18n:translate="manage_portlets_link">
              Manage portlets
           </a>
       </div>

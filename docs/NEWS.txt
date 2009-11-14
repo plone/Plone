@@ -8,6 +8,10 @@ Changelog
 3.3.3 - Unreleased
 ------------------
 
+- Fixed "Manage portlets" not translated when there is no portlet visible.
+  This closes http://dev.plone.org/plone/ticket/8454
+  [vincentfretin]
+
 - Better validation and error messages for group create/edit form.
   Fixes http://dev.plone.org/plone/ticket/9667
   [lzdych]
