@@ -19,7 +19,6 @@
                  getIconFor nocall:context/plone_utils/getIconFor">
 
 <tal:main-macro metal:define-macro="main">
-    <div id="portal-column-content" class="cell width-full position-0">
     <div id="region-content">
     <div id="content">
 
@@ -170,7 +169,8 @@
         </p>
     </tal:debugmode>
 
-</div></div></div></tal:main-macro>
+</div></div>
+</tal:main-macro>
 
 </div>
 
