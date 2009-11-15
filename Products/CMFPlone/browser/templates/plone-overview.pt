@@ -110,7 +110,7 @@
             </li>
             <li>
                 <a href="#"
-                   tal:attributes="href string:${context/absolute_url}/manage"
+                   tal:attributes="href string:${context/absolute_url}/manage_main"
                    title="Go to the ZMI"
                    i18n:attributes="title;"
                    i18n:translate="">
