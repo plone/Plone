@@ -14,6 +14,7 @@
 
 $Id$
 """
+from zope.i18nmessageid import Message
 
 from Products.GenericSetup.utils import exportObjects
 from Products.GenericSetup.utils import importObjects
@@ -94,12 +95,21 @@ class ControlPanelXMLAdapter(XMLAdapterBase):
 
     def _initConfiglets(self, node):
         controlpanel = self.context
+        default_domain = "plone"
+        if node.nodeName == 'object':
+            domain = str(node.getAttribute('i18n:domain'))
+            if domain:
+                default_domain = domain
         for child in node.childNodes:
             if child.nodeName != 'configlet':
                 continue
 
+            domain = str(child.getAttribute('i18n:domain'))
+            if not domain:
+                domain = default_domain
+
             action_id = str(child.getAttribute('action_id'))
-            title = str(child.getAttribute('title'))
+            title = Message(str(child.getAttribute('title')), domain=domain)
             url_expr = str(child.getAttribute('url_expr'))
             condition_expr = str(child.getAttribute('condition_expr'))
             icon_expr = str(child.getAttribute('icon_expr'))

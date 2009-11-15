@@ -6,6 +6,7 @@ from OFS.PropertyManager import PropertyManager
 
 from zope.interface import implements
 from zope.i18n import translate
+from zope.i18nmessageid import Message
 
 from Products.CMFCore.Expression import Expression, createExprContext
 from Products.CMFCore.ActionInformation import ActionInformation
@@ -117,8 +118,10 @@ class PloneControlPanel(PloneBaseTool, UniqueObject,
         # Translate the title for sorting
         if getattr(self, 'REQUEST', None) is not None:
             for a in res:
-                a['title'] = translate(a['title'],
-                                       domain='plone',
+                title = a['title']
+                if not isinstance(title, Message):
+                    title = Message(title, domain='plone')
+                a['title'] = translate(title,
                                        context=self.REQUEST)
         def _title(v):
             return v['title']
@@ -235,7 +238,7 @@ class PloneControlPanel(PloneBaseTool, UniqueObject,
         new_actions = self._cloneActions()
 
         new_action = PloneConfiglet( id=str(id)
-                                      , title=str(name)
+                                      , title=name
                                       , action=a_expr
                                       , condition=c_expr
                                       , permissions=permission
