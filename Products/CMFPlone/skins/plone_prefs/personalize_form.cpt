@@ -20,8 +20,6 @@
                         portal_url context/@@plone_portal_state/navigation_root_url;
                         member context/@@plone_portal_state/member;">
 <tal:main-macro metal:define-macro="main">
-<div id="portal-column-content" class="cell width-full position-0">
-<div id="region-content" class="documentEditable">
 
         <h5 class="hiddenStructure">Views</h5>
 
@@ -203,11 +201,12 @@
 
                             <div tal:content="error">Validation error output</div>
 
-                            <textarea type="text"
+                            <textarea
                                    id="description"
                                    name="description"
                                    tal:content="description"
                                    rows="5"
+                                   cols="40"
                                    tal:attributes="disabled python:member.canWriteProperty('description') and default or 'disabled'"
                                    />
 
@@ -417,7 +416,6 @@
             </div>
      </div>
 
-</div></div>
 </tal:main-macro>
     
 </metal:main>
