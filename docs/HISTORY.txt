@@ -6,6 +6,15 @@ For what's new in this release, see CHANGES.txt.
 3.3.3 - Unreleased
 ------------------
 
+- Fixed untranslatable info message "The username you entered could not be found"
+  and other messages in RegistrationTool.py
+  This closes http://dev.plone.org/plone/ticket/9744
+  [vincentfretin]
+
+- Configlets title can now use a different domain than plone.
+  This closes http://dev.plone.org/plone/ticket/9738
+  [vincentfretin]
+
 - Fixed "Manage portlets" not translated when there is no portlet visible.
   This closes http://dev.plone.org/plone/ticket/8454
   [vincentfretin]

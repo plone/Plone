@@ -5,6 +5,7 @@ from email import message_from_string
 from smtplib import SMTPRecipientsRefused
 
 from zope.component import getUtility
+from zope.i18nmessageid import MessageFactory
 
 from Products.CMFCore.interfaces import ISiteRoot
 
@@ -27,6 +28,8 @@ from Products.PluggableAuthService.interfaces.authservice \
 # - remove '0', 'O', and 'Q' to avoid confusion
 # - remove vowels to avoid spelling words
 invalid_password_chars = ['a','e','i','o','u','y','l','q']
+
+_ = MessageFactory('plone')
 
 def getValidPasswordChars():
     password_chars = []
@@ -154,20 +157,19 @@ class RegistrationTool(PloneBaseTool, BaseTool):
 
             username = props.get('username', '')
             if not username:
-                return 'You must enter a valid name.'
+                return _(u'You must enter a valid name.')
 
             if not self.isMemberIdAllowed(username):
-                return ('The login name you selected is already '
-                        'in use or is not valid. Please choose another.')
+                return _(u'The login name you selected is already in use or is not valid. Please choose another.')
 
             email = props.get('email')
             if email is None:
-                return 'You must enter an email address.'
+                return _(u'You must enter an email address.')
 
             try:
                 checkEmailAddress( email )
             except EmailAddressInvalid: 
-                return 'You must enter a valid email address.'
+                return _(u'You must enter a valid email address.')
 
         else: # Existing member.
             if not hasattr(member, 'canWriteProperty') or \
@@ -180,13 +182,13 @@ class RegistrationTool(PloneBaseTool, BaseTool):
                     try:
                         checkEmailAddress( email )
                     except EmailAddressInvalid:
-                        return 'You must enter a valid email address.'
+                        return _(u'You must enter a valid email address.')
 
                 # Not allowed to clear an existing non-empty email.
                 existing = member.getProperty('email')
                 
                 if existing and email == '':
-                    return 'You must enter a valid email address.'
+                    return _(u'You must enter a valid email address.')
 
         return None
 
@@ -236,7 +238,7 @@ class RegistrationTool(PloneBaseTool, BaseTool):
         """ Wrapper around mailPassword """
         membership = getToolByName(self, 'portal_membership')
         if not membership.checkPermission('Mail forgotten password', self):
-            raise Unauthorized, "Mailing forgotten passwords has been disabled"
+            raise Unauthorized(_(u"Mailing forgotten passwords has been disabled."))
 
         utils = getToolByName(self, 'plone_utils')
         props = getToolByName(self, 'portal_properties').site_properties
@@ -247,7 +249,7 @@ class RegistrationTool(PloneBaseTool, BaseTool):
             member = membership.getMemberById(forgotten_userid)
 
         if member is None:
-            raise ValueError, 'The username you entered could not be found'
+            raise ValueError(_(u'The username you entered could not be found.'))
 
         if emaillogin:
             # We use the member id as new forgotten_userid, because in
@@ -259,14 +261,14 @@ class RegistrationTool(PloneBaseTool, BaseTool):
         # the template will be made with a blank To:, this is bad
         email = member.getProperty('email')
         if not email:
-            raise ValueError('That user does not have an email address.')
+            raise ValueError(_(u'That user does not have an email address.'))
         else:
             # add the single email address
             if not utils.validateSingleEmailAddress(email):
-                raise ValueError, 'The email address did not validate'
+                raise ValueError(_(u'The email address did not validate.'))
         check, msg = _checkEmail(email)
         if not check:
-            raise ValueError, msg
+            raise ValueError(msg)
 
         # Rather than have the template try to use the mailhost, we will
         # render the message ourselves and send it from here (where we
@@ -299,7 +301,7 @@ class RegistrationTool(PloneBaseTool, BaseTool):
             return self.mail_password_response( self, REQUEST )
         except SMTPRecipientsRefused:
             # Don't disclose email address on failure
-            raise SMTPRecipientsRefused('Recipient address rejected by server')
+            raise SMTPRecipientsRefused(_(u'Recipient address rejected by server.'))
 
     security.declarePublic('registeredNotify')
     def registeredNotify(self, new_member_id):
@@ -311,13 +313,13 @@ class RegistrationTool(PloneBaseTool, BaseTool):
         if member and member.getProperty('email'):
             # add the single email address
             if not utils.validateSingleEmailAddress(member.getProperty('email')):
-                raise ValueError, 'The email address did not validate'
+                raise ValueError(_(u'The email address did not validate.'))
 
         email = member.getProperty( 'email' )
         try:
             checkEmailAddress(email)
         except EmailAddressInvalid:
-            raise ValueError, 'The email address did not validate'
+            raise ValueError(_(u'The email address did not validate.'))
 
         pwrt = getToolByName(self, 'portal_password_reset')
         reset = pwrt.requestReset(new_member_id)

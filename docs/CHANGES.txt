@@ -8,10 +8,6 @@ Changelog
 4.0 - Unreleased
 ----------------
 
-- Configlets title can now use a different domain than plone.
-  This closes http://dev.plone.org/plone/ticket/9738
-  [vincentfretin]
-
 - "Relevance" was not internationalized in search_form.pt. This closes
   http://dev.plone.org/plone/ticket/9747
   [vincentfretin]
