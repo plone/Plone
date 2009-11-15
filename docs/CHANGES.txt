@@ -8,6 +8,10 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- "Preferences" link should go directly to the personal prefs, the memberprefs
+  panel is an unnecessary abstraction here. Add-on products can easily add new
+  links to the personal menu now, so that's the pattern we want to encourage.
+
 - Removed the login portlet from the default setup now that the login link opens
   an inline window.
   [limi]
