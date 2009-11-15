@@ -8,6 +8,10 @@ Changelog
 3.3.3 - Unreleased
 ------------------
 
+- Configlets title can now use a different domain than plone.
+  This closes http://dev.plone.org/plone/ticket/9738
+  [vincentfretin]
+
 - Fixed "Manage portlets" not translated when there is no portlet visible.
   This closes http://dev.plone.org/plone/ticket/8454
   [vincentfretin]
