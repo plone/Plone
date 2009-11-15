@@ -72,12 +72,12 @@ class AddPloneSite(BrowserView):
         extension_profiles = []
         default_extension_profiles = [
             'plonetheme.sunburst:default',
+            'plonetheme.classic:default',
             ]
 
         # profiles available for install/uninstall, but hidden at the time
         # the Plone site is created
         not_installable = [
-            'plonetheme.classic:default',
             'plonetheme.classic:uninstall',
         ]
         utils = getAllUtilitiesRegisteredFor(INonInstallable)
