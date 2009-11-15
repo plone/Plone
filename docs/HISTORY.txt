@@ -1,5 +1,7 @@
-Changelog
-=========
+Historical release notes
+========================
+
+For what's new in this release, see CHANGES.txt.
 
 3.3.3 - Unreleased
 ------------------
