@@ -8,6 +8,11 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Converted ``plone_javascript_variables.js`` to a browser page. Dynamically
+  generating JS using a page template was too cumbersome. This also avoids the
+  special ``escape_for_js`` handling of the translate script.
+  [hannosch]
+
 - "Relevance" was not internationalized in search_form.pt. This closes
   http://dev.plone.org/plone/ticket/9747
   [vincentfretin]
