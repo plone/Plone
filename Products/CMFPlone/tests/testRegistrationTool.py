@@ -114,7 +114,7 @@ class TestRegistrationTool(PloneTestCase.PloneTestCase):
         msg = message_from_string(mails.messages[0])
         # We get an encoded subject
         self.assertEqual(msg['Subject'],
-                         '=?utf-8?q?User_Account_Information_for_T=C3=A4st_Portal?=')
+                         '=?utf-8?q?=3D=3Futf-8=3Fq=3FUser=5FAccount=5FInformation=5Ffor=5FT=3DC3?=\n =?utf-8?q?=3DA4st=5FPortal=3F=3D?=')
         # Also a partially encoded from header
         self.assertEqual(msg['From'],
                          '=?utf-8?q?T=C3=A4st_Admin?= <bar@baz.com>')
