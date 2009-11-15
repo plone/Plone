@@ -377,7 +377,8 @@
                       id="sort_on"
                       tal:define="selected request/form/sort_on|nothing">
                 <option value=""
-                        tal:attributes="selected python:selected == '' and 'selected' or ''">Relevance</option>
+                        tal:attributes="selected python:selected == '' and 'selected' or ''"
+                        i18n:translate="">Relevance</option>
                 <option value="created" 
                         tal:attributes="selected python:selected == 'created' and 'selected' or ''"
                         i18n:translate="">Creation Date</option>

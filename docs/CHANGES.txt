@@ -8,6 +8,10 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- "Relevance" was not internationalized in search_form.pt. This closes
+  http://dev.plone.org/plone/ticket/9747
+  [vincentfretin]
+
 - "Your Plone site is up to date" was not internationalized in plone-upgrade.pt.
   This closes http://dev.plone.org/plone/ticket/9746
   [vincentfretin]
