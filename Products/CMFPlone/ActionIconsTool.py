@@ -41,24 +41,29 @@ class ActionIconsTool(PloneBaseTool, BaseTool):
     def getActionIcon( self, category, action_id, context=None ):
         ai = BaseTool.getActionIcon(self, category, action_id,
                                     context=context)
-        log_deprecated("The icon for the '%s/%s' action was obtained from "
-                       "the action icons tool. The action icons tool has "
-                       "been deprecated and will be removed in Plone 5. "
-                       "You should register action icons directly on the "
-                       "action now, using the 'icon_expr' "
-                       "setting." % (category, action_id))
-        return ai
+        if ai:
+            log_deprecated("The icon for the '%s/%s' action was obtained from "
+                           "the action icons tool. The action icons tool has "
+                           "been deprecated and will be removed in Plone 5. "
+                           "You should register action icons directly on the "
+                           "action now, using the 'icon_expr' "
+                           "setting." % (category, action_id))
+            return ai
+        return None
 
     def queryActionIcon( self, category, action_id
                        , default=None, context=None ):
-        log_deprecated("The icon for the '%s/%s' action was obtained from "
-                       "the action icons tool. The action icons tool has "
-                       "been deprecated and will be removed in Plone 5. "
-                       "You should register action icons directly on the "
-                       "action now, using the 'icon_expr' "
-                       "setting." % (category, action_id))
-        return BaseTool.queryActionIcon(self, category, action_id,
-                                        default=default, context=context)
+        ai = BaseTool.queryActionIcon(self, category, action_id,
+                                      default=default, context=context)
+        if ai:
+            log_deprecated("The icon for the '%s/%s' action was obtained from "
+                           "the action icons tool. The action icons tool has "
+                           "been deprecated and will be removed in Plone 5. "
+                           "You should register action icons directly on the "
+                           "action now, using the 'icon_expr' "
+                           "setting." % (category, action_id))
+            return ai
+        return None
 
     def addActionIcon( self
                      , category
