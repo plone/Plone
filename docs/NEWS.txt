@@ -8,6 +8,10 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Removed the login portlet from the default setup now that the login link opens
+  an inline window.
+  [limi]
+
 - Fixed a DYNAMIC_CONTENT in site_feedback_template.pt
   [vincentfretin]
 

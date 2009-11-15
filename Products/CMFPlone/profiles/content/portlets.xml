@@ -10,14 +10,6 @@
      />
 
  <assignment
-     manager="plone.leftcolumn"
-     category="context"
-     key="/"
-     type="portlets.Login"
-     name="login"
-     />
-
- <assignment
      manager="plone.rightcolumn"
      category="context"
      key="/"

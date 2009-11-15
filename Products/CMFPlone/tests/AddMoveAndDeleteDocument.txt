@@ -5,7 +5,7 @@ Does what the title says, really.  Plus some assertions.
 
     >>> from Products.Five.testbrowser import Browser
     >>> browser = Browser()
-    >>> browser.open('http://nohost/plone')
+    >>> browser.open('http://nohost/plone/login_form')
 
 First, we need to log in.
 
