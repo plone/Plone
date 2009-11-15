@@ -8,6 +8,10 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- By default hide the "Subfolders" tab on collections. They don't behave in a
+  way understandable to users. Existing sites aren't changed.
+  [hannosch]
+
 - Converted ``plone_javascript_variables.js`` to a browser page. Dynamically
   generating JS using a page template was too cumbersome. This also avoids the
   special ``escape_for_js`` handling of the translate script.
