@@ -111,17 +111,19 @@
                    tal:attributes="href string:${context/absolute_url}/manage_main"
                    title="Go to the ZMI"
                    i18n:attributes="title;"
-                   i18n:translate="">Zope Management Interface</a>
-                <span i18n:translate="">
+                   i18n:translate="label_zmi_link">Zope Management Interface</a>
+                <span i18n:translate="label_zmi_link_description">
                     &#151; low-level technical configuration.
                 </span>
             </li>
             <li>
+                <span i18n:translate="label_plone_org_description">
                     For documentation, add-ons, support, community, visit
+                </span>
                 <a href="http://plone.org"
                    title="Plone Community Home"
                    target="_new"
-                   i18n:attributes="title;">plone.org</a>.
+                   i18n:attributes="title label_plone_org_title;">plone.org</a>.
             </li>
         </ul>
     </div>
