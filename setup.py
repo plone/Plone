@@ -7,7 +7,7 @@ setup(name='Plone',
       version=version,
       description="The Plone Content Management System",
       long_description=open("README.txt").read() +  "\n" +
-                       open(os.path.join("docs", "NEWS.txt")).read(),
+                       open(os.path.join("docs", "CHANGES.txt")).read(),
       classifiers=[
         "Development Status :: 2 - Pre-Alpha",
         "Environment :: Web Environment",
