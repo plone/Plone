@@ -23,7 +23,7 @@
          alt="Plone Logo"/>
     <div id="text">
         <h1 i18n:translate="">
-            Plone is up and running
+            Plone is up and running.
         </h1>
         <ul>
             <tal:block tal:condition="sites">
@@ -36,9 +36,7 @@
                                tal:attributes="href site/absolute_url"
                                title="Go to your instance"
                                i18n:attributes="title;"
-                               i18n:translate="">
-                                View your Plone site
-                            </a>
+                               i18n:translate="">View your Plone site</a>
                         </span>
                         <div class="upgrade-warning"
                              tal:condition="python:view.outdated(site)"
@@ -113,22 +111,17 @@
                    tal:attributes="href string:${context/absolute_url}/manage_main"
                    title="Go to the ZMI"
                    i18n:attributes="title;"
-                   i18n:translate="">
-                    Zope Management Interface
-                </a>
-                <span class="formHelp" i18n:translate="">
+                   i18n:translate="">Zope Management Interface</a>
+                <span i18n:translate="">
                     &#151; low-level technical configuration.
                 </span>
             </li>
             <li>
+                    For documentation, add-ons, support, community, visit
                 <a href="http://plone.org"
                    title="Plone Community Home"
-                   i18n:attributes="title;">
-                    Plone.org
-                </a>
-                <span class="formHelp" i18n:translate="">
-                    &#151; documentation, add-ons, support, community.
-                </span>
+                   target="_new"
+                   i18n:attributes="title;">plone.org</a>.
             </li>
         </ul>
     </div>

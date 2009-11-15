@@ -1,8 +1,9 @@
 body {
-    font: 80% Arial, FreeSans, sans-serif;
+    font: 90% Arial, FreeSans, sans-serif;
     line-height: 1.5em;
     clear: both;
-    margin-left: 1em;
+    margin: 2em auto;
+    width:30em;
 }
 h1, h2 {
     font-family: "Helvetica Neue", Arial, FreeSans, sans-serif; 
@@ -11,16 +12,17 @@ h1, h2 {
 img {
     margin-top: 0.5em;
     border: none;
+    vertical-align: text;
 }
 a {
-    border-bottom:1px solid #0072B5;
+    border-bottom:1px solid #999;
     color:#0072B5;
     text-decoration:none;
 }
 ul {
     margin-left: 0;
     padding-left:0;
-    list-style-position:inside;
+    list-style:none;
 }
 ul li {
     margin-bottom: 1em;
@@ -51,20 +53,13 @@ label {
     clear: both;
     margin-top: 1em;
 }
-.formHelp {
-    color: #555;
-    margin: 0 0 0.2em 0;
-}
 div.formControls {
     margin-top: 1em;
 }
-.prominent {
-    font-size: 125%;
-    margin-top: 0.5em;
+.formHelp {
+	color: #444;
 }
-.discreet {
-    font-size: 80%;
-    color: #ccc;
+.prominent {
 }
 .backup-warning {
     background-color:red;
@@ -79,24 +74,18 @@ div.formControls {
     margin-top: 0.5em;
 }
 #add-plone-site {
-    margin: 1em;
+    margin: 1em 0;
 }
 #add-on-list {
     margin: 1em 0em;
 }
-#box {
-    margin: 2em auto;
-    width:430px;
-    text-align:center;
-}
 #multiple-sites {
     font-size: 125%;
     margin-top: 0.5em;
-    color: #555;
+    color: #444;
 }
 #text {
     font: Arial, FreeSans, sans-serif;
-    text-align:left;
 }
 #sitelist {
     margin: 1em;
