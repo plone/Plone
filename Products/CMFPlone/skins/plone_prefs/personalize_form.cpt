@@ -61,15 +61,7 @@
                 <h1 class="documentFirstHeading"
                     i18n:translate="heading_my_preferences">Personal Preferences</h1>
 
-                <a href=""
-                   class="link-parent"
-                   tal:attributes="href string:${context/@@plone_portal_state/navigation_root_url}/dashboard"                  
-                   tal:condition="python:context.portal_membership.checkPermission('Portlets: Manage own portlets', context)"
-                   i18n:translate="label_to_dashboard">
-                    Up to my dashboard
-                </a>
-
-                <p i18n:translate="description_my_preferences">
+                <p class="documentDescription" i18n:translate="description_my_preferences">
                 Your personal settings.
                 </p>
 
