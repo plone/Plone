@@ -51,7 +51,7 @@
 
     <p class="prominent">
       <img src="confirm_icon.png" />
-      Your Plone site is up to date.
+      <span i18n:translate="" tal:omit-tag="">Your Plone site is up to date.</span>
     </p>
 
   </tal:current>
