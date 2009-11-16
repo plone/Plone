@@ -53,14 +53,14 @@ the same site, since it is the only one the testbrowser knows about:
   >>> folder.invokeFactory('News Item', id='important', title='some important news!')
   'important'
   >>> folder.important.setText(' \
-  ... <form action="join_form" method="post"> \
+  ... <form action="/plone/join_form" method="post"> \
   ... <input type="hidden" name="fullname" value="John Doe" /> \
   ... <input type="hidden" name="username" value="john" /> \
   ... <input type="hidden" name="email" value="john@spam-factory.com" /> \
   ... <input type="hidden" name="password" value="johnnyrulez" /> \
   ... <input type="hidden" name="password_confirm" value="johnnyrulez" /> \
   ... <input type="hidden" name="form.submitted" value="1" /> \
-  ... <input type="submit" name="form.button.Register" value="Click me!" /> \
+  ... <input type="submit" name="form.actions.register" value="Click me!" /> \
   ... </form> \
   ... ', mimetype='text/html')
   >>> folder.important.getField('text').default_output_type = 'text/html'
