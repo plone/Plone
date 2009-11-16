@@ -46,10 +46,6 @@ class AuthenticatorTestCase(ptc.FunctionalTestCase):
             'userid=%s' % ptc.default_user, status=302)
         self.assertEqual(self.portal.getOwner().getUserName(), ptc.default_user)
 
-    def test_PloneTool_acquireLocalRoles(self):
-        self.checkAuthenticator('/folder_localrole_set',
-            'use_acquisition:int=1', status=302)
-
     def test_PloneTool_deleteObjectsByPaths(self):
         self.failUnless(self.portal.get('news', None))
         self.checkAuthenticator('/plone_utils/deleteObjectsByPaths',
