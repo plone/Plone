@@ -8,6 +8,11 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Adjust the _createObjectByType functions in utils and FactoryTool to use the
+  _constructInstance method of the FTI instead of duplicating pieces of its
+  logic.
+  [davisagli]
+
 - By default hide the "Subfolders" tab on collections. They don't behave in a
   way understandable to users. Existing sites aren't changed.
   [hannosch]

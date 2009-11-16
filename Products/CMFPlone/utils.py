@@ -306,8 +306,8 @@ def _createObjectByType(type_name, container, id, *args, **kw):
     before creating the object. Use this function instead if you need to
     skip these checks.
 
-    This method uses some code from
-    CMFCore.TypesTool.FactoryTypeInformation.constructInstance
+    This method uses
+    CMFCore.TypesTool.FactoryTypeInformation._constructInstance
     to create the object without security checks.
     """
     id = str(id)
@@ -316,20 +316,7 @@ def _createObjectByType(type_name, container, id, *args, **kw):
     if not fti:
         raise ValueError, 'Invalid type %s' % type_name
 
-    # we have to do it all manually :(
-    p = container.manage_addProduct[fti.product]
-    m = getattr(p, fti.factory, None)
-    if m is None:
-        raise ValueError, ('Product factory for %s was invalid' %
-                           fti.getId())
-
-    # construct the object
-    m(id, *args, **kw)
-    ob = container._getOb( id )
-
-    if safe_hasattr(ob, '_setPortalTypeName'):
-        ob._setPortalTypeName(fti.getId())
-    return ob
+    return fti._constructInstance(container, id, *args, **kw)
 
 
 def safeToInt(value):

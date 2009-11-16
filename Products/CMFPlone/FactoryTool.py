@@ -1,8 +1,6 @@
 import logging
 import os
 
-from zope.component import queryUtility
-from zope.component.interfaces import IFactory
 from zope.interface import implements
 from zope.structuredtext import stx2html
 
@@ -23,7 +21,6 @@ from Products.CMFPlone.interfaces import IHideFromBreadcrumbs
 from Products.CMFPlone.PloneFolder import PloneFolder as TempFolderBase
 from Products.CMFPlone.PloneBaseTool import PloneBaseTool
 from Products.CMFPlone.utils import base_hasattr
-from Products.CMFPlone.utils import safe_hasattr
 from Products.CMFPlone.utils import log_exc
 from ZODB.POSException import ConflictError
 
@@ -66,28 +63,9 @@ def _createObjectByType(type_name, container, id, *args, **kw):
         raise ValueError, 'Invalid type %s' % type_name
 
     if not fti.product:
-        m = queryUtility(IFactory, fti.factory, None)
-        if m is None:
-            raise ValueError, ('Product factory for %s was invalid' %
-                               fti.getId())
         kw['parent'] = container
-        ob = m(id, *args, **kw)
-        # its not set by factory.
-        container[id] = ob
-    else:
-        p = container.manage_addProduct[fti.product]
-        m = getattr(p, fti.factory, None)
-        if m is None:
-            raise ValueError, ('Product factory for %s was invalid' %
-                               fti.getId())
-        # construct the object
-        m(id, *args, **kw)
-        ob = container._getOb( id )
-
-    if safe_hasattr(ob, '_setPortalTypeName'):
-        ob._setPortalTypeName(fti.getId())
-
-    return ob
+    
+    return fti._constructInstance(container, id, *args, **kw)
 
 
 # ##############################################################################
