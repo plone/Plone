@@ -94,12 +94,6 @@ class TestPortalCreation(PloneTestCase.PloneTestCase, WarningInterceptor):
         # Make sure the ZMI management screen works
         self.portal.manage_main()
 
-    def testControlPanelGroups(self):
-        # Test for http://dev.plone.org/plone/ticket/2749
-        # Wake up object, in the case it was deactivated.
-        dir(self.cp); dir(self.cp)
-        self.failUnless(self.cp.__dict__.has_key('groups'))
-
     def testWorkflowIsActionProvider(self):
         # The workflow tool is one of the last remaining action providers.
         self.failUnless('portal_workflow' in self.actions.listActionProviders())

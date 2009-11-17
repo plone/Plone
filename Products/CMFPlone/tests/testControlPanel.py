@@ -11,9 +11,9 @@ class TestControlPanel(PloneTestCase.PloneTestCase):
 
     def afterSetUp(self):
         self.controlpanel = getToolByName(self.portal, "portal_controlpanel")
-        
+
         # get the expected default groups and configlets
-        self.groups     = ['Plone', 'Products', 'Member']
+        self.groups     = ['Plone', 'Products']
         self.configlets = ['QuickInstaller', 'portal_atct', 'MailHost',
                            'UsersGroups', 'MemberPrefs', 'PortalSkin',
                            'MemberPassword', 'ZMI', 'SecuritySettings',
