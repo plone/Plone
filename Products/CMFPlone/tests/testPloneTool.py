@@ -324,7 +324,7 @@ class TestEditMetadata(PloneTestCase.PloneTestCase):
         self.assertEqual(self.doc.text_format, 'text/html')
 
     def testSetLanguage(self):
-        self.assertEqual(self.doc.Language(), '')
+        self.assertEqual(self.doc.Language(), 'en')
         self.utils.editMetadata(self.doc, language='de')
         self.assertEqual(self.doc.Language(), 'de')
 
@@ -473,43 +473,6 @@ class TestEditMetadataIndependence(PloneTestCase.PloneTestCase):
         self.assertEqual(self.doc.Rights(), 'Copyleft')
 
 
-class TestFormulatorFields(PloneTestCase.PloneTestCase):
-    """This feature should probably go away entirely.
-    """
-
-    def afterSetUp(self):
-        self.utils = self.portal.plone_utils
-        self.folder.invokeFactory('Document', id='doc')
-        self.doc = self.folder.doc
-
-    def setField(self, name, value):
-        form = self.app.REQUEST.form
-        pfx = self.utils.field_prefix
-        form[pfx+name] = value
-
-    def testTitleField(self):
-        self.setField('title', 'Foo')
-        self.utils.editMetadata(self.doc)
-        self.assertEqual(self.doc.Title(), 'Foo')
-
-    def testSubjectField(self):
-        self.setField('subject', ['Foo', 'Bar', 'Baz'])
-        self.utils.editMetadata(self.doc)
-        self.assertEqual(self.doc.Subject(), ('Foo', 'Bar', 'Baz'))
-
-    def testEffectiveDateField(self):
-        self.setField('effective_date', '2001-01-01')
-        self.utils.editMetadata(self.doc)
-        self.assertEqual(self.doc.EffectiveDate(zone='UTC'), '2001-01-01 00:00:00')
-
-    def testLanguageField(self):
-        self.setField('language', 'de')
-        self.utils.editMetadata(self.doc)
-        # TODO: Note that language, format, and rights do not 
-        #      receive the Formulator treatment.
-        self.assertEqual(self.doc.Language(), '')
-
-
 class TestBreadCrumbs(PloneTestCase.PloneTestCase):
     '''Tests for the portal tabs query'''
 
@@ -654,7 +617,6 @@ def test_suite():
     suite.addTest(makeSuite(TestOwnershipStuff))
     suite.addTest(makeSuite(TestEditMetadata))
     suite.addTest(makeSuite(TestEditMetadataIndependence))
-    suite.addTest(makeSuite(TestFormulatorFields))
     suite.addTest(makeSuite(TestBreadCrumbs))
     suite.addTest(makeSuite(TestIDGenerationMethods))
     return suite

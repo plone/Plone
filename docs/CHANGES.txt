@@ -8,6 +8,10 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Adjust tests to new Archetypes behavior, which respects the default language
+  of the portal_languages tool.
+  [hannosch]
+
 - Adjust the _createObjectByType functions in utils and FactoryTool to use the
   _constructInstance method of the FTI instead of duplicating pieces of its
   logic.

@@ -13,6 +13,10 @@ First, we need to log in.
     >>> browser.getControl('Password').value = 'secret'
     >>> browser.getControl('Log in').click()
 
+We need to allow multiple languages to see the result of our changes:
+
+    >>> self.portal.portal_languages.supported_langs = ['de', 'en']
+
 Add Document
 ------------
 
@@ -66,25 +70,21 @@ We edit the document a second time:
 Editing Properties
 ------------------
 
-We need to allow multiple languages to see the result of our changes:
-
-    >>> self.portal.portal_languages.supported_langs = ['de', 'en']
-
 We edit the document properties:
 
     >>> browser.getLink('Edit').click()
     >>> browser.url
     'http://nohost/plone/Members/test_user_1_/my-page/edit'
 
-We make sure the language is neutral at the beginning:
+We make sure the language is English at the beginning:
 
     >>> browser.getControl(name='language').displayValue
-    ['Language neutral (site default)']
+    ['English']
 
 And the content language is set to the default:
 
     >>> browser.headers.dict['content-language']
-    ''
+    'en'
 
 Now set the language to German:
 
@@ -104,7 +104,7 @@ Make sure the content language was updated:
 Cut and paste Document
 ----------------------
 
-We'll first cut our Document.  Then we'll create folder where we paste
+We'll first cut our Document. Then we'll create folder where we paste
 the Document into.
 
     >>> browser.getLink('Actions').click()
