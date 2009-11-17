@@ -8,6 +8,9 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Clarified the default labels shown on the site setup overview page.
+  [hannosch]
+
 - Adjust tests to new Archetypes behavior, which respects the default language
   of the portal_languages tool.
   [hannosch]

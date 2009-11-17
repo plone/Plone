@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <object name="portal_controlpanel" meta_type="Plone Control Panel Tool"
     xmlns:i18n="http://xml.zope.org/namespaces/i18n" i18n:domain="plone">
- <configlet title="Add-on Products" action_id="QuickInstaller"
+ <configlet title="Add-ons" action_id="QuickInstaller"
     appId="QuickInstaller" category="Plone" condition_expr=""
     icon_expr="string:$portal_url/product_icon.png"
     url_expr="string:${portal_url}/prefs_install_products_form"

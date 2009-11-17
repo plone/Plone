@@ -15,9 +15,10 @@ from Products.CMFCore.permissions import ManagePortal, View
 from Products.CMFCore.utils import _checkPermission, getToolByName, UniqueObject
 from Products.CMFCore.utils import registerToolInterface
 
-from interfaces import IControlPanel
-from Products.CMFPlone.PloneBaseTool import PloneBaseTool
+from Products.CMFPlone import PloneMessageFactory as _
+from Products.CMFPlone.interfaces import IControlPanel
 from Products.CMFPlone.log import log_deprecated
+from Products.CMFPlone.PloneBaseTool import PloneBaseTool
 
 class PloneConfiglet(ActionInformation):
 
@@ -55,24 +56,22 @@ class PloneControlPanel(PloneBaseTool, UniqueObject,
     meta_type = 'Plone Control Panel Tool'
     _actions_form = DTMLFile( 'www/editPloneConfiglets', globals() )
 
-    _properties=(
-        {'id':'groups','type':'lines'},
-    )
-
     manage_options = (ActionProviderBase.manage_options +
                       PropertyManager.manage_options)
 
-    # TODO this is still used but should be handled by the GS profile
-    groups = ['member|Member|My Preferences',
-              'site|Plone|Plone Configuration',
-              'site|Products|Add-on Product Configuration']
-
+    group = dict(
+        member=[
+            ('Member', _(u'My Preferences')),
+        ],
+        site=[
+            ('Plone', _(u'Plone Configuration')),
+            ('Products', _(u'Add-on Configuration')),
+        ]
+    )
 
     def __init__(self, **kw):
         if kw:
             self.__dict__.update(**kw)
-        if not self.__dict__.has_key('groups'):
-            self.__dict__['groups'] = self.groups
 
     security.declareProtected( ManagePortal, 'registerConfiglets' )
     def registerConfiglets(self,configlets):
@@ -83,15 +82,14 @@ class PloneControlPanel(PloneBaseTool, UniqueObject,
             self.registerConfiglet(**conf)
 
     security.declareProtected( ManagePortal, 'getGroupIds' )
-    def getGroupIds(self, category=''):
-        return [g.split('|')[1] for g in self.groups
-                if category=='' or g.split('|')[0]==category]
+    def getGroupIds(self, category='site'):
+        groups = self.group.get(category, [])
+        return [g[0] for g in groups if g]
 
     security.declareProtected( View, 'getGroups' )
-    def getGroups(self,category=''):
-        return [{'id':g.split('|')[1], 'title':g.split('|')[2]}
-                for g in self.groups
-                if category=='' or g.split('|')[0]==category]
+    def getGroups(self, category='site'):
+        groups = self.group.get(category, [])
+        return [{'id': g[0], 'title': g[1]} for g in groups if g]
 
     security.declarePrivate('listActions')
     def listActions(self, info=None, object=None):
