@@ -8,6 +8,10 @@ Changelog
 4.0 - Unreleased
 ----------------
 
+- Moved ``Image Handling`` control panel into the main Plone category. It's not
+  an add-on anymore.
+  [hannosch]
+
 - Clarified the default labels shown on the site setup overview page.
   [hannosch]
 
