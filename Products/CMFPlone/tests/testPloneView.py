@@ -18,7 +18,7 @@ class TestPloneView(PloneTestCase.PloneTestCase):
         self.folder.invokeFactory('Document', 'test',
                                   title='Test default page')
         self.view = Plone(self.portal, self.app.REQUEST)
-        
+
     def _invalidateRequestMemoizations(self):
         try:
             del self.app.REQUEST.__annotations__
@@ -109,35 +109,35 @@ class TestPloneView(PloneTestCase.PloneTestCase):
         # If context is a folder, then the folder is returned
         view = Plone(self.folder, self.app.REQUEST)
         self.assertEqual(view.getCurrentFolder(), self.folder)
-        
+
         # If context is not a folder, then the parent is returned
         # A bit crude ... we need to make sure our memos don't stick in the tests
         self._invalidateRequestMemoizations()
         view = Plone(self.folder.test, self.app.REQUEST)
         self.assertEqual(view.getCurrentFolder(), self.folder)
-        
+
         # The real container is returned regardless of context
         self._invalidateRequestMemoizations()
         view = Plone(self.folder.test.__of__(self.portal), self.app.REQUEST)
         self.assertEqual(view.getCurrentFolder(), self.folder)
-        
+
         # A non-structural folder does not count as a folder`
         f = dummy.NonStructuralFolder('ns_folder')
         self.folder._setObject('ns_folder', f)
         self._invalidateRequestMemoizations()
         view = Plone(self.folder.ns_folder, self.app.REQUEST)
         self.assertEqual(view.getCurrentFolder(), self.folder)
-        
+
         # And even a structural folder that is used as a default page
         # returns its parent
         self.setRoles(['Manager'])
         self.folder.invokeFactory('Topic', 'topic')
-        
+
         self._invalidateRequestMemoizations()
         view = Plone(self.folder.topic, self.app.REQUEST)
         self.assertEqual(view.getCurrentFolder(), self.folder.topic)
         self.folder.saveDefaultPage('topic')
-        
+
         self._invalidateRequestMemoizations()
         view = Plone(self.folder.topic, self.app.REQUEST)
         self.assertEqual(view.getCurrentFolder(), self.folder)
@@ -146,27 +146,27 @@ class TestPloneView(PloneTestCase.PloneTestCase):
         view = Plone(self.portal, self.app.REQUEST)
         self.assertEqual(False, view.have_portlets('plone.leftcolumn'))
         self.assertEqual(False, view.have_portlets('plone.rightcolumn'))
-        
+
     def debug_testDisableColumns(self):
         # Test disabling columns from request
         # first - add some portlets to be sure we have columns
-        
-        # XXX This test should be fixed. It doesn't get the disabling of 
+
+        # XXX This test should be fixed. It doesn't get the disabling of
         # the columsn via REQUEST variable. But the functionality itself works.
         view = Plone(self.portal, self.app.REQUEST)
-        
+
         from zope.component import getUtility
         from plone.portlets.interfaces import IPortletType
-        
+
         self.setRoles(('Manager',))
-        
+
         portlet = getUtility(IPortletType, name='portlets.Calendar')
         mapping_left = self.portal.restrictedTraverse('++contextportlets++plone.leftcolumn')
-        mapping_right = self.portal.restrictedTraverse('++contextportlets++plone.rightcolumn')        
+        mapping_right = self.portal.restrictedTraverse('++contextportlets++plone.rightcolumn')
         for m in mapping_left.keys():
             del mapping_left[m]
         addview_left = mapping_left.restrictedTraverse('+/' + portlet.addview)
-        
+
         for m in mapping_right.keys():
             del mapping_right[m]
         addview_right = mapping_right.restrictedTraverse('+/' + portlet.addview)
@@ -174,15 +174,15 @@ class TestPloneView(PloneTestCase.PloneTestCase):
         # This is a NullAddForm - calling it does the work
         addview_left()
         addview_right()
-        
+
         self.assertEqual(True, view.have_portlets('plone.leftcolumn', view=view))
         self.app.REQUEST.set('plone.leftcolumn', 1)
-        self.assertEqual(False, view.have_portlets('plone.leftcolumn'))  
-        
+        self.assertEqual(False, view.have_portlets('plone.leftcolumn'))
+
         self.assertEqual(True, view.have_portlets('plone.rightcolumn', view=view))
         self.app.REQUEST.set('plone.rightcolumn', 1)
-        self.assertEqual(False, view.have_portlets('plone.rightcolumn'))      
-  
+        self.assertEqual(False, view.have_portlets('plone.rightcolumn'))
+
 
     def testCropText(self):
         view = Plone(self.portal, self.app.REQUEST)
@@ -191,7 +191,7 @@ class TestPloneView(PloneTestCase.PloneTestCase):
         self.assertEqual(view.cropText('Hello world', 10), 'Hello worl...')
         self.assertEqual(view.cropText(u'Hello world', 10), u'Hello worl...')
         self.assertEqual(view.cropText(u'Koko\u0159\xedn', 5), u'Koko\u0159...')
-        # Test utf encoded string Kokorin with 'r' and 'i' accented 
+        # Test utf encoded string Kokorin with 'r' and 'i' accented
         # Must return 6 characters, because 5th character is two byte
         text = u'Koko\u0159\xedn'.encode('utf8')
         self.assertEqual(view.cropText(text, 5), 'Koko\xc5\x99...')
@@ -204,7 +204,7 @@ class TestPloneView(PloneTestCase.PloneTestCase):
         tabs = view.prepareObjectTabs()
         self.assertEquals(tabs[0]['id'], 'folderContents')
         self.assertEquals(['view'], [t['id'] for t in tabs if t['selected']])
-        
+
     def testPrepareObjectTabsNonFolder(self):
         self._invalidateRequestMemoizations()
         self.loginAsPortalOwner()
@@ -213,7 +213,7 @@ class TestPloneView(PloneTestCase.PloneTestCase):
         tabs = view.prepareObjectTabs()
         self.assertEquals(0, len([t for t in tabs if t['id'] == 'folderContents']))
         self.assertEquals(['view'], [t['id'] for t in tabs if t['selected']])
-        
+
     def testPrepareObjectTabsNonStructuralFolder(self):
         self._invalidateRequestMemoizations()
         self.loginAsPortalOwner()
@@ -224,7 +224,7 @@ class TestPloneView(PloneTestCase.PloneTestCase):
         noLongerProvides(self.folder, INonStructuralFolder)
         self.assertEquals(0, len([t for t in tabs if t['id'] == 'folderContents']))
         self.assertEquals(['view'], [t['id'] for t in tabs if t['selected']])
-        
+
     def testPrepareObjectTabsDefaultView(self):
         self._invalidateRequestMemoizations()
         self.loginAsPortalOwner()
