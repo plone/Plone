@@ -147,12 +147,7 @@ class TestPloneView(PloneTestCase.PloneTestCase):
         self.assertEqual(False, view.have_portlets('plone.leftcolumn'))
         self.assertEqual(False, view.have_portlets('plone.rightcolumn'))
 
-    def debug_testDisableColumns(self):
-        # Test disabling columns from request
-        # first - add some portlets to be sure we have columns
-
-        # XXX This test should be fixed. It doesn't get the disabling of
-        # the columsn via REQUEST variable. But the functionality itself works.
+    def testDisableColumns(self):
         view = Plone(self.portal, self.app.REQUEST)
 
         from zope.component import getUtility
@@ -160,6 +155,7 @@ class TestPloneView(PloneTestCase.PloneTestCase):
 
         self.setRoles(('Manager',))
 
+        # first - add some portlets to be sure we have columns
         portlet = getUtility(IPortletType, name='portlets.Calendar')
         mapping_left = self.portal.restrictedTraverse('++contextportlets++plone.leftcolumn')
         mapping_right = self.portal.restrictedTraverse('++contextportlets++plone.rightcolumn')
@@ -175,11 +171,11 @@ class TestPloneView(PloneTestCase.PloneTestCase):
         addview_left()
         addview_right()
 
-        self.assertEqual(True, view.have_portlets('plone.leftcolumn', view=view))
+        self.assertEqual(True, view.have_portlets('plone.leftcolumn'))
         self.app.REQUEST.set('plone.leftcolumn', 1)
         self.assertEqual(False, view.have_portlets('plone.leftcolumn'))
 
-        self.assertEqual(True, view.have_portlets('plone.rightcolumn', view=view))
+        self.assertEqual(True, view.have_portlets('plone.rightcolumn'))
         self.app.REQUEST.set('plone.rightcolumn', 1)
         self.assertEqual(False, view.have_portlets('plone.rightcolumn'))
 
