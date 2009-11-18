@@ -17,6 +17,7 @@
 
 </head>
 
+
 <body tal:define="sites view/sites">
 <div id="box">
     <img src="/++resource++plone-logo.png" width="215" height="56"
@@ -39,25 +40,25 @@
                                i18n:translate="">View your Plone site</a>
                         </span>
                         <div class="upgrade-warning"
-                             tal:condition="python:view.outdated(site)"
-                             i18n:translate="">
-                            The site configuration is outdated and needs to be
-                            upgraded. Please
-                            <a href="#"
-                               tal:attributes="href string:${site/absolute_url}/@@plone-upgrade"
-                               title="Go to the upgrade page"
-                               i18n:attributes="title;"
-                               i18n:name="link_continue_with_the_upgrade"
-                               i18n:translate="">
-                              continue with the upgrade
-                            </a>.
-                        </div>
+                             tal:condition="python:view.outdated(site)">
+                            <span i18n:translate="">
+                            This site configuration is outdated and needs to be
+                            upgraded:</span>
+                            <form action="" 
+                                  style="display: inline;"
+                                  method="get"
+                                  tal:attributes="action string:${site/absolute_url}/@@plone-upgrade">
+                            <input type="submit" 
+                                   value="Upgrade&hellip;" 
+                                   i18n:attributes="value" />
+                            </form>
+                            </div>
                     </li>
                 </tal:one>
                 <tal:many tal:condition="python:len(sites) &gt; 1">
                 <li>
                     <span id="multiple-sites" i18n:translate="">
-                        You have multiple Plone sites. View one of them:
+                        You have multiple Plone sites:
                     </span>
                     <ul>
                         <li tal:repeat="site sites">
@@ -76,16 +77,18 @@
                             <div class="upgrade-warning"
                                  tal:condition="python:view.outdated(site)">
                                 <span i18n:translate="">
-                                    The site configuration is outdated and
-                                    needs to be upgraded.
+                                    This site configuration is outdated and
+                                    needs to be upgraded:
                                 </span>
-                                <a href="#"
-                                   tal:attributes="href string:${site/absolute_url}/@@plone-upgrade"
-                                   title="Go to the upgrade page"
-                                   i18n:attributes="title;"
-                                   i18n:translate="">
-                                  Please continue with the upgrade.
-                                </a>
+                                 <form action="" 
+                                       style="display: inline;"
+                                       method="get"
+                                       tal:attributes="action string:${site/absolute_url}/@@plone-upgrade">
+                                 <input type="submit" 
+                                        value="Upgrade&hellip;" 
+                                        i18n:attributes="value" />
+                                 </form>
+
                             </div>
                         </li>
                     </ul>

@@ -27,9 +27,6 @@ ul {
 ul li {
     margin-bottom: 1em;
 }
-ul ul{
-    margin: .5em 2em;
-}
 .upgrade-steps li, .version-list li {
     margin-bottom: 0.5em;
 }
@@ -40,7 +37,6 @@ dd {
     margin: 0 1em;
 }
 input {
-    font-size: 150%;
     width: inherit;
 }
 input[type="text"]:focus {
@@ -64,8 +60,9 @@ div.formControls {
 .backup-warning {
     background-color:red;
     color: white;
-    padding: 0.1em;
+    padding: 0.5em;
     font-weight: bold;
+    display: block;
 }
 .upgrade-warning {
     background: url(/misc_/PageTemplates/exclamation.gif) top left no-repeat;

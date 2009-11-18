@@ -28,6 +28,7 @@
       <img tal:attributes="src string:${context/absolute_url}/favicon.ico"
            height="16" width="16"/>
       <a href="#"
+         target="_new"
          tal:attributes="href context/absolute_url;
                          title context/Title;"
          tal:content="context/Title">
@@ -41,10 +42,9 @@
     More information about the upgrade procedure can be found in the
     documentation section of plone.org in the
     <a href="http://plone.org/upgrade"
+       target="_new"
        i18n:name="upgrade_guide"
-       i18n:translate="">
-      Upgrade Guide
-    </a>.
+       i18n:translate="">Upgrade Guide</a>.
   </p>
 
   <tal:current tal:condition="versions/equal">
