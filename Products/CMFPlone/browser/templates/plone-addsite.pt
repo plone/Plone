@@ -143,7 +143,7 @@
           <div class="formHelp" i18n:translate="">
               Select any add-ons you want to activate immediately. You can
               also activate add-ons after the site has been created using the
-              Add-on Products control panel.
+              Add-ons control panel.
           </div>
 
           <dl id="extension_ids">
