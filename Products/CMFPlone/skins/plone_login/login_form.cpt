@@ -13,9 +13,9 @@
       </script>
     </metal:js>
     <metal:block fill-slot="top_slot"
-                 tal:define="dummy python:request.set('disable_border',1)" />
-    <metal:block fill-slot="column_one_slot" />
-    <metal:block fill-slot="column_two_slot" />
+                 tal:define="dummy python:request.set('disable_border',1);
+                             disable_column_one python:request.set('plone.leftcolumn',1);
+                             disable_column_two python:request.set('plone.rightcolumn',1);" />
 </head>
 
 <body>
@@ -51,6 +51,8 @@
                 site_properties context/portal_properties/site_properties;
                 use_email_as_login site_properties/use_email_as_login|nothing;
                 ztu modules/ZTUtils;">
+<div class="row">
+    <div class=" cell width-1:2 position-1:4">                
 <form tal:attributes="action python:context.absolute_url()+'/'+template.id"
       class="enableAutoFocus"
       method="post"
@@ -158,6 +160,8 @@
     </fieldset>
 
 </form>
+</div>
+</div>
 
 <div tal:condition="python:checkPermission('Mail forgotten password', context)">
     <h3 i18n:translate="box_forgot_password_option">

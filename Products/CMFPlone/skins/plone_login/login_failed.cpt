@@ -7,15 +7,15 @@
       i18n:domain="plone">
 
 <head>
-    <metal:block fill-slot="column_one_slot" />
-    <metal:block fill-slot="column_two_slot" />
+    <metal:block fill-slot="top_slot"
+                 tal:define="disable_column_one python:request.set('plone.leftcolumn',1);
+                             disable_column_two python:request.set('plone.rightcolumn',1);" />
 </head>
 
 <body>
 
 <div metal:fill-slot="main">
-  <div id="content"
-       metal:define-macro="login_failed"
+  <div metal:define-macro="login_failed"
        tal:define="auth nocall:context/acl_users/credentials_cookie_auth|context/cookie_authentication|nothing;
                    came_from request/came_from|request/HTTP_REFERER|nothing;
                    came_from python:test(context.portal_url.isURLInPortal(came_from), came_from, None);
