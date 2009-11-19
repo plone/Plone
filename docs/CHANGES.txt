@@ -5,8 +5,8 @@
 Changelog
 =========
 
-4.0 - Unreleased
-----------------
+4.0a1 - 2009-11-19
+------------------
 
 - Moved ``Image Handling`` control panel into the main Plone category. It's not
   an add-on anymore.
