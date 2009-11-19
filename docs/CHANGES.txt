@@ -540,7 +540,7 @@ Changelog
 
 - Made sure the export order of the factory tool GS step is consistent. 
   This closes http://dev.plone.org/plone/ticket/7892. 
- [hannosch]
+  [hannosch]
 
 - Replaced lock_icon with smaller version with one third of the size. 
   [hannosch]
