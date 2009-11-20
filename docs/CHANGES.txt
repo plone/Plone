@@ -8,6 +8,10 @@ Changelog
 4.0a2 - Unreleased
 ------------------
 
+- Added back an ``utranslate`` function to the i18nl10n module that retains the
+  old call signature.
+  [hannosch]
+
 4.0a1 - 2009-11-19
 ------------------
 

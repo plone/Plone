@@ -6,6 +6,7 @@ import logging
 
 from zope.i18n import translate
 from zope.i18n.locales import locales
+from zope.publisher.interfaces.browser import IBrowserRequest
 
 from Acquisition import aq_acquire
 from DateTime import DateTime
@@ -56,6 +57,16 @@ def setDefaultTimeFormat(localeid, value):
     gregorian = locales.getLocale(*localeid).dates.calendars[u'gregorian']
     time_format = gregorian.timeFormats['medium'].formats[None]
     time_format.pattern = value
+
+
+def utranslate(domain, msgid, mapping=None, context=None,
+               target_language=None, default=None):
+    # We used to pass an object as context.
+    if not IBrowserRequest.providedBy(context):
+        context = aq_acquire(context, 'REQUEST')
+    # The signature of zope.i18n's translate has the msgid and domain switched
+    return translate(msgid, domain=domain, mapping=mapping, context=context,
+                     target_language=target_language, default=default)
 
 
 # unicode aware localized time method (l10n)
