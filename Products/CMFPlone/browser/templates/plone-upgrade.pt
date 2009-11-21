@@ -16,7 +16,8 @@
         href="/++resource++plone-admin-ui.css" />
 
 </head>
-<body tal:define="versions view/versions; report options/report|nothing;">
+<body id="plone-upgrade-screen"
+      tal:define="versions view/versions; report options/report|nothing;">
 
   <img src="/++resource++plone-logo.png" width="215" height="56" />
 

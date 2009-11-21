@@ -3,7 +3,10 @@ body {
     line-height: 1.5em;
     clear: both;
     margin: 2em auto;
-    width:35em;
+    width: 35em;
+}
+#plone-upgrade-screen {
+    width: 50em;
 }
 h1, h2 {
     font-family: "Helvetica Neue", Arial, FreeSans, sans-serif; 
