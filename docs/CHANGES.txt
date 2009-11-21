@@ -8,6 +8,11 @@ Changelog
 4.0a2 - Unreleased
 ------------------
 
+- Depend on ``plone.app.upgrade`` so it gets installed by default. Keeping
+  the upgrade package separate only made sense when it had massively more
+  dependencies than Plone itself. That cleanup isn't part of Plone 4.0.
+  [hannosch]
+
 - Added back an ``utranslate`` function to the i18nl10n module that retains the
   old call signature.
   [hannosch]
