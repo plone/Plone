@@ -32,7 +32,6 @@
  <javascript id="dropdown.js" authenticated="True" />
  <javascript id="table_sorter.js" authenticated="True" />
  <javascript id="calendar_formfield.js" authenticated="True" />
- <javascript id="calendarpopup.js" authenticated="True" enabled="False" />
  <javascript id="formUnload.js" authenticated="True" />
  <javascript id="formsubmithelpers.js" authenticated="True" />
  <javascript id="unlockOnFormUnload.js" authenticated="True" />

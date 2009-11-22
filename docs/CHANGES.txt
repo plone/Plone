@@ -8,6 +8,9 @@ Changelog
 4.0a2 - Unreleased
 ------------------
 
+- Remove ``calendarpopup.js`` from jsregistry.xml. It no longer exists.
+  [hannosch]
+
 - Depend on ``plone.app.upgrade`` so it gets installed by default. Keeping
   the upgrade package separate only made sense when it had massively more
   dependencies than Plone itself. That cleanup isn't part of Plone 4.0.
