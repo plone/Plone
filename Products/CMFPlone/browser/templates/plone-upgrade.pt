@@ -10,7 +10,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-  <title i18n:translate="">Upgrade this Plone site</title>
+  <title i18n:translate="">Upgrade this site</title>
 
   <link rel="stylesheet" type="text/css"
         href="/++resource++plone-admin-ui.css" />
@@ -22,7 +22,7 @@
   <img src="/++resource++plone-logo.png" width="215" height="56" />
 
   <h1 i18n:translate="">
-    Upgrade this Plone site
+    Upgrade this site
   </h1>
 
   <div class="prominent">
