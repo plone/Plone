@@ -52,7 +52,7 @@
 
     <p class="prominent">
       <img src="confirm_icon.png" />
-      <span i18n:translate="" tal:omit-tag="">Your Plone site is up to date.</span>
+      <span i18n:translate="" tal:omit-tag="">Your site is up to date.</span>
     </p>
 
   </tal:current>
@@ -75,8 +75,8 @@
 
         <p>
           <span class="backup-warning">
-            Please ensure you have a backup of your Plone site before
-            performing the upgrade.
+            Please ensure you have a backup of your site before performing the
+            upgrade.
           </span>
         </p>
 
@@ -176,13 +176,12 @@
 
   </tal:report>
 
-  <h2 i18n:translate="heading_plone_version_overview">
-      Plone Version Overview
+  <h2 i18n:translate="heading_version_overview">
+      Version Overview
   </h2>
 
   <ul class="version-list" tal:define="corelist versions/corelist">
       <li>Plone <span tal:replace="versions/instance" /></li>
-      <li>CMF <span tal:replace="corelist/CMF" /></li>
       <li>Zope <span tal:replace="corelist/Zope" /></li>
       <li>Python <span tal:replace="corelist/Python" /></li>
   </ul>
