@@ -148,7 +148,7 @@
   <property name="mark_special_links" type="string">false</property>
   <property name="redirect_links" type="boolean">True</property>
   <property name="use_email_as_login" type="boolean">False</property>
-  <property name="join_form_fields" type="lines">
+  <property name="user_registration_fields" type="lines">
     <element value="fullname"/>
     <element value="username"/>
     <element value="email"/>

@@ -53,7 +53,7 @@ the same site, since it is the only one the testbrowser knows about:
   >>> folder.invokeFactory('News Item', id='important', title='some important news!')
   'important'
   >>> folder.important.setText(' \
-  ... <form action="/plone/join_form" method="post"> \
+  ... <form action="/plone/@@register" method="post"> \
   ... <input type="hidden" name="fullname" value="John Doe" /> \
   ... <input type="hidden" name="username" value="john" /> \
   ... <input type="hidden" name="email" value="john@spam-factory.com" /> \
@@ -88,7 +88,7 @@ clicks the button presented:
 So, he was protected from the attack — phew.  But of course, he should still
 be able to add new users himself if he wishes so:
 
-  >>> browser.open('http://nohost/plone/join_form')
+  >>> browser.open('http://nohost/plone/@@register')
   >>> browser.getControl(name='_authenticator')
   <Control name='_authenticator' type='hidden'>
 

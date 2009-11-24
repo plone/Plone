@@ -41,7 +41,7 @@ Registration
 We then visit the registration form.  We can fill in a user name
 there:
 
-    >>> browser.open('http://nohost/plone/@@join_form')
+    >>> browser.open('http://nohost/plone/@@register')
     >>> browser.getControl(name='form.username').value='username'
     >>> browser.getControl(name='form.email').value='username@example.org'
     >>> browser.getControl(name='form.password').value = default_password
@@ -67,7 +67,7 @@ We switch on using the email address as login name.
 Now we visit the registration form.  The user name field is no longer
 there:
 
-    >>> browser.open('http://nohost/plone/@@join_form')
+    >>> browser.open('http://nohost/plone/@@register')
     >>> self.assertRaises(LookupError, browser.getControl, name='username')
 
 We fill in the rest of the form:

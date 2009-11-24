@@ -8,6 +8,9 @@ Changelog
 4.0a2 - Unreleased
 ------------------
 
+- Point the "Join" action the newly-renamed @@register view.
+  [esteele]
+
 - Remove ``calendarpopup.js`` from jsregistry.xml. It no longer exists.
   [hannosch]
 
