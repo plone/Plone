@@ -181,17 +181,6 @@
       <tal:comment replace="nothing"> end column wrapper </tal:comment>
 
       <div class="visualClear" id="clear-space-before-footer"><!-- --></div>
-      
-      <div tal:define="context_state context/@@plone_context_state;
-                        portlet_assignable context_state/portlet_assignable"
-            tal:condition="python:not sl and not sr and portlet_assignable and checkPermission('Portlets: Manage portlets', context)">
-          <a class="managePortletsFallback"
-             tal:attributes="href string:${context_state/canonical_object_url}/@@manage-portlets"
-             i18n:domain="plone"
-             i18n:translate="manage_portlets_link">
-             Manage portlets
-          </a>
-      </div>
 
       <metal:block i18n:domain="plone">
 

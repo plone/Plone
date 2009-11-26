@@ -8,6 +8,11 @@ Changelog
 4.0a2 - Unreleased
 ------------------
 
+- moved "Manage portlets" fallback link out of main_template to 
+  plone.manage_portlets_fallback viewlet
+  https://dev.plone.org/plone/ticket/9808
+  [spliter]
+
 - Point the "Join" action the newly-renamed @@register view.
   [esteele]
 
