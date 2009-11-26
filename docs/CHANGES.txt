@@ -8,7 +8,7 @@ Changelog
 4.0a2 - Unreleased
 ------------------
 
-- re-applied fix for plone.css by aaronv. Fixes #9366
+- re-applied fix for plone.css by aaronv. Fixes #9366 and #9761
   [spliter]
 
 - moved plone.css.py to CMFPlone in order to share it among all themes
