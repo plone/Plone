@@ -8,6 +8,9 @@ Changelog
 4.0a2 - Unreleased
 ------------------
 
+- fixed validation of prefs_main_template for plonetheme.classic
+  [spliter]
+
 - re-applied fix for plone.css by aaronv. Fixes #9366 and #9761
   [spliter]
 
