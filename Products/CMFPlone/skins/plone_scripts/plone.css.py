@@ -13,7 +13,7 @@ stylesheets = portal_css.getEvaluatedResources(context);
 current_skin = context.getCurrentSkinName()
 
 for stylesheet in stylesheets:
-  if stylesheet.getRendering() in ['import','inline']:
+  if stylesheet.getRendering() in ['import','inline','link']:
     print portal_css.restrictedTraverse('%s/%s' % (current_skin, stylesheet.getId()))
  
 duration = 1
