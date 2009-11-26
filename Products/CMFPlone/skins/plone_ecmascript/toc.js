@@ -43,5 +43,12 @@ jq(function() {
         //Use a clever class name to add margin that's MUCH easier to customize
         oltoc.addClass("TOC"+numdigits+"Digit");
         dest.append(oltoc);
+        
+        //scroll to element now.
+        var $target = jq(window.location.hash);
+        $target = $target.length && $target
+	          || jq('[name=' + window.location.hash.slice(1) +']');
+	    var targetOffset = $target.offset().top;
+	    jq('html,body').animate({scrollTop: targetOffset}, 0);
     }
 });
