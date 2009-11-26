@@ -202,3 +202,11 @@ may need to take the following changes into account.
 
 * Products.CMFPlone.CatalogTool.registerIndexableAttribute has been removed. 
   Use plone.indexer
+
+* "Manage portlets" fallback link appearing below content when no columns are 
+  available has been moved out from main_template to 
+  plone.manage_portlets_fallback viewlet. So if you have customized 
+  main_template you might need to update it. 
+  
+* Columns in templates are disabled the same way as "editor border" - via 
+  REQUEST variable now instead of empty fill-slot
