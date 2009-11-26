@@ -8,6 +8,10 @@ Changelog
 4.0a2 - Unreleased
 ------------------
 
+- moved plone.css.py to CMFPlone in order to share it among all themes
+  http://dev.plone.org/plone/ticket/9366
+  [spliter]
+
 - moved "Manage portlets" fallback link out of main_template to 
   plone.manage_portlets_fallback viewlet
   http://dev.plone.org/plone/ticket/9808
