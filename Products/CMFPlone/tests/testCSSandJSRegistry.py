@@ -60,7 +60,6 @@ class TestJSRegistry(PloneTestCase.PloneTestCase):
         installedScriptIds = self.tool.getResourceIds()
         expected = [
              'calendar_formfield.js',
-             'calendarpopup.js',
              'collapsiblesections.js',
              'first_input_focus.js',
              'jquery.highlightsearchterms.js',
