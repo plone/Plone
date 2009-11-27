@@ -227,7 +227,7 @@ def setupPortalContent(p):
                                       target_language=target_language,
                                       default='Site News')
 
-        _createObjectByType('Large Plone Folder', p, id='news',
+        _createObjectByType('Folder', p, id='news',
                             title=news_title, description=news_desc)
         _createObjectByType('Topic', p.news, id='aggregator',
                             title=news_title, description=news_desc)
@@ -271,7 +271,7 @@ def setupPortalContent(p):
                                       target_language=target_language,
                                       default='Site Events')
 
-        _createObjectByType('Large Plone Folder', p, id='events',
+        _createObjectByType('Folder', p, id='events',
                             title=events_title, description=events_desc)
         _createObjectByType('Topic', p.events, id='aggregator',
                             title=events_title, description=events_desc)
@@ -343,7 +343,7 @@ def setupPortalContent(p):
     members_title = 'Users'
     members_desc = "Container for users' home directories"
     if 'Members' not in existing:
-        _createObjectByType('Large Plone Folder', p, id='Members',
+        _createObjectByType('Folder', p, id='Members',
                             title=members_title, description=members_desc)
 
     if 'Members' in p.keys():

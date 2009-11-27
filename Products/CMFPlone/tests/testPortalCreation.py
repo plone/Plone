@@ -106,14 +106,14 @@ class TestPortalCreation(PloneTestCase.PloneTestCase, WarningInterceptor):
         self.failIf('plone_workflow' in lpf_chain)
 
     def testMembersFolderMetaType(self):
-        # Members folder should have meta_type 'ATBTreeFolder'
+        # Members folder should have meta_type 'ATFolder'
         members = self.membership.getMembersFolder()
-        self.assertEqual(members.meta_type, 'ATBTreeFolder')
+        self.assertEqual(members.meta_type, 'ATFolder')
 
     def testMembersFolderPortalType(self):
-        # Members folder should have portal_type 'Large Plone Folder'
+        # Members folder should have portal_type 'Folder'
         members = self.membership.getMembersFolder()
-        self.assertEqual(members._getPortalTypeName(), 'Large Plone Folder')
+        self.assertEqual(members._getPortalTypeName(), 'Folder')
 
     def testMembersFolderMeta(self):
         # Members folder should have title 'Users'
@@ -281,7 +281,7 @@ class TestPortalCreation(PloneTestCase.PloneTestCase, WarningInterceptor):
     def testNewsFolder(self):
         self.failUnless('news' in self.portal.objectIds())
         folder = getattr(self.portal, 'news')
-        self.assertEqual(folder.portal_type, 'Large Plone Folder')
+        self.assertEqual(folder.portal_type, 'Folder')
         self.assertEqual(folder.getDefaultPage(), 'aggregator')
         self.assertEqual(folder.getRawLocallyAllowedTypes(), ('News Item',))
         self.assertEqual(folder.getRawImmediatelyAddableTypes(), ('News Item',))
@@ -290,7 +290,7 @@ class TestPortalCreation(PloneTestCase.PloneTestCase, WarningInterceptor):
     def testEventsFolder(self):
         self.failUnless('events' in self.portal.objectIds())
         folder = getattr(self.portal, 'events')
-        self.assertEqual(folder.portal_type, 'Large Plone Folder')
+        self.assertEqual(folder.portal_type, 'Folder')
         self.assertEqual(folder.getDefaultPage(), 'aggregator')
         self.assertEqual(folder.getRawLocallyAllowedTypes(), ('Event',))
         self.assertEqual(folder.getRawImmediatelyAddableTypes(), ('Event',))
@@ -897,8 +897,7 @@ class TestPortalBugs(PloneTestCase.PloneTestCase):
     def testMembersIndexHtml(self):
         # index_html for Members folder should be a Page Template
         members = self.members
-        #self.assertEqual(aq_base(members).meta_type, 'Large Plone Folder')
-        self.assertEqual(aq_base(members).meta_type, 'ATBTreeFolder')
+        self.assertEqual(aq_base(members).meta_type, 'ATFolder')
         self.failUnless(hasattr(aq_base(members), 'index_html'))
         # getitem works
         self.assertEqual(aq_base(members)['index_html'].meta_type, self.mem_index_type)
@@ -916,7 +915,7 @@ class TestPortalBugs(PloneTestCase.PloneTestCase):
         # special treatment of 'index_html' in the PloneFolder base class and
         # got fixed by hazmat.
         members = self.members
-        self.assertEqual(aq_base(members).meta_type, 'ATBTreeFolder')
+        self.assertEqual(aq_base(members).meta_type, 'ATFolder')
         self.assertEqual(members.index_html.meta_type, self.mem_index_type)
 
     def testSubsequentProfileImportSucceeds(self):

@@ -8,6 +8,10 @@ Changelog
 4.0a2 - Unreleased
 ------------------
 
+- Create normal folders instead of Large Folders (which are deprecated)
+  for the initial example content.  All folders are now BTree-based.
+  [davisagli]
+
 - fixed validation of prefs_main_template for plonetheme.classic
   [spliter]
 
