@@ -34,9 +34,11 @@
       To make new products show up here, add them to your buildout
       configuration, run buildout, and restart the server process.
       For detailed instructions see
-      <a href="http://plone.org/documentation/tutorial/buildout/installing-a-third-party-product">
+      <span i18n:name="third_party_product">
+      <a i18n:translate="label_third_party_product" href="http://plone.org/documentation/tutorial/buildout/installing-a-third-party-product">
         Installing a third party product
-      </a>.
+      </a>
+      </span>.
     </p>
 
     <form style="float: left;"
