@@ -344,7 +344,7 @@ class RegistrationTool(PloneBaseTool, BaseTool):
         m_to = message_obj['To']
         m_from = message_obj['From']
         host = getToolByName(self, 'MailHost')
-        host.send(mail_text, m_to, m_from, subject=subject, charset=encoding)
+        host.send(mail_text, m_to, m_from, subject=subject, charset=encoding, immediate=True)
 
         return self.mail_password_response( self, self.REQUEST )
 

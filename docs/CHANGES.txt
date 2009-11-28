@@ -8,6 +8,12 @@ Changelog
 4.0a2 - Unreleased
 ------------------
 
+- RegistrationTool's registeredNotify now sends mail immediately instead of
+  waiting until the end of the transaction. This puts the function back in
+  line with the way the method worked in previous versions of Plone. 
+  http://dev.plone.org/plone/ticket/9871
+  [esteele]
+
 - Create normal folders instead of Large Folders (which are deprecated)
   for the initial example content.  All folders are now BTree-based.
   [davisagli]
