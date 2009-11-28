@@ -8,13 +8,17 @@ Changelog
 3.3.3 - Unreleased
 ------------------
 
+- Increased maximum length of the sortable_title index from 30 to 40 characters
+  to ensure titles containing an ISO date can be sorted.
+  [hannosch]
+
 - Added scroll to anchor tag in toc.js because Firefox was not bringing a user 
   to any anchor tags when a link was directly given to one.
   This closes http://dev.plone.org/plone/ticket/9364
   [vangheem]
 
-- Fixed untranslatable info message "The username you entered could not be found"
-  and other messages in RegistrationTool.py
+- Fixed untranslatable info message "The username you entered could not be
+  found" and other messages in RegistrationTool.py.
   This closes http://dev.plone.org/plone/ticket/9744
   [vincentfretin]
 

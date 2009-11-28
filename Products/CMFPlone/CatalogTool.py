@@ -220,6 +220,10 @@ def sortable_title(obj):
     >>> self.folder.setTitle('Plone42 _foo')
     >>> sortable_title(self.folder, self.portal)
     'plone00000042 _foo'
+
+    >>> self.folder.setTitle('Archive 2009-11-28')
+    >>> sortable_title(self.folder, self.portal)
+    'archive-00002009-00000011-00000028'
     """
     title = getattr(obj, 'Title', None)
     if title is not None:
@@ -230,7 +234,7 @@ def sortable_title(obj):
             # Replace numbers with zero filled numbers
             sortabletitle = num_sort_regex.sub(zero_fill, sortabletitle)
             # Truncate to prevent bloat
-            sortabletitle = safe_unicode(sortabletitle)[:30].encode('utf-8')
+            sortabletitle = safe_unicode(sortabletitle)[:40].encode('utf-8')
             return sortabletitle
     return ''
 
