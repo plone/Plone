@@ -43,7 +43,7 @@ jq(function(){
         }
     );
     
-    // delete / rename confirmation dialog;
+    // delete / rename confirmation dialog
     jq('#plone-contentmenu-actions a#delete, #plone-contentmenu-actions a#rename').prepOverlay(
         {
             subtype:'ajax',
@@ -51,5 +51,15 @@ jq(function(){
             closeselector: '[name=form.button.Cancel]'
         }
     );
+
+    // registration
+    jq('#portal-personaltools a[href$=/@@register]').prepOverlay(
+        {
+            subtype: 'ajax',
+            filter: '#content>*',
+            formselector: 'form.kssattr-formname-register',
+        }
+    );
+
 });
 
