@@ -58,10 +58,11 @@ def quote_bad_chars(s):
 # so we don't even attept to make that right.
 # But we strip these and these so that the catalog does
 # not interpret them as metachars
-##q = re.compile(r'[\*\?\-\+]+').sub(' ', q)
-for char in '?-+*':
+# See http://dev.plone.org/plone/ticket/9422 for an explanation of '\u3000'
+multispace = u'\u3000'.encode('utf-8')
+for char in ('?', '-', '+', '*', multispace):
     q = q.replace(char, ' ')
-r=q.split()
+r = q.split()
 r = " AND ".join(r)
 r = quote_bad_chars(r)+'*'
 searchterms = url_quote_plus(r)
