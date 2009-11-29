@@ -8,6 +8,10 @@ Changelog
 4.0a2 - Unreleased
 ------------------
 
+- Use the @@plone-upgrade view as the default management screen for the
+  migration tool.
+  [davisagli]
+
 - Respect multibyte language delimiter in search field. This closes
   http://dev.plone.org/plone/ticket/9422.
   [hannosch]
