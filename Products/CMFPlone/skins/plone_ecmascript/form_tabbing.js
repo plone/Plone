@@ -136,10 +136,7 @@ ploneFormTabbing.initializeForm = function() {
 
 };
 
-})(jQuery);
-
-(function($) {    
-$(function() {
+ploneFormTabbing.initialize = function() {
     $("form.enableFormTabbing,div.enableFormTabbing").each(ploneFormTabbing.initializeForm);
     $("dl.enableFormTabbing").each(ploneFormTabbing.initializeDL);
 
@@ -150,5 +147,8 @@ $(function() {
          targetPane.replace("'", "").replace(/^#fieldset-/, "#fieldsetlegend-") +
          "']").click();
     }
-});
+}
+
 })(jQuery);
+
+jq(function(){ploneFormTabbing.initialize();});
