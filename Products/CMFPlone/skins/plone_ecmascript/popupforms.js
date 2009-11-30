@@ -61,5 +61,15 @@ jq(function(){
         }
     );
 
+    // add new user
+    jq('form[name=users_add]').prepOverlay(
+        {
+            subtype: 'ajax',
+            filter: '#content>*',
+            formselector: 'form.kssattr-formname-new-user',
+            noform: 'close'
+        }
+    );
+
 });
 
