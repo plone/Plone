@@ -17,6 +17,14 @@
       />
 
   <browser:page
+      for="OFS.Folder.Folder"
+      name="plone-addsite"
+      class=".admin.AddPloneSite"
+      permission="zope2.ViewManagementScreens"
+      template="templates/plone-addsite.pt"
+      />
+
+  <browser:page
       for="Products.CMFPlone.interfaces.IPloneSiteRoot"
       name="plone-upgrade"
       class=".admin.Upgrade"

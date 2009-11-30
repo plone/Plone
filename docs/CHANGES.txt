@@ -8,6 +8,10 @@ Changelog
 4.0a2 - Unreleased
 ------------------
 
+- Restore the ability to add Plone sites within ZODB mountpoints (and other
+  OFS folders).
+  [davisagli]
+
 - Move prefs_navigation_form to plone.app.controlpanel as 
   @@navigation-controlpanel. The form and its cpy script have been deprecated.
   [esteele]
