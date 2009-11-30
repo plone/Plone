@@ -102,7 +102,7 @@
  <configlet title="Navigation" action_id="NavigationSettings"
     appId="Plone" category="Plone" condition_expr=""
     icon_expr="string:$portal_url/navigation_icon.png"
-    url_expr="string:${portal_url}/prefs_navigation_form" visible="True"
+    url_expr="string:${portal_url}/@@navigation-controlpanel" visible="True"
     i18n:attributes="title">
   <permission>Manage portal</permission>
  </configlet>

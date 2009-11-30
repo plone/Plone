@@ -8,6 +8,10 @@ Changelog
 4.0a2 - Unreleased
 ------------------
 
+- Move prefs_navigation_form to plone.app.controlpanel as 
+  @@navigation-controlpanel. The form and its cpy script have been deprecated.
+  [esteele]
+
 - Use the @@plone-upgrade view as the default management screen for the
   migration tool.
   [davisagli]
