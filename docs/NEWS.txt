@@ -8,6 +8,12 @@ Changelog
 3.3.3 - Unreleased
 ------------------
 
+- Added tal condition to check if the user object is None when rendering
+  pref_group_members.cpt since group assignments are not deleted when
+  a user is deleted.
+  This addresses https://dev.plone.org/plone/ticket/9885
+  [vangheem]
+
 - Increased maximum length of the sortable_title index from 30 to 40 characters
   to ensure titles containing an ISO date can be sorted.
   [hannosch]
