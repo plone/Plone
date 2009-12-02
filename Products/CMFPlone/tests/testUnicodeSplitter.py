@@ -251,6 +251,7 @@ class TestBigramFunctions(PloneTestCase.PloneTestCase):
             ("日", ["日"]),
             ("日本語", ["日本", "本語", "語"]),
             ("日本語python", ["日本", "本語", "語", "python"]),
+            ("日本語12345", ["日本", "本語", "語", "12345"]),
             ]
         for lst, rst in lsts:
             self.assertEqual(rst, process_str(lst, "utf8"))
@@ -261,6 +262,7 @@ class TestBigramFunctions(PloneTestCase.PloneTestCase):
             (u"日", [u"日"]),
             (u"日本語", [u"日本", u"本語", u"語"]),
             (u"日本語python", [u"日本", u"本語", u"語", u"python"]),
+            (u"日本語12345", [u"日本", u"本語", u"語", u"12345"]),
             ]
         for lst, rst in lsts:
             self.assertEqual(rst, list(process_unicode(lst)))

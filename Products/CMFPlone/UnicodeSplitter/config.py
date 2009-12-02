@@ -11,7 +11,7 @@ STOP_WORD = []
 ## Setting, adding langs.
 rangetable = dict(
     #ascii = u"a-zA-Z0-9_",
-    digit = u"\d",
+    #digit = u"\d",
 
     # U+AC00-D7AF 	Hangul Syllables 	ハングル音節文字
     hangul = u"\uAC00-\uD7AF",
