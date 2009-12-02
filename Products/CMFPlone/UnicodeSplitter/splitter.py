@@ -38,11 +38,11 @@ def process_str_post(s, enc):
             uni = s.decode(enc, "strict")
         else:
             uni = s
-    except UnicodeDecodeError, e:
+    except UnicodeDecodeError:
         return s.replace("?", "").replace("*", "")
     try:
         return uni.replace(u"?", u"").replace(u"*", u"").encode(enc, "strict")
-    except UnicodeEncodeError, e:
+    except UnicodeEncodeError:
         return s.replace("?", "").replace("*", "")
 
 
@@ -58,7 +58,7 @@ def process_str(s, enc):
             uni = s.decode(enc, "strict")
         else:
             uni = s
-    except UnicodeDecodeError, e:
+    except UnicodeDecodeError:
         return rx_L.findall(s)
     bigrams = process_unicode(uni)
     return [x.encode(enc, "strict") for x in bigrams]
@@ -76,7 +76,7 @@ def process_str_glob(s, enc):
             uni = s.decode(enc, "strict")
         else:
             uni = s
-    except UnicodeDecodeError, e:
+    except UnicodeDecodeError:
         return rxGlob_L.findall(s)
     bigrams = process_unicode_glob(uni)
     return [x.encode(enc, "strict") for x in bigrams]

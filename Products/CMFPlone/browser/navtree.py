@@ -29,7 +29,6 @@ class NavtreeQueryBuilder(object):
 
     def __init__(self, context):
         portal_properties = getToolByName(context, 'portal_properties')
-        portal_url = getToolByName(context, 'portal_url')
         navtree_properties = getattr(portal_properties, 'navtree_properties')
 
         # Acquire a custom nav query if available

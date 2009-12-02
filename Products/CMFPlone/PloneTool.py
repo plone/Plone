@@ -181,9 +181,9 @@ class PloneTool(PloneBaseTool, UniqueObject, SimpleItem):
                            send_from_address=send_from_address,
                            comment=comment, subject=subject, **kwargs)
         message = message.encode(encoding)
-        result = host.send(message, mto=send_to_address,
-                           mfrom=envelope_from, subject=subject,
-                           charset=self.getSiteEncoding())
+        host.send(message, mto=send_to_address,
+                  mfrom=envelope_from, subject=subject,
+                  charset=self.getSiteEncoding())
 
     security.declarePublic('validateSingleNormalizedEmailAddress')
     def validateSingleNormalizedEmailAddress(self, address):
@@ -449,12 +449,11 @@ class PloneTool(PloneBaseTool, UniqueObject, SimpleItem):
         """
         wf_tool = getToolByName(self, 'portal_workflow')
         wfs = ()
-        review_states = ()
         objstate = None
         try:
             objstate = wf_tool.getInfoFor(obj, 'review_state')
             wfs = wf_tool.getWorkflowsFor(obj)
-        except WorkflowException, e:
+        except WorkflowException:
             pass
         if wfs:
             for w in wfs:
@@ -811,9 +810,6 @@ class PloneTool(PloneBaseTool, UniqueObject, SimpleItem):
             if request['REQUEST_METHOD'] not in ['GET', 'POST']:
                 return obj, [request['REQUEST_METHOD']]
         # Now back to normal
-
-        portal = getToolByName(self, 'portal_url').getPortalObject()
-        wftool = getToolByName(self, 'portal_workflow')
 
         #
         # 1. Get an attribute or contained object index_html

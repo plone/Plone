@@ -93,8 +93,6 @@ class Plone(BrowserView):
         context_url = context.absolute_url()
         context_fti = context.getTypeInfo()
         
-        site_properties = getToolByName(context, "portal_properties").site_properties
-
         context_state = getMultiAdapter((context, self.request), name=u'plone_context_state')
         actions = context_state.actions
 

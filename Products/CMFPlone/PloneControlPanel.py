@@ -103,7 +103,6 @@ class PloneControlPanel(PloneBaseTool, UniqueObject,
     security.declarePublic( 'enumConfiglets' )
     def enumConfiglets(self, group=None):
         portal=getToolByName(self, 'portal_url').getPortalObject()
-        mtool = getToolByName(self, 'portal_membership')
         context=createExprContext(self, portal, self)
         res = []
         for a in self.listActions():

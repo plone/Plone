@@ -588,7 +588,7 @@ def isLinked(obj):
     parent = obj.aq_inner.aq_parent
     try:
         parent.manage_delObjects(obj.getId())
-    except OFS.ObjectManager.BeforeDeleteException, e:
+    except OFS.ObjectManager.BeforeDeleteException:
         linked = True
     except: # ignore other exceptions, not useful to us at this point
         pass

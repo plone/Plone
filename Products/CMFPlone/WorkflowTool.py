@@ -210,7 +210,6 @@ class WorkflowTool(PloneBaseTool, BaseTool):
 
             wf=self.getWorkflowById(id)
             if hasattr(wf, 'worklists'):
-                wlists = []
                 for worklist in wf.worklists:
                     wlist_def=wf.worklists[worklist]
                     # Make the var_matches a dict instead of PersistentMapping to enable access from scripts
@@ -326,7 +325,6 @@ class WorkflowTool(PloneBaseTool, BaseTool):
         if object is not None or info is None:
             info = self._getOAI(object)
         chain = self.getChainFor(info.object)
-        did = {}
         actions = []
 
         for wf_id in chain:

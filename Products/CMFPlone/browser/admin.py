@@ -173,7 +173,6 @@ class Upgrade(BrowserView):
         return result
 
     def __call__(self):
-        context = self.context
         form = self.request.form
         submitted = form.get('form.submitted', False)
         if submitted:

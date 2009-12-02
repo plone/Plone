@@ -38,7 +38,6 @@ class InterfaceTool(PloneBaseTool, UniqueObject, SimpleItem):
     security.declarePublic('classImplements')
     def classImplements(self, obj, dotted_name):
         """ Asserts if an object's class implements a given interface """
-        klass = aq_base(obj).__class__
         iface = resolveInterface(dotted_name)
         return iface.providedBy(obj)
 

@@ -55,7 +55,6 @@ class CatalogNavigationTree(BrowserView):
         context = aq_inner(self.context)
 
         portal_properties = getToolByName(context, 'portal_properties')
-        portal_url = getToolByName(context, 'portal_url')
 
         navtree_properties = getattr(portal_properties, 'navtree_properties')
 
