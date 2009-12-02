@@ -134,7 +134,8 @@
                   </tr>
 
                   <tal:block tal:repeat="this_user groupMembers">
-                    <tr tal:define="oddrow repeat/this_user/odd"
+                    <tr tal:condition="python:this_user is not None"
+                        tal:define="oddrow repeat/this_user/odd"
                         tal:attributes="class python:test(oddrow,'odd','even')">
                         <td class="listingCheckbox">
                             <input
