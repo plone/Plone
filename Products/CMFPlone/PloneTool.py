@@ -1040,10 +1040,10 @@ class PloneTool(PloneBaseTool, UniqueObject, SimpleItem):
         character. not pretty, but about the best we can do.
 
         >>> ptool.normalizeString(u"\u9ad8\u8054\u5408 Chinese")
-        '9ad880545408-chinese'
+        'gao-lian-he-chinese'
 
         >>> ptool.normalizeString(u"\uc774\ubbf8\uc9f1 Korean")
-        'c774bbf8c9f1-korean'
+        'imijjang-korean'
         """
         return utils.normalizeString(text, context=self)
 

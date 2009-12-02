@@ -5,7 +5,6 @@
  <property name="title" i18n:translate="">Image</property>
  <property name="description"
       i18n:translate="">An image, which can be referenced in documents or displayed in an album.</property>
- <property name="content_icon">image_icon.png</property>
  <property name="icon_expr">string:${portal_url}/image_icon.png</property>
  <property name="content_meta_type">ATImage</property>
  <property name="product">plone.app.blob</property>

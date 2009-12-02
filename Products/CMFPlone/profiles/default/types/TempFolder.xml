@@ -4,7 +4,6 @@
  <property name="title" i18n:translate=""></property>
  <property name="description"
      i18n:translate="">Use folders to put content in categories.</property>
- <property name="content_icon">folder_icon.png</property>
  <property name="icon_expr">string:${portal_url}/folder_icon.png</property>
  <property name="content_meta_type">TempFolder</property>
  <property name="product">CMFCore</property>
