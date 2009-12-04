@@ -8,6 +8,10 @@ Changelog
 4.0a3 - Unreleased
 ------------------
 
+- Adjusted rss_template to work for content items without an effective date
+  and include issued and modified tags. Thanks for the patch anthonygerrard.
+  This closes http://dev.plone.org/plone/ticket/7952.
+  [hannosch]
 
 4.0a2 - 2009-12-03
 ------------------

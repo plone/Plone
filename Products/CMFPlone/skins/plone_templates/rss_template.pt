@@ -65,7 +65,9 @@
     <tal:block tal:repeat="item obj_item/Subject">
       <dc:subject tal:content="item">Item</dc:subject>
     </tal:block>
-    <dc:date tal:content="python: obj_item.effective().HTML4()">Publication date</dc:date>
+    <dc:date tal:content="python: exists('obj_item/effective_date') and obj_item.effective().HTML4() or obj_item.modified().HTML4()">Published or last modified date if no published date</dc:date>
+    <dc:issued tal:condition="exists: obj_item/effective_date" tal:content="python: obj_item.effective().HTML4()">Published date if set</dc:issued>
+    <dc:modified tal:content="python: obj_item.modified().HTML4()">Modification date</dc:modified>
     <dc:type tal:content="obj_item/Type">Type</dc:type>
   </item>
 </tal:block>
