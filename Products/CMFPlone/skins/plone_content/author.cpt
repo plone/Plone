@@ -37,7 +37,9 @@
                                 authorinfo python: mtool.getMemberInfo(author);
                                 portal_url context/@@plone_portal_state/navigation_root_url;
                                 here_url context/@@plone_context_state/object_url;
-                                member context/@@plone_portal_state/member;">
+                                member context/@@plone_portal_state/member;
+                                portal context/@@plone_portal_state/portal;
+                                email_from_address portal/email_from_address">
 
         <tal:noAuthor condition="not: authorinfo">
         <div id="region-content">
@@ -150,25 +152,7 @@
                i18n:translate="label_author_external_home_page">Author's external home page&hellip;</a>
             </p>
 
-            <div class="formControls" tal:condition="isAnon">
-            <form 
-              tal:define="pss modules/Products/PythonScripts/standard"
-              tal:attributes="action string:$portal_url/login_form">
-               <input class="standalone"
-                   type="submit"
-                   value="Log in to send feedback"
-                   i18n:attributes="value label_login_to_send_feedback;"
-                   />
-            </form>
-            </div>
-
-            <!-- feedback form -->        
-            <tal:feedbackForm
-                tal:condition="not:isAnon"
-                tal:define="portal context/@@plone_portal_state/portal;
-                            email_from_address portal/email_from_address">
-
-            <tal:noemailsetup tal:condition="not:email_from_address">
+            <tal:noemailsetup tal:condition="python:not (email_from_address or isAnon)">
                 <p class="discreet"
                    i18n:translate="text_no_email_setup">
                     This site doesn't have a valid email setup, so you cannot use
@@ -176,7 +160,23 @@
                 </p>
             </tal:noemailsetup>
 
-            <tal:emailsetup tal:condition="email_from_address">
+            <tal:mailsetup tal:condition="email_from_address">
+
+                <div class="formControls" tal:condition="isAnon">
+                <form 
+                  tal:define="pss modules/Products/PythonScripts/standard"
+                  tal:attributes="action string:$portal_url/login_form">
+                   <input class="standalone"
+                       type="submit"
+                       value="Log in to send feedback"
+                       i18n:attributes="value label_login_to_send_feedback;"
+                       />
+                </form>
+                </div>
+
+                <!-- feedback form -->        
+
+
                 <tal:owner tal:condition="not:isOwner">
                     <p class="discreet"
                        i18n:translate="description_author_feedback">
@@ -219,7 +219,7 @@
                       <label for="message" i18n:translate="label_message">
                         Message
                       </label>
-        
+    
                       <span class="fieldRequired" title="Required"
                               i18n:attributes="title title_required;"
                               i18n:translate="label_required">(Required)</span>
@@ -231,7 +231,7 @@
                                 tal:content="request/message|nothing"
                                 ></textarea>
                     </div>
-        
+    
                     <div class="formControls">
 
                         <input class="context"
@@ -251,10 +251,9 @@
 
                     </form>
                 </tal:owner>
-            </tal:emailsetup>
-            </tal:feedbackForm>
+            </tal:mailsetup>
+
             <!-- listing of content created by this user -->
-        
             <tal:authorContent define="author_content python:context.portal_catalog.searchResults(Creator=author, sort_on='created', sort_order='reverse')[:10];"
                                condition="author_content">
         
