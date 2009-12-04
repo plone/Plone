@@ -1,11 +1,7 @@
-.. This file should contain the changes for the last release only, which
-   will be included on the package's page on pypi. All older entries are
-   kept in HISTORY.txt
-
 Changelog
 =========
 
-4.0a2 - Unreleased
+4.0a2 - 2009-12-03
 ------------------
 
 - Restore the ability to add Plone sites within ZODB mountpoints (and other
