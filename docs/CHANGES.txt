@@ -8,6 +8,10 @@ Changelog
 4.0a3 - Unreleased
 ------------------
 
+- Optimize RSS template and make it work for items without a getText method.
+  This closes http://dev.plone.org/plone/ticket/9696.
+  [hannosch]
+
 - Define encoding for RSS feeds. This closes
   http://dev.plone.org/plone/ticket/3506.
   [hannosch]

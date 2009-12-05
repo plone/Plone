@@ -53,21 +53,31 @@
 
 </channel>
 
-<tal:block repeat="brain python: objects">
-  <item rdf:about="" tal:attributes="rdf:about obj_item/getURL|obj_item/absolute_url" tal:define="obj_item brain/getObject|nocall:brain">
+<tal:block define="getMemberInfo nocall:context/portal_membership/getMemberInfo;"
+           repeat="brain python: objects">
+  <item rdf:about="" tal:attributes="rdf:about obj_item/getURL|obj_item/absolute_url"
+        tal:define="obj_item brain/getObject|nocall:brain;
+                    has_text exists:obj_item/aq_base/getText;
+                    text python:has_text and obj_item.getText() or '';
+                    has_effective exists:obj_item/aq_base/effective_date;
+                    effective python:has_effective and obj_item.effective().HTML4() or '';
+                    modified python:obj_item.modified().HTML4();
+                    creator obj_item/Creator|nothing">
     <title tal:content="obj_item/pretty_title_or_id">Title</title>
     <link tal:content="obj_item/Identifier">Identifier</link>
     <description tal:content="obj_item/Description">Description</description>
-    <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/" tal:content="structure python:'&lt;![CDATA[' + obj_item.getText() + ']]&gt;'">Content</content:encoded>
+    <content:encoded xmlns:content="http://purl.org/rss/1.0/modules/content/"
+        tal:condition="has_text"
+        tal:content="structure python:'&lt;![CDATA[' + text + ']]&gt;'">Content</content:encoded>
     <dc:publisher tal:content="obj_item/Publisher">Publisher</dc:publisher>
-    <dc:creator tal:condition="obj_item/Creator" tal:define="author python:context.portal_membership.getMemberInfo(obj_item.Creator())" tal:content="python:author and author['fullname'] or obj_item.Creator()">Creator</dc:creator>
+    <dc:creator tal:condition="creator" tal:define="author python:getMemberInfo(creator)" tal:content="python:author and author['fullname'] or creator">Creator</dc:creator>
     <dc:rights tal:content="obj_item/Rights">Rights</dc:rights>
     <tal:block tal:repeat="item obj_item/Subject">
       <dc:subject tal:content="item">Item</dc:subject>
     </tal:block>
-    <dc:date tal:content="python: exists('obj_item/effective_date') and obj_item.effective().HTML4() or obj_item.modified().HTML4()">Published or last modified date if no published date</dc:date>
-    <dc:issued tal:condition="exists: obj_item/effective_date" tal:content="python: obj_item.effective().HTML4()">Published date if set</dc:issued>
-    <dc:modified tal:content="python: obj_item.modified().HTML4()">Modification date</dc:modified>
+    <dc:date tal:content="python: has_effective and effective or modified">Published or last modified date if no published date</dc:date>
+    <dc:issued tal:condition="has_effective" tal:content="effective">Published date if set</dc:issued>
+    <dc:modified tal:content="modified">Modification date</dc:modified>
     <dc:type tal:content="obj_item/Type">Type</dc:type>
   </item>
 </tal:block>
