@@ -8,6 +8,10 @@ Changelog
 4.0a3 - Unreleased
 ------------------
 
+- Define encoding for RSS feeds. This closes
+  http://dev.plone.org/plone/ticket/3506.
+  [hannosch]
+
 - On author.cpt, only display the "log in to add comments" button if mailhost
   is defined. Only show the mailhost warning if user is authenticated.
   [esteele]
