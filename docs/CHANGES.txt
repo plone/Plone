@@ -8,6 +8,10 @@ Changelog
 4.0a3 - Unreleased
 ------------------
 
+- Only specify icon_expr in factory type info; not also content_icon which
+  has been deprecated in CMF 2.2.
+  [davisagli]
+
 - Optimize RSS template and make it work for items without a getText method.
   This closes http://dev.plone.org/plone/ticket/9696.
   [hannosch]

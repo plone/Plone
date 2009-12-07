@@ -5,7 +5,6 @@
  <property name="title" i18n:translate="">Link</property>
  <property name="description"
       i18n:translate="">A link to an internal or external resource.</property>
- <property name="content_icon">link_icon.png</property>
  <property name="icon_expr">string:${portal_url}/link_icon.png</property>
  <property name="content_meta_type">ATLink</property>
  <property name="product">ATContentTypes</property>

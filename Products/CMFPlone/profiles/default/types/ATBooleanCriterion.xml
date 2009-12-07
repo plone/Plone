@@ -3,7 +3,6 @@
    i18n:domain="plone" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
  <property name="title" i18n:translate="">Boolean Criterion</property>
  <property name="description" i18n:translate="">A boolean criterion</property>
- <property name="content_icon">document_icon.png</property>
  <property name="icon_expr">string:${portal_url}/document_icon.png</property>
  <property name="content_meta_type">ATBooleanCriterion</property>
  <property name="product">ATContentTypes</property>

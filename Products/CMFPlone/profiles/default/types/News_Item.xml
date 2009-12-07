@@ -5,7 +5,6 @@
  <property name="title" i18n:translate="">News Item</property>
  <property name="description"
      i18n:translate="">An announcement that will show up on the news portlet and in the news listing.</property>
- <property name="content_icon">newsitem_icon.png</property>
  <property name="icon_expr">string:${portal_url}/newsitem_icon.png</property>
  <property name="content_meta_type">ATNewsItem</property>
  <property name="product">ATContentTypes</property>

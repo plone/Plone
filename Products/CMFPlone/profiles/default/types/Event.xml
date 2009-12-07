@@ -5,7 +5,6 @@
  <property name="title" i18n:translate="">Event</property>
  <property name="description"
       i18n:translate="">Information about an upcoming event, which can be displayed in the calendar.</property>
- <property name="content_icon">event_icon.png</property>
  <property name="icon_expr">string:${portal_url}/event_icon.png</property>
  <property name="content_meta_type">ATEvent</property>
  <property name="product">ATContentTypes</property>
