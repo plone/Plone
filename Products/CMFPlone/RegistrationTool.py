@@ -1,6 +1,7 @@
 import re
 import random
 import md5
+from email import message_from_string, MIMEText
 from smtplib import SMTPRecipientsRefused
 
 from zope.component import getUtility
@@ -203,10 +204,17 @@ class RegistrationTool(PloneBaseTool, BaseTool):
             raise Unauthorized(_(u"Mailing forgotten passwords has been disabled."))
 
         utils = getToolByName(self, 'plone_utils')
+        props = getToolByName(self, 'portal_properties').site_properties
+        emaillogin = props.getProperty('use_email_as_login', False)
         member = membership.getMemberById(forgotten_userid)
-
         if member is None:
             raise ValueError(_(u'The username you entered could not be found.'))
+
+        if emaillogin:
+            # We use the member id as new forgotten_userid, because in
+            # resetPassword we ask for the real member id too, instead of
+            # the login name.
+            forgotten_userid = member.getId()
 
         # assert that we can actually get an email address, otherwise
         # the template will be made with a blank To:, this is bad
@@ -227,20 +235,26 @@ class RegistrationTool(PloneBaseTool, BaseTool):
         reset_tool = getToolByName(self, 'portal_password_reset')
         reset = reset_tool.requestReset(forgotten_userid)
 
-        
-        email_charset = getattr(self, 'email_charset', 'UTF-8')
+        encoding = getUtility(ISiteRoot).getProperty('email_charset', 'utf-8')
         mail_text = self.mail_password_template( self
                                                , REQUEST
                                                , member=member
                                                , reset=reset
                                                , password=member.getPassword()
-                                               , charset=email_charset
+                                               , charset=encoding
                                                )
+        # The mail headers are not properly encoded we need to extract
+        # them and let MailHost manage the encoding.
         if isinstance(mail_text, unicode):
-            mail_text = mail_text.encode(email_charset)
-        host = self.MailHost
+            mail_text = mail_text.encode(encoding)
+        message_obj = message_from_string(mail_text)
+        subject = message_obj['Subject']
+        m_to = message_obj['To']
+        m_from = message_obj['From']
+        host = getToolByName(self, 'MailHost')
         try:
-            host.send( mail_text )
+            host.secureSend( message_obj, m_to, m_from, subject=subject,
+                       charset=encoding)
 
             return self.mail_password_response( self, REQUEST )
         except SMTPRecipientsRefused:
@@ -278,9 +292,17 @@ class RegistrationTool(PloneBaseTool, BaseTool):
                                                    , email=email
                                                    )
 
-        host = self.MailHost
-        encoding = getUtility(ISiteRoot).getProperty('email_charset')
-        host.send(mail_text.encode(encoding))
+        encoding = getUtility(ISiteRoot).getProperty('email_charset', 'utf-8')
+        # The mail headers are not properly encoded we need to extract
+        # them and let MailHost manage the encoding.
+        if isinstance(mail_text, unicode):
+            mail_text = mail_text.encode(encoding)
+        message_obj = message_from_string(mail_text)
+        subject = message_obj['Subject']
+        m_to = message_obj['To']
+        m_from = message_obj['From']
+        host = getToolByName(self, 'MailHost')
+        host.secureSend(message_obj, m_to, m_from, subject=subject, charset=encoding)
 
         return self.mail_password_response( self, self.REQUEST )
 
