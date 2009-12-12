@@ -92,6 +92,7 @@ class MembershipTool(PloneBaseTool, BaseTool):
                        'language'    : member.getProperty('language'),
                        'home_page'   : member.getProperty('home_page'),
                        'username'    : member.getUserName(),
+                       'has_email'   : bool(member.getProperty('email')),
                      }
 
         return memberinfo
