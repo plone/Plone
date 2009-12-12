@@ -160,7 +160,7 @@
                 </p>
             </tal:noemailsetup>
 
-            <tal:mailsetup tal:condition="email_from_address">
+            <tal:mailsetup tal:condition="python:email_from_address and authorinfo['has_email']">
 
                 <div class="formControls" tal:condition="isAnon">
                 <form 
