@@ -8,6 +8,12 @@ Changelog
 3.3.3 - Unreleased
 ------------------
 
+- In the MockMailHostTestCase register and unregister the mock mail
+  host as an IMailHost.  Fixes a test failure in PasswordResetTool
+  (once I let that use this test case).  Change taken over from Plone
+  trunk.
+  [maurits]
+
 - Do not display the author contact form when the author has no email
   (for example for openid users).
   Refs http://dev.plone.org/plone/ticket/8707
