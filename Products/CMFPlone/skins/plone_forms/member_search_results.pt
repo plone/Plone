@@ -11,7 +11,8 @@
 
 <div metal:fill-slot="main"
        tal:define="search_view here/@@pas_search;
-                   results python:search_view.searchUsersByRequest(request, sort_by='fullname');
+                   listing_allowed python: checkPermission('List portal members', here);
+                   results python:listing_allowed and search_view.searchUsersByRequest(request, sort_by='fullname') or [];
                    Batch python:modules['Products.CMFPlone'].Batch;
                    DateTime python:modules['DateTime'].DateTime;
                    b_size python:12;b_start python:0;b_start request/b_start | b_start;">
@@ -19,6 +20,10 @@
     <h1 class="documentFirstHeading"
         i18n:translate="heading_search_results">Search results</h1>
 
+    <p tal:condition="not: listing_allowed"
+        i18n:translate="member_listing_not_allowed">
+      You are not allowed to list portal members.
+    </p>
     <div tal:condition="results"
           tal:define="batch python:Batch(results, b_size, int(b_start), orphan=1)">
 
