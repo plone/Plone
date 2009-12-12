@@ -8,6 +8,11 @@ Changelog
 3.3.3 - Unreleased
 ------------------
 
+- Do not display the author contact form when the author has no email
+  (for example for openid users).
+  Refs http://dev.plone.org/plone/ticket/8707
+  [maurits]
+
 - Added tal condition to check if the user object is None when rendering
   pref_group_members.cpt since group assignments are not deleted when
   a user is deleted.

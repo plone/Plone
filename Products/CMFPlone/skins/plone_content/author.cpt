@@ -157,10 +157,12 @@
             </form>
             </div>
 
-            <!-- feedback form -->        
+            <!-- feedback form -->
             <tal:feedbackForm
-                tal:condition="not:isAnon"
-                tal:define="email_from_address portal/email_from_address">
+                tal:define="email_from_address portal/email_from_address;
+                            author_member python:mtool.getMemberById(author);
+                            send_to_address python:author_member and author_member.getProperty('email');"
+                tal:condition="python:send_to_address and not isAnon">
 
             <tal:noemailsetup tal:condition="not:email_from_address">
                 <p class="discreet"
