@@ -8,6 +8,10 @@ Changelog
 4.0a3 - Unreleased
 ------------------
 
+- Updated add-on configuration section. Clarified terminology to refer to
+  de/activation and interpret product readme files as restructered text.
+  [hannosch]
+
 - Adjusted control panel and upgrade screens to show software instead of
   profile version and removed dependency on the persistent product registry.
   [hannosch]
