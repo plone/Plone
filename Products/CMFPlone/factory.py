@@ -53,6 +53,13 @@ class HiddenProfiles(object):
                 ]
 
 
+def zmi_constructor(context):
+    """This is a dummy constructor for the ZMI."""
+    url = context.DestinationURL()
+    request = context.REQUEST
+    return request.response.redirect(url + '/@@plone-addsite?site_id=Plone')
+
+
 def addPloneSite(context, site_id, title='Plone site', description='',
                  create_userfolder=True, email_from_address='',
                  email_from_name='', validate_email=True,

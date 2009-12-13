@@ -175,6 +175,16 @@ def initialize(context):
                 , extra_constructors=contentConstructors
                 ).initialize( context )
 
+    from Products.CMFPlone.Portal import PloneSite
+    from Products.CMFPlone.factory import zmi_constructor
+    from AccessControl.Permissions import view_management_screens
+    context.registerClass(
+        instance_class=PloneSite,
+        permission=view_management_screens,
+        constructors=(zmi_constructor,),
+    )
+
+
 # Import PloneMessageFactory to create messages in the plone domain
 from zope.i18nmessageid import MessageFactory
 PloneMessageFactory = MessageFactory('plone')

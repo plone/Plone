@@ -8,8 +8,9 @@ Changelog
 4.0a3 - Unreleased
 ------------------
 
-- Revert change that made the site object not copyable and prevent importing
-  from zexp files as a consequence.
+- Added ``Plone site`` back to the all_meta_types list and revert change that
+  made the site object not copyable. These prevented Plone sites from being
+  imported from zexp files.
   [hannosch]
 
 - Do not display the author contact form when the author has no email
