@@ -8,6 +8,10 @@ Changelog
 4.0a3 - Unreleased
 ------------------
 
+- Adjusted control panel and upgrade screens to show software instead of
+  profile version and removed dependency on the persistent product registry.
+  [hannosch]
+
 - Changed the default profile metadata version to 4003, to follow our own best
   practices of distinguishing between profile and software versions.
   [hannosch]

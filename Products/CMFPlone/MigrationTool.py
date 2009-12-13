@@ -1,13 +1,15 @@
 import logging
+import sys
 from StringIO import StringIO
 
+import pkg_resources
 import transaction
 from zope.interface import implements
 
 from AccessControl import ClassSecurityInfo
 from AccessControl.requestmethod import postonly
 from App.class_init import InitializeClass
-from Globals import DevelopmentMode
+import Globals
 from OFS.SimpleItem import SimpleItem
 from ZODB.POSException import ConflictError
 
@@ -81,6 +83,12 @@ class MigrationTool(PloneBaseTool, UniqueObject, SimpleItem):
         setup = getToolByName(self, 'portal_setup')
         return setup.getVersionForProfile(_DEFAULT_PROFILE)
 
+    security.declareProtected(ManagePortal, 'getFileSystemVersion')
+    def getSoftwareVersion(self):
+        """ The software version."""
+        dist = pkg_resources.get_distribution('Plone')
+        return dist.version
+
     security.declareProtected(ManagePortal, 'needUpgrading')
     def needUpgrading(self):
         """ Need upgrading? """
@@ -90,25 +98,16 @@ class MigrationTool(PloneBaseTool, UniqueObject, SimpleItem):
     def coreVersions(self):
         """ Useful core information """
         vars = {}
-        cp = self.Control_Panel
-        vars['Zope'] = cp.version_txt()
-        vars['Python'] = cp.sys_version()
-        vars['Platform'] = cp.sys_platform()
+        get_dist = pkg_resources.get_distribution
+        vars['Zope'] = get_dist('Zope2').version
+        vars['Python'] = sys.version
+        vars['Platform'] = sys.platform
+        vars['Plone'] = get_dist('Plone').version
         vars['Plone Instance'] = self.getInstanceVersion()
         vars['Plone File System'] = self.getFileSystemVersion()
-        try:
-            vars['CMF'] = cp.Products.CMFCore.version
-        except AttributeError:
-            # In Zope 2.12 the Products control panel may be empty,
-            # zope-conf-additional = enable-product-installation off.
-            # Note that this is not recommended.
-            vars['CMF'] = 'unknown'
-        vars['Debug mode'] = DevelopmentMode and 'Yes' or 'No'
-        try:
-            from PIL.Image import VERSION
-        except ImportError:
-            VERSION = ''
-        vars['PIL'] = VERSION
+        vars['CMF'] = get_dist('Products.CMFCore').version
+        vars['Debug mode'] = Globals.DevelopmentMode and 'Yes' or 'No'
+        vars['PIL'] = get_dist('PIL').version
         return vars
 
     security.declareProtected(ManagePortal, 'coreVersionsList')

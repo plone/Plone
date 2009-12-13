@@ -181,7 +181,7 @@
   </h2>
 
   <ul class="version-list" tal:define="corelist versions/corelist">
-      <li>Plone <span tal:replace="versions/instance" /></li>
+      <li>Plone <span tal:replace="corelist/Plone" /></li>
       <li>Zope <span tal:replace="corelist/Zope" /></li>
       <li>Python <span tal:replace="corelist/Python" /></li>
   </ul>
