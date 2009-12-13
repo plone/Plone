@@ -8,6 +8,10 @@ Changelog
 4.0a3 - Unreleased
 ------------------
 
+- Changed the default profile metadata version to 4003, to follow our own best
+  practices of distinguishing between profile and software versions.
+  [hannosch]
+
 - Added ``Plone site`` back to the all_meta_types list and revert change that
   made the site object not copyable. These prevented Plone sites from being
   imported from zexp files.
