@@ -8,6 +8,12 @@ Changelog
 3.3.4 - Unreleased
 ------------------
 
+- member_search_results display login names only if the user
+  has "List portal members" permission.
+  Return "not allowed" message and empty search results if not.
+  This fixes http://dev.plone.org/plone/ticket/9923
+  [khink]
+
 - In the MockMailHostTestCase register and unregister the mock mail
   host as an IMailHost.  Fixes a test failure in PasswordResetTool
   (once I let that use this test case).  Change taken over from Plone
