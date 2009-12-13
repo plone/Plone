@@ -62,11 +62,6 @@ class PloneSite(CMFSite, OrderedContainer, BrowserDefaultMixin, UniqueObject):
         of index_html """
         return getToolByName(self, 'plone_utils').browserDefault(self)
 
-    def _canCopy(self, op=0):
-        """Make the site not copyable.
-        """
-        return 0
-
     def index_html(self):
         """ Acquire if not present. """
         request = getattr(self, 'REQUEST', None)
