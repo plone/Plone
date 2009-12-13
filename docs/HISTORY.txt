@@ -3,17 +3,47 @@ Historical release notes
 
 For what's new in this release, see CHANGES.txt.
 
-3.3.3 - Unreleased
+3.3.4 - Unreleased
 ------------------
+
+- member_search_results display login names only if the user
+  has "List portal members" permission.
+  Return "not allowed" message and empty search results if not.
+  This fixes http://dev.plone.org/plone/ticket/9923
+  [khink]
+
+- In the MockMailHostTestCase register and unregister the mock mail
+  host as an IMailHost.  Fixes a test failure in PasswordResetTool
+  (once I let that use this test case).  Change taken over from Plone
+  trunk.
+  [maurits]
+
+- Do not display the author contact form when the author has no email
+  (for example for openid users).
+  Refs http://dev.plone.org/plone/ticket/8707
+  [maurits]
+
+
+3.3.3 - December 8, 2009
+------------------------
 
 - Added tal condition to check if the user object is None when rendering
   pref_group_members.cpt since group assignments are not deleted when
   a user is deleted.
-  This addresses https://dev.plone.org/plone/ticket/9885
+  This addresses http://dev.plone.org/plone/ticket/9885
   [vangheem]
 
-- Fixed untranslatable info message "The username you entered could not be found"
-  and other messages in RegistrationTool.py
+- Increased maximum length of the sortable_title index from 30 to 40 characters
+  to ensure titles containing an ISO date can be sorted.
+  [hannosch]
+
+- Added scroll to anchor tag in toc.js because Firefox was not bringing a user 
+  to any anchor tags when a link was directly given to one.
+  This closes http://dev.plone.org/plone/ticket/9364
+  [vangheem]
+
+- Fixed untranslatable info message "The username you entered could not be
+  found" and other messages in RegistrationTool.py.
   This closes http://dev.plone.org/plone/ticket/9744
   [vincentfretin]
 
