@@ -142,7 +142,7 @@
             Version Overview
         </h2>
 
-        <ul>
+        <ul class="configlets">
             <li>Plone <span tal:replace="mt/getSoftwareVersion" /></li>
             <li>Zope <span tal:replace="sys/Zope" /></li>
             <li>Python <span tal:replace="sys/Python" /></li>
