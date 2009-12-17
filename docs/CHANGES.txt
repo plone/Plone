@@ -8,6 +8,9 @@ Changelog
 4.0a3 - Unreleased
 ------------------
 
+- Updated statusmessages code to more modern API.
+  [hannosch]
+
 - Updated add-on configuration section. Clarified terminology to refer to
   de/activation and interpret product readme files as restructered text.
   [hannosch]

@@ -743,7 +743,7 @@ class PloneTool(PloneBaseTool, UniqueObject, SimpleItem):
         """
         if request is None:
             request = self.REQUEST
-        IStatusMessage(request).addStatusMessage(message, type=type)
+        IStatusMessage(request).add(message, type=type)
 
     security.declarePublic('showPortalMessages')
     def showPortalMessages(self, request=None):
@@ -757,7 +757,7 @@ class PloneTool(PloneBaseTool, UniqueObject, SimpleItem):
         """
         if request is None:
             request = self.REQUEST
-        return IStatusMessage(request).showStatusMessages()
+        return IStatusMessage(request).show()
 
     security.declarePublic('browserDefault')
     def browserDefault(self, obj):
