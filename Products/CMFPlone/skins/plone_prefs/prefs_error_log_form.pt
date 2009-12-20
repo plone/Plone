@@ -15,7 +15,7 @@
 
     <h1 class="documentFirstHeading"
         i18n:translate="heading_error_log">Error log</h1>
-         
+
     <a href=""
        class="link-parent"
        tal:attributes="href string:${context/portal_url}/plone_control_panel"
@@ -27,7 +27,7 @@
         This page lists the exceptions that have occurred in this site
         recently. You can configure how many exceptions should be kept
         and whether the exceptions should be copied to Zope's event log
-        file(s). 
+        file(s).
     </p>
 
     <p class="discrete">
@@ -46,7 +46,7 @@
 
                 <div class="field">
                     <label for="search_entry"
-                           i18n:translate="label_search_entry">Search for an error log entry</label>
+                           i18n:translate="label_search_entry">Search for an error log entry (such as "1257962690.640.49636048561")</label>
 
                     <input type="text"
                            name="search_entry"
@@ -98,12 +98,12 @@
                                        updatetime python:member.getProperty('error_log_update', 0.0);
                                        updatetime python:updatetime and updatetime or 0.0;
                                        updatetime python:float(updatetime)">
-                        
+
                         <tal:entry tal:repeat="entry entries">
                         <tr tal:define="oddrow repeat/entry/odd;"
                             tal:attributes="class python:test(oddrow, 'even', 'odd')"
                             tal:condition="python: test(entry['time'] > updatetime,1,0)">
-                        
+
                             <td
                                 tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime;"
                                 tal:content="python:toLocalizedTime(DateTime(entry['time']), long_format=True)">13:04:41</td>
@@ -122,16 +122,16 @@
                         </tal:entry>
                     </tbody>
                 </table>
-                
+
             </fieldset>
         </form>
 
     <form action="prefs_error_log_setProperties"
           method="post"
           class="enableUnloadProtection">
-    
+
         <fieldset tal:define="props context/error_log/getProperties">
-        
+
             <legend i18n:translate="legend_logdetails">Log details</legend>
 
             <div class="field">
@@ -139,18 +139,18 @@
                        i18n:translate="label_number_exceptions">Number of exceptions to keep</label>
 
                 <div></div>
-                
-                <input type="text" 
+
+                <input type="text"
                        name="keep_entries"
                        id="keep_entries"
                        size="40"
                        tal:attributes="value props/keep_entries" />
             </div>
-            
+
             <div class="field">
                 <input type="checkbox"
                        class="noborder"
-                       id="cb_copy_to_zlog" 
+                       id="cb_copy_to_zlog"
                        name="copy_to_zlog"
                        tal:attributes="checked props/copy_to_zlog;
                                        disabled not:context/error_log/checkEventLogPermission|nothing" />
@@ -158,24 +158,24 @@
                 <label for="cb_copy_to_zlog" i18n:translate="label_copy_exceptions">
                     Copy exceptions to the event log
                 </label>
-                
+
             </div>
-                                       
+
             <div class="field">
                 <label for="ignored_exceptions"
                        i18n:translate="label_ignored_exception">Ignored exception types</label>
-                
-                <textarea name="ignored_exceptions:lines" 
+
+                <textarea name="ignored_exceptions:lines"
                           id="ignored_exceptions"
                           cols="40"
                           rows="3"
                           tal:content="python: '\n'.join(props['ignored_exceptions'])"></textarea>
             </div>
-            
+
             <div class="formControls">
-                <input class="context" 
-                       type="submit" 
-                       name="submit" 
+                <input class="context"
+                       type="submit"
+                       name="submit"
                        value="Save"
                        i18n:attributes="value label_save;" />
             </div>
@@ -185,6 +185,6 @@
         </form>
 
     </div>
-    
+
 </body>
 </html>
