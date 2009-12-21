@@ -5,7 +5,7 @@
 Changelog
 =========
 
-4.0a3 - Unreleased
+4.0a3 - 2009-12-21
 ------------------
 
 - Updated statusmessages code to more modern API.
