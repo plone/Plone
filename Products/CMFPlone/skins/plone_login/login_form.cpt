@@ -52,7 +52,7 @@
                 use_email_as_login site_properties/use_email_as_login|nothing;
                 ztu modules/ZTUtils;">
 <div class="row">
-    <div class=" cell width-1:2 position-1:4">                
+    <div class=" cell width-3:4 position-2">                
 <form tal:attributes="action python:context.absolute_url()+'/'+template.id"
       class="enableAutoFocus"
       method="post"

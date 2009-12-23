@@ -8,6 +8,10 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Adjust login overlay position and width. Closes
+  http://dev.plone.org/plone/ticket/9869.
+  [dukebody]
+
 - Adjust wording for user group membership removal. This fixes
   http://dev.plone.org/plone/ticket/9961.
   [dukebody]
