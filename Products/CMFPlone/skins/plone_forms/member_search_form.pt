@@ -33,7 +33,7 @@
                        i18n:translate="label_name">Name</label>
                 
                 <div class="formHelp" i18n:translate="help_search_name">
-                    Find users whose login-names contain
+                    Find users whose login names contain
                 </div>
 
                 <input type="text"
@@ -48,7 +48,7 @@
                        i18n:translate="label_email">E-mail</label>
 
                 <div class="formHelp" i18n:translate="help_search_email">
-                    Find users whose email-addresses contain
+                    Find users whose email addresses contain
                 </div>
 
                 <input type="text"
