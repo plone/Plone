@@ -98,7 +98,7 @@
 
                 <tr>
                   <th i18n:translate="listingheader_group_name">Group name</th>
-                  <th i18n:translate="listingheader_group_remove">Remove Group</th>
+                  <th i18n:translate="listingheader_group_remove">Remove</th>
                 </tr>
 
                 <tr tal:repeat="groupid groups" class="odd">
@@ -128,7 +128,7 @@
               <input class="destructive"
                      type="submit"
                      name="prefs_user_membership_edit:method"
-                     value="Remove selected groups"
+                     value="Remove from selected groups"
                      i18n:attributes="value label_remove_selected_groups;"
                      tal:condition="groups" />
               <input tal:replace="structure context/@@authenticator/authenticator" />
