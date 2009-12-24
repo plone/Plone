@@ -120,12 +120,13 @@ class TestPloneTool(PloneTestCase.PloneTestCase):
                          'p-u-n-c-t-u-a-t-i-o-n')
 
     def testNormalizeStringFileExtensions(self):
-        # If there is something that looks like a file extensions
-        # it will be preserved.
+        # The plone tool version uses the id normalizer, so it doesn't
+        # preservce file extensions. Use the file name normalizer from
+        # plone.i18n if you need the behavior.
         self.assertEqual(self.utils.normalizeString("this is a file.gif"),
-                         'this-is-a-file.gif')
-        self.assertEqual(self.utils.normalizeString("this is. also. a file.html"),
-                         'this-is-also-a-file.html')
+                         'this-is-a-file-gif')
+        self.assertEqual(self.utils.normalizeString("its. also. a file.html"),
+                         'its-also-a-file-html')
 
     def testNormalizeStringIgnoredCharacters(self):
         # Some characters should be ignored
