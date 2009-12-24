@@ -8,6 +8,10 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- No longer show the ``Send this`` action by default. This refs
+  http://dev.plone.org/plone/ticket/8800.
+  [hannosch]
+
 - Adjust login overlay position and width. Closes
   http://dev.plone.org/plone/ticket/9869.
   [dukebody]

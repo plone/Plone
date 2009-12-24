@@ -18,17 +18,6 @@
    </property>
    <property name="visible">True</property>
   </object>
-  <object name="sendto" meta_type="CMF Action" i18n:domain="plone">
-   <property name="title" i18n:translate="">Send this</property>
-   <property name="description" i18n:translate=""></property>
-   <property name="url_expr">string:$object_url/sendto_form</property>
-   <property name="icon_expr">string:$portal_url/mail_icon.png</property>
-   <property name="available_expr"></property>
-   <property name="permissions">
-    <element value="Allow sendto"/>
-   </property>
-   <property name="visible">True</property>
-  </object>
   <object name="print" meta_type="CMF Action" i18n:domain="plone">
    <property name="title" i18n:translate="">Print this</property>
    <property name="description" i18n:translate=""></property>
