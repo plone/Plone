@@ -1024,10 +1024,10 @@ class PloneTool(PloneBaseTool, UniqueObject, SimpleItem):
         filename with an extension at the end, it will preserve the last period.
 
         >>> ptool.normalizeString("this is a file.gif")
-        'this-is-a-file.gif'
+        'this-is-a-file-gif'
 
         >>> ptool.normalizeString("this is. also. a file.html")
-        'this-is-also-a-file.html'
+        'this-is-also-a-file-html'
 
         normalizeString() uses normalizeUnicode() to convert stray unicode
         characters. it will attempt to transliterate many of the accented
