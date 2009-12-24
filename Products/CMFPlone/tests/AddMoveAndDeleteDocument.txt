@@ -144,6 +144,7 @@ Delete Document
 Again, also deleting a Document without JavaScript involves visiting
 the ``folder_contents`` page and clicking a checkbox.
 
+    >>> browser.open('http://nohost/plone/Members/test_user_1_/my-folder/')
     >>> browser.getLink('Actions').click()
     >>> browser.url
     'http://nohost/plone/Members/test_user_1_/my-folder/folder_contents'
