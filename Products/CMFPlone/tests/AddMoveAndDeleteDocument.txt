@@ -67,6 +67,33 @@ We edit the document a second time:
     >>> 'Ons Bier' in browser.contents
     True
 
+We go now to the document absolute url:
+
+    >>> browser.open('http://nohost/plone/Members/test_user_1_/my-page')
+
+Editing the document and clicking the Cancel button doesn't modify it:
+
+    >>> browser.getLink('Edit').click()
+    >>> browser.getControl('Title').value = 'Min sida'
+    >>> browser.getControl('Cancel').click()
+    >>> 'Min sida' not in browser.contents
+    True
+
+We are now at the document absolute url:
+
+    >>> browser.url
+    'http://nohost/plone/Members/test_user_1_/my-page'
+
+If we click the Edit link twice and then Cancel, we end at the
+canonical view of the document:
+
+    >>> browser.getLink('Edit').click()
+    >>> browser.getLink('Edit').click()    
+    >>> browser.getControl('Cancel').click() 
+    >>> browser.url
+    'http://nohost/plone/Members/test_user_1_/my-page/view'
+
+
 Editing Properties
 ------------------
 
