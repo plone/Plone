@@ -1,9 +1,4 @@
-#
-# Test check_id script
-#
-
 from Products.CMFPlone.tests import PloneTestCase
-
 
 class TestExternalEditorEnabled(PloneTestCase.PloneTestCase):
     '''Tests the externalEditorEnabled script'''
@@ -58,6 +53,17 @@ class TestExternalEditorEnabled(PloneTestCase.PloneTestCase):
         self.failIf(self.doc.externalEditorEnabled())
         self.doc.wl_clearLocks()
         self.failUnless(self.doc.externalEditorEnabled())
+
+    def testExternalEditorUsesZemExtensionForOSX(self):
+        self.doc.external_edit()
+        redirect = self.doc.REQUEST.RESPONSE.headers['location']
+        self.failUnless(redirect.endswith('doc'))
+        
+        # if Mac OS X in the user agent, add a .zem extension
+        self.doc.REQUEST.environ['HTTP_USER_AGENT'] = 'Mac OS X'
+        self.doc.external_edit()
+        redirect = self.doc.REQUEST.RESPONSE.headers['location']
+        self.failUnless(redirect.endswith('.zem?macosx=1'))
 
 
 def test_suite():

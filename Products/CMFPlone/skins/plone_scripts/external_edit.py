@@ -17,5 +17,5 @@ if 'Mac OS X' in request.get('HTTP_USER_AGENT', ''):
                                               url_quote(context.getId())))
 else:
     return context.REQUEST['RESPONSE'].redirect(
-        '%s/externalEdit_/%s.zem' % (context.aq_parent.absolute_url(),
+        '%s/externalEdit_/%s' % (context.aq_parent.absolute_url(),
                                      url_quote(context.getId())))
