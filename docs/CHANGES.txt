@@ -8,6 +8,10 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Deprecated document_relateditems.pt template - we are using viewlet instead.
+  Refrences #9985
+  [spliter]
+
 - Introduced order of viewlets for plone.belowcontentbody viewlet manager.
   References #9985
   [spliter]
