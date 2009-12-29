@@ -210,3 +210,6 @@ may need to take the following changes into account.
   
 * Columns in templates are disabled the same way as "editor border" - via 
   REQUEST variable now instead of empty fill-slot
+  
+* document_relateditems.pt template is deprecated. Use  
+  plone.belowcontentbody.relateditems viewlet instead.
