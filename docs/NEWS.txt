@@ -8,6 +8,10 @@ Changelog
 3.3.4 - Unreleased
 ------------------
 
+- Avoid leading spaces in the class attribute of the body element.
+  Refs http://dev.plone.org/plone/ticket/9489.
+  [dukebody]
+
 - member_search_results display login names only if the user
   has "List portal members" permission.
   Return "not allowed" message and empty search results if not.
