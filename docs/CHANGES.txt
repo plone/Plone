@@ -8,6 +8,10 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Avoid leading spaces in the class attribute of the body element.
+  Refs http://dev.plone.org/plone/ticket/9489.
+  [dukebody]
+
 - Removed explicit macros calls for related items from templates. 
   Closes http://dev.plone.org/plone/ticket/9985
   [spliter]
