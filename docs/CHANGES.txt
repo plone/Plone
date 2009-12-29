@@ -8,6 +8,10 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Introduced order of viewlets for plone.belowcontentbody viewlet manager.
+  References #9985
+  [spliter]
+
 - No longer show the ``Send this`` action by default. This refs
   http://dev.plone.org/plone/ticket/8800.
   [hannosch]
