@@ -45,10 +45,6 @@
             <pre tal:content="context/get_data|context/data|nothing">
             </pre>
         </div>
-
-        <div metal:use-macro="context/document_relateditems/macros/relatedItems">
-            show related items if they exist
-        </div>
     
         <div tal:replace="structure provider:plone.belowcontentbody" />
 

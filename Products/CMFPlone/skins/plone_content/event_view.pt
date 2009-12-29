@@ -184,10 +184,6 @@
         </p>
 
         </div>
-
-        <div metal:use-macro="context/document_relateditems/macros/relatedItems">
-            show related items if they exist
-        </div>
         
         <span class="visualClear"><!-- --></span>
 

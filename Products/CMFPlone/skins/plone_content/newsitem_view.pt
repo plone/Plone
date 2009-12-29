@@ -66,10 +66,6 @@
             <div metal:define-slot="inside" tal:replace="structure text">The body</div>
         </div>
         
-        <div metal:use-macro="context/document_relateditems/macros/relatedItems">
-            Show related items if they exist
-        </div>
-        
         <div tal:replace="structure provider:plone.belowcontentbody" />
 
     </tal:main-macro>

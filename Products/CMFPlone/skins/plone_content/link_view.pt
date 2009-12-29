@@ -45,10 +45,6 @@
             <a href="#" tal:attributes="href context/remote_url"
                         tal:content="context/remote_url">remote url</a>
         </p>
-
-        <div metal:use-macro="context/document_relateditems/macros/relatedItems">
-            show related items if they exist
-        </div>
     
         <div tal:replace="structure provider:plone.belowcontentbody" />
 

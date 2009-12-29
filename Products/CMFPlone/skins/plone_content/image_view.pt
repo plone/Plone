@@ -57,10 +57,6 @@
                 (No image has been uploaded yet)
             </span>
         </span>
-
-        <div metal:use-macro="context/document_relateditems/macros/relatedItems">
-            show related items if they exist
-        </div>
         
         <div tal:replace="structure provider:plone.belowcontentbody" />
 

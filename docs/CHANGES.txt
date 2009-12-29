@@ -8,6 +8,10 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Removed explicit macros calls for related items from templates. 
+  Closes http://dev.plone.org/plone/ticket/9985
+  [spliter]
+
 - Deprecated document_relateditems.pt template - we are using viewlet instead.
   Refrences #9985
   [spliter]
