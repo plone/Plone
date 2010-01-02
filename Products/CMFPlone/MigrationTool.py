@@ -81,7 +81,11 @@ class MigrationTool(PloneBaseTool, UniqueObject, SimpleItem):
     def getFileSystemVersion(self):
         """ The version this instance of plone is on """
         setup = getToolByName(self, 'portal_setup')
-        return setup.getVersionForProfile(_DEFAULT_PROFILE)
+        try:
+            return setup.getVersionForProfile(_DEFAULT_PROFILE)
+        except KeyError:
+            pass
+        return None
 
     security.declareProtected(ManagePortal, 'getFileSystemVersion')
     def getSoftwareVersion(self):
