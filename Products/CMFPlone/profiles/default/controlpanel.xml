@@ -1,8 +1,7 @@
 <?xml version="1.0"?>
-<object name="portal_controlpanel" meta_type="Plone Control Panel Tool"
-    xmlns:i18n="http://xml.zope.org/namespaces/i18n" i18n:domain="plone">
- <configlet title="Add-ons" action_id="QuickInstaller"
-    appId="QuickInstaller" category="Plone" condition_expr=""
+<object name="portal_controlpanel" meta_type="Plone Control Panel Tool">
+ <configlet title="Add-ons" action_id="QuickInstaller" appId="QuickInstaller"
+    category="Plone" condition_expr=""
     icon_expr="string:$portal_url/product_icon.png"
     url_expr="string:${portal_url}/prefs_install_products_form"
     visible="True" i18n:attributes="title">
@@ -64,25 +63,24 @@
     i18n:attributes="title">
   <permission>Manage portal</permission>
  </configlet>
- <configlet title="Types" action_id="TypesSettings"
-    appId="TypesSettings" category="Plone" condition_expr=""
+ <configlet title="Types" action_id="TypesSettings" appId="TypesSettings"
+    category="Plone" condition_expr=""
     icon_expr="string:$portal_url/document_icon.png"
-    url_expr="string:${portal_url}/@@types-controlpanel"
-    visible="True" i18n:attributes="title">
+    url_expr="string:${portal_url}/@@types-controlpanel" visible="True"
+    i18n:attributes="title">
   <permission>Manage portal</permission>
  </configlet>
- <configlet title="Markup" action_id="MarkupSettings"
-    appId="MarkupSettings" category="Plone" condition_expr=""
-    icon_expr="string:$portal_url/edit.png"
-    url_expr="string:${portal_url}/@@markup-controlpanel"
-    visible="True" i18n:attributes="title">
+ <configlet title="Markup" action_id="MarkupSettings" appId="MarkupSettings"
+    category="Plone" condition_expr="" icon_expr="string:$portal_url/edit.png"
+    url_expr="string:${portal_url}/@@markup-controlpanel" visible="True"
+    i18n:attributes="title">
   <permission>Manage portal</permission>
  </configlet>
  <configlet title="Security" action_id="SecuritySettings"
     appId="SecuritySettings" category="Plone" condition_expr=""
     icon_expr="string:$portal_url/lock_icon.png"
-    url_expr="string:${portal_url}/@@security-controlpanel"
-    visible="True" i18n:attributes="title">
+    url_expr="string:${portal_url}/@@security-controlpanel" visible="True"
+    i18n:attributes="title">
   <permission>Manage portal</permission>
  </configlet>
  <configlet title="Zope Management Interface" action_id="ZMI" appId="ZMI"
@@ -99,8 +97,8 @@
     i18n:attributes="title">
   <permission>Manage portal</permission>
  </configlet>
- <configlet title="Navigation" action_id="NavigationSettings"
-    appId="Plone" category="Plone" condition_expr=""
+ <configlet title="Navigation" action_id="NavigationSettings" appId="Plone"
+    category="Plone" condition_expr=""
     icon_expr="string:$portal_url/navigation_icon.png"
     url_expr="string:${portal_url}/@@navigation-controlpanel" visible="True"
     i18n:attributes="title">
@@ -109,19 +107,19 @@
  <configlet title="Language" action_id="PloneLanguageTool"
     appId="PloneLanguageTool" category="Plone" condition_expr=""
     icon_expr="string:$portal_url/flag-plone.png"
-    url_expr="string:${portal_url}/@@language-controlpanel"
-    visible="True" i18n:attributes="title">
+    url_expr="string:${portal_url}/@@language-controlpanel" visible="True"
+    i18n:attributes="title">
   <permission>Manage portal</permission>
  </configlet>
- <configlet title="Collections" action_id="portal_atct"
-    appId="ATContentTypes" category="Plone" condition_expr=""
+ <configlet title="Collections" action_id="portal_atct" appId="ATContentTypes"
+    category="Plone" condition_expr=""
     icon_expr="string:$portal_url/topic_icon.png"
     url_expr="string:${portal_url}/portal_atct/atct_manageTopicIndex"
     visible="True" i18n:attributes="title">
   <permission>Manage portal</permission>
  </configlet>
- <configlet title="Calendar" action_id="CalendarSettings"
-    appId="Plone" category="Plone" condition_expr=""
+ <configlet title="Calendar" action_id="CalendarSettings" appId="Plone"
+    category="Plone" condition_expr=""
     icon_expr="string:$portal_url/event_icon.png"
     url_expr="string:${portal_url}/@@calendar-controlpanel" visible="True"
     i18n:attributes="title">
@@ -134,8 +132,8 @@
     i18n:attributes="title">
   <permission>Manage portal</permission>
  </configlet>
- <configlet title="Maintenance" action_id="Maintenance"
-    appId="Plone" category="Plone" condition_expr=""
+ <configlet title="Maintenance" action_id="Maintenance" appId="Plone"
+    category="Plone" condition_expr=""
     icon_expr="string:$portal_url/maintenance_icon.png"
     url_expr="string:${portal_url}/@@maintenance-controlpanel" visible="True"
     i18n:attributes="title">

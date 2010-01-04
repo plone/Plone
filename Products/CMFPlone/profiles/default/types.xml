@@ -11,7 +11,8 @@
     meta_type="Factory-based Type Information"/>
  <object name="ATListCriterion" meta_type="Factory-based Type Information"/>
  <object name="ATPathCriterion" meta_type="Factory-based Type Information"/>
- <object name="ATRelativePathCriterion" meta_type="Factory-based Type Information"/>
+ <object name="ATRelativePathCriterion"
+    meta_type="Factory-based Type Information"/>
  <object name="ATPortalTypeCriterion"
     meta_type="Factory-based Type Information"/>
  <object name="ATReferenceCriterion"
