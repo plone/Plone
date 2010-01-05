@@ -153,10 +153,13 @@
                   <dt>
                     <input type="checkbox" name="extension_ids:list" value=""
                            tal:attributes="value info/id;
+                                           id info/id;
                                            checked info/selected|nothing;" />
-                    <span tal:content="info/title">
+                    <label
+                        tal:attributes="for info/id"
+                        tal:content="info/title">
                       profile title
-                    </span>
+                    </label>
                   </dt>
                   <dd tal:content="info/description">
                     profile description
