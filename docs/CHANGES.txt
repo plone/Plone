@@ -8,8 +8,14 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Fix template errors in author_feedback_template.pt which prevented author
+  feedback from being sent. 
+  Refs http://dev.plone.org/plone/ticket/9730
+  [esteele]
+
 - Update prefs_user_details.cpt and prefs_user_memberships.cpt templates to
   fit the current styling of other configuration screens. 
+  Closes http://dev.plone.org/plone/ticket/9660
   [esteele]
 
 - Avoid leading spaces in the class attribute of the body element.
@@ -21,11 +27,11 @@ Changelog
   [spliter]
 
 - Deprecated document_relateditems.pt template - we are using viewlet instead.
-  Refrences #9985
+  Refs http://dev.plone.org/plone/ticket/9985
   [spliter]
 
 - Introduced order of viewlets for plone.belowcontentbody viewlet manager.
-  References #9985
+  Refs http://dev.plone.org/plone/ticket/9985
   [spliter]
 
 - No longer show the ``Send this`` action by default. This refs
