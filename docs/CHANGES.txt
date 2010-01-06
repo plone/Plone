@@ -8,6 +8,10 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Update prefs_user_details.cpt and prefs_user_memberships.cpt templates to
+  fit the current styling of other configuration screens. 
+  [esteele]
+
 - Avoid leading spaces in the class attribute of the body element.
   Refs http://dev.plone.org/plone/ticket/9489.
   [dukebody]
