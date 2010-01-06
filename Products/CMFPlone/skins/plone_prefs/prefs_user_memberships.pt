@@ -26,27 +26,28 @@
                  userquery python:mq(userid=userid);
                  portal_url context/portal_url;">
 
-      <div id="content" class="documentEditable">
+      <div id="region-content" class="documentEditable">
     <!-- simulating views on the groups/user pages until we have real objects. -->
-    <ul class="contentViews">
-      <li>
-            <a href=""
-           tal:attributes="href string:$portal_url/prefs_user_details?${userquery}"
-           i18n:translate="label_user_properties">User Properties</a>
-      </li>
+    <div id="edit-bar">
+        <ul class="contentViews" id="content-views">
+          <li>
+                <a href=""
+               tal:attributes="href string:$portal_url/prefs_user_details?${userquery}"
+               i18n:translate="label_user_properties">User Properties</a>
+          </li>
 
-      <li class="selected">
-            <a href=""
-           tal:attributes="href string:$portal_url/${template/getId}?${userquery}"
-           i18n:translate="label_group_memberships">Group Memberships</a>
-      </li>
-    </ul>
-
+          <li class="selected">
+                <a href=""
+               tal:attributes="href string:$portal_url/${template/getId}?${userquery}"
+               i18n:translate="label_group_memberships">Group Memberships</a>
+          </li>
+        </ul>
+    </div>
     <div class="contentActions">
       &nbsp;
     </div>
 
-    <div id="region-content" class="documentContent">
+    <div id="content" class="documentContent">
       <a name="documentContent"></a>
 
       <div metal:use-macro="context/global_statusmessage/macros/portal_message">
