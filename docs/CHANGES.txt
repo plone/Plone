@@ -9,8 +9,8 @@ Changelog
 ------------------
 
 - Fix template errors in author_feedback_template.pt which prevented author
-  feedback from being sent. 
-  Refs http://dev.plone.org/plone/ticket/9730
+  feedback from being sent. Allow anonymous users to send email to authors.
+  Closes http://dev.plone.org/plone/ticket/9730
   [esteele]
 
 - Update prefs_user_details.cpt and prefs_user_memberships.cpt templates to

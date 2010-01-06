@@ -1,4 +1,4 @@
-<tal:message
+<div
      xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
      xmlns:tal="http://xml.zope.org/namespaces/tal"
      xmlns:metal="http://xml.zope.org/namespaces/metal"
@@ -19,4 +19,4 @@ You are receiving this mail because <span i18n:name="from_address"
 tal:omit-tag="" tal:content="options/sender_id"/> is sending feedback about content you created at <span i18n:name="url" tal:replace="options/url" />.
 
 </div>
-</tal:message>
+</div>

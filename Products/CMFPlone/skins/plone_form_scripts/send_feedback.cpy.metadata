@@ -1,0 +1,11 @@
+[default]
+proxy=Manager,Anonymous
+
+[validators]
+validators=validate_feedback
+
+[actions]
+action.success = traverse_to:string:portal_feedback
+action.failure = traverse_to:string:portal_feedback
+action.success_author = traverse_to:string:author
+action.failure_author = traverse_to:string:author
