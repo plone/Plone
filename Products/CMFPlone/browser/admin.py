@@ -71,8 +71,8 @@ class AddPloneSite(BrowserView):
         base_profiles = []
         extension_profiles = []
         default_extension_profiles = [
-            'plonetheme.sunburst:default',
             'plonetheme.classic:default',
+            'plonetheme.sunburst:default',
             ]
 
         # profiles available for install/uninstall, but hidden at the time
