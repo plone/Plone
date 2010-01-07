@@ -8,7 +8,6 @@ ADD_PLONE_SITE_HTML = '''
         style="text-align: right; margin-top:0.5em; margin-bottom:0em;"
         target="_top">
     <input type="hidden" name="site_id" value="Plone" />
-    <input type="hidden" name="advanced" value="true" />
     <input type="submit" value="Add Plone Site" />
   </form>
 </dtml-if>

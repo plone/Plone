@@ -8,6 +8,10 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Changed the ``Add Plone site`` link in the ZMI to use the basic form. Too
+  many regular users are still using the ZMI.
+  [hannosch]
+
 - Fix template errors in author_feedback_template.pt which prevented author
   feedback from being sent. Allow anonymous users to send email to authors.
   Closes http://dev.plone.org/plone/ticket/9730
