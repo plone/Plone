@@ -20,15 +20,16 @@
                       b_size python:20;
                       searchstring request/searchstring | nothing;
                       searchonly searchonly | nothing;
+                      many_groups context/portal_properties/site_properties/many_groups;
                       mq python:modules['ZTUtils'].make_query;
-                      results python:searchstring and context.prefs_user_group_search(searchstring, searchonly) or None;
-                      batch python:results and Batch(results, b_size, int(b_start), orphan=1) or None">
+                      results python:(not many_groups and context.portal_groups.listGroups()) or (searchstring and context.prefs_user_group_search(searchstring, searchonly)) or None;
+                      batch python:results and Batch(results, b_size, int(b_start), orphan=1) or None;">
 
         <span metal:define-slot="hiddens" />
 
         <table class="listing" summary="Groups">
           <tr>
-            <th colspan="2">
+            <th colspan="2" tal:condition="many_groups">
               <span tal:omit-tag="" i18n:translate="label_quick_search">Quick search</span>:
                     <input class="quickSearch"
                            type="text"
@@ -47,7 +48,7 @@
 
             </th>
           </tr>
-          <tal:block condition="python:searchstring and results">
+          <tal:block condition="python:results">
           <tr>
             <th tal:condition="takeaction | nothing">
             <input class="noborder"
@@ -111,7 +112,7 @@
 
         <p tal:condition="python:searchstring and not results" i18n:translate="text_nomatches">No matches</p>
 
-        <tal:block condition="python:searchstring and results">
+        <tal:block condition="python:not many_groups or searchstring and results">
 
         <input type="hidden" value="b_start" name="b_start" 
                tal:attributes="value b_start"/>
