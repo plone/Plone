@@ -216,8 +216,6 @@ Let's also try adding that user to a group:
   >>> browser.getControl('Show all').click()
   >>> browser.getLink('johnny').click()
   >>> browser.getLink('Group Memberships').click()
-  >>> browser.getControl(name='searchstring').value = 'Admin'
-  >>> browser.getForm(name='groups').getControl('Search').click()
   >>> browser.getControl(name='add:list').value = ['Administrators']
   >>> browser.getControl('Add user to selected groups').click()
   >>> browser.contents
@@ -226,8 +224,6 @@ Let's also try adding that user to a group:
    ...Administrators...
    ...AuthenticatedUsers...'
 
-  >>> browser.getControl(name='searchstring').value = 'Review'
-  >>> browser.getForm(name='groups').getControl('Search').click()
   >>> browser.getControl(name='add:list').value = ['Reviewers']
   >>> browser.getControl(name='_authenticator', index=0).value = 'invalid!'
   >>> browser.getControl(name='_authenticator', index=1).value = 'invalid!'
