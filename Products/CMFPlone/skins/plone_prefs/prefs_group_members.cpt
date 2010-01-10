@@ -37,30 +37,37 @@
     <div id="region-content" class="documentEditable">
 
     <!-- simulating views on the groups/user pages until we have real objects. -->
-    <ul class="contentViews">
-      <li class="selected">
+    <div id="edit-bar">
+        <ul class="contentViews" id="content-views">
+          <li class="selected">
+                <a href=""
+               tal:attributes="href string:$portal_url/${template/getId}?${groupquery}"
+               i18n:translate="label_group_members">Group Members</a>
+          </li>
+          <li>
+                <a href=""
+               tal:attributes="href string:${portal_url}/prefs_group_details?${groupquery}"
+                   i18n:translate="label_group_properties">Group Properties</a>
+          </li>
+          <li>
             <a href=""
-           tal:attributes="href string:$portal_url/${template/getId}?${groupquery}"
-           i18n:translate="label_group_members">Group Members</a>
-      </li>
-      <li>
+               tal:attributes="href string:${portal_url}/@@manage-group-portlets?${groupkeyquery}"
+               i18n:translate="label_group_portlets">Group Portlets</a>
+          </li>
+          <li>
             <a href=""
-           tal:attributes="href string:${portal_url}/prefs_group_details?${groupquery}"
-               i18n:translate="label_group_properties">Group Properties</a>
-      </li>
-      <li>
-        <a href=""
-           tal:attributes="href string:${portal_url}/@@manage-group-portlets?${groupkeyquery}"
-           i18n:translate="label_group_portlets">Group Portlets</a>
-      </li>
-    </ul>
+               tal:attributes="href string:${portal_url}/@@manage-group-dashboard?key=${groupkeyquery}"
+               i18n:translate="label_group_dashboard">Group Dashboard</a>
+          </li>          
+        </ul>
 
-    <div class="contentActions">
-      &nbsp;
+        <div class="contentActions">
+          &nbsp;
+        </div>
     </div>
-
-    <div id="content" class="documentContent">
-
+    <div class="documentContent" id="content">
+        <a name="documentContent"></a>
+        
       <div metal:use-macro="context/global_statusmessage/macros/portal_message">
         Portal status message
       </div>
