@@ -9,7 +9,7 @@ Changelog
 ------------------
 
 - Changed noform action for user add ajax overlay form to "reload" to
-  fix https://dev.plone.org/plone/ticket/9921
+  fix https://dev.plone.org/plone/ticket/9957
   [smcmahon]
 
 - Changed login form overlay handling to deal with the need for a redirect
