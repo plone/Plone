@@ -8,7 +8,21 @@ jq(function(){
             subtype: 'ajax',
             filter: '#content>*',
             formselector: 'form#login_form',
-            noform: 'reload'
+            noform: function () {
+                if (location.href.search(/pwreset_finish$/) >= 0) {
+                    return 'redirect';
+                } else {
+                    return 'reload';
+                }
+            },
+            redirect: function () {
+                var href = location.href;
+                if (href.search(/pwreset_finish$/) >= 0) {
+                    return href.slice(0, href.length-14) + 'logged_in';
+                } else {
+                    return href;
+                }
+            }
         }
     );
 
@@ -39,15 +53,6 @@ jq(function(){
             filter: '#content>*',
             formselector: 'form',
             noform: 'reload',
-            closeselector: '[name=form.button.Cancel]'
-        }
-    );
-    
-    // delete / rename confirmation dialog
-    jq('#plone-contentmenu-actions a#delete, #plone-contentmenu-actions a#rename').prepOverlay(
-        {
-            subtype:'ajax',
-            filter: '#content>*',
             closeselector: '[name=form.button.Cancel]'
         }
     );

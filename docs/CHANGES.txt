@@ -8,6 +8,11 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Changed login form overlay handling to deal with the need for a redirect
+  if logging in from pwreset_finish.
+  Closes https://dev.plone.org/plone/ticket/5548
+  [smcmahon]
+
 - Changed the ``Add Plone site`` link in the ZMI to use the basic form. Too
   many regular users are still using the ZMI.
   [hannosch]
