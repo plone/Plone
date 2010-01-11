@@ -72,7 +72,7 @@ jq(function(){
             subtype: 'ajax',
             filter: '#content>*',
             formselector: 'form.kssattr-formname-new-user',
-            noform: 'close'
+            noform: 'reload'
         }
     );
 
