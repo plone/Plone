@@ -61,7 +61,7 @@ jq(function(){
     jq('#portal-personaltools a[href$=/@@register]').prepOverlay(
         {
             subtype: 'ajax',
-            filter: '#content>*',
+            filter: '#content>*:not(div.configlet)',
             formselector: 'form.kssattr-formname-register',
         }
     );
@@ -70,9 +70,17 @@ jq(function(){
     jq('form[name=users_add]').prepOverlay(
         {
             subtype: 'ajax',
-            filter: '#content>*',
+            filter: '#content>*:not(div.configlet)',
             formselector: 'form.kssattr-formname-new-user',
-            noform: 'reload'
+            noform: function (el) {
+                if (jQuery(el).find('dl.portalMessage.error')) {
+                    return false;
+                } else {
+                    return 'reload';
+                }
+            }
+            
+            
         }
     );
 
