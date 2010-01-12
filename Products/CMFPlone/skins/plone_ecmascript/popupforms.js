@@ -66,14 +66,14 @@ jq(function(){
         }
     );
 
-    // add new user
-    jq('form[name=users_add]').prepOverlay(
+    // add new user, group
+    jq('form[name=users_add], form[name=groups_add]').prepOverlay(
         {
             subtype: 'ajax',
             filter: '#content>*:not(div.configlet)',
-            formselector: 'form.kssattr-formname-new-user',
+            formselector: 'form.kssattr-formname-new-user, form[name="groups"]',
             noform: function (el) {
-                if (jQuery(el).find('dl.portalMessage.error')) {
+                if (jQuery(el).find('dl.portalMessage.error').length) {
                     return false;
                 } else {
                     return 'reload';
