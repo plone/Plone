@@ -16,16 +16,16 @@ Changelog
   [esteele, erikrose]
 
 - User-add dialog will no longer hide errors (e.g., inability to mail).
-  fixes https://dev.plone.org/plone/ticket/9964
+  fixes http://dev.plone.org/plone/ticket/9964
   [smcmahon]
 
 - Changed noform action for user add ajax overlay form to "reload" to
-  fix https://dev.plone.org/plone/ticket/9957
+  fix http://dev.plone.org/plone/ticket/9957
   [smcmahon]
 
 - Changed login form overlay handling to deal with the need for a redirect
   if logging in from pwreset_finish.
-  Closes https://dev.plone.org/plone/ticket/5548
+  Closes http://dev.plone.org/plone/ticket/5548
   [smcmahon]
 
 - Changed the ``Add Plone site`` link in the ZMI to use the basic form. Too
