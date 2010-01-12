@@ -14,8 +14,11 @@ REQUEST=context.REQUEST
 msg = _(u'No changes made.')
 group = None
 
+title = REQUEST.form.get('title', None)
+description = REQUEST.form.get('description', None)
+
 if addname:
-    success = context.portal_groups.addGroup(addname,(),(),REQUEST=context.REQUEST)
+    success = context.portal_groups.addGroup(addname,(),(), title=title, description=description, REQUEST=context.REQUEST)
     if not success:
         msg = _(u'Could not add group ${name}, perhaps a user or group with '
                 u'this name already exists.', mapping={u'name' : addname})
@@ -25,6 +28,8 @@ if addname:
     msg = _(u'Group ${name} has been added.',
             mapping={u'name' : addname})
 elif groupname:
+    context.portal_groups.editGroup(groupname, roles=None, groups=None, title=title, description=description, REQUEST=context.REQUEST)
+
     group=context.portal_groups.getGroupById(groupname)
     msg = _(u'Changes saved.')
 

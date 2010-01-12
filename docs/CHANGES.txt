@@ -8,6 +8,13 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Pass group title and description through to the editGroups request, to
+  ensure the those properties on the groups are updated. Allows the display of
+  titles in @@usergroup-groupprefs
+  Closes http://dev.plone.org/plone/ticket/7277
+  Closes http://dev.plone.org/plone/ticket/9828
+  [esteele, erikrose]
+
 - User-add dialog will no longer hide errors (e.g., inability to mail).
   fixes https://dev.plone.org/plone/ticket/9964
   [smcmahon]
