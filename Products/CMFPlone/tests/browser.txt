@@ -21,5 +21,4 @@ Browser tests
     Test explicit browser view 
     >>> browser.open('http://nohost/plone/@@dashboard')
     >>> browser.contents
-    '...<body class=" template-dashboard"...'
-
+    '...<body class="template-dashboard"...'
