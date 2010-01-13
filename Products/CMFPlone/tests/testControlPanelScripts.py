@@ -71,27 +71,6 @@ class TestNoGETControlPanel(PloneTestCase.FunctionalTestCase):
         qstring = 'password=foo'
         self._onlyPOST(path, qstring)
 
-    def test_prefsUserManager(self):
-        path = self.folder_path + '/prefs_user_manage'
-        qstring = 'users.id:records=%s&users.roles:list:records=Manager' % default_user
-        self._onlyPOST(path, qstring,success=302)
-        path = self.folder_path + '/prefs_user_manage'
-        qstring = 'delete:list=%s' % default_user
-        self._onlyPOST(path, qstring,success=302)
-
-    def test_prefsGroupModify(self):
-        self.groups = self.portal.portal_groups
-        self.groups.groupWorkspacesCreationFlag = 0
-        self.groups.addGroup('foo')
-        path = self.folder_path + '/prefs_group_modify'
-        qstring = 'group_foo:list=Manager'
-        self._onlyPOST(path,qstring)
-        path = self.folder_path + '/prefs_group_modify'
-        qstring = 'delete:list=foo'
-        self._onlyPOST(path,qstring)
-        
-        
-
 class TestPrefsUserManage(PloneTestCase.PloneTestCase):
 
     def afterSetUp(self):

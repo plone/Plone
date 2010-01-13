@@ -8,6 +8,14 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Remove prefs_group_modify.cpy as we no longer use it. Adjust tests accordingly.
+  [esteele]
+
+- Rework the prefs_group_details form to properly redirect back to the new
+  @@usergroup-groupprefs page when creating a new groups, and postback to
+  itself when modifying existing groups.
+  [esteele]
+  
 - Add popup for add group form.
   [smcmahon]
 

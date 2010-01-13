@@ -9,6 +9,7 @@
 ##
 
 from Products.CMFPlone import PloneMessageFactory as _
+from Products.CMFCore.utils import getToolByName
 
 REQUEST=context.REQUEST
 msg = _(u'No changes made.')
@@ -46,7 +47,9 @@ if group:
 
 context.plone_utils.addPortalMessage(msg, type=group and 'info' or 'error')
 
-target_url = group and context.prefs_groups_overview.absolute_url() or \
-                context.prefs_group_details.absolute_url()
+purl = getToolByName(context, 'portal_url')()
+
+target_url = (group and not groupname) and '@@usergroup-groupprefs' or 'prefs_group_details?groupname=%s' % groupname
+target_url = '%s/%s' % (purl, target_url)
 
 return REQUEST.RESPONSE.redirect(target_url)
