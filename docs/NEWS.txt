@@ -5,8 +5,8 @@
 Changelog
 =========
 
-3.3.4 - Unreleased
-------------------
+3.3.4 - January 14th, 2010
+--------------------------
 
 - Avoid leading spaces in the class attribute of the body element.
   Refs http://dev.plone.org/plone/ticket/9489.
