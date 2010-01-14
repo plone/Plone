@@ -161,29 +161,6 @@ class RegistrationTool(PloneBaseTool, BaseTool):
         return None
 
 
-    security.declareProtected(AddPortalMember, 'isMemberIdAllowed')
-    def isMemberIdAllowed(self, id):
-        if len(id) < 1 or id == 'Anonymous User':
-            return 0
-        if not self._ALLOWED_MEMBER_ID_PATTERN.match( id ):
-            return 0
-
-        pas = getToolByName("acl_users")
-        if IPluggableAuthService.providedBy(pas):
-            results = pas.searchPrincipals(id=id)
-            if results:
-                return 0
-        else:
-            membership = getToolByName(self, 'portal_membership')
-            if membership.getMemberById(id) is not None:
-                return 0
-            groups = getToolByName(self, 'portal_groups')
-            if groups.getGroupById(id) is not None:
-                return 0
-
-        return 1
-
-
     security.declarePublic('generatePassword')
     def generatePassword(self):
         """Generates a password which is guaranteed to comply
@@ -298,6 +275,7 @@ class RegistrationTool(PloneBaseTool, BaseTool):
 
         return self.mail_password_response( self, self.REQUEST )
 
+    security.declareProtected(AddPortalMember, 'isMemberIdAllowed')
     def isMemberIdAllowed(self, id):
         if len(id) < 1 or id == 'Anonymous User':
             return 0
