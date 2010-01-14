@@ -1,7 +1,7 @@
 import re
 import random
 import md5
-from email import message_from_string, MIMEText
+from email import message_from_string
 from smtplib import SMTPRecipientsRefused
 
 from zope.component import getUtility
@@ -204,7 +204,6 @@ class RegistrationTool(PloneBaseTool, BaseTool):
             raise Unauthorized(_(u"Mailing forgotten passwords has been disabled."))
 
         utils = getToolByName(self, 'plone_utils')
-        props = getToolByName(self, 'portal_properties').site_properties
         member = membership.getMemberById(forgotten_userid)
         if member is None:
             raise ValueError(_(u'The username you entered could not be found.'))
