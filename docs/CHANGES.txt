@@ -8,6 +8,10 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- plone.belowcontent should not replace div#viewlet-below-content but 
+  rather add content into it
+  [spliter]
+
 - Moves plone.abovecontent and plone.belowcontent viewlet managers actually 
   above and below content respectively.
   Closes http://dev.plone.org/plone/ticket/10081
