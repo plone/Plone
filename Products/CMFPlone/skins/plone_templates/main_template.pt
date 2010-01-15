@@ -141,8 +141,34 @@
                       <metal:header metal:define-slot="header" tal:content="nothing">
                         Visual Header
                       </metal:header>
-                      <metal:bodytext metal:define-slot="main" tal:content="nothing">
-                        Page body text
+                      <metal:bodytext metal:define-slot="main">
+  
+                        <div tal:replace="structure provider:plone.abovecontenttitle" />
+                        <metal:title metal:define-slot="content-title">                             
+                            <h1 class="documentFirstHeading">
+                                <metal:field use-macro="python:context.widget('title', mode='view')">
+                                    Title
+                                </metal:field>
+                            </h1>
+                        </metal:title>
+                        <div tal:replace="structure provider:plone.belowcontenttitle" />                        
+                        
+                        <metal:description define-slot="content-description">
+                            <p class="documentDescription">
+                                <metal:field use-macro="python:context.widget('description', mode='view')">
+                                    Description
+                                </metal:field>
+                            </p>
+                        </metal:description>
+
+                        <div tal:replace="structure provider:plone.abovecontentbody" />
+                        <div id="content-core">                            
+                            <metal:text metal:define-slot="content-core" tal:content="nothing">
+                                Page body text
+                            </metal:text>                            
+                        </div>
+                        <div tal:replace="structure provider:plone.belowcontentbody" />                                                                           
+                        
                       </metal:bodytext>
                     </div>
                     </metal:slot>

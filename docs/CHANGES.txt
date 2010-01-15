@@ -8,6 +8,9 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Put the preferred markup for content area in main_template. References #9981
+  [spliter]
+
 - Remove prefs_group_modify.cpy as we no longer use it. Adjust tests accordingly.
   [esteele]
 
