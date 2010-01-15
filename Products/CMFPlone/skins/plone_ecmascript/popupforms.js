@@ -62,7 +62,7 @@ jq(function(){
         {
             subtype: 'ajax',
             filter: '#content>*:not(div.configlet)',
-            formselector: 'form.kssattr-formname-register',
+            formselector: 'form.kssattr-formname-register'
         }
     );
 
