@@ -8,6 +8,10 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Just a markup polishing - <metal> tags don't need explicit "metal" for 
+  defining slots.
+  [spliter]
+
 - plone.belowcontent should not replace div#viewlet-below-content but 
   rather add content into it
   [spliter]

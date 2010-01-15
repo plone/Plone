@@ -136,15 +136,15 @@
                       Portal status message
                     </div>
 
-                    <metal:slot metal:define-slot="body">
+                    <metal:slot define-slot="body">
                     <div id="content">
-                      <metal:header metal:define-slot="header" tal:content="nothing">
+                      <metal:header define-slot="header" tal:content="nothing">
                         Visual Header
                       </metal:header>
-                      <metal:bodytext metal:define-slot="main">
+                      <metal:bodytext define-slot="main">
   
                         <div tal:replace="structure provider:plone.abovecontenttitle" />
-                        <metal:title metal:define-slot="content-title">                             
+                        <metal:title define-slot="content-title">                             
                             <h1 class="documentFirstHeading">
                                 <metal:field use-macro="python:context.widget('title', mode='view')">
                                     Title
@@ -163,7 +163,7 @@
 
                         <div tal:replace="structure provider:plone.abovecontentbody" />
                         <div id="content-core">                            
-                            <metal:text metal:define-slot="content-core" tal:content="nothing">
+                            <metal:text define-slot="content-core" tal:content="nothing">
                                 Page body text
                             </metal:text>                            
                         </div>
@@ -173,7 +173,7 @@
                     </div>
                     </metal:slot>
 
-                    <metal:sub metal:define-slot="sub" tal:content="nothing">
+                    <metal:sub define-slot="sub" tal:content="nothing">
                         This slot is here for backwards-compatibility only. 
                         Don't copy it in a custom templates.
                     </metal:sub>
