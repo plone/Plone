@@ -8,6 +8,11 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Updated markup of document_view and event_view to follow conventions 
+  in main_template. 
+  References https://dev.plone.org/plone/ticket/9981
+  [spliter]
+
 - Just a markup polishing - <metal> tags don't need explicit "metal" for 
   defining slots.
   [spliter]
