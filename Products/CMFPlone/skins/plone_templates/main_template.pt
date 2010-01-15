@@ -115,6 +115,8 @@
                 tal:define="Iterator python:modules['Products.CMFPlone'].IndexIterator;
                             tabindex python:Iterator(mainSlot=False)">
 
+              <div id="viewlet-above-content" tal:content="structure provider:plone.abovecontent" />
+              
               <metal:block define-slot="content">
                 <div metal:define-macro="content"
                      tal:define="show_border context/@@plone/showEditableBorder"
@@ -133,8 +135,6 @@
                     <div metal:use-macro="context/global_statusmessage/macros/portal_message">
                       Portal status message
                     </div>
-                    
-                    <div id="viewlet-above-content" tal:content="structure provider:plone.abovecontent" />
 
                     <metal:slot metal:define-slot="body">
                     <div id="content">
@@ -173,10 +173,9 @@
                     </div>
                     </metal:slot>
 
-                    <metal:sub metal:define-slot="sub">
-                    
-                      <div tal:replace="structure provider:plone.belowcontent" />
-                    
+                    <metal:sub metal:define-slot="sub" tal:content="nothing">
+                        This slot is here for backwards-compatibility only. 
+                        Don't copy it in a custom templates.
                     </metal:sub>
 
                     <span id="contentBottomLeft"></span>
@@ -187,6 +186,9 @@
                 </div>
 
               </metal:block>
+              
+              <div id="viewlet-below-content" tal:replace="structure provider:plone.belowcontent" />
+              
             </td>
             <tal:comment replace="nothing"> End of main content block </tal:comment>
 

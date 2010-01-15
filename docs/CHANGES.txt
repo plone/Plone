@@ -8,6 +8,11 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Moves plone.abovecontent and plone.belowcontent viewlet managers actually 
+  above and below content respectively.
+  Closes http://dev.plone.org/plone/ticket/10081
+  [spliter]
+
 - Put the preferred markup for content area in main_template. References #9981
   [spliter]
 
