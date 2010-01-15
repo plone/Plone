@@ -150,7 +150,7 @@
                 <span i18n:name="site_admin">
                 <a href="#" 
                    i18n:translate="label_site_admin"
-                   tal:attributes="href string:${portal_url}/contact-info">Site Administration</a></span>,
+                   tal:attributes="href string:${portal_url}/contact-info?subject=Error ${err_log_id}">Site Administration</a></span>,
                 please include this entry number in your message.
                 </p>
             

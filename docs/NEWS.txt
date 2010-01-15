@@ -10,6 +10,10 @@ Changelog
 
 - ....
 
+- default_error_message page adds the error code in the subject
+  of the contact-info page
+  This closes http://dev.plone.org/plone/ticket/8446
+  [huub_bouma, kcleong]
 
 
 3.3.4 - January 14th, 2010

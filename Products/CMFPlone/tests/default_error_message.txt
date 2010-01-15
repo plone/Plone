@@ -1,0 +1,100 @@
+Default error message page
+------------------
+
+The default_error_message.pt view generates a link to the contact-info
+form. Since issue #8446 we now include a subject with the error ID
+
+  >>> import os, tempfile
+  >>> tempDir = tempfile.mkdtemp()
+  >>> templateFileName = os.path.join(tempDir, 'template.pt')
+  >>> open(templateFileName, 'w').write("""
+  ... <html>
+  ...   <body>
+  ...     <span tal:content="python:this-will-give-an-error"></span>
+  ...   </body>
+  ... </html>
+  ... """)
+
+We register the template as a view for all objects.
+
+  >>> from zope.app.pagetemplate import ViewPageTemplateFile
+  >>> from Products.Five import BrowserView
+  >>> class TestView(BrowserView):
+  ...     __call__ = ViewPageTemplateFile(templateFileName)
+
+  >>> from Products.CMFPlone import browser
+  >>> browser.TestView = TestView
+
+Configure view through zcml
+
+  >>> configuration = """\
+  ... <configure
+  ...      xmlns="http://namespaces.zope.org/zope"
+  ...      xmlns:browser="http://namespaces.zope.org/browser"
+  ...      xmlns:five="http://namespaces.zope.org/five"
+  ...      xmlns:plone="http://namespaces.plone.org/plone"
+  ...      i18n_domain="plone">
+  ...
+  ...  <include package="Products.Five" file="meta.zcml" />
+  ...     
+  ...  <browser:page
+  ...        for="*"
+  ...        name="dummy"
+  ...        class="Products.CMFPlone.browser.TestView"
+  ...        permission="zope.Public"
+  ...        />
+  ... 
+  ... </configure>
+  ... """
+
+  >>> from StringIO import StringIO
+  >>> from zope.configuration import xmlconfig
+  >>> xmlconfig.xmlconfig(StringIO(configuration))
+
+  >>> from Products.Five.testbrowser import Browser
+  >>> browser = Browser()
+  >>> browser.open('http://nohost/plone/@@dummy')
+  Traceback (most recent call last):
+  HTTPError: HTTP Error 500: Internal Server Error
+
+  a smal sanity check..
+  >>> browser.url
+  'http://nohost/plone/@@dummy'
+  
+  Are we in the default error message template?
+  >>> '<body class="template-default_error_message"' in browser.contents
+  True
+  >>> 'sorry, but there seems to be an error' in browser.contents
+  True
+
+  Do we have the error code in the contact-info link?
+  >>> regex = "<a href=\"(http:\/\/nohost\/plone\/contact-info\?subject=Error (.*?))\">"
+  >>> import re
+  >>> found = re.search(regex, browser.contents)
+  >>> found is None
+  False
+  >>> error_code = found.groups()[1]
+  >>> '<a href="http://nohost/plone/contact-info?subject=Error %s">'  % error_code in browser.contents
+  True
+
+  Now we check the contact-info page. First we need to setup a dummy mailhost
+
+  >>> portal.email_from_address = "mail@plone.test"
+  >>> mailhost = self.portal.MailHost
+
+  >>> contact_url = found.groups()[0]
+  >>> browser.open(contact_url)
+
+  Are we on the contact-info page?
+  >>> '<body class="template-contact-info"' in browser.contents
+  True
+
+  Is the error code in the subject?
+  >>> subject = browser.getControl(name="subject")
+  >>> subject.value == 'Error %s' % error_code
+  True
+
+  we're done. joepiedepoepie
+
+
+
