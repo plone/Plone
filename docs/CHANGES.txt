@@ -8,6 +8,11 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Added back INavigationRoot to CMFPlone.browsers. We need to provide an
+  upgrade step for persistent marker interfaces before removing it.
+  This refs http://dev.plone.org/plone/ticket/10072.
+  [hannosch]
+
 - Updated markup of document_view and event_view to follow conventions 
   in main_template. 
   References https://dev.plone.org/plone/ticket/9981
