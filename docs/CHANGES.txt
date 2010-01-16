@@ -8,6 +8,10 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Altered table of contents javascript so that comments are not displayed.
+  Refs. #8621.
+  [dbfrombrc]
+
 - Added back INavigationRoot to CMFPlone.browsers. We need to provide an
   upgrade step for persistent marker interfaces before removing it.
   This refs http://dev.plone.org/plone/ticket/10072.
