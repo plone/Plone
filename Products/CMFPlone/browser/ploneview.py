@@ -4,7 +4,7 @@ from AccessControl import Unauthorized
 from Acquisition import aq_base
 from Acquisition import aq_inner
 from Products.Five import BrowserView
-from Products.Five.browser.pagetemplatefile import ZopeTwoPageTemplateFile
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from Products.CMFCore.permissions import AddPortalContent
 from Products.CMFCore.permissions import DeleteObjects
@@ -402,17 +402,17 @@ class Plone(BrowserView):
         return context.absolute_url()
 
     def bodyClass(self, template, view):
-        if isinstance(template, ZopeTwoPageTemplateFile):
+        name = ''
+        if isinstance(template, ViewPageTemplateFile):
             # Browser view
-            return view.__name__
+            name = view.__name__
         else:
-            return template.getId()
+            name = template.getId()
 
-    def getSectionFromURL(self):
         context = aq_inner(self.context)
         url = getToolByName(context, "portal_url")
         contentPath = url.getRelativeContentPath(context)
-        if not contentPath:
-            return ''
-        else:
-            return "section-" + contentPath[0]
+        if contentPath:
+            return "section-%s template-%s" % (contentPath[0], name)
+
+        return 'template-%s' % name

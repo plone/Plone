@@ -8,6 +8,10 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Avoid the getSectionFromURL method completely and merge functionality into
+  the bodyClass method.
+  [hannosch]
+
 - Display logoIcon.png instead of favicon.ico on the Zope root overview screen,
   for compatibility with IE which refuses to render X-ICON format images in the
   document body.
