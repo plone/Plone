@@ -111,7 +111,7 @@ Changelog
   [hannosch]
 
 - Fix template errors in author_feedback_template.pt which prevented author
-  feedback from being sent. Allow anonymous users to send email to authors.
+  feedback from being sent.
   Closes http://dev.plone.org/plone/ticket/9730
   [esteele]
 

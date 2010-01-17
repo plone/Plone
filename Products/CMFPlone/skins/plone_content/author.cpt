@@ -162,9 +162,22 @@
 
             <tal:mailsetup tal:condition="python:email_from_address and authorinfo['has_email']">
 
+                <div class="formControls" tal:condition="isAnon">
+                <form 
+                  tal:define="pss modules/Products/PythonScripts/standard"
+                  tal:attributes="action string:$portal_url/login_form">
+                   <input class="standalone"
+                       type="submit"
+                       value="Log in to send feedback"
+                       i18n:attributes="value label_login_to_send_feedback;"
+                       />
+                </form>
+                </div>
+
                 <!-- feedback form -->        
 
-                <tal:owner tal:condition="not:isOwner">
+
+                <tal:owner tal:condition="python: not isOwner and not isAnon">
                     <p class="discreet"
                        i18n:translate="description_author_feedback">
                         If you want to contact this author, fill in the form
