@@ -8,6 +8,10 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Deprecated the computeRelatedItems script in favor of a method on the
+  related items viewlet.
+  [hannosch]
+
 - Hide plonetheme.classic from the list of uninstallable products to reduce
   confusion, as at this point it can't be uninstalled without breaking
   sunburst as well when the Quick Installer unregisters its CSS.
