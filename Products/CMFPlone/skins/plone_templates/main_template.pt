@@ -80,7 +80,7 @@
                     sr python:plone_view.have_portlets('plone.rightcolumn', view);
                     body_class python:plone_view.bodyClass(template, view);"
         tal:attributes="class body_class;
-                        dir python:test(isRTL, 'rtl', 'ltr')">
+                        dir python: isRTL and 'rtl' or 'ltr'">
     <div id="visual-portal-wrapper">
 
       <div id="portal-top" i18n:domain="plone">
@@ -115,7 +115,7 @@
               <metal:block define-slot="content">
                 <div metal:define-macro="content"
                      tal:define="show_border context/@@plone/showEditableBorder"
-                     tal:attributes="class python:test(show_border,'documentEditable','')">
+                     tal:attributes="class python:show_border and 'documentEditable' or ''">
 
                   <div tal:replace="structure provider:plone.contentviews" />
 

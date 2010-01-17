@@ -8,6 +8,10 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Avoid the test function in the main_template. It doesn't exist in view page
+  template files.
+  [hannosch]
+
 - Avoid the getSectionFromURL method completely and merge functionality into
   the bodyClass method.
   [hannosch]
