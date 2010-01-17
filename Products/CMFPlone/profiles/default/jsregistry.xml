@@ -23,7 +23,6 @@
  <javascript id="styleswitcher.js" />
  <javascript id="toc.js" />    
  <javascript id="collapsibleformfields.js" />
- <javascript id="headline_anchors.js" />
 
  <!-- Sarissa is used by both Kupu and KSS -->
  <javascript id="sarissa.js"
