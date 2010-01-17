@@ -39,7 +39,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
 
     <metal:baseslot define-slot="base">
-      <base tal:attributes="href context/renderBase" /><!--[if lt IE 7]></base><![endif]-->
+      <base tal:attributes="href plone_view/renderBase" /><!--[if lt IE 7]></base><![endif]-->
     </metal:baseslot>
 
     <div tal:replace="structure provider:plone.htmlhead" />

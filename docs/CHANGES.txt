@@ -8,6 +8,9 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Avoid yet another mindless Python script and deprecate renderBase.
+  [hannosch]
+
 - Simplify the charset handling, by moving the actual setting into the
   global_cache_headers macro.
   [hannosch]
