@@ -8,6 +8,11 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Make global_cache_headers responsible for deciding to switch on gzip
+  compression instead of doing it in the enableHTTPCompression script. This
+  avoids another costly Python script call.
+  [hannosch]
+
 - Avoid the test function in the main_template. It doesn't exist in view page
   template files.
   [hannosch]
