@@ -8,6 +8,9 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Replaced the getSectionFromURL Python script with a view method.
+  [hannosch]
+
 - Deprecated the computeRelatedItems script in favor of a method on the
   related items viewlet.
   [hannosch]

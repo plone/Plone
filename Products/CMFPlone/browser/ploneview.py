@@ -396,3 +396,12 @@ class Plone(BrowserView):
             return view.__name__
         else:
             return template.getId()
+
+    def getSectionFromURL(self):
+        context = aq_inner(self.context)
+        url = getToolByName(context, "portal_url")
+        contentPath = url.getRelativeContentPath(context)
+        if not contentPath:
+            return ''
+        else:
+            return "section-" + contentPath[0]
