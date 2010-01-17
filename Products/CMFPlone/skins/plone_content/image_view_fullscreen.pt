@@ -8,8 +8,8 @@
 
 <head>
 
-    <metal:block tal:define="dummy python:request.RESPONSE.setHeader('Content-Type', 'text/html;;charset='+context.plone_utils.getSiteEncoding())" />
-    
+    <metal:block tal:define="dummy python:request.RESPONSE.setHeader('Content-Type', 'text/html;;charset=utf-8')" />
+
     <title tal:content="context/Title">
         Title
     </title>

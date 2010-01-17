@@ -8,6 +8,10 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Simplify the charset handling, by moving the actual setting into the
+  global_cache_headers macro.
+  [hannosch]
+
 - Replaced the getSectionFromURL Python script with a view method.
   [hannosch]
 

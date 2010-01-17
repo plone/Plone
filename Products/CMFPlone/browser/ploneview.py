@@ -386,7 +386,6 @@ class Plone(BrowserView):
 
         return renderer.visible
 
-    @memoize
     def site_encoding(self):
         return utils.getSiteEncoding(self.context)
 
