@@ -8,6 +8,13 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Deprecated plone_deprecated/prefs_group_members.cpt,
+  prefs_group_members.cpt.metadata, prefs_group_members_add.cpy,
+  prefs_group_members_add.cpy.metadata, prefs_group_members_delete.cpy,
+  prefs_group_members_delete.cpy.metadata. These are now handled by
+  @@usergroup-groupmembership in plone.app.controlpanel
+  [esteele]
+
 - Remove prefs_group_modify.cpy as we no longer use it. Adjust tests accordingly.
   [esteele]
 
