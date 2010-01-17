@@ -8,6 +8,11 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Display logoIcon.png instead of favicon.ico on the Zope root overview screen,
+  for compatibility with IE which refuses to render X-ICON format images in the
+  document body.
+  [davisagli]
+
 - Avoid yet another mindless Python script and deprecate renderBase.
   [hannosch]
 
