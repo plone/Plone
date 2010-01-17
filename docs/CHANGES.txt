@@ -8,6 +8,11 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Hide plonetheme.classic from the list of uninstallable products to reduce
+  confusion, as at this point it can't be uninstalled without breaking
+  sunburst as well when the Quick Installer unregisters its CSS.
+  [davisagli]
+
 - Altered table of contents javascript so that comments are not displayed.
   Refs. #8621.
   [dbfrombrc]
