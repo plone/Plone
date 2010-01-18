@@ -42,7 +42,8 @@ jq(function(){
             subtype: 'ajax',
             filter: '#content>*',
             formselector: 'form',
-            noform: 'reload'
+            noform: 'reload',
+            closeselector: '[name=form.button.Cancel]'
         }
     );
 
