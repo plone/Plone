@@ -41,7 +41,7 @@ jq(function(){
         {
             subtype: 'ajax',
             filter: '#content>*',
-            formselector: 'form',
+            formselector: 'form[name="default_page_form"]',
             noform: 'reload',
             closeselector: '[name=form.button.Cancel]'
         }
