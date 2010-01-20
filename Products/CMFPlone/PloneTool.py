@@ -815,8 +815,8 @@ class PloneTool(PloneBaseTool, UniqueObject, SimpleItem):
         # 1. Get an attribute or contained object index_html
         #
 
-        # Note: ATCT's ATCTOrderedFolder defines a method index_html() which
-        # returns a ReplaceableWrapper.
+        # Note: The base PloneFolder, as well as ATCT's ATCTOrderedFolder
+        # defines a method index_html() which returns a ReplaceableWrapper.
         # This is needed for WebDAV to work properly, and to avoid implicit
         # acquisition of index_html's, which are generally on-object only.
         # For the purposes of determining a default page, we don't want to
