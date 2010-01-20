@@ -1,6 +1,6 @@
 import sys
 import os
-from App.ImageFile import ImageFile
+import Globals
 
 cmfplone_globals = globals()
 this_module = sys.modules[ __name__ ]
@@ -8,8 +8,8 @@ _marker = []
 
 ADD_CONTENT_PERMISSION = 'Add portal content'
 
-misc_ = {'plone_icon': ImageFile(
-                       os.path.join('skins', 'plone_images', 'logoIcon.png'),
+misc_ = {'plone_icon': Globals.ImageFile(
+                       os.path.join('skins', 'plone_images', 'logoIcon.gif'),
                        cmfplone_globals)}
 
 
@@ -69,9 +69,6 @@ def initialize(context):
     # Make Unauthorized importable TTW
     ModuleSecurityInfo('AccessControl').declarePublic('Unauthorized')
 
-    # Make Forbidden importable TTW
-    ModuleSecurityInfo('zExceptions').declarePublic('Forbidden')
-
     # Make ConflictError importable TTW
     ModuleSecurityInfo('ZODB.POSException').declarePublic('ConflictError')
 
@@ -105,6 +102,14 @@ def initialize(context):
     # Make cgi.escape available TTW
     ModuleSecurityInfo('cgi').declarePublic('escape')
 
+    # Setup migrations
+    import migrations
+    migrations.executeMigrations()
+    migrations.registerMigrations()
+
+    # Inititalize configuration machinery
+    import setup
+
     # Apply monkey patches
     import patches
 
@@ -113,15 +118,7 @@ def initialize(context):
     import UnicodeSplitter
 
     # Plone content
-
-    # LargePloneFolder is deprectated and will be removed in Plone 5.0.
-    # Usage of PloneFolder is discouraged.
-    import PloneFolder, LargePloneFolder
-
-    contentClasses      = ( PloneFolder.PloneFolder,
-                            LargePloneFolder.LargePloneFolder, )
-    contentConstructors = ( PloneFolder.addPloneFolder,
-                            LargePloneFolder.addLargePloneFolder, )
+    import Portal
 
     # CMFCore and CMFDefault tools
     from Products.CMFCore import CachingPolicyManager
@@ -129,14 +126,17 @@ def initialize(context):
     # Plone tools
     import PloneTool, FactoryTool
     import InterfaceTool, MigrationTool, PloneControlPanel
-    import WorkflowTool, URLTool, MetadataTool
-    import RegistrationTool, SyndicationTool
+    import MembershipTool, WorkflowTool, URLTool, MetadataTool
+    import RegistrationTool, MemberDataTool, SyndicationTool
     import PropertiesTool, ActionsTool, TypesTool, UndoTool
     import CatalogTool, SkinsTool, DiscussionTool
     import CalendarTool, ActionIconsTool, QuickInstallerTool
+    import GroupDataTool, GroupsTool
     import TranslationServiceTool
 
-    tools = ( PloneTool.PloneTool,
+    tools = ( MembershipTool.MembershipTool,
+              MemberDataTool.MemberDataTool,
+              PloneTool.PloneTool,
               WorkflowTool.WorkflowTool,
               CachingPolicyManager.CachingPolicyManager,
               FactoryTool.FactoryTool,
@@ -157,10 +157,11 @@ def initialize(context):
               ActionIconsTool.ActionIconsTool,
               CalendarTool.CalendarTool,
               QuickInstallerTool.QuickInstallerTool,
+              GroupsTool.GroupsTool,
+              GroupDataTool.GroupDataTool,
               TranslationServiceTool.TranslationServiceTool,
             )
 
-    from Products.CMFCore.utils import ContentInit
     from Products.CMFPlone.utils import ToolInit
 
     # Register tools and content
@@ -169,26 +170,24 @@ def initialize(context):
              , icon='tool.gif'
              ).initialize( context )
 
-    ContentInit('Plone Content'
-                , content_types=contentClasses
-                , permission=ADD_CONTENT_PERMISSION
-                , extra_constructors=contentConstructors
-                ).initialize( context )
+    import factory
+    context.registerClass(Portal.PloneSite,
+                          constructors=(factory.addPloneSiteForm,
+                                        factory.addPloneSite),
+                          icon='skins/plone_images/logoIcon.gif')
 
-    from Products.CMFPlone.Portal import PloneSite
-    from Products.CMFPlone.factory import zmi_constructor
-    from AccessControl.Permissions import view_management_screens
-    context.registerClass(
-        instance_class=PloneSite,
-        permission=view_management_screens,
-        constructors=(zmi_constructor,),
-    )
-
-
-# Import PloneMessageFactory to create messages in the plone domain
+# Import "PloneMessageFactory as _" to create messages in the plone domain
 from zope.i18nmessageid import MessageFactory
 PloneMessageFactory = MessageFactory('plone')
 
 # Import PloneLocalesMessageFactory to create messages in the plonelocales domain
 from zope.i18nmessageid import MessageFactory
 PloneLocalesMessageFactory = MessageFactory('plonelocales')
+
+# A module alias for the stupidly named plone.py - now called 'ploneview.py'
+# 
+# If you get weird import errors like "Cannot import module 'utils'" (when 
+# trying to import Products.CMFPlone.utils, comment out the next two lines -
+# they may be masking the error.
+from browser import ploneview
+sys.modules['Products.CMFPlone.browser.plone'] = ploneview

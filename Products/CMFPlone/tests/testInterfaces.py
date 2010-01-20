@@ -24,7 +24,7 @@ from Products.CMFPlone.InterfaceTool import InterfaceTool
 from Products.CMFPlone.MetadataTool import MetadataTool
 from Products.CMFPlone.MigrationTool import MigrationTool
 from Products.CMFPlone.PloneControlPanel import PloneControlPanel, PloneConfiglet
-from Products.CMFPlone.PloneFolder import OrderedContainer, BasePloneFolder, PloneFolder
+from Products.CMFPlone.PloneFolder import OrderedContainer
 from Products.CMFPlone.PloneTool import PloneTool
 from Products.CMFPlone.Portal import PloneSite
 from Products.CMFPlone.PropertiesTool import PropertiesTool, SimpleItemWithProperties
@@ -269,7 +269,7 @@ testClasses = [
     (MetadataTool, ()),
     (MigrationTool, ()),
     (PloneControlPanel, ()), (PloneConfiglet, ()),
-    (OrderedContainer, ()), (BasePloneFolder, ()), (PloneFolder, ()),
+    (OrderedContainer, ()),
     (PloneTool, ()),
     (PloneSite, ()),
     (PropertiesTool, ()), (SimpleItemWithProperties, ()),

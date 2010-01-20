@@ -12,6 +12,7 @@ from plone.app.layout.navigation.navtree import NavtreeStrategyBase
 from plone.app.layout.navigation.navtree import buildFolderTree
 from plone.app.layout.navigation.root import getNavigationRoot
 
+from Products.CMFCore.PortalFolder import PortalFolderBase
 from Products.CMFPlone.browser.navtree import NavtreeQueryBuilder
 from Products.CMFPlone.browser.navtree import SitemapQueryBuilder
 from Products.CMFPlone.browser.navtree import SitemapNavtreeStrategy
@@ -22,10 +23,9 @@ from zope.interface import implements
 
 default_user = PloneTestCase.default_user
 
-from Products.CMFPlone.PloneFolder import PloneFolder
 from Products.CMFPlone.interfaces import INonStructuralFolder
 
-class DummyNonStructuralFolder(PloneFolder):
+class DummyNonStructuralFolder(PortalFolderBase):
     implements(INonStructuralFolder)
 
 

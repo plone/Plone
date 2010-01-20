@@ -1,4 +1,5 @@
-from App.class_init import InitializeClass
+from types import StringType
+from Globals import InitializeClass
 from zExceptions import NotFound
 from Acquisition import aq_base
 from Acquisition import aq_inner
@@ -9,23 +10,22 @@ from AccessControl import ClassSecurityInfo
 from ComputedAttribute import ComputedAttribute
 
 from OFS.Folder import Folder
-from OFS.interfaces import IOrderedContainer
 from OFS.ObjectManager import REPLACEABLE
 from DocumentTemplate.sequence import sort
 from webdav.NullResource import NullResource
 from webdav.interfaces import IWriteLock
 
 from Products.CMFCore.utils import getToolByName
-from Products.CMFCore.CMFCatalogAware import CatalogAware, WorkflowAware, \
-                    OpaqueItemManager
+from Products.CMFCore.CMFCatalogAware import CMFCatalogAware
 from Products.CMFCore.PortalFolder import PortalFolderBase
 from Products.CMFCore.permissions import AccessContentsInformation, \
                     AddPortalContent, AddPortalFolders, ListFolderContents, \
                     ModifyPortalContent
 from Products.CMFDefault.DublinCore import DefaultDublinCoreImpl
-
+from Products.CMFPlone.utils import log_deprecated
 from zope.interface import implements
 from zope.app.container.contained import notifyContainerModified
+
 
 class ReplaceableWrapper:
     """A wrapper around an object to make it replaceable."""
@@ -49,8 +49,6 @@ class OrderedContainer(Folder):
 
     security = ClassSecurityInfo()
 
-    implements(IOrderedContainer)
-
     security.declareProtected(ModifyPortalContent, 'moveObject')
     def moveObject(self, id, position):
         obj_idx  = self.getObjectPosition(id)
@@ -72,7 +70,7 @@ class OrderedContainer(Folder):
     def moveObjectsByDelta(self, ids, delta, subset_ids=None,
                            suppress_events=False):
         """Move specified sub-objects by delta."""
-        if isinstance(ids, basestring):
+        if type(ids) is StringType:
             ids = (ids,)
         min_position = 0
         objects = list(self._objects)
@@ -157,14 +155,14 @@ class OrderedContainer(Folder):
     security.declareProtected(ModifyPortalContent, 'moveObjectsToTop')
     def moveObjectsToTop(self, ids, RESPONSE=None):
         """Move an object to the top."""
-        self.moveObjectsByDelta(ids, - len(self))
+        self.moveObjectsByDelta(ids, - len(self._objects))
         if RESPONSE is not None:
             RESPONSE.redirect('manage_workspace')
 
     security.declareProtected(ModifyPortalContent, 'moveObjectsToBottom')
     def moveObjectsToBottom(self, ids, RESPONSE=None):
         """Move an object to the bottom."""
-        self.moveObjectsByDelta(ids, len(self))
+        self.moveObjectsByDelta(ids, len(self._objects))
         if RESPONSE is not None:
             RESPONSE.redirect('manage_workspace')
 
@@ -182,7 +180,7 @@ class OrderedContainer(Folder):
                                       ((key, 'cmp', 'asc'),))]
         if reverse:
             ids.reverse()
-        return self.moveObjectsByDelta(ids, -len(self))
+        return self.moveObjectsByDelta(ids, -len(self._objects))
 
     # Here the implementation of IOrderedContainer ends
 
@@ -198,7 +196,7 @@ class OrderedContainer(Folder):
 
 InitializeClass(OrderedContainer)
 
-class BasePloneFolder(CatalogAware, WorkflowAware, OpaqueItemManager, PortalFolderBase, DefaultDublinCoreImpl):
+class BasePloneFolder(CMFCatalogAware, PortalFolderBase, DefaultDublinCoreImpl):
     """Implements basic Plone folder functionality except ordering support.
     """
 
@@ -207,7 +205,7 @@ class BasePloneFolder(CatalogAware, WorkflowAware, OpaqueItemManager, PortalFold
     implements(IWriteLock)
 
     manage_options = Folder.manage_options + \
-                     WorkflowAware.manage_options
+                     CMFCatalogAware.manage_options
 
     # Fix permissions set by CopySupport.py
     __ac_permissions__ = (
@@ -223,21 +221,15 @@ class BasePloneFolder(CatalogAware, WorkflowAware, OpaqueItemManager, PortalFold
         DefaultDublinCoreImpl.__init__(self)
         self.id = id
         self.title = title
+        # BBB To be removed in Plone 5.0
+        log_deprecated("BasePloneFolder is deprecated and will be removed in Plone"
+                       "5.0. Please use ATContentTypes ATFolder instead.")
 
     def __call__(self):
         """Invokes the default view."""
-        ti = self.getTypeInfo()
-        method_id = ti and ti.queryMethodId('(Default)', context=self)
-        if method_id:
-            method = getattr(self, method_id)
-            # XXX view is not defined!
-            if getattr(aq_base(view), 'isDocTemp', 0):
-                return method(self, self.REQUEST, self.REQUEST['RESPONSE'])
-            else:
-                return method()
-        else:
-            raise NotFound( 'Cannot find default view for "%s"' %
-                            '/'.join( self.getPhysicalPath() ) )
+        # Removed dead code.
+        raise NotFound( 'Cannot find default view for "%s"' %
+                        '/'.join( self.getPhysicalPath() ) )
 
     security.declareProtected(Permissions.view, 'view')
     view = __call__
@@ -278,7 +270,7 @@ class BasePloneFolder(CatalogAware, WorkflowAware, OpaqueItemManager, PortalFold
     def manage_delObjects(self, ids=[], REQUEST=None):
         """We need to enforce security."""
         mt = getToolByName(self, 'portal_membership')
-        if isinstance(ids, basestring):
+        if type(ids) is StringType:
             ids = [ids]
         for id in ids:
             item = self._getOb(id)
@@ -353,6 +345,12 @@ class PloneFolder(BasePloneFolder, OrderedContainer):
     manage_renameObject = OrderedContainer.manage_renameObject
     security.declareProtected(Permissions.copy_or_move, 'manage_copyObjects')
 
+    def __init__(self, *args, **kwargs):
+        BasePloneFolder.__init__(self, *args, **kwargs)
+        # BBB To be removed in Plone 5.0
+        log_deprecated("PloneFolder is deprecated and will be removed in Plone"
+                       "5.0. Please use ATContentTypes ATFolder instead.")
+
 InitializeClass(PloneFolder)
 
 def safe_cmp(x, y):
@@ -362,6 +360,9 @@ def safe_cmp(x, y):
 
 def addPloneFolder(self, id, title='', description='', REQUEST=None):
     """Adds a Plone Folder."""
+    # BBB To be removed in Plone 5.0
+    log_deprecated("PloneFolder is deprecated and will be removed in Plone"
+                   "5.0. Please use ATContentTypes ATFolder instead.")
     sf = PloneFolder(id, title=title)
     sf.description=description
     self._setObject(id, sf)
