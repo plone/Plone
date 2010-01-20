@@ -44,18 +44,6 @@
 
     <div tal:replace="structure provider:plone.htmlhead" />
 
-    <!-- IE6 workaround CSS/JS  -->
-    <tal:iefixstart replace="structure string:&lt;!--[if lte IE 7]&gt;" />
-        <style type="text/css" media="all" tal:condition="exists:context/IEFixes.css"
-               tal:content="string:@import url($portal_url/IEFixes.css);">
-        </style>
-        
-        <script type="text/javascript"
-                tal:attributes="src string:${portal_url}/iefixes.js">
-        </script>
-        
-    <tal:iefixend replace="structure string:&lt;![endif]--&gt;" />
-
     <link tal:replace="structure provider:plone.htmlhead.links" />
 
     <!-- Disable IE6 image toolbar -->

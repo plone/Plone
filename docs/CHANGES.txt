@@ -8,6 +8,17 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Remove explicit iefixes (css and js) from the main_template, which
+  will be pulled now from the ResourceRegistries, using the
+  conditionalcomments property.
+  Refs http://dev.plone.org/plone/ticket/9278.
+  [dukebody]
+
+- Move iefixes.js to the ploneclassic.theme package, since we agreed
+  upon that every theme should be responsible of its own fixes for IE.
+  Refs http://dev.plone.org/plone/ticket/9278.
+  [dukebody]
+
 - Make global_cache_settings responsible for deciding to switch on gzip
   compression instead of doing it in the enableHTTPCompression script. This
   avoids another costly Python script call.
