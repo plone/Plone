@@ -1,5 +1,5 @@
 (function($) {
-    Highlighter = function (options) { 
+    var Highlighter = function (options) { 
         $.extend(this, options);
         this.terms = this.cleanTerms(this.terms.length ? this.terms : this.getSearchTerms());
     };
@@ -32,6 +32,7 @@
             };
 
             var ci = self.caseInsensitive;
+            var index;
             while (c && (index = (ci ? c.toLowerCase() : c).indexOf(word)) > -1) {
                 // replace the node with [before]<span>word</span>[after]
                 $(node)
@@ -69,8 +70,9 @@
                 document.referrer;
             if (!ref) return '';
 
-            for (var i = 0, se; se = this.referrers[i++];)
+            for (var i = 0, se; se = this.referrers[i++];) {
                 if (ref.match(se.address)) return this.queryStringValue(ref, se.key);
+            }
             return '';
         },
         
@@ -100,7 +102,7 @@
     };
     var makeAddress = function(addr) {
         return (typeof addr === 'string') ? new RegExp('^https?://(www\\.)?' + addr, 'i') : addr;
-    }
+    };
 
     $.fn.highlightSearchTerms = function(options) {
         // Wrap terms in a span with class highlightedSearchTerm. 
@@ -120,7 +122,7 @@
                 $.fn.highlightSearchTerms._test_location : location.hostname;
             options.referrers.push({
                 address: makeAddress(hostname.replace(/\./g, '\\.')),
-                key: options.searchKey,
+                key: options.searchKey
             });
         }
         new Highlighter(options).highlight(this);

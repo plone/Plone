@@ -41,8 +41,9 @@ jq(function(){
         {
             subtype: 'ajax',
             filter: '#content>*',
-            formselector: 'form',
-            noform: 'reload'
+            formselector: 'form[name="default_page_form"]',
+            noform: 'reload',
+            closeselector: '[name=form.button.Cancel]'
         }
     );
 
@@ -62,7 +63,7 @@ jq(function(){
         {
             subtype: 'ajax',
             filter: '#content>*:not(div.configlet)',
-            formselector: 'form.kssattr-formname-register',
+            formselector: 'form.kssattr-formname-register'
         }
     );
 

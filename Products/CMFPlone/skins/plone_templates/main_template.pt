@@ -23,17 +23,13 @@
       tal:attributes="lang lang;
                       xml:lang lang">
 
-  <tal:cache tal:define="charset site_properties/default_charset|string:utf-8">
-    <metal:cache use-macro="context/global_cache_settings/macros/cacheheaders">
-      Get the global cache headers located in global_cache_settings.
-    </metal:cache>
-  </tal:cache>
+  <metal:cache use-macro="context/global_cache_settings/macros/cacheheaders">
+    Get the global cache headers located in global_cache_settings.
+  </metal:cache>
 
   <head>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"
-          tal:define="charset site_properties/default_charset|string:utf-8"
-          tal:attributes="content string:text/html;;charset=${charset}" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
     <meta name="generator" content="Plone - http://plone.org" />
 
@@ -43,7 +39,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
 
     <metal:baseslot define-slot="base">
-      <base tal:attributes="href context/renderBase" /><!--[if lt IE 7]></base><![endif]-->
+      <base tal:attributes="href plone_view/renderBase" /><!--[if lt IE 7]></base><![endif]-->
     </metal:baseslot>
 
     <div tal:replace="structure provider:plone.htmlhead" />
@@ -82,10 +78,9 @@
   <body tal:define="isRTL portal_state/is_rtl;
                     sl python:plone_view.have_portlets('plone.leftcolumn', view);
                     sr python:plone_view.have_portlets('plone.rightcolumn', view);
-                    template_id python:plone_view.bodyClass(template, view);
-                    class_expr string:${context/getSectionFromURL} template-${template_id};"
-        tal:attributes="class python:class_expr.strip();
-                        dir python:test(isRTL, 'rtl', 'ltr')">
+                    body_class python:plone_view.bodyClass(template, view);"
+        tal:attributes="class body_class;
+                        dir python: isRTL and 'rtl' or 'ltr'">
     <div id="visual-portal-wrapper">
 
       <div id="portal-top" i18n:domain="plone">
@@ -115,10 +110,12 @@
                 tal:define="Iterator python:modules['Products.CMFPlone'].IndexIterator;
                             tabindex python:Iterator(mainSlot=False)">
 
+              <div id="viewlet-above-content" tal:content="structure provider:plone.abovecontent" />
+              
               <metal:block define-slot="content">
                 <div metal:define-macro="content"
                      tal:define="show_border context/@@plone/showEditableBorder"
-                     tal:attributes="class python:test(show_border,'documentEditable','')">
+                     tal:attributes="class python:show_border and 'documentEditable' or ''">
 
                   <div tal:replace="structure provider:plone.contentviews" />
 
@@ -133,24 +130,47 @@
                     <div metal:use-macro="context/global_statusmessage/macros/portal_message">
                       Portal status message
                     </div>
-                    
-                    <div id="viewlet-above-content" tal:content="structure provider:plone.abovecontent" />
 
-                    <metal:slot metal:define-slot="body">
+                    <metal:slot define-slot="body">
                     <div id="content">
-                      <metal:header metal:define-slot="header" tal:content="nothing">
+                      <metal:header define-slot="header" tal:content="nothing">
                         Visual Header
                       </metal:header>
-                      <metal:bodytext metal:define-slot="main" tal:content="nothing">
-                        Page body text
+                      <metal:bodytext define-slot="main">
+  
+                        <div tal:replace="structure provider:plone.abovecontenttitle" />
+                        <metal:title define-slot="content-title">                             
+                            <h1 class="documentFirstHeading">
+                                <metal:field use-macro="python:context.widget('title', mode='view')">
+                                    Title
+                                </metal:field>
+                            </h1>
+                        </metal:title>
+                        <div tal:replace="structure provider:plone.belowcontenttitle" />                        
+                        
+                        <metal:description define-slot="content-description">
+                            <p class="documentDescription">
+                                <metal:field use-macro="python:context.widget('description', mode='view')">
+                                    Description
+                                </metal:field>
+                            </p>
+                        </metal:description>
+
+                        <div tal:replace="structure provider:plone.abovecontentbody" />
+                        <div id="content-core">                            
+                            <metal:text define-slot="content-core" tal:content="nothing">
+                                Page body text
+                            </metal:text>                            
+                        </div>
+                        <div tal:replace="structure provider:plone.belowcontentbody" />                                                                           
+                        
                       </metal:bodytext>
                     </div>
                     </metal:slot>
 
-                    <metal:sub metal:define-slot="sub">
-                    
-                      <div tal:replace="structure provider:plone.belowcontent" />
-                    
+                    <metal:sub define-slot="sub" tal:content="nothing">
+                        This slot is here for backwards-compatibility only. 
+                        Don't copy it in a custom templates.
                     </metal:sub>
 
                     <span id="contentBottomLeft"></span>
@@ -161,6 +181,9 @@
                 </div>
 
               </metal:block>
+              
+              <div id="viewlet-below-content" tal:content="structure provider:plone.belowcontent" />
+              
             </td>
             <tal:comment replace="nothing"> End of main content block </tal:comment>
 

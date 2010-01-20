@@ -3,5 +3,5 @@
  <javascript id="tiny_mce.js" authenticated="True" compression="none"
    insert-after="unlockOnFormUnload.js" expression="" />
  <javascript id="tiny_mce_init.js" authenticated="True" compression="none"
-   insert-after="tiny_mce.js" expression="" />
+   insert-after="++resource++kukit-devel.js" expression="" />
 </object>

@@ -15,6 +15,73 @@ Changelog
   @@usergroup-groupmembership in plone.app.controlpanel
   [esteele]
 
+- Make global_cache_settings responsible for deciding to switch on gzip
+  compression instead of doing it in the enableHTTPCompression script. This
+  avoids another costly Python script call.
+  [hannosch]
+
+- Avoid the test function in the main_template. It doesn't exist in view page
+  template files.
+  [hannosch]
+
+- Avoid the getSectionFromURL method completely and merge functionality into
+  the bodyClass method.
+  [hannosch]
+
+- Display logoIcon.png instead of favicon.ico on the Zope root overview screen,
+  for compatibility with IE which refuses to render X-ICON format images in the
+  document body.
+  [davisagli]
+
+- Avoid yet another mindless Python script and deprecate renderBase.
+  [hannosch]
+
+- Simplify the charset handling, by moving the actual setting into the
+  global_cache_headers macro.
+  [hannosch]
+
+- Replaced the getSectionFromURL Python script with a view method.
+  [hannosch]
+
+- Deprecated the computeRelatedItems script in favor of a method on the
+  related items viewlet.
+  [hannosch]
+
+- Hide plonetheme.classic from the list of uninstallable products to reduce
+  confusion, as at this point it can't be uninstalled without breaking
+  sunburst as well when the Quick Installer unregisters its CSS.
+  [davisagli]
+
+- Altered table of contents javascript so that comments are not displayed.
+  Refs. #8621.
+  [dbfrombrc]
+
+- Added back INavigationRoot to CMFPlone.browsers. We need to provide an
+  upgrade step for persistent marker interfaces before removing it.
+  This refs http://dev.plone.org/plone/ticket/10072.
+  [hannosch]
+
+- Updated markup of document_view and event_view to follow conventions 
+  in main_template. 
+  References https://dev.plone.org/plone/ticket/9981
+  [spliter]
+
+- Just a markup polishing - <metal> tags don't need explicit "metal" for 
+  defining slots.
+  [spliter]
+
+- plone.belowcontent should not replace div#viewlet-below-content but 
+  rather add content into it
+  [spliter]
+
+- Moves plone.abovecontent and plone.belowcontent viewlet managers actually 
+  above and below content respectively.
+  Closes http://dev.plone.org/plone/ticket/10081
+  [spliter]
+
+- Put the preferred markup for content area in main_template. References #9981
+  [spliter]
+
 - Remove prefs_group_modify.cpy as we no longer use it. Adjust tests accordingly.
   [esteele]
 
@@ -51,7 +118,7 @@ Changelog
   [hannosch]
 
 - Fix template errors in author_feedback_template.pt which prevented author
-  feedback from being sent. Allow anonymous users to send email to authors.
+  feedback from being sent.
   Closes http://dev.plone.org/plone/ticket/9730
   [esteele]
 

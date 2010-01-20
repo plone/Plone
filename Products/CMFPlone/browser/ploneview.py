@@ -1,8 +1,10 @@
 from urllib import unquote
 
+from AccessControl import Unauthorized
+from Acquisition import aq_base
 from Acquisition import aq_inner
 from Products.Five import BrowserView
-from Products.Five.browser.pagetemplatefile import ZopeTwoPageTemplateFile
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from Products.CMFCore.permissions import AddPortalContent
 from Products.CMFCore.permissions import DeleteObjects
@@ -374,7 +376,7 @@ class Plone(BrowserView):
         """
         if self.request.get(manager_name, None):
             return False
-        
+
         context = aq_inner(self.context)
         if view is None:
             view = self
@@ -386,13 +388,31 @@ class Plone(BrowserView):
 
         return renderer.visible
 
-    @memoize
     def site_encoding(self):
         return utils.getSiteEncoding(self.context)
 
+    def renderBase(self):
+        context = aq_inner(self.context)
+        # when accessing via WEBDAV you're not allowed to access aq_base
+        try:
+            if getattr(aq_base(context), 'isPrincipiaFolderish', False):
+                return context.absolute_url() + '/'
+        except Unauthorized:
+            pass
+        return context.absolute_url()
+
     def bodyClass(self, template, view):
-        if isinstance(template, ZopeTwoPageTemplateFile):
+        name = ''
+        if isinstance(template, ViewPageTemplateFile):
             # Browser view
-            return view.__name__
+            name = view.__name__
         else:
-            return template.getId()
+            name = template.getId()
+
+        context = aq_inner(self.context)
+        url = getToolByName(context, "portal_url")
+        contentPath = url.getRelativeContentPath(context)
+        if contentPath:
+            return "section-%s template-%s" % (contentPath[0], name)
+
+        return 'template-%s' % name
