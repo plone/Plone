@@ -14,11 +14,11 @@ from ZPublisher.mapply import mapply
 from Products.CMFPlone import cmfplone_globals
 from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 from Products.CMFCore.permissions import ManagePortal
+from Products.CMFCore.PortalFolder import PortalFolderBase as TempFolderBase
 from Products.CMFCore.utils import UniqueObject
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces import IFactoryTool
 from Products.CMFPlone.interfaces import IHideFromBreadcrumbs
-from Products.CMFPlone.PloneFolder import PloneFolder as TempFolderBase
 from Products.CMFPlone.PloneBaseTool import PloneBaseTool
 from Products.CMFPlone.utils import base_hasattr
 from Products.CMFPlone.utils import log_exc

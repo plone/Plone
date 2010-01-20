@@ -909,11 +909,9 @@ class TestPortalBugs(PloneTestCase.PloneTestCase):
         self.assertEqual(aq_base(members).__getattr__('index_html').meta_type, self.mem_index_type)
         self.assertEqual(members.__getattr__('index_html').meta_type, self.mem_index_type)
 
-    def testLargePloneFolderHickup(self):
+    def testATBTreeFolderHickup(self):
         # Attribute access for 'index_html' acquired the Document from the
-        # portal instead of returning the local Page Template. This was due to
-        # special treatment of 'index_html' in the PloneFolder base class and
-        # got fixed by hazmat.
+        # portal instead of returning the local Page Template.
         members = self.members
         self.assertEqual(aq_base(members).meta_type, 'ATFolder')
         self.assertEqual(members.index_html.meta_type, self.mem_index_type)
