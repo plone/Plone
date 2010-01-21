@@ -8,6 +8,10 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Update jquery.js to use jquery-1.4.min.js. The change is in
+  Plone3rdParty/branches/4.0/skins/plone_3rdParty
+  [smcmahon]
+
 - Remove explicit iefixes (css and js) from the main_template, which
   will be pulled now from the ResourceRegistries, using the
   conditionalcomments property.
