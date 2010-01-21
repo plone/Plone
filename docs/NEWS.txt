@@ -8,7 +8,10 @@ Changelog
 3.3.5 - Unreleased
 ------------------
 
-- ....
+- Check for existance of a hash in the location before attempting to scroll to
+  that location in toc.js. Fixes bug introduced in r32066, and refs
+  http://dev.plone.org/plone/ticket/9364
+  [dunlapm]
 
 - default_error_message page adds the error code in the subject
   of the contact-info page

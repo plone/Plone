@@ -45,10 +45,13 @@ jq(function() {
         dest.append(oltoc);
         
         //scroll to element now.
-        var $target = jq(window.location.hash);
-        $target = $target.length && $target
-	          || jq('[name=' + window.location.hash.slice(1) +']');
-	    var targetOffset = $target.offset().top;
-	    jq('html,body').animate({scrollTop: targetOffset}, 0);
+        var wlh = window.location.hash;
+        if (wlh) {
+            var $target = jq(wlh);
+            $target = $target.length && $target
+                || jq('[name=' + wlh.slice(1) +']');
+            var targetOffset = $target.offset().top;
+            jq('html,body').animate({scrollTop: targetOffset}, 0);
+        }
     }
 });
