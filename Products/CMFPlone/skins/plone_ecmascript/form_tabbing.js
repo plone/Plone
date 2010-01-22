@@ -81,7 +81,7 @@ ploneFormTabbing.initializeDL = function() {
 
 
 ploneFormTabbing.initializeForm = function() {
-    jqForm = $(this);
+    var jqForm = $(this);
     var fieldsets = jqForm.children('fieldset');
 
     if (!fieldsets.length) {return;}
@@ -112,9 +112,9 @@ ploneFormTabbing.initializeForm = function() {
         count += 1;
     });
 
-    var tabSelector = 'ul.formTabs'
+    var tabSelector = 'ul.formTabs';
     if (ftabs.is('select.formTabs')) {
-        tabSelector = 'select.formTabs'
+        tabSelector = 'select.formTabs';
     }
     jqForm.children(tabSelector).tabs(
         'form.enableFormTabbing fieldset.formPanel', 
@@ -136,19 +136,28 @@ ploneFormTabbing.initializeForm = function() {
 
 };
 
-ploneFormTabbing.initialize = function() {
-    $("form.enableFormTabbing,div.enableFormTabbing").each(ploneFormTabbing.initializeForm);
-    $("dl.enableFormTabbing").each(ploneFormTabbing.initializeDL);
+$.fn.ploneTabInit = function(pbo) {
+    return this.each(function() {
+        var item = $(this);
+        
+        item.find("form.enableFormTabbing,div.enableFormTabbing").each(ploneFormTabbing.initializeForm);
+        item.find("dl.enableFormTabbing").each(ploneFormTabbing.initializeDL);
 
-    //Select tab if it's part of the URL or designated in a hidden input
-    var targetPane = $('.enableFormTabbing input[name=fieldset.current]').val() || window.location.hash;
-    if (targetPane) {
-        $(".enableFormTabbing .formtab a[href='" +
-         targetPane.replace("'", "").replace(/^#fieldset-/, "#fieldsetlegend-") +
-         "']").click();
-    }
-}
+        //Select tab if it's part of the URL or designated in a hidden input
+        var targetPane = item.find('.enableFormTabbing input[name=fieldset.current]').val() || window.location.hash;
+        if (targetPane) {
+            item.find(".enableFormTabbing .formtab a[href='" +
+             targetPane.replace("'", "").replace(/^#fieldset-/, "#fieldsetlegend-") +
+             "']").click();
+        }
+    });
+};
+
+// initialize is a convenience function
+ploneFormTabbing.initialize = function() {
+    $('body').ploneTabInit();
+};
 
 })(jQuery);
 
-jq(function(){ploneFormTabbing.initialize();});
+jQuery(function(){ploneFormTabbing.initialize();});
