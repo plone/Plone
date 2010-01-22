@@ -42,5 +42,17 @@
         //Use a clever class name to add margin that's MUCH easier to customize
         oltoc.addClass("TOC"+numdigits+"Digit");
         dest.append(oltoc);
+
+
+        //scroll to element now.
+        var wlh = window.location.hash;
+        if (wlh) {
+            var target = $(wlh);
+            target = target.length && target
+                || $('[name=' + wlh.slice(1) +']');
+            var targetOffset = target.offset();
+            if (targetOffset)
+                $('html,body').animate({scrollTop: targetOffset.top}, 0);
+        }
     }
 }); })(jQuery);
