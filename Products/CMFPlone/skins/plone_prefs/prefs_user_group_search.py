@@ -8,14 +8,21 @@
 ##title=Valid Search Resriction
 ##
 #MembershipTool.searchForMembers
+
 groups_tool = context.portal_groups
 members_tool = context.portal_membership
-retlist = []
+groupsList = []
+usersList = []
 
-if restrict != "groups":
-    retlist = retlist + members_tool.searchForMembers(REQUEST=None, name=searchstring)
 if restrict != "users":
-    retlist = retlist + groups_tool.searchForGroups(REQUEST=None, title_or_name=searchstring)
+    groupsList = groups_tool.searchForGroups(REQUEST=None, title_or_name=searchstring)
+    groupsList.sort(key=lambda x: x.getProperty('title').lower())
+    
+if restrict != "groups":
+    usersList = members_tool.searchForMembers(REQUEST=None, name=searchstring)
+    usersList.sort(key=lambda x: x.getProperty('fullname').lower())
+
+retlist = groupsList + usersList
 
 if ignore:
   retlist = [r for r in retlist if r not in ignore]
