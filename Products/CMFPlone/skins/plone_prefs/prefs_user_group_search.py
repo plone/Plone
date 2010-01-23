@@ -20,7 +20,7 @@ if restrict != "users":
     
 if restrict != "groups":
     usersList = members_tool.searchForMembers(REQUEST=None, name=searchstring)
-    usersList.sort(key=lambda x: x.getId().lower())
+    usersList.sort(key=lambda x: x.getProperty('fullname').lower())
 
 retlist = groupsList + usersList
 
