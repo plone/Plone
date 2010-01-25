@@ -7,6 +7,14 @@ Changelog
 
 4.0b1 - Unreleased
 ------------------
+- Deprecated plone_prefs/prefs_user_memberships.pt,
+  plone_prefs/prefs_user_details.cpt,
+  plone_prefs/prefs_user_memberships.pt.metadata,
+  plone_prefs/prefs_user_membership_edit.py,
+  plone_prefs/prefs_user_group_search.py. Functionality is now handled by
+  @@usergroup-usermembership.
+  [esteele]
+
 - Overlay form on @@usergroup-groupprefs and @@usergroup-userprefs now
   redirects to the current page instead of reloading it. Reloading caused a
   resubmission of the last form action (such as "delete") which threw an
