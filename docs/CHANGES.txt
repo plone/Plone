@@ -7,6 +7,11 @@ Changelog
 
 4.0b1 - Unreleased
 ------------------
+- Overlay form on @@usergroup-groupprefs and @@usergroup-userprefs now
+  redirects to the current page instead of reloading it. Reloading caused a
+  resubmission of the last form action (such as "delete") which threw an
+  error.
+  [esteele]
 
 - Deprecated plone_deprecated/prefs_group_members.cpt,
   prefs_group_members.cpt.metadata, prefs_group_members_add.cpy,
