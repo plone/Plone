@@ -111,7 +111,18 @@ class MigrationTool(PloneBaseTool, UniqueObject, SimpleItem):
         vars['Plone File System'] = self.getFileSystemVersion()
         vars['CMF'] = get_dist('Products.CMFCore').version
         vars['Debug mode'] = Globals.DevelopmentMode and 'Yes' or 'No'
-        vars['PIL'] = get_dist('PIL').version
+        try:
+            vars['PIL'] = get_dist('PIL').version
+        except pkg_resources.DistributionNotFound:
+            try:
+                vars['PIL'] = get_dist('PILwoTK').version
+            except pkg_resources.DistributionNotFound:
+                try:
+                    import _imaging
+                    vars['PIL'] = 'unknown'
+                except ImportError:
+                    pass
+            
         return vars
 
     security.declareProtected(ManagePortal, 'coreVersionsList')
