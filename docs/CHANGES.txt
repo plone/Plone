@@ -8,6 +8,11 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Make QuickInstallerTool.upgradeProduct() able to handle upgradeSteps
+  directive.
+  Closes http://dev.plone.org/plone/ticket/9455 
+  [cah190]
+
 - Update jquery.js to use jquery-1.4.min.js. The change is in
   Plone3rdParty/branches/4.0/skins/plone_3rdParty
   [smcmahon]

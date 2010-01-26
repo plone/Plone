@@ -67,8 +67,14 @@ class QuickInstallerTool(PloneBaseTool, BaseTool):
         setup = getToolByName(self, 'portal_setup')
         upgrades = setup.listUpgrades(profile_id)
         for upgrade in upgrades:
-            step = upgrade['step']
-            step.doStep(setup)
+            # An upgrade may be a single step (for a bare upgradeStep)
+            # or a list of steps (for upgradeSteps containing upgradeStep
+            # directives).
+            if not type(upgrade) is list:
+                upgrade = [upgrade]
+            for upgradestep in upgrade:
+                step = upgradestep['step']
+                step.doStep(setup)
         version = str(profile['version'])
         setup.setLastVersionForProfile(profile_id, version)
 
