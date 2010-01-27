@@ -7,6 +7,10 @@ Changelog
 
 4.0b1 - Unreleased
 ------------------
+
+- Deprecated plone_prefs/prefs_search_macros.pt
+  [esteele]
+
 - Deprecated plone_prefs/prefs_user_memberships.pt,
   plone_prefs/prefs_user_details.cpt,
   plone_prefs/prefs_user_memberships.pt.metadata,
