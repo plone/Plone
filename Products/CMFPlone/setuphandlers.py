@@ -234,6 +234,7 @@ def setupPortalContent(p):
                             title=news_title, description=news_desc)
 
         folder = p.news
+        folder.setOrdering('unordered')
         folder.setConstrainTypesMode(constraintypes.ENABLED)
         folder.setLocallyAllowedTypes(['News Item'])
         folder.setImmediatelyAddableTypes(['News Item'])
@@ -277,6 +278,7 @@ def setupPortalContent(p):
         _createObjectByType('Topic', p.events, id='aggregator',
                             title=events_title, description=events_desc)
         folder = p.events
+        folder.setOrdering('unordered')
         folder.setConstrainTypesMode(constraintypes.ENABLED)
         folder.setLocallyAllowedTypes(['Event'])
         folder.setImmediatelyAddableTypes(['Event'])
@@ -361,6 +363,7 @@ def setupPortalContent(p):
         members = getattr(p , 'Members')
         members.setTitle(members_title)
         members.setDescription(members_desc)
+        members.setOrdering('unordered')
         members.unmarkCreationFlag()
         members.setLanguage(language)
         members.reindexObject()

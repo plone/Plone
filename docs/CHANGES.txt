@@ -7,6 +7,12 @@ Changelog
 
 4.0b1 - Unreleased
 ------------------
+
+- Make sure the default content folders (news, events, and Members) are
+  not explicitly ordered (e.g., equivalent to the old Large Plone Folder
+  type).
+  [davisagli]
+
 - Show user's fullname in form header in prefs_user_details
   [esteele]
 
