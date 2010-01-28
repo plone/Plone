@@ -7,6 +7,8 @@ Changelog
 
 4.0b1 - Unreleased
 ------------------
+- Show user's fullname in form header in prefs_user_details
+  [esteele]
 
 - Deprecated plone_prefs/prefs_search_macros.pt
   [esteele]
