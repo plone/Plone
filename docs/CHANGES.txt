@@ -8,6 +8,10 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- In the tests, patch the MockMailHost to give it a secureSend method,
+  just like we already patch the real MailHost.
+  [maurits]
+
 - Make QuickInstallerTool.upgradeProduct() able to handle upgradeSteps
   directive.
   Closes http://dev.plone.org/plone/ticket/9455 
