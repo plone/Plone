@@ -56,9 +56,10 @@
         <h1 class="documentFirstHeading"
             i18n:translate="heading_prefs_user_details">
           User Properties for
-          <span tal:content="member/getId | default"
+          <span tal:replace="python:member.getProperty('fullname')" />
+          (<span tal:content="member/getId | default"
                 tal:omit-tag=""
-                i18n:name="username">username</span>
+                i18n:name="username">username</span>)
         </h1>
 
         <a href=""
