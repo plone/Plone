@@ -8,6 +8,30 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Deprecated plone_prefs/prefs_search_macros.pt
+  [esteele]
+
+- Deprecated plone_prefs/prefs_user_memberships.pt,
+  plone_prefs/prefs_user_details.cpt,
+  plone_prefs/prefs_user_memberships.pt.metadata,
+  plone_prefs/prefs_user_membership_edit.py,
+  plone_prefs/prefs_user_group_search.py. Functionality is now handled by
+  @@usergroup-usermembership.
+  [esteele]
+
+- Overlay form on @@usergroup-groupprefs and @@usergroup-userprefs now
+  redirects to the current page instead of reloading it. Reloading caused a
+  resubmission of the last form action (such as "delete") which threw an
+  error.
+  [esteele]
+
+- Deprecated plone_deprecated/prefs_group_members.cpt,
+  prefs_group_members.cpt.metadata, prefs_group_members_add.cpy,
+  prefs_group_members_add.cpy.metadata, prefs_group_members_delete.cpy,
+  prefs_group_members_delete.cpy.metadata. These are now handled by
+  @@usergroup-groupmembership in plone.app.controlpanel
+  [esteele]
+
 - In the tests, patch the MockMailHost to give it a secureSend method,
   just like we already patch the real MailHost.
   [maurits]

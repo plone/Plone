@@ -34,7 +34,7 @@
         <ul class="contentViews" id="content-views">
           <li>
             <a href=""
-               tal:attributes="href string:$portal_url/prefs_group_members?${groupquery}"
+               tal:attributes="href string:$portal_url/@@usergroup-groupmembership?${groupquery}"
                i18n:translate="label_group_members">Group Members</a>
           </li>
           <li class="selected">

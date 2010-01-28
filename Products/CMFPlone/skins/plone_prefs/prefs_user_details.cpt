@@ -34,7 +34,7 @@
 
               <li>
                     <a href=""
-                       tal:attributes="href string:$portal_url/prefs_user_memberships?${userquery}"
+                       tal:attributes="href string:$portal_url/@@usergroup-usermembership?${userquery}"
                        i18n:translate="label_group_memberships">
                       Group Memberships
                     </a>

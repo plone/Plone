@@ -77,11 +77,12 @@ jq(function(){
                 if (jQuery(el).find('dl.portalMessage.error').length) {
                     return false;
                 } else {
-                    return 'reload';
+                    return 'redirect';
                 }
+            },
+            redirect: function () {
+                return location.href;
             }
-            
-            
         }
     );
 
