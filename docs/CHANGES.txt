@@ -8,6 +8,10 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Define a "content-core" macro for each content view template to make blog
+  like listings possible.
+  [elro]
+
 - Make sure the default content folders (news, events, and Members) are
   not explicitly ordered (e.g., equivalent to the old Large Plone Folder
   type).

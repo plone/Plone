@@ -8,9 +8,11 @@
 <body>
 
 <metal:content-core fill-slot="content-core">
-    <metal:field use-macro="python:context.widget('text', mode='view')">
-        Body text
-    </metal:field>
+    <metal:content-core define-macro="content-core">
+        <metal:field use-macro="python:context.widget('text', mode='view')">
+            Body text
+        </metal:field>
+    </metal:content-core>
 </metal:content-core>
 
 </body>

@@ -33,18 +33,19 @@
 
         <div tal:replace="structure provider:plone.abovecontentbody" />
 
+        <metal:content-core define-macro="content-core">
+            <p>
+                <metal:field use-macro="python:context.widget('file', mode='view')">
+                File
+                </metal:field>
+            </p>
 
-        <p>
-            <metal:field use-macro="python:context.widget('file', mode='view')">
-            File
-            </metal:field>
-        </p>
-
-        <div tal:condition="python: content_type.startswith('text')">
-            <h2 i18n:translate="heading_file_contents">File contents</h2>
-            <pre tal:content="context/get_data|context/data|nothing">
-            </pre>
-        </div>
+            <div tal:condition="python: content_type.startswith('text')">
+                <h2 i18n:translate="heading_file_contents">File contents</h2>
+                <pre tal:content="context/get_data|context/data|nothing">
+                </pre>
+            </div>
+        </metal:content-core>
     
         <div tal:replace="structure provider:plone.belowcontentbody" />
 

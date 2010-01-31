@@ -7,11 +7,12 @@
       i18n:domain="plone">
 <body>
 
-<metal:content-core fill-slot="content-core"
-                    tal:define="kssClassesView context/@@kss_field_decorator_view;
-                                getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
-                                templateId template/getId;
-                                toLocalizedTime nocall:context/@@plone/toLocalizedTime;">
+<metal:content-core fill-slot="content-core">
+    <metal:content-core define-macro="content-core"
+                        tal:define="kssClassesView context/@@kss_field_decorator_view;
+                                    getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
+                                    templateId template/getId;
+                                    toLocalizedTime nocall:context/@@plone/toLocalizedTime;">
 
         <div class="eventDetails vcard">
             <table class="vertical listing"
@@ -164,6 +165,7 @@
 
         <span class="visualClear"><!-- --></span>
 
+    </metal:content-core>
 </metal:content-core>
 
 </body>

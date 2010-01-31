@@ -32,31 +32,33 @@
 
         <div tal:replace="structure provider:plone.abovecontentbody" />
 
-        <a href=""
-           class="discreet"
-           tal:attributes="href string:${context/@@plone_context_state/object_url}/image_view_fullscreen">
-            <tal:block condition="size" replace="structure python: context.tag(scale='preview')" />
-            <br />
-            <span class="visualNoPrint">
-                <img src="" alt="" tal:replace="structure context/search_icon.png" />
-                <span i18n:translate="label_click_to_view_full_image">Click to view full-size image&hellip;</span>
-            </span>
-        </a>
+        <metal:content-core define-macro="content-core">
+            <a href=""
+               class="discreet"
+               tal:attributes="href string:${context/@@plone_context_state/object_url}/image_view_fullscreen">
+                <tal:block condition="size" replace="structure python: context.tag(scale='preview')" />
+                <br />
+                <span class="visualNoPrint">
+                    <img src="" alt="" tal:replace="structure context/search_icon.png" />
+                    <span i18n:translate="label_click_to_view_full_image">Click to view full-size image&hellip;</span>
+                </span>
+            </a>
 
-        <span class="discreet visualNoPrint">
-        &mdash;
-            <span i18n:translate="label_size">Size</span>:
+            <span class="discreet visualNoPrint">
+            &mdash;
+                <span i18n:translate="label_size">Size</span>:
 
-            <span tal:define="size python:context.getObjSize(here)"
-                  tal:content="size">
-                File size
-            </span>
+                <span tal:define="size python:context.getObjSize(here)"
+                      tal:content="size">
+                    File size
+                </span>
 
-            <span tal:condition="python:test(size, 0, 1)"
-                  i18n:translate="no_image_uploaded">
-                (No image has been uploaded yet)
+                <span tal:condition="python:test(size, 0, 1)"
+                      i18n:translate="no_image_uploaded">
+                    (No image has been uploaded yet)
+                </span>
             </span>
-        </span>
+        </metal:content-core>
         
         <div tal:replace="structure provider:plone.belowcontentbody" />
 
