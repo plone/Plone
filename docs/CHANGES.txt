@@ -5,7 +5,7 @@
 Changelog
 =========
 
-4.0b1 - Unreleased
+4.0a4 - 2010-02-01
 ------------------
 
 - Define a "content-core" macro for each content view template to make blog
