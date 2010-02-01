@@ -8,12 +8,7 @@
 <body>
 
 <div metal:fill-slot="main">
-    <tal:main-macro metal:define-macro="main"
-          tal:define="kssClassesView context/@@kss_field_decorator_view; 
-                      getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
-                      templateId template/getId;
-                      text python:context.CookedBody(stx_level=2);
-                      len_text python:len(text.strip())">
+    <tal:main-macro metal:define-macro="main">
 
         <div tal:replace="structure provider:plone.abovecontenttitle" />
 
@@ -33,7 +28,13 @@
 
         <div tal:replace="structure provider:plone.abovecontentbody" />
 
-        <metal:content-core define-macro="content-core">
+        <metal:content-core define-macro="content-core"
+              tal:define="kssClassesView context/@@kss_field_decorator_view; 
+                          getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
+                          templateId template/getId;
+                          text python:context.CookedBody(stx_level=2);
+                          len_text python:len(text.strip())">
+
             <div class="newsImageContainer"
                  tal:condition="context/getImage|nothing">
                 <a href="#"

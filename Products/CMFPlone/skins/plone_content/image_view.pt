@@ -9,10 +9,7 @@
 <body>
 
 <div metal:fill-slot="main">
-    <tal:main-macro metal:define-macro="main"
-                    tal:define="kssClassesView context/@@kss_field_decorator_view; 
-                                getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
-                                size context/size">
+    <tal:main-macro metal:define-macro="main">
 
         <div tal:replace="structure provider:plone.abovecontenttitle" />
 
@@ -32,7 +29,10 @@
 
         <div tal:replace="structure provider:plone.abovecontentbody" />
 
-        <metal:content-core define-macro="content-core">
+        <metal:content-core define-macro="content-core"
+                    tal:define="kssClassesView context/@@kss_field_decorator_view; 
+                                getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
+                                size context/size">
             <a href=""
                class="discreet"
                tal:attributes="href string:${context/@@plone_context_state/object_url}/image_view_fullscreen">

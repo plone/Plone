@@ -11,7 +11,6 @@
 <div metal:fill-slot="main">
     <tal:main-macro metal:define-macro="main" 
            tal:define="size python:context.getObjSize(here);
-                       content_type context/get_content_type|context/Format;
                        kssClassesView context/@@kss_field_decorator_view;  
                        getKssClasses nocall:kssClassesView/getKssClassesInlineEditable">
 
@@ -33,7 +32,8 @@
 
         <div tal:replace="structure provider:plone.abovecontentbody" />
 
-        <metal:content-core define-macro="content-core">
+        <metal:content-core define-macro="content-core"
+                            tal:define="content_type context/get_content_type|context/Format">
             <p>
                 <metal:field use-macro="python:context.widget('file', mode='view')">
                 File
