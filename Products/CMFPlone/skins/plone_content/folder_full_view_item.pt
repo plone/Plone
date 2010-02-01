@@ -1,0 +1,70 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      i18n:domain="plone"
+      tal:omit-tag="">
+
+<body tal:omit-tag="">
+
+    <div class="tileItem"
+         tal:define="view options/view;
+                     item_type context/portal_type;
+                     item_layout here/getLayout;
+                     override python: {'Link': 'link_view'};
+                     item_macro python:path('here/%s/macros/content-core | nothing' % override.get(item_type, item_layout));
+                     site_properties context/portal_properties/site_properties;
+                     use_view_action site_properties/typesUseViewActionInListings|python:();
+                     item_url context/absolute_url;
+                     normalizeString nocall: context/plone_utils/normalizeString;
+                     item_type_class python: 'contenttype-' + normalizeString(item_type);
+                     kss_inline_editable python:False;
+                     "
+         tal:attributes="class string:tileItem visualIEFloatFix vevent ${item_type_class}">
+
+        <div tal:replace="structure provider:plone.abovecontenttitle" />
+
+        <h2 class="tileHeadline">
+            <a href="#" class="summary url"
+               tal:attributes="href python:test(item_type in use_view_action, item_url+'/view', item_url);">
+                <metal:field use-macro="python:context.widget('title', mode='view')">
+                    Title
+                </metal:field>
+             </a>
+        </h2>
+
+        <div tal:replace="structure provider:plone.belowcontenttitle" />
+
+        <p class="tileBody">
+            <metal:field use-macro="python:context.widget('description', mode='view')">
+                Description
+            </metal:field>
+        </p>
+
+        <tal:block tal:condition="item_macro">
+
+            <div tal:replace="structure provider:plone.abovecontentbody" />
+
+            <div metal:use-macro="item_macro">
+                content
+            </div>
+
+            <div tal:replace="structure provider:plone.belowcontentbody" />
+
+        </tal:block>
+
+        <p class="tileFooter" tal:condition="not:item_macro">
+            <a href=""
+               tal:attributes="href python:test(item_type in use_view_action, item_url+'/view', item_url);"
+               i18n:translate="read_more">
+                Read More&hellip;
+            </a>
+        </p>
+
+        <div class="visualClear"><!-- --></div>
+
+    </div>
+
+</body>
+</html>

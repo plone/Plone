@@ -1,0 +1,20 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="plone">
+
+<body>
+
+    <div metal:fill-slot="main" tal:define="parent_view view;">
+        <metal:main-macro use-macro="context/folder_summary_view/macros/main">
+            <metal:tileitem metal:fill-slot="tileitem" tal:define="view parent_view">
+                <div tal:replace="structure python:item.getObject().folder_full_view_item(view=view)" />
+            </metal:tileitem>
+        </metal:main-macro>
+    </div>
+
+</body>
+</html>

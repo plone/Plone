@@ -59,6 +59,7 @@
         <tal:listing condition="folderContents">
 
             <tal:block tal:repeat="item folderContents">
+                <metal:tileitem define-slot="tileitem">
                 <div class="tileItem visualIEFloatFix vevent" 
                      tal:define="item_url item/getURL|item/absolute_url;
                                        item_id item/getId|item/id;
@@ -168,6 +169,7 @@
                     <div class="visualClear"><!-- --></div>
 
                 </div>
+            </metal:tileitem>
             </tal:block>
 
             <!-- Navigation -->
