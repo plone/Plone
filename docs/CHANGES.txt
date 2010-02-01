@@ -207,6 +207,10 @@ Changelog
   http://dev.plone.org/plone/ticket/9961.
   [dukebody]
 
+- Make the ISiteRoot a INavigationRoot by default. This simplifies registering
+  many views aimed at the nav root.
+  [mj]
+
 4.0a3 - 2009-12-21
 ------------------
 
