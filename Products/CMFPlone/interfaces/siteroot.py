@@ -1,6 +1,6 @@
 from zope.interface import Interface
 from Products.CMFCore.interfaces import ISiteRoot
-from plane.app.layout.navigation.interfaces import INavigationRoot
+from plone.app.layout.navigation.interfaces import INavigationRoot
 
 class IPloneSiteRoot(ISiteRoot, INavigationRoot):
     """
