@@ -100,9 +100,9 @@ def getExprContext(context, object=None):
     initializeTFC()
     request = getattr(context, 'REQUEST', None)
     if request:
-        cache = request.get('_ec_cache', None)
+        cache = request.get('_plone_ec_cache', None)
         if cache is None:
-            request['_ec_cache'] = cache = {}
+            request['_plone_ec_cache'] = cache = {}
         ec = cache.get( id(object), None )
     else:
         ec = None

@@ -8,6 +8,11 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Cache the Plone expression context in the _plone_ec_cache attribute of the
+  request, rather than _ec_cache, to avoid accidentally getting a plain CMF
+  expression context if that's the first sort that was fetched.
+  [davisagli]
+
 - Update profile version, so we can register new upgrade steps.
   [hannosch]
 
