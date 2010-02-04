@@ -8,6 +8,9 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Update profile version, so we can register new upgrade steps.
+  [hannosch]
+
 - Fix portal_factory to not destroy sub-path traversal. For example, a view
   that implements IPublishTraverse would previously not see the traversal
   sub-path if invoked on an item being edited in the portal_factory.
