@@ -8,6 +8,11 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Fix portal_factory to not destroy sub-path traversal. For example, a view
+  that implements IPublishTraverse would previously not see the traversal
+  sub-path if invoked on an item being edited in the portal_factory.
+  [optilude]
+
 4.0a4 - 2010-02-01
 ------------------
 
