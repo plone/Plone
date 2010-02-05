@@ -7,50 +7,22 @@
       i18n:domain="plone">
 
 <body>
-
-<div metal:fill-slot="main">
-    <tal:main-macro metal:define-macro="main" 
-           tal:define="size python:context.getObjSize(here);
-                       kssClassesView context/@@kss_field_decorator_view;  
-                       getKssClasses nocall:kssClassesView/getKssClassesInlineEditable">
-
-        <div tal:replace="structure provider:plone.abovecontenttitle" />
-
-        <h1 class="documentFirstHeading"> 
-            <metal:field use-macro="python:context.widget('title', mode='view')">
-            Title
-            </metal:field>
-        </h1>
-
-        <div tal:replace="structure provider:plone.belowcontenttitle" />
-
-        <p class="documentDescription">
-            <metal:field use-macro="python:context.widget('description', mode='view')">
-            Description
-            </metal:field>
-        </p>
-
-        <div tal:replace="structure provider:plone.abovecontentbody" />
-
-        <metal:content-core define-macro="content-core"
-                            tal:define="content_type context/get_content_type|context/Format">
+    
+    <metal:content-core fill-slot="content-core">
+        <metal:block define-macro="content-core"
+                     tal:define="content_type context/get_content_type|context/Format">        
             <p>
                 <metal:field use-macro="python:context.widget('file', mode='view')">
                 File
                 </metal:field>
-            </p>
-
+            </p>        
             <div tal:condition="python: content_type.startswith('text')">
                 <h2 i18n:translate="heading_file_contents">File contents</h2>
                 <pre tal:content="context/get_data|context/data|nothing">
                 </pre>
             </div>
-        </metal:content-core>
-    
-        <div tal:replace="structure provider:plone.belowcontentbody" />
-
-    </tal:main-macro>
-</div>
+        </metal:block>
+    </metal:content-core>
 
 </body>
 

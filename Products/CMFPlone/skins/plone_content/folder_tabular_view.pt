@@ -8,28 +8,10 @@
 
 <body>
 
-    <div metal:fill-slot="main">
-    <metal:main-macro define-macro="main"
-                      tal:define="kssClassesView context/@@kss_field_decorator_view; 
-                                  getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
-                                  templateId template/getId">
-
-        <div tal:replace="structure provider:plone.abovecontenttitle" />
-
-        <h1 metal:use-macro="context/kss_generic_macros/macros/generic_title_view">
-            Title or id
-        </h1>
-
-        <div tal:replace="structure provider:plone.belowcontenttitle" />
-
-        <p  metal:use-macro="context/kss_generic_macros/macros/generic_description_view">
-           tal:content="context/Description"
-           tal:condition="context/Description">
-            Description
-        </p>
-
-        <div tal:replace="structure provider:plone.abovecontentbody" />
-
+    <metal:content-core fill-slot="content-core"
+                        tal:define="kssClassesView context/@@kss_field_decorator_view; 
+                                    getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
+                                    templateId template/getId">
         <div metal:define-macro="text-field-view"
              id="parent-fieldname-text" class="stx"
              tal:define="kss_class python:getKssClasses('text', 
@@ -169,11 +151,7 @@
         </metal:listingmacro>
 
         <metal:subtopics use-macro="context/atct_topic_view/macros/folderlisting_macro" />
-
-        <div tal:replace="structure provider:plone.belowcontentbody" />
-
-    </metal:main-macro>
-    </div>
+    </metal:content-core>
 
 </body>
 </html>
