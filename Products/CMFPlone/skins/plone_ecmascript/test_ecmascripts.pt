@@ -53,9 +53,9 @@
       Plone ECMAScript Unit Tests
     </h1>
 
-    <p class="documentDescription">
+    <div class="documentDescription">
       This page is the entry to the ECMAScript Unit Tests.
-    </p>
+    </div>
 
     <div>
         <button onclick="runTestCases();">Run Testcases</button>
