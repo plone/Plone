@@ -8,6 +8,11 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Increased maximum length of the sortable_title index from 40 to 70 characters
+  to match truncation rules of most search engines. This closes
+  http://dev.plone.org/plone/ticket/10170.
+  [hannosch]
+
 - Restrict manage_options on the catalog to supported and useful options.
   [hannosch]
 

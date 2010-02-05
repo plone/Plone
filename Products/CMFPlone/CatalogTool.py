@@ -98,7 +98,7 @@ def sortable_title(obj):
             # Replace numbers with zero filled numbers
             sortabletitle = num_sort_regex.sub(zero_fill, sortabletitle)
             # Truncate to prevent bloat
-            sortabletitle = safe_unicode(sortabletitle)[:40].encode('utf-8')
+            sortabletitle = safe_unicode(sortabletitle)[:70].encode('utf-8')
             return sortabletitle
     return ''
 
