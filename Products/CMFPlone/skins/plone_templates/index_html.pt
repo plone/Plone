@@ -8,15 +8,15 @@
 
 <body>
 
-<div metal:fill-slot="main">
+<div metal:fill-slot="main" tal:omit-tag="">
 
-    <h1 i18n:translate="heading_welcome_to">Welcome to
+    <h1 class="documentFirstHeading" i18n:translate="heading_welcome_to">Welcome to
         <span i18n:name="sitename" tal:omit-tag="" tal:content="context/Title">Portal title</span>
     </h1>
 
-    <p tal:content="context/description">
+    <div class="documentDescription" tal:content="context/description">
         Portal description
-    </p>
+    </div>
 
 </div>
 

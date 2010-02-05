@@ -124,38 +124,40 @@
                       <metal:header define-slot="header" tal:content="nothing">
                         Visual Header
                       </metal:header>
-                      <metal:bodytext define-slot="main">                                                            
+                      <metal:bodytext define-slot="main">  
+                        
+                        <metal:main define-macro="main">
+                            <div tal:replace="structure provider:plone.abovecontenttitle" />                             
+                            <metal:title define-slot="content-title">                              
+                                <metal:comment tal:content="nothing">
+                                    If you write a custom title allways use 
+                                    <h1 class="documentFirstHeading"></h1> for it
+                                </metal:comment>
+                                <h1 metal:use-macro="context/kss_generic_macros/macros/generic_title_view">              
+                                    Generic KSS Title. Is rendered with class="documentFirstHeading".                    
+                                </h1>                                                                                    
+                            </metal:title>                                                                               
+                            <div tal:replace="structure provider:plone.belowcontenttitle" />                             
 
-                        <div tal:replace="structure provider:plone.abovecontenttitle" />                             
-                        <metal:title define-slot="content-title">                              
-                            <metal:comment tal:content="nothing">
-                                If you write a custom title allways use 
-                                <h1 class="documentFirstHeading"></h1> for it
-                            </metal:comment>
-                            <h1 metal:use-macro="context/kss_generic_macros/macros/generic_title_view">              
-                                Generic KSS Title. Is rendered with class="documentFirstHeading".                    
-                            </h1>                                                                                    
-                        </metal:title>                                                                               
-                        <div tal:replace="structure provider:plone.belowcontenttitle" />                             
+                            <metal:description define-slot="content-description">                  
+                                <metal:comment tal:content="nothing">
+                                    If you write a custom description allways use 
+                                    <div class="documentDescription"></div> for it    
+                                </metal:comment>
+                                <div metal:use-macro="context/kss_generic_macros/macros/generic_description_view">         
+                                    Generic KSS Description. Is rendered with class="documentDescription".               
+                                </div>                                                                                     
+                            </metal:description>                                                                         
 
-                        <metal:description define-slot="content-description">                  
-                            <metal:comment tal:content="nothing">
-                                If you write a custom description allways use 
-                                <div class="documentDescription"></div> for it    
-                            </metal:comment>
-                            <div metal:use-macro="context/kss_generic_macros/macros/generic_description_view">         
-                                Generic KSS Description. Is rendered with class="documentDescription".               
-                            </div>                                                                                     
-                        </metal:description>                                                                         
-
-                        <div tal:replace="structure provider:plone.abovecontentbody" />                              
-                        <div id="content-core">                                                                      
-                            <metal:text define-slot="content-core" tal:content="nothing">                            
-                                Page body text                                                                       
-                            </metal:text>                                                                            
-                        </div>                                                                                       
-                        <div tal:replace="structure provider:plone.belowcontentbody" />                              
-
+                            <div tal:replace="structure provider:plone.abovecontentbody" />                              
+                            <div id="content-core">                                                                      
+                                <metal:text define-slot="content-core" tal:content="nothing">                            
+                                    Page body text                                                                       
+                                </metal:text>                                                                            
+                            </div>                                                                                       
+                            <div tal:replace="structure provider:plone.belowcontentbody" />                              
+                        </metal:main>
+                        
                       </metal:bodytext>
                     </div>
                     </metal:slot>

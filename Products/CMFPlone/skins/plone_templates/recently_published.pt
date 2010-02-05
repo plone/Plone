@@ -11,11 +11,12 @@
 
 <body>
 
-<div metal:fill-slot="main"
+<div metal:fill-slot="main" tal:omit-tag=""
      tal:define="results python:container.portal_catalog(sort_on='modified',sort_order='reverse',review_state='published');
                  Batch python:modules['Products.CMFPlone'].Batch;
                  DateTime python:modules['DateTime'].DateTime;
-                 b_start python:request.get('b_start',0);">
+                 b_start python:request.get('b_start',0);
+                 toLocalizedTime nocall:context/@@plone/toLocalizedTime;">
 
     <h1 class="documentFirstHeading"
         i18n:translate="heading_recently_published">
@@ -26,62 +27,64 @@
         All published items, latest first.
     </div>
 
-    <form name="searchresults" action="" method="post" tal:condition="results"
-                      tal:define="batch python:Batch(results, 20, int(b_start), orphan=1)">
+    <div id="content-core">
+        <form name="searchresults" action="" method="post" tal:condition="results"
+                          tal:define="batch python:Batch(results, 20, int(b_start), orphan=1)">
 
-        <tal:results tal:repeat="result batch">
+            <tal:results tal:repeat="result batch">
 
-            <dl>
-                <dt>
-                    <img src="" alt="" style="border: 0"
-                         tal:attributes="src result/getIcon;
-                                         alt result/Type" />
+                <dl>
+                    <dt>
+                        <img src="" alt="" style="border: 0"
+                             tal:attributes="src result/getIcon;
+                                             alt result/Type" />
 
-                    <a href="/view"
-                       tal:content="result/pretty_title_or_id"
-                       tal:attributes="href result/getURL">
-                    Title
-                    </a>
+                        <a href="/view"
+                           tal:content="result/pretty_title_or_id"
+                           tal:attributes="href result/getURL">
+                        Title
+                        </a>
 
-                    <span class="discreet" i18n:translate="text_creator_date">
-                        by
-                        <span tal:define="creator result/Creator;
-                                          author python:context.portal_membership.getMemberInfo(creator)"
-                              tal:content="python:author and author['fullname'] or creator"
-                              tal:omit-tag=""
-                              i18n:name="creator">creator</span>,
-                        last updated:
-                        <span tal:content="python:toLocalizedTime(result.ModificationDate, long_format=1)"
-                              tal:omit-tag=""
-                              i18n:name="date">date</span>
-                    </span>
-                </dt>
+                        <span class="discreet" i18n:translate="text_creator_date">
+                            by
+                            <span tal:define="creator result/Creator;
+                                              author python:context.portal_membership.getMemberInfo(creator)"
+                                  tal:content="python:author and author['fullname'] or creator"
+                                  tal:omit-tag=""
+                                  i18n:name="creator">creator</span>,
+                            last updated:
+                            <span tal:content="python:toLocalizedTime(result.ModificationDate, long_format=1)"
+                                  tal:omit-tag=""
+                                  i18n:name="date">date</span>
+                        </span>
+                    </dt>
 
-                <dd class="link">
-                    <a href="/view"
-                       tal:content="result/Description"
-                       tal:attributes="href result/getURL">
-                    Description
-                    </a>
-                </dd>
-            </dl>
+                    <dd class="link">
+                        <a href="/view"
+                           tal:content="result/Description"
+                           tal:attributes="href result/getURL">
+                        Description
+                        </a>
+                    </dd>
+                </dl>
 
-        </tal:results>
+            </tal:results>
 
-        <div class="spacer">
-        &nbsp;
-        </div>
+            <div class="spacer">
+            &nbsp;
+            </div>
 
-        <!-- Navigation -->
-        <div metal:use-macro="context/batch_macros/macros/navigation" />
+            <!-- Navigation -->
+            <div metal:use-macro="context/batch_macros/macros/navigation" />
 
         </form>
 
-    <p tal:condition="not: results" i18n:translate="text_no_new_items">
-        No items have been published.
-    </p>
+        <p tal:condition="not: results" i18n:translate="text_no_new_items">
+            No items have been published.
+        </p>
+    </div>
 
-  </div>
+</div>
 
 </body>
 

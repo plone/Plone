@@ -63,15 +63,16 @@ color: white;
 
 <metal:main fill-slot="main">
 
-<h1>Plone User Interface elements test page</h1>
+<h1 class="documentFirstHeading">Plone User Interface elements test page</h1>
 
-<p class="documentDescription">
+<div class="documentDescription">
 This page lists the common user interface elements that exist in Plone, and
 shows you how they are rendered. It also tests a couple of common Internet
 Explorer rendering bugs, so you can see if your changes have triggered any
 bad behaviour on this front.
-</p>
+</div>
 
+<div id="content-core">
 <pre>
 Headlines
 </pre>
@@ -102,9 +103,9 @@ Headlines
 
 <h1>Document Headline</h1>
 
-<p class="documentDescription">
+<div class="documentDescription">
 The document description
-</p>
+</div>
 
 <p>
 Normal document body text, 
@@ -438,7 +439,7 @@ does not touch float, bug is not triggered. <a href="#">Test link</a></div>
 </div>
 
 <!--********** End of peekaboo demo ***********-->
-
+</div>
 
 </metal:main>
 

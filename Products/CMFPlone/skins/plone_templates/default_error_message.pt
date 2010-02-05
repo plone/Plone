@@ -14,7 +14,7 @@
 </head>
 
 <body>
-<div metal:fill-slot="main"
+<div metal:fill-slot="main" tal:omit-tag=""
      tal:define="err_type options/error_type|nothing;
                  err_message options/error_message|nothing;
                  err_tb options/error_tb|nothing;
@@ -25,7 +25,7 @@
                  isAnon context/@@plone_portal_state/anonymous;
                  toLocalizedTime nocall: context/@@plone/toLocalizedTime;">
 
-        <div tal:condition="python:err_type=='NotFound'">
+        <metal:notfound tal:condition="python:err_type=='NotFound'">
 
             <tal:redirect define="redirection_view context/@@plone_redirector_view">
                 
@@ -38,101 +38,102 @@
                     We&#8217;re sorry, but that page doesn&#8217;t exist&hellip;
                 </h1>
 
-                <p i18n:translate="description_site_error_double_check_or_search">
-                Please double check the web address or use the search function on this page to find what you are looking for.
-                </p>
+                <div id="content-core">
+                    <p i18n:translate="description_site_error_double_check_or_search">
+                    Please double check the web address or use the search function on this page to find what you are looking for.
+                    </p>
 
-                <p i18n:translate="description_site_error_mail_site_admin">
-                If you are certain you have the correct web address but are encountering an error, please
-                contact the <span i18n:name="site_admin">
-                <a href="#" 
-                   i18n:translate="label_site_admin"
-                   tal:attributes="href string:${context/portal_url}/contact-info">Site Administration</a></span>.
-                </p>
+                    <p i18n:translate="description_site_error_mail_site_admin">
+                        If you are certain you have the correct web address but are encountering an error, please
+                        contact the <span i18n:name="site_admin">
+                        <a href="#" 
+                           i18n:translate="label_site_admin"
+                           tal:attributes="href string:${context/portal_url}/contact-info">Site Administration</a></span>.
+                    </p>
 
-                <p i18n:translate="description_site_error_thank_you">
-                Thank you.
-                </p>
+                    <p i18n:translate="description_site_error_thank_you">
+                    Thank you.
+                    </p>
                 
-                <!-- Offer search results for suggestions -->
-                <tal:suggestions define="first_parent redirection_view/find_first_parent;
-                                         similar_items redirection_view/search_for_similar;
-                                         plone_view context/@@plone;
-                                         site_properties context/portal_properties/site_properties;
-                                         use_view_action site_properties/typesUseViewActionInListings|python:();
-                                         desc_length site_properties/search_results_description_length;
-                                         desc_ellipsis site_properties/ellipsis;
-                                         normalizeString nocall:plone_view/normalizeString;"
-                                 condition="python:first_parent is not None or similar_items">
+                    <!-- Offer search results for suggestions -->
+                    <tal:suggestions define="first_parent redirection_view/find_first_parent;
+                                             similar_items redirection_view/search_for_similar;
+                                             plone_view context/@@plone;
+                                             site_properties context/portal_properties/site_properties;
+                                             use_view_action site_properties/typesUseViewActionInListings|python:();
+                                             desc_length site_properties/search_results_description_length;
+                                             desc_ellipsis site_properties/ellipsis;
+                                             normalizeString nocall:plone_view/normalizeString;"
+                                     condition="python:first_parent is not None or similar_items">
                     
-                    <h3 i18n:translate="heading_not_found_suggestions">You might have been looking for&hellip;</h3>
+                        <h3 i18n:translate="heading_not_found_suggestions">You might have been looking for&hellip;</h3>
                     
-                    <dl>
+                        <dl>
                     
-                    <tal:firstparent condition="first_parent/absolute_url | nothing">
-                        <tal:entry define="result_url first_parent/absolute_url;
-                                           result_type python:hasattr(first_parent, 'getTypeInfo') and first_parent.getTypeInfo().getId();
-                                           item_icon python:plone_view.getIcon(first_parent);
-                                           url python:test(result_type in use_view_action, result_url+'/view', result_url+'/');"
-                                   tal:condition="result_type">
-                            <dt tal:define="item_wf_state_class python:'state-' + context.portal_workflow.getInfoFor(first_parent, 'review_state', '');"
-                                tal:attributes="class python:'contenttype-' + normalizeString(result_type)">
-                              <img tal:replace="structure item_icon/html_tag" />
-                               <a
-                                 href="#" 
-                                 tal:attributes="href url;
-                                                 class string:$item_wf_state_class"
-                                 tal:content="first_parent/Title" />
+                        <tal:firstparent condition="first_parent/absolute_url | nothing">
+                            <tal:entry define="result_url first_parent/absolute_url;
+                                               result_type python:hasattr(first_parent, 'getTypeInfo') and first_parent.getTypeInfo().getId();
+                                               item_icon python:plone_view.getIcon(first_parent);
+                                               url python:test(result_type in use_view_action, result_url+'/view', result_url+'/');"
+                                       tal:condition="result_type">
+                                <dt tal:define="item_wf_state_class python:'state-' + context.portal_workflow.getInfoFor(first_parent, 'review_state', '');"
+                                    tal:attributes="class python:'contenttype-' + normalizeString(result_type)">
+                                  <img tal:replace="structure item_icon/html_tag" />
+                                   <a
+                                     href="#" 
+                                     tal:attributes="href url;
+                                                     class string:$item_wf_state_class"
+                                     tal:content="first_parent/Title" />
                                
-                                <span class="discreet" i18n:translate="results_by_author"
-                                  tal:condition="python: not isAnon or site_properties.allowAnonymousViewAbout">
-                                by <span tal:omit-tag="" tal:content="first_parent/Creator" i18n:name="author">Author</span>,
-                                <span tal:omit-tag="" tal:content="python:toLocalizedTime(first_parent.ModificationDate(), long_format=1)" i18n:name="date">Modification Date</span>
-                                </span>
+                                    <span class="discreet" i18n:translate="results_by_author"
+                                      tal:condition="python: not isAnon or site_properties.allowAnonymousViewAbout">
+                                    by <span tal:omit-tag="" tal:content="first_parent/Creator" i18n:name="author">Author</span>,
+                                    <span tal:omit-tag="" tal:content="python:toLocalizedTime(first_parent.ModificationDate(), long_format=1)" i18n:name="date">Modification Date</span>
+                                    </span>
 
-                            </dt>
+                                </dt>
             
-                            <dd tal:content="python:plone_view.cropText(first_parent.Description(), desc_length, desc_ellipsis)"> Description </dd>
+                                <dd tal:content="python:plone_view.cropText(first_parent.Description(), desc_length, desc_ellipsis)"> Description </dd>
 
-                        </tal:entry>
-                    </tal:firstparent>
+                            </tal:entry>
+                        </tal:firstparent>
                     
-                    <tal:similar repeat="similar similar_items">
-                        <tal:entry define="result_url similar/getURL;
-                                           result_type similar/portal_type;
-                                           item_icon python:plone_view.getIcon(similar);
-                                           url python:test(result_type in use_view_action, result_url+'/view', result_url+'/');">
-                            <dt tal:define="item_wf_state_class string:state-${similar/review_state};"
-                                tal:attributes="class python:'contenttype-' + normalizeString(result_type)">
-                              <img tal:replace="structure item_icon/html_tag" />
-                               <a
-                                 href="#" 
-                                 tal:attributes="href url;
-                                                 class string:$item_wf_state_class"
-                                 tal:content="similar/pretty_title_or_id" />
+                        <tal:similar repeat="similar similar_items">
+                            <tal:entry define="result_url similar/getURL;
+                                               result_type similar/portal_type;
+                                               item_icon python:plone_view.getIcon(similar);
+                                               url python:test(result_type in use_view_action, result_url+'/view', result_url+'/');">
+                                <dt tal:define="item_wf_state_class string:state-${similar/review_state};"
+                                    tal:attributes="class python:'contenttype-' + normalizeString(result_type)">
+                                  <img tal:replace="structure item_icon/html_tag" />
+                                   <a
+                                     href="#" 
+                                     tal:attributes="href url;
+                                                     class string:$item_wf_state_class"
+                                     tal:content="similar/pretty_title_or_id" />
                                
-                                <span class="discreet" i18n:translate="results_by_author"
-                                  tal:condition="python: not isAnon or site_properties.allowAnonymousViewAbout">
-                                by <span tal:omit-tag="" tal:content="similar/Creator" i18n:name="author">Author</span>,
-                                <span tal:omit-tag="" tal:content="python:toLocalizedTime(similar.ModificationDate, long_format=1)" i18n:name="date">Modification Date</span>
-                                </span>
+                                    <span class="discreet" i18n:translate="results_by_author"
+                                      tal:condition="python: not isAnon or site_properties.allowAnonymousViewAbout">
+                                    by <span tal:omit-tag="" tal:content="similar/Creator" i18n:name="author">Author</span>,
+                                    <span tal:omit-tag="" tal:content="python:toLocalizedTime(similar.ModificationDate, long_format=1)" i18n:name="date">Modification Date</span>
+                                    </span>
 
-                            </dt>
+                                </dt>
             
-                            <dd tal:content="python:plone_view.cropText(similar.Description or '', desc_length, desc_ellipsis)"> Description </dd>
+                                <dd tal:content="python:plone_view.cropText(similar.Description or '', desc_length, desc_ellipsis)"> Description </dd>
 
-                        </tal:entry>
-                    </tal:similar>
+                            </tal:entry>
+                        </tal:similar>
                         
-                    </dl>
+                        </dl>
                     
-                </tal:suggestions>
-
+                    </tal:suggestions>
+                </div>
             </tal:redirect>
 
-        </div>
+        </metal:notfound>
 
-        <div tal:condition="python: err_type!='NotFound'"
+        <metal:othererror tal:condition="python: err_type!='NotFound'"
              tal:define="checkPermission nocall: context/portal_membership/checkPermission;
                          isManager python: checkPermission('Manage portal', here)">
 
@@ -141,46 +142,48 @@
                 We&#8217;re sorry, but there seems to be an error&hellip;
             </h1>
 
-            <tal:hasentry condition="err_log_id">
-                <p tal:condition="not: isManager"
-                   i18n:translate="description_error_has_been_logged">
-                The error has been logged as entry number 
-                <code i18n:name="entryid" tal:content="err_log_id">1174791474.310.489098092344</code>.
-                </p>
+            <div id="content-core">
+                <tal:hasentry condition="err_log_id">
+                    <p tal:condition="not: isManager"
+                       i18n:translate="description_error_has_been_logged">
+                    The error has been logged as entry number 
+                    <code i18n:name="entryid" tal:content="err_log_id">1174791474.310.489098092344</code>.
+                    </p>
                 
-                <p tal:condition="not: isManager"
-                   i18n:translate="description_include_error_in_admin_message">
-                If you need to report this to the 
-                <span i18n:name="site_admin">
-                <a href="#" 
-                   i18n:translate="label_site_admin"
-                   tal:attributes="href string:${context/portal_url}/contact-info">Site Administration</a></span>,
-                please include this entry number in your message.
-                </p>
+                    <p tal:condition="not: isManager"
+                       i18n:translate="description_include_error_in_admin_message">
+                    If you need to report this to the 
+                    <span i18n:name="site_admin">
+                    <a href="#" 
+                       i18n:translate="label_site_admin"
+                       tal:attributes="href string:${context/portal_url}/contact-info">Site Administration</a></span>,
+                    please include this entry number in your message.
+                    </p>
             
-                <p tal:condition="isManager"
-                   i18n:translate="description_site_admin_see_full_error">
-                Since you are a site administrator, you can
-                <span i18n:name="link_full_error_msg">
-                <a href="" 
-                   i18n:translate="description_full_error_link"
-                   tal:attributes="href err_log_url">see the full error message</a>
-                </span>
-                </p>
+                    <p tal:condition="isManager"
+                       i18n:translate="description_site_admin_see_full_error">
+                    Since you are a site administrator, you can
+                    <span i18n:name="link_full_error_msg">
+                    <a href="" 
+                       i18n:translate="description_full_error_link"
+                       tal:attributes="href err_log_url">see the full error message</a>
+                    </span>
+                    </p>
 
-            </tal:hasentry>
+                </tal:hasentry>
 
-            <tal:noentry condition="not:err_log_id">
-                <p i18n:translate="description_site_error_mail_site_admin">
-                If you are certain you have the correct web address but are encountering an error, please
-                contact the <span i18n:name="site_admin">
-                <a href="#" 
-                   i18n:translate="label_site_admin"
-                   tal:attributes="href string:${context/portal_url}/contact-info">Site Administration</a></span>.
-                </p>
-            </tal:noentry>
-
-        </div>
+                <tal:noentry condition="not:err_log_id">
+                    <p i18n:translate="description_site_error_mail_site_admin">
+                    If you are certain you have the correct web address but are encountering an error, please
+                    contact the <span i18n:name="site_admin">
+                    <a href="#" 
+                       i18n:translate="label_site_admin"
+                       tal:attributes="href string:${context/portal_url}/contact-info">Site Administration</a></span>.
+                    </p>
+                </tal:noentry>
+            </div>
+            
+        </metal:othererror>
         <tal:ksserrors
                 tal:define="kss_view kss_view | context/@@kss_view | nothing;
                             dummy python: kss_view and kss_view.attach_error(err_type, err_value);"/>

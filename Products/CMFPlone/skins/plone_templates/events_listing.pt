@@ -11,7 +11,7 @@
 </head>
 
 <body>
-<div metal:fill-slot="main" id="content-news"
+<div tal:omit-tag="" id="content-core"
      tal:define="path context/@@plone_portal_state/navigation_root_path;
                  results python:context.portal_catalog.searchResults(
                             portal_type='Event',
@@ -114,7 +114,7 @@
         <!-- Navigation -->
         <div metal:use-macro="context/batch_macros/macros/navigation" />
 
-        </form>
+    </form>
 
     <p tal:condition="not: results" i18n:translate="no_new_events">
         No events have been posted.

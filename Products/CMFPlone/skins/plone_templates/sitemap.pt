@@ -19,17 +19,18 @@
     <h1 class="documentFirstHeading"
         i18n:translate="label_site_map">Site map</h1>
 
-    <p class="documentDescription"
-       i18n:translate="description_site_map">
-    An overview of the available content on this site. Keep the pointer still
-    over an item for a few seconds to get its description.
-    </p>
+    <div class="documentDescription" i18n:translate="description_site_map">
+        An overview of the available content on this site. Keep the pointer still
+        over an item for a few seconds to get its description.
+    </div>
 
-    <ul id="portal-sitemap"
-        class="navTreeLevel0 visualNoMarker"
-        tal:define="view context/@@sitemap_view;">
-        <tal:sitemap replace="structure view/createSiteMap" />
-    </ul>
+    <div id="content-core">
+        <ul id="portal-sitemap"
+            class="navTreeLevel0 visualNoMarker"
+            tal:define="view context/@@sitemap_view;">
+            <tal:sitemap replace="structure view/createSiteMap" />
+        </ul>
+    </div>
 
 </metal:main>
 </body>
