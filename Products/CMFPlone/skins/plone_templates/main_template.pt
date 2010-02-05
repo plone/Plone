@@ -129,7 +129,8 @@
                         <div tal:replace="structure provider:plone.abovecontenttitle" />                             
                         <metal:title define-slot="content-title">                              
                             <metal:comment tal:content="nothing">
-                                If you write a custom title allways use class="documentFirstHeading" for it
+                                If you write a custom title allways use 
+                                <h1 class="documentFirstHeading"></h1> for it
                             </metal:comment>
                             <h1 metal:use-macro="context/kss_generic_macros/macros/generic_title_view">              
                                 Generic KSS Title. Is rendered with class="documentFirstHeading".                    
@@ -139,11 +140,12 @@
 
                         <metal:description define-slot="content-description">                  
                             <metal:comment tal:content="nothing">
-                                If you write a custom description allways use class="documentDescription" for it    
+                                If you write a custom description allways use 
+                                <div class="documentDescription"></div> for it    
                             </metal:comment>
-                            <p metal:use-macro="context/kss_generic_macros/macros/generic_description_view">         
+                            <div metal:use-macro="context/kss_generic_macros/macros/generic_description_view">         
                                 Generic KSS Description. Is rendered with class="documentDescription".               
-                            </p>                                                                                     
+                            </div>                                                                                     
                         </metal:description>                                                                         
 
                         <div tal:replace="structure provider:plone.abovecontentbody" />                              
