@@ -46,7 +46,7 @@ redirected, even though 'redirect_links' is re-enabled::
 The manager should get a message to help clarify that the link will redirect
 for anonymous users::
 
-  >>> '''Others will be immediately redirected to the link's target''' in browser.contents
+  >>> "You see this page because you have permission to edit this link." in browser.contents
   True
 
 If we turn redirect_links back off, that message should not be present::
@@ -55,7 +55,5 @@ If we turn redirect_links back off, that message should not be present::
   >>> browser.open('http://nohost/plone/link')
   >>> browser.url
   'http://nohost/plone/link'
-  >>> '''Others will be immediately redirected to the link's target''' in browser.contents
+  >>> "You see this page because you have permission to edit this link." in browser.contents
   False
-
-  
