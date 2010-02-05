@@ -63,7 +63,6 @@ class HiddenProducts(object):
             'plone.app.jquerytools',
             'plone.app.blob',
             'plone.app.imaging',
-            'plonetheme.classic',
             'plonetheme.sunburst',
             ]
 

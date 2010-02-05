@@ -8,6 +8,11 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Register common CSS resources as blank files here. Other themes are
+  supposed to override them to style the site appropiately. 
+  Refs http://dev.plone.org/plone/ticket/9988.
+  [dukebody]
+
 - Updated markup for kss_generic_macros and made main_template to use that 
   as the default generator for titles and descriptions.
   [spliter]
