@@ -8,19 +8,18 @@
 
 <body>
   
-<div metal:fill-slot="main">
-   <div>
+<div metal:fill-slot="main" tal:omit-tag="">
+
       <h1 class="documentFirstHeading"
           i18n:translate="heading_no_privileges">Insufficient Privileges</h1>
 
-      <p i18n:translate="description_no_privileges_for_page">
+      <div class="documentDescription" i18n:translate="description_no_privileges_for_page">
       You do not have sufficient privileges to view this page. If you believe
       you are receiving this message in error, contact the
       <span i18n:name="site_admin"><a href="#" 
          i18n:translate="label_site_administration"
          tal:attributes="href string:${context/portal_url}/contact-info">site administration</a></span>.
-      </p>
-   </div>
+      </div>
 </div>
 
 </body>
