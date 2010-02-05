@@ -219,7 +219,9 @@ def getIcon(obj):
     """Make sure we index icon relative to portal"""
     return obj.getIcon(True)
 
+
 class CatalogTool(PloneBaseTool, BaseTool):
+    """Plone's catalog tool"""
 
     implements(IPloneCatalogTool)
 
@@ -229,6 +231,15 @@ class CatalogTool(PloneBaseTool, BaseTool):
     _counter = None
 
     manage_catalogAdvanced = DTMLFile('www/catalogAdvanced', globals())
+
+    manage_options = (
+        {'action': 'manage_main', 'label': 'Contents'},
+        {'action': 'manage_catalogView', 'label': 'Catalog'},
+        {'action': 'manage_catalogIndexes', 'label': 'Indexes'},
+        {'action': 'manage_catalogSchema', 'label': 'Metadata'},
+        {'action': 'manage_catalogAdvanced', 'label': 'Advanced'},
+        {'action': 'manage_propertiesForm', 'label': 'Properties'},
+    )
 
     def __init__(self):
         ZCatalog.__init__(self, self.getId())
@@ -351,7 +362,5 @@ class CatalogTool(PloneBaseTool, BaseTool):
               urllib.quote('Catalog Rebuilt\n'
                            'Total time: %s\n'
                            'Total CPU time: %s' % (`elapse`, `c_elapse`)))
-
-CatalogTool.__doc__ = BaseTool.__doc__
 
 InitializeClass(CatalogTool)

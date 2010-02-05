@@ -8,16 +8,19 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
-- Re-factored all templates to follow the recent markup conventions. 
+- Restrict manage_options on the catalog to supported and useful options.
+  [hannosch]
+
+- Re-factored all templates to follow the recent markup conventions.
   References http://dev.plone.org/plone/ticket/9981
   [spliter]
 
 - Register common CSS resources as blank files here. Other themes are
-  supposed to override them to style the site appropiately. 
+  supposed to override them to style the site appropiately.
   Refs http://dev.plone.org/plone/ticket/9988.
   [dukebody]
 
-- Updated markup for kss_generic_macros and made main_template to use that 
+- Updated markup for kss_generic_macros and made main_template to use that
   as the default generator for titles and descriptions.
   [spliter]
 
