@@ -8,6 +8,10 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Updated markup for kss_generic_macros and made main_template to use that 
+  as the default generator for titles and descriptions.
+  [spliter]
+
 - Cache the Plone expression context in the _plone_ec_cache attribute of the
   request, rather than _ec_cache, to avoid accidentally getting a plain CMF
   expression context if that's the first sort that was fetched.
