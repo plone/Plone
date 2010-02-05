@@ -13,9 +13,9 @@
     <h1 class="documentFirstHeading"
         i18n:translate="heading_comment_preview">Comment Preview</h1>
 
-    <p i18n:translate="description_comment_preview">
+    <div class="documentDescription" i18n:translate="description_comment_preview">
     This is how your comment will look when posted.
-    </p>
+    </div>
 
 
     <form method="post" action="talkback">
@@ -70,8 +70,6 @@
     </form>
 
 </div>
-
-<div metal:fill-slot="sub"> &nbsp; </div>
 
 </html>
 
