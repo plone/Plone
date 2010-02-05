@@ -213,3 +213,13 @@ may need to take the following changes into account.
   
 * document_relateditems.pt template is deprecated. Use  
   plone.belowcontentbody.relateditems viewlet instead.
+  
+* 'documentDescription' is <DIV> now. There should be a DIV for KSS to work 
+  properly, but nesting <p> within the <DIV> means we have different markup 
+  for description on different views
+  
+* When creating new view for a custom content type you should fill
+  'content-core' slot instead of 'main'. All the surrounding of the 
+  'content-core' slot is in main_template. And if you don't plan any special
+  title or description for your view, main_template will take care of that as 
+  well so you should really care about the content core only
