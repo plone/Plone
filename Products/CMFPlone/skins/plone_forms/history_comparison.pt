@@ -5,16 +5,18 @@
       metal:use-macro="here/main_template/macros/master"
       i18n:domain="plone">
   <body>
-  <div metal:fill-slot="main" tal:define="results request/historyComparisonResults|nothing;">
+  <div metal:fill-slot="main" tal:omit-tag="" tal:define="results request/historyComparisonResults|nothing;">
+     
+    <div id="content-core">
+        <div tal:condition="results">
+          <span tal:replace="structure results" />
+        </div>
 
-    <div tal:condition="results">
-      <span tal:replace="structure results" />
-    </div>
-
-    <div tal:condition="python:test(results, 0, 1)">
-      <p i18n:translate="description_no_comparison_support">
-      This object does not provide comparison support.
-      </p>
+        <div tal:condition="python:test(results, 0, 1)">
+          <p i18n:translate="description_no_comparison_support">
+          This object does not provide comparison support.
+          </p>
+        </div>
     </div>
 
   </div>

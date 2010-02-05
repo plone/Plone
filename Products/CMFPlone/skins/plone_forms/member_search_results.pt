@@ -9,7 +9,7 @@
 <metal:block fill-slot="top_slot"
              tal:define="dummy python:request.set('disable_border',1)" />
 
-<div metal:fill-slot="main"
+<div metal:fill-slot="main" tal:omit-tag=""
        tal:define="search_view here/@@pas_search;
                    listing_allowed python: checkPermission('List portal members', here);
                    results python:listing_allowed and search_view.searchUsersByRequest(request, sort_by='fullname') or [];
@@ -20,58 +20,60 @@
     <h1 class="documentFirstHeading"
         i18n:translate="heading_search_results">Search results</h1>
 
-    <p tal:condition="not: listing_allowed"
-        i18n:translate="member_listing_not_allowed">
-      You are not allowed to list portal members.
-    </p>
-    <div tal:condition="results"
-          tal:define="batch python:Batch(results, b_size, int(b_start), orphan=1)">
+    <div id="content-core">
+        <p tal:condition="not: listing_allowed"
+            i18n:translate="member_listing_not_allowed">
+          You are not allowed to list portal members.
+        </p>
+        <div tal:condition="results"
+              tal:define="batch python:Batch(results, b_size, int(b_start), orphan=1)">
 
-        <strong i18n:translate="batch_x_items_matching_your_criteria">
-            <span i18n:name="number" tal:omit-tag="" tal:content="python:len(results)">234</span> items matching your search terms
-        </strong>
+            <strong i18n:translate="batch_x_items_matching_your_criteria">
+                <span i18n:name="number" tal:omit-tag="" tal:content="python:len(results)">234</span> items matching your search terms
+            </strong>
 
-        <!-- Navigation -->
-        <div metal:use-macro="here/batch_macros/macros/navigation" />
+            <!-- Navigation -->
+            <div metal:use-macro="here/batch_macros/macros/navigation" />
 
-        <div>
-        <metal:block tal:repeat="result batch">
-            <div class="card" tal:define="userid result/userid | nothing;
-                                          fullname result/fullname | nothing;
-                                          home python:container.portal_membership.getHomeUrl(userid, verifyPermission=1);
-                                          portrait python: here.portal_membership.getPersonalPortrait(userid);">
-                <a href="#" tal:attributes="href home">
-                    <img src="defaultUser.png"
-                         alt=""
-                         border="0"
-                         width="75"
-                         height="100"
-                         tal:attributes="src portrait/absolute_url" />
-                    <br />
-                    <span tal:content="userid">user id</span>
-                    <span tal:condition="fullname">
+            <div>
+            <metal:block tal:repeat="result batch">
+                <div class="card" tal:define="userid result/userid | nothing;
+                                              fullname result/fullname | nothing;
+                                              home python:container.portal_membership.getHomeUrl(userid, verifyPermission=1);
+                                              portrait python: here.portal_membership.getPersonalPortrait(userid);">
+                    <a href="#" tal:attributes="href home">
+                        <img src="defaultUser.png"
+                             alt=""
+                             border="0"
+                             width="75"
+                             height="100"
+                             tal:attributes="src portrait/absolute_url" />
                         <br />
-                        (<span tal:content="fullname">fullname</span>)
-                    </span>
-                </a>
-                <br />
+                        <span tal:content="userid">user id</span>
+                        <span tal:condition="fullname">
+                            <br />
+                            (<span tal:content="fullname">fullname</span>)
+                        </span>
+                    </a>
+                    <br />
+                </div>
+            </metal:block>
             </div>
-        </metal:block>
+
+            <!-- Navigation -->
+            <div class="visualClear" id="clear-space-before-navigation"><!-- --></div>
+
+            <div metal:use-macro="here/batch_macros/macros/navigation" />
+
+            <div class="visualClear" id="clear-space-after-navigation"><!-- --></div>
+
         </div>
 
-        <!-- Navigation -->
-        <div class="visualClear" id="clear-space-before-navigation"><!-- --></div>
-
-        <div metal:use-macro="here/batch_macros/macros/navigation" />
-
-        <div class="visualClear" id="clear-space-after-navigation"><!-- --></div>
-
+        <div tal:condition="not: results">
+            <p><strong i18n:translate="description_no_results_found">No results were found.</strong></p>
+        </div>
     </div>
-
-    <div tal:condition="not: results">
-        <p><strong i18n:translate="description_no_results_found">No results were found.</strong></p>
-    </div>
-
+    
 </div>
 
 </html>

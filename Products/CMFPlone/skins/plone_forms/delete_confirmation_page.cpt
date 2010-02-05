@@ -10,7 +10,7 @@
 
   <body>
     
-    <div metal:fill-slot="main"
+    <div metal:fill-slot="main" tal:omit-tag=""
          tal:define="useSelf python:context_state.is_structural_folder() and not context_state.is_default_page();
                      folder_warning python:useSelf and context.portal_type != 'Topic';">
 
@@ -26,37 +26,38 @@
         Do you really want to delete this item?
       </h1>
 
-      <ul>
-          <li tal:content="context/@@plone_context_state/object_title">The item title (ID)</li>
-      </ul>
+      <div id="content-core">
+          <ul>
+              <li tal:content="context/@@plone_context_state/object_title">The item title (ID)</li>
+          </ul>
 
-      <form method="POST"
-            action="#"
-            tal:attributes="action context_state/current_page_url">
-        <div class="formControls">
+          <form method="POST"
+                action="#"
+                tal:attributes="action context_state/current_page_url">
+            <div class="formControls">
 
-          <input type="hidden"
-                 name="form.submitted"
-                 value="1"
-                 />
+              <input type="hidden"
+                     name="form.submitted"
+                     value="1"
+                     />
 
-          <input class="destructive"
-                 type="submit"
-                 value="Delete"
-                 i18n:attributes="value;"
-                 />
-          <input class="standalone"
-                 type="submit"
-                 value="Cancel"
-                 name="form.button.Cancel"
-                 i18n:attributes="value label_cancel;"
-                 />
-        </div>
+              <input class="destructive"
+                     type="submit"
+                     value="Delete"
+                     i18n:attributes="value;"
+                     />
+              <input class="standalone"
+                     type="submit"
+                     value="Cancel"
+                     name="form.button.Cancel"
+                     i18n:attributes="value label_cancel;"
+                     />
+            </div>
 
-        <input tal:replace="structure context/@@authenticator/authenticator" />
+            <input tal:replace="structure context/@@authenticator/authenticator" />
 
-      </form>
-
+          </form>
+      </div>
 
     </div>
 
