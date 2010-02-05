@@ -555,49 +555,49 @@ class TestCatalogOrdering(PloneTestCase.PloneTestCase):
     def testOrderIsUpdatedOnMoveDown(self):
         self.folder.folder_position('down','doc1')
         folder_docs = self.catalog(portal_type = 'Document',
-                                   path = self.folder.getPhysicalPath(),
+                                   path = '/'.join(self.folder.getPhysicalPath()),
                                    sort_on = 'getObjPositionInParent')
-        expected = ['doc2','doc1','doc3','doc4', 'front-page']
+        expected = ['doc2','doc1','doc3','doc4']
         self.failUnlessEqual([b.getId for b in folder_docs], expected)
 
     def testOrderIsUpdatedOnMoveUp(self):
         self.folder.folder_position('up','doc3')
         folder_docs = self.catalog(portal_type = 'Document',
-                                   path = self.folder.getPhysicalPath(),
+                                   path = '/'.join(self.folder.getPhysicalPath()),
                                    sort_on = 'getObjPositionInParent')
-        expected = ['doc1','doc3','doc2','doc4', 'front-page']
+        expected = ['doc1','doc3','doc2','doc4']
         self.failUnlessEqual([b.getId for b in folder_docs], expected)
 
     def testOrderIsUpdatedOnMoveTop(self):
         self.folder.folder_position('top','doc3')
         folder_docs = self.catalog(portal_type = 'Document',
-                                   path = self.folder.getPhysicalPath(),
+                                   path = '/'.join(self.folder.getPhysicalPath()),
                                    sort_on = 'getObjPositionInParent')
-        expected = ['doc3','doc1','doc2','doc4', 'front-page']
+        expected = ['doc3','doc1','doc2','doc4']
         self.failUnlessEqual([b.getId for b in folder_docs], expected)
 
     def testOrderIsUpdatedOnMoveBottom(self):
         self.folder.folder_position('bottom','doc3')
         folder_docs = self.catalog(portal_type = 'Document',
-                                   path = self.folder.getPhysicalPath(),
+                                   path = '/'.join(self.folder.getPhysicalPath()),
                                    sort_on = 'getObjPositionInParent')
-        expected = ['doc1','doc2','doc4','doc3', 'front-page']
+        expected = ['doc1','doc2','doc4','doc3']
         self.failUnlessEqual([b.getId for b in folder_docs], expected)
 
     def testOrderIsFineWithObjectCreation(self):
         self.folder.invokeFactory('Document', id='doc5', text='blam')
         folder_docs = self.catalog(portal_type = 'Document',
-                                   path = self.folder.getPhysicalPath(),
+                                   path = '/'.join(self.folder.getPhysicalPath()),
                                    sort_on = 'getObjPositionInParent')
-        expected = ['doc1','doc2','doc3','doc4','doc5', 'front-page']
+        expected = ['doc1','doc2','doc3','doc4','doc5']
         self.failUnlessEqual([b.getId for b in folder_docs], expected)
 
     def testOrderIsFineWithObjectDeletion(self):
         self.folder.manage_delObjects(['doc3',])
         folder_docs = self.catalog(portal_type = 'Document',
-                                   path = self.folder.getPhysicalPath(),
+                                   path = '/'.join(self.folder.getPhysicalPath()),
                                    sort_on = 'getObjPositionInParent')
-        expected = ['doc1','doc2','doc4', 'front-page']
+        expected = ['doc1','doc2','doc4']
         self.failUnlessEqual([b.getId for b in folder_docs], expected)
 
     def testOrderIsFineWithObjectRenaming(self):
@@ -610,9 +610,9 @@ class TestCatalogOrdering(PloneTestCase.PloneTestCase):
 
         self.folder.manage_renameObjects(['doc2'], ['buzz'])
         folder_docs = self.catalog(portal_type = 'Document',
-                                   path = self.folder.getPhysicalPath(),
+                                   path = '/'.join(self.folder.getPhysicalPath()),
                                    sort_on = 'getObjPositionInParent')
-        expected = ['doc1','buzz','doc3','doc4', 'front-page']
+        expected = ['doc1','buzz','doc3','doc4']
         self.failUnlessEqual([b.getId for b in folder_docs], expected)
 
     def testOrderAfterALotOfChanges(self):
@@ -634,10 +634,10 @@ class TestCatalogOrdering(PloneTestCase.PloneTestCase):
         #self.folder.manage_renameObjects('Document', id='doc5', text='blam')
 
         self.folder.manage_delObjects(['doc3','doc4','doc5','doc7'])
-        expected = ['doc2','doc1','doc6','doc8', 'front-page']
+        expected = ['doc2','doc1','doc6','doc8']
 
         folder_docs = self.catalog(portal_type = 'Document',
-                                   path = self.folder.getPhysicalPath(),
+                                   path = '/'.join(self.folder.getPhysicalPath()),
                                    sort_on = 'getObjPositionInParent')
         self.failUnlessEqual([b.getId for b in folder_docs], expected)
 
