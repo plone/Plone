@@ -18,6 +18,7 @@
  <property name="view_methods">
   <element value="folder_listing"/>
   <element value="folder_summary_view"/>
+  <element value="folder_full_view"/>
   <element value="folder_tabular_view"/>
   <element value="atct_album_view"/>
  </property>
