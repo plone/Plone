@@ -8,6 +8,11 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- On the Zope overview screen, make sure the user is authenticated at the Zope
+  root before sending them to the upgrade view for a Plone site, when the Upgrade
+  button is clicked.  This closes http://dev.plone.org/plone/ticket/10154.
+  [davisagli]
+
 - Increased maximum length of the sortable_title index from 40 to 70 characters
   to match truncation rules of most search engines. This closes
   http://dev.plone.org/plone/ticket/10170.

@@ -19,6 +19,7 @@ from Products.GenericSetup import profile_registry
 from Products.GenericSetup import BASE, EXTENSION
 from ZPublisher.BaseRequest import DefaultPublishTraverse
 
+from Products.CMFCore.permissions import ManagePortal
 from Products.CMFPlone.factory import _DEFAULT_PROFILE
 from Products.CMFPlone.factory import addPloneSite
 from Products.CMFPlone.interfaces import INonInstallable
@@ -58,6 +59,29 @@ class Overview(BrowserView):
         if mig is not None:
             return mig.needUpgrading()
         return False
+
+    def can_manage(self):
+        secman = getSecurityManager()
+        return secman.checkPermission(ManagePortal, self.context)
+    
+    def upgrade_path(self, site, can_manage=None):
+        if can_manage is None:
+            can_manage = self.can_manage()
+        if can_manage:
+            return '/'.join(site.getPhysicalPath()) + '/@@plone-upgrade'
+        else:
+            return '/@@plone-root-login'
+
+
+class RootLoginRedirect(BrowserView):
+    """ @@plone-root-login
+    
+    This view of the Zope root forces authentication via the root
+    acl_users and then redirects elsewhere.
+    """
+    
+    def __call__(self, path='/'):
+        self.request.response.redirect(path)
 
 
 class FrontPage(BrowserView):

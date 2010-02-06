@@ -47,7 +47,10 @@
                             <form action="" 
                                   style="display: inline;"
                                   method="get"
-                                  tal:attributes="action string:${site/absolute_url}/@@plone-upgrade">
+                                  tal:attributes="action python:view.upgrade_path(site)">
+                            <input tal:condition="not:view/can_manage"
+                                   type="hidden" name="path"
+                                   tal:attributes="value python:view.upgrade_path(site, can_manage=True)"/>
                             <input type="submit" 
                                    value="Upgrade&hellip;" 
                                    i18n:attributes="value" />
@@ -83,7 +86,10 @@
                                  <form action="" 
                                        style="display: inline;"
                                        method="get"
-                                       tal:attributes="action string:${site/absolute_url}/@@plone-upgrade">
+                                       tal:attributes="action python:view.upgrade_path(site)">
+                                 <input tal:condition="not:view/can_manage"
+                                        type="hidden" name="path"
+                                        tal:attributes="value python:view.upgrade_path(site, can_manage=True)"/>
                                  <input type="submit" 
                                         value="Upgrade&hellip;" 
                                         i18n:attributes="value" />
