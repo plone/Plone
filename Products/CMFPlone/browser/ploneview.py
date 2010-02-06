@@ -374,7 +374,7 @@ class Plone(BrowserView):
         plone.rightcolumn. Custom skins may have more portlet managers defined
         (see portlets.xml).
         """
-        if self.request.get(manager_name, None):
+        if self.request.get('disable_' + manager_name, None):
             return False
 
         context = aq_inner(self.context)
