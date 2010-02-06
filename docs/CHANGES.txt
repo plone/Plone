@@ -8,6 +8,9 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Deprecate the portlets_fetcher and macro_renderer templates.
+  [davisagli]
+
 - Clean up various HTML comments that were being emitted unnecessarily.
   [davisagli]
 
