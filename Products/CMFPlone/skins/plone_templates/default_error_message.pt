@@ -9,8 +9,8 @@
 <head>
     <metal:block fill-slot="top_slot"
                  tal:define="dummy python:request.set('disable_border',1);
-                             disable_column_one python:request.set('plone.leftcolumn',1);
-                             disable_column_two python:request.set('plone.rightcolumn',1);" />
+                             disable_column_one python:request.set('disable_plone.leftcolumn',1);
+                             disable_column_two python:request.set('disable_plone.rightcolumn',1);" />
 </head>
 
 <body>
@@ -55,9 +55,7 @@
                     Thank you.
                     </p>
                 
-                    <tal:comment tal:condition="nothing">
-                       Offer search results for suggestions
-                    </tal:comment>
+                    <!-- Offer search results for suggestions -->
                     <tal:suggestions define="first_parent redirection_view/find_first_parent;
                                              similar_items redirection_view/search_for_similar;
                                              plone_view context/@@plone;

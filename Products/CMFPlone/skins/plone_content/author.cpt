@@ -9,8 +9,8 @@
 <head>
     <metal:block fill-slot="top_slot"
                  tal:define="dummy python:request.set('disable_border',1);
-                             disable_column_one python:request.set('plone.leftcolumn',1);
-                             disable_column_two python:request.set('plone.rightcolumn',1);" />
+                             disable_column_one python:request.set('disable_plone.leftcolumn',1);
+                             disable_column_two python:request.set('disable_plone.rightcolumn',1);" />
 </head>
 
 <body>
@@ -99,9 +99,7 @@
                 Portal status message
             </div>
 
-            <tal:comment tal:condition="nothing">
-              Author information
-            </tal:comment>
+            <!-- Author information -->
             <h1 class="documentFirstHeading" tal:condition="authorinfo/fullname" tal:content="authorinfo/fullname">
                 Author name
             </h1>
@@ -176,9 +174,9 @@
                 </form>
                 </div>
 
-                <tal:comment tal:condition="nothing">
-                  feedback form
-                </tal:comment>
+                <!-- feedback form -->        
+
+
                 <tal:owner tal:condition="python: not isOwner and not isAnon">
                     <p class="discreet"
                        i18n:translate="description_author_feedback">
@@ -295,7 +293,7 @@
             </tal:authorContent>
 
         </div>
-    </div>
+    </div> <!-- end simulated tabs -->
         
     </tal:haveAuthor>
 

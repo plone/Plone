@@ -3,7 +3,7 @@
 
     <metal:block fill-slot="top_slot"
                  tal:define="dummy python:request.set('disable_border',1);
-                             disable_column_two python:request.set('plone.rightcolumn',1);" />
+                             disable_column_two python:request.set('disable_plone.rightcolumn',1);" />
 
     <metal:override fill-slot="column_one_slot">
         <metal:override define-slot="column_one_slot">
