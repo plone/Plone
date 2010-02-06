@@ -172,11 +172,11 @@ class TestPloneView(PloneTestCase.PloneTestCase):
         addview_right()
 
         self.assertEqual(True, view.have_portlets('plone.leftcolumn'))
-        self.app.REQUEST.set('plone.leftcolumn', 1)
+        self.app.REQUEST.set('disable_plone.leftcolumn', 1)
         self.assertEqual(False, view.have_portlets('plone.leftcolumn'))
 
         self.assertEqual(True, view.have_portlets('plone.rightcolumn'))
-        self.app.REQUEST.set('plone.rightcolumn', 1)
+        self.app.REQUEST.set('disable_plone.rightcolumn', 1)
         self.assertEqual(False, view.have_portlets('plone.rightcolumn'))
 
 
