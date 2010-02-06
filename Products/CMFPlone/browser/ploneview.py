@@ -402,17 +402,27 @@ class Plone(BrowserView):
         return context.absolute_url()
 
     def bodyClass(self, template, view):
+
+        context = aq_inner(self.context)
+        url = getToolByName(context, "portal_url")
+
+        #template class (required)
         name = ''
         if isinstance(template, ViewPageTemplateFile):
             # Browser view
             name = view.__name__
         else:
             name = template.getId()
+        body_class = 'template-%s' % name
 
-        context = aq_inner(self.context)
-        url = getToolByName(context, "portal_url")
+        #portal type class (optional)
+        portal_type = self.normalizeString(context.portal_type)
+        if portal_type:
+            body_class += " portaltype-%s" % portal_type
+
+        #section class (optional)
         contentPath = url.getRelativeContentPath(context)
         if contentPath:
-            return "section-%s template-%s" % (contentPath[0], name)
+            body_class += " section-%s" % contentPath[0]
 
-        return 'template-%s' % name
+        return body_class

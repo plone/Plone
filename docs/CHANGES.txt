@@ -8,6 +8,11 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Add current portal type to the body css class like the section
+  and template css class's.
+  Refs https://dev.plone.org/plone/ticket/8777.
+  [pelle]
+
 - Deprecate the portlets_fetcher and macro_renderer templates.
   [davisagli]
 
