@@ -64,13 +64,13 @@ class Overview(BrowserView):
         secman = getSecurityManager()
         return secman.checkPermission(ManagePortal, self.context)
     
-    def upgrade_path(self, site, can_manage=None):
+    def upgrade_url(self, site, can_manage=None):
         if can_manage is None:
             can_manage = self.can_manage()
         if can_manage:
-            return '/'.join(site.getPhysicalPath()) + '/@@plone-upgrade'
+            return site.absolute_url() + '/@@plone-upgrade'
         else:
-            return '/@@plone-root-login'
+            return self.context.absolute_url() + '/@@plone-root-login'
 
 
 class RootLoginRedirect(BrowserView):
@@ -80,8 +80,10 @@ class RootLoginRedirect(BrowserView):
     acl_users and then redirects elsewhere.
     """
     
-    def __call__(self, path='/'):
-        self.request.response.redirect(path)
+    def __call__(self, came_from=None):
+        if came_from is None:
+            came_from = self.context.absolute_url()
+        self.request.response.redirect(came_from)
 
 
 class FrontPage(BrowserView):
