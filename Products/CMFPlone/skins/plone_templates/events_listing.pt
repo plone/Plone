@@ -11,7 +11,7 @@
 </head>
 
 <body>
-<div tal:omit-tag="" id="content-core"
+<div id="content-core"
      tal:define="path context/@@plone_portal_state/navigation_root_path;
                  results python:context.portal_catalog.searchResults(
                             portal_type='Event',
