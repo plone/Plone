@@ -42,7 +42,9 @@
                             pas_member context/@@pas_member;">
         <tal:listing condition="folderContents">
 
-            <!-- Navigation -->
+            <tal:comment tal:condition="nothing">
+              Batch navigation
+            </tal:comment>
             <div metal:use-macro="context/batch_macros/macros/navigation" />
 
             <table class="listing"
@@ -134,7 +136,9 @@
                 </tbody>
             </table>
 
-            <!-- Navigation -->
+            <tal:comment tal:condition="nothing">
+              Batch navigation
+            </tal:comment>
             <div metal:use-macro="context/batch_macros/macros/navigation" />
 
         </tal:listing>

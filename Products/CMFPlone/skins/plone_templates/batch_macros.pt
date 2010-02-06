@@ -5,7 +5,6 @@
       i18n:domain="plone">
 <body>
 
-<!-- Navigation -->
 <div class="listingBar"
      metal:define-macro="navigation"
      tal:define="request request|context/request|container/request|nothing;
@@ -44,7 +43,9 @@
         </a>
     </span>
 
-    <!-- Link to first -->
+    <tal:comment tal:condition="nothing">
+      Link to first
+    </tal:comment>
     <span tal:condition="python: 1 not in batch.navlist">
         <a href=""
            tal:attributes="href python: '%s?%s' % (url, batch.pageurl(request.form,1));">1</a>
@@ -54,7 +55,9 @@
         </span>
     </span>
 
-    <!-- Pagelist with quantum leap links to previous pages for quick navigation -->
+    <tal:comment tal:condition="nothing">
+      Pagelist with quantum leap links to previous pages for quick navigation
+    </tal:comment>
     <span tal:repeat="linklist python:batch.navurls(request.form, batch.leapback)"
           tal:condition="batch/leapback"
           tal:omit-tag="" >
@@ -67,7 +70,9 @@
         &hellip;
     </span>
 
-    <!-- Pagelist with links to previous pages for quick navigation -->
+    <tal:comment tal:condition="nothing">
+      Pagelist with links to previous pages for quick navigation
+    </tal:comment>
     <span tal:repeat="linklist python:batch.prevurls(request.form)"
           tal:condition="batch/prevlist"
           tal:omit-tag="" >
@@ -79,11 +84,15 @@
         </a>
     </span>
 
-    <!-- Current page -->
+    <tal:comment tal:replace="nothing">
+      Current page
+    </tal:comment>
     <span tal:condition="batch/navlist" class="current"
            tal:content="batch/pagenumber">Current page number</span>
 
-    <!-- Pagelist with links to next pages for quick navigation -->
+    <tal:comment tal:replace="nothing">
+      Pagelist with links to next pages for quick navigation
+    </tal:comment>
     <span tal:repeat="linklist python:batch.nexturls(request.form)"
           tal:condition="batch/nextlist"
           tal:omit-tag="" >
@@ -95,7 +104,9 @@
         </a>
     </span>
 
-    <!-- Pagelist with quantum leap links to next pages for quick navigation -->
+    <tal:comment tal:replace="nothing">
+      Pagelist with quantum leap links to next pages for quick navigation
+    </tal:comment>
     <span tal:repeat="linklist python:batch.navurls(request.form, batch.leapforward)"
           tal:condition="batch/leapforward"
           tal:omit-tag="" >
@@ -108,7 +119,9 @@
         </a>
     </span>
 
-    <!-- Link to last -->
+    <tal:comment tal:replace="nothing">
+      Link to last
+    </tal:comment>
     <span tal:condition="python:batch.numpages not in batch.navlist">
         <span tal:condition="python: batch.numpages - 1 not in (batch.nextlist or batch.leapforward)"
               tal:omit-tag="">

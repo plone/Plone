@@ -99,7 +99,9 @@
                 Portal status message
             </div>
 
-            <!-- Author information -->
+            <tal:comment tal:condition="nothing">
+              Author information
+            </tal:comment>
             <h1 class="documentFirstHeading" tal:condition="authorinfo/fullname" tal:content="authorinfo/fullname">
                 Author name
             </h1>
@@ -174,9 +176,9 @@
                 </form>
                 </div>
 
-                <!-- feedback form -->        
-
-
+                <tal:comment tal:condition="nothing">
+                  feedback form
+                </tal:comment>
                 <tal:owner tal:condition="python: not isOwner and not isAnon">
                     <p class="discreet"
                        i18n:translate="description_author_feedback">
@@ -293,7 +295,7 @@
             </tal:authorContent>
 
         </div>
-    </div> <!-- end simulated tabs -->
+    </div>
         
     </tal:haveAuthor>
 

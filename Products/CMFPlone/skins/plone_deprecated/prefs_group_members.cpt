@@ -36,7 +36,6 @@
 
     <div id="region-content" class="documentEditable">
 
-    <!-- simulating views on the groups/user pages until we have real objects. -->
     <div id="edit-bar">
         <ul class="contentViews" id="content-views">
           <li class="selected">

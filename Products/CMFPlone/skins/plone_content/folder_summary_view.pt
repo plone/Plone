@@ -155,7 +155,9 @@
             </metal:tileitem>
             </tal:block>
 
-            <!-- Navigation -->
+            <tal:comment tal:condition="nothing">
+              Batch navigation
+            </tal:comment>
             <div metal:use-macro="context/batch_macros/macros/navigation" />
 
         </tal:listing>

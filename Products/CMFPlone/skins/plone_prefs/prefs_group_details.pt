@@ -29,7 +29,6 @@
     </tal:conditional>
 
       <div id="region-content" class="documentEditable">
-    <!-- simulating views on the groups/user pages until we have real objects. -->
     <div id="edit-bar">
         <ul class="contentViews" id="content-views">
           <li>
@@ -67,7 +66,9 @@
         Portal status message
       </div>
 
-      <!-- When no group is specified, this gets used as the add group page page -->
+      <tal:comment tal:condition="nothing">
+        When no group is specified, this gets used as the add group page page
+      </tal:comment>
       <div id="content" tal:condition="not:group | nothing">
         <metal:block metal:use-macro="template/macros/props">
           <metal:title metal:fill-slot="title">

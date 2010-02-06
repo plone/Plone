@@ -55,7 +55,9 @@
                     Thank you.
                     </p>
                 
-                    <!-- Offer search results for suggestions -->
+                    <tal:comment tal:condition="nothing">
+                       Offer search results for suggestions
+                    </tal:comment>
                     <tal:suggestions define="first_parent redirection_view/find_first_parent;
                                              similar_items redirection_view/search_for_similar;
                                              plone_view context/@@plone;

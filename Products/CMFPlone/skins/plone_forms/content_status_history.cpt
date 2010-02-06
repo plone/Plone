@@ -12,7 +12,6 @@
   </metal:block>
 
   <metal:calendar fill-slot="javascript_head_slot">
-    <!-- ECMAScript calendar -->
     <style type="text/css" media="all"
             tal:content="string:@import url(${context/portal_url}/jscalendar/calendar-system.css);"></style>
     <script type="text/javascript"
@@ -24,14 +23,14 @@
 
   <body>
 
-    <!--
+    <tal:comment tal:condition="nothing">
       NOTE: This form is used in two different ways - from folder_contents,
       allowing you to publish several things at once, and from the state
       drop-down. In the first case, the 'paths' request parameter is set;
       in the second case, giving the relative paths to the content object
       to manipulate; in the second case, this parameter is omitted and the
       path of the context is used.
-    -->
+    </tal:comment>
 
     <div metal:fill-slot="main" tal:omit-tag=""
          tal:define="errors options/state/getErrors;

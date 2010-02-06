@@ -5,7 +5,10 @@
 
   <body>
 
-    <!-- The calendar date picker. -->
+    <tal:comment tal:condition="nothing">
+      The calendar date picker.
+    </tal:comment>
+
     <div metal:define-macro="calendarDatePickerBox" tal:define="
          uniqueItemIndex context/@@plone/uniqueItemIndex;
          inputIndex uniqueItemIndex/next;
@@ -266,7 +269,6 @@
       </table>
 
     </div>
-    <!-- end of the calendar datepicker box -->
 
   </body>
 

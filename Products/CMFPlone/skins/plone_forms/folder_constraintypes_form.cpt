@@ -9,7 +9,6 @@
              tal:define="dummy python:request.set('disable_border',1)" />
 
 <metal:block fill-slot="javascript_head_slot">
-    <!-- maybe someone can put that into nice kss -->
     <script type="text/javascript">
         <!--
         function show_submenu(show) {
@@ -116,12 +115,16 @@
                     <br />
                 </div>
 
-                <!-- Manually selected Fields, normally collapsed -->
+                <tal:comment tal:condition="nothing">
+                  Manually selected Fields, normally collapsed
+                </tal:comment>
                 <div class="field">
 
                     <div id="details" tal:attributes="style python:'display:%s'%test('1' == str(currentMode), 'block', 'none')">
 
-                    <!-- Addable to the Menu -->
+                    <tal:comment tal:condition="nothing">
+                      Addable to the Menu
+                    </tal:comment>
                     <div id="details"
                          tal:define="error errors/currentPrefer | nothing;"
                          tal:attributes="class python:test(error, 'field error', 'field')">
@@ -135,7 +138,6 @@
                             Controls what types are addable in this location.
                         </div>
 
-                        <!-- Errors go here -->
                         <div tal:content="error">Validation error output</div>
 
                         <div style="float:left; margin-right: 2em;"
@@ -164,7 +166,9 @@
                     <div class="visualClear" id="clear-space-before-addable-types"><!-- --></div>
                     <br />
 
-                    <!-- Types addable over the more... option in the menu -->
+                    <tal:comment tal:condition="nothing">
+                      Types addable over the more... option in the menu
+                    </tal:comment>
                     <div class="field"
                          tal:define="error errors/locallyAllowedTypes | nothing;"
                          tal:attributes="class python:test(error, 'field error', 'field')">
@@ -181,7 +185,6 @@
                                in this location, but are allowed if you really need them.
                         </div>
 
-                        <!-- Errors go here -->
                         <div tal:content="error">Validation error output</div>
 
                         <div style="float:left; margin-right: 2em;"
@@ -209,7 +212,7 @@
                         </div>
                     </div>
                 </div>
-                </div> <!-- /manually selected -->
+                </div>
 
                 <div class="visualClear" id="clear-space-before-form-controls"><!-- --></div>
                 <br />
@@ -228,7 +231,7 @@
                         value="Cancel"
                         i18n:attributes="value label_cancel;"
                     />
-                </div> <!-- /Form Actions -->
+                </div>
 
             </tal:items>
           </form>

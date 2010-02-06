@@ -32,7 +32,6 @@
                 <span i18n:name="number" tal:omit-tag="" tal:content="python:len(results)">234</span> items matching your search terms
             </strong>
 
-            <!-- Navigation -->
             <div metal:use-macro="here/batch_macros/macros/navigation" />
 
             <div>
@@ -60,7 +59,6 @@
             </metal:block>
             </div>
 
-            <!-- Navigation -->
             <div class="visualClear" id="clear-space-before-navigation"><!-- --></div>
 
             <div metal:use-macro="here/batch_macros/macros/navigation" />

@@ -69,7 +69,6 @@
         <span tal:omit-tag="" i18n:translate="description_search_string"
              >Search string:</span>
         <span tal:content="request/searchstring | default" i18n:translate="">none specified</span>
-        <!--restricted by <span tal:replace="searchfor"/>-->
         <table class="listing"
             id="sortable"
             tal:define="searchresults python:Batch(context.prefs_user_group_search(searchstring, searchfor), 25, int(b_start), orphan=1)"
