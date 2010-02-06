@@ -8,7 +8,8 @@
 
 <body>
         
-<metal:content-core fill-slot="content-core"
+<metal:content-core fill-slot="content-core">
+<metal:block define-macro="content-core"
                     tal:define="kssClassesView context/@@kss_field_decorator_view; 
                                 getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
                                 templateId template/getId">        
@@ -44,8 +45,8 @@
                         pas_member context/@@pas_member;">
     <tal:listing condition="folderContents">
 
-        <dl>
-            <tal:entry tal:repeat="item folderContents">
+        <dl metal:define-slot="entries">
+            <tal:entry tal:repeat="item folderContents" metal:define-macro="entries">
             <tal:block tal:define="item_url item/getURL|item/absolute_url;
                                    item_id item/getId|item/id;
                                    item_title_or_id item/pretty_title_or_id;
@@ -62,7 +63,7 @@
                                    item_start item/start/ISO|item/StartDate|nothing;
                                    item_end item/end/ISO|item/EndDate|nothing;
                                ">
-
+                <metal:block define-slot="entry">
                 <dt metal:define-macro="listitem"
                     tal:attributes="class python:test(item_type == 'Event', 'vevent', '')">
 
@@ -159,6 +160,7 @@
                         description
                     </span>
                 </dd>
+            </metal:block>
             </tal:block>
             </tal:entry>
         </dl>
@@ -182,6 +184,7 @@
     </tal:foldercontents>
     </metal:listingmacro>
 
+</metal:block>
 </metal:content-core>
 
 </body>

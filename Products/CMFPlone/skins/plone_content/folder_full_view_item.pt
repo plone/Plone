@@ -9,12 +9,19 @@
 <body tal:omit-tag="">
 
     <div class="tileItem"
-         tal:define="view options/view;
+         tal:define="portal_state context/@@plone_portal_state;
+                     context_state context/@@plone_context_state;
+                     plone_view context/@@plone;
+                     lang portal_state/language;
+                     view nocall:view | nocall: plone_view;
+                     dummy python: plone_view.mark_view(view);
+                     portal_url portal_state/portal_url;
+                     checkPermission nocall: context/portal_membership/checkPermission;
+                     site_properties context/portal_properties/site_properties;
                      item_type context/portal_type;
                      item_layout here/getLayout;
                      override python: {'Link': 'link_view'};
                      item_macro python:path('here/%s/macros/content-core | nothing' % override.get(item_type, item_layout));
-                     site_properties context/portal_properties/site_properties;
                      use_view_action site_properties/typesUseViewActionInListings|python:();
                      item_url context/absolute_url;
                      normalizeString nocall: context/plone_utils/normalizeString;

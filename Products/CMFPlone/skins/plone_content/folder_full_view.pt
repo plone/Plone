@@ -8,13 +8,18 @@
 
 <body>
 
-    <div metal:fill-slot="main" tal:omit-tag="" tal:define="parent_view view;">
-        <metal:main-macro use-macro="context/folder_summary_view/macros/main">
-            <metal:tileitem metal:fill-slot="tileitem" tal:define="view parent_view">
-                <div tal:replace="structure python:item.getObject().folder_full_view_item(view=view)" />
-            </metal:tileitem>
-        </metal:main-macro>
-    </div>
+    <metal:content-core fill-slot="content-core">
+        <metal:block use-macro="context/folder_listing/macros/content-core">
+            <!-- we don't want the dl -->
+            <metal:entries fill-slot="entries">
+                <metal:block use-macro="context/folder_listing/macros/entries">
+                    <metal:entry fill-slot="entry">
+                        <div tal:replace="structure python:item.getObject().folder_full_view_item()" />
+                    </metal:entry>
+                </metal:block>
+            </metal:entries>
+        </metal:block>
+    </metal:content-core>
 
 </body>
 </html>
