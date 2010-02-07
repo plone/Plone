@@ -8,6 +8,10 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Re-factored plone_prefs/ templates to follow the recent markup conventions.
+  References http://dev.plone.org/plone/ticket/9981
+  [spliter] 
+
 - Added 'All content' blog like view for folderish types.
   [elro]
 
