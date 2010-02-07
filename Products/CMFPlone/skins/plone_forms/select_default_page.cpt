@@ -10,7 +10,7 @@
 
   <body>
 
-    <div metal:fill-slot="main" tal:omit-tag="">
+    <metal:main fill-slot="main">
 
       <h1 class="documentFirstHeading"
           i18n:translate="heading_select_default_page">Select default page</h1>
@@ -92,7 +92,7 @@
           </form>
       </div>
 
-    </div>
+    </metal:main>
 
   </body>
 </html>

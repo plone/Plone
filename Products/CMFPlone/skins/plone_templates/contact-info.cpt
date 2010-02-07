@@ -12,7 +12,7 @@
 </head>
 
 <body>
-<div metal:fill-slot="main" tal:omit-tag=""
+<metal:main fill-slot="main"
      tal:define="portal context/@@plone_portal_state/portal;
                  email_from_address portal/email_from_address;
                  isAnon context/@@plone_portal_state/anonymous;">
@@ -184,6 +184,6 @@
             </form>
         </div>
     </div>
-</div>
+</metal:main>
 </body>
 </html>

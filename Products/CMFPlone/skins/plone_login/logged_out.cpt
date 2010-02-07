@@ -15,7 +15,7 @@
       </head>
 <body>
 
-  <div metal:fill-slot="main" tal:omit-tag=""
+  <metal:main fill-slot="main"
        tal:define="auth nocall:context/acl_users/credentials_cookie_auth|context/cookie_authentication|nothing;
                    came_from request/came_from|request/HTTP_REFERER|nothing;
                    came_from python:test(context.portal_url.isURLInPortal(came_from), came_from, None);
@@ -93,6 +93,6 @@
     </div>
 </tal:notloggedoutafterall>
 
-</div>
+</metal:main>
 </body>
 </html>

@@ -11,7 +11,7 @@
 
 <body>
 
-<div metal:fill-slot="main" tal:omit-tag=""
+<metal:main fill-slot="main"
      tal:define="path context/@@plone_portal_state/navigation_root_path;
                  results python:container.portal_catalog(sort_on='modified',sort_order='reverse',path=path);
                  Batch python:modules['Products.CMFPlone'].Batch;
@@ -88,8 +88,7 @@
         </p>
     </div>
 
-</div>
-
+</metal:main>
 </body>
 
 </html>

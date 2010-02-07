@@ -8,7 +8,7 @@
 
 <body>
 
-<div metal:fill-slot="main" tal:omit-tag="">
+<metal:main fill-slot="main">
 
     <h1 class="documentFirstHeading" i18n:translate="heading_welcome_to">Welcome to
         <span i18n:name="sitename" tal:omit-tag="" tal:content="context/Title">Portal title</span>
@@ -18,7 +18,7 @@
         Portal description
     </div>
 
-</div>
+</metal:main>
 
 </body>
 </html>

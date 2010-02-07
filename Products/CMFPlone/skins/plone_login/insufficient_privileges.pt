@@ -8,7 +8,7 @@
 
 <body>
   
-<div metal:fill-slot="main" tal:omit-tag="">
+<metal:main fill-slot="main">
 
       <h1 class="documentFirstHeading"
           i18n:translate="heading_no_privileges">Insufficient Privileges</h1>
@@ -20,7 +20,7 @@
          i18n:translate="label_site_administration"
          tal:attributes="href string:${context/portal_url}/contact-info">site administration</a></span>.
       </div>
-</div>
+</metal:main>
 
 </body>
 </html>

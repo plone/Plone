@@ -5,7 +5,7 @@
       metal:use-macro="here/main_template/macros/master"
       i18n:domain="plone">
   <body>
-  <div metal:fill-slot="main" tal:omit-tag="" tal:define="results request/historyComparisonResults|nothing;">
+  <metal:main fill-slot="main" tal:define="results request/historyComparisonResults|nothing;">
      
     <div id="content-core">
         <div tal:condition="results">
@@ -19,7 +19,7 @@
         </div>
     </div>
 
-  </div>
+  </metal:main>
   </body>
 </html>
 

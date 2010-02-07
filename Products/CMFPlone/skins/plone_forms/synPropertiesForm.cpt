@@ -8,7 +8,7 @@
 
   <body>
 
-    <div metal:fill-slot="main" tal:omit-tag=""
+    <metal:main fill-slot="main"
          tal:define="errors options/state/getErrors;
                      syntool python:context.portal_syndication;
                      syndicateInfo python:syntool.isSyndicationAllowed(context);">
@@ -195,7 +195,7 @@
           </div>
       </div>
       
-    </div>
+    </metal:main>
 
   </body>
 </html>

@@ -19,7 +19,7 @@
                tal:define="dummy context/setupCurrentSkin" />
 </tal:block>
 
-<div metal:fill-slot="main" tal:omit-tag=""
+<metal:main fill-slot="main"
      tal:define="isAnon context/@@plone_portal_state/anonymous;">
      
   <metal:not-anon tal:condition="not:isAnon"
@@ -72,7 +72,7 @@
       <div metal:use-macro="context/login_failed/macros/login_failed" />
   </metal:anon>
   
-</div>
+</metal:main>
 
 </body>
 </html>

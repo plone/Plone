@@ -9,7 +9,7 @@
 <metal:block fill-slot="top_slot"
              tal:define="dummy python:request.set('disable_border',1)" />
 
-<div metal:fill-slot="main" tal:omit-tag=""
+<metal:main fill-slot="main"
        tal:define="search_view here/@@pas_search;
                    listing_allowed python: checkPermission('List portal members', here);
                    results python:listing_allowed and search_view.searchUsersByRequest(request, sort_by='fullname') or [];
@@ -72,6 +72,6 @@
         </div>
     </div>
     
-</div>
+</metal:main>
 
 </html>

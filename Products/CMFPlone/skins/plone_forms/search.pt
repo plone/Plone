@@ -20,8 +20,7 @@
 </head>
 
 <body>
-<div metal:fill-slot="main"
-     tal:omit-tag=""
+<metal:main fill-slot="main"
      tal:define="use_types_blacklist request/use_types_blacklist | python:True;
                  use_navigation_root request/use_navigation_root | python:True;
                  sort_on request/sort_on|nothing;
@@ -226,7 +225,7 @@
         </div>
     </div>
     
-</div>
+</metal:main>
 </body>
 </html>
 

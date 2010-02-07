@@ -10,7 +10,7 @@
 
   <body>
 
-    <div metal:fill-slot="main" tal:omit-tag="">
+    <metal:main fill-slot="main">
 
       <tal:block tal:condition="not: request/paths | nothing"
                  tal:replace="python:context.redirectToReferrer('Please select one or more items to rename.')"/>
@@ -146,7 +146,7 @@
           </tal:defines>
       </div>
 
-    </div>
+    </metal:main>
 
   </body>
 </html>

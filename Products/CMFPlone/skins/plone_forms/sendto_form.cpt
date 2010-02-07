@@ -14,7 +14,7 @@
 
   <body>
 
-    <div metal:fill-slot="main" tal:omit-tag=""
+    <metal:main fill-slot="main"
          tal:define="errors options/state/getErrors;">
 
       <h1 class="documentFirstHeading"
@@ -120,7 +120,7 @@
           </form>
       </div>
       
-    </div>
+    </metal:main>
 
   </body>
 </html>

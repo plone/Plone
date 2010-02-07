@@ -6,7 +6,7 @@
       metal:use-macro="context/main_template/macros/master"
       i18n:domain="plone">
 
-<div metal:fill-slot="main" tal:omit-tag=""
+<metal:main fill-slot="main"
      tal:define="owner python:context.plone_utils.getOwnerName(context);
                  isFolderish context/@@plone_context_state/is_folderish;
                  site_properties context/portal_properties/site_properties;
@@ -224,5 +224,5 @@
           </fieldset>
         </tal:block>
     </div>
-</div>
+</metal:main>
 </html>

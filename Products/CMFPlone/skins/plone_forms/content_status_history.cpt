@@ -32,7 +32,7 @@
       path of the context is used.
     </tal:comment>
 
-    <div metal:fill-slot="main" tal:omit-tag=""
+    <metal:main fill-slot="main"
          tal:define="errors options/state/getErrors;
                      review_state context/@@plone_context_state/workflow_state;
                      paths python:request.get('paths', ['/'.join(context.getPhysicalPath())]);
@@ -381,7 +381,7 @@
 
           </form>
       </div>
-    </div>
+    </metal:main>
 
   </body>
 </html>

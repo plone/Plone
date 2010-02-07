@@ -46,7 +46,7 @@
 </metal:block>
   <body>
 
-    <div metal:fill-slot="main" tal:omit-tag="">
+    <metal:main fill-slot="main">
 
       <h1 class="documentFirstHeading"
           i18n:translate="heading_set_content_type_restrictions">
@@ -237,7 +237,7 @@
           </form>
       </div>
       
-    </div>
+    </metal:main>
 
   </body>
 </html>

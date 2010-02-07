@@ -7,7 +7,7 @@
       i18n:domain="plone">
 
 <body>
-<div metal:fill-slot="main" tal:omit-tag=""
+<metal:main fill-slot="main"
      tal:define="checkPermission nocall: context/portal_membership/checkPermission;
                  is_manager python: checkPermission('Manage portal', here)">
 
@@ -114,7 +114,7 @@
             </fieldset>
         </form>
     </div>
-</div>
+</metal:main>
 
 </body>
 </html>

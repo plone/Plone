@@ -3,7 +3,7 @@
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       metal:use-macro="here/main_template/macros/master" i18n:domain="plone">
-   <div metal:fill-slot="main" tal:omit-tag=""
+<metal:main fill-slot="main"
         tal:define="HistoryBatchSize python:request.get('HistoryBatchSize',20);
                     first_trx python:request.get('first_transaction',0);
                     last_trx python:20;
@@ -67,6 +67,6 @@
       </metal:block>
   </div>
    
- </div>
+</metal:main>
 </html>
 

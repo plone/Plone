@@ -13,7 +13,7 @@
 
 <body>
 
-<div metal:fill-slot="main" tal:omit-tag="">
+<metal:main fill-slot="main">
 
     <h1 class="documentFirstHeading"
         i18n:translate="heading_send_feedback_confirm">
@@ -24,7 +24,7 @@
         A mail has now been sent to the site administrator regarding your
         questions and/or comments.
     </div>
-</div>
+</metal:main>
 
 </body>
 </html>

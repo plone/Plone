@@ -12,7 +12,7 @@
 </head>
 
 <body>
-<div metal:fill-slot="main" tal:omit-tag="">
+<metal:main fill-slot="main">
 
     <h1 class="documentFirstHeading"
         i18n:translate="heading_accessibility_info">Accessibility</h1>
@@ -119,6 +119,6 @@
         </p>
     </div>
 
-</div>
+</metal:main>
 </body>
 </html>

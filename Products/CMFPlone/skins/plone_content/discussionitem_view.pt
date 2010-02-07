@@ -8,9 +8,9 @@
 <metal:block fill-slot="top_slot"
              tal:define="dummy python:request.set('disable_border',1)" />
 
-<metal:block metal:fill-slot="main">
+<metal:main fill-slot="main">
 	<tal:redirect tal:define="r python:context.redirectToDiscussable()" />
-</metal:block>
+</metal:main>
 
 <metal:block metal:fill-slot="sub">
 &nbsp;

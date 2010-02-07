@@ -7,7 +7,7 @@
 <body>
     
 
-<div metal:fill-slot="main" tal:omit-tag=""
+<metal:main fill-slot="main"
      tal:define="auth nocall:context/acl_users/credentials_cookie_auth|nothing">
 
     <div id="content-core" tal:condition="python: not auth" i18n:translate="registered_disabled">
@@ -98,6 +98,6 @@
         
     </div>
 
-</div>
+</metal:main>
 </body>
 </html>

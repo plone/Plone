@@ -14,7 +14,7 @@
 </head>
 
 <body>
-<div metal:fill-slot="main" tal:omit-tag=""
+<metal:main fill-slot="main"
      tal:define="err_type options/error_type|nothing;
                  err_message options/error_message|nothing;
                  err_tb options/error_tb|nothing;
@@ -188,6 +188,6 @@
                 tal:define="kss_view kss_view | context/@@kss_view | nothing;
                             dummy python: kss_view and kss_view.attach_error(err_type, err_value);"/>
 
-</div>
+</metal:main>
 </body>
 </html>
