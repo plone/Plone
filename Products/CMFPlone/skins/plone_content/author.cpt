@@ -134,9 +134,9 @@
                  tal:attributes="src portrait/absolute_url" />
                       
 
-            <p class="documentDescription" tal:content="authorinfo/description">
+            <div class="documentDescription" tal:content="authorinfo/description">
                 Author description.
-            </p>
+            </div>
 
             <div class="visualClear"><!-- --></div>
             
