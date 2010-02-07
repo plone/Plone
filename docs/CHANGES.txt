@@ -8,6 +8,10 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Updated author.pt to follow general markup conventions.
+  References http://dev.plone.org/plone/ticket/9981
+  [spliter]
+
 - Updated templates to fill 'main' slot with <metal:main fill-slot='main'>
   construction instead of <div metal:fill-slot="main" tal:omit-tag="">
   [spliter]
