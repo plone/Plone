@@ -156,20 +156,24 @@ Table of class <code>listing</code>
         <tr>
             <th>Table heading</th>
             <th>Another heading (sortable, click to sort)</th>
+            <th class="nosort">Fixed column (not sortable)</th>
         </tr>
     </thead>
     <tbody>
         <tr class="odd">
             <td>Odd table item</td>
-            <td>More items</td>
+            <td>Item 1</td>
+            <td>Another item</td>
         </tr>
         <tr class="even">
             <td>Even table item</td>
-            <td>More items</td>
+            <td>Item 2</td>
+            <td>Yet another item</td>
         </tr>
         <tr class="odd">
             <td>Odd table item</td>
-            <td>More items</td>
+            <td>Item 3</td>
+            <td>And one more item</td>
         </tr>
     </tbody>
 </table>
@@ -398,7 +402,29 @@ Table of class <code>vertical listing</code>
     </table>
 </form>
 
+<div>
+    <h2>Action menu</h2>
+    <dl class="actionMenu" id="actioMenuDemo">
+        <dt class="actionMenuHeader">
+            <a href="#">Action menu title</a>
+        </dt>
+        <dd class="actionMenuContent">
+            Menu content
+        </dd>
+    </dl>
+</div>
 
+<div>
+    <h2>Collapsible section</h2>
+    <dl class="collapsible">
+        <dt class="collapsibleHeader">
+            Collapsable section title
+        </dt>
+        <dd class="collapsibleContent">
+            Collapsible section content
+        </dd>
+    </dl>
+</div>
 
 <h2>The Internet Explorer "Peekaboo" bug</h2>
 
