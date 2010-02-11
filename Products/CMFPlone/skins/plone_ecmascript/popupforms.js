@@ -86,5 +86,12 @@ jq(function(){
         }
     );
 
+    // Content history popup
+    jq('#content-history a').prepOverlay({
+       subtype: 'ajax', 
+       urlmatch: '@@historyview',
+       urlreplace: '@@contenthistorypopup'
+    });
+
 });
 

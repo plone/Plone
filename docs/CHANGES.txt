@@ -8,6 +8,10 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Made history act as an ajax popup rather than an inline collapsible. The
+  goal is to reduce rendering time when history isn't needed.
+  [smcmahon]
+
 - Updated author.pt to follow general markup conventions.
   References http://dev.plone.org/plone/ticket/9981
   [spliter]
