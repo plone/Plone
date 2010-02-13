@@ -8,6 +8,9 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Add new editing control panel.
+  [hannosch]
+
 - Hide the rss and print document actions for new sites. Both are consistently
   supported by browsers today and don't need site specific actions anymore.
   [hannosch]

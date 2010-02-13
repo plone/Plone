@@ -57,6 +57,13 @@
     i18n:attributes="title">
   <permission>Manage portal</permission>
  </configlet>
+ <configlet title="Editing" action_id="EditingSettings" appId="Plone"
+    category="Plone" condition_expr=""
+    icon_expr="string:$portal_url/cut_icon.png"
+    url_expr="string:${portal_url}/@@editing-controlpanel" visible="True"
+    i18n:attributes="title">
+  <permission>Manage portal</permission>
+ </configlet>
  <configlet title="Errors" action_id="errorLog" appId="ErrorLog"
     category="Plone" condition_expr=""
     icon_expr="string:$portal_url/error_log_icon.png"
