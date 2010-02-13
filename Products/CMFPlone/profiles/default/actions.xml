@@ -16,7 +16,7 @@
    <property name="permissions">
     <element value="View"/>
    </property>
-   <property name="visible">True</property>
+   <property name="visible">False</property>
   </object>
   <object name="print" meta_type="CMF Action" i18n:domain="plone">
    <property name="title" i18n:translate="">Print this</property>
@@ -27,7 +27,7 @@
    <property name="permissions">
     <element value="View"/>
    </property>
-   <property name="visible">True</property>
+   <property name="visible">False</property>
   </object>
   <object name="full_screen" meta_type="CMF Action" i18n:domain="plone">
    <property name="title" i18n:translate="">Toggle full screen mode</property>

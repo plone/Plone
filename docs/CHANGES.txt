@@ -8,6 +8,10 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Hide the rss and print document actions for new sites. Both are consistently
+  supported by browsers today and don't need site specific actions anymore.
+  [hannosch]
+
 - We need to include ZCML from `plone.app.folder`, not just `plone.folder`.
   This refs http://dev.plone.org/plone/ticket/10127.
   [witsch, hannosch]
