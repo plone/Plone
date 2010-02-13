@@ -1,5 +1,14 @@
-<configure xmlns="http://namespaces.zope.org/zope">
+<configure xmlns="http://namespaces.zope.org/zope" xmlns:meta="http://namespaces.zope.org/meta">
 
+    <!-- Register a feature; once this is in place, you can do
+            
+            zcml:condition="have plone-4"
+         
+         to register Plone 4-specific configuration
+      -->
+            
+    <meta:provides feature="plone-4" />
+    
     <!-- Exclude directives need to be executed before the ZCML file would
          be loaded. Doing this during the meta.zcml phase ensures this.
          The functionality in the following packages is not used and might

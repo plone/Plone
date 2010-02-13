@@ -8,6 +8,15 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Add a `meta:provides` directive to `meta.zcml` that provides the feature
+  `plone-4`. To load Plone-4 specific ZCML, you can use something like this::
+  
+    <configure xmlns="http://namespaces.zope.org/zope" xmlns:zcml="http://namespaces.zope.org/zcml">
+        <include zcml:condition="have plone-4" file="plone-4-specific-stuff.zcml" />
+    </configure>
+  
+  [optilude]
+
 - Add new editing control panel.
   [hannosch]
 
