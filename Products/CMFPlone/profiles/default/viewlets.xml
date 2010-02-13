@@ -19,8 +19,7 @@
   </order>
   <order manager="plone.belowcontentbody" skinname="Plone Default">
     <viewlet name="plone.belowcontentbody.relateditems" />
-    <viewlet name="plone.belowcontentbody.contenthistory" />
-    <viewlet name="plone.abovecontenttitle.documentactions" />    
+    <viewlet name="plone.abovecontenttitle.documentactions" />
   </order>
   <order manager="plone.belowcontent" skinname="Plone Default">
     <viewlet name="plone.nextprevious" />

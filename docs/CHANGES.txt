@@ -8,6 +8,10 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Removed the no longer needed history viewlet. This refs
+  http://dev.plone.org/plone/ticket/10102.
+  [hannosch]
+
 - Made history act as an ajax popup rather than an inline collapsible. The
   goal is to reduce rendering time when history isn't needed.
   [smcmahon]
