@@ -49,6 +49,7 @@ class HiddenProfiles(object):
                 u'plone.app.blob:file-replacement',
                 u'plone.app.blob:image-replacement',
                 u'plone.app.blob:sample-type',
+                u'plone.app.folder:default',
                 u'plone.app.imaging:default',
                 ]
 
