@@ -185,7 +185,7 @@ class Plone(BrowserView):
     def site_encoding(self):
         return utils.getSiteEncoding(self.context)
 
-    # Deprecated in favour of the @@plone_context_state and @@plone_portal_state
+    # Deprecated in favour of @@plone_context_state and @@plone_portal_state
 
     def getCurrentUrl(self):
         context_state = getMultiAdapter(
@@ -251,7 +251,7 @@ class Plone(BrowserView):
             (aq_inner(self.context), self.request), name=u'plone_context_state')
         return context_state.view_template_id()
 
-    # Deprecated in favour of the @@plone_layout
+    # Deprecated in favour of @@plone_layout
 
     def mark_view(self, view):
         """Adds a marker interface to the view if it is "the" view for the
