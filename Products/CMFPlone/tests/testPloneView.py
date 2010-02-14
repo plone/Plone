@@ -1,10 +1,3 @@
-#
-# Test methods used to make ...
-#
-
-from zope.interface import directlyProvides, noLongerProvides
-
-from Products.CMFPlone.interfaces import INonStructuralFolder
 from Products.CMFPlone.tests import PloneTestCase
 from Products.CMFPlone.tests import dummy
 
@@ -153,44 +146,6 @@ class TestPloneView(PloneTestCase.PloneTestCase):
         # Must return 6 characters, because 5th character is two byte
         text = u'Koko\u0159\xedn'.encode('utf8')
         self.assertEqual(view.cropText(text, 5), 'Koko\xc5\x99...')
-
-    def testPrepareObjectTabsOnPortalRoot(self):
-        self._invalidateRequestMemoizations()
-        self.loginAsPortalOwner()
-        self.app.REQUEST['ACTUAL_URL'] = self.portal.absolute_url()
-        view = self.portal.restrictedTraverse('@@plone')
-        tabs = view.prepareObjectTabs()
-        self.assertEquals(tabs[0]['id'], 'folderContents')
-        self.assertEquals(['view'], [t['id'] for t in tabs if t['selected']])
-
-    def testPrepareObjectTabsNonFolder(self):
-        self._invalidateRequestMemoizations()
-        self.loginAsPortalOwner()
-        self.app.REQUEST['ACTUAL_URL'] = self.folder.test.absolute_url()
-        view = self.folder.test.restrictedTraverse('@@plone')
-        tabs = view.prepareObjectTabs()
-        self.assertEquals(0, len([t for t in tabs if t['id'] == 'folderContents']))
-        self.assertEquals(['view'], [t['id'] for t in tabs if t['selected']])
-
-    def testPrepareObjectTabsNonStructuralFolder(self):
-        self._invalidateRequestMemoizations()
-        self.loginAsPortalOwner()
-        self.app.REQUEST['ACTUAL_URL'] = self.folder.absolute_url()
-        directlyProvides(self.folder, INonStructuralFolder)
-        view = self.folder.restrictedTraverse('@@plone')
-        tabs = view.prepareObjectTabs()
-        noLongerProvides(self.folder, INonStructuralFolder)
-        self.assertEquals(0, len([t for t in tabs if t['id'] == 'folderContents']))
-        self.assertEquals(['view'], [t['id'] for t in tabs if t['selected']])
-
-    def testPrepareObjectTabsDefaultView(self):
-        self._invalidateRequestMemoizations()
-        self.loginAsPortalOwner()
-        self.app.REQUEST['ACTUAL_URL'] = self.folder.test.absolute_url() + '/edit'
-        view = self.folder.test.restrictedTraverse('@@plone')
-        tabs = view.prepareObjectTabs()
-        self.assertEquals(0, len([t for t in tabs if t['id'] == 'folderContents']))
-        self.assertEquals(['edit'], [t['id'] for t in tabs if t['selected']])
 
     def testSiteEncoding(self):
         view = Plone(self.portal, self.app.REQUEST)

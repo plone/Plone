@@ -8,6 +8,10 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Moved the prepareObjectTabs method from the @@plone view to the
+  ``plone.contentviews`` viewlet.
+  [hannosch]
+
 - Moved layout related methods from the @@plone view to a new @@plone_layout
   view found in plone.app.layout.globals.
   [hannosch]

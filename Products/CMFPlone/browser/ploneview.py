@@ -1,5 +1,3 @@
-from urllib import unquote
-
 from plone.app.content.browser.folderfactories import _allowedTypes
 from plone.memoize.view import memoize
 from zope.interface import implements
@@ -57,80 +55,9 @@ class Plone(BrowserView):
             return user.getProperty('visible_ids', False)
         return False
 
-    @memoize
-    def prepareObjectTabs(self, default_tab='view', sort_first=['folderContents']):
-        """Prepare the object tabs by determining their order and working
-        out which tab is selected. Used in global_contentviews.pt
-        """
-        context = aq_inner(self.context)
-        context_url = context.absolute_url()
-        context_fti = context.getTypeInfo()
-
-        context_state = getMultiAdapter((context, self.request), name=u'plone_context_state')
-        actions = context_state.actions
-
-        action_list = []
-        if context_state.is_structural_folder():
-            action_list = actions('folder')
-        action_list.extend(actions('object'))
-
-        tabs = []
-        found_selected = False
-        fallback_action = None
-
-        request_url = self.request['ACTUAL_URL']
-        request_url_path = request_url[len(context_url):]
-
-        if request_url_path.startswith('/'):
-            request_url_path = request_url_path[1:]
-
-        for action in action_list:
-            item = {'title'    : action['title'],
-                    'id'       : action['id'],
-                    'url'      : '',
-                    'selected' : False}
-
-            action_url = action['url'].strip()
-            if action_url.startswith('http') or action_url.startswith('javascript'):
-                item['url'] = action_url
-            else:
-                item['url'] = '%s/%s'%(context_url, action_url)
-
-            action_method = item['url'].split('/')[-1]
-
-            # Action method may be a method alias: Attempt to resolve to a template.
-            action_method = context_fti.queryMethodID(action_method, default=action_method)
-            if action_method:
-                request_action = unquote(request_url_path)
-                request_action = context_fti.queryMethodID(request_action, default=request_action)
-
-                if action_method == request_action:
-                    item['selected'] = True
-                    found_selected = True
-
-            current_id = item['id']
-            if current_id == default_tab:
-                fallback_action = item
-
-            tabs.append(item)
-
-        if not found_selected and fallback_action is not None:
-            fallback_action['selected'] = True
-
-        def sortOrder(tab):
-            try:
-                return sort_first.index(tab['id'])
-            except ValueError:
-                return 255
-
-        tabs.sort(key=sortOrder)
-        return tabs
-
-    # XXX: This can't be request-memoized, because it won't necessarily remain
+    # This can't be request-memoized, because it won't necessarily remain
     # valid across traversals. For example, you may get tabs on an error
-    # message. :)
-    #
-    # @memoize
+    # message.
     def showEditableBorder(self):
         """Determine if the editable border should be shown
         """
