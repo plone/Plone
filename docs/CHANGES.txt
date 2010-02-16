@@ -8,6 +8,9 @@ Changelog
 4.0a5 - Unreleased
 ------------------
 
+- Wrapped .contentViews and .contentActions with <div id="edit-bar"> in views.
+  [spliter]
+
 - Wrapped .contentViews and .contentActions with <div id="edit-bar"> in order
   to have consistent markup between classic and Sunburst themes.
   [spliter]

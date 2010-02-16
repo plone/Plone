@@ -21,6 +21,7 @@
                  portal_url context/portal_url;">
 
     <div class="documentEditable">
+        <div id="edit-bar">
         <h5 class="hiddenStructure">Views</h5>
         <ul class="contentViews" id="content-views">
           <li class="selected">
@@ -40,6 +41,7 @@
           </li>
         </ul>
         <div class="contentActions">&nbsp;</div>
+        </div>
 
       <div metal:use-macro="context/global_statusmessage/macros/portal_message">
         Portal status message

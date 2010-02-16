@@ -59,7 +59,7 @@
             tal:define="isOwner python:member.getId()==author;
                         isAnon context/@@plone_portal_state/anonymous;">
 
-            <metal:owner tal:condition="isOwner">
+            <div id="edit-bar" tal:condition="isOwner">
                 <h5 class="hiddenStructure">Views</h5>
                 <ul id="content-views"
                     class="contentViews">
@@ -78,7 +78,7 @@
                 </ul>
                 <div class="contentActions">&nbsp;</div>
                  <!-- end simulated tabs -->
-            </metal:owner>
+            </div>
 
 
             <div metal:use-macro="context/global_statusmessage/macros/portal_message">

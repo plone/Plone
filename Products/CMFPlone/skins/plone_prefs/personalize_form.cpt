@@ -22,6 +22,7 @@
 <tal:main-macro metal:define-macro="main">
 
     <div class="documentEditable">
+        <div id="edit-bar">
         <h5 class="hiddenStructure">Views</h5>
         <ul id="content-views" class="contentViews">
           <li>
@@ -38,6 +39,7 @@
           </li>
         </ul>
         <div class="contentActions">&nbsp;</div>
+        </div>
 
 
             <div metal:use-macro="context/global_statusmessage/macros/portal_message">
