@@ -8,6 +8,10 @@ Changelog
 4.0a5 - Unreleased
 ------------------
 
+- Wrapped .contentViews and .contentActions with <div id="edit-bar"> in order
+  to have consistent markup between classic and Sunburst themes.
+  [spliter]
+
 - Cleaned up some markup mess, #region-content, .documentContent were redundant,
   and were reduced to #content instead, to reduce confusion.
   Full explanation here: http://dev.plone.org/plone/ticket/10231, and
