@@ -20,7 +20,6 @@
 
 <tal:main-macro metal:define-macro="main">
     <div id="portal-column-content" class="cell width-full position-0">
-    <div id="region-content" class="documentContent">
     <div id="content">
 
 
@@ -30,7 +29,7 @@
     <div class="documentDescription" i18n:translate="description_site_setup">
       Configuration area for Plone and add-ons.
     </div>
-    
+
     <div id="content-core">
         <div tal:define="mt context/portal_migration;
                          sys mt/coreVersions;
@@ -109,7 +108,7 @@
 
                         <tal:configlet repeat="configlet sublist">
                             <li tal:condition="configlet/visible">
-                                <a href=""          
+                                <a href=""
                                    tal:attributes="href configlet/url">
                                     <img src="" alt="" tal:attributes="src python:getIconFor('controlpanel',configlet['id']);"
                                          tal:on-error="string:" />
@@ -135,7 +134,7 @@
 
             <div class="visualClear"><!-- --></div>
 
-        </tal:configletgroup>                        
+        </tal:configletgroup>
 
         <tal:versions define="mt here/portal_migration;
                               sys mt/coreVersions">
@@ -151,7 +150,7 @@
         </tal:versions>
 
         <tal:debugmode define="QI context/portal_quickinstaller">
-            <p tal:condition="not:QI/isDevelopmentMode" 
+            <p tal:condition="not:QI/isDevelopmentMode"
                class="discreet"
                i18n:translate="description_production_mode">
               You are running in "production mode". This is the preferred mode of
@@ -175,7 +174,7 @@
         </tal:debugmode>
     </div>
 
-</div></div></div></tal:main-macro>
+</div></div></tal:main-macro>
 
 </metal:main>
 

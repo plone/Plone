@@ -38,7 +38,7 @@
       engine even if it's on an intranet. This has to be defined before any
       script/style tags.
     </tal:comment>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <metal:baseslot define-slot="base">
       <base tal:attributes="href plone_view/renderBase" /><!--[if lt IE 7]></base><![endif]-->
@@ -50,7 +50,7 @@
 
     <!-- Disable IE6 image toolbar -->
     <meta http-equiv="imagetoolbar" content="no" />
-    
+
     <tal:comment replace="nothing"> A slot where you can insert elements in the header from a template </tal:comment>
     <metal:headslot define-slot="head_slot" />
 
@@ -101,7 +101,7 @@
                             tabindex python:Iterator(mainSlot=False)">
 
               <div id="viewlet-above-content" tal:content="structure provider:plone.abovecontent" />
-              
+
               <metal:block define-slot="content">
                 <div metal:define-macro="content"
                      tal:define="show_border context/@@plone/showEditableBorder"
@@ -109,13 +109,9 @@
 
                   <div tal:replace="structure provider:plone.contentviews" />
 
-                  <div id="region-content"
-                       class="documentContent">
-
                     <span id="contentTopLeft"></span>
                     <span id="contentTopRight"></span>
-                    
-                    <a name="documentContent"></a>
+
 
                     <div metal:use-macro="context/global_statusmessage/macros/portal_message">
                       Portal status message
@@ -126,60 +122,58 @@
                       <metal:header define-slot="header" tal:content="nothing">
                         Visual Header
                       </metal:header>
-                      <metal:bodytext define-slot="main">  
-                        
+                      <metal:bodytext define-slot="main">
+
                         <metal:main define-macro="main">
-                            <div tal:replace="structure provider:plone.abovecontenttitle" />                             
-                            <metal:title define-slot="content-title">                              
+                            <div tal:replace="structure provider:plone.abovecontenttitle" />
+                            <metal:title define-slot="content-title">
                                 <metal:comment tal:content="nothing">
-                                    If you write a custom title allways use 
+                                    If you write a custom title allways use
                                     <h1 class="documentFirstHeading"></h1> for it
                                 </metal:comment>
-                                <h1 metal:use-macro="context/kss_generic_macros/macros/generic_title_view">              
-                                    Generic KSS Title. Is rendered with class="documentFirstHeading".                    
-                                </h1>                                                                                    
-                            </metal:title>                                                                               
-                            <div tal:replace="structure provider:plone.belowcontenttitle" />                             
+                                <h1 metal:use-macro="context/kss_generic_macros/macros/generic_title_view">
+                                    Generic KSS Title. Is rendered with class="documentFirstHeading".
+                                </h1>
+                            </metal:title>
+                            <div tal:replace="structure provider:plone.belowcontenttitle" />
 
-                            <metal:description define-slot="content-description">                  
+                            <metal:description define-slot="content-description">
                                 <metal:comment tal:content="nothing">
-                                    If you write a custom description allways use 
-                                    <div class="documentDescription"></div> for it    
+                                    If you write a custom description allways use
+                                    <div class="documentDescription"></div> for it
                                 </metal:comment>
-                                <div metal:use-macro="context/kss_generic_macros/macros/generic_description_view">         
-                                    Generic KSS Description. Is rendered with class="documentDescription".               
-                                </div>                                                                                     
-                            </metal:description>                                                                         
+                                <div metal:use-macro="context/kss_generic_macros/macros/generic_description_view">
+                                    Generic KSS Description. Is rendered with class="documentDescription".
+                                </div>
+                            </metal:description>
 
-                            <div tal:replace="structure provider:plone.abovecontentbody" />                              
-                            <div id="content-core">                                                                      
-                                <metal:text define-slot="content-core" tal:content="nothing">                            
-                                    Page body text                                                                       
-                                </metal:text>                                                                            
-                            </div>                                                                                       
-                            <div tal:replace="structure provider:plone.belowcontentbody" />                              
+                            <div tal:replace="structure provider:plone.abovecontentbody" />
+                            <div id="content-core">
+                                <metal:text define-slot="content-core" tal:content="nothing">
+                                    Page body text
+                                </metal:text>
+                            </div>
+                            <div tal:replace="structure provider:plone.belowcontentbody" />
                         </metal:main>
-                        
+
                       </metal:bodytext>
                     </div>
                     </metal:slot>
 
                     <metal:sub define-slot="sub" tal:content="nothing">
-                        This slot is here for backwards-compatibility only. 
+                        This slot is here for backwards-compatibility only.
                         Don't copy it in a custom templates.
                     </metal:sub>
 
                     <span id="contentBottomLeft"></span>
                     <span id="contentBottomRight"></span>
 
-                  </div>
-
                 </div>
 
               </metal:block>
-              
+
               <div id="viewlet-below-content" tal:content="structure provider:plone.belowcontent" />
-              
+
             </td>
             <tal:comment replace="nothing"> End of main content block </tal:comment>
 

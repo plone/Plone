@@ -57,16 +57,15 @@
             <a href=""
                tal:attributes="href string:${portal_url}/@@manage-group-dashboard?${groupkeyquery}"
                i18n:translate="label_group_dashboard">Group Dashboard</a>
-          </li>          
+          </li>
         </ul>
 
         <div class="contentActions">
           &nbsp;
         </div>
     </div>
-    <div class="documentContent" id="content">
-        <a name="documentContent"></a>
-        
+    <div id="content">
+
       <div metal:use-macro="context/global_statusmessage/macros/portal_message">
         Portal status message
       </div>
