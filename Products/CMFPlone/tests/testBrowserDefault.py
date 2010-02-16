@@ -17,7 +17,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import _createObjectByType
 from Products.CMFPlone.PloneFolder import ReplaceableWrapper
 
-RE_REMOVE_DOCCONT = re.compile('\s*href="http://.*?#documentContent"')
+RE_REMOVE_DOCCONT = re.compile('\s*href="http://.*?#content"')
 RE_REMOVE_NAVTREE = re.compile('\s*href="http://.*?#portlet-navigation-tree"')
 RE_REMOVE_TABS = re.compile('<ul id="portal-globalnav">.*?</ul>', re.S)
 
