@@ -8,6 +8,10 @@ Changelog
 4.0a5 - Unreleased
 ------------------
 
+- Updated more prefs_* templates to follow recent markup conventions.
+  References http://dev.plone.org/old/plone/ticket/9981
+  [spliter]
+
 - Removed deprecated 'sub' slot from discussionitem_view.pt.
   [spliter]
 

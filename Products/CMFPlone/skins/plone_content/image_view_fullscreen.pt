@@ -35,7 +35,7 @@
         padding: 5px;
     }
 
-    .visualWrapper {
+    #content-core {
         text-align: center;
     }
 
@@ -45,7 +45,7 @@
 
 <body>
 
-<div id="region-content" class="visualWrapper">
+<div id="content-core">
     <a href=""
        tal:attributes="href request/HTTP_REFERER"
        tal:condition="request/HTTP_REFERER"
