@@ -8,6 +8,9 @@ Changelog
 4.0a5 - Unreleased
 ------------------
 
+- Removed deprecated 'sub' slot from discussionitem_view.pt.
+  [spliter]
+
 - Added a condition to the automatic loading of ZCML configuration (via the
   ``[z3c.autoinclude.plugin]`` ``target = plone`` entry point), so that it
   is possible to disable automatic loading. This is particularly useful in
