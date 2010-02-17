@@ -32,7 +32,9 @@
                  <div class="documentDescription" tal:content="object_description">
                      Description
                  </div>
-                 <div metal:use-macro="view_macro"/>            
+                 <tal:block tal:condition="view_macro">
+                     <div metal:use-macro="view_macro"/>
+                 </tal:block>
              </div>
         </tal:discussable>
 

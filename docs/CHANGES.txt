@@ -8,6 +8,11 @@ Changelog
 4.0a5 - Unreleased
 ------------------
 
+- Fix a test regression in discussion_reply_form if the layout for the item being
+  discussed has no content-core macro.  (Such as the link_redirect_view.py script
+  for a Link item).
+  [davisagli]
+
 - Wrapped .contentViews and .contentActions with <div id="edit-bar"> in views.
   [spliter]
 
