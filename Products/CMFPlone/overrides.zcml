@@ -1,4 +1,5 @@
 <configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:zcml="http://namespaces.zope.org/zcml"
            xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
            i18n_domain="plone">
 
@@ -13,6 +14,10 @@
         />
 
     <!-- include plone plugins with z3c.autoinclude -->
-    <includePluginsOverrides package="plone" file="overrides.zcml" />
+    <includePluginsOverrides
+        zcml:condition="not-have disable-autoinclude"
+        package="plone"
+        file="overrides.zcml"
+        />
 
 </configure>

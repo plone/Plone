@@ -8,6 +8,21 @@ Changelog
 4.0a5 - Unreleased
 ------------------
 
+- Added a condition to the automatic loading of ZCML configuration (via the
+  ``[z3c.autoinclude.plugin]`` ``target = plone`` entry point), so that it
+  is possible to disable automatic loading. This is particularly useful in
+  tests, where automatically included packages can cause leakage of state or
+  unrelated errors if Plone's ZCML is loaded. To disable auto-inclusion, y
+  you can add a ZCML statement like the following::
+  
+    <configure xmlns="http://namespaces.zope.org/zope"
+               xmlns:meta="http://namespaces.zope.org/meta">
+        <meta:provides feature="no-autoinclude" />
+    </configure>
+  
+  You need to do this "early", i.e. before Plone's ZCML is loaded.
+  [optilude]
+
 - Fix a test regression in discussion_reply_form if the layout for the item being
   discussed has no content-core macro.  (Such as the link_redirect_view.py script
   for a Link item).

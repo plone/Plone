@@ -1,4 +1,7 @@
-<configure xmlns="http://namespaces.zope.org/zope" xmlns:meta="http://namespaces.zope.org/meta">
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    xmlns:meta="http://namespaces.zope.org/meta">
 
     <!-- Register a feature; once this is in place, you can do
             
@@ -33,6 +36,10 @@
          plone plugin -->
     <include package="z3c.autoinclude" file="meta.zcml" />
 
-    <includePlugins package="plone" file="meta.zcml" />
+    <includePlugins
+        zcml:condition="not-have disable-autoinclude"
+        package="plone"
+        file="meta.zcml"
+        />
 
 </configure>
