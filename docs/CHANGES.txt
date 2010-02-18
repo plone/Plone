@@ -8,6 +8,10 @@ Changelog
 4.0a5 - Unreleased
 ------------------
 
+- Move `isExpiry` into `CMFPlone.utils` so it can be called directly,
+  i.e. without searching the skin.
+  [witsch]
+
 - Removed redundant 'configlet' class from prefs_group_details.pt and 
   prefs_user_details.pt
   [spliter]
