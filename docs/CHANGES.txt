@@ -8,6 +8,10 @@ Changelog
 4.0a5 - Unreleased
 ------------------
 
+- Removed redundant 'configlet' class from prefs_group_details.pt and 
+  prefs_user_details.pt
+  [spliter]
+
 - Updated more prefs_* templates to follow recent markup conventions.
   References http://dev.plone.org/old/plone/ticket/9981
   [spliter]

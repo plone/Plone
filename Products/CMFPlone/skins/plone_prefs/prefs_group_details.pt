@@ -90,7 +90,7 @@
             </metal:block>
         </div>
 
-        <div class="configlet" id="content" tal:condition="group | nothing">
+        <div id="content" tal:condition="group | nothing">
             <metal:block define-macro="props">
 
                 <h1 class="documentFirstHeading"

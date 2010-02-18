@@ -49,7 +49,7 @@
         Portal status message
       </div>
 
-      <div class="configlet" id="content">
+      <div id="content">
 
           <h1 class="documentFirstHeading"
               i18n:translate="heading_prefs_user_details">
