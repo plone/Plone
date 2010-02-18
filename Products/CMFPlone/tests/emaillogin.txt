@@ -113,12 +113,11 @@ The first registered user can still login with his non-email login name:
 
 He cannot login with his email address though, as his account was
 created before the policy to use emails as logins was used.  This can
-be remedied be going to the personalize form.  No changes are even
-necessary; the form just needs to be saved:
+be remedied by running the provided migration.
 
-    >>> browser.open('http://nohost/plone/personalize_form')
-    >>> browser.getControl('Save').click()
-    >>> self.failUnless('Your personal settings have been saved.' in browser.contents)
+    >>> from zope.component import getMultiAdapter
+    >>> migrationView = getMultiAdapter((self.portal, self.portal.REQUEST), name='migrate-to-emaillogin')
+    >>> result = migrationView.switch_to_email()
 
 Now we try logging out and in again with the given email address.
 
@@ -150,34 +149,20 @@ switched on.
 
 We change the email address.
 
-    >>> browser.open('http://nohost/plone/personalize_form')
+    >>> browser.open('http://nohost/plone/@@personal-information')
     >>> browser.getControl('E-mail').value = 'email2@example.org'
     >>> browser.getControl('Save').click()
-    >>> self.failUnless('Your personal settings have been saved.' in browser.contents)
+    >>> self.failUnless('Changes saved.' in browser.contents)
     >>> browser.getControl('E-mail').value
     'email2@example.org'
-
-We change the email address again, as saving the personalize form
-twice in a row can subtly go wrong (personalize.cpy.metadata should
-not traverse to personalize_form but redirect to it):
-
-    >>> browser.url
-    'http://nohost/plone/personalize_form'
-    >>> browser.getControl('E-mail').value = 'email3@example.org'
-    >>> browser.getControl('Save').click()
-    >>> self.failUnless('Your personal settings have been saved.' in browser.contents)
-    >>> browser.getControl('E-mail').value
-    'email3@example.org'
 
 After those two changes, we can no longer login with our first email
 address.  This may be fixable by changing PluggableAuthService if we
 want. (See PLIP9214 notes.)
 
-The second email address is completely forgotten:
-
     >>> browser.open('http://nohost/plone/logout')
     >>> browser.open('http://nohost/plone/login_form')
-    >>> browser.getControl('E-mail').value = 'email2@example.org'
+    >>> browser.getControl('E-mail').value = 'email1@example.org'
     >>> browser.getControl('Password').value = default_password
     >>> browser.getControl('Log in').click()
     >>> self.failUnless('Login failed' in browser.contents)
@@ -186,7 +171,7 @@ The current email address of course works fine for logging in:
 
     >>> browser.open('http://nohost/plone/logout')
     >>> browser.open('http://nohost/plone/login_form')
-    >>> browser.getControl('E-mail').value = 'email3@example.org'
+    >>> browser.getControl('E-mail').value = 'email2@example.org'
     >>> browser.getControl('Password').value = default_password
     >>> browser.getControl('Log in').click()
     >>> browser.open('http://nohost/plone')
@@ -194,10 +179,10 @@ The current email address of course works fine for logging in:
 
 Picking the e-mail address of another user should of course fail:
 
-    >>> browser.open('http://nohost/plone/personalize_form')
+    >>> browser.open('http://nohost/plone/@@personal-information')
     >>> browser.getControl('E-mail').value = 'username@example.org'
     >>> browser.getControl('Save').click()
-    >>> self.failIf('Your personal settings have been saved.' in browser.contents)
+    >>> self.failIf('Changes saved.' in browser.contents)
     >>> browser.open('http://nohost/plone/logout')
 
 
@@ -217,7 +202,7 @@ in our current email address:
     >>> form = browser.getForm(name='mail_password')
     >>> 'My email address is' in browser.contents
     True
-    >>> form.getControl(name='userid').value = 'email3@example.org'
+    >>> form.getControl(name='userid').value = 'email2@example.org'
     >>> form.getControl('Start password reset').click()
     >>> self.failUnless('Password reset confirmation sent' in browser.contents)
 
@@ -233,7 +218,7 @@ in a list called ``messages``:
 Now that we have the message, we want to look at its contents, and
 then we extract the address that lets us reset our password:
 
-    >>> "To: email3@example.org" in msg
+    >>> "To: email2@example.org" in msg
     True
 
 Now get the link:
@@ -247,7 +232,7 @@ Now that we have the address, we will reset our password:
     >>> "Set your password" in browser.contents
     True
     >>> form = browser.getForm(name='pwreset_action')
-    >>> form.getControl(name='userid').value = 'email3@example.org'
+    >>> form.getControl(name='userid').value = 'email2@example.org'
     >>> form.getControl(name='password').value = 'secretion'
     >>> form.getControl(name='password2').value = 'secretion'
     >>> form.submit()
@@ -257,7 +242,7 @@ Now that we have the address, we will reset our password:
 We can now login using our new password:
 
     >>> browser.open('http://nohost/plone/login_form')
-    >>> browser.getControl('E-mail').value = 'email3@example.org'
+    >>> browser.getControl('E-mail').value = 'email2@example.org'
     >>> browser.getControl('Password').value = 'secretion'
     >>> browser.getControl('Log in').click()
     >>> browser.open('http://nohost/plone')

@@ -72,7 +72,7 @@
                   </li>
                   <li>
                     <a href=""
-                       tal:attributes="href string:${portal_url}/personalize_form"
+                       tal:attributes="href string:${portal_url}/@@personal-preferences"
                        i18n:translate="label_edit">Edit</a>
                   </li>
                 </ul>

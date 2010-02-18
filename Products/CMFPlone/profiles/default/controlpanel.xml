@@ -32,7 +32,7 @@
  <configlet title="Personal Preferences" action_id="MemberPrefs" appId="Plone"
     category="Member" condition_expr=""
     icon_expr="string:$portal_url/user.png"
-    url_expr="string:${portal_url}/personalize_form" visible="True"
+    url_expr="string:${portal_url}/@@personal-preferences" visible="True"
     i18n:attributes="title">
   <permission>Set own properties</permission>
  </configlet>

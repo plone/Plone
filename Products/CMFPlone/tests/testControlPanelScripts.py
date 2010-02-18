@@ -142,8 +142,7 @@ class TestAccessControlPanelScripts(PloneTestCase.FunctionalTestCase):
     def testPrefsUserDetails(self):
         '''Test access to user details.'''
         self.setRoles(['Manager'])
-        
-        response = self.publish('%s/portal_memberdata/prefs_user_details?userid=%s' %
+        response = self.publish('%s/prefs_user_details?userid=%s' %
                                 (self.portal_path, default_user),
                                 self.basic_auth)
 

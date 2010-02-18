@@ -14,6 +14,8 @@
 <metal:main fill-slot="prefs_configlet_content"
      tal:define="member context/@@plone_portal_state/member;
                  userid python:request.get('userid', member.getId());
+                 account_page python:request.get('page', '@@personal-information');
+                 dummy python:request.set(template.id, 1);
                  mq python:modules['ZTUtils'].make_query;
                  userquery python:mq(userid=userid);
                  member python:context.portal_membership.getMemberById(userid);
@@ -22,25 +24,25 @@
 
     <div class="documentEditable">
         <div id="edit-bar">
-        <h5 class="hiddenStructure">Views</h5>
-        <ul class="contentViews" id="content-views">
-          <li class="selected">
-                <a href=""
-                   tal:attributes="href string:$portal_url/${template/getId}?${userquery}"
-                   i18n:translate="label_user_properties">
-                  User Properties
-                </a>
-          </li>
+            <h5 class="hiddenStructure">Views</h5>
+            <ul class="contentViews" id="content-views">
+              <li class="selected">
+                    <a href=""
+                       tal:attributes="href string:$portal_url/${template/getId}?${userquery}"
+                       i18n:translate="label_user_properties">
+                      User Properties
+                    </a>
+              </li>
 
-          <li>
-                <a href=""
-                   tal:attributes="href string:$portal_url/@@usergroup-usermembership?${userquery}"
-                   i18n:translate="label_group_memberships">
-                  Group Memberships
-                </a>
-          </li>
-        </ul>
-        <div class="contentActions">&nbsp;</div>
+              <li>
+                    <a href=""
+                       tal:attributes="href string:$portal_url/@@usergroup-usermembership?${userquery}"
+                       i18n:translate="label_group_memberships">
+                      Group Memberships
+                    </a>
+              </li>
+            </ul>
+            <div class="contentActions">&nbsp;</div>
         </div>
 
       <div metal:use-macro="context/global_statusmessage/macros/portal_message">
@@ -70,26 +72,13 @@
                 Up to Users Overview
               </a>
 
-              <form action=""
-                        name="users"
-                        method="post"
-                        enctype="multipart/form-data"
-                        class="enableUnloadProtection enableAutoFocus"
-                        tal:condition="user | nothing"
-                    tal:attributes="action template/getId">
+              <div tal:condition="python: account_page == '@@personal-information'"
+                   tal:replace="structure context/personal-information"/>
 
-                  <input type="hidden" name="userid" value="username"
-                         tal:attributes="value member/getId" />
-
-                  <metal:login use-macro="context/personalize_form/macros/user_form">
-                  Render the personalize_form core template
-                  </metal:login>
-
-              </form>
-          </div>
+              <div tal:condition="python: account_page == '@@personal-preferences'"
+                   tal:replace="structure context/personal-preferences"/>
 
       </div>
-
     </div>
 </metal:main>
 </body>
