@@ -8,9 +8,6 @@ Changelog
 4.0a5 - Unreleased
 ------------------
 
-- Allow imports of PasswordResetTool exceptions in restricted Python.
-  [esteele]
-
 - Removed redundant 'configlet' class from prefs_group_details.pt and 
   prefs_user_details.pt
   [spliter]

@@ -97,10 +97,6 @@ def initialize(context):
     # Make the navtree constructs available TTW
     allow_module('Products.CMFPlone.browser.navtree')
 
-    # Make PasswordResetTool errors importable TTW
-    ModuleSecurityInfo('Products.PasswordResetTool.PasswordResetTool').declarePublic('InvalidRequestError')
-    ModuleSecurityInfo('Products.PasswordResetTool.PasswordResetTool').declarePublic('ExpiredRequestError')
-
     # Allow access to the exception in the folder_delete script
     from OFS.ObjectManager import BeforeDeleteException
     allow_module('OFS.ObjectManager')
