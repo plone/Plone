@@ -8,6 +8,10 @@ Changelog
 4.0a5 - Unreleased
 ------------------
 
+- Replace `getObjPositionInParent` with stub index capable of sorting search
+  results according to their position in the container, a.k.a. "nogopip".
+  [witsch]
+
 - Move `isExpiry` into `CMFPlone.utils` so it can be called directly,
   i.e. without searching the skin.
   [witsch]

@@ -61,11 +61,11 @@ class TestCatalogSetup(PloneTestCase.PloneTestCase):
         self.assertEqual(self.catalog.Indexes['path'].__class__.__name__,
                          'ExtendedPathIndex')
 
-    def testGetObjPositionInParentIsFieldIndex(self):
+    def testGetObjPositionInParentIsGopipIndex(self):
         # getObjPositionInParent index should be a FieldIndex
         # also see TestCatalogOrdering below
         self.assertEqual(self.catalog.Indexes['getObjPositionInParent'].__class__.__name__,
-                         'FieldIndex')
+                         'GopipIndex')
 
     def testGetObjSizeInSchema(self):
         # getObjSize column should be in catalog schema
