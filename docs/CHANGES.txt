@@ -8,6 +8,9 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Upgraded to jQuery 1.4.2.
+  [mj]
+
 4.0a5 - 2010-02-19
 ------------------
 
