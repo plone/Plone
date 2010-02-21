@@ -60,7 +60,7 @@ class TestMigrationTool(PloneTestCase.PloneTestCase):
         current = self.setup.getVersionForProfile(_DEFAULT_PROFILE)
         current = tuple(current.split('.'))
         last = self.setup.getLastVersionForProfile(_DEFAULT_PROFILE)
-        self.failUnless(last == current)
+        self.assertEquals(last, current)
 
         # There are no more upgrade steps available
         upgrades = self.setup.listUpgrades(_DEFAULT_PROFILE)
