@@ -68,7 +68,7 @@
                 tal:condition="not:python:paths and not batch">
 
               <div class="field" tal:condition="batch">
-                <label for="" i18n:translate="label_affected_content">Affected content</label>
+                <label i18n:translate="label_affected_content">Affected content</label>
                 <div tal:define="dummy python:request.set('ids_checked', 1);
                                  use_view_action site_properties/typesUseViewActionInListings|python:();">
                   <table id="sortable"
