@@ -33,7 +33,7 @@
          class="plone_jscalendar">
 
       <input type="hidden" tal:attributes="name string:$inputname;
-                                           id input_id;
+                                           id inputname;
                                            value python:not show_hm and inputvalue and hasattr(inputvalue, 'strftime') and inputvalue.strftime('%Y/%m/%d') or inputvalue"/>
       <tal:ymd condition="not:show_ymd">
           <input type="hidden"
