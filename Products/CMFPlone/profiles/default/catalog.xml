@@ -63,9 +63,6 @@
  <index name="expires" meta_type="DateIndex">
   <property name="index_naive_time_as_local">True</property>
  </index>
- <index name="getEventType" meta_type="KeywordIndex">
-  <indexed_attr value="getEventType"/>
- </index>
  <index name="getId" meta_type="FieldIndex">
   <indexed_attr value="getId"/>
  </index>

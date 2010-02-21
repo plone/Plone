@@ -56,14 +56,6 @@
    <criteria>ATFriendlyDateCriteria</criteria>
    <criteria>ATDateRangeCriterion</criteria>
   </index>
-  <index name="getEventType" description="" enabled="False" friendlyName="">
-   <criteria>ATCurrentAuthorCriterion</criteria>
-   <criteria>ATListCriterion</criteria>
-   <criteria>ATReferenceCriterion</criteria>
-   <criteria>ATSelectionCriterion</criteria>
-   <criteria>ATSimpleIntCriterion</criteria>
-   <criteria>ATSimpleStringCriterion</criteria>
-  </index>
   <index name="getId"
      description="The short name of an item (used in the url)" enabled="True"
      friendlyName="Short Name"
