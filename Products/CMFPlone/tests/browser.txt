@@ -1,10 +1,16 @@
 Browser tests
 =============
-
-Test for "template id" in <body> tag. See tickets #9111/#8777
+Test the presence of the "title" tag in html page
 
     >>> from Products.Five.testbrowser import Browser
     >>> browser = Browser()
+    >>> browser.open('http://nohost/plone/front-page')
+    >>> "<title>%s" % self.portal['front-page'].Title() in browser.contents
+    True
+
+
+Test for "template id" in <body> tag. See tickets #9111/#8777
+
     >>> browser.open('http://nohost/plone/front-page')
     >>> browser.contents
     '...<body class="template-document_view portaltype-document section-front-page"...'
