@@ -43,7 +43,7 @@ class Overview(BrowserView):
     def sites(self, root=None):
         if root is None:
             root = self.context
-        
+
         result = []
         secman = getSecurityManager()
         for obj in root.values():
@@ -63,7 +63,7 @@ class Overview(BrowserView):
     def can_manage(self):
         secman = getSecurityManager()
         return secman.checkPermission(ManagePortal, self.context)
-    
+
     def upgrade_url(self, site, can_manage=None):
         if can_manage is None:
             can_manage = self.can_manage()
@@ -75,11 +75,11 @@ class Overview(BrowserView):
 
 class RootLoginRedirect(BrowserView):
     """ @@plone-root-login
-    
+
     This view of the Zope root forces authentication via the root
     acl_users and then redirects elsewhere.
     """
-    
+
     def __call__(self, came_from=None):
         if came_from is None:
             came_from = self.context.absolute_url()
