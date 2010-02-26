@@ -8,6 +8,9 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Cleaned plone_control_panel.pt and fixed it's validation.
+  [spliter]
+
 - Moved portalStatusMessage in author.pt above #content for case when the
   user is not found. References 
   https://dev.plone.org/plone/ticket/10231
