@@ -42,15 +42,16 @@
                                 email_from_address portal/email_from_address">
 
         <tal:noAuthor condition="not: authorinfo">
+            <dl class="portalMessage error">
+                <dt i18n:translate="">
+                    Error
+                </dt>
+                <dd i18n:translate="text_no_user_by_name">
+                    No user by that name.
+                </dd>
+            </dl>
             <div id="content">
-                <dl class="portalMessage error">
-                    <dt i18n:translate="">
-                        Error
-                    </dt>
-                    <dd i18n:translate="text_no_user_by_name">
-                        No user by that name.
-                    </dd>
-                </dl>
+                &nbsp;
             </div>
         </tal:noAuthor>
 
