@@ -93,13 +93,14 @@ class FrontPage(BrowserView):
 
 class AddPloneSite(BrowserView):
 
+    default_extension_profiles = (
+        'plonetheme.classic:default',
+        'plonetheme.sunburst:default',
+        )
+
     def profiles(self):
         base_profiles = []
         extension_profiles = []
-        default_extension_profiles = [
-            'plonetheme.classic:default',
-            'plonetheme.sunburst:default',
-            ]
 
         # profiles available for install/uninstall, but hidden at the time
         # the Plone site is created
@@ -115,10 +116,14 @@ class AddPloneSite(BrowserView):
                info.get('for') in (IPloneSiteRoot, None):
                 profile_id = info.get('id')
                 if profile_id not in not_installable:
-                    if profile_id in default_extension_profiles:
+                    if profile_id in self.default_extension_profiles:
                         info['selected'] = 'selected'
                     extension_profiles.append(info)
-        extension_profiles.sort(key=itemgetter('title'))
+        def _key(v):
+            # Make sure implicitly selected items come first
+            selected = v.get('selected') and 'automatic' or 'manual'
+            return '%s-%s' % (selected, v.get('title', ''))
+        extension_profiles.sort(key=_key)
 
         for info in profile_registry.listProfileInfo():
             if info.get('type') == BASE and \

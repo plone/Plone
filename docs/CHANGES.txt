@@ -8,13 +8,18 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Ensure that implicitly selected profiles are installed first, so themes
+  depending on them are installed correctly. This closes
+  http://dev.plone.org/plone/ticket/10223.
+  [hannosch]
+
 - Cleaned plone_control_panel.pt and fixed it's validation.
   [spliter]
 
 - Moved portalStatusMessage in author.pt above #content for case when the
-  user is not found. References 
-  https://dev.plone.org/plone/ticket/10231
-  https://dev.plone.org/plone/ticket/9981
+  user is not found. References
+  http://dev.plone.org/plone/ticket/10231
+  http://dev.plone.org/plone/ticket/9981
   [spliter]
 
 - Upgraded to jQuery 1.4.2.
