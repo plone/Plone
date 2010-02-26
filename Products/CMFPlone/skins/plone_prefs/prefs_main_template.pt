@@ -7,9 +7,7 @@
 
     <metal:override fill-slot="column_one_slot">
         <metal:override define-slot="column_one_slot">
-            <metal:column tal:condition="sl">
-                <metal:prefs use-macro="here/portlet_prefs/macros/portlet" />
-            </metal:column>
+            <metal:prefs use-macro="here/portlet_prefs/macros/portlet" />
         </metal:override>
     </metal:override>
 
