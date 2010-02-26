@@ -8,6 +8,11 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Added condition for left column on prefs_main_template to not be rendered if
+  the column is disabled via request var. This lets templates authors disable
+  columns the same way in all templates.
+  [spliter]
+
 - Switched plone.kss from relying on redundant #region-content to #content.
   References http://dev.plone.org/plone/ticket/#10231
   [spliter]
