@@ -8,6 +8,9 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Hide the Kupu and placeful workflow add-ons at normal site creation time.
+  [hannosch]
+
 - Ensure that implicitly selected profiles are installed first, so themes
   depending on them are installed correctly. This closes
   http://dev.plone.org/plone/ticket/10223.

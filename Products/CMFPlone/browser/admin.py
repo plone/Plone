@@ -105,7 +105,9 @@ class AddPloneSite(BrowserView):
         # profiles available for install/uninstall, but hidden at the time
         # the Plone site is created
         not_installable = [
+            'kupu:default',
             'plonetheme.classic:uninstall',
+            'Products.CMFPlacefulWorkflow:CMFPlacefulWorkflow',
         ]
         utils = getAllUtilitiesRegisteredFor(INonInstallable)
         for util in utils:
