@@ -114,6 +114,7 @@
                     </a>
 
                     <form action=""
+                          id="createGroup"
                           name="groups"
                           method="post"
                           class="enableUnloadProtection enableAutoFocus"

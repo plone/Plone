@@ -7,6 +7,10 @@ Changelog
 
 4.0b1 - Unreleased
 ------------------
+
+- Add an HTML id to the "add group" form.
+  [stuttle]
+
 - Moved the tal:condition from the <img> tag to <a> tag in folder_summary_view, 
   to remove unnecessary empty <a> tags when no image exists.
   References http://dev.plone.org/plone/ticket/10251
