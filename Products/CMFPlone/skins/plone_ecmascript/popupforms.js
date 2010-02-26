@@ -1,12 +1,28 @@
 /******
     Standard popups
 ******/
-jq(function(){
+jQuery(function($){
+    
+    common_content_filter = '#content>*:not(div.configlet),dl.portalMessage.error,dl.portalMessage.info';
+    
+    // method to show error message in a noform
+    // situation.
+    function noformerrorshow(el, noform) {
+        var o = $(el);
+        var emsg = o.find('dl.portalMessage.error');
+        if (emsg.length) {
+            o.children().replaceWith(emsg);
+            return false;
+        } else {
+            return noform;
+        }
+    }
+
     // login form
-    jq('#portal-personaltools a[href$=/login], #portal-personaltools a[href$=/login_form]').prepOverlay(
+    $('#portal-personaltools a[href$=/login], #portal-personaltools a[href$=/login_form]').prepOverlay(
         {
             subtype: 'ajax',
-            filter: '#content>*:not(div.configlet),dl.portalMessage.error,dl.portalMessage.info',
+            filter: common_content_filter,
             formselector: 'form#login_form',
             noform: function () {
                 if (location.href.search(/pwreset_finish$/) >= 0) {
@@ -27,70 +43,59 @@ jq(function(){
     );
 
     // contact form
-    jq('#siteaction-contact a').prepOverlay(
+    $('#siteaction-contact a').prepOverlay(
         {
             subtype: 'ajax',
-            filter: '#content>*:not(div.configlet),dl.portalMessage.error,dl.portalMessage.info',
+            filter: common_content_filter,
             formselector: 'form',
-            noform: 'close'
+            noform: function(el) {return noformerrorshow(el, 'close');},
         }
     );
 
     // display: select content item / change content item
-    jq('#contextSetDefaultPage, #folderChangeDefaultPage').prepOverlay(
+    $('#contextSetDefaultPage, #folderChangeDefaultPage').prepOverlay(
         {
             subtype: 'ajax',
-            filter: '#content>*:not(div.configlet),dl.portalMessage.error,dl.portalMessage.info',
+            filter: common_content_filter,
             formselector: 'form[name="default_page_form"]',
-            noform: 'reload',
+            noform: function(el) {return noformerrorshow(el, 'reload');},
             closeselector: '[name=form.button.Cancel]'
         }
     );
 
     // advanced state
-    jq('dl#plone-contentmenu-workflow a#advanced').prepOverlay(
+    $('dl#plone-contentmenu-workflow a#advanced').prepOverlay(
         {
             subtype: 'ajax',
-            filter: '#content>*:not(div.configlet),dl.portalMessage.error,dl.portalMessage.info',
+            filter: common_content_filter,
             formselector: 'form',
-            noform: 'reload',
+            noform: function(el) {return noformerrorshow(el, 'reload');},
             closeselector: '[name=form.button.Cancel]'
         }
     );
 
     // registration
-    jq('#portal-personaltools a[href$=/@@register]').prepOverlay(
+    $('#portal-personaltools a[href$=/@@register]').prepOverlay(
         {
             subtype: 'ajax',
-            filter: '#content>*:not(div.configlet),dl.portalMessage.error,dl.portalMessage.info',
+            filter: common_content_filter,
             formselector: 'form.kssattr-formname-register'
         }
     );
 
     // add new user, group
-    jq('form[name=users_add], form[name=groups_add]').prepOverlay(
+    $('form[name=users_add], form[name=groups_add]').prepOverlay(
         {
             subtype: 'ajax',
-            filter: '#content>*:not(div.configlet),dl.portalMessage.error,dl.portalMessage.info',
+            filter: common_content_filter,
             formselector: 'form.kssattr-formname-new-user, form[name="groups"]',
-            noform: function (el) {
-                var o = jQuery(el);
-                var emsg = o.find('dl.portalMessage.error');
-                if (emsg.length) {
-                    o.children().replaceWith(emsg);
-                    return false;
-                } else {
-                    return 'redirect';
-                }
-            },
-            redirect: function () {
-                return location.href;
-            }
+            noform: function(el) {return noformerrorshow(el, 'redirect');},
+            redirect: function () {return location.href;}
         }
     );
 
     // Content history popup
-    jq('#content-history a').prepOverlay({
+    $('#content-history a').prepOverlay({
        subtype: 'ajax', 
        urlmatch: '@@historyview',
        urlreplace: '@@contenthistorypopup'
