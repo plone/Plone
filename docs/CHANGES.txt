@@ -8,6 +8,10 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Added markup to give styling to document ByLine in folder_summary_view.
+  This fixes http://dev.plone.org/plone/ticket/6094
+  [dunlapm]
+
 - Add an HTML id to the "add group" form.
   [stuttle]
 

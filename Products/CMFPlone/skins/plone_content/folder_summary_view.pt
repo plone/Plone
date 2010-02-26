@@ -69,7 +69,7 @@
                     <tal:newsitem condition="python: item_type == 'News Item'">
                         <tal:name tal:condition="item_creator"
                             tal:define="author python:pas_member.info(item_creator)">
-                          <span i18n:translate="label_by_author">
+                          <span class="documentAuthor" i18n:translate="label_by_author">
                             by
                           <a href="#"
                              tal:attributes="href string:${navigation_root_url}/author/${item_creator}"
@@ -81,8 +81,13 @@
                           </span>
                         </tal:name>
                         &mdash;
-                        <span tal:replace="python:toLocalizedTime(item_modified,long_format=1)">
-                        August 16, 2001 at 23:35:59
+                        <span class="documentModified">
+                              <tal:mod i18n:translate="box_last_modified">
+                              last modified
+                              </tal:mod>
+                              <span tal:replace="python:toLocalizedTime(item_modified,long_format=1)">
+                                      August 16, 2001 at 23:35:59
+                              </span>
                         </span>
                     </tal:newsitem>
                     </div>
