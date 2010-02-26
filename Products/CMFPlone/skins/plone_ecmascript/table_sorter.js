@@ -22,17 +22,23 @@ function sort() {
     
     var index = jQuery(this).parent().children('th').index(this);
     var data = [];
+    var usenumbers = true;
     tbody.find('tr').each(function() {
         var cells = jQuery(this).children('td');
+        var sortableitem = sortable(cells.slice(index,index+1).text());
+        if (isNaN(sortableitem)) usenumbers = false;
         data.push([
-            sortable(cells.slice(index,index+1).text()),
+            sortableitem,
             // crude way to sort by surname and name after first choice
             sortable(cells.slice(1,2).text()), sortable(cells.slice(0,1).text()),
             this]);
     });
 
     if (data.length) {
-        data.sort();
+        if (usenumbers) 
+            data.sort(function(a,b) {return a[0]-b[0];});
+        else
+            data.sort();
         if (reverse) data.reverse();
         table.attr('sorted', reverse ? '' : name);
 
