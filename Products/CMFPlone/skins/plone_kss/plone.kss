@@ -35,7 +35,7 @@ iframe.kupu-editor-iframe:load {
     action-client: plone-initKupu;
 }
 
-#region-content:load {
+#content:load {
     evt-load-initial: false;
     action-client: initializeCollapsible;
 }
@@ -47,7 +47,7 @@ client-performance wise.
 TODO: Find a better way to "bind just once" or just bind the effectively reloaded links,
 and not rebind everything
 */
-#region-content .inlineEditable:load {
+#content .inlineEditable:load {
     evt-load-initial: false;
     action-client: bindExternalLinks;
 }

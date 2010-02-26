@@ -8,6 +8,10 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Switched plone.kss from relying on redundant #region-content to #content.
+  References http://dev.plone.org/plone/ticket/#10231
+  [spliter]
+
 - Hide the Kupu and placeful workflow add-ons at normal site creation time.
   [hannosch]
 
