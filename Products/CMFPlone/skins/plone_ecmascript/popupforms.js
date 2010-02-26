@@ -6,7 +6,7 @@ jq(function(){
     jq('#portal-personaltools a[href$=/login], #portal-personaltools a[href$=/login_form]').prepOverlay(
         {
             subtype: 'ajax',
-            filter: '#content>*',
+            filter: '#content>*:not(div.configlet),dl.portalMessage.error,dl.portalMessage.info',
             formselector: 'form#login_form',
             noform: function () {
                 if (location.href.search(/pwreset_finish$/) >= 0) {
@@ -30,7 +30,7 @@ jq(function(){
     jq('#siteaction-contact a').prepOverlay(
         {
             subtype: 'ajax',
-            filter: '#content>*',
+            filter: '#content>*:not(div.configlet),dl.portalMessage.error,dl.portalMessage.info',
             formselector: 'form',
             noform: 'close'
         }
@@ -40,7 +40,7 @@ jq(function(){
     jq('#contextSetDefaultPage, #folderChangeDefaultPage').prepOverlay(
         {
             subtype: 'ajax',
-            filter: '#content>*',
+            filter: '#content>*:not(div.configlet),dl.portalMessage.error,dl.portalMessage.info',
             formselector: 'form[name="default_page_form"]',
             noform: 'reload',
             closeselector: '[name=form.button.Cancel]'
@@ -51,7 +51,7 @@ jq(function(){
     jq('dl#plone-contentmenu-workflow a#advanced').prepOverlay(
         {
             subtype: 'ajax',
-            filter: '#content>*',
+            filter: '#content>*:not(div.configlet),dl.portalMessage.error,dl.portalMessage.info',
             formselector: 'form',
             noform: 'reload',
             closeselector: '[name=form.button.Cancel]'
@@ -62,7 +62,7 @@ jq(function(){
     jq('#portal-personaltools a[href$=/@@register]').prepOverlay(
         {
             subtype: 'ajax',
-            filter: '#content>*:not(div.configlet)',
+            filter: '#content>*:not(div.configlet),dl.portalMessage.error,dl.portalMessage.info',
             formselector: 'form.kssattr-formname-register'
         }
     );
@@ -71,10 +71,13 @@ jq(function(){
     jq('form[name=users_add], form[name=groups_add]').prepOverlay(
         {
             subtype: 'ajax',
-            filter: '#content>*:not(div.configlet)',
+            filter: '#content>*:not(div.configlet),dl.portalMessage.error,dl.portalMessage.info',
             formselector: 'form.kssattr-formname-new-user, form[name="groups"]',
             noform: function (el) {
-                if (jQuery(el).find('dl.portalMessage.error').length) {
+                var o = jQuery(el);
+                var emsg = o.find('dl.portalMessage.error');
+                if (emsg.length) {
+                    o.children().replaceWith(emsg);
                     return false;
                 } else {
                     return 'redirect';
