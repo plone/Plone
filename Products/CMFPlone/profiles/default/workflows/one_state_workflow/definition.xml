@@ -10,7 +10,6 @@
 
  <permission>Access contents information</permission>
  <permission>Change portal events</permission>
- <permission>List folder contents</permission>
  <permission>Modify portal content</permission>
  <permission>View</permission>
 
@@ -27,10 +26,6 @@
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
    <permission-role>Editor</permission-role>
-  </permission-map>
-  <permission-map name="List folder contents"
-                  acquired="False">
-   <permission-role>Anonymous</permission-role>
   </permission-map>
   <permission-map name="Modify portal content"
                   acquired="False">

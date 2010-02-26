@@ -82,9 +82,8 @@
     </permission>
     <permission name="List folder contents" acquire="True">
       <role name="Manager"/>
-      <role name="Member"/>
       <role name="Owner"/>
-      <role name="Reader" />
+      <role name="Reviewer" />
       <role name="Editor" />
       <role name="Contributor" />
     </permission>

@@ -8,6 +8,13 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Removed the 'ListFolderContents' permission from all workflows and limit the
+  default permission to Manager, Owner, Reviewer, Editor and Contributor.
+  It should not change with workflow state, it's an edit/admin view that you 
+  either should have or not.
+  References http://dev.plone.org/plone/ticket/10236
+  [tomster]
+
 - Added condition for left column on prefs_main_template to not be rendered if
   the column is disabled via request var. This lets templates authors disable
   columns the same way in all templates.
