@@ -7,6 +7,10 @@ Changelog
 
 4.0b1 - Unreleased
 ------------------
+- Moved the tal:condition from the <img> tag to <a> tag in folder_summary_view, 
+  to remove unnecessary empty <a> tags when no image exists.
+  References http://dev.plone.org/plone/ticket/10251
+  [miguelitosm]
 
 - Removed the 'ListFolderContents' permission from all workflows and limit the
   default permission to Manager, Owner, Reviewer, Editor and Contributor.
