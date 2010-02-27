@@ -8,10 +8,6 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
-- Update the check for body text in folder_listing and folder_tabular_view.
-  Closes http://dev.plone.org/plone/ticket/10226
-  [esteele]
-  
 - Added markup to give styling to document ByLine in folder_summary_view.
   This fixes http://dev.plone.org/plone/ticket/6094
   [dunlapm]
