@@ -46,10 +46,6 @@
 
     <div tal:replace="structure provider:plone.htmlhead" />
 
-    <metal:titleslot define-slot="head_title_slot">
-        <title tal:replace="structure context/@@plone_htmlhead_title">Plone Site</title>
-    </metal:titleslot>
-
     <link tal:replace="structure provider:plone.htmlhead.links" />
 
     <!-- Disable IE6 image toolbar -->
