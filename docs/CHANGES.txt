@@ -77,7 +77,7 @@ Changelog
   ``[z3c.autoinclude.plugin]`` ``target = plone`` entry point), so that it
   is possible to disable automatic loading. This is particularly useful in
   tests, where automatically included packages can cause leakage of state or
-  unrelated errors if Plone's ZCML is loaded. To disable auto-inclusion, y
+  unrelated errors if Plone's ZCML is loaded. To disable auto-inclusion,
   you can add a ZCML statement like the following::
   
     <configure xmlns="http://namespaces.zope.org/zope"
@@ -88,9 +88,9 @@ Changelog
   You need to do this "early", i.e. before Plone's ZCML is loaded.
   [optilude]
 
-- Fix a test regression in discussion_reply_form if the layout for the item being
-  discussed has no content-core macro.  (Such as the link_redirect_view.py script
-  for a Link item).
+- Fix a test regression in discussion_reply_form if the layout for the
+  item being discussed has no content-core macro.  (Such as the
+  link_redirect_view.py script for a Link item).
   [davisagli]
 
 - Wrapped .contentViews and .contentActions with <div id="edit-bar"> in views.
@@ -178,9 +178,10 @@ Changelog
 - Clean up various HTML comments that were being emitted unnecessarily.
   [davisagli]
 
-- On the Zope overview screen, make sure the user is authenticated at the Zope
-  root before sending them to the upgrade view for a Plone site, when the Upgrade
-  button is clicked.  This closes http://dev.plone.org/plone/ticket/10154.
+- On the Zope overview screen, make sure the user is authenticated at
+  the Zope root before sending them to the upgrade view for a Plone
+  site, when the Upgrade button is clicked.  This closes
+  http://dev.plone.org/plone/ticket/10154.
   [davisagli]
 
 - Increased maximum length of the sortable_title index from 40 to 70 characters
