@@ -8,6 +8,11 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Added optional batchformkeys parameter to batch_macros.pt to restrict which
+  form fields will be included in batch navigation links (for immediate use
+  in plone.app.controlpanel's user and groups listsings).
+  [cah190]
+
 - Added markup to give styling to document ByLine in folder_summary_view.
   This fixes http://dev.plone.org/plone/ticket/6094
   [dunlapm]
