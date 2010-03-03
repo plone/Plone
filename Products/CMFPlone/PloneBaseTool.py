@@ -93,6 +93,9 @@ def createExprContext(folder, portal, object):
 
     # add 'context' as an alias for 'object'
     expr_context.setGlobal('context', object)
+    
+    # need this for resolving in Unicode expressions
+    expr_context.setContext('context', object)
 
     return expr_context
 

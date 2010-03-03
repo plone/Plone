@@ -8,6 +8,10 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Set the 'context' context on Plone expression contexts, which is needed for
+  resolving UnicodeDecodeErrors when evaluating expressions.
+  [davisagli]
+
 - Added optional batchformkeys parameter to batch_macros.pt to restrict which
   form fields will be included in batch navigation links (for immediate use
   in plone.app.controlpanel's user and groups listsings).
