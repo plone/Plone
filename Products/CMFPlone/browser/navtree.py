@@ -155,6 +155,8 @@ class SitemapNavtreeStrategy(NavtreeStrategyBase):
         ploneview = getMultiAdapter((context, request), name=u'plone')
 
         newNode['Title'] = utils.pretty_title_or_id(context, item)
+        newNode['id'] = item.getId
+        newNode['UID'] = item.UID
         newNode['absolute_url'] = itemUrl
         newNode['getURL'] = itemUrl
         newNode['path'] = item.getPath()
@@ -173,6 +175,7 @@ class SitemapNavtreeStrategy(NavtreeStrategyBase):
         idnormalizer = queryUtility(IIDNormalizer)
         newNode['normalized_portal_type'] = idnormalizer.normalize(portalType)
         newNode['normalized_review_state'] = idnormalizer.normalize(newNode['review_state'])
+        newNode['normalized_id'] = idnormalizer.normalize(newNode['id'])
 
         return newNode
         
