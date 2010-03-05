@@ -23,7 +23,7 @@
                 mtool context/portal_membership;
                 group python:gtool.getGroupById(groupname);
                 grouptitle group/getGroupTitleOrName|groupname;
-                groupMembers python:[mtool.getMemberById(m) for m in gtool.getGroupMembers(groupname)];
+                groupMembers python:[mtool.getMemberById(m) or gtool.getGroupById(m) for m in gtool.getGroupMembers(groupname)];
                 isGroup nocall:gtool/isGroup;
                 mq python:modules['ZTUtils'].make_query;
                 groupquery python:mq(groupname=groupname);

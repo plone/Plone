@@ -8,6 +8,10 @@ Changelog
 3.3.6 - Unreleased
 ------------------
 
+- Nested groups appear again in prefs_group_members. This was broken since
+  Plone 3.3.2. This closes http://dev.plone.org/plone/ticket/10075
+  [vincentfretin]
+
 
 3.3.5 - March 3rd, 2010
 -----------------------
