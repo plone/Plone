@@ -24,6 +24,35 @@ class DateTimeTests(PloneTestCase):
         self.failUnless(int(before) <= int(modified) <= int(after),
             (before, modified, after))
 
+    def testCreationDate(self):
+        before = DateTime()
+        obj = self.folder[self.folder.invokeFactory('Document', 'foo')]
+        after = DateTime()
+        creation = obj.CreationDate()       # the string representation...
+        creation = DateTime(creation)       # is usually parsed again in Plone
+        self.failUnless(int(before) <= int(creation) <= int(after),
+            (before, creation, after))
+
+    def testEffectiveDate(self):
+        obj = self.folder
+        date = DateTime() + 365             # expire one year from today
+        date = DateTime(date.ISO8601())     # but strip off milliseconds
+        obj.setEffectiveDate(date)
+        obj.processForm(values=dict(Description='foo!'))
+        effective = obj.EffectiveDate()     # the string representation...
+        effective = DateTime(effective)     # is usually parsed again in Plone
+        self.failUnless(date.equalTo(effective), (date, effective))
+
+    def testExpirationDate(self):
+        obj = self.folder
+        date = DateTime() + 365             # expire one year from today
+        date = DateTime(date.ISO8601())     # but strip off milliseconds
+        obj.setExpirationDate(date)
+        obj.processForm(values=dict(Description='foo!'))
+        expired = obj.ExpirationDate()      # the string representation...
+        expired = DateTime(expired)         # is usually parsed again in Plone
+        self.failUnless(date.equalTo(expired), (date, expired))
+
 
 def test_suite():
     from unittest import defaultTestLoader
