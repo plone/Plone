@@ -8,6 +8,11 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- Fix issues with sliding modification/publishing dates by using `DateTime`'s
+  `ISO8601` method instead of `ISO`, which doesn't include time zones.
+  Refs http://dev.plone.org/plone/ticket/10140, 10141 & 10171.
+  [davisagli, witsch]
+
 - Set the 'context' context on Plone expression contexts, which is needed for
   resolving UnicodeDecodeErrors when evaluating expressions.
   [davisagli]
