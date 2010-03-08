@@ -34,17 +34,17 @@ name_formatvariables = ('a', 'A', 'b', 'B')
 #
 # value is in the format described by zope.i18n.interfaces.IDateTimeFormat
 # for example u'yyyy-MM-dd' or u'HH:mm:ss'
-# 
+#
 # Note that this is a different format than used for the other methods in
 # this module.
-# 
+#
 # locales uses a module level cache, so any changes you make with these
 # methods will apply to the entire process and only need to be made once.
 # You can use them in any code imported at startup, for example in a packages
 # __init__ method.
-# 
+#
 # In order to use a 24 hour clock for English speakers, you would do:
-# 
+#
 # from Products.CMFPlone import i18nl10n
 # i18nl10n.setDefaultTimeFormat(('en',), u'HH:mm:ss')
 
@@ -88,23 +88,23 @@ def ulocalized_time(time, long_format=None, time_only=None, context=None,
 
     # From http://docs.python.org/lib/module-time.html
     #
-    # %a    Locale's abbreviated weekday name.  	
-    # %A 	Locale's full weekday name. 	
-    # %b 	Locale's abbreviated month name. 	
-    # %B 	Locale's full month name. 	
-    # %d 	Day of the month as a decimal number [01,31]. 	
-    # %H 	Hour (24-hour clock) as a decimal number [00,23]. 	
-    # %I 	Hour (12-hour clock) as a decimal number [01,12]. 	
-    # %m 	Month as a decimal number [01,12]. 	
-    # %M 	Minute as a decimal number [00,59]. 	
-    # %p 	Locale's equivalent of either AM or PM. 	
-    # %S 	Second as a decimal number [00,61]. 	
-    # %y 	Year without century as a decimal number [00,99]. 	
-    # %Y 	Year with century as a decimal number. 	
-    # %Z 	Time zone name (no characters if no time zone exists). 	
+    # %a    Locale's abbreviated weekday name.
+    # %A 	Locale's full weekday name.
+    # %b 	Locale's abbreviated month name.
+    # %B 	Locale's full month name.
+    # %d 	Day of the month as a decimal number [01,31].
+    # %H 	Hour (24-hour clock) as a decimal number [00,23].
+    # %I 	Hour (12-hour clock) as a decimal number [01,12].
+    # %m 	Month as a decimal number [01,12].
+    # %M 	Minute as a decimal number [00,59].
+    # %p 	Locale's equivalent of either AM or PM.
+    # %S 	Second as a decimal number [00,61].
+    # %y 	Year without century as a decimal number [00,99].
+    # %Y 	Year with century as a decimal number.
+    # %Z 	Time zone name (no characters if no time zone exists).
 
     mapping = {}
-    # convert to DateTime instances. Either a date string or 
+    # convert to DateTime instances. Either a date string or
     # a DateTime instance needs to be passed.
     if not IDateTime.providedBy(time):
         try:
@@ -116,7 +116,7 @@ def ulocalized_time(time, long_format=None, time_only=None, context=None,
 
     if context is None:
         # when without context, we cannot do very much.
-        return time.ISO()
+        return time.ISO8601()
 
     if request is None:
         request = aq_acquire(context, 'REQUEST')
@@ -138,7 +138,7 @@ def ulocalized_time(time, long_format=None, time_only=None, context=None,
                 format=properties.localTimeFormat
 
         return time.strftime(format)
-    
+
     # get the format elements used in the formatstring
     formatelements = _interp_regex.findall(formatstring)
     # reformat the ${foo} to foo
@@ -188,16 +188,16 @@ def _numbertoenglishname(number, format=None, attr='_days'):
     #   None  means full name (January, February, ...)
     #   'a' means abbreviated (Jan, Feb, ..)
     #   'p' means abbreviated with . (dot) at end (Jan., Feb., ...)
-    
+
     number = int(number)
     if format is not None:
         attr = '%s_%s' % (attr, format)
-    
+
     # get list from DateTime attribute
     thelist = getattr(DateTime, attr)
 
     return thelist[number]
-    
+
 def monthname_english(number, format=None):
     # returns the english name of month with number
     return _numbertoenglishname(number, format=format, attr='_months')
@@ -211,25 +211,25 @@ def monthname_msgid(number):
     # use to translate to full monthname (January, February, ...)
     # e.g. month_jan, month_feb, ...
     return "month_%s" % monthname_english(number, format='a').lower()
-    
+
 def monthname_msgid_abbr(number):
     # returns the msgid for the abbreviated monthname
     # use to translate to abbreviated format (Jan, Feb, ...)
     # e.g. month_jan_abbr, month_feb_abbr, ...
     return "month_%s_abbr" % monthname_english(number, format='a').lower()
-    
+
 def weekdayname_msgid(number):
     # returns the msgid for the weekdayname
     # use to translate to full weekdayname (Monday, Tuesday, ...)
     # e.g. weekday_mon, weekday_tue, ...
     return "weekday_%s" % weekdayname_english(number, format='a').lower()
-    
+
 def weekdayname_msgid_abbr(number):
     # returns the msgid for abbreviated weekdayname
     # use to translate to abbreviated format (Mon, Tue, ...)
     # e.g. weekday_mon_abbr, weekday_tue_abbr, ...
     return "weekday_%s_abbr" % weekdayname_english(number, format='a').lower()
-    
+
 def weekdayname_msgid_short(number):
     # return the msgid for short weekdayname
     # use to translate to 2 char format (Mo, Tu, ...)
