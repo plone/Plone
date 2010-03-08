@@ -8,6 +8,10 @@ Changelog
 4.0b1 - Unreleased
 ------------------
 
+- "Event when" improved for better i18n.  
+   This closes http://dev.plone.org/plone/ticket/10196
+   [gotcha]
+
 - Adjust the tests now that `DateTime` objects are stored with a time zone.
   Refs http://dev.plone.org/plone/ticket/10141
   [witsch]
