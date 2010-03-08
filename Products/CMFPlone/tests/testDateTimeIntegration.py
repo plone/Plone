@@ -9,6 +9,7 @@
 # may produce false positives when run in the GMT time zone!
 
 from Products.CMFPlone.tests.PloneTestCase import PloneTestCase
+from Products.CMFPlone.tests.PloneTestCase import FunctionalTestCase
 from DateTime import DateTime
 
 
@@ -52,6 +53,20 @@ class DateTimeTests(PloneTestCase):
         expired = obj.ExpirationDate()      # the string representation...
         expired = DateTime(expired)         # is usually parsed again in Plone
         self.failUnless(date.equalTo(expired), (date, expired))
+
+
+class DateTimeTests(FunctionalTestCase):
+
+    def testPublicationDateKeepsTimeZone(self):
+        # see http://dev.plone.org/plone/ticket/10141
+        self.setRoles(('Manager',))
+        obj = self.portal['front-page']
+        obj.setEffectiveDate('2020-02-20 16:00')
+        browser = self.getBrowser()
+        browser.open(obj.absolute_url())
+        browser.getLink('Edit').click()
+        browser.getControl('Save').click()
+        self.assertEqual(obj.EffectiveDate(), '2020-02-20T16:00:00+01:00')
 
 
 def test_suite():

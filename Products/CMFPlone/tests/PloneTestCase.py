@@ -5,6 +5,7 @@
 # $Id$
 
 from Products.PloneTestCase.ptc import *
+from Products.Five.testbrowser import Browser
 
 # Make the test fixture extension profile active
 from zope.interface import classImplements
@@ -43,3 +44,12 @@ class FunctionalTestCase(Functional, PloneTestCase):
     """This is a stub now, but in case you want to try
        something fancy on Your Branch (tm), put it here.
     """
+
+    def getBrowser(self, loggedIn=True):
+        """ instantiate and return a testbrowser for convenience """
+        browser = Browser()
+        if loggedIn:
+            user = default_user
+            pwd = default_password
+            browser.addHeader('Authorization', 'Basic %s:%s' % (user, pwd))
+        return browser
