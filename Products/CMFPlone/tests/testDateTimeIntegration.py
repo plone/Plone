@@ -59,6 +59,8 @@ class DateTimeTests(FunctionalTestCase):
 
     def testPublicationDateKeepsTimeZone(self):
         # see http://dev.plone.org/plone/ticket/10141
+        localzone = DateTime._localzone0
+        DateTime._localzone0 = 'GMT+3'
         self.setRoles(('Manager',))
         obj = self.portal['front-page']
         obj.setEffectiveDate('2020-02-20 16:00')
@@ -66,8 +68,9 @@ class DateTimeTests(FunctionalTestCase):
         browser.open(obj.absolute_url())
         browser.getLink('Edit').click()
         browser.getControl('Save').click()
-        self.assertEqual(obj.EffectiveDate(), '2020-02-20T16:00:00+01:00')
-
+        self.assertEqual(obj.effective_date.ISO8601(),
+                         '2020-02-20T16:00:00+03:00')
+        DateTime._localzone0 = localzone
 
 def test_suite():
     from unittest import defaultTestLoader
