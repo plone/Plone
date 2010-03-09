@@ -5,7 +5,7 @@
 Changelog
 =========
 
-4.0b1 - Unreleased
+4.0b1 - 2010-03-08
 ------------------
 
 - "Event when" improved for better i18n.  

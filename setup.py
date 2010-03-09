@@ -9,7 +9,7 @@ setup(name='Plone',
       long_description=open("README.txt").read() + "\n" +
                        open(os.path.join("docs", "CHANGES.txt")).read(),
       classifiers=[
-        "Development Status :: 3 - Alpha",
+        "Development Status :: 4 - Beta",
         "Environment :: Web Environment",
         "Framework :: Plone",
         "Framework :: Zope2",
