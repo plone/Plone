@@ -8,6 +8,9 @@ Changelog
 3.3.6 - Unreleased
 ------------------
 
+- Altered table of contents javascript so that comments are not displayed.
+  [dbfrombrc]
+
 - "Event when" improved for better i18n.  
    This closes http://dev.plone.org/plone/ticket/10196
    [gotcha]
