@@ -74,7 +74,7 @@
         </div>
 
         <p>
-          <span class="backup-warning">
+          <span class="backup-warning" i18n:translate="">
             Please ensure you have a backup of your site before performing the
             upgrade.
           </span>

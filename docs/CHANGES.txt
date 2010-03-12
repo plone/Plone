@@ -8,6 +8,10 @@ Changelog
 4.0b2 - Unreleased
 ------------------
 
+- Internationalized the backup-warning message in plone-upgrade.pt.
+  [vincentfretin]
+
+
 4.0b1 - 2010-03-08
 ------------------
 
