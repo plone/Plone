@@ -26,6 +26,13 @@ Changelog
 - Internationalized the backup-warning message in plone-upgrade.pt.
   [vincentfretin]
 
+- Removed template_id from batch_base_url in batch_macros.pt because it breaks
+  when overloading the folder_listing template via zcml.
+  [thet]
+
+- Convert limit_display to int in folder_tabular_view.pt and folder_listing.pt
+  so that it can be fed in via request parameters.
+  [thet]
 
 4.0b1 - 2010-03-08
 ------------------
