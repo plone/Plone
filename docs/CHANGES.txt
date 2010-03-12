@@ -8,6 +8,10 @@ Changelog
 4.0b2 - Unreleased
 ------------------
 
+- Reverted default message for description_group_members_of in
+  plone_deprecated/prefs_group_members.cpt
+  [vincentfretin]
+
 - Fixed help_biography message.
   [vincentfretin]
 
