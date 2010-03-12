@@ -188,7 +188,7 @@
 
                                 <div class="formHelp" i18n:translate="help_biography">
                                 A short overview of who you are and what you do. Will be displayed
-                                on the your author page, linked from the items you create.
+                                on your author page, linked from the items you create.
                                 </div>
 
                                 <div tal:content="error">Validation error output</div>

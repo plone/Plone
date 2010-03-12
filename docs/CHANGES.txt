@@ -8,6 +8,9 @@ Changelog
 4.0b2 - Unreleased
 ------------------
 
+- Fixed help_biography message.
+  [vincentfretin]
+
 - Internationalized the backup-warning message in plone-upgrade.pt.
   [vincentfretin]
 
