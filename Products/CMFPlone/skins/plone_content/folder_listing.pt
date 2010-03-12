@@ -7,16 +7,16 @@
       i18n:domain="plone">
 
 <body>
-        
+
 <metal:content-core fill-slot="content-core">
 <metal:block define-macro="content-core"
-                    tal:define="kssClassesView context/@@kss_field_decorator_view; 
+                    tal:define="kssClassesView context/@@kss_field_decorator_view;
                                 getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
-                                templateId template/getId">        
+                                templateId template/getId">
 
     <div metal:define-macro="text-field-view"
          id="parent-fieldname-text" class="stx"
-         tal:define="kss_class python:getKssClasses('text', 
+         tal:define="kss_class python:getKssClasses('text',
                      templateId=templateId, macro='text-field-view');
                      has_text exists:context/aq_base/getText;
                      text python:has_text and here.getText() or ''"
@@ -29,6 +29,7 @@
     <metal:listingmacro define-macro="listing">
     <tal:foldercontents define="contentFilter contentFilter|request/contentFilter|nothing;
                         limit_display limit_display|request/limit_display|nothing;
+                        limit_display python:limit_display and int(limit_display) or None;
                         more_url more_url|request/more_url|string:folder_contents;
                         is_a_topic python:context.portal_type=='Topic';
                         folderContents folderContents|nothing; folderContents python:folderContents or is_a_topic and context.queryCatalog(contentFilter, batch=True) or context.getFolderContents(contentFilter, batch=True, b_size=limit_display or 100);
@@ -140,7 +141,7 @@
                             </tal:modified>
 
                             <metal:description define-slot="description_slot">
-                                <tal:comment replace="nothing"> 
+                                <tal:comment replace="nothing">
                                     Place custom listing info for custom types here
                                 </tal:comment>
                             </metal:description>
@@ -171,7 +172,7 @@
         <tal:block condition="python:not is_a_topic and not batch">
             <div metal:use-macro="context/batch_macros/macros/navigation" />
         </tal:block>
-        
+
     </tal:listing>
     <metal:empty metal:define-slot="no_items_in_listing">
         <p class="discreet"
