@@ -74,7 +74,8 @@ results = catalog(SearchableText=r, portal_type=friendly_types, path=path)
 
 searchterm_query = '?searchterm=%s'%url_quote_plus(q)
 
-RESPONSE = context.REQUEST.RESPONSE
+REQUEST = context.REQUEST
+RESPONSE = REQUEST.RESPONSE
 RESPONSE.setHeader('Content-Type', 'text/xml;charset=%s' % site_encoding)
 
 # replace named entities with their numbered counterparts, in the xml the named ones are not correct
@@ -95,18 +96,18 @@ def write(s):
 
 if not results:
     write('''<fieldset class="livesearchContainer">''')
-    write('''<legend id="livesearchLegend">%s</legend>''' % ts.translate(legend_livesearch))
+    write('''<legend id="livesearchLegend">%s</legend>''' % ts.translate(legend_livesearch, context=REQUEST))
     write('''<div class="LSIEFix">''')
-    write('''<div id="LSNothingFound">%s</div>''' % ts.translate(label_no_results_found))
+    write('''<div id="LSNothingFound">%s</div>''' % ts.translate(label_no_results_found, context=REQUEST))
     write('''<div class="LSRow">''')
-    write('<a href="search_form" style="font-weight:normal">%s</a>' % ts.translate(label_advanced_search))
+    write('<a href="search_form" style="font-weight:normal">%s</a>' % ts.translate(label_advanced_search, context=REQUEST))
     write('''</div>''')
     write('''</div>''')
     write('''</fieldset>''')
 
 else:
     write('''<fieldset class="livesearchContainer">''')
-    write('''<legend id="livesearchLegend">%s</legend>''' % ts.translate(legend_livesearch))
+    write('''<legend id="livesearchLegend">%s</legend>''' % ts.translate(legend_livesearch, context=REQUEST))
     write('''<div class="LSIEFix">''')
     write('''<ul class="LSTable">''')
     for result in results[:limit]:
@@ -141,13 +142,13 @@ else:
         full_title, display_title, display_description = None, None, None
 
     write('''<li class="LSRow">''')
-    write( '<a href="search_form" style="font-weight:normal">%s</a>' % ts.translate(label_advanced_search))
+    write( '<a href="search_form" style="font-weight:normal">%s</a>' % ts.translate(label_advanced_search, context=REQUEST))
     write('''</li>''')
 
     if len(results)>limit:
         # add a more... row
         write('''<li class="LSRow">''')
-        write( '<a href="%s" style="font-weight:normal">%s</a>' % ('search?SearchableText=' + searchterms, ts.translate(label_show_all)))
+        write( '<a href="%s" style="font-weight:normal">%s</a>' % ('search?SearchableText=' + searchterms, ts.translate(label_show_all, context=REQUEST)))
         write('''</li>''')
     write('''</ul>''')
     write('''</div>''')

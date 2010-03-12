@@ -8,6 +8,9 @@ Changelog
 4.0b2 - Unreleased
 ------------------
 
+- Fixed livesearch_reply.py to give the context to ts.translate method.
+  [vincentfretin]
+
 - Fixed plone_scripts/translate.py to use translation_service.translate
   method. translation_service.utranslate was removed in recent version of
   PlacelessTranslationService.
