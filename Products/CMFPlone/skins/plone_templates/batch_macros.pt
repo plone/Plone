@@ -11,9 +11,8 @@
                  batch batch|nothing;
                  batchformkeys batchformkeys|nothing;
                  batchlinkparams python:batchformkeys and dict([(key, request.form[key]) for key in batchformkeys if key in request]) or request.form;
-                 template_id template_id|template/getId;
                  mq python:modules['ZTUtils'].make_query;
-                 url batch_base_url | string:${context/absolute_url}/${template_id};
+                 url batch_base_url | context/absolute_url;
                  currentpage batch/pagenumber;"
      tal:condition="python: batch.next or  batch.previous">
 
@@ -29,7 +28,7 @@
                items
            </span>
         </a>
-    </span> 
+    </span>
 
     <span class="next"
       tal:define="n batch/next | nothing"
