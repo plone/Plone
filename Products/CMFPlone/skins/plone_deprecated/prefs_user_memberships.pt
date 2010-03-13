@@ -91,7 +91,7 @@
 
                   <input type="hidden" name="userid" value="userid" tal:attributes="value member/getId" />
 
-                  <h2 i18n:translate="heading_memberships_current">Current Group Memberships</h2>
+                  <h2 i18n:translate="heading_memberships_current">Current group memberships</h2>
                   <table tal:condition="groups" class="listing" summary="Group Memberships Listing">
 
                     <tr>
