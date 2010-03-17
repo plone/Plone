@@ -8,6 +8,12 @@ Changelog
 4.0b2 - Unreleased
 ------------------
 
+- Stop removing the $ alias for jQuery, since many plugins rely on it. Users
+  worried about conflicts with other libraries can customize
+  jquery-integration.js and set jq = jQuery.noConflict() again, instead of
+  jq = jQuery
+  [davisagli, limi]
+
 - For Managers, make default_error_message display tracebacks inline rather
   than linking to them.
   [davisagli, limi]
