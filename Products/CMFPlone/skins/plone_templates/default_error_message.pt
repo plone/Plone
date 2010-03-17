@@ -160,15 +160,12 @@
                     please include this entry number in your message.
                     </p>
             
-                    <p tal:condition="isManager"
-                       i18n:translate="description_site_admin_see_full_error">
-                    Since you are a site administrator, you can
-                    <span i18n:name="link_full_error_msg">
-                    <a href="" 
-                       i18n:translate="description_full_error_link"
-                       tal:attributes="href err_log_url">see the full error message</a>
-                    </span>
-                    </p>
+                    <div tal:condition="isManager">
+                       <p i18n:translate="description_site_admin_full_error">
+                       Here is the full error message:
+                       </p>
+                       <div tal:replace="structure err_tb"/>
+                    </div>
 
                 </tal:hasentry>
 

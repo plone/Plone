@@ -8,6 +8,10 @@ Changelog
 4.0b2 - Unreleased
 ------------------
 
+- For Managers, make default_error_message display tracebacks inline rather
+  than linking to them.
+  [davisagli, limi]
+
 - Fixed livesearch_reply.py to give the context to ts.translate method.
   [vincentfretin]
 
