@@ -14,6 +14,8 @@ ploneDnDReorder.doDown = function(e) {
     ploneDnDReorder.dragging = dragging;
     dragging._position = ploneDnDReorder.getPos(dragging);
     dragging.addClass("dragging");
+    $(this).parents('tr').addClass('dragindicator');
+
     return false;
 };
 
@@ -66,6 +68,7 @@ ploneDnDReorder.doUp = function(e) {
     } catch(e) {};
     dragging = null;
     ploneDnDReorder.rows.unbind('mousemove', ploneDnDReorder.doDrag);
+    $(this).parents('tr').removeClass('dragindicator');
     return false;
 };
 
