@@ -8,6 +8,11 @@ Changelog
 4.0b2 - Unreleased
 ------------------
 
+- Updated the table_sorter.js to use Unicode for its arrows instead of images.
+  Also made it more robust, so it doesn't fail if you have two columns with 
+  the same name. This refs http://dev.plone.org/plone/ticket/10352
+  [davisagli, limi]
+
 - Stop removing the $ alias for jQuery, since many plugins rely on it. Users
   worried about conflicts with other libraries can customize
   jquery-integration.js and set jq = jQuery.noConflict() again, instead of
