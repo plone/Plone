@@ -40,16 +40,11 @@
                                       id="parent-fieldname-startDate"
                                       tal:attributes="class string:$kss_class dtstart;
                                                       title python:context.start().ISO8601()">
-                                      <span metal:define-slot="inside" 
-                                            class="explain"
-                                            i18n:translate="event_when_differentday_start">
-                                            <span tal:omit-tag=""
-                                                  i18n:name="date"
-                                                  tal:content="python:toLocalizedTime(context.start())">Start Date</span>
-                                            <span tal:omit-tag=""
-                                                  i18n:name="time"
-                                                  tal:content="python:toLocalizedTime(context.start(), time_only=1)">Start Time</span>
-                                      </span>
+                                  <span metal:define-slot="inside" class="explain">
+                                    <span tal:replace="python:toLocalizedTime(context.start())">Start Date</span>
+                                    <tal:word i18n:translate="event_when_differentday_optional_word_between_date_and_time" />
+                                    <span tal:replace="python:toLocalizedTime(context.start(), time_only=1)">Start Time</span>
+                                  </span>
                                 </abbr> 
                                 to
                                 <br i18n:name="linebreak" />
@@ -60,16 +55,11 @@
                                       id="parent-fieldname-endDate"
                                       tal:attributes="class string:$kss_class dtend;
                                                       title python:context.end().ISO8601()">
-                                      <span metal:define-slot="inside" 
-                                            class="explain"
-                                            i18n:translate="event_when_differentday_end">
-                                            <span tal:omit-tag=""
-                                                  i18n:name="date"
-                                                  tal:content="python:toLocalizedTime(context.end())">End Date</span>
-                                            <span tal:omit-tag=""
-                                                  i18n:name="time"
-                                                  tal:content="python:toLocalizedTime(context.end(), time_only=1)">End Time</span>
-                                      </span>
+                                   <span metal:define-slot="inside" class="explain">
+                                     <span tal:replace="python:toLocalizedTime(context.end())">End Date</span>
+                                     <tal:word i18n:translate="event_when_differentday_optional_word_between_date_and_time" />
+                                     <span tal:replace="python:toLocalizedTime(context.end(), time_only=1)">End Time</span>
+                                  </span>
                                 </abbr>
                             </tal:differentday>
 
