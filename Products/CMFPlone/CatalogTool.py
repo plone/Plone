@@ -19,6 +19,7 @@ from DateTime import DateTime
 from BTrees.Length import Length
 
 from Products.CMFCore.interfaces import ISiteRoot
+from Products.CMFCore.interfaces import ITypeInformation
 from Products.CMFCore.utils import _getAuthenticatedUser
 from Products.CMFCore.utils import _checkPermission
 from Products.CMFCore.utils import getToolByName
@@ -371,7 +372,11 @@ def is_default_page(obj):
 @indexer(Interface)
 def getIcon(obj):
     """Make sure we index icon relative to portal"""
-    return obj.getIcon(True)
+    if ITypeInformation.providedBy(obj):
+        return obj.getIcon()
+    else:
+        return obj.getIcon(True)
+        
 
 class CatalogTool(PloneBaseTool, BaseTool):
 

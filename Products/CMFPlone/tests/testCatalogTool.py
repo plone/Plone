@@ -334,6 +334,18 @@ class TestCatalogIndexing(PloneTestCase.PloneTestCase):
         self.assertEquals(len(self.catalog(modified=DateTime(0))), 1)
 
 
+    def testCatalogFoundItems(self):
+        #First clear the catalog
+        self.catalog.manage_catalogClear()
+        #prepare request
+        request = self.portal.REQUEST
+        response = request.RESPONSE
+        request.PARENTS = ['',self.portal]
+        #Then try to Find and Catalog
+        self.catalog.manage_catalogFoundItems(request, response, '', '')
+        self.assertNotEqual(len(self.catalog()), 0)
+
+
 class TestCatalogSearching(PloneTestCase.PloneTestCase):
 
     def afterSetUp(self):

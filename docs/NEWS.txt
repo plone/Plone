@@ -19,6 +19,9 @@ Changelog
   Plone 3.3.2. This closes http://dev.plone.org/plone/ticket/10075
   [vincentfretin]
 
+- Fixed getIcon. 'Find and Catalog' works again.
+  This closes http://dev.plone.org/plone/ticket/8235
+  [amleczko]
 
 3.3.5 - March 3rd, 2010
 -----------------------
