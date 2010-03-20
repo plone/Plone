@@ -8,6 +8,10 @@ Changelog
 4.0b2 - Unreleased
 ------------------
 
+- folder_listing should batch for collections, like folder_tabular_view.
+  This was introduced to fix #7937 but it no longer seems to be a problem.
+  [elro]
+
 - Simplified the "Event when" i18n introduced in 4.0b1.
   [vincentfretin]
 
