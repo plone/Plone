@@ -8,6 +8,9 @@ Changelog
 4.0b2 - Unreleased
 ------------------
 
+- Simplify folder_tabular_view to use the folder_listing macros.
+  [elro]
+
 - folder_listing should batch for collections, like folder_tabular_view.
   This was introduced to fix #7937 but it no longer seems to be a problem.
   [elro]

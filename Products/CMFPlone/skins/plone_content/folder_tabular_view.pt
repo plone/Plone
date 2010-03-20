@@ -8,44 +8,10 @@
 
 <body>
 
-    <metal:content-core fill-slot="content-core"
-                        tal:define="kssClassesView context/@@kss_field_decorator_view;
-                                    getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
-                                    templateId template/getId">
-        <div metal:define-macro="text-field-view"
-             id="parent-fieldname-text" class="stx"
-             tal:define="kss_class python:getKssClasses('text',
-                         templateId=templateId, macro='text-field-view');
-                         has_text exists:context/aq_base/getText;
-                         text python:has_text and here.getText() or ''"
-             tal:condition="text"
-             tal:attributes="class python:test(context.Format() in ('text/structured',
-                                                   'text/x-rst', ), 'stx' + kss_class, 'plain' + kss_class)">
-            <div metal:define-slot="inside" tal:replace="structure text">The body</div>
-        </div>
+    <metal:content-core fill-slot="content-core">
+        <metal:block use-macro="context/folder_listing/macros/content-core">
+            <metal:entries fill-slot="entries">
 
-        <metal:listingmacro define-macro="listing">
-        <tal:foldercontents define="contentFilter contentFilter|request/contentFilter|nothing;
-                            limit_display limit_display|request/limit_display|nothing;
-                            limit_display python:limit_display and int(limit_display) or None;
-                            more_url more_url|request/more_url|string:folder_contents;
-                            folderContents python:context.portal_type=='Topic' and context.queryCatalog(contentFilter, batch=True) or context.getFolderContents(contentFilter, batch=True, b_size=limit_display or 100);
-                            site_properties context/portal_properties/site_properties;
-                            use_view_action site_properties/typesUseViewActionInListings|python:();
-                            over_limit python: limit_display and len(folderContents) > limit_display;
-                            folderContents python: (over_limit and folderContents[:limit_display]) or folderContents;
-                            batch folderContents;
-                            isAnon context/@@plone_portal_state/anonymous;
-                            normalizeString nocall: context/plone_utils/normalizeString;
-                            toLocalizedTime nocall: context/@@plone/toLocalizedTime;
-                            show_about python:not isAnon or site_properties.allowAnonymousViewAbout;
-                            navigation_root_url context/@@plone_portal_state/navigation_root_url;
-                            pas_member context/@@pas_member;">
-        <tal:listing condition="folderContents">
-
-            <tal:comment tal:condition="nothing">
-              Batch navigation
-            </tal:comment>
             <div metal:use-macro="context/batch_macros/macros/navigation" />
 
             <table class="listing"
@@ -67,27 +33,13 @@
                 </thead>
 
                 <tbody>
-                    <tal:items repeat="item folderContents">
+                    <metal:block use-macro="context/folder_listing/macros/entries">
+                        <metal:entry fill-slot="entry">
+
                     <tr metal:define-macro="listitem"
                         tal:define="oddrow repeat/item/odd;"
                         tal:attributes="class python:test(oddrow, 'even', 'odd')">
 
-                        <tal:defs define="item_url item/getURL|item/absolute_url;
-                                          item_id item/getId|item/id;
-                                          item_title_or_id item/pretty_title_or_id;
-                                          item_description item/Description;
-                                          item_type item/portal_type;
-                                          item_type_title item/Type;
-                                          item_modified item/ModificationDate;
-                                          item_created item/CreationDate;
-                                          item_icon python:plone_view.getIcon(item);
-                                          item_type_class python:'contenttype-' + normalizeString(item_type);
-                                          item_wf_state item/review_state|python:context.portal_workflow.getInfoFor(item, 'review_state', '');
-                                          item_wf_state_class python:'state-' + normalizeString(item_wf_state);
-                                          item_creator item/Creator;
-                                          item_start item/start/ISO|item/StartDate|nothing;
-                                          item_end item/end/ISO|item/EndDate|nothing;
-                                          ">
                             <td>
                                 <span class=""
                                       tal:attributes="class item_type_class">
@@ -131,31 +83,18 @@
                           August 16, 2001 at 23:35:59
                         </td>
 
-                        </tal:defs>
                     </tr>
-                    </tal:items>
+
+                        </metal:entry>
+                    </metal:block>
                 </tbody>
             </table>
 
-            <tal:comment tal:condition="nothing">
-              Batch navigation
-            </tal:comment>
-            <div metal:use-macro="context/batch_macros/macros/navigation" />
-
-        </tal:listing>
-
-        <metal:empty metal:define-slot="no_items_in_listing">
-            <p class="discreet"
-               tal:condition="not: folderContents"
-               i18n:translate="description_no_items_in_folder">
-                There are currently no items in this folder.
-            </p>
-        </metal:empty>
-
-        </tal:foldercontents>
-        </metal:listingmacro>
+            </metal:entries>
+        </metal:block>
 
         <metal:subtopics use-macro="context/atct_topic_view/macros/folderlisting_macro" />
+
     </metal:content-core>
 
 </body>
