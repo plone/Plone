@@ -33,9 +33,9 @@ class JSVariables(BrowserView):
         open_links = props.getProperty('external_links_open_new_window', 'false')
         mark_links = props.getProperty('mark_special_links', 'false')
 
-        form_modified = translate(FORM_MODIFIED, context, self.request)
-        form_resubmit = translate(FORM_RESUBMIT, context, self.request)
-        ajax_noresponse = translate(AJAX_NORESPONSE, context, self.request)
+        form_modified = translate(FORM_MODIFIED, context=self.request)
+        form_resubmit = translate(FORM_RESUBMIT, context=self.request)
+        ajax_noresponse = translate(AJAX_NORESPONSE, context=self.request)
 
         # escape_for_js
         form_modified = form_modified.replace("'", "\\'")
