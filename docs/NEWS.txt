@@ -8,6 +8,10 @@ Changelog
 3.3.6 - Unreleased
 ------------------
 
+- Fixed for state changed message is wroning for pending item
+  refs http://dev.plone.org/plone/ticket/10245
+  [terapyon]
+
 - Altered table of contents javascript so that comments are not displayed.
   [dbfrombrc]
 
