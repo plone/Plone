@@ -8,6 +8,12 @@ Changelog
 4.0b2 - Unreleased
 ------------------
 
+- Use zope.app.locales >= 3.6.0, this package have now a configure.zcml
+  which register the translations, we use it now.
+  A new version of zope.app.locales is needed to fix
+  http://dev.plone.org/plone/ticket/10105
+  [vincentfretin]
+
 - Fix argument order in translate Python script.
   [davisagli]
 
