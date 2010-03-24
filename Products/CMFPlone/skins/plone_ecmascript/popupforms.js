@@ -48,7 +48,7 @@ jQuery(function($){
             subtype: 'ajax',
             filter: common_content_filter,
             formselector: 'form',
-            noform: function(el) {return noformerrorshow(el, 'close');},
+            noform: function(el) {return noformerrorshow(el, 'close');}
         }
     );
 
