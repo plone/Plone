@@ -16,8 +16,8 @@ from Products.CMFCore.utils import getToolByName
 tool = getToolByName(context, 'translation_service')
 
 # this returns type unicode
-value = tool.translate(domain,
-                        msgid,
+value = tool.translate(msgid,
+                        domain,
                         mapping,
                         context=context,
                         target_language=target_language,

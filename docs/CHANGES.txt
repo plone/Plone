@@ -8,6 +8,9 @@ Changelog
 4.0b2 - Unreleased
 ------------------
 
+- Fix argument order in translate Python script.
+  [davisagli]
+
 - Hide email field in personal information page when one is loged in 
   with email address. refs http://dev.plone.org/plone/ticket/10363
   [terapyon]
