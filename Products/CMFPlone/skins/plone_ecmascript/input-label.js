@@ -18,7 +18,7 @@ var ploneInputLabel = {
                 'password').focus().bind('blur.ploneInputLabel', ploneInputLabel.blur);
     },
 
-    blur: function() {
+    blur: function(e) {
         var t = jQuery(this);
         if (t.is(':password[value=""]')) {
             t = ploneInputLabel._setInputType(this, 'text')
