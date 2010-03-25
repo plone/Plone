@@ -1,3 +1,5 @@
+<metal:block tal:define="dummy python:request.set('disable_border',1);
+                         disable_column_one python:request.set('disable_plone.leftcolumn', 1)" />
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
@@ -6,8 +8,6 @@
       metal:use-macro="here/prefs_main_template/macros/master"
       i18n:domain="plone">
 
-<metal:block fill-slot="top_slot"
-             tal:define="dummy python:request.set('disable_border',1)" />
 
 <metal:override fill-slot="column_one_slot" />
 

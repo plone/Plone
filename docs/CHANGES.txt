@@ -8,6 +8,9 @@ Changelog
 4.0b2 - Unreleased
 ------------------
 
+- Fix columns in prefs_main_template.
+  [davisagli]
+
 - Use zope.app.locales >= 3.6.0, this package have now a configure.zcml
   which register the translations, we use it now.
   A new version of zope.app.locales is needed to fix
