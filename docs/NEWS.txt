@@ -27,6 +27,10 @@ Changelog
   This closes http://dev.plone.org/plone/ticket/8235
   [amleczko]
 
+- Added missing event parameter to inputlabel's blur handler. This closes
+  http://dev.plone.org/plone/ticket/10369
+  [mj]
+
 3.3.5 - March 3rd, 2010
 -----------------------
 
