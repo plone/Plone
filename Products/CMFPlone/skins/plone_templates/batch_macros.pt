@@ -5,6 +5,10 @@
       i18n:domain="plone">
 <body>
 
+<tal:comment condition="nothing">You can feed in batch_base_url by enclosing
+the metal:use-macro="context/batch_macros/macros/navigation" statement in your
+template with a tal:define="batch_base_url YOUR_BASE_URL" tales expression.
+</tal:comment>
 <div class="listingBar"
      metal:define-macro="navigation"
      tal:define="request request|context/request|container/request|nothing;
@@ -12,7 +16,7 @@
                  batchformkeys batchformkeys|nothing;
                  batchlinkparams python:batchformkeys and dict([(key, request.form[key]) for key in batchformkeys if key in request]) or request.form;
                  mq python:modules['ZTUtils'].make_query;
-                 url batch_base_url | context/absolute_url;
+                 url batch_base_url | request/VIRTUAL_URL;
                  currentpage batch/pagenumber;"
      tal:condition="python: batch.next or  batch.previous">
 
