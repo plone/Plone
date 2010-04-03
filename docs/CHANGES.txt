@@ -8,6 +8,11 @@ Changelog
 4.0b2 - Unreleased
 ------------------
 
+- Adjusted viewlet configuration so that the Sunburst theme uses the viewlets
+  defined in plone.app.layout, and the Classic theme overrides that
+  configuration to achieve the old viewlet positions.
+  [davisagli]
+
 - batch_macros.pt: Use request/VIRTUAL_URL instead of context/absolute_url as
   batching base url so that batching works for diffent views and FSPageTemplates
   appended to context/absolute_url.
