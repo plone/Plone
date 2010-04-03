@@ -121,8 +121,7 @@
                           i18n:attributes="title title_required;"
                           i18n:translate="label_required">(Required)</span>
 
-                    <div class="formHelp" i18n:translate="help_subject">
-                      Please enter the subject of the message you want to send.
+                    <div class="formHelp">
                     </div>
 
                     <div tal:condition="error"
@@ -131,7 +130,7 @@
                     <input type="text" 
                            id="subject" 
                            name="subject" 
-                           size="25" 
+                           size="40" 
                            value="" 
                            tal:attributes="value request/subject|nothing"
                            />
