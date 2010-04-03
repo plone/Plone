@@ -13,7 +13,7 @@ Changelog
   configuration to achieve the old viewlet positions.
   [davisagli]
 
-- batch_macros.pt: Use request/VIRTUAL_URL instead of context/absolute_url as
+- batch_macros.pt: Use request/ACTUAL_URL instead of context/absolute_url as
   batching base url so that batching works for diffent views and FSPageTemplates
   appended to context/absolute_url.
   The approach ${context/absolute_url}/${template/getId} didn't work for views.
