@@ -46,11 +46,9 @@
                 tal:define="errors options/state/getErrors"
                 tal:attributes="action string:$portal_url/${template/getId}">
 
-            <fieldset tal:define="member context/@@plone_portal_state/member;
+            <tal:defs define="member context/@@plone_portal_state/member;
                                   fullname python:request.get('fullname', not isAnon and member.getProperty('fullname', '') or None);
                                   email python:request.get('email', not isAnon and member.getProperty('email','') or None);">
-
-                <legend i18n:translate="legend_feedback_for_contact_info">Feedback details</legend>
 
                 <input type="hidden" name="sender_fullname" value="fullname"
                        tal:attributes="value fullname"
@@ -177,7 +175,7 @@
 
                 </div>
 
-            </fieldset>
+            </tal:defs>
 
             <input type="hidden" name="form.submitted" value="1" />
 
