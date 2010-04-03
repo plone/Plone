@@ -8,6 +8,10 @@ Changelog
 4.0b2 - Unreleased
 ------------------
 
+- Make prefs_main_template fill portlets_one_slot instead of column_one_slot
+  to add its portlet, for compatibility with Sunburst.
+  [davisagli]
+
 - Adjusted viewlet configuration so that the Sunburst theme uses the viewlets
   defined in plone.app.layout, and the Classic theme overrides that
   configuration to achieve the old viewlet positions.

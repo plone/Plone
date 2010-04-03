@@ -10,9 +10,6 @@
                getIconFor nocall:context/plone_utils/getIconFor;
                portal_url context/portal_url;">
 
-<td id="portal-column-one">
-<div class="visualPadding">
-
 <dl class="portlet"
     id="portlet-prefs">
     <dt class="portletHeader">
@@ -51,10 +48,6 @@
     </dd>
 
 </dl>
-
-</div>
-</td>
-
 
 </metal:portlet>
 </body>
