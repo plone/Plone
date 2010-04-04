@@ -3,6 +3,7 @@
 
     <metal:block fill-slot="top_slot"
                  tal:define="dummy python:request.set('disable_border',1);
+                             disable_column_one python:request.set('disable_plone.leftcolumn',0);
                              disable_column_two python:request.set('disable_plone.rightcolumn',1);" />
 
     <metal:override fill-slot="portlets_one_slot">
