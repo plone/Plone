@@ -190,7 +190,7 @@
                     <span tal:define="tags result/Subject|nothing"
                           tal:condition="tags">
                         &mdash;
-                        <tal:filedunder i18n:translate="label_filed_under">filed under:</tal:filedunder>
+                        <tal:filedunder i18n:translate="label_filed_under">Filed under:</tal:filedunder>
                             <span tal:repeat="tag tags">
                                 <a href=""
                                    class="link-tag"
