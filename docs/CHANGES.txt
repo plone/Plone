@@ -27,7 +27,8 @@ Changelog
   [limi]
 
 - Make prefs_main_template fill portlets_one_slot instead of column_one_slot
-  to add its portlet, for compatibility with Sunburst.
+  to add its portlet, for compatibility with Sunburst.  Also make it
+  unnecessary for custom configlet templates to set display_border.
   [davisagli]
 
 - Adjusted viewlet configuration so that the Sunburst theme uses the viewlets

@@ -5,9 +5,6 @@
       lang="en"
       metal:use-macro="context/prefs_main_template/macros/master">
 
-<metal:block fill-slot="top_slot"
-             tal:define="dummy python:request.set('disable_border',1)" />
-
 <body>
 
 
