@@ -7,6 +7,9 @@ Changelog
 
 4.0b2 - Unreleased
 ------------------
+- Added in support WebKit- and Gecko-based small-screen devices 
+ (iPhone, Android, Firefox Mobile)
+ [limi]
 
 - Make prefs_main_template fill portlets_one_slot instead of column_one_slot
   to add its portlet, for compatibility with Sunburst.

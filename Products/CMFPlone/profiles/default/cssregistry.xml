@@ -15,11 +15,12 @@
  <stylesheet id="ploneKss.css" />
 
  <stylesheet id="print.css" media="print" />
- <stylesheet id="mobile.css" media="handheld" enabled="0" />
+ <stylesheet id="mobile.css" 
+             media="handheld, screen and (max-device-width: 480px)" />
 
  <stylesheet id="ploneCustom.css" media="all" />
 
  <stylesheet id="RTL.css"
-    expression="python:portal.restrictedTraverse('@@plone_portal_state').is_rtl()" />
+             expression="python:portal.restrictedTraverse('@@plone_portal_state').is_rtl()" />
 
 </object>
