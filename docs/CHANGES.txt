@@ -8,6 +8,10 @@ Changelog
 4.0b2 - Unreleased
 ------------------
 
+- Removed msgid for "Site Setup" message in portlet_prefs.pt
+  and plone_control_panel.pt.
+  [vincentfretin]
+
 - Added in support WebKit- and Gecko-based small-screen devices 
   (iPhone, Android, Firefox Mobile)
   [limi]

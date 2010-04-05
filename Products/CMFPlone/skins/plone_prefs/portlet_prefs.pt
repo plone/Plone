@@ -16,7 +16,7 @@
         <span class="portletTopLeft"></span>
         <a href="" 
            tal:attributes="href string:${portal_url}/plone_control_panel"
-           i18n:translate="heading_control_panel">Site Setup</a>
+           i18n:translate="">Site Setup</a>
         <span class="portletTopRight"></span>
     </dt>
 

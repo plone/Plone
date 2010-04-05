@@ -78,7 +78,7 @@
         <div id="content">
 
             <h1 class="documentFirstHeading"
-                i18n:translate="heading_site_setup">Site Setup</h1>
+                i18n:translate="">Site Setup</h1>
 
             <div class="documentDescription" i18n:translate="description_site_setup">
               Configuration area for Plone and add-ons.
