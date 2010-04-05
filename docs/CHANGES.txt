@@ -8,6 +8,11 @@ Changelog
 4.0b2 - Unreleased
 ------------------
 
+- Add and adapt tests for moving dates bug which was caused by date conversion
+  without respect to Daylight Saving Times.
+  Fix for http://dev.plone.org/plone/ticket/10141, refs r12413.
+  [thet]
+
 - Removed msgid for "Site Setup" message in portlet_prefs.pt
   and plone_control_panel.pt.
   [vincentfretin]
