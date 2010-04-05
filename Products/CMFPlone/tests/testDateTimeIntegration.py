@@ -66,7 +66,22 @@ class DateTimeTests(FunctionalTestCase):
         browser.open(obj.absolute_url())
         browser.getLink('Edit').click()
         browser.getControl('Save').click()
-        self.failUnless(obj.EffectiveDate().startswith('2020-02-20T16:00:00'))
+        ## EffectiveDate() converts date to local zone if no zone is given
+        #self.failUnless(obj.EffectiveDate().startswith('2020-02-20T16:00:00'))
+        self.failUnless(obj.effective_date.ISO8601().startswith(
+            '2020-02-20T16:00:00'))
+
+    def testRespectDaylightSavingTime(self):
+        """ When saving dates, the date's timezone and Daylight Saving Time
+            has to be respected.
+            See Products.Archetypes.Field.DateTimeField.set
+        """
+        self.setRoles(('Manager',))
+        obj = self.portal['front-page']
+        obj.setEffectiveDate('2010-01-01 10:00 Europe/Belgrade')
+        obj.setExpirationDate('2010-06-01 10:00 Europe/Belgrade')
+        self.failUnless(obj.effective_date.tzoffset() == 3600)
+        self.failUnless(obj.expiration_date.tzoffset() == 7200)
 
 
 def test_suite():
