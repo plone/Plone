@@ -40,7 +40,7 @@
 
   <image
     rdf:resource=""
-    tal:attributes="rdf:resource string:${context/portal_url}/${context/base_properties/logoName}" />
+    tal:attributes="rdf:resource string:${context/portal_url}/logo.png" />
 
   <items>
     <rdf:Seq>
@@ -57,9 +57,9 @@
            repeat="brain python: objects">
   <item rdf:about="" tal:attributes="rdf:about obj_item/getURL|obj_item/absolute_url"
         tal:define="obj_item brain/getObject|nocall:brain;
-                    has_text exists:obj_item/aq_base/getText;
+                    has_text exists:obj_item/aq_explicit/getText;
                     text python:has_text and obj_item.getText() or '';
-                    has_effective exists:obj_item/aq_base/effective_date;
+                    has_effective exists:obj_item/aq_explicit/effective_date;
                     effective python:has_effective and obj_item.effective().HTML4() or '';
                     modified python:obj_item.modified().HTML4();
                     creator obj_item/Creator|nothing">
@@ -76,8 +76,6 @@
       <dc:subject tal:content="item">Item</dc:subject>
     </tal:block>
     <dc:date tal:content="python: has_effective and effective or modified">Published or last modified date if no published date</dc:date>
-    <dc:issued tal:condition="has_effective" tal:content="effective">Published date if set</dc:issued>
-    <dc:modified tal:content="modified">Modification date</dc:modified>
     <dc:type tal:content="obj_item/Type">Type</dc:type>
   </item>
 </tal:block>
