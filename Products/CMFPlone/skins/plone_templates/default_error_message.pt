@@ -164,6 +164,11 @@
                        <p i18n:translate="description_site_admin_full_error">
                        Here is the full error message:
                        </p>
+                       
+                       <p ><a href="" tal:attributes="href
+                                      string:error_log/getLogEntryAsText?id=${err_log_id}"
+                                      i18n:translate="label_traceback_as_text">Display traceback as text</a></p>
+
                        <div tal:replace="structure err_tb"/>
                     </div>
 
