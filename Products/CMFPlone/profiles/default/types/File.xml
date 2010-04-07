@@ -4,8 +4,8 @@
    i18n:domain="plone" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
  <property name="title" i18n:translate="">File</property>
  <property name="description"
-      i18n:translate="">An external file uploaded to the site.</property>
- <property name="icon_expr">string:${portal_url}/file_icon.png</property>
+      i18n:translate="">Lets you upload a file to the site.</property>
+ <property name="icon_expr"></property>
  <property name="content_meta_type">ATFile</property>
  <property name="product">plone.app.blob</property>
  <property name="factory">addATBlobFile</property>

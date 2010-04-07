@@ -8,6 +8,15 @@ Changelog
 4.0b2 - Unreleased
 ------------------
 
+- Made the core content types use CSS sprites instead of individual images,
+  which cuts down the number of image HTTP requests from 11 to 2.
+  This fixes http://dev.plone.org/plone/ticket/10403
+  [limi]
+
+- Cleaned up the type descriptions, and removed the ones where that are 
+  self-evident or redundant.
+  [limi]
+
 - Fix several issues in the RSS template: don't get the logo name from
   base_properties, correctly fetch the full text and last modified date, and
   only specify the publishing date in the output.

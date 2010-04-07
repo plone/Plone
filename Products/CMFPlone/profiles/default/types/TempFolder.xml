@@ -3,8 +3,8 @@
    i18n:domain="plone" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
  <property name="title" i18n:translate=""></property>
  <property name="description"
-     i18n:translate="">Use folders to put content in categories.</property>
- <property name="icon_expr">string:${portal_url}/folder_icon.png</property>
+     i18n:translate="">Specialized folder for temporary data.</property>
+ <property name="icon_expr"></property>
  <property name="content_meta_type">TempFolder</property>
  <property name="product">CMFCore</property>
  <property name="factory">manage_addPortalFolder</property>
