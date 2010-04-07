@@ -28,7 +28,7 @@
                      item_type_class python: 'contenttype-' + normalizeString(item_type);
                      kss_inline_editable python:False;
                      "
-         tal:attributes="class string:tileItem visualIEFloatFix vevent ${item_type_class}">
+         tal:attributes="class string:tileItem visualIEFloatFix vevent">
 
         <div tal:replace="structure provider:plone.abovecontenttitle" />
 
