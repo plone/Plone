@@ -125,7 +125,9 @@ class TestContentTypeInformation(PloneTestCase.PloneTestCase):
             # If the title is empty we get back the id
             if t.title:
                 self.failUnless(isinstance(t.Title(), Message))
-            self.failUnless(isinstance(t.Description(), Message))
+            # Descriptions may be blank. Only check if there's a value.
+            if t.description:
+                self.failUnless(isinstance(t.Description(), Message))
 
 
 def test_suite():
