@@ -8,6 +8,9 @@ Changelog
 4.0b2 - Unreleased
 ------------------
 
+- Added overlays for Rename and selecting default folder views.
+  [limi]
+
 - Made the core content types use CSS sprites instead of individual images,
   which cuts down the number of image HTTP requests from 11 to 2.
   This fixes http://dev.plone.org/plone/ticket/10403

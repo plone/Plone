@@ -73,6 +73,43 @@ jQuery(function($){
             closeselector: '[name=form.button.Cancel]'
         }
     );
+    
+    // Delete dialog
+    // This doesn't work since it returns to the page you came from, which
+    // obviously doesn't exist anymore
+    //
+    // $('dl#plone-contentmenu-actions a#delete').prepOverlay(
+    //     {
+    //         subtype: 'ajax',
+    //         filter: common_content_filter,
+    //         formselector: 'form',
+    //         noform: function(el) {return noformerrorshow(el, 'reload');},
+    //         closeselector: '[name=form.button.Cancel]'
+    //     }
+    // );
+
+    // Rename dialog
+    $('dl#plone-contentmenu-actions a#rename').prepOverlay(
+        {
+            subtype: 'ajax',
+            filter: common_content_filter,
+            formselector: 'form',
+            noform: function(el) {return noformerrorshow(el, 'reload');},
+            closeselector: '[name=form.button.Cancel]'
+        }
+    );
+
+
+    // Select default view dialog
+    $('dl#plone-contentmenu-display a#contextSetDefaultPage').prepOverlay(
+        {
+            subtype: 'ajax',
+            filter: common_content_filter,
+            formselector: 'form',
+            noform: function(el) {return noformerrorshow(el, 'reload');},
+            closeselector: '[name=form.button.Cancel]'
+        }
+    );
 
     // registration
     $('#portal-personaltools a[href$=/@@register]').prepOverlay(
