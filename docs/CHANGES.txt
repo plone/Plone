@@ -8,6 +8,10 @@ Changelog
 4.0b2 - Unreleased
 ------------------
 
+- Batch folderContents in folder_listing's listing macro if it's not already
+  batched when passed in. This closes http://dev.plone.org/plone/ticket/10401
+  [davisagli]
+
 - Added overlays for Rename and selecting default folder views.
   [limi]
 

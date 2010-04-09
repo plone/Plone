@@ -35,19 +35,19 @@
                         folderContents folderContents|nothing; folderContents python:folderContents or is_a_topic and context.queryCatalog(contentFilter, batch=True) or context.getFolderContents(contentFilter, batch=True, b_size=limit_display or 100);
                         site_properties context/portal_properties/site_properties;
                         use_view_action site_properties/typesUseViewActionInListings|python:();
-                        over_limit python: limit_display and len(folderContents) > limit_display;
-                        folderContents python: (over_limit and folderContents[:limit_display]) or folderContents;
-                        batch folderContents;
+                        Batch python:modules['Products.CMFPlone'].Batch;
+                        b_start python:request.get('b_start', 0);
+                        batch python:isinstance(folderContents, Batch) and folderContents or Batch(folderContents, limit_display or 100, int(b_start), orphan=1);
                         isAnon context/@@plone_portal_state/anonymous;
                         normalizeString nocall: context/plone_utils/normalizeString;
                         toLocalizedTime nocall: context/@@plone/toLocalizedTime;
                         show_about python:not isAnon or site_properties.allowAnonymousViewAbout;
                         navigation_root_url context/@@plone_portal_state/navigation_root_url;
                         pas_member context/@@pas_member;">
-    <tal:listing condition="folderContents">
+    <tal:listing condition="batch">
 
         <dl metal:define-slot="entries">
-            <tal:entry tal:repeat="item folderContents" metal:define-macro="entries">
+            <tal:entry tal:repeat="item batch" metal:define-macro="entries">
             <tal:block tal:define="item_url item/getURL|item/absolute_url;
                                    item_id item/getId|item/id;
                                    item_title_or_id item/pretty_title_or_id;
