@@ -11,7 +11,7 @@
 from Products.CMFPlone.tests.PloneTestCase import PloneTestCase
 from Products.CMFPlone.tests.PloneTestCase import FunctionalTestCase
 from DateTime import DateTime
-
+from time import localtime
 
 class DateTimeTests(PloneTestCase):
 
@@ -57,19 +57,67 @@ class DateTimeTests(PloneTestCase):
 
 class DateTimeTests(FunctionalTestCase):
 
-    def testPublicationDateKeepsTimeZone(self):
-        # see http://dev.plone.org/plone/ticket/10141
+    def testNonDSTPublicationDateRemainsUnchangedThroughEdit(self):
+        # this test is for a date when daylight savings time is not in effect
         self.setRoles(('Manager',))
         obj = self.portal['front-page']
-        obj.setEffectiveDate('2020-02-20 16:00')
-        browser = self.getBrowser()
-        browser.open(obj.absolute_url())
-        browser.getLink('Edit').click()
-        browser.getControl('Save').click()
-        ## EffectiveDate() converts date to local zone if no zone is given
-        #self.failUnless(obj.EffectiveDate().startswith('2020-02-20T16:00:00'))
-        self.failUnless(obj.effective_date.ISO8601().startswith(
-            '2020-02-20T16:00:00'))
+        # the test is performed in the local timezone, and in 2 two alternate
+        # timezones (to make sure one is different from the local timezone)
+        for tz in ('', ' US/Central', ' US/Eastern'):
+            # save the time represented in the specified time zone
+            obj.setEffectiveDate('2020-02-20 16:00%s' % tz)
+            self.failUnless(obj.effective_date.ISO8601().startswith(
+                '2020-02-20T16:00:00'))
+            start_value = obj.effective_date
+            browser = self.getBrowser()
+            browser.open(obj.absolute_url())
+            browser.getLink('Edit').click()
+            # Time should appear on the edit page in the timezone that was local
+            # for that date (not always the same, due to DST)
+            local_zone = start_value.localZone(localtime(start_value.timeTime()))
+            local_start_value = start_value.toZone(local_zone)
+            localHour = local_start_value.h_12()
+            localAMPM = local_start_value.ampm().upper()
+            self.assertEqual(localHour, int(browser.getControl(name='effectiveDate_hour').value[0]))
+            self.assertEqual([localAMPM], browser.getControl(name='effectiveDate_ampm').value)
+            if not tz:
+                self.assertEqual(4, localHour)
+            browser.getControl('Save').click()
+            # Time is saved in the local timezone for the given date
+            self.assertEqual(local_start_value.tzoffset(), obj.effective_date.tzoffset())
+            # but should be equivalent to the original time
+            self.assertEqual(start_value, obj.effective_date)
+
+    def testDSTPublicationDateRemainsUnchangedThroughEdit(self):
+        # this test is for a date when daylight savings time is in effect
+        self.setRoles(('Manager',))
+        obj = self.portal['front-page']
+        # the test is performed in the local timezone, and in 2 two alternate
+        # timezones (to make sure one is different from the local timezone)
+        for tz in ('', ' GMT-6', ' GMT-5'):
+            # save the time represented in the specified time zone
+            obj.setEffectiveDate('2020-06-20 16:00%s' % tz)
+            self.failUnless(obj.effective_date.ISO8601().startswith(
+                '2020-06-20T16:00:00'))
+            start_value = obj.effective_date
+            browser = self.getBrowser()
+            browser.open(obj.absolute_url())
+            browser.getLink('Edit').click()
+            # Time should appear on the edit page in the timezone that was local
+            # for that date (not always the same, due to DST)
+            local_zone = start_value.localZone(localtime(start_value.timeTime()))
+            local_start_value = start_value.toZone(local_zone)
+            localHour = local_start_value.h_12()
+            localAMPM = local_start_value.ampm().upper()
+            self.assertEqual(localHour, int(browser.getControl(name='effectiveDate_hour').value[0]))
+            self.assertEqual([localAMPM], browser.getControl(name='effectiveDate_ampm').value)
+            if not tz:
+                self.assertEqual(4, localHour)
+            browser.getControl('Save').click()
+            # Time is saved in the local timezone for the given date
+            self.assertEqual(local_start_value.tzoffset(), obj.effective_date.tzoffset())
+            # but should be equivalent to the original time
+            self.assertEqual(start_value, obj.effective_date)
 
     def testRespectDaylightSavingTime(self):
         """ When saving dates, the date's timezone and Daylight Saving Time
