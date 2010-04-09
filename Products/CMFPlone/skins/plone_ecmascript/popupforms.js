@@ -75,18 +75,22 @@ jQuery(function($){
     );
     
     // Delete dialog
-    // This doesn't work since it returns to the page you came from, which
-    // obviously doesn't exist anymore
-    //
-    // $('dl#plone-contentmenu-actions a#delete').prepOverlay(
-    //     {
-    //         subtype: 'ajax',
-    //         filter: common_content_filter,
-    //         formselector: 'form',
-    //         noform: function(el) {return noformerrorshow(el, 'reload');},
-    //         closeselector: '[name=form.button.Cancel]'
-    //     }
-    // );
+    $('dl#plone-contentmenu-actions a#delete').prepOverlay(
+        {
+            subtype: 'ajax',
+            filter: common_content_filter,
+            formselector: 'form',
+            noform: function(el) {return noformerrorshow(el, 'redirect');},
+            redirect: function(el, responseText) {
+                var mo = responseText.match(/<base href="(.+?)"/i);
+                if (mo.length === 2) {
+                    return mo[1];
+                }
+                return location;
+            },
+            closeselector: '[name=form.button.Cancel]'
+        }
+    );
 
     // Rename dialog
     $('dl#plone-contentmenu-actions a#rename').prepOverlay(
