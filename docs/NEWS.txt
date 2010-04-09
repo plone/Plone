@@ -8,6 +8,10 @@ Changelog
 3.3.6 - Unreleased
 ------------------
 
+- Explicitly check that a searchterm was provided before adding it to the query string.
+  Fixes http://dev.plone.org/plone/ticket/9025
+  [blueaidan]
+
 - Fixed for state changed message is wroning for pending item
   refs http://dev.plone.org/plone/ticket/10245
   [terapyon]
