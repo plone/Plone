@@ -36,7 +36,8 @@
                  use_view_action site_properties/typesUseViewActionInListings|python:();
                  portal_url context/portal_url;
                  is_advanced_search request/form/advanced_search|nothing;
-                 advanced_search_url string:${context/@@plone_portal_state/navigation_root_url}/search_form">
+                 advanced_search_url string:${context/@@plone_portal_state/navigation_root_url}/search_form;
+                 searchterm request/SearchableText|nothing;">
 
     <div id="content-core">
         <form name="searchform"
@@ -49,7 +50,7 @@
                    size="25"
                    title="Search Site"
                    i18n:attributes="title title_search_title;"
-                   tal:attributes="value request/SearchableText|nothing;"
+                   tal:attributes="value searchterm;"
                    />
             <input class="searchPage searchButton"
                    type="submit"
@@ -143,7 +144,8 @@
             <tal:entry define="result_url result/getURL;
                                result_type result/portal_type;
                                item_icon python:plone_view.getIcon(result);
-                               url python:test(result_type in use_view_action, result_url+'/view', result_url+'/');">
+                               url python:result_url+'/view' if result_type in use_view_action else result_url+'/';
+                               url python:url if searchterm is None else '%s?searchterm=%s' % (url, searchterm);">
                 <dt tal:define="item_wf_state_class string:state-${result/review_state};"
                     tal:attributes="class python:'contenttype-' + normalizeString(result.portal_type)">
                   <img tal:replace="structure item_icon/html_tag" />

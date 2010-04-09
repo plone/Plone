@@ -8,6 +8,11 @@ Changelog
 4.0b2 - Unreleased
 ------------------
 
+- Explicitly check that a searchterm was provided before adding it to the query string.
+  Fixes http://dev.plone.org/plone/ticket/9025
+  (Port of [35909])
+  [blueaidan]
+
 - Batch folderContents in folder_listing's listing macro if it's not already
   batched when passed in. This closes http://dev.plone.org/plone/ticket/10401
   [davisagli]
