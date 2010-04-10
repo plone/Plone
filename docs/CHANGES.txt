@@ -5,7 +5,7 @@
 Changelog
 =========
 
-4.0b2 - Unreleased
+4.0b2 - 2010-03-09
 ------------------
 
 - Explicitly check that a searchterm was provided before adding it to the query string.
