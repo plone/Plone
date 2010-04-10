@@ -3,7 +3,7 @@
 ******/
 jQuery(function($){
     
-    common_content_filter = '#content>*:not(div.configlet),dl.portalMessage.error,dl.portalMessage.info';
+    var common_content_filter = '#content>*:not(div.configlet),dl.portalMessage.error,dl.portalMessage.info';
     
     // method to show error message in a noform
     // situation.
@@ -16,6 +16,16 @@ jQuery(function($){
         } else {
             return noform;
         }
+    }
+
+    // After deletes or renames, we need to redirect to the target
+    // page.
+    function redirectbasehref(el, responseText) {
+        var mo = responseText.match(/<base href="(.+?)"/i);
+        if (mo.length === 2) {
+            return mo[1];
+        }
+        return location;
     }
 
     // login form
@@ -81,13 +91,7 @@ jQuery(function($){
             filter: common_content_filter,
             formselector: 'form',
             noform: function(el) {return noformerrorshow(el, 'redirect');},
-            redirect: function(el, responseText) {
-                var mo = responseText.match(/<base href="(.+?)"/i);
-                if (mo.length === 2) {
-                    return mo[1];
-                }
-                return location;
-            },
+            redirect: redirectbasehref,
             closeselector: '[name=form.button.Cancel]'
         }
     );
@@ -98,7 +102,8 @@ jQuery(function($){
             subtype: 'ajax',
             filter: common_content_filter,
             formselector: 'form',
-            noform: function(el) {return noformerrorshow(el, 'reload');},
+            noform: function(el) {return noformerrorshow(el, 'redirect');},
+            redirect: redirectbasehref,
             closeselector: '[name=form.button.Cancel]'
         }
     );
