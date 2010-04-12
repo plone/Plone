@@ -113,7 +113,7 @@ ploneFormTabbing.initializeForm = function() {
     });
 
     var tabSelector = 'ul.formTabs';
-    if (ftabs.is('select.formTabs')) {
+    if ($(ftabs).is('select.formTabs')) {
         tabSelector = 'select.formTabs';
     }
     jqForm.children(tabSelector).tabs(
