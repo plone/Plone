@@ -8,6 +8,10 @@ Changelog
 4.0b3 - Unreleased
 ------------------
 
+- Change the title of the Users folder to be more in line with its actual function.
+  Fixes: http://dev.plone.org/plone/ticket/9693
+  [cwainwright]
+
 - Inject contentFilter as **kw params to topic's queryCatalog and not as first
   argument which should be the REQUEST, if given. With that in place, batching
   on contentFiltered topics works again.

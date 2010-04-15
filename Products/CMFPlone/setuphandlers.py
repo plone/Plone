@@ -344,7 +344,7 @@ def setupPortalContent(p):
 
     # configure Members folder
     members_title = 'Users'
-    members_desc = "Container for users' home directories"
+    members_desc = "Site Users"
     if 'Members' not in existing:
         _createObjectByType('Folder', p, id='Members',
                             title=members_title, description=members_desc)
@@ -358,7 +358,7 @@ def setupPortalContent(p):
                                        default='Users')
                 members_desc = util.translate(u'members-description',
                                       target_language=target_language,
-                                      default="Container for users' home directories")
+                                      default="Site Users")
 
         members = getattr(p , 'Members')
         members.setTitle(members_title)
