@@ -8,20 +8,22 @@ Changelog
 4.0b3 - Unreleased
 ------------------
 
-- Change the title of the Users folder to be more in line with its actual function.
+- Change the title of the Users folder to be more in line with its actual
+  function.
   Fixes: http://dev.plone.org/plone/ticket/9693
   [cwainwright]
 
 - Inject contentFilter as **kw params to topic's queryCatalog and not as first
   argument which should be the REQUEST, if given. With that in place, batching
   on contentFiltered topics works again.
-  Fixes: https://dev.plone.org/plone/ticket/10428
+  Fixes: http://dev.plone.org/plone/ticket/10428
   [thet]
 
 4.0b2 - 2010-03-09
 ------------------
 
-- Explicitly check that a searchterm was provided before adding it to the query string.
+- Explicitly check that a searchterm was provided before adding it to the
+  query string.
   Fixes http://dev.plone.org/plone/ticket/9025
   (Port of [35909])
   [blueaidan]
@@ -328,7 +330,7 @@ Changelog
 
 - Add current portal type to the body css class like the section
   and template css class's.
-  Refs https://dev.plone.org/plone/ticket/8777.
+  Refs http://dev.plone.org/plone/ticket/8777.
   [pelle]
 
 - Deprecate the portlets_fetcher and macro_renderer templates.
@@ -487,7 +489,7 @@ Changelog
 
 - Updated markup of document_view and event_view to follow conventions
   in main_template.
-  References https://dev.plone.org/plone/ticket/9981
+  References http://dev.plone.org/plone/ticket/9981
   [spliter]
 
 - Just a markup polishing - <metal> tags don't need explicit "metal" for
