@@ -70,11 +70,23 @@
                 Up to Users Overview
               </a>
 
-              <div tal:condition="python: account_page == '@@personal-information'"
-                   tal:replace="structure context/personal-information"/>
+              <form action=""
+                        name="users"
+                        method="post"
+                        enctype="multipart/form-data"
+                        class="enableUnloadProtection enableAutoFocus"
+                        tal:condition="user | nothing"
+                    tal:attributes="action template/getId">
 
-              <div tal:condition="python: account_page == '@@personal-preferences'"
-                   tal:replace="structure context/personal-preferences"/>
+                  <input type="hidden" name="userid" value="username"
+                         tal:attributes="value member/getId" />
+
+                  <metal:login use-macro="context/personalize_form/macros/user_form">
+                  Render the personalize_form core template
+                  </metal:login>
+
+              </form>
+          </div>
 
       </div>
     </div>
