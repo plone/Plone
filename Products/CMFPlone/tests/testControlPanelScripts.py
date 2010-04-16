@@ -139,15 +139,23 @@ class TestAccessControlPanelScripts(PloneTestCase.FunctionalTestCase):
         self.portal_path = self.portal.absolute_url(1)
         self.basic_auth = '%s:%s' % (default_user, default_password)
 
-    def testPrefsUserDetails(self):
+    def testUserInformation(self):
         '''Test access to user details.'''
         self.setRoles(['Manager'])
-        response = self.publish('%s/prefs_user_details?userid=%s' %
+        response = self.publish('%s/@@user-information?userid=%s' %
                                 (self.portal_path, default_user),
                                 self.basic_auth)
 
-        # this was failing in early Plone 2.5 due to missing five:traversable
-        # declaration for tools
+        self.assertEquals(response.getStatus(), 200)
+
+    def testUserPreferences(self):
+        '''Test access to user details.'''
+        self.setRoles(['Manager'])
+        response = self.publish('%s/@@user-preferences?userid=%s' %
+                                (self.portal_path, default_user),
+                                self.basic_auth)
+
+
         self.assertEquals(response.getStatus(), 200)
 
 
