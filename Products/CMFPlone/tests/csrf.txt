@@ -155,7 +155,7 @@ know the current passwort to exploit this, but we'll check nevertheless:
 On the admin side of things there's also the user preferences:
 
   >>> self.setRoles(('Manager'),)
-  >>> browser.open('http://nohost/plone/prefs_user_details?userid=%s' % ptc.default_user)
+  >>> browser.open('http://nohost/plone/@@user-information?userid=%s' % ptc.default_user)
   >>> browser.getControl('Full Name').value = 'John Doe'
   >>> browser.getControl('E-mail').value = 'john@foo-security.com'
   >>> browser.getControl('Save').click()
