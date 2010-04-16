@@ -10,12 +10,6 @@ For what's new in this release, see CHANGES.txt.
   that location in toc.js. Fixes bug introduced in r32066, and refs
   http://dev.plone.org/plone/ticket/9364
   [dunlapm]
-- Template for editing user preferences (prefs_user_details) is replaced by 
-  personal information and preferences forms from plone.app.users. Moved 
-  prefs_user_details and prefs_user_edit to deprecated skins.
-  http://dev.plone.org/plone/ticket/10327
-  [kcleong]
-
 
 3.3.4 - Unreleased
 ------------------

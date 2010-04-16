@@ -19,6 +19,13 @@ Changelog
   Fixes: http://dev.plone.org/plone/ticket/10428
   [thet]
 
+- Template for editing user preferences (prefs_user_details) is replaced by
+  personal information and preferences forms from plone.app.users. Moved
+  prefs_user_details and prefs_user_edit to deprecated skins.
+  http://dev.plone.org/plone/ticket/10327
+  [kcleong]
+
+
 4.0b2 - 2010-03-09
 ------------------
 
