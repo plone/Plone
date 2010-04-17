@@ -100,7 +100,7 @@
                               i18n:translate="label_event_byline"> 
                              <abbr class="dtstart"
                                    tal:attributes="title python:item_start"
-                                   tal:content="python:toLocalizedTime(item_start,long_format=1)"
+                                   tal:content="python:toLocalizedTime(item_start)"
                                    i18n:name="start">from date</abbr> from
                              <abbr class="dtstart"
                                    tal:attributes="title python:item_start"
