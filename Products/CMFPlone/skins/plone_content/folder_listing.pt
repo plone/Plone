@@ -82,13 +82,6 @@
                     </span>
 
                     <span class="documentByLine">
-                         <span tal:condition="python: item_type == 'Event'">&mdash;</span>
-                         <span tal:condition="python: item_type == 'Event' and item.location"
-                              i18n:translate="label_event_byline_location">
-                             <span tal:content="string:${item/location}"
-                                   class="location"
-                                   i18n:name="location">Oslo</span>,          
-                        </span>
                         <span tal:condition="python: item_type == 'Event' and item_sametime"
                               i18n:translate="label_event_byline">
                              <abbr class="dtstart"
@@ -123,7 +116,13 @@
                                    tal:content="python:toLocalizedTime(item_end,long_format=1)"
                                    i18n:name="end">to date</abbr>
                         </span>
-                       
+                        <span tal:condition="python: item_type == 'Event'">&mdash;</span>
+                         <span tal:condition="python: item_type == 'Event' and item.location"
+                              i18n:translate="label_event_byline_location">
+                             <span tal:content="string:${item/location}"
+                                   class="location"
+                                   i18n:name="location">Oslo</span>,          
+                        </span>
                         <tal:byline condition="show_about">
                             &mdash;
 
