@@ -65,8 +65,7 @@
                                    item_start item/start/ISO|item/StartDate|nothing;
                                    item_end item/end/ISO|item/EndDate|nothing;
                                    item_sametime python: item_start == item_end;
-                                   item_samedate python: DateTime.Date(DateTime(item_start)) == DateTime.Date(DateTime(item_end));
-                               ">
+                                   item_samedate python: test(item_type == 'Event', 'DateTime.Date(DateTime(item_start)) == DateTime.Date(DateTime(item_end))', '');">
                 <metal:block define-slot="entry">
                 <dt metal:define-macro="listitem"
                     tal:attributes="class python:test(item_type == 'Event', 'vevent', '')">
