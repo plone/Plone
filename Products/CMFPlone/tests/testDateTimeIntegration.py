@@ -65,9 +65,9 @@ class DateTimeTests(FunctionalTestCase):
         # timezones (to make sure one is different from the local timezone)
         for tz in ('', ' US/Central', ' US/Eastern'):
             # save the time represented in the specified time zone
-            obj.setEffectiveDate('2020-02-20 16:00%s' % tz)
+            obj.setEffectiveDate('2020-02-20 00:00%s' % tz)
             self.failUnless(obj.effective_date.ISO8601().startswith(
-                '2020-02-20T16:00:00'))
+                '2020-02-20T00:00:00'))
             start_value = obj.effective_date
             browser = self.getBrowser()
             browser.open(obj.absolute_url())
@@ -81,7 +81,7 @@ class DateTimeTests(FunctionalTestCase):
             self.assertEqual(localHour, int(browser.getControl(name='effectiveDate_hour').value[0]))
             self.assertEqual([localAMPM], browser.getControl(name='effectiveDate_ampm').value)
             if not tz:
-                self.assertEqual(4, localHour)
+                self.assertEqual(12, localHour)
             browser.getControl('Save').click()
             # Time is saved in the local timezone for the given date
             self.assertEqual(local_start_value.tzoffset(), obj.effective_date.tzoffset())
