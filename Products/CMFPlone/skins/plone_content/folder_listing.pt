@@ -62,10 +62,10 @@
                                    item_wf_state item/review_state|python: context.portal_workflow.getInfoFor(item, 'review_state', '');
                                    item_wf_state_class python:'state-' + normalizeString(item_wf_state);
                                    item_creator item/Creator;
-                                   item_start item/start/ISO|item/StartDate|nothing;
-                                   item_end item/end/ISO|item/EndDate|nothing;
+                                   item_start item/start|item/StartDate|nothing;
+                                   item_end item/end|item/EndDate|nothing;
                                    item_sametime python: item_start == item_end;
-                                   item_samedate python: test(item_type == 'Event', 'DateTime.Date(DateTime(item_start)) == DateTime.Date(DateTime(item_end))', '');">
+                                   item_samedate python: (item_end - item_start < 1) if item_type == 'Event' else False">
                 <metal:block define-slot="entry">
                 <dt metal:define-macro="listitem"
                     tal:attributes="class python:test(item_type == 'Event', 'vevent', '')">

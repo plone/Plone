@@ -8,11 +8,15 @@ Changelog
 4.0b3 - Unreleased
 ------------------
 
-- Fixed folder_listing.pt so that it shows event dates in a cleaner way 
- (no more redundant listing of times + dates when and event is on one day
- has same start + end time)
- [jonstahl]
+- Fixed folder_listing.pt so it doesn't stringify and then reparse the start
+  and end dates of events (this also fixes a timezone issue,
+  http://dev.plone.org/plone/ticket/10445)
+  [davisagli]
 
+- Fixed folder_listing.pt so that it shows event dates in a cleaner way 
+  (no more redundant listing of times + dates when and event is on one day
+  has same start + end time)
+  [jonstahl]
 
 - Change the title of the Users folder to be more in line with its actual
   function.
