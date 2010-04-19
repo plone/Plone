@@ -8,6 +8,9 @@ Changelog
 4.0b3 - Unreleased
 ------------------
 
+- Don't send Bcc header with Mailhost.secureSend. Renamed CC header to Cc.
+  [vincentfretin]
+
 - Fixed folder_listing.pt so it doesn't stringify and then reparse the start
   and end dates of events (this also fixes a timezone issue,
   http://dev.plone.org/plone/ticket/10445)

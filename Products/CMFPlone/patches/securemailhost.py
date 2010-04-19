@@ -85,7 +85,7 @@ def secureSend(self, message, mto, mfrom, subject='[No Subject]',
 
     # Add extra headers
     _addHeaders(message, Subject=Header(subject, charset),
-                To=mto, CC=mcc, From=mfrom, BCC=mbcc,
+                To=mto, Cc=mcc, From=mfrom,
                 **dict((k, Header(v,charset)) for k, v in kwargs.iteritems()))
 
     all_recipients = [formataddr(pair) for pair in
