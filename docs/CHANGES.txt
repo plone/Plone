@@ -8,6 +8,11 @@ Changelog
 4.0b3 - Unreleased
 ------------------
 
+- Don't take values directly from the request in ``getFolderContents``.
+  request.form can include arbitrary data and request.other contains a whole
+  lot of data, which isn't valid catalog indexes.
+  [hannosch]
+
 - Don't send Bcc header with Mailhost.secureSend. Renamed CC header to Cc.
   [vincentfretin]
 
