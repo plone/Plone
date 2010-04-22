@@ -18,8 +18,7 @@ jQuery(function($){
         }
     }
 
-    // After deletes or renames, we need to redirect to the target
-    // page.
+    // After deletes we need to redirect to the target page.
     function redirectbasehref(el, responseText) {
         var mo = responseText.match(/<base href="(.+?)"/i);
         if (mo.length === 2) {
@@ -101,13 +100,9 @@ jQuery(function($){
         {
             subtype: 'ajax',
             filter: common_content_filter,
-            formselector: 'form',
-            noform: function(el) {return noformerrorshow(el, 'redirect');},
-            redirect: redirectbasehref,
             closeselector: '[name=form.button.Cancel]'
         }
     );
-
 
     // Select default view dialog
     $('dl#plone-contentmenu-display a#contextSetDefaultPage').prepOverlay(
