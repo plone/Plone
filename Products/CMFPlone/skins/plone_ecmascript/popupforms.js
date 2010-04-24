@@ -1,9 +1,10 @@
 /******
     Standard popups
 ******/
+
+var common_content_filter = '#content>*:not(div.configlet),dl.portalMessage.error,dl.portalMessage.info';
+
 jQuery(function($){
-    
-    var common_content_filter = '#content>*:not(div.configlet),dl.portalMessage.error,dl.portalMessage.info';
     
     // method to show error message in a noform
     // situation.
