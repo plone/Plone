@@ -7,6 +7,17 @@ Changelog
 
 4.0b3 - Unreleased
 ------------------
+- Fixed clipped icons for most of the content type sprites by centralizing the
+  definitions and setting line-height to 2em. There's still an issue where
+  tal:replace="structure item_icon/html_tag" renders an img tag without src or
+  points to the root, which makes the layout have an empty element. Probably
+  needs to be fixed in the html_tag expression (e.g. if there isn't anything
+  there, don't render). Should be good enough for beta3, but needs to be fixed
+  before RC. See LiveSearch results + Advanced Workflow + Collection view 
+  (e.g. "Events") for examples of this.
+  Refs http://dev.plone.org/plone/ticket/10409,
+       http://dev.plone.org/plone/ticket/10466
+  [limi]
 
 - Don't take values directly from the request in ``getFolderContents``.
   request.form can include arbitrary data and request.other contains a whole

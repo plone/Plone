@@ -152,11 +152,10 @@
                             </td>
                             <td tal:define="url python:test(item_use_view, item_url+'/view',
                                             test(item_folderish, item_url+'/folder_contents', item_url+'/'));">
-                                <span tal:attributes="class item_type_class">
                                     <img tal:replace="structure item_icon/html_tag" />
                                     <a href="#" tal:attributes="href  url;
-                                                              title string: $item_type: $item_description;
-                                                              class item_wf_state_class;">
+                                                              title string:$item_type: $item_description;
+                                                              class string:$item_wf_state_class $item_type_class;">
                                         <strong tal:omit-tag="python:not isBrowserDefault">
                                         <label tal:content="item_title_or_id"
                                                tal:attributes="for string:cb_$item_id">
@@ -164,7 +163,6 @@
                                         </label>
                                         </strong>
                                     </a>
-                                </span>
 
                                 <span class="state-expired"
                                       tal:condition="python:context.isExpired(item)"
