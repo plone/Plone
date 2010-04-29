@@ -14,9 +14,8 @@
             <metal:entries fill-slot="entries">
                 <metal:block use-macro="context/folder_listing/macros/entries">
                     <metal:entry fill-slot="entry">
-                <div class="tileItem visualIEFloatFix vevent" 
-                     tal:define="item_object item/getObject;"
-                     tal:attributes="class string:tileItem visualIEFloatFix vevent">
+                <div class="tileItem visualIEFloatFix" 
+                     tal:define="item_object item/getObject;">
 
                     <a href="#" 
                        tal:condition="exists:item_object/image_thumb"
