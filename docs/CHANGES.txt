@@ -7,6 +7,9 @@ Changelog
 
 4.0b3 - Unreleased
 ------------------
+- Added touch_icon.png for iPhone/iPad home screen support.
+  [limi]
+
 - Fixed clipped icons for most of the content type sprites by centralizing the
   definitions and setting line-height to 2em. There's still an issue where
   tal:replace="structure item_icon/html_tag" renders an img tag without src or
