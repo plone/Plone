@@ -19,7 +19,8 @@
                   dummy python: plone_view.mark_view(view);
                   portal_url portal_state/portal_url;
                   checkPermission nocall: context/portal_membership/checkPermission;
-                  site_properties context/portal_properties/site_properties;"
+                  site_properties context/portal_properties/site_properties;
+                  ajax_load request/ajax_load | nothing"
       tal:attributes="lang lang;
                       xml:lang lang">
 
@@ -44,24 +45,26 @@
       <base tal:attributes="href plone_view/renderBase" /><!--[if lt IE 7]></base><![endif]-->
     </metal:baseslot>
 
-    <div tal:replace="structure provider:plone.htmlhead" />
+    <tal:notajax tal:condition="not:ajax_load">
+        <div tal:replace="structure provider:plone.htmlhead" />
 
-    <link tal:replace="structure provider:plone.htmlhead.links" />
+        <link tal:replace="structure provider:plone.htmlhead.links" />
 
-    <!-- Disable IE6 image toolbar -->
-    <meta http-equiv="imagetoolbar" content="no" />
+        <!-- Disable IE6 image toolbar -->
+        <meta http-equiv="imagetoolbar" content="no" />
 
-    <tal:comment replace="nothing"> A slot where you can insert elements in the header from a template </tal:comment>
-    <metal:headslot define-slot="head_slot" />
+        <tal:comment replace="nothing"> A slot where you can insert elements in the header from a template </tal:comment>
+        <metal:headslot define-slot="head_slot" />
 
-    <tal:comment replace="nothing"> A slot where you can insert CSS in the header from a template </tal:comment>
-    <metal:styleslot define-slot="style_slot" />
+        <tal:comment replace="nothing"> A slot where you can insert CSS in the header from a template </tal:comment>
+        <metal:styleslot define-slot="style_slot" />
 
-    <tal:comment replace="nothing"> This is deprecated, please use style_slot instead. </tal:comment>
-    <metal:cssslot define-slot="css_slot" />
+        <tal:comment replace="nothing"> This is deprecated, please use style_slot instead. </tal:comment>
+        <metal:cssslot define-slot="css_slot" />
 
-    <tal:comment replace="nothing"> A slot where you can insert javascript in the header from a template </tal:comment>
-    <metal:javascriptslot define-slot="javascript_head_slot" />
+        <tal:comment replace="nothing"> A slot where you can insert javascript in the header from a template </tal:comment>
+        <metal:javascriptslot define-slot="javascript_head_slot" />
+    </tal:notajax>
 
   </head>
 
@@ -74,7 +77,7 @@
     <div id="visual-portal-wrapper">
 
       <div id="portal-top" i18n:domain="plone">
-        <div tal:replace="structure provider:plone.portaltop" />
+        <div tal:replace="structure provider:plone.portaltop" tal:condition="not:ajax_load" />
       </div>
 
       <div class="visualClear" id="clear-space-before-wrapper-table"><!-- --></div>
@@ -82,18 +85,20 @@
       <table id="portal-columns">
         <tbody>
           <tr>
-            <tal:comment replace="nothing"> Start of the left column </tal:comment>
-            <td id="portal-column-one"
-                metal:define-slot="column_one_slot"
-                tal:condition="sl">
-              <div class="visualPadding">
-                <metal:portlets define-slot="portlets_one_slot">
-                  <tal:block replace="structure provider:plone.leftcolumn" />
-                </metal:portlets>
-                &nbsp;
-              </div>
-            </td>
-            <tal:comment replace="nothing"> End of the left column </tal:comment>
+            <tal:notajax tal:condition="not:ajax_load">
+                <tal:comment replace="nothing"> Start of the left column </tal:comment>
+                <td id="portal-column-one"
+                    metal:define-slot="column_one_slot"
+                    tal:condition="sl">
+                  <div class="visualPadding">
+                    <metal:portlets define-slot="portlets_one_slot">
+                      <tal:block replace="structure provider:plone.leftcolumn" />
+                    </metal:portlets>
+                    &nbsp;
+                  </div>
+                </td>
+                <tal:comment replace="nothing"> End of the left column </tal:comment>
+            </tal:notajax>
 
             <tal:comment replace="nothing"> Start of main content block </tal:comment>
             <td id="portal-column-content"
@@ -177,18 +182,20 @@
             </td>
             <tal:comment replace="nothing"> End of main content block </tal:comment>
 
-            <tal:comment replace="nothing"> Start of right column </tal:comment>
-            <td id="portal-column-two"
-                metal:define-slot="column_two_slot"
-                tal:condition="sr">
-              <div class="visualPadding">
-                <metal:portlets define-slot="portlets_two_slot">
-                  <tal:block replace="structure provider:plone.rightcolumn" />
-                </metal:portlets>
-                &nbsp;
-              </div>
-            </td>
-            <tal:comment replace="nothing"> End of the right column </tal:comment>
+            <tal:notajax tal:condition="not:ajax_load">
+                <tal:comment replace="nothing"> Start of right column </tal:comment>
+                <td id="portal-column-two"
+                    metal:define-slot="column_two_slot"
+                    tal:condition="sr">
+                  <div class="visualPadding">
+                    <metal:portlets define-slot="portlets_two_slot">
+                      <tal:block replace="structure provider:plone.rightcolumn" />
+                    </metal:portlets>
+                    &nbsp;
+                  </div>
+                </td>
+                <tal:comment replace="nothing"> End of the right column </tal:comment>
+            </tal:notajax>
           </tr>
         </tbody>
       </table>
@@ -196,7 +203,7 @@
 
       <div class="visualClear" id="clear-space-before-footer"><!-- --></div>
 
-      <metal:block i18n:domain="plone">
+      <metal:block i18n:domain="plone" tal:condition="not:ajax_load">
 
         <div tal:replace="structure provider:plone.portalfooter" />
 
@@ -204,7 +211,7 @@
 
       <div class="visualClear"><!-- --></div>
     </div>
-<div id="kss-spinner"><img tal:attributes="src string:${portal_url}/spinner.png" alt="" /></div>
+<div id="kss-spinner" tal:condition="not:ajax_load"><img tal:attributes="src string:${portal_url}/spinner.png" alt="" /></div>
 </body>
 </html>
 </metal:page>
