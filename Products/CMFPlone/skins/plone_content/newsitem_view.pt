@@ -23,7 +23,7 @@
                id="parent-fieldname-image">
                <img tal:replace="structure python: context.tag(scale='mini', css_class='newsImage')" src="" alt="" />
             </a>
-            <p class="discreet">
+            <p class="discreet" tal:condition="context/imageCaption|nothing">
               <metal:field use-macro="python:context.widget('imageCaption', mode='view')">
               Image Caption
               </metal:field>

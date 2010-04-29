@@ -7,6 +7,9 @@ Changelog
 
 4.0b3 - Unreleased
 ------------------
+- Fixed newsitem_view to not render the caption if the field is empty.
+  [limi]
+
 - Moved old GIF variants of the icons to plone_deprecated, since Plone itself
   uses the PNG variants now.
   [limi]
