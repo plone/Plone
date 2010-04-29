@@ -7,6 +7,10 @@ Changelog
 
 4.0b3 - Unreleased
 ------------------
+- Moved old GIF variants of the icons to plone_deprecated, since Plone itself
+  uses the PNG variants now.
+  [limi]
+
 - Added touch_icon.png for iPhone/iPad home screen support.
   [limi]
 
