@@ -82,14 +82,14 @@
 
                     <span class="documentByLine">
                         <span tal:condition="python: item_type == 'Event' and item_sametime"
-                              i18n:translate="label_event_byline">
+                              i18n:translate="label_event_byline_onlyfrom">
                              <abbr class="dtstart"
                                    tal:attributes="title python:item_start"
                                    tal:content="python:toLocalizedTime(item_start,long_format=1)"
                                    i18n:name="start">from date</abbr>
                         </span>
                         <span tal:condition="python: item_type == 'Event' and item_samedate and not item_sametime"
-                              i18n:translate="label_event_byline"> 
+                              i18n:translate="label_event_byline_samedate">
                              <abbr class="dtstart"
                                    tal:attributes="title python:item_start"
                                    tal:content="python:toLocalizedTime(item_start)"
