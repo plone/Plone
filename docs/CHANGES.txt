@@ -8,6 +8,10 @@ Changelog
 4.0b3 - Unreleased
 ------------------
 
+- Update capitalization of i18n:translate-d tags in deprecated templates to
+  avoid i18ndude warnings on new templates.
+  [esteele]
+
 - Updated default_error_message.pt to provide a better 404 Error page as per
   http://dev.plone.org/plone/ticket/8667
   [cwainwright, dunlapm]
