@@ -7,6 +7,11 @@ Changelog
 
 4.0b3 - Unreleased
 ------------------
+
+- Updated default_error_message.pt to provide a better 404 Error page as per
+  http://dev.plone.org/plone/ticket/8667
+  [cwainwright, dunlapm]
+
 - Fixed newsitem_view to not render the caption if the field is empty.
   [limi]
 
