@@ -7,6 +7,11 @@ Changelog
 
 4.0b3 - Unreleased
 ------------------
+- Revert changes from changeset 34269, which prevented the calendar widget
+  from properly saving results. Add another hidden field for the purposes
+  of handling the label's for attribute.
+  Fixes http://dev.plone.org/plone/ticket/10450
+  [esteele]
 
 - Update capitalization of i18n:translate-d tags in deprecated templates to
   avoid i18ndude warnings on new templates.
