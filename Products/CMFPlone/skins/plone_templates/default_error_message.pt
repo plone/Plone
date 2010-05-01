@@ -65,7 +65,7 @@
                         <li i18n:translate="site_error_site_map">
                             View the 
                             <a href="#" i18n:name="site_map" i18n:translate="label_site_map"
-                               tal:attributes="href string:${context/portal_url}/sitemap">site map</a>
+                               tal:attributes="href string:${context/portal_url}/sitemap">Site map</a>
                         </li>
                         <li i18n:translate="site_error_link_home">
                             Go to the
