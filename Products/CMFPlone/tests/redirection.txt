@@ -31,5 +31,5 @@ But it should not give an error while rendering the default error page:
 
   >>> "the following error occurred while attempting to render the standard error message" in browser.contents
   False
-  >>> "sorry, but that page" in browser.contents
+  >>> "This page does not seem to exist" in browser.contents
   True
