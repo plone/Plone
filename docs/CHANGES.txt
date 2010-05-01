@@ -7,6 +7,11 @@ Changelog
 
 4.0b3 - Unreleased
 ------------------
+
+- "(Requires Javascript)" is now translatable in accessibility-info.pt.
+  This closes http://dev.plone.org/plone/ticket/10475
+  [vincentfretin]
+
 - Revert changes from changeset 34269, which prevented the calendar widget
   from properly saving results. Add another hidden field for the purposes
   of handling the label's for attribute.
