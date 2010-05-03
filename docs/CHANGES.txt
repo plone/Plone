@@ -5,7 +5,7 @@
 Changelog
 =========
 
-4.0b3 - Unreleased
+4.0b3 - 2010-05-03
 ------------------
 
 - "(Requires Javascript)" is now translatable in accessibility-info.pt.
