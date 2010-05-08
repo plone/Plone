@@ -8,6 +8,10 @@ Changelog
 3.3.6 - Unreleased
 ------------------
 
+- "(Requires Javascript)" is now translatable in accessibility-info.pt.
+  This closes http://dev.plone.org/plone/ticket/10475
+  [vincentfretin]
+
 - Explicitly check that a searchterm was provided before adding it to the
   query string. This closes
   http://dev.plone.org/plone/ticket/9025
