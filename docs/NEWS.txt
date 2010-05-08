@@ -8,20 +8,21 @@ Changelog
 3.3.6 - Unreleased
 ------------------
 
-- Explicitly check that a searchterm was provided before adding it to the query string.
-  Fixes http://dev.plone.org/plone/ticket/9025
+- Explicitly check that a searchterm was provided before adding it to the
+  query string. This closes
+  http://dev.plone.org/plone/ticket/9025
   [blueaidan]
 
-- Fixed for state changed message is wroning for pending item
-  refs http://dev.plone.org/plone/ticket/10245
+- Fixed for state changed message is wroning for pending item. This closes
+  http://dev.plone.org/plone/ticket/10245
   [terapyon]
 
 - Altered table of contents javascript so that comments are not displayed.
   [dbfrombrc]
 
 - "Event when" improved for better i18n.  
-   This closes http://dev.plone.org/plone/ticket/10196
-   [gotcha]
+  This closes http://dev.plone.org/plone/ticket/10196
+  [gotcha]
 
 - Nested groups appear again in prefs_group_members. This was broken since
   Plone 3.3.2. This closes http://dev.plone.org/plone/ticket/10075
@@ -34,6 +35,7 @@ Changelog
 - Added missing event parameter to inputlabel's blur handler. This closes
   http://dev.plone.org/plone/ticket/10369
   [mj]
+
 
 3.3.5 - March 3rd, 2010
 -----------------------
