@@ -8,6 +8,10 @@ Changelog
 3.3.6 - Unreleased
 ------------------
 
+- MembershipTool.setPassword unnecessarily called the role assigner plugins
+  through acl_users.doChangeUser. Now use acl_users.userSetPassword directly.
+  [vincentfretin]
+
 - "(Requires Javascript)" is now translatable in accessibility-info.pt.
   This closes http://dev.plone.org/plone/ticket/10475
   [vincentfretin]

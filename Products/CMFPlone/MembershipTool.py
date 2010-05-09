@@ -251,15 +251,14 @@ class MembershipTool(PloneBaseTool, BaseTool):
                 if failMessage is not None:
                     raise BadRequest, failMessage
 
-            if domains is None:
-                domains = []
             user = acl_users.getUserById(member.getUserId(), None)
             # we must change the users password trough grufs changepassword
             # to keep her  group settings
             if hasattr(user, 'changePassword'):
                 user.changePassword(password)
             else:
-                acl_users._doChangeUser(member.getUserId(), password, member.getRoles(), domains)
+                if password is not None:
+                    acl_users.userSetPassword(member.getUserId(), password)
             self.credentialsChanged(password, REQUEST=REQUEST)
         else:
             raise BadRequest, 'Not logged in.'
