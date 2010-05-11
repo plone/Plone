@@ -8,6 +8,10 @@ Changelog
 4.0b4 - Unreleased
 ------------------
 
+- Report expiration of password resets for registration as an absolute time,
+  rather than a number of hours.
+  [davisagli]
+
 4.0b3 - 2010-05-03
 ------------------
 
