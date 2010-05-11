@@ -16,8 +16,7 @@
 
 <metal:main fill-slot="prefs_configlet_wrapper"
      tal:define="controlPanel context/portal_controlpanel;
-                 groups python:controlPanel.getGroups('site');
-                 getIconFor nocall:context/plone_utils/getIconFor">
+                 groups python:controlPanel.getGroups('site')">
 
 <tal:main-macro metal:define-macro="main"
                 tal:define="mt context/portal_migration;
@@ -105,7 +104,7 @@
                                         <li tal:condition="configlet/visible">
                                             <a href=""
                                                tal:attributes="href configlet/url">
-                                                <img src="" alt="" tal:attributes="src python:getIconFor('controlpanel',configlet['id']);"
+                                                <img src="" alt="" tal:attributes="src configlet/icon;"
                                                      tal:on-error="string:" />
                                             <tal:configletname tal:content="configlet/title"
                                                                i18n:translate=""></tal:configletname>

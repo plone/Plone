@@ -7,7 +7,6 @@
 <metal:portlet define-macro="portlet"
    tal:define="controlPanel python:modules['Products.CMFCore.utils'].getToolByName(here, 'portal_controlpanel');
                groups python:controlPanel.getGroups('site');
-               getIconFor nocall:context/plone_utils/getIconFor;
                portal_url context/portal_url;">
 
 <dl class="portlet"
@@ -32,7 +31,7 @@
                 <li tal:condition="configlet/visible">
                     <a href=""
                        tal:attributes="href configlet/url">
-                        <img src="" alt="" tal:attributes="src python:getIconFor('controlpanel',configlet['id']);
+                        <img src="" alt="" tal:attributes="src configlet/icon;
                                              alt configlet/description"
                              i18n:attributes="alt"
                              tal:on-error="string:" />

@@ -8,6 +8,12 @@ Changelog
 4.0b4 - Unreleased
 ------------------
 
+- Get configlet icons directly from the action, rather than using the
+  getIconFor helper.  This breaks the backwards-compatible fallback to the
+  action icons tool, but avoids re-evaluating all action conditions for each
+  configlet.
+  [davisagli]
+
 - Report expiration of password resets for registration as an absolute time,
   rather than a number of hours.
   [davisagli]
