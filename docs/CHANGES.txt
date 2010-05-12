@@ -8,6 +8,10 @@ Changelog
 4.0b4 - Unreleased
 ------------------
 
+- Use a mask to visually highlight modal overlays. Configurable in 
+  popupforms.js.
+  [smcmahon]
+
 - Update the ZMI security tab warning so it doesn't display outside of a Plone
   site.  This fixes http://dev.plone.org/plone/ticket/10521.
   [davisagli]

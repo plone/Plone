@@ -3,6 +3,7 @@
 ******/
 
 var common_content_filter = '#content>*:not(div.configlet),dl.portalMessage.error,dl.portalMessage.info';
+var common_jqt_config = {speed:'fast',mask:{color:'#000',opacity: 0.4,loadSpeed:0,closeSpeed:0}};
 
 jQuery(function($){
     
@@ -48,7 +49,8 @@ jQuery(function($){
                 } else {
                     return href;
                 }
-            }
+            }    ,
+            config: common_jqt_config
         }
     );
 
@@ -58,7 +60,8 @@ jQuery(function($){
             subtype: 'ajax',
             filter: common_content_filter,
             formselector: 'form',
-            noform: function(el) {return noformerrorshow(el, 'close');}
+            noform: function(el) {return noformerrorshow(el, 'close');},
+            config: common_jqt_config
         }
     );
 
@@ -70,7 +73,8 @@ jQuery(function($){
             formselector: 'form[name="default_page_form"]',
             noform: function(el) {return noformerrorshow(el, 'reload');},
             closeselector: '[name=form.button.Cancel]',
-            width:'40%'
+            width:'40%',
+            config: common_jqt_config
         }
     );
 
@@ -81,7 +85,8 @@ jQuery(function($){
             filter: common_content_filter,
             formselector: 'form',
             noform: function(el) {return noformerrorshow(el, 'reload');},
-            closeselector: '[name=form.button.Cancel]'
+            closeselector: '[name=form.button.Cancel]',
+            config: common_jqt_config
         }
     );
     
@@ -94,7 +99,8 @@ jQuery(function($){
             noform: function(el) {return noformerrorshow(el, 'redirect');},
             redirect: redirectbasehref,
             closeselector: '[name=form.button.Cancel]',
-            width:'50%'
+            width:'50%',
+            config: common_jqt_config
         }
     );
 
@@ -104,7 +110,8 @@ jQuery(function($){
             subtype: 'ajax',
             filter: common_content_filter,
             closeselector: '[name=form.button.Cancel]',
-            width:'40%'
+            width:'40%',
+            config: common_jqt_config
         }
     );
 
@@ -115,7 +122,8 @@ jQuery(function($){
             filter: common_content_filter,
             formselector: 'form',
             noform: function(el) {return noformerrorshow(el, 'reload');},
-            closeselector: '[name=form.button.Cancel]'
+            closeselector: '[name=form.button.Cancel]',
+            config: common_jqt_config
         }
     );
 
@@ -124,7 +132,8 @@ jQuery(function($){
         {
             subtype: 'ajax',
             filter: common_content_filter,
-            formselector: 'form.kssattr-formname-register'
+            formselector: 'form.kssattr-formname-register',
+            config: common_jqt_config
         }
     );
 
@@ -135,7 +144,8 @@ jQuery(function($){
             filter: common_content_filter,
             formselector: 'form.kssattr-formname-new-user, form[name="groups"]',
             noform: function(el) {return noformerrorshow(el, 'redirect');},
-            redirect: function () {return location.href;}
+            redirect: function () {return location.href;},
+            config: common_jqt_config
         }
     );
 
@@ -143,7 +153,8 @@ jQuery(function($){
     $('#content-history a').prepOverlay({
        subtype: 'ajax', 
        urlmatch: '@@historyview',
-       urlreplace: '@@contenthistorypopup'
+       urlreplace: '@@contenthistorypopup',
+       config: common_jqt_config
     });
 
 });
