@@ -8,6 +8,10 @@ Changelog
 4.0b4 - Unreleased
 ------------------
 
+- Update the ZMI security tab warning so it doesn't display outside of a Plone
+  site.  This fixes http://dev.plone.org/plone/ticket/10521.
+  [davisagli]
+
 - Get configlet icons directly from the action, rather than using the
   getIconFor helper.  This breaks the backwards-compatible fallback to the
   action icons tool, but avoids re-evaluating all action conditions for each
