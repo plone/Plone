@@ -3,9 +3,16 @@
 ******/
 
 var common_content_filter = '#content>*:not(div.configlet),dl.portalMessage.error,dl.portalMessage.info';
-var common_jqt_config = {speed:'fast',mask:{color:'#000',opacity: 0.4,loadSpeed:0,closeSpeed:0}};
+var common_jqt_config = {fixed:true,speed:'fast',mask:{color:'#000',opacity: 0.4,loadSpeed:0,closeSpeed:0}};
 
 jQuery(function($){
+
+    if (jQuery.browser.msie && parseInt(jQuery.browser.version) < 7) {
+        // it's not realistic to think we can deal with all the bugs
+        // of IE 6 and lower. Fortunately, all this is just progressive
+        // enhancement.
+        return;
+    }
     
     // method to show error message in a noform
     // situation.
