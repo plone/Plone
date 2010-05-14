@@ -8,6 +8,9 @@ Changelog
 4.0b4 - Unreleased
 ------------------
 
+- Fix bad test for valid paste data in object_paste.
+  [wichert]
+
 - Remove deprecated IndexIterator class and tabindex html attribute
   [edegoute]
 

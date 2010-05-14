@@ -16,7 +16,7 @@ from ZODB.POSException import ConflictError
 
 msg=_(u'Copy or cut one or more items to paste.')
 
-if context.cb_dataValid:
+if context.cb_dataValid():
     try:
         context.manage_pasteObjects(context.REQUEST['__cp'])        
         transaction_note('Pasted content to %s' % (context.absolute_url()))
