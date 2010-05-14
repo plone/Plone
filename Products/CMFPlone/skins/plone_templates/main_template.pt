@@ -101,9 +101,7 @@
             </tal:notajax>
 
             <tal:comment replace="nothing"> Start of main content block </tal:comment>
-            <td id="portal-column-content"
-                tal:define="Iterator python:modules['Products.CMFPlone'].IndexIterator;
-                            tabindex python:Iterator(mainSlot=False)">
+            <td id="portal-column-content">
 
               <div id="viewlet-above-content" tal:content="structure provider:plone.abovecontent" />
 

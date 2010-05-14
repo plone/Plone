@@ -7,8 +7,7 @@ may need to take the following changes into account.
 * The use_folder_tabs property in portal_properties/site_properties has been
   removed.
 
-* Products.CMFPlone.browser.ploneview.IndexIterator is now
-  Products.CMFPlone.utils.IndexIterator
+* Products.CMFPlone.browser.ploneview.IndexIterator has been removed
 
 * Products.CMFPlone.browser.ploneview.cache_decorator is now
   plone.memoize.instance.memoize
@@ -200,26 +199,26 @@ may need to take the following changes into account.
 * The action icons tool has been deprecated.  You should register action icons
   directly on the action now, using the icon_expr setting.
 
-* Products.CMFPlone.CatalogTool.registerIndexableAttribute has been removed. 
+* Products.CMFPlone.CatalogTool.registerIndexableAttribute has been removed.
   Use plone.indexer
 
-* "Manage portlets" fallback link appearing below content when no columns are 
-  available has been moved out from main_template to 
-  plone.manage_portlets_fallback viewlet. So if you have customized 
-  main_template you might need to update it. 
-  
-* Columns in templates are disabled the same way as "editor border" - via 
+* "Manage portlets" fallback link appearing below content when no columns are
+  available has been moved out from main_template to
+  plone.manage_portlets_fallback viewlet. So if you have customized
+  main_template you might need to update it.
+
+* Columns in templates are disabled the same way as "editor border" - via
   REQUEST variable now instead of empty fill-slot
-  
-* document_relateditems.pt template is deprecated. Use  
+
+* document_relateditems.pt template is deprecated. Use
   plone.belowcontentbody.relateditems viewlet instead.
-  
-* 'documentDescription' is <DIV> now. There should be a DIV for KSS to work 
-  properly, but nesting <p> within the <DIV> means we have different markup 
+
+* 'documentDescription' is <DIV> now. There should be a DIV for KSS to work
+  properly, but nesting <p> within the <DIV> means we have different markup
   for description on different views
-  
+
 * When creating new view for a custom content type you should fill
-  'content-core' slot instead of 'main'. All the surrounding of the 
+  'content-core' slot instead of 'main'. All the surrounding of the
   'content-core' slot is in main_template. And if you don't plan any special
-  title or description for your view, main_template will take care of that as 
+  title or description for your view, main_template will take care of that as
   well so you should really care about the content core only

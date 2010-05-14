@@ -11,7 +11,6 @@
 
 <div tal:define="checkPermission nocall:context/portal_membership/checkPermission;
                  actions python:context.portal_actions.listActionInfos('user/join', object=context);
-                 Iterator python:modules['Products.CMFPlone'].IndexIterator;
                  auth nocall:context/acl_users/credentials_cookie_auth|nothing;
                  came_from request/came_from|request/HTTP_REFERER|nothing;
                  came_from python:test(context.portal_url.isURLInPortal(came_from), came_from, None);

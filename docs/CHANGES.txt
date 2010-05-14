@@ -8,7 +8,10 @@ Changelog
 4.0b4 - Unreleased
 ------------------
 
-- Use a mask to visually highlight modal overlays. Configurable in 
+- Remove deprecated IndexIterator class and tabindex html attribute
+  [edegoute]
+
+- Use a mask to visually highlight modal overlays. Configurable in
   popupforms.js.
   [smcmahon]
 
@@ -63,7 +66,7 @@ Changelog
   points to the root, which makes the layout have an empty element. Probably
   needs to be fixed in the html_tag expression (e.g. if there isn't anything
   there, don't render). Should be good enough for beta3, but needs to be fixed
-  before RC. See LiveSearch results + Advanced Workflow + Collection view 
+  before RC. See LiveSearch results + Advanced Workflow + Collection view
   (e.g. "Events") for examples of this.
   Refs http://dev.plone.org/plone/ticket/10409,
        http://dev.plone.org/plone/ticket/10466
@@ -82,7 +85,7 @@ Changelog
   http://dev.plone.org/plone/ticket/10445)
   [davisagli]
 
-- Fixed folder_listing.pt so that it shows event dates in a cleaner way 
+- Fixed folder_listing.pt so that it shows event dates in a cleaner way
   (no more redundant listing of times + dates when and event is on one day
   has same start + end time)
   [jonstahl]

@@ -73,17 +73,6 @@ class TestSecurityDeclarations(RestrictedPythonTest):
                    'log = getLogger("testlog");'
                    'log.debug("test")')
 
-    def testImport_IndexIterator(self):
-        self.check('from Products.CMFPlone import IndexIterator')
-
-    def testAccess_IndexIterator(self):
-        self.check('from Products import CMFPlone;'
-                   'print CMFPlone.IndexIterator')
-
-    def testUse_IndexIterator(self):
-        self.check('from Products.CMFPlone import IndexIterator;'
-                   'print IndexIterator().next')
-
     def testImport_ObjectMoved(self):
         self.check('from Products.CMFCore.WorkflowCore import ObjectMoved')
 

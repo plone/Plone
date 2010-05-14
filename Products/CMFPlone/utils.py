@@ -217,65 +217,19 @@ def normalizeString(text, context=None, encoding=None):
     return queryUtility(IIDNormalizer).normalize(text)
 
 
-class IndexIterator(object):
-    """BBB: This iterator was us ed for tabindex use, but for accessibility 
-       reasons, we have deprecated it, and it now returns None always. Should 
-       be removed in Plone 4.0.
-       
-       Below are the different use cases we used to have, all return None now:
-
-        >>> i = IndexIterator(pos=10, mainSlot=True)
-        >>> i.next() is None
-        True
-
-       The default start value gets "None"
-
-        >>> i = IndexIterator(mainSlot=True)
-        >>> i.next() is None
-        True
-
-       Subsequent iterations will get None (thus removing the tabindex
-       attribute):
-
-        >>> i.next() is None
-        True
-
-       Outside the mainSlot all iterations will get None:
-
-        >>> i = IndexIterator(pos=10, mainSlot=False)
-        >>> i.next() is None
-        True
-
-        >>> i.next() is None
-        True
-
-        >>> i = IndexIterator(mainSlot=False)
-        >>> i.next() is None
-        True
+class RealIndexIterator(object):
+    """The 'real' version of the IndexIterator class, that's actually
+    used to generate unique indexes.
     """
     __allow_access_to_unprotected_subobjects__ = 1
 
-    def __init__(self, upper=100000, pos=1, mainSlot=True):
-        self.upper=upper
+    def __init__(self, pos=0):
         self.pos=pos
-        self.mainSlot=mainSlot
 
     def next(self):
-        return None
-
-class RealIndexIterator(object):
-    """The 'real' version of the IndexIterator class, that's actually 
-    used to generate unique indexes. 
-    """ 
-    __allow_access_to_unprotected_subobjects__ = 1 
-
-    def __init__(self, pos=0): 
-        self.pos=pos
-
-    def next(self): 
-        result=self.pos 
-        self.pos=self.pos+1 
-        return result 
+        result=self.pos
+        self.pos=self.pos+1
+        return result
 
 class ToolInit(CMFCoreToolInit):
 

@@ -37,15 +37,8 @@ def initialize(context):
     # various small utils functions
     # added for unescaping view names in urls when finding selected action
     ModuleSecurityInfo('urllib').declarePublic('unquote')
-    
+
     allow_module('Products.CMFPlone.utils')
-
-    # For form validation bits
-    from Products.CMFPlone.utils import IndexIterator
-    allow_class(IndexIterator)
-
-    # Make IndexIterator available at module level
-    this_module.IndexIterator = IndexIterator
 
     # For content_status_modify
     from Products.CMFCore.WorkflowCore import ObjectMoved, ObjectDeleted, \
