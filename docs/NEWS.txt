@@ -8,6 +8,12 @@ Changelog
 3.3.6 - Unreleased
 ------------------
 
+- Fixed wrong condition and double definition on join_form where
+  allowEnterPassword meant you were actually *not* allowed to enter a
+  password.  It worked fine but was confusingly stated the wrong way
+  around.
+  [maurits]
+
 - MembershipTool.setPassword unnecessarily called the role assigner plugins
   through acl_users.doChangeUser. Now use acl_users.userSetPassword directly.
   [vincentfretin]

@@ -20,8 +20,8 @@
                  mailhost context/MailHost/smtp_host|nothing;
                  mailfrom context/email_from_address|nothing;
                  site_properties context/portal_properties/site_properties;
-                 allowEnterPassword not:utool/getPortalObject/validate_email|nothing;
-                 mailpw site_properties/validate_email;
+                 portal utool/getPortalObject;
+                 allowEnterPassword not:portal/validate_email|nothing;
                  mailconfigured python:allowEnterPassword or (mailhost and mailfrom)">
 
   <h1 class="documentFirstHeading"
@@ -38,7 +38,6 @@
         class="enableAutoFocus enableUnloadProtection"
         method="post"
         tal:condition="mailconfigured"
-        tal:define="allowEnterPassword site_properties/validate_email|nothing;"
         tal:attributes="action template_id" >
 
       <input type="hidden" name="came_from" value=""
@@ -137,7 +136,7 @@
 
 
       <div class="field"
-           tal:condition="not: allowEnterPassword"
+           tal:condition="allowEnterPassword"
            tal:define="error errors/password | nothing;
                        password request/password | nothing;"
            tal:attributes="class python:test(error, 'field error', 'field')">
@@ -164,7 +163,7 @@
       </div>
 
       <div class="field"
-           tal:condition="not: allowEnterPassword"
+           tal:condition="allowEnterPassword"
            tal:define="error errors/password_confirm | nothing;
                        password_confirm request/password_confirm | nothing;"
            tal:attributes="class python:test(error, 'field error', 'field')">
@@ -192,7 +191,7 @@
       </div>
 
       <div class="field"
-           tal:condition="allowEnterPassword">
+           tal:condition="not:allowEnterPassword">
 
         <div class="formHelp" i18n:translate="label_password_change_mail">
           A URL will be generated and e-mailed to you; follow the link
