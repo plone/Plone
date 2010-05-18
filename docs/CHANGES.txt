@@ -15,7 +15,8 @@ Changelog
   [edegoute]
 
 - Use a mask to visually highlight modal overlays. Configurable in
-  popupforms.js.
+  popupforms.js. Set a common set of configuration options, defaulting
+  to overlays that use absolute positioning.
   [smcmahon]
 
 - Update the ZMI security tab warning so it doesn't display outside of a Plone
