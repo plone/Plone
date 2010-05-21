@@ -8,6 +8,10 @@ Changelog
 4.0b4 - Unreleased
 ------------------
 
+- Removed empty HTML tags from listings when an item in the listing has no
+  description.
+  [spliter]
+
 - Fix bad test for valid paste data in object_paste.
   [wichert]
 

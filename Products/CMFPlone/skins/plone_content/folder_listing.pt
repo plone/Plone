@@ -163,13 +163,8 @@
 
                 </dt>
 
-                <dd>
-                    <span tal:omit-tag=""
-                          tal:condition="not:item_description">
-                        &nbsp;
-                    </span>
+                <dd tal:condition="item_description">
                     <span class="description"
-                           tal:condition="item_description"
                            tal:content="item_description">
                         description
                     </span>
