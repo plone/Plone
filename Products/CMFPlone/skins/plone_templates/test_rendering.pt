@@ -103,6 +103,26 @@ Headlines
 
 <h1>Document Headline</h1>
 
+<div id="plone-document-byline" class="documentByLine">
+    <span class="documentAuthor">
+      by
+      <a href="http://localhost:8080/Plone/author/admin">admin</a>
+    </span>
+  
+   <span class="documentModified">
+     &mdash;
+     <span>
+       last modified
+     </span>
+     May 21, 2010 10:02 AM
+   </span>
+   
+   <span id="content-history" class="contentHistory">
+     &mdash;
+     <a href="http://localhost:8080/Plone/front-page/@@historyview" rel="#pb_4" class="link-overlay" style="cursor: pointer;">History</a>
+   </span>
+</div>
+
 <div class="documentDescription">
 The document description
 </div>
