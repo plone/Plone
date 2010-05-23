@@ -6,7 +6,7 @@
  <property name="description"
       i18n:translate="">Images can be referenced in documents or displayed in an album.</property>
  <property name="icon_expr"></property>
- <property name="content_meta_type">ATImage</property>
+ <property name="content_meta_type">ATBlob</property>
  <property name="product">plone.app.blob</property>
  <property name="factory">addATBlobImage</property>
  <property name="immediate_view">image_view</property>

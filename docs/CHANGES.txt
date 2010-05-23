@@ -8,6 +8,9 @@ Changelog
 4.0b4 - Unreleased
 ------------------
 
+- Set the correct meta_type for files and images.
+  [hannosch]
+
 - Removed the Large Plone Folder portal_type and LargePloneFolder class.
   Instead, use a normal ATFolder from plone.app.folder, with its ``ordering``
   attribute set to u'unordered'. Existing Large Plone Folders will get
