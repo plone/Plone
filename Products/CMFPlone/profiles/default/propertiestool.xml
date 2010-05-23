@@ -16,7 +16,6 @@
   <property name="idsNotToList" type="lines"/>
   <property name="parentMetaTypesNotToQuery" type="lines">
    <element value="TempFolder"/>
-   <element value="Large Plone Folder"/>
   </property>
   <property name="metaTypesNotToList" type="lines">
    <element value="ATBooleanCriterion"/>
@@ -74,7 +73,6 @@
   <property name="search_results_description_length" type="int">160</property>
   <property name="ellipsis" type="string">...</property>
   <property name="typesLinkToFolderContentsInFC" type="lines">
-   <element value="Large Plone Folder"/>
    <element value="Folder"/>
   </property>
   <property name="visible_ids" type="boolean">False</property>

@@ -51,11 +51,6 @@
       <role name="Owner"/>
       <role name="Contributor"/>
     </permission>
-    <permission name="ATContentTypes: Add Large Plone Folder" acquire="True">
-      <role name="Manager"/>
-      <role name="Owner"/>
-      <role name="Contributor"/>
-    </permission>
     <permission name="ATContentTypes: Add Link" acquire="True">
       <role name="Manager"/>
       <role name="Owner"/>

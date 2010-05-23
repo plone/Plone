@@ -10,7 +10,6 @@ from Products.CMFPlone.utils import _createObjectByType
 from AccessControl import Unauthorized
 from Products.CMFCore.permissions import DeleteObjects
 
-from zExceptions import NotFound
 from zExceptions import BadRequest
 
 
@@ -42,10 +41,6 @@ class TestCheckIdAvailable(PloneTestCase.PloneTestCase):
     # zExceptions.BadRequest.
     # Fixed in CMFCore.PortalFolder, not Plone.
 
-    def afterSetUp(self):
-        _createObjectByType('Large Plone Folder', self.folder, 'lpf')
-        self.lpf = self.folder.lpf
-
     def testSetObjectRaisesBadRequest(self):
         # _setObject() should raise zExceptions.BadRequest
         # on duplicate id.
@@ -68,29 +63,6 @@ class TestCheckIdAvailable(PloneTestCase.PloneTestCase):
         # checkIdAvailable() should catch zExceptions.BadRequest
         self.folder._setObject('foo', dummy.Item())
         self.failIf(self.folder.checkIdAvailable('foo'))
-
-    def testLPFSetObjectRaisesBadRequest(self):
-        # _setObject() should raise zExceptions.BadRequest
-        # on duplicate id.
-        self.lpf._setObject('foo', dummy.Item())
-        try:
-            self.lpf._setObject('foo', dummy.Item())
-        except BadRequest:
-            pass
-
-    def testLPFCheckIdRaisesBadRequest(self):
-        # _checkId() should raise zExceptions.BadRequest
-        # on duplicate id.
-        self.lpf._setObject('foo', dummy.Item())
-        try:
-            self.lpf._checkId('foo')
-        except BadRequest:
-            pass
-
-    def testLPFCheckIdAvailableCatchesBadRequest(self):
-        # checkIdAvailable() should catch zExceptions.BadRequest
-        self.lpf._setObject('foo', dummy.Item())
-        self.failIf(self.lpf.checkIdAvailable('foo'))
 
 
 class TestFolderListing(PloneTestCase.PloneTestCase):

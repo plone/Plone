@@ -147,7 +147,6 @@ class TestPloneTool(PloneTestCase.PloneTestCase):
         # Make sure typesToList() returns the expected types
         wl = self.utils.typesToList()
         self.failUnless('Folder' in wl)
-        self.failUnless('Large Plone Folder' in wl)
         self.failUnless('Topic' in wl)
         self.failIf('ATReferenceCriterion' in wl)
 

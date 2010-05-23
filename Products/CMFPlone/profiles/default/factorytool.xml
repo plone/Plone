@@ -6,7 +6,6 @@
   <type portal_type="File"/>
   <type portal_type="Folder"/>
   <type portal_type="Image"/>
-  <type portal_type="Large Plone Folder"/>
   <type portal_type="Link"/>
   <type portal_type="News Item"/>
   <type portal_type="Topic"/>

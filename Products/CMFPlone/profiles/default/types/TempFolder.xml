@@ -18,7 +18,6 @@
   <element value="File"/>
   <element value="Folder"/>
   <element value="Image"/>
-  <element value="Large Plone Folder"/>
   <element value="Link"/>
   <element value="News Item"/>
   <element value="TempFolder"/>

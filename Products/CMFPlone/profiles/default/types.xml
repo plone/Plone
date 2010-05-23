@@ -35,8 +35,6 @@
     meta_type="Factory-based Type Information with dynamic views"/>
  <object name="Image"
     meta_type="Factory-based Type Information with dynamic views"/>
- <object name="Large Plone Folder"
-    meta_type="Factory-based Type Information with dynamic views"/>
  <object name="Link"
     meta_type="Factory-based Type Information with dynamic views"/>
  <object name="News Item"

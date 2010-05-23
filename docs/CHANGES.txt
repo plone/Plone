@@ -8,6 +8,12 @@ Changelog
 4.0b4 - Unreleased
 ------------------
 
+- Removed the Large Plone Folder portal_type and LargePloneFolder class.
+  Instead, use a normal ATFolder from plone.app.folder, with its ``ordering``
+  attribute set to u'unordered'. Existing Large Plone Folders will get
+  migrated when upgrading from older versions of Plone.
+  [davisagli]
+
 - Removed empty HTML tags from listings when an item in the listing has no
   description.
   [spliter]

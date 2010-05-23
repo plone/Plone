@@ -61,7 +61,6 @@ class AuthenticatorTestCase(ptc.FunctionalTestCase):
         self.assertEqual(infoFor(frontpage, 'review_state'), 'published')
 
     def test_PloneTool_renameObjectsByPaths(self):
-        self.portal.portal_types['Large Plone Folder'].global_allow = True
         self.failIf(self.portal.get('foo', None))
         self.checkAuthenticator('/plone_utils/renameObjectsByPaths',
             'paths:list=events&new_ids:list=foo&new_titles:list=Foo')

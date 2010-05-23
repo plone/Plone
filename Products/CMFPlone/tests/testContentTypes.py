@@ -12,7 +12,7 @@ from Products.ATContentTypes.interfaces import IATContentType
 AddPortalTopics = 'Add portal topics'
 
 atct_types = ('Document', 'Event', 'File', 'Folder',
-              'Large Plone Folder', 'Image', 'Link', 'News Item',
+              'Image', 'Link', 'News Item',
              )
 
 

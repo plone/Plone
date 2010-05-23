@@ -98,13 +98,6 @@ class TestPortalCreation(PloneTestCase.PloneTestCase, WarningInterceptor):
         # The workflow tool is one of the last remaining action providers.
         self.failUnless('portal_workflow' in self.actions.listActionProviders())
 
-    def testLargePloneFolderWorkflow(self):
-        # Large Plone Folder should use folder_workflow
-        # http://dev.plone.org/plone/ticket/2744
-        lpf_chain = self.workflow.getChainFor('Large Plone Folder')
-        self.failUnless('folder_workflow' in lpf_chain)
-        self.failIf('plone_workflow' in lpf_chain)
-
     def testMembersFolderMetaType(self):
         # Members folder should have meta_type 'ATFolder'
         members = self.membership.getMembersFolder()
@@ -204,8 +197,6 @@ class TestPortalCreation(PloneTestCase.PloneTestCase, WarningInterceptor):
         # navtree_properties should contain the new properties
         self.failUnless(self.properties.navtree_properties.hasProperty('metaTypesNotToList'))
         self.failUnless(self.properties.navtree_properties.hasProperty('parentMetaTypesNotToQuery'))
-        self.failUnless('Large Plone Folder' in
-                            self.properties.navtree_properties.getProperty('parentMetaTypesNotToQuery'))
         self.failUnless(self.properties.navtree_properties.hasProperty('sortAttribute'))
         self.failUnless(self.properties.navtree_properties.hasProperty('sortOrder'))
         self.failUnless(self.properties.navtree_properties.hasProperty('sitemapDepth'))
@@ -236,7 +227,6 @@ class TestPortalCreation(PloneTestCase.PloneTestCase, WarningInterceptor):
         # We should have a default_page_types property
         self.failUnless(self.properties.site_properties.hasProperty('default_page_types'))
         self.failUnless('Folder' not in self.properties.site_properties.getProperty('default_page_types'))
-        self.failUnless('Large Plone Folder' not in self.properties.site_properties.getProperty('default_page_types'))
         self.failUnless('Topic' in self.properties.site_properties.getProperty('default_page_types'))
 
     def testNoMembersAction(self):
@@ -364,7 +354,7 @@ class TestPortalCreation(PloneTestCase.PloneTestCase, WarningInterceptor):
     def testDefaultTypesInPortalFactory(self):
         types = self.factory.getFactoryTypes().keys()
         for metaType in ('Document', 'Event', 'File', 'Folder', 'Image',
-                         'Folder', 'Large Plone Folder', 'Link', 'News Item',
+                         'Folder', 'Link', 'News Item',
                          'Topic'):
             self.failUnless(metaType in types)
 
@@ -825,7 +815,6 @@ class TestPortalCreation(PloneTestCase.PloneTestCase, WarningInterceptor):
         for p in ['Add portal content', 'Add portal folders', 'ATContentTypes: Add Document',
                     'ATContentTypes: Add Event',
                     'ATContentTypes: Add File', 'ATContentTypes: Add Folder',
-                    'ATContentTypes: Add Image', 'ATContentTypes: Add Large Plone Folder',
                     'ATContentTypes: Add Link', 'ATContentTypes: Add News Item', ]:
             self.failUnless(p in [r['name'] for r in
                                 self.portal.permissionsOfRole('Contributor') if r['selected']])
