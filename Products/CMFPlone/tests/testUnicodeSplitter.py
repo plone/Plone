@@ -14,7 +14,8 @@ from Products.Five.eventconfigure import setDeprecatedManageAddDelete
 
 
 import locale
-LATIN1 = ('en_US.ISO8859-15', 'en_GB.ISO8859-15', 'de_DE@euro', 'fr_FR@euro', 'nl_NL@euro')
+LATIN1 = ('en_US.ISO-8859-1', 'en_US.ISO8859-15', 'en_GB.ISO8859-15',
+          'de_DE@euro', 'fr_FR@euro', 'nl_NL@euro')
 
 def _setlocale(*names):
     saved = locale.setlocale(locale.LC_ALL)
