@@ -6,6 +6,7 @@ For what's new in this release, see CHANGES.txt.
 3.3.5 - Unreleased
 ------------------
 
+- fixed http://dev.plone.org/plone/ticket/10486 [gborelli, simahawk]
 - Check for existance of a hash in the location before attempting to scroll to
   that location in toc.js. Fixes bug introduced in r32066, and refs
   http://dev.plone.org/plone/ticket/9364
