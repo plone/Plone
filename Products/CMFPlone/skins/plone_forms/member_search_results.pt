@@ -32,31 +32,30 @@
                 <span i18n:name="number" tal:omit-tag="" tal:content="python:len(results)">234</span> items matching your search terms
             </strong>
 
-            <div metal:use-macro="here/batch_macros/macros/navigation" />
+            <div metal:use-macro="here/batch_macros/macros/navigation"/>
 
-            <div>
-            <metal:block tal:repeat="result batch">
+            <div tal:define="pm context/@@plone_tools/membership;
+                             portal_url context/@@plone_portal_state/portal_url">
+             <metal:block tal:repeat="result batch">
                 <div class="card" tal:define="userid result/userid | nothing;
-                                              fullname result/fullname | nothing;
-                                              home python:container.portal_membership.getHomeUrl(userid, verifyPermission=1);
-                                              portrait python: here.portal_membership.getPersonalPortrait(userid);">
-                    <a href="#" tal:attributes="href home">
-                        <img src="defaultUser.png"
-                             alt=""
-                             border="0"
-                             width="75"
-                             height="100"
-                             tal:attributes="src portrait/absolute_url" />
-                        <br />
-                        <span tal:content="userid">user id</span>
-                        <span tal:condition="fullname">
+                                              personal_info python:pm.getMemberInfo(userid) or {};
+                                              home python:pm.getHomeUrl(userid, verifyPermission=1);
+                                              portrait python:pm.getPersonalPortrait(userid);">
+
+                        <a href="#"
+                           tal:attributes="href python:home or '%s/author/%s' % (portal_url, userid)">
+                            <img src="defaultUser.png"
+                                 alt=""
+                                 border="0"
+                                 width="75"
+                                 height="100"
+                                 tal:attributes="src portrait/absolute_url" />
                             <br />
-                            (<span tal:content="fullname">fullname</span>)
-                        </span>
-                    </a>
-                    <br />
+                            <span tal:content="python:personal_info.get('fullname', userid)">user id</span>
+                        </a>
+
                 </div>
-            </metal:block>
+             </metal:block>
             </div>
 
             <div class="visualClear" id="clear-space-before-navigation"><!-- --></div>
