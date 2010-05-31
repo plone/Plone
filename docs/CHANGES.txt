@@ -8,6 +8,10 @@ Changelog
 4.0b4 - Unreleased
 ------------------
 
+- Ensure text is shown for the various Collection views. This fixes
+  https://dev.plone.org/plone/ticket/10226
+  [pelle]
+
 - Set the correct meta_type for files and images.
   [hannosch]
 
