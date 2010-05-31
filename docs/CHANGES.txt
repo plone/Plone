@@ -8,6 +8,11 @@ Changelog
 4.0b4 - Unreleased
 ------------------
 
+- Updated the description_user_management default message in
+  plone_deprecated/prefs_users_overview.cpt to be the same as
+  plone/app/controlpanel/usergroups_usersoverview.pt
+  [vincentfretin]
+
 - Ensure text is shown for the various Collection views. This fixes
   http://dev.plone.org/plone/ticket/10226
   [pelle]
