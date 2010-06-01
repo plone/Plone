@@ -35,7 +35,7 @@
                 You will receive an e-mail shortly containing a URL that will allow you to
                 set your password. When you receive this e-mail, please follow the link to
                 complete your registration process. NOTE: The password reset URL will expire
-                at <span tal:replace="expire_date" i18n:name="time"/>. If your
+                on <span tal:replace="expire_date" i18n:name="time"/>. If your
                 password reset request expires, you may use the "Forgot your password" link
                 to generate another password reset request.
             </p>
