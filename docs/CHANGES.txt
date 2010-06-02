@@ -8,6 +8,9 @@ Changelog
 4.0b4 - Unreleased
 ------------------
 
+- Fix FactoryTool to mangle REQUEST.BASEn correctly.
+  [elro]
+
 - Updated the description_user_management default message in
   plone_deprecated/prefs_users_overview.cpt to be the same as
   plone/app/controlpanel/usergroups_usersoverview.pt
