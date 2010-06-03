@@ -5,7 +5,7 @@
 Changelog
 =========
 
-4.0b4 - Unreleased
+4.0b4 - 2010-06-03
 ------------------
 
 - Fix FactoryTool to mangle REQUEST.BASEn correctly.
