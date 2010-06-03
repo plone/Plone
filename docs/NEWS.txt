@@ -8,6 +8,9 @@ Changelog
 3.3.6 - Unreleased
 ------------------
 
+- Fix FactoryTool to mangle REQUEST.BASEn correctly. (Merged [36902]).
+  [elro]
+
 - Fixed wrong condition and double definition on join_form where
   allowEnterPassword meant you were actually *not* allowed to enter a
   password.  It worked fine but was confusingly stated the wrong way
