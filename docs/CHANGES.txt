@@ -8,6 +8,11 @@ Changelog
 4.0b5 - Unreleased
 ------------------
 
+- Make the jQueryTools overlay configuration options in popupforms.js be
+  the default overlay configuration for jQueryTools so that popup forms in
+  other add ons look similar.
+  [smcmahon]
+
 4.0b4 - 2010-06-03
 ------------------
 

@@ -1,13 +1,18 @@
+/*jslint browser: true, laxbreak: true */
+/*global jQuery */
+
 /******
     Standard popups
 ******/
 
 var common_content_filter = '#content>*:not(div.configlet),dl.portalMessage.error,dl.portalMessage.info';
 var common_jqt_config = {fixed:false,speed:'fast',mask:{color:'#000',opacity: 0.4,loadSpeed:0,closeSpeed:0}};
+jQuery.extend(jQuery.tools.overlay.conf, common_jqt_config);
+
 
 jQuery(function($){
 
-    if (jQuery.browser.msie && parseInt(jQuery.browser.version) < 7) {
+    if (jQuery.browser.msie && parseInt(jQuery.browser.version, 10) < 7) {
         // it's not realistic to think we can deal with all the bugs
         // of IE 6 and lower. Fortunately, all this is just progressive
         // enhancement.
@@ -56,8 +61,7 @@ jQuery(function($){
                 } else {
                     return href;
                 }
-            }    ,
-            config: common_jqt_config
+            }
         }
     );
 
@@ -67,8 +71,7 @@ jQuery(function($){
             subtype: 'ajax',
             filter: common_content_filter,
             formselector: 'form',
-            noform: function(el) {return noformerrorshow(el, 'close');},
-            config: common_jqt_config
+            noform: function(el) {return noformerrorshow(el, 'close');}
         }
     );
 
@@ -80,8 +83,7 @@ jQuery(function($){
             formselector: 'form[name="default_page_form"]',
             noform: function(el) {return noformerrorshow(el, 'reload');},
             closeselector: '[name=form.button.Cancel]',
-            width:'40%',
-            config: common_jqt_config
+            width:'40%'
         }
     );
 
@@ -92,8 +94,7 @@ jQuery(function($){
             filter: common_content_filter,
             formselector: 'form',
             noform: function(el) {return noformerrorshow(el, 'reload');},
-            closeselector: '[name=form.button.Cancel]',
-            config: common_jqt_config
+            closeselector: '[name=form.button.Cancel]'
         }
     );
     
@@ -106,8 +107,7 @@ jQuery(function($){
             noform: function(el) {return noformerrorshow(el, 'redirect');},
             redirect: redirectbasehref,
             closeselector: '[name=form.button.Cancel]',
-            width:'50%',
-            config: common_jqt_config
+            width:'50%'
         }
     );
 
@@ -117,8 +117,7 @@ jQuery(function($){
             subtype: 'ajax',
             filter: common_content_filter,
             closeselector: '[name=form.button.Cancel]',
-            width:'40%',
-            config: common_jqt_config
+            width:'40%'
         }
     );
 
@@ -129,8 +128,7 @@ jQuery(function($){
             filter: common_content_filter,
             formselector: 'form',
             noform: function(el) {return noformerrorshow(el, 'reload');},
-            closeselector: '[name=form.button.Cancel]',
-            config: common_jqt_config
+            closeselector: '[name=form.button.Cancel]'
         }
     );
 
@@ -139,8 +137,7 @@ jQuery(function($){
         {
             subtype: 'ajax',
             filter: common_content_filter,
-            formselector: 'form.kssattr-formname-register',
-            config: common_jqt_config
+            formselector: 'form.kssattr-formname-register'
         }
     );
 
@@ -151,8 +148,7 @@ jQuery(function($){
             filter: common_content_filter,
             formselector: 'form.kssattr-formname-new-user, form[name="groups"]',
             noform: function(el) {return noformerrorshow(el, 'redirect');},
-            redirect: function () {return location.href;},
-            config: common_jqt_config
+            redirect: function () {return location.href;}
         }
     );
 
@@ -160,8 +156,7 @@ jQuery(function($){
     $('#content-history a').prepOverlay({
        subtype: 'ajax', 
        urlmatch: '@@historyview',
-       urlreplace: '@@contenthistorypopup',
-       config: common_jqt_config
+       urlreplace: '@@contenthistorypopup'
     });
 
 });
