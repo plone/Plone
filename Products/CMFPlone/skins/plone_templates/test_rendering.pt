@@ -144,15 +144,19 @@ example <a href="irc://some.network/#channel">IRC link</a>.
 </p>
 
 <ul>
-    <li>Unordered list element 1</li>
-    <li><ul><li>Unordered list subelement 1</li></ul></li>
+    <li>Unordered list element 1
+        <ul>
+            <li>Unordered list subelement 1</li>
+        </ul>
+    </li>
     <li>Unordered list element 2</li>
     <li>Unordered list element 3</li>
 </ul>
 
 <ol>
-    <li>Ordered list element 1</li>
-    <li><ol><li>Ordered list subelement 1</li></ol></li>
+    <li>Ordered list element 1
+        <ol><li>Ordered list subelement 1</li></ol>
+    </li>
     <li>Ordered list element 2</li>
     <li>Ordered list element 3</li>
 </ol>
