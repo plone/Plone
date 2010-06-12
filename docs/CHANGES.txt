@@ -8,6 +8,9 @@ Changelog
 4.0b5 - Unreleased
 ------------------
 
+- Avoid using the deprecated five:implements directive.
+  [hannosch]
+
 - Avoid testing dependency on zope.app.testing.
   [hannosch]
 
