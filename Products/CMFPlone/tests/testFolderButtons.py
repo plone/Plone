@@ -307,7 +307,8 @@ class TestObjectActions(PloneTestCase.FunctionalTestCase):
         objectUrl = self.folder.d1.absolute_url()
         origTemplate = self.folder.d1.absolute_url() + '/document_view?foo=bar'
 
-        response = self.publish(objPath + '/object_rename', self.basic_auth, extra={'HTTP_REFERER' : origTemplate})
+        response = self.publish(objPath + '/object_rename', self.basic_auth,
+                                env={'HTTP_REFERER' : origTemplate})
 
         self.assertStatusEqual(response.getStatus(), 302) # Redirect to edit
         
@@ -366,7 +367,8 @@ class TestObjectActions(PloneTestCase.FunctionalTestCase):
         
         origTemplate = objectUrl + '/document_view?foo=bar'
 
-        response = self.publish(objPath + '/object_rename', self.basic_auth, extra={'HTTP_REFERER' : origTemplate})
+        response = self.publish(objPath + '/object_rename', self.basic_auth,
+                                env={'HTTP_REFERER' : origTemplate})
 
         self.assertStatusEqual(response.getStatus(), 302) # Redirect to edit
         

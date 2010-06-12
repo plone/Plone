@@ -33,7 +33,7 @@ class TestCookieAuth(PloneTestCase.FunctionalTestCase):
 
     def testInsufficientPrivileges(self):
         # Should send us to login_form
-        response = self.publish(self.folder_path, extra={'__ac': self.cookie})
+        response = self.publish(self.folder_path, env={'__ac': self.cookie})
         self.assertEqual(response.getStatus(), 302)
 
         location = response.getHeader('Location')

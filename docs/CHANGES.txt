@@ -8,6 +8,9 @@ Changelog
 4.0b5 - Unreleased
 ------------------
 
+- No longer use the extra argument to the functional tests publish method.
+  [hannosch]
+
 - Make the jQueryTools overlay configuration options in popupforms.js be
   the default overlay configuration for jQueryTools so that popup forms in
   other add ons look similar.
