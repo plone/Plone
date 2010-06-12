@@ -53,8 +53,8 @@ a po file and automatically translated by PTS or the Z3 translation service.
   ...     ('de', u'mail-notification'): u'Sie haben ${number} neue E-Mails.'}
   >>> mails = SimpleTranslationDomain('plone', messages)
 
-  >>> from zope.app.testing.ztapi import provideUtility
-  >>> provideUtility(ITranslationDomain, mails, 'plone')
+  >>> from zope.component import provideUtility
+  >>> provideUtility(mails, ITranslationDomain, name='plone')
 
 Define the simple message:
 

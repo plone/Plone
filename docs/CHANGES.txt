@@ -8,6 +8,9 @@ Changelog
 4.0b5 - Unreleased
 ------------------
 
+- Avoid testing dependency on zope.app.testing.
+  [hannosch]
+
 - No longer use the extra argument to the functional tests publish method.
   [hannosch]
 

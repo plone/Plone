@@ -836,7 +836,7 @@ class TestPortalCreation(PloneTestCase.PloneTestCase, WarningInterceptor):
         self.assertEquals(False, self.properties.site_properties.disable_nonfolderish_sections)
 
     def testPortalContentLanguage(self):
-        from zope.app.testing.ztapi import provideUtility
+        from zope.component import provideUtility
         from zope.i18n.interfaces import ITranslationDomain
         from zope.i18n.simpletranslationdomain import SimpleTranslationDomain
 
@@ -846,7 +846,7 @@ class TestPortalCreation(PloneTestCase.PloneTestCase, WarningInterceptor):
             ('pt_BR', u'news-title'): u'Bar',
         }
         pfp = SimpleTranslationDomain('plonefrontpage', messages)
-        provideUtility(ITranslationDomain, pfp, 'plonefrontpage')
+        provideUtility(pfp, ITranslationDomain, name='plonefrontpage')
 
         # Setup the new placeholder folders
         self.folder.invokeFactory('Folder', 'brazilian')

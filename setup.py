@@ -31,7 +31,6 @@ setup(name='Plone',
       extras_require=dict(
         test=[
           'Products.PloneTestCase',
-          'zope.app.testing',
           'zope.testing',
         ]),
       install_requires=[
