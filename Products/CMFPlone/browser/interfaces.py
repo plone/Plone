@@ -196,6 +196,10 @@ class IPlone(Interface):
             string.
         """
 
+    def normalizeString(text):
+        """Normalizes a title to an id.
+        """
+
     def isDefaultPageInFolder():
         """ Returns a boolean indicating whether the current context is the
             default page of its parent folder.

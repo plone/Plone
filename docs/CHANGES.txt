@@ -8,6 +8,14 @@ Changelog
 4.0b5 - Unreleased
 ------------------
 
+- Added normalizeString to the Plone view interface, where the declaration was
+  missing.
+  [davisagli]
+
+- Add a contenttype class to the items listed in select_default_page.cpt, so
+  they can get sprited icons. Fixes http://dev.plone.org/plone/ticket/10577.
+  [davisagli]
+
 - Add a contenttype class to the links in the livesearch results, so that
   they can get sprited icons. Fixes http://dev.plone.org/plone/ticket/10512.
   [davisagli]
