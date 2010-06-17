@@ -8,6 +8,10 @@ Changelog
 4.0b5 - Unreleased
 ------------------
 
+- Add a contenttype class to the links in the livesearch results, so that
+  they can get sprited icons. Fixes http://dev.plone.org/plone/ticket/10512.
+  [davisagli]
+
 - Avoid using the deprecated five:implements directive.
   [hannosch]
 

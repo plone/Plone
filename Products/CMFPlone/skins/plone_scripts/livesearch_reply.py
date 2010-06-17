@@ -119,18 +119,15 @@ else:
         itemUrl = itemUrl + searchterm_query
 
         write('''<li class="LSRow">''')
-        if icon.url is not None and icon.description is not None:
-            write('''<img src="%s" alt="%s" width="%i" height="%i" />''' % (icon.url,
-                                                                            icon.description,
-                                                                            icon.width,
-                                                                            icon.height))
+        write(icon.html_tag() or '')
         full_title = safe_unicode(pretty_title_or_id(result))
         if len(full_title) > MAX_TITLE:
             display_title = ''.join((full_title[:MAX_TITLE],'...'))
         else:
             display_title = full_title
         full_title = full_title.replace('"', '&quot;')
-        write('''<a href="%s" title="%s">%s</a>''' % (itemUrl, full_title, display_title))
+        klass = 'contenttype-%s' % ploneUtils.normalizeString(result.portal_type)
+        write('''<a href="%s" title="%s" class="%s">%s</a>''' % (itemUrl, full_title, klass, display_title))
         write('''<span class="discreet" dir="%s">[%s%%]</span>''' % (test(portal_state.is_rtl(), 'rtl', 'ltr'), result.data_record_normalized_score_))
         display_description = safe_unicode(result.Description)
         if len(display_description) > MAX_DESCRIPTION:
