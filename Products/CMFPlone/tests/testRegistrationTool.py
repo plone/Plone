@@ -1,6 +1,7 @@
 #
 # Tests the registration tool
 #
+import unittest
 
 from email import message_from_string
 from zope.component import getSiteManager
@@ -10,6 +11,7 @@ from AccessControl import Unauthorized
 from Products.CMFCore.permissions import AddPortalMember
 from Products.CMFPlone.tests.utils import MockMailHost
 from Products.MailHost.interfaces import IMailHost
+from Products.CMFPlone.RegistrationTool import _checkEmail
 
 member_id = 'new_member'
 
@@ -180,10 +182,35 @@ class TestPasswordGeneration(PloneTestCase.PloneTestCase):
         rc = self.registration.generateResetCode(salt)
         self.assertEqual(rc, self.registration.generateResetCode(salt))
 
+class TestEmailValidityChecker(unittest.TestCase):
+    
+    check = lambda _, email: _checkEmail(email)
+    
+    def test_generic_tld(self):
+        result = self.check("webmaster@example.org")
+        self.assertTrue(*result)
+    
+    def test_normal_cc_tld(self):
+        result = self.check("webmaster@example.co.uk")
+        self.assertTrue(*result)
+    
+    def test_idn_cc_tld(self):
+        result = self.check(u"webmaster@example.xn--wgbh1c")
+        self.assertTrue(*result)
+    
+    def test_long_tld(self):
+        result = self.check(u"webmaster@example.onion")
+        self.assertTrue(*result)
+
+class TestRegistrationToolEmailValidityChecker(PloneTestCase.PloneTestCase):
+    
+    check = lambda _, email: _.portal.portal_registration.isValidEmail(email)
 
 def test_suite():
     from unittest import TestSuite, makeSuite
     suite = TestSuite()
     suite.addTest(makeSuite(TestRegistrationTool))
     suite.addTest(makeSuite(TestPasswordGeneration))
+    suite.addTest(makeSuite(TestEmailValidityChecker))
+    suite.addTest(makeSuite(TestRegistrationToolEmailValidityChecker))
     return suite

@@ -369,7 +369,7 @@ _TESTS = ( ( re.compile("^[0-9a-zA-Z\.\-\_\+\']+\@[0-9a-zA-Z\.\-]+$")
            , True
            , "Failed d"
            )
-         , ( re.compile(".\.\-.|.\-\..|.\.\..|.\-\-.")
+         , ( re.compile(".\.\-.|.\-\..|.\.\..|.!(xn)\-\-.")
            , False
            , "Failed e"
            )
@@ -377,7 +377,7 @@ _TESTS = ( ( re.compile("^[0-9a-zA-Z\.\-\_\+\']+\@[0-9a-zA-Z\.\-]+$")
            , False
            , "Failed f"
            )
-         , ( re.compile(".\.([a-zA-Z]{2,3})$|.\.([a-zA-Z]{2,4})$")
+         , ( re.compile("(.\.([a-zA-Z]{2,}))$|(.\.(xn--[0-9a-z]+))$")
            , True
            , "Failed g"
            )
