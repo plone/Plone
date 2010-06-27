@@ -8,6 +8,9 @@ Changelog
 4.0b5 - Unreleased
 ------------------
 
+- Better icon for the theme control panel. (Thanks, Tango!)
+  [limi]
+
 - Re add the non-sprite icons to the File and Image FTIs. (These are used only
   for the add menu. File and image instances get icons based on the mimetype.)
   [davisagli]
