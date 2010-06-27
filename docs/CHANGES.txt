@@ -7,6 +7,10 @@ Changelog
 
 4.0b5 - Unreleased
 ------------------
+- Removing action links from Events, since they are in the template (and were
+  never supposed to have actions in the first place). This fixes
+  http://dev.plone.org/plone/ticket/10540.
+  [limi]
 
 - Better icon for the theme control panel. (Thanks, Tango!)
   [limi]

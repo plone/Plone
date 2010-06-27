@@ -32,16 +32,6 @@
     i18n:attributes="title">
   <permission value="Modify portal content"/>
  </action>
- <action title="iCalendar" action_id="ics" category="document_actions"
-    condition_expr="" url_expr="string:${object_url}/ics_view" visible="True"
-    i18n:attributes="title">
-  <permission value="View"/>
- </action>
- <action title="vCalendar" action_id="vcs" category="document_actions"
-    condition_expr="" url_expr="string:${object_url}/vcs_view" visible="True"
-    i18n:attributes="title">
-  <permission value="View"/>
- </action>
  <action title="History" action_id="history" category="object"
     condition_expr="" url_expr="string:${object_url}/atct_history"
     visible="False" i18n:attributes="title">
