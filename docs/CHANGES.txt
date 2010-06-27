@@ -7,6 +7,12 @@ Changelog
 
 4.0b5 - Unreleased
 ------------------
+- Switching the default modal window effect to be a white-out instead of a 
+  darkened effect. With large windows, the darkening is very distracting, and
+  it also reminds people of the UAC prompts from Windows Vista/7, which is not
+  a good thing. ;)
+  [limi]
+
 - Removing action links from Events, since they are in the template (and were
   never supposed to have actions in the first place). This fixes
   http://dev.plone.org/plone/ticket/10540.
