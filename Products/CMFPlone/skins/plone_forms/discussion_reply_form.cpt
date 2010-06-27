@@ -40,12 +40,6 @@
 
         <tal:thread tal:repeat="reply replies">
             <tal:block tal:define="level repeat/reply/index">
-                <div class="comment"
-                     tal:attributes="style python:'margin-left:'+str((int(level)+1)*2)+'em'">
-                   <h3>
-                       <tal:block replace="structure portal/discussionitem_icon.png"/>
-                       <span tal:replace="reply/pretty_title_or_id">Comment title</span>
-                   </h3>
                    <div class="documentByLine"
                         tal:define="anonymous_creator python:reply.Creator()=='Anonymous User'">
                        <span i18n:translate="label_comment_by">Posted by</span>
@@ -57,6 +51,13 @@
                        <span tal:replace="python:toLocalizedTime(reply.ModificationDate(),
                                           long_format=1)">8/23/2001 12:40:44 PM</span>
                    </div>
+
+                <div class="comment"
+                     tal:attributes="style python:'margin-left:'+str((int(level)+1)*2)+'em'">
+                   <h3>
+                       <tal:block replace="structure portal/discussionitem_icon.png"/>
+                       <span tal:replace="reply/pretty_title_or_id">Comment title</span>
+                   </h3>
                    <div class="commentBody"
                         tal:content="structure reply/CookedBody">
                         This is the body text of the comment.
