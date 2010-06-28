@@ -19,10 +19,10 @@ if not dtool.isDiscussionAllowedFor(content):
     raise Exception, "Discussion not allowed."
 
 if not subject:
-    state.setError('subject', _(u'Subject cannot be blank'), 'subject_required')
+    state.setError('subject', _(u'Subject cannot be blank.'), 'subject_required')
 
 if not body_text:
-    state.setError('body_text', _(u'Comment cannot be blank'), 'body_required')
+    state.setError('body_text', _(u'Comment cannot be blank.'), 'body_required')
 
 if state.getErrors():
     context.plone_utils.addPortalMessage(_(u'Please correct the indicated errors.'), 'error')
