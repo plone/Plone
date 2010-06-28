@@ -24,7 +24,8 @@
                                  view_macros view_template/macros | nothing;
                                  view_macro view_macros/content-core | nothing;
                                  showDiscussable python:object_title or object_description or view_macro;">
-             <!-- <div class="comment" 
+             <!-- 
+             <div class="comment" 
                   tal:condition="showDiscussable"
                   tal:define="here python:discussable;
                               context python:discussable">
@@ -35,22 +36,25 @@
                  <tal:block tal:condition="view_macro">
                      <div metal:use-macro="view_macro"/>
                  </tal:block>
-             </div> -->
+             </div> 
+             -->
         </tal:discussable>
 
-        <tal:thread tal:repeat="reply replies">
+        <tal:thread replace="nothing" tal:repeat="reply replies">
+            <!-- This should really only show the comment you are replying
+                 to, the form won't scale to an entire thread -->
             <tal:block tal:define="level repeat/reply/index">
-                   <div class="documentByLine"
-                        tal:define="anonymous_creator python:reply.Creator()=='Anonymous User'">
-                       <span i18n:translate="label_comment_by">Posted by</span>
-                       <span tal:content="reply/Creator"
-                             tal:condition="not:anonymous_creator">Poster Name</span>
-                       <span i18n:translate="label_anonymous_user"
-                             tal:condition="anonymous_creator">Anonymous User</span>
-                       <span i18n:translate="label_commented_at">at</span> 
-                       <span tal:replace="python:toLocalizedTime(reply.ModificationDate(),
-                                          long_format=1)">8/23/2001 12:40:44 PM</span>
-                   </div>
+               <div class="documentByLine"
+                    tal:define="anonymous_creator python:reply.Creator()=='Anonymous User'">
+                   <span i18n:translate="label_comment_by">Posted by</span>
+                   <span tal:content="reply/Creator"
+                         tal:condition="not:anonymous_creator">Poster Name</span>
+                   <span i18n:translate="label_anonymous_user"
+                         tal:condition="anonymous_creator">Anonymous User</span>
+                   <span i18n:translate="label_commented_at">at</span> 
+                   <span tal:replace="python:toLocalizedTime(reply.ModificationDate(),
+                                      long_format=1)">8/23/2001 12:40:44 PM</span>
+               </div>
 
                 <div class="comment"
                      tal:attributes="style python:'margin-left:'+str((int(level)+1)*2)+'em'">
