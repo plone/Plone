@@ -8,6 +8,10 @@ Changelog
 4.0b5 - Unreleased
 ------------------
 
+- No longer include a searchterm paramater in the query string when linking
+  from the search results page, as it will be picked up from the referer.
+  [davisagli]
+
 - Fix the highlightsearchterms script to not apply highlighting within
   textareas, to avoid data loss. Fixes
   http://dev.plone.org/plone/ticket/10573
