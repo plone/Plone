@@ -72,9 +72,20 @@ jQuery(function($){
             subtype: 'ajax',
             filter: common_content_filter,
             formselector: 'form',
-            noform: function(el) {return noformerrorshow(el, 'close');}
         }
     );
+
+    // comment form
+    $('form[name=reply]').prepOverlay(
+        {
+            subtype: 'ajax',
+            filter: common_content_filter,
+            formselector: 'form',
+            noform: function(el) {return noformerrorshow(el, 'redirect');},
+            redirect: redirectbasehref
+        }
+    );
+
 
     // display: select content item / change content item
     $('#contextSetDefaultPage, #folderChangeDefaultPage').prepOverlay(
