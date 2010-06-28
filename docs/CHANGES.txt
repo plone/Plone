@@ -8,13 +8,12 @@ Changelog
 4.0b5 - Unreleased
 ------------------
 
-- No longer include a searchterm paramater in the query string when linking
+- No longer include a searchterm parameter in the query string when linking
   from the search results page, as it will be picked up from the referer.
   [davisagli]
 
 - Fix the highlightsearchterms script to not apply highlighting within
-  textareas, to avoid data loss. Fixes
-  http://dev.plone.org/plone/ticket/10573
+  textareas, to avoid data loss. Fixes http://dev.plone.org/plone/ticket/10573
   [davisagli]
 
 - Improved comment display and behavior: Now opens "Add comment" in an 
@@ -35,10 +34,6 @@ Changelog
 
 - Better icon for the theme control panel. (Thanks, Tango!)
   [limi]
-
-- Re add the non-sprite icons to the File and Image FTIs. (These are used only
-  for the add menu. File and image instances get icons based on the mimetype.)
-  [davisagli]
 
 - Added normalizeString to the Plone view interface, where the declaration was
   missing.
