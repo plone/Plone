@@ -7,6 +7,12 @@ Changelog
 
 4.0b5 - Unreleased
 ------------------
+
+- Fix the highlightsearchterms script to not apply highlighting within
+  textareas, to avoid data loss. Fixes
+  http://dev.plone.org/plone/ticket/10573
+  [davisagli]
+
 - Improved comment display and behavior: Now opens "Add comment" in an 
   overlay, no longer insists on a Subject for every comment, and more readable
   layout. Also improved the error messages.

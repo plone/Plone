@@ -10,7 +10,7 @@
 
             var self = this;
             $.each(this.terms, function(i, term) {
-                startnode.find('*').andSelf().contents().each(function() {
+                startnode.find('*:not(textarea)').andSelf().contents().each(function() {
                     if (this.nodeType == 3) 
                         self.highlightTermInNode(this, term);
                 });
