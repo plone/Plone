@@ -19,3 +19,6 @@ securemailhost.applyPatches()
 
 import iso8601                  # use `DateTime.ISO8601` for `DateTime.ISO`
 iso8601.applyPatches()
+
+import sendmail
+sendmail.applyPatches()
