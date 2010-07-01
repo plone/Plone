@@ -8,6 +8,10 @@ Changelog
 4.0b5 - Unreleased
 ------------------
 
+- Don't show the site's logo on the upgrade screen. Trying to render it can
+  cause problems on not yet upgraded sites.
+  [hannosch]
+
 - No longer show relevance percentage numbers in search results. What matters
   to users is the search results order; the numbers are meaningless.
   [hannosch]

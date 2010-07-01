@@ -26,8 +26,6 @@
   </h1>
 
   <div class="prominent">
-      <img tal:attributes="src string:${context/absolute_url}/logoIcon.png"
-           height="16" width="16"/>
       <a href="#"
          target="_new"
          tal:attributes="href context/absolute_url;
