@@ -8,6 +8,9 @@ Changelog
 4.0b5 - Unreleased
 ------------------
 
+- Fixed the livesearch to respect the ``USE_RANKING`` configuration.
+  [hannosch]
+
 - No longer include a searchterm parameter in the query string when linking
   from the search results page, as it will be picked up from the referer.
   [davisagli]
