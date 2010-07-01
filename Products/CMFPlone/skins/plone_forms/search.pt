@@ -204,17 +204,6 @@
                                 </a><tal:separator condition="not: repeat/tag/end">,</tal:separator>
                             </span>
                     </span>
-
-                    <span class="relevance"
-                          tal:condition="python: result.data_record_normalized_score_ > 1">
-                        &mdash;
-                        <tal:relevance i18n:translate="label_relevance_percentage">
-                        Relevance:
-                            <span tal:content="result/data_record_normalized_score_"
-                                   tal:omit-tag=""
-                                   i18n:name="percentage">23</span>%
-                        </tal:relevance>
-                    </span>
                 </span>
 
                 </dd>

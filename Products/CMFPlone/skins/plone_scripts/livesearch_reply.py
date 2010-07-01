@@ -29,7 +29,6 @@ if siteProperties is not None:
 
 # SIMPLE CONFIGURATION
 USE_ICON = True
-USE_RANKING = False
 MAX_TITLE = 29
 MAX_DESCRIPTION = 93
 
@@ -128,8 +127,6 @@ else:
         full_title = full_title.replace('"', '&quot;')
         klass = 'contenttype-%s' % ploneUtils.normalizeString(result.portal_type)
         write('''<a href="%s" title="%s" class="%s">%s</a>''' % (itemUrl, full_title, klass, display_title))
-        if USE_RANKING:
-            write('''<span class="discreet" dir="%s">[%s%%]</span>''' % (test(portal_state.is_rtl(), 'rtl', 'ltr'), result.data_record_normalized_score_))
         display_description = safe_unicode(result.Description)
         if len(display_description) > MAX_DESCRIPTION:
             display_description = ''.join((display_description[:MAX_DESCRIPTION],'...'))

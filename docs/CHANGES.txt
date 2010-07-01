@@ -8,7 +8,8 @@ Changelog
 4.0b5 - Unreleased
 ------------------
 
-- Fixed the livesearch to respect the ``USE_RANKING`` configuration.
+- No longer show relevance percentage numbers in search results. What matters
+  to users is the search results order; the numbers are meaningless.
   [hannosch]
 
 - No longer include a searchterm parameter in the query string when linking
