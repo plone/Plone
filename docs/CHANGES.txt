@@ -5,7 +5,7 @@
 Changelog
 =========
 
-4.0b5 - Unreleased
+4.0b5 - 2010-07-07
 ------------------
 
 - Don't show the site's logo on the upgrade screen. Trying to render it can
