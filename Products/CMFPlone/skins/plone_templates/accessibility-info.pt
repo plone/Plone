@@ -18,7 +18,7 @@
         i18n:translate="heading_accessibility_info">Accessibility</h1>
     
     <div id="content-core">
-        <p i18n:translate="text_size">Text size:</p> <noscript i18n:translate="">(Requires Javascript)</noscript>
+        <p i18n:translate="text_size">Text size:</p> <noscript i18n:translate="">(Requires JavaScript)</noscript>
 
         <ul>
             <li><a href="javascript:setBaseFontSize('largeText', 1);"
