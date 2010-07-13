@@ -8,6 +8,13 @@ Changelog
 3.3.6 - Unreleased
 ------------------
 
+- Fix folder_listing, folder_summary_view, and folder_tabular_view
+  to display the getText of the context.  Since Plone 3.3.2 this was
+  not displayed, due to a wrong condition check.
+  Fixes http://dev.plone.org/plone/ticket/8190
+  Refs http://dev.plone.org/plone/ticket/8463
+  [maurits]
+
 - Fix FactoryTool to mangle REQUEST.BASEn correctly. (Merged [36902]).
   [elro]
 
