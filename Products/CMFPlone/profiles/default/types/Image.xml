@@ -4,7 +4,7 @@
    i18n:domain="plone" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
  <property name="title" i18n:translate="">Image</property>
  <property name="description"
-      i18n:translate="">Images can be referenced in documents or displayed in an album.</property>
+      i18n:translate="">Images can be referenced in pages or displayed in an album.</property>
  <property name="icon_expr"></property>
  <property name="content_meta_type">ATBlob</property>
  <property name="product">plone.app.blob</property>
