@@ -3,7 +3,7 @@ Historical release notes
 
 For what's new in this release, see CHANGES.txt.
 
-3.3.5 - Unreleased
+3.3.6 - Unreleased
 ------------------
 
 - Fixed http://dev.plone.org/plone/ticket/10510.
@@ -19,13 +19,18 @@ For what's new in this release, see CHANGES.txt.
 - Fixed http://dev.plone.org/plone/ticket/10486.
   [gborelli, simahawk]
 
+
+3.3.5 - March 3rd, 2010
+-----------------------
+
 - Check for existance of a hash in the location before attempting to scroll to
   that location in toc.js. Fixes bug introduced in r32066, and refs
   http://dev.plone.org/plone/ticket/9364
   [dunlapm]
 
-3.3.4 - Unreleased
-------------------
+
+3.3.4 - January 14th, 2010
+--------------------------
 
 - member_search_results display login names only if the user
   has "List portal members" permission.
