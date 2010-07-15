@@ -1,13 +1,15 @@
 import logging
+
 log = logging.getLogger("MailDataManager")
 
+
 def catchAllExceptions(func):
-    def _(*args, **kwargs):
+    def _catch(*args, **kwargs):
         try:
             return func(*args, **kwargs)
         except Exception as e:
             log.exception(e)
-    return _
+    return _catch
 
 
 def applyPatches():
