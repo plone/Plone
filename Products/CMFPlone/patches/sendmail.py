@@ -13,7 +13,7 @@ def catchAllExceptions(func):
 
 
 def applyPatches():
-    from Products.MailHost.mailer import SMTPMailer
+    from zope.sendmail.mailer import SMTPMailer
     old_mailer = getattr(SMTPMailer, 'vote', None) is None
     if old_mailer:
         SMTPMailer.send = catchAllExceptions(SMTPMailer.send)

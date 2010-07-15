@@ -8,6 +8,9 @@ Changelog
 4.0rc1 - Unreleased
 -------------------
 
+- Avoid deprecation warning in sendmail patch and require at least Zope 2.12.9.
+  [hannosch]
+
 - Removed long unused ``ie5fixes.js``. This refs
   http://dev.plone.org/plone/ticket/10287.
   [hannosch]
