@@ -163,9 +163,9 @@ Changelog
   needs to be fixed in the html_tag expression (e.g. if there isn't anything
   there, don't render). Should be good enough for beta3, but needs to be fixed
   before RC. See LiveSearch results + Advanced Workflow + Collection view
-  (e.g. "Events") for examples of this.
-  Refs http://dev.plone.org/plone/ticket/10409,
-       http://dev.plone.org/plone/ticket/10466
+  (e.g. "Events") for examples of this. References
+  http://dev.plone.org/plone/ticket/10409,
+  http://dev.plone.org/plone/ticket/10466
   [limi]
 
 - Don't take values directly from the request in ``getFolderContents``.
@@ -191,7 +191,7 @@ Changelog
   Fixes: http://dev.plone.org/plone/ticket/9693
   [cwainwright]
 
-- Inject contentFilter as **kw params to topic's queryCatalog and not as first
+- Inject contentFilter as `**kw` params to topic's queryCatalog and not as first
   argument which should be the REQUEST, if given. With that in place, batching
   on contentFiltered topics works again.
   Fixes: http://dev.plone.org/plone/ticket/10428
