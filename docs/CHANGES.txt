@@ -8,6 +8,10 @@ Changelog
 4.0rc1 - Unreleased
 -------------------
 
+- Use Unicode characters instead of HTML entities in the default front page
+  text. This closes http://dev.plone.org/plone/ticket/10084.
+  [hannosch]
+
 - Replace the `manage_zmi_logout` link and page with a nicer Plone specific
   implementation.
   [hannosch]

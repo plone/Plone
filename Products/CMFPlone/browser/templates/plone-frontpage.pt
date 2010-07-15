@@ -3,6 +3,10 @@
       lang="en"
       i18n:domain="plonefrontpage">
 
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+
 <body i18n:translate="front-text"><p class="discreet">
 If you're seeing this instead of the web site you were expecting, the owner of
 this web site has just installed Plone. Do not contact the Plone Team or the
@@ -66,7 +70,7 @@ Before you start exploring your newly created Plone site, please do the followin
     <a href="@@markup-controlpanel">markup control panel</a>)</span>
     </li>
 
-    <li>&hellip;and many more settings are available in the 
+    <li>…and many more settings are available in the 
         <a href="plone_control_panel">Site Setup</a>.
     </li>
     
@@ -115,14 +119,14 @@ Plone is made possible only through the efforts of thousands of dedicated
 individuals and hundreds of companies. The Plone Foundation:
 </p>
 <ul>
-    <li>&hellip;protects and promotes Plone.</li>
-    <li>&hellip;is a registered 501(c)(3) charitable organization.</li>
-    <li>&hellip;donations are tax-deductible.</li>
+    <li>…protects and promotes Plone.</li>
+    <li>…is a registered 501(c)(3) charitable organization.</li>
+    <li>…donations are tax-deductible.</li>
     <li><a href="http://plone.org/foundation/foundation-donations">Show your support!</a></li>
 </ul>
 
 <p>Thanks for using our product, we hope you like it!</p>
 
-<p>&mdash;The Plone Team</p>
+<p>—The Plone Team</p>
 </body>
 </html>
