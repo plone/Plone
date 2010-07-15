@@ -8,6 +8,10 @@ Changelog
 4.0rc1 - Unreleased
 -------------------
 
+- Silence the ISO8601 warning until we fixed all of Plone Core. This refs
+  http://dev.plone.org/plone/ticket/10322.
+  [hannosch]
+
 - Avoid deprecation warning in sendmail patch and require at least Zope 2.12.9.
   [hannosch]
 
