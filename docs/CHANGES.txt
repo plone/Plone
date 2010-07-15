@@ -27,12 +27,12 @@ Changelog
   textareas, to avoid data loss. Fixes http://dev.plone.org/plone/ticket/10573
   [davisagli]
 
-- Improved comment display and behavior: Now opens "Add comment" in an 
+- Improved comment display and behavior: Now opens "Add comment" in an
   overlay, no longer insists on a Subject for every comment, and more readable
   layout. Also improved the error messages.
   [limi]
 
-- Switching the default modal window effect to be a white-out instead of a 
+- Switching the default modal window effect to be a white-out instead of a
   darkened effect. With large windows, the darkening is very distracting, and
   it also reminds people of the UAC prompts from Windows Vista/7, which is not
   a good thing. ;)
@@ -202,7 +202,6 @@ Changelog
   prefs_user_details and prefs_user_edit to deprecated skins.
   http://dev.plone.org/plone/ticket/10327
   [kcleong]
-
 
 4.0b2 - 2010-03-09
 ------------------
