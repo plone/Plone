@@ -8,10 +8,13 @@ Changelog
 4.0rc1 - Unreleased
 -------------------
 
+- Be a bit less noisy in GenericSetup handlers and don't log a
+  ``Nothing to import`` message for our own handlers.
+  [hannosch]
+
 - Fix broken userid/login name in the password reset code. Fixes
   http://dev.plone.org/plone/ticket/10768
   [wichert]
-
 
 4.0b5 - 2010-07-07
 ------------------

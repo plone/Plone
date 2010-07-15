@@ -25,7 +25,6 @@ def importPloneProperties(context):
 
     body = context.readDataFile(_FILENAME)
     if body is None:
-        logger.info('Nothing to import.')
         return
 
     importer = queryMultiAdapter((ptool, context), IBody)
@@ -43,7 +42,6 @@ def exportPloneProperties(context):
     logger = context.getLogger('propertiestool')
     ptool = getToolByName(site, 'portal_properties', None)
     if ptool is None:
-        logger.info('Nothing to export.')
         return
 
     exporter = queryMultiAdapter((ptool, context), IBody)

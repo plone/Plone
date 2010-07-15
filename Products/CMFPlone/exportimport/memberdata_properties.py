@@ -18,7 +18,6 @@ def importMemberDataProperties(context):
 
     body = context.readDataFile(_FILENAME)
     if body is None:
-        logger.info('Nothing to import.')
         return
 
     importer = queryMultiAdapter((ptool, context), IBody)
@@ -36,7 +35,6 @@ def exportMemberDataProperties(context):
     logger = context.getLogger('memberdata')
     ptool = getToolByName(site, 'portal_memberdata', None)
     if ptool is None:
-        logger.info('Nothing to export.')
         return
 
     exporter = queryMultiAdapter((ptool, context), IBody)

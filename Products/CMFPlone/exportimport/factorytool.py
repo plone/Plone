@@ -59,8 +59,6 @@ def importFactoryTool(context):
     site = context.getSite()
     tool = getToolByName(site, 'portal_factory', None)
     if tool is None:
-        logger = context.getLogger("factorytool")
-        logger.info("Nothing to import.")
         return
 
     importObjects(tool, '', context)
@@ -72,8 +70,6 @@ def exportFactoryTool(context):
     site = context.getSite()
     tool = getToolByName(site, 'portal_factory', None)
     if tool is None:
-        logger = context.getLogger("factorytool")
-        logger.info("Nothing to export.")
         return
 
     exportObjects(tool, '', context)

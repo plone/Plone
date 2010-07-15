@@ -153,8 +153,6 @@ def importControlPanel(context):
     site = context.getSite()
     tool = getToolByName(site, 'portal_controlpanel', None)
     if tool is None:
-        logger = context.getLogger('controlpanel')
-        logger.info('Nothing to import.')
         return
 
     importObjects(tool, '', context)
@@ -165,8 +163,6 @@ def exportControlPanel(context):
     site = context.getSite()
     tool = getToolByName(site, 'portal_controlpanel', None)
     if tool is None:
-        logger = context.getLogger('controlpanel')
-        logger.info('Nothing to export.')
         return
 
     exportObjects(tool, '', context)
