@@ -13,7 +13,7 @@ Changelog
   [hannosch]
 
 - Fix broken userid/login name in the password reset code. Fixes
-  http://dev.plone.org/plone/ticket/10768
+  http://dev.plone.org/plone/ticket/10767
   [wichert]
 
 4.0b5 - 2010-07-07
