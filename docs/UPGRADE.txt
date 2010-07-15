@@ -1,30 +1,29 @@
 How to upgrade a Plone site to a newer version
 ==============================================
 
-This is a short version, more information can be found at 
+This is a short version, more information can be found at
 http://plone.org/upgrade.
 
 1. Stop Plone / Zope
 
-2. Back up your Plone site, just in case. You should back up:
+2. Always back up your Plone site. You should back up:
 
     * Your Data.fs which contains your site data
     * Any file system files you have modified
+    * Your blob storage if you are already using blobs
 
-3. Install the new version of Plone, this depends upon your installation. 
+3. Install the new version of Plone, this depends upon your installation.
    The latest version of Plone is always available from
-   http://plone.org/download
-   and your install will depend upon your particular setup. Generally you 
-   should replace the products with the products and packages from the Plone 
-   archive. See INSTALL.txt for more information.
+   http://plone.org/download and your install will depend upon your particular
+   setup.
 
 4. Restart Plone / Zope
 
-5. For each Plone site enter the ZMI and go to portal_migrations and click on
-   the migrate tab. Click the migrate button to migrate your instance to the
-   version you have just downloaded.
+5. Open up the Zope root folder in a browser. It will show you an overview of
+   all installed Plone sites and tell you which ones need to be upgraded.
+   Follow the onscreen instructions.
 
-Running a migration may:
+Running the upgrade may:
 
  * Change values you have set in the ZODB, for example actions and properties
 
@@ -33,9 +32,9 @@ Running a migration may:
  * Reapply security to objects, this may be time-consuming
 
 If you have issues please search for an update of your Python, Zope, Plone and
-third-party products and read http://plone.org/upgrade.
+third-party add-ons and read http://plone.org/upgrade.
 If you still have issues please the use the bug tracker at
-http://dev.plone.org/plone and include: your Zope, CMF and Python versions, 
-the platform, the Plone versions you are migrating to and from and most
-important: the full traceback and migration log. Try to provide as much
+http://dev.plone.org/plone and include: your Python version, the platform, the
+Plone versions you are upgrading to and from and most
+important: the full traceback and upgrade log. Try to provide as much
 information as possible.
