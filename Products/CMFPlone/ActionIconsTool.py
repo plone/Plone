@@ -7,9 +7,18 @@ from Products.CMFPlone.PloneBaseTool import PloneBaseTool
 from Products.CMFPlone.PloneTool import _icons as iconcache
 from Products.CMFPlone.log import log_deprecated
 
+
+WHITELISTED_AI = set([
+    'controlpanel/ImagingSettings',
+    'controlpanel/tinymce',
+    'controlpanel/versioning',
+])
+
+
 def removeAICacheEntry(category, id):
     if (category, id) in iconcache.keys():
-        del iconcache[(category,id)]
+        del iconcache[(category, id)]
+
 
 class ActionIconsTool(PloneBaseTool, BaseTool):
 
@@ -65,19 +74,16 @@ class ActionIconsTool(PloneBaseTool, BaseTool):
             return ai
         return None
 
-    def addActionIcon( self
-                     , category
-                     , action_id
-                     , icon_expr
-                     , title=None
-                     , priority=0
-                     ):
-        log_deprecated("An icon for the '%s/%s' action is being added to "
-                       "the action icons tool. The action icons tool has "
-                       "been deprecated and will be removed in Plone 5. "
-                       "You should register action icons directly on the "
-                       "action now, using the 'icon_expr' "
-                       "setting." % (category, action_id))
+    def addActionIcon(self, category, action_id, icon_expr, title=None,
+                      priority=0):
+        combination = '%s/%s' % (category, action_id)
+        if combination not in WHITELISTED_AI:
+            log_deprecated("An icon for the '%s' action is being added to "
+                           "the action icons tool. The action icons tool has "
+                           "been deprecated and will be removed in Plone 5. "
+                           "You should register action icons directly on the "
+                           "action now, using the 'icon_expr' "
+                           "setting." % combination)
         return BaseTool.addActionIcon(self, category, action_id, icon_expr,
                                       title, priority)
 

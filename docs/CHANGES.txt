@@ -8,6 +8,9 @@ Changelog
 4.0rc1 - Unreleased
 -------------------
 
+- Stop issuing deprecation warnings about action icons in our default install.
+  [hannosch]
+
 - Silence the ISO8601 warning until we fixed all of Plone Core. This refs
   http://dev.plone.org/plone/ticket/10322.
   [hannosch]
