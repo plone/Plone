@@ -86,6 +86,20 @@ class RootLoginRedirect(BrowserView):
         self.request.response.redirect(came_from)
 
 
+class RootLogout(BrowserView):
+    """ @@plone-root-logout """
+
+    logout = ViewPageTemplateFile('templates/plone-logged-out.pt')
+
+    def __call__(self):
+        response = self.request.response
+        realm = response.realm
+        response.setStatus(401)
+        response.setHeader('WWW-Authenticate', 'basic realm="%s"' % realm, 1)
+        response.setBody(self.logout())
+        return
+
+
 class FrontPage(BrowserView):
 
     index = ViewPageTemplateFile('templates/plone-frontpage.pt')

@@ -83,10 +83,11 @@
     </div>
 
     <div id="content-core">
-        <p i18n:translate="">Visit
-            <a i18n:name="url"
-               tal:attributes="href string:${portal_url}/manage_zmi_logout">
-                /manage_zmi_logout
+        <p i18n:translate="">
+            <a i18n:name="text_logged_out_link"
+               tal:attributes="href string:${portal_url}/@@plone-root-logout"
+               i18n:translate="">
+                Visit this link
             </a>
             and click 'Cancel' when prompted with an authentication prompt.
         </p>

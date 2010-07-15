@@ -8,6 +8,10 @@ Changelog
 4.0rc1 - Unreleased
 -------------------
 
+- Replace the `manage_zmi_logout` link and page with a nicer Plone specific
+  implementation.
+  [hannosch]
+
 - Fixed the visual appearance of the `logged_out` page.
   [hannosch]
 

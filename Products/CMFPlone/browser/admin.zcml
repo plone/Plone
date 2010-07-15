@@ -39,12 +39,19 @@
       permission="zope.Public"
       template="templates/plone-overview.pt"
       />
-  
+
   <browser:page
       for="OFS.interfaces.IApplication"
       name="plone-root-login"
       class=".admin.RootLoginRedirect"
       permission="cmf.ManagePortal"
+      />
+
+  <browser:page
+      for="plone.app.layout.navigation.interfaces.INavigationRoot"
+      name="plone-root-logout"
+      class=".admin.RootLogout"
+      permission="zope.Public"
       />
 
   <adapter factory=".admin.AppTraverser" />
