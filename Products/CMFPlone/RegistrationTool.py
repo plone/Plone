@@ -234,7 +234,7 @@ class RegistrationTool(PloneBaseTool, BaseTool):
         return self.getPassword(length, salt)
 
     security.declarePublic('mailPassword')
-    def mailPassword(self, forgotten_userid, REQUEST):
+    def mailPassword(self, login, REQUEST):
         """ Wrapper around mailPassword """
         membership = getToolByName(self, 'portal_membership')
         if not membership.checkPermission('Mail forgotten password', self):
@@ -242,7 +242,7 @@ class RegistrationTool(PloneBaseTool, BaseTool):
 
         utils = getToolByName(self, 'plone_utils')
         props = getToolByName(self, 'portal_properties').site_properties
-        member = get_member_by_login_name(self, forgotten_userid)
+        member = get_member_by_login_name(self, login)
 
         if member is None:
             raise ValueError(_(u'The username you entered could not be found.'))
