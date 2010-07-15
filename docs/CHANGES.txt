@@ -8,6 +8,9 @@ Changelog
 4.0rc1 - Unreleased
 -------------------
 
+- Fixed the visual appearance of the `logged_out` page.
+  [hannosch]
+
 - Stop issuing deprecation warnings about action icons in our default install.
   [hannosch]
 
