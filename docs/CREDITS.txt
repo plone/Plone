@@ -99,7 +99,7 @@ contributed code.
   Florian Schulze (fschulze) -- Javascript, CSS, bug fixing, bug categorization
   and usability without javascript.
 
-  Hanno Schlichting (hannosch) -- i18n and bug fixes
+  Hanno Schlichting (hannosch) -- i18n, bug fixes and more
 
   Danny Bloemendaal (_ender_) -- Usability and user interface design, bug fixes
   and add-ons.
@@ -179,9 +179,7 @@ Companies (in randomized order):
   "ZopeLabs":http://zopelabs.com/ for useful scripts
 
   "Amaze":http://www.amaze.nl/ --
-  Hosting for plone.org and some of Wichert Akkerman's time. 
+  Hosting for plone.org and some of Wichert Akkerman's time.
 
   Please help out the Plone and CMF communities by becoming involved.
   Check out "The Plone Website":http://www.plone.org for more information.
-
-  NOTE: please email us if we left your name out - runyaga@thisbox.com
