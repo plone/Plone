@@ -242,20 +242,10 @@ class RegistrationTool(PloneBaseTool, BaseTool):
 
         utils = getToolByName(self, 'plone_utils')
         props = getToolByName(self, 'portal_properties').site_properties
-        emaillogin = props.getProperty('use_email_as_login', False)
-        if emaillogin:
-            member = get_member_by_login_name(self, forgotten_userid)
-        else:
-            member = membership.getMemberById(forgotten_userid)
+        member = get_member_by_login_name(self, forgotten_userid)
 
         if member is None:
             raise ValueError(_(u'The username you entered could not be found.'))
-
-        if emaillogin:
-            # We use the member id as new forgotten_userid, because in
-            # resetPassword we ask for the real member id too, instead of
-            # the login name.
-            forgotten_userid = member.getId()
 
         # assert that we can actually get an email address, otherwise
         # the template will be made with a blank To:, this is bad
@@ -274,7 +264,7 @@ class RegistrationTool(PloneBaseTool, BaseTool):
         # render the message ourselves and send it from here (where we
         # don't need to worry about 'UseMailHost' permissions).
         reset_tool = getToolByName(self, 'portal_password_reset')
-        reset = reset_tool.requestReset(forgotten_userid)
+        reset = reset_tool.requestReset(member.getId())
 
 
         encoding = getUtility(ISiteRoot).getProperty('email_charset', 'utf-8')
