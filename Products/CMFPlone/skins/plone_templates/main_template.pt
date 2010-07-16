@@ -132,7 +132,7 @@
                             <div tal:replace="structure provider:plone.abovecontenttitle" />
                             <metal:title define-slot="content-title">
                                 <metal:comment tal:content="nothing">
-                                    If you write a custom title allways use
+                                    If you write a custom title always use
                                     <h1 class="documentFirstHeading"></h1> for it
                                 </metal:comment>
                                 <h1 metal:use-macro="context/kss_generic_macros/macros/generic_title_view">
