@@ -133,7 +133,7 @@
                             <metal:title define-slot="content-title">
                                 <metal:comment tal:content="nothing">
                                     If you write a custom title always use
-                                    <h1 class="documentFirstHeading"></h1> for it
+                                    <h1 class="documentFirstHeading"></h1> for it.
                                 </metal:comment>
                                 <h1 metal:use-macro="context/kss_generic_macros/macros/generic_title_view">
                                     Generic KSS Title. Is rendered with class="documentFirstHeading".
@@ -144,7 +144,7 @@
                             <metal:description define-slot="content-description">
                                 <metal:comment tal:content="nothing">
                                     If you write a custom description always use
-                                    <div class="documentDescription"></div> for it
+                                    <div class="documentDescription"></div> for it.
                                 </metal:comment>
                                 <div metal:use-macro="context/kss_generic_macros/macros/generic_description_view">
                                     Generic KSS Description. Is rendered with class="documentDescription".
@@ -166,7 +166,7 @@
 
                     <metal:sub define-slot="sub" tal:content="nothing">
                         This slot is here for backwards-compatibility only.
-                        Don't copy it in a custom templates.
+                        Don't copy it in custom templates.
                     </metal:sub>
 
                     <span id="contentBottomLeft"></span>
