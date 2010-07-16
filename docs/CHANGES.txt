@@ -8,6 +8,9 @@ Changelog
 4.0rc1 - Unreleased
 -------------------
 
+- Update license to GPL version 2 only.
+  [hannosch]
+
 - Use Unicode characters instead of HTML entities in the default front page
   text. This closes http://dev.plone.org/plone/ticket/10084.
   [hannosch]
