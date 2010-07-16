@@ -216,6 +216,8 @@ class Upgrade(BrowserView):
         result['instance'] = pm.getInstanceVersion()
         result['fs'] = pm.getFileSystemVersion()
         result['equal'] = result['instance'] == result['fs']
+        result['instance_gt'] = int(result['instance']) > int(result['fs'])
+        result['instance_lt'] = int(result['instance']) < int(result['fs'])
         result['corelist'] = pm.coreVersions()
         return result
 

@@ -55,7 +55,16 @@
 
   </tal:current>
 
-  <tal:upgrade tal:condition="not:versions/equal">
+  <tal:downgrade tal:condition="versions/instance_gt">
+
+    <p class="prominent">
+      <img src="error_icon.png" />
+      <span i18n:translate="" tal:omit-tag="">WARNING! Your database requires a newer version of Plone than you are currently using. This is a dangerous situation. Please upgrade your Plone version as soon as possible.</span>
+    </p>
+
+  </tal:downgrade>
+
+  <tal:upgrade tal:condition="versions/instance_lt">
 
     <form action="#"
           method="post"
