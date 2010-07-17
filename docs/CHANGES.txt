@@ -8,6 +8,10 @@ Changelog
 4.0rc1 - Unreleased
 -------------------
 
+- Don't open content_status_history in a popup, it requires template specific
+  JS and CSS to be loaded. This refs http://dev.plone.org/plone/ticket/10726.
+  [hannosch]
+
 - No longer mention `textile` as a supported markup style. We don't ship with
   the required Python packages by default. This closes
   http://dev.plone.org/plone/ticket/10690.

@@ -100,16 +100,18 @@ jQuery(function($){
     );
 
     // advanced state
-    $('dl#plone-contentmenu-workflow a#advanced').prepOverlay(
-        {
-            subtype: 'ajax',
-            filter: common_content_filter,
-            formselector: 'form',
-            noform: function(el) {return noformerrorshow(el, 'reload');},
-            closeselector: '[name=form.button.Cancel]'
-        }
-    );
-    
+    // This form needs additional JS and CSS for the calendar widget.
+    // The AJAX form doesn't load it from the javascript_head_slot.
+    // $('dl#plone-contentmenu-workflow a#advanced').prepOverlay(
+    //     {
+    //         subtype: 'ajax',
+    //         filter: common_content_filter,
+    //         formselector: 'form',
+    //         noform: function(el) {return noformerrorshow(el, 'reload');},
+    //         closeselector: '[name=form.button.Cancel]'
+    //     }
+    // );
+
     // Delete dialog
     $('dl#plone-contentmenu-actions a#delete').prepOverlay(
         {
