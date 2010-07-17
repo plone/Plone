@@ -13,7 +13,7 @@
     // Get headers in document order
     $(content).find('*').not('.comment > h3').filter(function() { return /^h[1234]$/.test(this.tagName.toLowerCase()) })
         .not('.documentFirstHeading').each(function(i) {
-        var level = this.nodeName.charAt(1) - 1;
+        var level = this.nodeName.charAt(1);
         // size the stack to the current level
         while (stack.length < level) {
             var ol = $('<ol>');

@@ -8,6 +8,10 @@ Changelog
 4.0rc1 - Unreleased
 -------------------
 
+- Fix the table of contents generation script to include h1 tags from the
+  content body. Fixes http://dev.plone.org/plone/ticket/10755
+  [davisagli]
+
 - Update `plone-upgrade.pt` to explicitly check if a Plone instance has
   been downgraded since the database was created. This fixes:
   http://dev.plone.org/plone/ticket/10220
