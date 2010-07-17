@@ -133,7 +133,6 @@
    <element value="text/x-python"/>
    <element value="text/x-web-markdown"/>
    <element value="text/x-web-intelligent"/>
-   <element value="text/x-web-textile"/>
    <element value="text/x-html-captioned"/>
   </property>
   <property name="default_contenttype" type="string">text/html</property>

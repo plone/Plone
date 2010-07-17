@@ -8,6 +8,11 @@ Changelog
 4.0rc1 - Unreleased
 -------------------
 
+- No longer mention `textile` as a supported markup style. We don't ship with
+  the required Python packages by default. This closes
+  http://dev.plone.org/plone/ticket/10690.
+  [hannosch]
+
 - Fix the table of contents generation script to include h1 tags from the
   content body. Fixes http://dev.plone.org/plone/ticket/10755
   [davisagli]
