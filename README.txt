@@ -27,7 +27,7 @@ project groups, communities, web sites, extranets and intranets.
 
 - *Plone is easy to use.* The Plone Team includes usability experts who have
   made Plone easy and attractive for content managers to add, update, and
-  mantain content.
+  maintain content.
 
 - *Plone is international.* The Plone interface has more than 35 translations,
   and tools exist for managing multilingual content.
@@ -40,7 +40,7 @@ project groups, communities, web sites, extranets and intranets.
   License, the same license used by Linux. This gives you the right to use
   Plone without a license fee, and to improve upon the product.
 
-- *Plone is supported.* There are close to a hundred developers in the Plone
+- *Plone is supported.* There are over three hundred developers in the Plone
   Development Team around the world, and a multitude of companies that
   specialize in Plone development and support.
 
