@@ -17,6 +17,7 @@ from OFS.interfaces import IApplication
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.GenericSetup import profile_registry
 from Products.GenericSetup import BASE, EXTENSION
+from Products.GenericSetup.upgrade import normalize_version
 from ZPublisher.BaseRequest import DefaultPublishTraverse
 
 from Products.CMFCore.permissions import ManagePortal
@@ -216,8 +217,10 @@ class Upgrade(BrowserView):
         result['instance'] = pm.getInstanceVersion()
         result['fs'] = pm.getFileSystemVersion()
         result['equal'] = result['instance'] == result['fs']
-        result['instance_gt'] = int(result['instance']) > int(result['fs'])
-        result['instance_lt'] = int(result['instance']) < int(result['fs'])
+        instance_version = normalize_version(result['instance'])
+        fs_version = normalize_version(result['fs'])
+        result['instance_gt'] = instance_version > fs_version
+        result['instance_lt'] = instance_version < fs_version
         result['corelist'] = pm.coreVersions()
         return result
 

@@ -16,7 +16,7 @@ Changelog
   been downgraded since the database was created. This fixes:
   http://dev.plone.org/plone/ticket/10220
   Thanks to davidblewett for the patch.
-  [claytron]
+  [claytron, davisagli]
 
 - Update license to GPL version 2 only.
   [hannosch]
