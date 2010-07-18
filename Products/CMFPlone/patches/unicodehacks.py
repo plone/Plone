@@ -1,6 +1,6 @@
 def _unicode_replace(structure):
     if isinstance(structure, str):
-        text = structure.decode('utf-8')
+        text = structure.decode('utf-8', 'replace')
     else:
         text = unicode(structure)
     return text
