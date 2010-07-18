@@ -1,29 +1,23 @@
-"""
-    CMFPlone functional doctests.  This module collects all *.txt
-    files in the tests directory and runs them.
-
-    See also ``test_doctests.py``.
-
-"""
-
+import doctest
 import os
 import glob
-from zope.testing import doctest
 import unittest
+
 from App.Common import package_home
 from Testing.ZopeTestCase import FunctionalDocFileSuite as Suite
 from Products.CMFPlone.tests import PloneTestCase, GLOBALS
 
-UNITTESTS = ['messages.txt', 'mails.txt', 'emaillogin.txt']
 
-OPTIONFLAGS = (doctest.ELLIPSIS |
-               doctest.NORMALIZE_WHITESPACE)
+UNITTESTS = ['messages.txt', 'mails.txt', 'emaillogin.txt']
+OPTIONFLAGS = (doctest.ELLIPSIS | doctest.NORMALIZE_WHITESPACE)
+
 
 def list_doctests():
     home = package_home(GLOBALS)
     return [filename for filename in
             glob.glob(os.path.sep.join([home, '*.txt']))
             if os.path.basename(filename) not in UNITTESTS]
+
 
 def test_suite():
     filenames = list_doctests()
@@ -35,4 +29,3 @@ def test_suite():
               for filename in filenames]
 
     return unittest.TestSuite(suites)
-

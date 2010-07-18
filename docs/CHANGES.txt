@@ -8,6 +8,9 @@ Changelog
 4.0rc1 - Unreleased
 -------------------
 
+- Use the standard libraries doctest module.
+  [hannosch]
+
 - Don't open content_status_history in a popup, it requires template specific
   JS and CSS to be loaded. This refs http://dev.plone.org/plone/ticket/10726.
   [hannosch]

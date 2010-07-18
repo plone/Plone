@@ -1,12 +1,9 @@
-"""
-    CMFPlone doctests.  See also ``test_functional``.
-"""
-
+from doctest import DocTestSuite, DocFileSuite
 from unittest import TestSuite
-from zope.testing.doctestunit import DocTestSuite, DocFileSuite
 
 from Products.CMFPlone.tests import PloneTestCase
 from Testing.ZopeTestCase import ZopeDocTestSuite
+
 
 def test_suite():
     suites = (
