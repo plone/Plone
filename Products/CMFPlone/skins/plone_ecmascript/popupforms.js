@@ -1,4 +1,4 @@
-/*jslint browser: true, laxbreak: true */
+/*jslint browser: true, white: false */
 /*global jQuery */
 
 /******
@@ -35,7 +35,7 @@ jQuery(function($){
 
     // After deletes we need to redirect to the target page.
     function redirectbasehref(el, responseText) {
-        var mo = responseText.match(/<base href="(.+?)"/i);
+        var mo = responseText.match(/<base href="(\S+?)"/i);
         if (mo.length === 2) {
             return mo[1];
         }
