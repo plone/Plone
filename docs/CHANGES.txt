@@ -8,6 +8,9 @@ Changelog
 4.0rc1 - Unreleased
 -------------------
 
+- Limit number of matches looked up during live search for speedier replies.
+  [witsch]
+
 - Use the standard libraries doctest module.
   [hannosch]
 

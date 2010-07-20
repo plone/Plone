@@ -69,7 +69,8 @@ searchterms = url_quote_plus(r)
 site_encoding = context.plone_utils.getSiteEncoding()
 if path is None:
     path = getNavigationRoot(context)
-results = catalog(SearchableText=r, portal_type=friendly_types, path=path)
+results = catalog(SearchableText=r, portal_type=friendly_types, path=path,
+    sort_limit=limit)
 
 searchterm_query = '?searchterm=%s'%url_quote_plus(q)
 
