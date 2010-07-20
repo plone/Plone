@@ -82,11 +82,11 @@ if (!window.beforeunload) (function($) {
         var self = this;
         $.each(arguments, function() {
             if (this.tagName.toLowerCase() == 'form') {
-                var el = this;
+                var formElement = this;
                 self.forms = $.grep(self.forms, function(form) {
-                    return form != el;
+                    return form != formElement;
                 });
-                $(element).unbind('submit', self.onsubmit);
+                $(formElement).unbind('submit', self.onsubmit);
             } else
                 self.removeForms.apply(self, $(this).find('form').get());
         });
