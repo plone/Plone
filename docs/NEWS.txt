@@ -8,6 +8,9 @@ Changelog
 3.3.6 - Unreleased
 ------------------
 
+- Limit number of matches looked up during live search for speedier replies.
+  [witsch]
+
 - Fix folder_listing, folder_summary_view, and folder_tabular_view
   to display the getText of the context.  Since Plone 3.3.2 this was
   not displayed, due to a wrong condition check.
