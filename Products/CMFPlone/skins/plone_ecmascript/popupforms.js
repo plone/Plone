@@ -23,8 +23,8 @@ jQuery(function($){
     // method to show error message in a noform
     // situation.
     function noformerrorshow(el, noform) {
-        var o = $(el);
-        var emsg = o.find('dl.portalMessage.error');
+        var o = $(el),
+            emsg = o.find('dl.portalMessage.error');
         if (emsg.length) {
             o.children().replaceWith(emsg);
             return false;
@@ -72,6 +72,7 @@ jQuery(function($){
             subtype: 'ajax',
             filter: common_content_filter,
             formselector: 'form',
+            noform: function(el) {return noformerrorshow(el, 'redirect');}
         }
     );
 

@@ -8,6 +8,10 @@ Changelog
 4.0rc1 - Unreleased
 -------------------
 
+- Fixed http://dev.plone.org/plone/ticket/10790
+  "popupforms.js causes javascript error on IE7"
+  [smcmahon]
+
 - Limit number of matches looked up during live search for speedier replies.
   [witsch]
 
