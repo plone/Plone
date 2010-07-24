@@ -87,7 +87,7 @@ class MigrationTool(PloneBaseTool, UniqueObject, SimpleItem):
             pass
         return None
 
-    security.declareProtected(ManagePortal, 'getFileSystemVersion')
+    security.declareProtected(ManagePortal, 'getSoftwareVersion')
     def getSoftwareVersion(self):
         """ The software version."""
         dist = pkg_resources.get_distribution('Plone')
