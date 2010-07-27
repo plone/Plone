@@ -41,7 +41,7 @@
                     <tal:item repeat="item items">
                         <dt tal:define="normalized_type python:ploneview.normalizeString(item.portal_type);
                                         item_icon python:ploneview.getIcon(item);
-                                        item_id python:'(%s)' % item.getId if (portal_visible_ids and member_visible_ids) else 'XXX'">
+                                        item_id python:'(%s)' % item.getId if (portal_visible_ids and member_visible_ids) else ''">
                             <input type="radio" name="objectId" value=""
                                 tal:attributes="value item/getId;
                                                 id item/getId;
