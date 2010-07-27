@@ -32,11 +32,16 @@
                                                 not item.is_folderish or item.portal_type in availableTypes];
                                cur_page context/getDefaultPage|nothing;
                                ploneview nocall:context/@@plone">
-            <tal:hasItems condition="items" define="n_items python:len(items)">
+            <tal:hasItems condition="items"
+                          define="n_items python:len(items);
+                          member context/@@plone_portal_state/member;
+                          portal_visible_ids context/portal_properties/site_properties/visible_ids|nothing;
+                          member_visible_ids python:member.getProperty('visible_ids', context.portal_memberdata.getProperty('visible_ids'))">
                 <dl>
                     <tal:item repeat="item items">
                         <dt tal:define="normalized_type python:ploneview.normalizeString(item.portal_type);
-                                        item_icon python:ploneview.getIcon(item)">
+                                        item_icon python:ploneview.getIcon(item);
+                                        item_id python:'(%s)' % item.getId if (portal_visible_ids and member_visible_ids) else 'XXX'">
                             <input type="radio" name="objectId" value=""
                                 tal:attributes="value item/getId;
                                                 id item/getId;
@@ -45,7 +50,7 @@
                                  tal:replace="structure item_icon/html_tag" />
                             <label tal:attributes="for item/getId;
                                                    class string:contenttype-${normalized_type}"
-                                   tal:content="item/pretty_title_or_id">
+                                   tal:content="string:${item/pretty_title_or_id} $item_id">
                                 Item title
                             </label>
                         </dt>
