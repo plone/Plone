@@ -4,7 +4,7 @@ from Products.CMFCore.ActionInformation import ActionInfo
 from Products.CMFCore.ActionsTool import ActionsTool as BaseTool
 from Products.CMFCore.interfaces import IActionProvider
 from Products.CMFPlone.PloneBaseTool import PloneBaseTool
-
+from Products.CMFCore.interfaces import IActionCategory
 
 class ActionsTool(PloneBaseTool, BaseTool):
 
@@ -34,7 +34,8 @@ class ActionsTool(PloneBaseTool, BaseTool):
                               if cat in categories]
 
         for category in categories:
-            actions.extend(self[category].listActions())
+            if IActionCategory.providedBy(self[category]):
+                actions.extend(self[category].listActions())
         return tuple(actions)
 
     security.declarePublic('listActionInfos')

@@ -10,6 +10,7 @@ from zope.i18nmessageid.message import Message
 from Acquisition import Explicit
 from OFS.SimpleItem import Item
 from Products.CMFCore.ActionInformation import ActionInfo
+from Products.CMFCore.ActionInformation import Action
 
 class ExplicitItem(Item, Explicit):
     '''Item without implicit acquisition'''
@@ -111,6 +112,15 @@ class TestActionsTool(PloneTestCase.PloneTestCase):
             info = ActionInfo(action, self.portal)
             self.failUnless(isinstance(info['title'], Message))
             self.failUnless(isinstance(info['description'], Message))
+            
+    def testListActionsSkipsItemsWithOldInterface(self):
+         # Ticket #10791
+         me = Action("not_action_category")
+         self.actions['not_a_category'] = me
+         try:
+             action_infos = self.actions.listActions()
+         except:
+             self.fail_tb('Should not fail if item exists w/o IActionCategory interface')
 
 
 def test_suite():
