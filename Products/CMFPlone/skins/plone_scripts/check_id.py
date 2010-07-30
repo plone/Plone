@@ -56,22 +56,30 @@ if not id:
 
 # check for reserved names
 if id in ('login', 'layout', 'plone', 'zip', 'properties', ):
-    return _(u'${name} is reserved.', mapping={u'name' : id})
+    # http://dev.plone.org/plone/ticket/10518
+    # return _(u'${name} is reserved.', mapping={'name' : id})
+    return '%s "%s" %s' % (_(u'The id'), id, _(u'is reserved.'))
 
 # check for bad characters
 plone_utils = getToolByName(container, 'plone_utils', None)
 if plone_utils is not None:
     bad_chars = plone_utils.bad_chars(id)
     if len(bad_chars) > 0:
-        return _(u'${name} is not a legal name. The following characters are invalid: ${characters}',
-                 mapping={u'name' : id, u'characters' : ''.join(bad_chars)})
+        # http://dev.plone.org/plone/ticket/10518
+        # return _(u'${name} is not a legal name. The following characters are invalid: ${characters}',
+        #         mapping={u'name' : id, u'characters' : ''.join(bad_chars)})
+        return '"%s" %s %s' % (id,
+                               _(u'is not a legal name. The following characters are invalid:'),
+                               ''.join(bad_chars))
 
 # check for a catalog index
 portal_catalog = getToolByName(container, 'portal_catalog', None)
 if portal_catalog is not None:
     try:
         if id in portal_catalog.indexes() + portal_catalog.schema():
-            return _(u'${name} is reserved.', mapping={u'name' : id})
+            # http://dev.plone.org/plone/ticket/10518
+            # return _(u'${name} is reserved.', mapping={u'name' : id})
+            return '%s "%s" %s' % (_(u'The id'), id, _(u'is reserved.'))
     except Unauthorized:
         pass # ignore if we don't have permission; will get picked up at the end
 
@@ -109,18 +117,25 @@ if checkForCollision:
         try:
             existing_obj = getattr(contained_by, id, None)
             if base_hasattr(existing_obj, 'portal_type'):
-                return _(u'There is already an item named ${name} in this folder.',
-                     mapping={u'name' : id})
+                # http://dev.plone.org/plone/ticket/10518
+                # return _(u'There is already an item named ${name} in this folder.',
+                #     mapping={u'name' : id})
+                return '%s "%s"' % (_(u'This folder already contains an item named'), id)
         except Unauthorized:
             # If we cannot access the object it is safe to assume we cannot
             # replace it
-            return _(u'There is already an item named ${name} in this folder.',
-                     mapping={u'name' : id})
+            #
+            # http://dev.plone.org/plone/ticket/10518
+            # return _(u'There is already an item named ${name} in this folder.',
+            #         mapping={u'name' : id})
+            return '%s "%s"' % (_(u'This folder already contains an item named'), id)
 
     if base_hasattr(contained_by, 'checkIdAvailable'):
         try:
             if not contained_by.checkIdAvailable(id):
-                return _(u'${name} is reserved.', mapping={u'name' : id})
+                # http://dev.plone.org/plone/ticket/10518
+                # return _(u'${name} is reserved.', mapping={u'name' : id})
+                return '%s "%s" %s' % (_(u'The id'), id, _(u'is reserved.'))
         except Unauthorized:
             pass # ignore if we don't have permission
 
@@ -133,7 +148,9 @@ if checkForCollision:
         except ConflictError:
             raise
         except:
-            return _(u'${name} is reserved.', mapping={u'name' : id})
+            # http://dev.plone.org/plone/ticket/10518
+            # return _(u'${name} is reserved.', mapping={u'name' : id})
+            return '%s "%s" %s' % (_(u'The id'), id, _(u'is reserved.'))
 
     # make sure we don't collide with any parent method aliases
     portal_types = getToolByName(context, 'portal_types', None)
@@ -143,7 +160,9 @@ if checkForCollision:
             aliases = plone_utils.getMethodAliases(parentFti)
             if aliases is not None:
                 if id in aliases.keys():
-                    return _(u'${name} is reserved.', mapping={u'name' : id})
+                    # http://dev.plone.org/plone/ticket/10518
+                    # return _(u'${name} is reserved.', mapping={u'name' : id})
+                    return '%s "%s" %s' % (_(u'The id'), id, _(u'is reserved.'))
 
     # Lastly, we want to disallow the id of any of the tools in the portal root,
     # as well as any object that can be acquired via portal_skins. However, we
@@ -155,6 +174,8 @@ if checkForCollision:
         if id not in portal.contentIds(): # can override root *content*
             try:
                 if getattr(portal, id, None) is not None: # but not other things
-                    return _(u'${name} is reserved.', mapping={u'name' : id})
+                    # http://dev.plone.org/plone/ticket/10518
+                    # return _(u'${name} is reserved.', mapping={u'name' : id})
+                    return '%s "%s" %s' % (_(u'The id'), id, _(u'is reserved.'))
             except Unauthorized:
                 pass # ignore if we don't have permission
