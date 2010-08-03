@@ -98,7 +98,7 @@ Lets ensure text is shown when Collection is default view of a folder
 
     >>> browser.open('http://nohost/plone/folder')
     >>> browser.getLink('Select a content item as default view...').click()
-    >>> browser.getControl('collection').click()
+    >>> browser.getControl(name='objectId').value = ['collection']
     >>> browser.getControl('Save').click()
     >>> collection_title in browser.contents
     True
