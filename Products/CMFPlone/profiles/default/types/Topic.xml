@@ -12,9 +12,7 @@
  <property name="immediate_view">atct_topic_view</property>
  <property name="global_allow">True</property>
  <property name="filter_content_types">True</property>
- <property name="allowed_content_types">
-  <element value="Topic"/>
- </property>
+ <property name="allowed_content_types"></property>
  <property name="allow_discussion">False</property>
  <property name="default_view">atct_topic_view</property>
  <property name="view_methods">
