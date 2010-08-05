@@ -5,7 +5,7 @@
 Changelog
 =========
 
-4.0rc1 - Unreleased
+4.0rc1 - 2010-08-05
 -------------------
 
 - Fixed http://dev.plone.org/plone/ticket/10790
