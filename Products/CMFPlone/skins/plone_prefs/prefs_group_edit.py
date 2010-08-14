@@ -19,6 +19,10 @@ title = REQUEST.form.get('title', None)
 description = REQUEST.form.get('description', None)
 
 if addname:
+    if not context.portal_registration.isMemberIdAllowed(addname):
+        msg = _(u'The group name you entered is not valid.')
+        context.plone_utils.addPortalMessage(msg, 'error')
+        return context.prefs_group_details()
     success = context.portal_groups.addGroup(addname,(),(), title=title, description=description, REQUEST=context.REQUEST)
     if not success:
         msg = _(u'Could not add group ${name}, perhaps a user or group with '

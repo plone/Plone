@@ -8,6 +8,10 @@ Changelog
 4.0rc2 - Unreleased
 -------------------
 
+- Validate new group names using the isMemberIdAllowed method of the
+  registration tool. This fixes http://dev.plone.org/plone/ticket/10897.
+  [davisagli]
+
 4.0rc1 - 2010-08-05
 -------------------
 
