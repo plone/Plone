@@ -101,7 +101,7 @@ Headlines
     </dd>
 </dl>
 
-<h1>Document Headline</h1>
+<h1 class="documentFirstHeading">Document Headline</h1>
 
 <div id="plone-document-byline" class="documentByLine">
     <span class="documentAuthor">
