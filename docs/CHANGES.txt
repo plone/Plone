@@ -8,6 +8,11 @@ Changelog
 4.0rc2 - Unreleased
 -------------------
 
+- Fixed https://dev.plone.org/plone/ticket/10956 - prevent content of the
+  types listed in typesUseViewActionInListings from being selected as default
+  pages.
+  [elro]
+
 - Validate new group names using the isMemberIdAllowed method of the
   registration tool. This fixes http://dev.plone.org/plone/ticket/10897.
   [davisagli]

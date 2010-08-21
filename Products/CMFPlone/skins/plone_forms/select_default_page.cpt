@@ -28,8 +28,10 @@
             <input type="hidden" name="form.submitted" value="1"/>
 
             <tal:items define="availableTypes site_properties/default_page_types | python:[];
+                               use_view_action site_properties/typesUseViewActionInListings|python:[];
                                items python:[item for item in context.getFolderContents() if
-                                                not item.is_folderish or item.portal_type in availableTypes];
+                                                (not item.is_folderish or item.portal_type in availableTypes) and
+                                                item.portal_type not in use_view_action];
                                cur_page context/getDefaultPage|nothing;
                                ploneview nocall:context/@@plone">
             <tal:hasItems condition="items"
