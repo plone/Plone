@@ -8,6 +8,11 @@ Changelog
 4.0rc2 - Unreleased
 -------------------
 
+- Modified plone.css.py script to correctly show contents for z3 style resources, by
+  using portal_css.getInlineResource.
+  This fixes http://dev.plone.org/plone/ticket/10864
+  [mr_savage]
+
 - Fixed https://dev.plone.org/plone/ticket/10956 - prevent content of the
   types listed in typesUseViewActionInListings from being selected as default
   pages.

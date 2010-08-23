@@ -10,11 +10,10 @@
 
 portal_css = context.portal_css
 stylesheets = portal_css.getEvaluatedResources(context);
-current_skin = context.getCurrentSkinName()
 
 for stylesheet in stylesheets:
   if stylesheet.getRendering() in ['import','inline','link']:
-    print portal_css.restrictedTraverse('%s/%s' % (current_skin, stylesheet.getId()))
+    print portal_css.getInlineResource(stylesheet.getId(), context)
  
 duration = 1
 seconds = float(duration)*24.0*3600.0
