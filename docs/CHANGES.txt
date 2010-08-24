@@ -8,6 +8,9 @@ Changelog
 4.0rc2 - Unreleased
 -------------------
 
+- Fix a malformed list comprehension in failsafe_login_form.cpt
+  [esteele]
+
 - Modified plone.css.py script to correctly show contents for z3 style resources, by
   using portal_css.getInlineResource.
   This fixes http://dev.plone.org/plone/ticket/10864
