@@ -53,7 +53,7 @@
                                    tal:attributes="value python:view.upgrade_url(site, can_manage=True)"/>
                             <input type="submit" 
                                    value="Upgrade&hellip;" 
-                                   i18n:attributes="value" />
+                                   i18n:attributes="value label_upgrade_hellip" />
                             </form>
                             </div>
                     </li>
@@ -92,7 +92,7 @@
                                         tal:attributes="value python:view.upgrade_url(site, can_manage=True)"/>
                                  <input type="submit" 
                                         value="Upgrade&hellip;" 
-                                        i18n:attributes="value" />
+                                        i18n:attributes="value label_upgrade_hellip" />
                                  </form>
 
                             </div>

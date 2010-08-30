@@ -8,6 +8,9 @@ Changelog
 4.0.1 - Unreleased
 -------------------
 
+- Fixed i18n of the Upgrade hellip button in plone-overview.pt.
+  [vincentfretin]
+
 - Fix a malformed list comprehension in failsafe_login_form.cpt
   [esteele]
 
