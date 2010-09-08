@@ -8,6 +8,11 @@ Changelog
 4.0.1 - Unreleased
 -------------------
 
+- Successful completion of contact form ended in redirect to 'undefined'
+  when using popups. Fixed by just closing.
+  Fixes https://dev.plone.org/plone/ticket/11090
+  [smcmahon]
+
 - Fixed i18n of the Upgrade hellip button in plone-overview.pt.
   [vincentfretin]
 
