@@ -55,7 +55,7 @@ class DateTimeTests(PloneTestCase):
         self.failUnless(date.equalTo(expired), (date, expired))
 
 
-class DateTimeTests(FunctionalTestCase):
+class DateTimeFunctionalTests(FunctionalTestCase):
 
     def testNonDSTPublicationDateRemainsUnchangedThroughEdit(self):
         # this test is for a date when daylight savings time is not in effect
