@@ -8,6 +8,10 @@ Changelog
 3.3.6 - Unreleased
 ------------------
 
+- Block picking a username already in use by a parent PAS to prevent potential
+  security issues due to collisions.
+  [MatthewWilkes]
+
 - Limit number of matches looked up during live search for speedier replies.
   [witsch]
 

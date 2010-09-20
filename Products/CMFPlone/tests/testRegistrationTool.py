@@ -28,6 +28,13 @@ class TestRegistrationTool(PloneTestCase.PloneTestCase):
         user = self.portal.acl_users.getUserById(member_id)
         self.failUnless(user, 'addMember failed to create user')
 
+    def testCannotRegisterWithRootAdminUsername(self):
+        root_user = self.portal.aq_parent.acl_users.users.listUserIds()[0]
+        self.assertRaises(ValueError,
+                          self.registration.addMember,
+                          root_user, 'secret',
+                          properties={'username': root_user, 'email': 'foo@bar.com'})
+
     def testJoinWithUppercaseEmailCreatesUser(self):
         self.registration.addMember(member_id, 'secret',
                           properties={'username': member_id, 'email': 'FOO@BAR.COM'})
