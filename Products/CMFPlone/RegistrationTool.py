@@ -7,6 +7,7 @@ from smtplib import SMTPRecipientsRefused
 from zope.component import getUtility
 from zope.i18nmessageid import MessageFactory
 
+from Acquisition import aq_base, aq_chain
 from Products.CMFCore.interfaces import ISiteRoot
 
 from Products.CMFCore.utils import getToolByName
@@ -204,6 +205,13 @@ class RegistrationTool(PloneBaseTool, BaseTool):
             results = pas.searchPrincipals(id=id, exact_match=True)
             if results:
                 return 0
+            else:
+               for parent in aq_chain(self):
+                   if hasattr(aq_base(parent), "acl_users"):
+                       pas = parent.acl_users
+                       if IPluggableAuthService.providedBy(pas):
+                           if pas.searchPrincipals(id=id, exact_match=True):
+                                return 0
             # When email address are used as logins, we need to check
             # if there are any users with the requested login.
             props = getToolByName(self, 'portal_properties').site_properties

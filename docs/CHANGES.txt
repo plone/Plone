@@ -8,6 +8,10 @@ Changelog
 4.0.1 - Unreleased
 -------------------
 
+- Block picking a username already in use by a parent PAS to prevent potential
+  security issues due to collisions.
+  [MatthewWilkes]
+
 - Successful completion of contact form ended in redirect to 'undefined'
   when using popups. Fixed by just closing.
   Fixes https://dev.plone.org/plone/ticket/11090
