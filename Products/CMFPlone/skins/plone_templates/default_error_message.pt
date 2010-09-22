@@ -47,11 +47,10 @@
                     <ul>
                         <li i18n:translate="site_error_review">
                             Review the address to make sure it is correct:
-                            <strong i18n:name="current_url"
-                                    tal:content="context/@@plone_context_state/current_page_url">current URL</strong>
+                            <strong tal:content="context/@@plone_context_state/current_page_url">current URL</strong>
                         </li>
                         <li i18n:translate="site_error_search">
-                            <a href="#" i18n:name="search_the_site" i18n:translate="label_search_the_site"
+                            <a href="#" 
                                tal:attributes="href string:${context/portal_url}/search">Search the site</a> for the page
                             you were trying to access, as it may have moved
                         </li>
@@ -64,12 +63,12 @@
                         </li>
                         <li i18n:translate="site_error_site_map">
                             View the 
-                            <a href="#" i18n:name="site_map" i18n:translate="label_site_map"
-                               tal:attributes="href string:${context/portal_url}/sitemap">Site map</a>
+                            <a href="#" 
+                               tal:attributes="href string:${context/portal_url}/sitemap">site map</a>
                         </li>
                         <li i18n:translate="site_error_link_home">
                             Go to the
-                            <a href="#" i18n:name="home_page" i18n:translate="label_home_page"
+                            <a href="#" 
                                tal:attributes="href context/portal_url">home page</a>
                         </li>
                     </ul>
