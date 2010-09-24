@@ -208,9 +208,9 @@ class RegistrationTool(PloneBaseTool, BaseTool):
             else:
                for parent in aq_chain(self):
                    if hasattr(aq_base(parent), "acl_users"):
-                       pas = parent.acl_users
-                       if IPluggableAuthService.providedBy(pas):
-                           if pas.searchPrincipals(id=id, exact_match=True):
+                       parent = parent.acl_users
+                       if IPluggableAuthService.providedBy(parent):
+                           if parent.searchPrincipals(id=id, exact_match=True):
                                 return 0
             # When email address are used as logins, we need to check
             # if there are any users with the requested login.
