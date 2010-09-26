@@ -16,7 +16,7 @@ function sort() {
 	var colnum = $('th', $(this).closest('thead')).index(th);
     var table = $(this).parents('table:first');
     var tbody = table.find('tbody:first');
-    var reverse = table.attr('sorted') == colnum;
+    var reverse = parseInt(table.attr('sorted')) === colnum;
 
     $(this).parent().find('th:not(.nosort) .sortdirection')
         .html('&#x2003;');

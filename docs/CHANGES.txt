@@ -8,6 +8,9 @@ Changelog
 4.0.1 - Unreleased
 -------------------
 
+- Fixed : 'listing' class table sort of first column failed (at third click).
+  [thomasdesvenain]
+
 - Re-add suggestions for 404 pages that were missing in 4.0.
   [MatthewWilkes]
 
