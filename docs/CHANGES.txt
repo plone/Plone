@@ -5,7 +5,7 @@
 Changelog
 =========
 
-4.0.1 - Unreleased
+4.0.1 - 2010-09-28
 -------------------
 
 - Fixed : 'listing' class table sort of first column failed (at third click).
