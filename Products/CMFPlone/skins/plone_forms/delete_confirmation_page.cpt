@@ -37,7 +37,8 @@
 
           <form method="POST"
                 action="#"
-                tal:attributes="action context_state/current_page_url">
+                tal:attributes="action context_state/current_page_url"
+                id="delete_confirmation">
             <div class="formControls">
 
               <input type="hidden"

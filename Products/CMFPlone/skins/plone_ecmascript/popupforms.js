@@ -71,7 +71,7 @@ jQuery(function($){
         {
             subtype: 'ajax',
             filter: common_content_filter,
-            formselector: 'form',
+            formselector: 'form[name="feedback_form"]',
             noform: function(el) {return noformerrorshow(el, 'close');}
         }
     );
@@ -81,7 +81,7 @@ jQuery(function($){
         {
             subtype: 'ajax',
             filter: common_content_filter,
-            formselector: 'form',
+            formselector: 'form:has(input[name="discussion_reply:method"])',
             noform: function(el) {return noformerrorshow(el, 'redirect');},
             redirect: redirectbasehref
         }
@@ -118,7 +118,7 @@ jQuery(function($){
         {
             subtype: 'ajax',
             filter: common_content_filter,
-            formselector: 'form',
+            formselector: '#delete_confirmation',
             noform: function(el) {return noformerrorshow(el, 'redirect');},
             redirect: redirectbasehref,
             closeselector: '[name=form.button.Cancel]',
@@ -133,17 +133,6 @@ jQuery(function($){
             filter: common_content_filter,
             closeselector: '[name=form.button.Cancel]',
             width:'40%'
-        }
-    );
-
-    // Select default view dialog
-    $('dl#plone-contentmenu-display a#contextSetDefaultPage').prepOverlay(
-        {
-            subtype: 'ajax',
-            filter: common_content_filter,
-            formselector: 'form',
-            noform: function(el) {return noformerrorshow(el, 'reload');},
-            closeselector: '[name=form.button.Cancel]'
         }
     );
 

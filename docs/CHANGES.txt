@@ -8,6 +8,9 @@ Changelog
 4.0.2 - Unreleased
 -------------------
 
+- Fixed: http://dev.plone.org/plone/ticket/11177, some formselector 
+  specifications for popups were too vague. [smcmahon]
+
 4.0.1 - 2010-09-28
 -------------------
 
