@@ -7,7 +7,7 @@
       i18n:domain="plone">
 
 
-<metal:override fill-slot="top_slot" 
+<metal:override fill-slot="top_slot"
                 tal:define="dummy python:request.set('disable_border',1);
                             disable_column_one python:request.set('disable_plone.leftcolumn',1);
                             disable_column_two python:request.set('disable_plone.rightcolumn',1);"/>
@@ -23,7 +23,7 @@
                             sys mt/coreVersions;
                             mailhost context/MailHost/smtp_host|nothing;
                             mailfrom context/email_from_address|nothing">
-    
+
         <dl class="portalMessage warning"
             tal:condition="mt/needUpgrading">
             <dt i18n:translate="">
@@ -74,7 +74,7 @@
         <div metal:use-macro="context/global_statusmessage/macros/portal_message">
             Portal status message
         </div>
-                
+
         <div id="content">
 
             <h1 class="documentFirstHeading"
@@ -93,7 +93,7 @@
 
                     <metal:configlets tal:define="allconfiglets python:controlPanel.enumConfiglets(group=group['id']);
                                                   configlets python:here.createMultiColumnList(allconfiglets, numCols=3);">
-                        
+
                         <metal:configletcol tal:repeat="sublist configlets">
                             <div tal:condition="sublist"
                                  style="float:left; margin-right: 1em; width: 29%">
@@ -101,11 +101,16 @@
                                 <ul class="configlets" tal:condition="sublist">
 
                                     <tal:configlet repeat="configlet sublist">
-                                        <li tal:condition="configlet/visible">
+                                      <li tal:condition="configlet/visible"
+                                      tal:define="icon python:configlet['icon'];">
                                             <a href=""
-                                               tal:attributes="href configlet/url">
-                                                <img src="" alt="" tal:attributes="src configlet/icon;"
-                                                     tal:on-error="string:" />
+                                               tal:attributes="href configlet/url;">
+                                               <img src="" alt=""
+                                                 tal:condition="not:icon"
+                                                 tal:attributes="src string:${portal_url}/maintenance_icon.png;" tal:on-error="string:" />
+                                               <img src="" alt=""
+                                                 tal:condition="icon"
+                                                 tal:attributes="src icon;" tal:on-error="string:" />
                                             <tal:configletname tal:content="configlet/title"
                                                                i18n:translate=""></tal:configletname>
                                             </a>
@@ -122,13 +127,13 @@
                              i18n:translate="label_no_prefs_panels_available">
                             No preference panels available.
                         </div>
-                        
-                        <div class="visualClear"><!-- --></div>                        
+
+                        <div class="visualClear"><!-- --></div>
 
                     </metal:configlets>
 
                 </tal:configletgroup>
-                
+
                 <div class="visualClear"><!-- --></div>
 
                 <tal:versions define="mt here/portal_migration;

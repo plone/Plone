@@ -49,6 +49,10 @@ Changelog
   registration tool. This fixes http://dev.plone.org/plone/ticket/10897.
   [davisagli]
 
+- Add a default icon when there is no icon defined in a configlet.
+  This prevent broken images on IE. This fixes http://dev.plone.org/plone/ticket/11112.
+  [kiorky]
+
 4.0 - 2010-08-28
 ----------------
 
