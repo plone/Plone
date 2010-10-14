@@ -8,6 +8,11 @@ Changelog
 3.3.6 - Unreleased
 ------------------
 
+- Avoid conflict in selected tabs when the id of an excluded item starts with the
+  same id of an existing tab.
+  Fixes http://dev.plone.org/plone/ticket/11140
+  [WouterVH]
+
 - Block picking a username already in use by a parent PAS to prevent potential
   security issues due to collisions.
   [MatthewWilkes]
