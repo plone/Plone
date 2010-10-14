@@ -37,12 +37,17 @@
 
     if (stack.length) {
         $('dl.toc').show();
-        oltoc = $(stack[0]);
+        var oltoc = $(stack[0]);
+        // first level is a level with at least two entries #11160
+        var i = 1;
+        while(oltoc.children('li').length == 1){
+            oltoc = $(stack[i]);
+            i += 1;
+        }
         numdigits = oltoc.children().length.toString().length;
         //Use a clever class name to add margin that's MUCH easier to customize
         oltoc.addClass("TOC"+numdigits+"Digit");
         dest.append(oltoc);
-
 
         //scroll to element now.
         var wlh = window.location.hash;

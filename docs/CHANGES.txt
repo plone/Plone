@@ -8,6 +8,10 @@ Changelog
 4.0.2 - Unreleased
 -------------------
 
+- Fixed https://dev.plone.org/plone/ticket/11160,
+  first level of Table of Contents is a level with at least two entries.
+  [thomasdesvenain]
+
 - Fixed: http://dev.plone.org/plone/ticket/11177, some formselector 
   specifications for popups were too vague. [smcmahon]
 
