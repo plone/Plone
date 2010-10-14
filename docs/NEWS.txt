@@ -10,7 +10,8 @@ Changelog
 
 - Avoid conflict in selected tabs when the id of an excluded item starts with the
   same id of an existing tab.
-  Fixes http://dev.plone.org/plone/ticket/11140
+  This closes http://dev.plone.org/plone/ticket/9944
+  Refs http://dev.plone.org/plone/ticket/11140
   [WouterVH]
 
 - Block picking a username already in use by a parent PAS to prevent potential
