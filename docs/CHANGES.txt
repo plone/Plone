@@ -20,6 +20,10 @@ Changelog
 - Fixed: http://dev.plone.org/plone/ticket/11177, some formselector 
   specifications for popups were too vague. [smcmahon]
 
+- Fixed: https://dev.plone.org/plone/ticket/11187, Better message when 
+  you cannot delete a locked item 
+  [kiorky]
+
 4.0.1 - 2010-09-28
 -------------------
 
