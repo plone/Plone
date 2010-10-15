@@ -172,7 +172,6 @@ var livesearch = function (){
         var $key_handler = _keyhandlerfactory($form);
         _search_handlers[$id] = _searchfactory($form, this);
 
-        $form.attr('id', $id).css('white-space', 'nowrap').submit($key_handler.submit);
         jQuery(this).attr('autocomplete','off')
                .keydown($key_handler.handler)
                .focus(_search_handlers[$id].search_delayed)
