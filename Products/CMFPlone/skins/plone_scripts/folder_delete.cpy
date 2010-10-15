@@ -59,10 +59,10 @@ if failure:
 
     if locked:
         mapping[u'lockeditems'] = ', '.join(locked)
-        message = _(u'${lockeditems} locked in WebDav.', mapping=mapping)
+        message = _(u'These items are locked for editing: ${lockeditems}.', mapping=mapping)
     else:
         mapping[u'items'] = ', '.join(other)
-        message = _(u'${items} could not be deleted.', mapping=mapping)
+        message = _(u'These items could not be deleted: ${items}.', mapping=mapping)
         
 context.plone_utils.addPortalMessage(message)
 return state.set(status=status)
