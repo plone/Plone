@@ -73,6 +73,10 @@ Changelog
   http://dev.plone.org/plone/ticket/10369
   [mj]
 
+- Better message when you cannot delete a locked item.
+  This fixes https://dev.plone.org/plone/ticket/8419
+  [kiorky]
+
 
 3.3.5 - March 3rd, 2010
 -----------------------
