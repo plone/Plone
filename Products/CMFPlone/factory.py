@@ -81,8 +81,6 @@ def addPloneSite(context, site_id, title='Plone site', description='',
     setup_tool.runAllImportStepsFromProfile('profile-%s' % profile_id)
     if setup_content:
         setup_tool.runAllImportStepsFromProfile('profile-%s' % _CONTENT_PROFILE)
-    for extension_id in extension_ids:
-        setup_tool.runAllImportStepsFromProfile('profile-%s' % extension_id)
 
     # Try to make the title work with Unicode
     if isinstance(title, str):
@@ -95,7 +93,12 @@ def addPloneSite(context, site_id, title='Plone site', description='',
         email_from_name=email_from_name,
         validate_email=validate_email,
     )
+    # Do this before applying extension profiles, so the settings from a
+    # properties.xml file are applied and not overwritten by this
     site.manage_changeProperties(**props)
+
+    for extension_id in extension_ids:
+        setup_tool.runAllImportStepsFromProfile('profile-%s' % extension_id)
 
     if snapshot is True:
         setup_tool.createSnapshot('initial_configuration')

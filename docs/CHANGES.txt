@@ -8,6 +8,10 @@ Changelog
 4.0.2 - Unreleased
 -------------------
 
+- Fixed ``factory.addPloneSite`` so extension profiles have a chance of
+  specifying site properties in a ``properties.xml`` file.
+  [hannosch]
+
 - Edit tab on Author page pointed to personal preferences page instead of
   personal information.
   This fixes http://dev.plone.org/plone/ticket/11141.
