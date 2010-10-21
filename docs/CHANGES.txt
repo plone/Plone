@@ -8,8 +8,8 @@ Changelog
 4.0.2 - Unreleased
 -------------------
 
-- Edit tab on Author page pointed to personal information page instead of
-  personal preferences.
+- Edit tab on Author page pointed to personal preferences page instead of
+  personal information.
   This fixes http://dev.plone.org/plone/ticket/11141.
   [piv]
 
