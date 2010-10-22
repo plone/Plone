@@ -5,7 +5,7 @@ import zope.deferredimport
 # This is used as a persistent marker interface, we need to provide an upgrade
 # step to update the class reference before removing it.
 zope.deferredimport.deprecated(
-    "It has been moved to plone.app.layout.navigation.interfaces. " 
+    "It has been moved to plone.app.layout.navigation.interfaces. "
     "This alias will be removed in Plone 5.0",
     INavigationRoot = 'plone.app.layout.navigation.interfaces:INavigationRoot',
     )
@@ -263,7 +263,7 @@ class IPlone(Interface):
         """Returns the template Id corresponding to the default view method of
            the context object.
         """
-        
+
     def showEditableBorder():
         """Returns true if the editable border should be shown
         """
@@ -296,8 +296,8 @@ class IPlone(Interface):
         """ returns site encoding """
 
     def bodyClass(template, view):
-        """ returns template or view name to mark body tag with 
-            template-${template_id} CSS class 
+        """ returns template or view name to mark body tag with
+            template-${template_id} CSS class
         """
 
-        
+

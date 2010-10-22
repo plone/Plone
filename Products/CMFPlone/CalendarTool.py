@@ -65,7 +65,7 @@ class CalendarTool(PloneBaseTool, BaseTool):
 
     security.declarePublic('catalog_getevents')
     def catalog_getevents(self, year, month, **kw):
-        """ given a year and month return a list of days that have events 
+        """ given a year and month return a list of days that have events
         """
         # XXX: this method violates the rules for tools/utilities:
         # it depends on a non-utility tool
@@ -74,7 +74,7 @@ class CalendarTool(PloneBaseTool, BaseTool):
         last_day = self._getCalendar().monthrange(year, month)[1]
         first_date = self.getBeginAndEndTimes(1, month, year)[0]
         last_date = self.getBeginAndEndTimes(last_day, month, year)[1]
-        
+
         query_args = {
             'portal_type': self.getCalendarTypes(),
             'review_state': self.getCalendarStates(),
@@ -83,7 +83,7 @@ class CalendarTool(PloneBaseTool, BaseTool):
             'sort_on': 'start'
         }
         query_args.update(kw)
-        
+
         ctool = getToolByName(self, 'portal_catalog')
         query = ctool(**query_args)
 
@@ -139,7 +139,7 @@ class CalendarTool(PloneBaseTool, BaseTool):
                     last_days_event = last_day_data['eventslist'][-1]
                     last_days_event['end'] = (result.end-1).latestTime().Time()
                 else:
-                    eventDays[eventEndDay]['eventslist'].append( 
+                    eventDays[eventEndDay]['eventslist'].append(
                         { 'end': result.end.Time()
                         , 'start': None, 'title': event['title']} )
                     eventDays[eventEndDay]['event'] = 1

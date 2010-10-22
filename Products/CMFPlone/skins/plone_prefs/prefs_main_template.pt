@@ -18,7 +18,7 @@
     <metal:override fill-slot="content">
         <metal:slot define-slot="prefs_configlet_wrapper">
           <metal:slot define-slot="prefs_configlet_content">
-          
+
             <metal:block metal:use-macro="context/main_template/macros/content">
               <metal:override metal:fill-slot="main">
                 <metal:slot metal:define-slot="prefs_configlet_main" tal:content="nothing">
@@ -26,7 +26,7 @@
                 </metal:slot>
               </metal:override>
             </metal:block>
-      
+
           </metal:slot>
         </metal:slot>
     </metal:override>

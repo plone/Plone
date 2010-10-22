@@ -18,7 +18,7 @@ msg=_(u'Copy or cut one or more items to paste.')
 
 if context.cb_dataValid():
     try:
-        context.manage_pasteObjects(context.REQUEST['__cp'])        
+        context.manage_pasteObjects(context.REQUEST['__cp'])
         transaction_note('Pasted content to %s' % (context.absolute_url()))
         context.plone_utils.addPortalMessage(_(u'Item(s) pasted.'))
         return state

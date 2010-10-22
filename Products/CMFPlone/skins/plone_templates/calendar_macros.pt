@@ -36,18 +36,18 @@
                                            id input_id;
                                            value python:not show_hm and inputvalue and hasattr(inputvalue, 'strftime') and inputvalue.strftime('%Y/%m/%d') or inputvalue"/>
       <input type="hidden" tal:attributes="id inputname;" />
-                                  
+
       <tal:ymd condition="not:show_ymd">
           <input type="hidden"
-                 id="ic_year" 
+                 id="ic_year"
                  value="1900"
                  tal:attributes="id string:${input_id}_year;"/>
           <input type="hidden"
-                 id="ic_month" 
+                 id="ic_month"
                  value="1"
                  tal:attributes="id string:${input_id}_month;"/>
           <input type="hidden"
-                 id="ic_day" 
+                 id="ic_day"
                  value="1"
                  tal:attributes="id string:${input_id}_day;"/>
        </tal:ymd>

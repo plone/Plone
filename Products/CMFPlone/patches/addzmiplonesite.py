@@ -3,7 +3,7 @@ from OFS.ObjectManager import ObjectManager
 ADD_PLONE_SITE_HTML = '''
 <dtml-if "_.len(this().getPhysicalPath()) == 1 or this().meta_type == 'Folder' and 'PloneSite' not in [o.__class__.__name__ for o in this().aq_chain]">
   <!-- Add Plone site action-->
-  <form method="get" 
+  <form method="get"
         action="&dtml-URL1;/@@plone-addsite"
         style="text-align: right; margin-top:0.5em; margin-bottom:0em;"
         target="_top">

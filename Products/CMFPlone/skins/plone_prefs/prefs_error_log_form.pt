@@ -12,7 +12,7 @@
 
     <h1 class="documentFirstHeading"
         i18n:translate="heading_error_log">Error log</h1>
-        
+
     <div class="documentDescription" i18n:translate="description_error_log_setup">
         This page lists the exceptions that have occurred in this site
         recently. You can configure how many exceptions should be kept

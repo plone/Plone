@@ -22,7 +22,7 @@ path = url[len(plone_url):]
 
 for action in portal_tabs:
     if not action['url'].startswith(plone_url):
-        # In this case the action url is an external link. Then, we avoid 
+        # In this case the action url is an external link. Then, we avoid
         # issues (bad portal_tab selection) continuing with next action.
         continue
     action_path = action['url'][len(plone_url):]

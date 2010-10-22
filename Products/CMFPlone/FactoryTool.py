@@ -31,7 +31,7 @@ class FauxArchetypeTool(object):
     """A faux archetypes tool which prevents content from being indexed."""
 
     __allow_access_to_unprotected_subobjects__ = 1
-    
+
     def __init__(self, tool):
         self.tool = tool
 
@@ -44,17 +44,17 @@ class FauxArchetypeTool(object):
 
 def _createObjectByType(type_name, container, id, *args, **kw):
     """This function replaces Products.CMFPlone.utils._createObjectByType.
-    
+
     If no product is set on fti, use IFactory to lookup the factory.
     Additionally we add 'container' as 'parent' kw argument when calling the
     IFactory implementation. this ensures the availability of the acquisition
     chain if needed inside the construction logic.
-    
+
     The kw argument hack is some kind of semi-valid since the IFactory interface
     promises the __call__ function to accept all given args and kw args.
     As long as the specific IFactory implementation provides this signature
     everything works well unless any other 3rd party factory expects another
-    kind of object as 'parent' kw arg than the provided one. 
+    kind of object as 'parent' kw arg than the provided one.
     """
     id = str(id)
     typesTool = getToolByName(container, 'portal_types')
@@ -64,7 +64,7 @@ def _createObjectByType(type_name, container, id, *args, **kw):
 
     if not fti.product:
         kw['parent'] = container
-    
+
     return fti._constructInstance(container, id, *args, **kw)
 
 
@@ -353,7 +353,7 @@ class FactoryTool(PloneBaseTool, UniqueObject, SimpleItem):
         return hasattr(ob, 'meta_type') and ob.meta_type == TempFolder.meta_type
 
     def __before_publishing_traverse__(self, other, REQUEST):
-        
+
         if REQUEST.get(FACTORY_INFO, None):
             del REQUEST[FACTORY_INFO]
 
@@ -363,25 +363,25 @@ class FactoryTool(PloneBaseTool, UniqueObject, SimpleItem):
         #    (1) a type, and (2) an id
         if len(stack) < 2: # ignore
             return
-        
+
         # Keep track of how many path elements we want to eat
         gobbled_length = 0
-        
+
         type_name = stack[-1]
         types_tool = getToolByName(self, 'portal_types')
         # make sure this is really a type name
         if not type_name in types_tool.listContentTypes():
             return # nope -- do nothing
-        
+
         gobbled_length += 1
-        
+
         id = stack[-2]
         intended_parent = aq_parent(self)
         if hasattr(intended_parent, id):
             return # do normal traversal via __bobo_traverse__
-        
+
         gobbled_length += 1
-        
+
         # about to create an object
 
         # before halting traversal, check for method aliases
@@ -398,18 +398,18 @@ class FactoryTool(PloneBaseTool, UniqueObject, SimpleItem):
             REQUEST._hacked_path = 1
         else:
             gobbled_length += 1
-        
+
         # Pevent further traversal if we are doing a normal factory request,
         # but allow it if there is a traversal sub-path beyond the (edit)
         # view on the content item. In this case, portal_factory will not
         # be responsible for rendering the object.
         if len(stack) <= gobbled_length:
             REQUEST.set('TraversalRequestNameStack', [])
-        
+
         stack.reverse()
         factory_info = {'stack':stack}
         REQUEST.set(FACTORY_INFO, factory_info)
-    
+
     def __bobo_traverse__(self, REQUEST, name):
         # __bobo_traverse__ can be invoked directly by a restricted_traverse method call
         # in which case the traversal stack will not have been cleared by __before_publishing_traverse__

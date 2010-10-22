@@ -102,7 +102,7 @@ class TestPrefsUserManage(PloneTestCase.PloneTestCase):
         self.assertRaises(Forbidden, self.portal.prefs_user_membership_edit, userid='barney')
 
     def test_ploneChangePasswordPostOnly(self):
-        self.login(default_user) 
+        self.login(default_user)
         self.setRequestMethod('GET')
         self.assertRaises(Forbidden, self.portal.plone_change_password, current=default_password, password=default_password, password_confirm=default_password)
 

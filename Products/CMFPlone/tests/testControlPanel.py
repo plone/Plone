@@ -19,7 +19,7 @@ class TestControlPanel(PloneTestCase.PloneTestCase):
                            'MemberPassword', 'ZMI', 'SecuritySettings',
                            'NavigationSettings', 'SearchSettings',
                            'errorLog', 'PloneReconfig',
-                           'CalendarSettings', 'TypesSettings', 
+                           'CalendarSettings', 'TypesSettings',
                            'PloneLanguageTool', 'CalendarSettings',
                            'HtmlFilter', 'Maintenance']
 

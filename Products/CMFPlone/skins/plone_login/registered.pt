@@ -5,7 +5,7 @@
       metal:use-macro="context/main_template/macros/master"
       i18n:domain="plone">
 <body>
-    
+
 
 <metal:main fill-slot="main"
      tal:define="auth nocall:context/acl_users/credentials_cookie_auth|nothing">
@@ -25,9 +25,9 @@
         <div class="documentDescription" i18n:translate="description_you_are_registered">
             You have been registered.
         </div>
-        
+
         <div id="content-core">
-            <p tal:condition="ve" 
+            <p tal:condition="ve"
                tal:define="expire_length context/portal_password_reset/getExpirationTimeout;
                            toLocalizedTime nocall:context/@@plone/toLocalizedTime;
                            expire_date python:toLocalizedTime(DateTime() + expire_length / 24.0, long_format=1)"
@@ -97,7 +97,7 @@
                 </form>
             </tal:block>
         </div>
-        
+
     </div>
 
 </metal:main>

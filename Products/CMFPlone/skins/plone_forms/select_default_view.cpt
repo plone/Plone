@@ -28,7 +28,7 @@
                 tal:attributes="action string:${context_state/object_url}/${template/getId}">
 
             <input type="hidden" name="form.submitted" value="1"/>
-    
+
                 <div tal:define="vocab context/getAvailableLayouts;
                                 actualLayout context/getLayout|nothing;
                                 selectedLayout python:not context_state.is_default_page() and actualLayout or '';">
@@ -88,7 +88,7 @@
 
           </form>
       </div>
-      
+
     </metal:main>
 
   </body>

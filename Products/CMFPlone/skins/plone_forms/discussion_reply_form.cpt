@@ -24,8 +24,8 @@
                                  view_macros view_template/macros | nothing;
                                  view_macro view_macros/content-core | nothing;
                                  showDiscussable python:object_title or object_description or view_macro;">
-             <!-- 
-             <div class="comment" 
+             <!--
+             <div class="comment"
                   tal:condition="showDiscussable"
                   tal:define="here python:discussable;
                               context python:discussable">
@@ -36,7 +36,7 @@
                  <tal:block tal:condition="view_macro">
                      <div metal:use-macro="view_macro"/>
                  </tal:block>
-             </div> 
+             </div>
              -->
         </tal:discussable>
 
@@ -51,7 +51,7 @@
                          tal:condition="not:anonymous_creator">Poster Name</span>
                    <span i18n:translate="label_anonymous_user"
                          tal:condition="anonymous_creator">Anonymous User</span>
-                   <span i18n:translate="label_commented_at">at</span> 
+                   <span i18n:translate="label_commented_at">at</span>
                    <span tal:replace="python:toLocalizedTime(reply.ModificationDate(),
                                       long_format=1)">8/23/2001 12:40:44 PM</span>
                </div>
@@ -66,8 +66,8 @@
                         tal:content="structure reply/CookedBody">
                         This is the body text of the comment.
                    </div>
-               </div>    
-                 
+               </div>
+
             </tal:block>
         </tal:thread>
 

@@ -31,12 +31,12 @@ class TestPortalFactory(PloneTestCase.PloneTestCase):
         temp_doc = self.folder.restrictedTraverse('portal_factory/Document/tmp_id')
         self.assertEqual(temp_doc.portal_type, 'Document')
         self.assertEqual(temp_doc.getId(), 'tmp_id')
-    
+
     def testTraverseEditView(self):
         edit_view = self.folder.restrictedTraverse('portal_factory/Document/tmp_id/edit')
         self.assertEquals('tmp_id', edit_view.im_self.getId())
         self.assertEquals('Document', edit_view.im_self.portal_type)
-    
+
     def testTraverseTwiceByDifferentContentTypes(self):
         temp_doc = self.folder.restrictedTraverse('portal_factory/Document/tmp_id')
         self.assertEqual(temp_doc.portal_type, 'Document')

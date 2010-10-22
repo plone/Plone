@@ -2,39 +2,39 @@
 <portlets
     xmlns:i18n="http://xml.zope.org/namespaces/i18n"
     i18n:domain="plone">
-  
+
  <!-- Columns (portlet managers) -->
-  
- <portletmanager 
-   name="plone.leftcolumn" 
+
+ <portletmanager
+   name="plone.leftcolumn"
    type="plone.app.portlets.interfaces.ILeftColumn"
    />
-   
- <portletmanager 
-   name="plone.rightcolumn" 
+
+ <portletmanager
+   name="plone.rightcolumn"
    type="plone.app.portlets.interfaces.IRightColumn"
    />
-   
- <portletmanager 
-   name="plone.dashboard1" 
+
+ <portletmanager
+   name="plone.dashboard1"
    type="plone.app.portlets.interfaces.IDashboard"
    />
- <portletmanager 
-   name="plone.dashboard2" 
+ <portletmanager
+   name="plone.dashboard2"
    type="plone.app.portlets.interfaces.IDashboard"
    />
- <portletmanager 
-   name="plone.dashboard3" 
+ <portletmanager
+   name="plone.dashboard3"
    type="plone.app.portlets.interfaces.IDashboard"
    />
- <portletmanager 
-   name="plone.dashboard4" 
+ <portletmanager
+   name="plone.dashboard4"
    type="plone.app.portlets.interfaces.IDashboard"
    />
- 
+
  <!-- Portlet type registrations -->
 
- <portlet 
+ <portlet
    addview="portlets.Calendar"
    title="Calendar portlet"
    description="A portlet which can render a calendar."
@@ -45,29 +45,29 @@
    <for interface="plone.app.portlets.interfaces.IDashboard" />
  </portlet>
 
- <portlet 
+ <portlet
    addview="portlets.Classic"
    title="Classic portlet"
    description="A portlet which can render a classic template-based portlet"
    i18n:attributes="title;
                     description"
    >
-   <for interface="plone.app.portlets.interfaces.IColumn" /> 
-   <for interface="plone.app.portlets.interfaces.IDashboard" />  
+   <for interface="plone.app.portlets.interfaces.IColumn" />
+   <for interface="plone.app.portlets.interfaces.IDashboard" />
  </portlet>
- 
- <portlet 
+
+ <portlet
    addview="portlets.News"
    title="News"
    description="A portlet which can render a listing of recent news"
    i18n:attributes="title;
                     description"
    >
-   <for interface="plone.app.portlets.interfaces.IColumn" /> 
-   <for interface="plone.app.portlets.interfaces.IDashboard" />  
+   <for interface="plone.app.portlets.interfaces.IColumn" />
+   <for interface="plone.app.portlets.interfaces.IDashboard" />
  </portlet>
-  
- <portlet 
+
+ <portlet
    addview="portlets.Events"
    title="Events"
    description="A portlet which can render a listing of recent events"
@@ -78,7 +78,7 @@
    <for interface="plone.app.portlets.interfaces.IDashboard" />
  </portlet>
 
- <portlet 
+ <portlet
    addview="portlets.Login"
    title="Login"
    description="A portlet which can render a log-in box"
@@ -87,8 +87,8 @@
    >
    <for interface="plone.app.portlets.interfaces.IColumn" />
  </portlet>
-  
- <portlet 
+
+ <portlet
    addview="portlets.Navigation"
    title="Navigation"
    description="A portlet which can render a navigation tree"
@@ -98,7 +98,7 @@
    <for interface="plone.app.portlets.interfaces.IColumn" />
  </portlet>
 
- <portlet 
+ <portlet
    addview="portlets.Recent"
    title="Recent items"
    description="A portlet which can render a listing of recently changed items."
@@ -109,7 +109,7 @@
    <for interface="plone.app.portlets.interfaces.IDashboard" />
  </portlet>
 
- <portlet 
+ <portlet
    addview="portlets.Review"
    title="Review list"
    description="A portlet which can render a listing on the review queue."
@@ -120,7 +120,7 @@
    <for interface="plone.app.portlets.interfaces.IDashboard" />
  </portlet>
 
- <portlet 
+ <portlet
    addview="portlets.rss"
    title="RSS Feed"
    description="A portlet which can receive and render an RSS feed."
@@ -131,7 +131,7 @@
    <for interface="plone.app.portlets.interfaces.IDashboard" />
  </portlet>
 
- <portlet 
+ <portlet
    addview="portlets.Search"
    title="Search"
    description="A portlet which shows a search box."

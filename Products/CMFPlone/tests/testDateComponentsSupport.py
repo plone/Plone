@@ -19,7 +19,7 @@ class TestDateComponentsSupport(PloneTestCase.PloneTestCase):
         self.d = self.portal.date_components_support(date)
 
     def testElements(self):
-        self.assertEqual(sortTuple(self.d.keys()), 
+        self.assertEqual(sortTuple(self.d.keys()),
                 ('ampm', 'days', 'hours', 'minutes', 'months', 'years'))
 
     def testYears(self):
@@ -98,7 +98,7 @@ class TestDateComponentsSupport(PloneTestCase.PloneTestCase):
             {'selected': None, 'id': 30,     'value': '30'},
             {'selected': None, 'id': 31,     'value': '31'},
         ]
-    
+
         days = self.d.get('days')
         for i in range(32):
             self.assertEqual(days[i], data[i])
@@ -173,7 +173,7 @@ class TestDateComponentsSupportDefault(PloneTestCase.PloneTestCase):
         self.d = self.portal.date_components_support(None)
 
     def testElements(self):
-        self.assertEqual(sortTuple(self.d.keys()), 
+        self.assertEqual(sortTuple(self.d.keys()),
                 ('ampm', 'days', 'hours', 'minutes', 'months', 'years'))
 
     def testYears(self):
@@ -252,7 +252,7 @@ class TestDateComponentsSupportDefault(PloneTestCase.PloneTestCase):
             {'selected': None, 'id': 30,     'value': '30'},
             {'selected': None, 'id': 31,     'value': '31'},
         ]
-    
+
         days = self.d.get('days')
         for i in range(32):
             self.assertEqual(days[i], data[i])

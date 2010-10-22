@@ -78,7 +78,7 @@
         <ul id="testResultsToc"></ul>
         <div id="testResultsPlaceHolder"></div>
         <div id="testSandbox"></div>
-    
+
         <!-- the following parts are for the kupu tests. -->
         <!-- some test data for the loadDictFromXML function -->
         <div style="visibility: hidden">

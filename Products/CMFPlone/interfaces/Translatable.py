@@ -27,7 +27,7 @@ class ITranslatable(Interface):
         If called without arguments it returns the translation in the currently
         selected language, or self.
         """
- 
+
     def getTranslationLanguages():
         """
         Return a list of language codes

@@ -32,7 +32,7 @@ class URLTool(PloneBaseTool, BaseTool):
              'path':url_path[2]}
         # check for urls without protocol (i.e. relative urls), or urls with
         # the same host and path.
-        
+
         if not u['host'] and not u['path'].startswith('/'): #relatively relative url!
             #url is a relative path that needs to be checked. URLs that start with / can be quickly checked
             #urls that start with ../ need to have a bit of traversal
@@ -55,9 +55,9 @@ class URLTool(PloneBaseTool, BaseTool):
                             continue
                         else: #We shouldn't have to deal with crazy urls like ../../somefolder/../otherfolder/../content
                             #add the current node to give us a bit more breathing room, in case somone was silly and used the name of the portal in the relative path
-                            return ('/'.join(currpath)+'/'+node).startswith(p['path']) 
+                            return ('/'.join(currpath)+'/'+node).startswith(p['path'])
             else: #url is in the form: path/to/another/object.jpg
-                return True 
+                return True
         else:
             return (p['host'] == u['host'] or not u['host']) and u['path'].startswith(p['path'])
 

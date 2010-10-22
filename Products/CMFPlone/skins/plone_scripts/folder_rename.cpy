@@ -38,7 +38,7 @@ if change_template:
         orig_template = orig_template.replace(url_unquote(orig_path),
                                               new_path)
         request.set('orig_template', orig_template)
-        message = _(u"Renamed '${oldid}' to '${newid}'.", 
+        message = _(u"Renamed '${oldid}' to '${newid}'.",
                     mapping={u'oldid' : obid, u'newid' : new_id})
 
 success, failure = putils.renameObjectsByPaths(paths, new_ids, new_titles,
@@ -49,7 +49,7 @@ if message is None:
                 mapping={u'count' : str(len(success))})
 
 if failure:
-    message = _(u'The following item(s) could not be renamed: ${items}.', 
+    message = _(u'The following item(s) could not be renamed: ${items}.',
                 mapping={u'items' : ', '.join(failure.keys())})
 
 context.plone_utils.addPortalMessage(message)

@@ -45,7 +45,7 @@
         </label>
 
         <div class="formHelp" i18n:translate="">
-          The id of the site. This ends up as part of the URL.<br /> 
+          The id of the site. This ends up as part of the URL.<br />
           No special characters are allowed.
         </div>
 

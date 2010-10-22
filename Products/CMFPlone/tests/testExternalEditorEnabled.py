@@ -58,7 +58,7 @@ class TestExternalEditorEnabled(PloneTestCase.PloneTestCase):
         self.doc.external_edit()
         redirect = self.doc.REQUEST.RESPONSE.headers['location']
         self.failUnless(redirect.endswith('doc'))
-        
+
         # if Mac OS X in the user agent, add a .zem extension
         self.doc.REQUEST.environ['HTTP_USER_AGENT'] = 'Mac OS X'
         self.doc.external_edit()

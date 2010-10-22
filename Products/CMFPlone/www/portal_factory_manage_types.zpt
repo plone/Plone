@@ -10,7 +10,7 @@ creation.</p>
   <table border="0"
          tal:define="factory_types context/getFactoryTypes">
     <tr tal:repeat="type_name python:context.portal_types.listContentTypes()" >
-      <td><input type="checkbox" 
+      <td><input type="checkbox"
                  tal:attributes="name python:type_name;
                                  checked python:test(type_name in factory_types, '1', '')" /></td>
       <td tal:content="type_name" />
@@ -19,5 +19,5 @@ creation.</p>
 
   <input type="submit" name="submit" value="Save"/>
 </form>
-    
+
 <tal:footer tal:replace="structure context/manage_page_footer|nothing">footer</tal:footer>

@@ -21,7 +21,7 @@
  <javascript id="first_input_focus.js" />
  <javascript id="accessibility.js" compression="full" />
  <javascript id="styleswitcher.js" />
- <javascript id="toc.js" />    
+ <javascript id="toc.js" />
  <javascript id="collapsibleformfields.js" />
 
  <!-- Sarissa is used by both Kupu and KSS -->

@@ -19,13 +19,13 @@
 
     <h1 class="documentFirstHeading"
         i18n:translate="heading_undo_actions">Undo actions</h1>
-        
+
     <div class="documentDescription" i18n:translate="description_undo_action">
         This applications transactional feature allows you to easily undo changes
         made to the applications settings or data. You can revert the application
         to a &quot;snapshot&quot; of its state at a previous point in time.
     </div>
-            
+
     <div id="content-core">
         <form name="undo_form"
               action="undo"

@@ -7,15 +7,15 @@
       i18n:domain="plone">
 
 <body>
-    
+
     <metal:content-core fill-slot="content-core">
         <metal:block define-macro="content-core"
-                     tal:define="content_type context/get_content_type|context/Format">        
+                     tal:define="content_type context/get_content_type|context/Format">
             <p>
                 <metal:field use-macro="python:context.widget('file', mode='view')">
                 File
                 </metal:field>
-            </p>        
+            </p>
             <div tal:condition="python: content_type.startswith('text')">
                 <h2 i18n:translate="heading_file_contents">File contents</h2>
                 <pre tal:content="context/get_data|context/data|nothing">

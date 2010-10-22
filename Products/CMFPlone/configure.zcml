@@ -47,7 +47,7 @@
 
   <!-- wicked -->
   <include package="wicked.plone" file="selective-atct.zcml" />
-  
+
   <!-- extra portlets -->
   <include package="plone.portlet.static" />
   <include package="plone.portlet.collection" />
@@ -83,7 +83,7 @@
 
   <utility factory=".setuphandlers.HiddenProducts"
            name="Products.CMFPlone" />
-           
+
   <!-- Adapter for default workflow lookup -->
   <adapter
       factory=".workflow.ToolWorkflowChain"

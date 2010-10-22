@@ -15,14 +15,14 @@
 
     <h1 class="documentFirstHeading"
         i18n:translate="heading_advanced_search">Advanced search for content</h1>
-        
+
     <div class="documentDescription" i18n:translate="description_advanced_search">
         This search form enables you to find content on the site by
         specifying one or more search terms.
         <br />
         Remember that you can use the quick search anytime, it's normally
         good enough, this search form is just if you want to be more specific.
-    </div>        
+    </div>
 
     <div id="content-core">
 
@@ -40,7 +40,7 @@
                           first_call  not:request/advanced_search|nothing">
 
             <input type="hidden" name="advanced_search" value="True" />
-        
+
                 <div class="field">
                     <label for="SearchableText" i18n:translate="label_search_text">Search text</label>
 
@@ -60,7 +60,7 @@
                            />
                 </div>
 
-            
+
                 <div class="field"
              tal:define="usedSubjects python:context.portal_catalog.uniqueValuesFor('Subject');"
              tal:condition="usedSubjects">
@@ -110,13 +110,13 @@
                         Match all
                     </label>
                 </div>
-    
+
 
                 <h2 i18n:translate="">More search options</h2>
 
 
                 <div class="field collapsible"
-                     tal:attributes="class field_collapsible_class" 
+                     tal:attributes="class field_collapsible_class"
                      tal:define="portal_types portal/portal_types;
                                  all_used_types  python:context.portal_catalog.uniqueValuesFor('portal_type');
                                  used_types  python:context.plone_utils.getUserFriendlyTypes(all_used_types);
@@ -129,7 +129,7 @@
                     <div class="formHelp" i18n:translate="help_search_item_type">
                     Return items of a specific type.
                     </div>
-    
+
                     <span class="optionsToggle">
                         <input type="checkbox"
                                onclick=""
@@ -137,7 +137,7 @@
                                value="#"
                                id="pt_toggle"
                                class="noborder"
-                               checked="checked" 
+                               checked="checked"
                                tal:attributes="checked python:all_checked and 'checked' or '';
                                                onclick string:javascript:toggleSelect(this, 'portal_type:list', ${toggle_select_state});"/>
                         <label for="pt_toggle"
@@ -170,11 +170,11 @@
                 <div class="visualClear" id="clear-after-item-type"><!-- --></div>
                 </div>
     	  </div>
-          
-    
+
+
                 <div class="field collapsible"
                      tal:attributes="class field_collapsible_class">
-                    <label for="created" 
+                    <label for="created"
                            class="collapser"
                            i18n:translate="label_new_items_since">New items since</label>
 
@@ -182,7 +182,7 @@
                     <div class="formHelp" i18n:translate="help_search_new_items_since">
                     Return items added since you were last logged on, the last week, etc.
                     </div>
-    
+
                     <tal:datetime define="today python:DateTime().earliestTime();
                                           isAnon context/@@plone_portal_state/anonymous;
                                           member context/@@plone_portal_state/member;">
@@ -198,39 +198,39 @@
                                 tal:condition="not: isAnon"
                                 tal:define="value python:member is not None and member.getProperty('last_login_time') or today"
                                 tal:attributes="value value;
-                                                selected python:selected==value and 'selected' or '';" 
+                                                selected python:selected==value and 'selected' or '';"
                                 i18n:translate="last_login">Last log-in</option>
-                        <option value="#" 
+                        <option value="#"
                                 tal:attributes="value yesterday;
-                                                selected python:selected==yesterday and 'selected' or '';" 
+                                                selected python:selected==yesterday and 'selected' or '';"
                                 i18n:translate="time_yesterday"> Yesterday </option>
-                        <option value="#" 
+                        <option value="#"
                                 tal:attributes="value lastweek;
-                                                selected python:selected==lastweek and 'selected' or '';" 
+                                                selected python:selected==lastweek and 'selected' or '';"
                                 i18n:translate="time_last_week"> Last week </option>
                         <option value="#" tal:attributes="value lastmonth;
-                                                          selected python:selected==lastmonth and 'selected' or '';" 
+                                                          selected python:selected==lastmonth and 'selected' or '';"
                                 i18n:translate="time_last_month"> Last month </option>
                         <option value="#"
     			    class="default_option"
                                 tal:attributes="value ever;
-                                                selected python:selected==ever and 'selected' or '';" 
+                                                selected python:selected==ever and 'selected' or '';"
                                 i18n:translate="time_ever"> Ever </option>
                     </select>
                     </tal:datetime>
                 </div>
-        
+
                     <input type="hidden" name="created_usage" value="range:min" />
                 </div>
 
                 <div class="field collapsible"
                      tal:attributes="class field_collapsible_class"
                      tal:condition="options/show_review_state">
-    
-                    <label for="review_state" 
+
+                    <label for="review_state"
                            class="collapser"
                            i18n:translate="label_review_status">Review status</label>
-        
+
             <div class="collapse"
                  tal:define="navtree_props portal/portal_properties/navtree_properties;
                              states python:portal.portal_workflow.listWFStatesByTitle(filter_similar=1);
@@ -243,7 +243,7 @@
                     review state. If you wish to constrain results to items
                     in certain states, select them from this list.
                     </div>
-    
+
                     <span class="optionsToggle">
                     <input type="checkbox"
                            onclick="javascript:toggleSelect(this, 'review_state:list', true);"
@@ -251,7 +251,7 @@
                            value="#"
                            id="rs_toggle"
                            class="noborder"
-                           checked="checked" 
+                           checked="checked"
                            tal:attributes="checked python:all_checked and 'checked' or '';
                                            onclick string:javascript:toggleSelect(this, 'review_state:list', ${toggle_select_state});"/>
                     <label for="rs_toggle"
@@ -286,7 +286,7 @@
 
                 <div class="field collapsible"
                      tal:attributes="class field_collapsible_class">
-                    <label for="Creator" 
+                    <label for="Creator"
                            class="collapser"
                            i18n:translate="label_author">Author</label>
 
@@ -294,23 +294,23 @@
                     <div class="formHelp" i18n:translate="help_search_author">
                     Return items created by a particular person.
                     </div>
-    
+
                     <tal:creators tal:define="creators python:portal.portal_catalog.uniqueValuesFor('Creator');
                                               selected request/Creator|nothing">
                         <select name="Creator"
                                 id="Creator"
                                 tal:condition="python: len(creators) &lt;= 30">
-                            <option value="" 
-    				class="default_option" 
+                            <option value=""
+    				class="default_option"
     				i18n:translate="label_any_author">Any Author</option>
                             <metal:block tal:repeat="creator creators">
-                                <option value="" 
+                                <option value=""
                                         tal:attributes="value creator;
-                                                        selected python:selected == creator and 'selected' or '';" 
+                                                        selected python:selected == creator and 'selected' or '';"
                                         tal:content="creator">username </option>
                             </metal:block>
                         </select>
-    
+
                         <input name="Creator"
                                tal:condition="python: len(creators) &gt; 30 "
                                tal:attributes="value selected" />
@@ -321,8 +321,8 @@
                 <div class="field collapsible"
                      tal:attributes="class field_collapsible_class"
                      tal:condition="options/show_title">
-                    <label for="Title" 
-                           class="collapser" 
+                    <label for="Title"
+                           class="collapser"
                            i18n:translate="label_title">Title</label>
 
                     <div class="collapse">
@@ -340,7 +340,7 @@
                     </div>
                 </div>
 
-                <div class="field collapsible"               
+                <div class="field collapsible"
                      tal:attributes="class field_collapsible_class"
                      tal:condition="options/show_description">
 
@@ -354,7 +354,7 @@
                     Multiple words may be found
                     by combining them with <strong>AND</strong> and <strong>OR</strong>.
                     </div>
-    
+
                     <input type="text"
                            id="Description"
                            name="Description"
@@ -370,52 +370,52 @@
                 <div class="field"
                      tal:condition="options/show_sort_on">
                   <label for="sort_on" i18n:translate="">Sort results</label>
-              
+
                   <div class="formHelp" i18n:translate="">
                     Sort the Search Results based on the selected criterion
                   </div>
-              
+
                   <select name="sort_on"
                           id="sort_on"
                           tal:define="selected request/form/sort_on|nothing">
                     <option value=""
                             tal:attributes="selected python:selected == '' and 'selected' or ''"
                             i18n:translate="">Relevance</option>
-                    <option value="created" 
+                    <option value="created"
                             tal:attributes="selected python:selected == 'created' and 'selected' or ''"
                             i18n:translate="">Creation Date</option>
-                    <option value="modified" 
+                    <option value="modified"
                             tal:attributes="selected python:selected == 'modified' and 'selected' or ''"
                             i18n:translate="">Modification Date</option>
-                    <option value="sortable_title" 
+                    <option value="sortable_title"
                             tal:attributes="selected python:selected == 'sortable_title' and 'selected' or ''"
                             i18n:translate="">Title</option>
                   </select>
-              
+
                 </div>
 
                 <div class="field"
                      tal:condition="options/show_batch_size">
                   <label for="b_size" i18n:translate="">Results per page</label>
-              
+
                   <div class="formHelp" i18n:translate="">
                     The number of results that is displayed on one page.
                   </div>
-              
+
                   <select name="b_size:int"
                           id="b_size"
                           tal:define="selected request/form/b_size|nothing">
                     <option value="30"
-                            tal:attributes="selected python:selected == 30 and 'selected' or ''" 
+                            tal:attributes="selected python:selected == 30 and 'selected' or ''"
                             i18n:translate="">30</option>
-                    <option value="60" 
+                    <option value="60"
                             tal:attributes="selected python:selected == 60 and 'selected' or ''"
                             i18n:translate="">60</option>
                     <option value="90"
                             tal:attributes="selected python:selected == 90 and 'selected' or ''"
                             i18n:translate="">90</option>
                   </select>
-              
+
                 </div>
 
                 <div class="visualClear" id="clear-space-before-submit"><!-- --></div>
@@ -436,7 +436,7 @@
                 </script>
 
 
-        
+
         </form>
 
         </metal:define>

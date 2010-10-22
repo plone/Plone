@@ -101,7 +101,7 @@ class SitemapNavtreeStrategy(NavtreeStrategyBase):
 
     def __init__(self, context, view=None):
         self.context = context
-        
+
         portal_url = getToolByName(context, 'portal_url')
         self.portal = portal_url.getPortalObject()
         portal_properties = getToolByName(context, 'portal_properties')
@@ -138,7 +138,7 @@ class SitemapNavtreeStrategy(NavtreeStrategyBase):
     def decoratorFactory(self, node):
         context = aq_inner(self.context)
         request = context.REQUEST
-        
+
         newNode = node.copy()
         item = node['item']
 
@@ -178,7 +178,7 @@ class SitemapNavtreeStrategy(NavtreeStrategyBase):
         newNode['normalized_id'] = idnormalizer.normalize(newNode['id'])
 
         return newNode
-        
+
     def showChildrenOf(self, object):
         getTypeInfo = getattr(object, 'getTypeInfo', None)
         if getTypeInfo is not None:

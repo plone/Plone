@@ -15,7 +15,7 @@
  <stylesheet id="ploneKss.css" />
 
  <stylesheet id="print.css" media="print" />
- <stylesheet id="mobile.css" 
+ <stylesheet id="mobile.css"
              media="handheld, screen and (max-device-width: 480px)" />
 
  <stylesheet id="ploneCustom.css" media="all" />

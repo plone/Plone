@@ -40,7 +40,7 @@
 
                   <div class="field">
                       <label i18n:translate="label_new_owner">New owner</label>
-                  
+
                       <span class="fieldRequired" title="Required"
                             i18n:attributes="title title_required;"
                             i18n:translate="label_required">(Required)</span>
@@ -66,7 +66,7 @@
                              i18n:translate="label_subobjects">
                           Subobjects
                       </label>
-                  
+
                       <div class="formHelp" i18n:translate="help_subobjects">
                           Changes all the contained objects if selected.
                       </div>
@@ -113,7 +113,7 @@
                   <div class="field">
                       <label for="userid"
                              i18n:translate="label_new_owner">New owner</label>
-                  
+
                       <span class="fieldRequired" title="Required"
                             i18n:attributes="title title_required;"
                             i18n:translate="label_required">(Required)</span>
@@ -139,7 +139,7 @@
                              i18n:translate="label_subobjects">
                           Subobjects
                       </label>
-                  
+
                       <div class="formHelp" i18n:translate="help_subobjects">
                           Changes all the contained objects if selected.
                       </div>

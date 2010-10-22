@@ -10,7 +10,7 @@ class TestActionIconsTool(PloneTestCase.PloneTestCase):
     def afterSetUp(self):
         self.actionicons = self.portal.portal_actionicons
         self._refreshSkinData()
-        
+
     def testAddActionIcon(self):
         length = len(self.actionicons.listActionIcons())
         self.actionicons.addActionIcon('content_actions',

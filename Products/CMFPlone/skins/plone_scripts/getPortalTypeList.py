@@ -35,7 +35,7 @@ excluded_ids = {
     'ATRelativePathCriterion': None,
     'ATPortalTypeCriterion': None,
     'ATReferenceCriterion': None,
-    'ATBooleanCriterion': None, 
+    'ATBooleanCriterion': None,
     'ATSelectionCriterion': None,
     'ATSimpleIntCriterion': None,
     'ATSimpleStringCriterion': None,

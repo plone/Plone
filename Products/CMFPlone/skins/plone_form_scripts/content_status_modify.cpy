@@ -50,7 +50,7 @@ if workflow_action in transition_ids:
     wfcontext=new_context.portal_workflow.doActionFor( context,
                                                        workflow_action,
                                                        comment=comment )
-    
+
 if not wfcontext:
     wfcontext = new_context
 

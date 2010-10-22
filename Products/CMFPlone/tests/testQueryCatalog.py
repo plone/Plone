@@ -49,17 +49,17 @@ class TestQueryCatalog(PloneTestCase.PloneTestCase):
 
     def testRealIndex(self):
         request = {'SearchableText':'bar'}
-        self.assertEqual(self.stripStuff(self.folder.queryCatalog(request)), 
+        self.assertEqual(self.stripStuff(self.folder.queryCatalog(request)),
                             {'SearchableText':'bar'})
 
     def testTwoIndexes(self):
         request = {'SearchableText':'bar','foo':'bar'}
-        self.assertEqual(self.stripStuff(self.folder.queryCatalog(request)), 
+        self.assertEqual(self.stripStuff(self.folder.queryCatalog(request)),
                             {'SearchableText':'bar'})
 
     def testRealIndexes(self):
         request = {'SearchableText':'bar','Subject':'bar'}
-        self.assertEqual(self.stripStuff(self.folder.queryCatalog(request)), 
+        self.assertEqual(self.stripStuff(self.folder.queryCatalog(request)),
                             request)
 
     def testOnlySort(self):
@@ -78,13 +78,13 @@ class TestQueryCatalog(PloneTestCase.PloneTestCase):
     def testRealWithUsage(self):
         request = {'modified':'2004-01-01','modified_usage':'range:min'}
         expected = {'modified': {'query': '2004-01-01', 'range': 'min'}}
-        self.assertEqual(self.stripStuff(self.folder.queryCatalog(request)), 
+        self.assertEqual(self.stripStuff(self.folder.queryCatalog(request)),
                             expected)
 
     def testSortLimit(self):
         # the script ignored 'sort_limit'; test to show it no longer does.
         request = {'SearchableText':'bar','sort_on':'foozle','sort_limit':50}
-        self.assertEqual(self.stripStuff(self.folder.queryCatalog(request)), 
+        self.assertEqual(self.stripStuff(self.folder.queryCatalog(request)),
                             request)
 
     def testBlacklistedTypes(self):
@@ -106,7 +106,7 @@ class TestQueryCatalog(PloneTestCase.PloneTestCase):
         ntp.root = '/foo'
         qry = self.folder.queryCatalog(request, use_navigation_root=True)
         self.assertEquals('/'.join(self.portal.foo.getPhysicalPath()), qry['path'])
-        
+
     def testNavigationRootDoesNotOverrideExplicitPath(self):
         request = {'SearchableText':'a*', 'path':'/yyy/zzz'}
         ntp = self.portal.portal_properties.navtree_properties
@@ -128,7 +128,7 @@ class TestQueryCatalogQuoting(PloneTestCase.PloneTestCase):
 
     def dummyCatalog(self, REQUEST=None, **kw):
         return kw
-        
+
     def stripStuff(self, query_dict):
         # strip portal_types and show_inactive parameter which is
         # auto-set with types blacklisting. Useful to simplify test
@@ -208,7 +208,7 @@ class TestQueryCatalogParseError(PloneTestCase.PloneTestCase):
 
     def testParseError(self):
         # ZCTextIndex raises ParseError
-        self.assertRaises(ParseError, self.portal.portal_catalog, 
+        self.assertRaises(ParseError, self.portal.portal_catalog,
                           SearchableText='-foo')
 
     def testQueryCatalogParseError(self):

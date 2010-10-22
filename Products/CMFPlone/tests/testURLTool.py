@@ -13,7 +13,7 @@ class TestURLTool(PloneTestCase.PloneTestCase):
         self.url = self.portal.portal_url
         self.folder.invokeFactory('Folder', id='foo')
         self.folder.foo.invokeFactory('Document', id='doc1')
-        
+
     def test_isURLInPortal(self):
         iURLiP = self.url.isURLInPortal
         self.failUnless(iURLiP(
@@ -32,7 +32,7 @@ class TestURLTool(PloneTestCase.PloneTestCase):
                            '/images'))
         self.failUnless(iURLiP(
                                '/%s/foo' % portal_name))
-    
+
     def test_isURLInPortalRelative(self):
         iURLiP = self.url.isURLInPortal
         #non-root relative urls will need a current context to be passed in

@@ -113,7 +113,7 @@ def getObjPositionInParent(obj):
     """
     parent = aq_parent(aq_inner(obj))
     ordered = IOrderedContainer(parent, None)
-    if ordered is not None: 
+    if ordered is not None:
         return ordered.getObjectPosition(obj.getId())
     return 0
 
@@ -175,7 +175,7 @@ def is_folderish(obj):
       >>> directlyProvides(self.folder, INonStructuralFolder, directlyProvidedBy(self.folder))
       >>> is_folderish(self.folder)
       False
-      
+
     Now we revert our interface change and check to make sure that
     PrincipiaFolderish is respected::
       >>> directlyProvides(self.folder, base_implements)
@@ -275,14 +275,14 @@ class CatalogTool(PloneBaseTool, BaseTool):
     def catalog_object(self, object, uid=None, idxs=[],
                        update_metadata=1, pghandler=None):
         self._increment_counter()
-        
+
         w = object
         if not IIndexableObject.providedBy(object):
             # This is the CMF 2.2 compatible approach, which should be used going forward
             wrapper = queryMultiAdapter((object, self), IIndexableObject)
             if wrapper is not None:
                 w = wrapper
-        
+
         ZCatalog.catalog_object(self, w, uid, idxs,
                                 update_metadata, pghandler=pghandler)
 

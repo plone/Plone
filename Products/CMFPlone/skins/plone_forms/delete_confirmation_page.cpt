@@ -9,7 +9,7 @@
                tal:define="dummy python:request.set('disable_border',1)" />
 
   <body>
-    
+
     <metal:main fill-slot="main"
          tal:define="useSelf python:context_state.is_structural_folder() and not context_state.is_default_page();
                      folder_warning python:useSelf and context.portal_type != 'Topic';

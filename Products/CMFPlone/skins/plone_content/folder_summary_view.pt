@@ -6,18 +6,18 @@
       metal:use-macro="context/main_template/macros/master"
       i18n:domain="plone">
 
-<body> 
-    
+<body>
+
     <metal:content-core fill-slot="content-core">
         <metal:block use-macro="context/folder_listing/macros/content-core">
             <!-- we don't want the dl -->
             <metal:entries fill-slot="entries">
                 <metal:block use-macro="context/folder_listing/macros/entries">
                     <metal:entry fill-slot="entry">
-                <div class="tileItem visualIEFloatFix" 
+                <div class="tileItem visualIEFloatFix"
                      tal:define="item_object item/getObject;">
 
-                    <a href="#" 
+                    <a href="#"
                        tal:condition="exists:item_object/image_thumb"
                        tal:attributes="href python:test(item_type in use_view_action, item_url+'/view', item_url)">
                         <img src="" alt=""
@@ -113,6 +113,6 @@
             </metal:entries>
         </metal:block>
     </metal:content-core>
-    
+
 </body>
 </html>

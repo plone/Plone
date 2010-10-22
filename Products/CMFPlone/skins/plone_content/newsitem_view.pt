@@ -6,10 +6,10 @@
       metal:use-macro="context/main_template/macros/master"
       i18n:domain="plone">
 <body>
-    
+
 <metal:content-core fill-slot="content-core">
     <metal:block define-macro="content-core"
-          tal:define="kssClassesView context/@@kss_field_decorator_view; 
+          tal:define="kssClassesView context/@@kss_field_decorator_view;
                       getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
                       templateId template/getId;
                       text python:context.CookedBody(stx_level=2);
@@ -39,7 +39,7 @@
 
         <div metal:define-macro="text-field-view"
              id="parent-fieldname-text" class="stx"
-             tal:define="kss_class python:getKssClasses('text', 
+             tal:define="kss_class python:getKssClasses('text',
                          templateId=templateId, macro='text-field-view');
                          text text|context/getText|nothing"
              tal:condition="text"

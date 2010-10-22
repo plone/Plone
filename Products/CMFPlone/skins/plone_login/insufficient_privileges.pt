@@ -7,7 +7,7 @@
       i18n:domain="plone">
 
 <body>
-  
+
 <metal:main fill-slot="main">
 
       <h1 class="documentFirstHeading"
@@ -16,7 +16,7 @@
       <div class="documentDescription" i18n:translate="description_no_privileges_for_page">
       You do not have sufficient privileges to view this page. If you believe
       you are receiving this message in error, contact the
-      <span i18n:name="site_admin"><a href="#" 
+      <span i18n:name="site_admin"><a href="#"
          i18n:translate="label_site_administration"
          tal:attributes="href string:${context/portal_url}/contact-info">site administration</a></span>.
       </div>

@@ -16,7 +16,7 @@
 
     <h1 class="documentFirstHeading"
         i18n:translate="heading_accessibility_info">Accessibility</h1>
-    
+
     <div id="content-core">
         <p i18n:translate="text_size">Text size:</p> <noscript i18n:translate="">(Requires JavaScript)</noscript>
 
@@ -34,22 +34,22 @@
                                               i18n:attributes="title title_small_text;"
                                               i18n:translate="small_text">Small</a></li>
         </ul>
-                                              
+
         <p i18n:translate="description_accessibility_info">
             This site uses the <a href="http://plone.org" i18n:name="plone">Open Source Content Management System Plone</a>
             and has been designed to be completely accessible and usable, working in
-            accordance with the Web Content Accessibility Guidelines 
+            accordance with the Web Content Accessibility Guidelines
             (<acronym i18n:name="wcag"
                       title="Web Content Accessibility Guidelines"
                       i18n:attributes="title title_wcag;">WCAG</acronym> v1.0).
             If there is anything on this site &mdash; accessibility or validation related &mdash;
             that is not according to the standard, please contact the <span i18n:name="site_admin">
-            <a href="#" 
+            <a href="#"
                i18n:translate="label_site_admin"
-               tal:attributes="href string:${context/portal_url}/contact-info">Site Administration</a></span>, 
+               tal:attributes="href string:${context/portal_url}/contact-info">Site Administration</a></span>,
             and not the Plone Team.
         </p>
-    
+
         <h2 i18n:translate="heading_access_keys">Access keys</h2>
 
         <p i18n:translate="description_access_keys">
@@ -77,43 +77,43 @@
         <h2 i18n:translate="heading_accessibility_statement">Accessibility Statement</h2>
 
         <p i18n:translate="description_accessibility_statement">
-        We have undertaken to use our knowledge and understanding of the ways in which 
-        different people access the Internet, to develop a web site that is clear and 
+        We have undertaken to use our knowledge and understanding of the ways in which
+        different people access the Internet, to develop a web site that is clear and
         simple for everybody to use.
         </p>
 
         <h3 i18n:translate="heading_validation">Validation</h3>
 
         <p i18n:translate="description_validation">
-        We have used 
+        We have used
         <acronym i18n:name="xhtml"
                  title="eXtensible Hyper Text Markup Language"
-                 i18n:attributes="title title_xhtml;">XHTML</acronym> 1.0 
+                 i18n:attributes="title title_xhtml;">XHTML</acronym> 1.0
         and <acronym i18n:name="css"
                      title="Cascading Style Sheets"
-                     i18n:attributes="title title_css;">CSS</acronym> that conforms to 
+                     i18n:attributes="title title_css;">CSS</acronym> that conforms to
         specification, as laid out by the
         <acronym i18n:name="w3c"
                  title="World Wide Web Consortium"
                  i18n:attributes="title title_w3c;">W3C</acronym> because we believe
-        that usability and accessibility must have a solid foundation. 
-        If anything on this web site does not validate correctly, please contact the 
+        that usability and accessibility must have a solid foundation.
+        If anything on this web site does not validate correctly, please contact the
         <span i18n:name="site_admin"><a href="/contact-info"
               tal:attributes="href string:${context/portal_url}/contact-info"
-              i18n:translate="label_site_admin">Site Administration</a></span>, 
+              i18n:translate="label_site_admin">Site Administration</a></span>,
         and not the Plone Team.
         </p>
 
         <p i18n:translate="description_wcag_aa_rating">
-        We have also endeavoured to achieve AA accessibility as measured against 
+        We have also endeavoured to achieve AA accessibility as measured against
         version 1.0 of the
         <acronym i18n:name="wcag"
                  title="Web Content Accessibility Guidelines"
                  i18n:attributes="title title_wcag;">WCAG</acronym>.
-        We are aware however, that a number of the checkpoints of the 
+        We are aware however, that a number of the checkpoints of the
         <acronym i18n:name="wcag2"
                  title="Web Content Accessibility Guidelines"
-                 i18n:attributes="title title_wcag;">WCAG</acronym> are 
+                 i18n:attributes="title title_wcag;">WCAG</acronym> are
         subjective &mdash; and although we are sure that we have met them squarely,
         there may be instances where interpretation may vary.
         </p>

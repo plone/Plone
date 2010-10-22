@@ -9,7 +9,7 @@
 <body>
     <metal:content-core fill-slot="content-core">
         <metal:block define-macro="content-core"
-                     tal:define="kssClassesView context/@@kss_field_decorator_view; 
+                     tal:define="kssClassesView context/@@kss_field_decorator_view;
                                  getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
                                  size context/size">
             <a href=""

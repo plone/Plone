@@ -16,7 +16,7 @@
 
     <h1 class="documentFirstHeading"
         i18n:translate="heading_exception_details">Exception Details</h1>
-        
+
     <div id="content-core">
         <a href=""
            class="link-parent"
@@ -33,8 +33,8 @@
                     Error
                 </dt>
                 <dd i18n:translate="text_errlog_notfound">
-                        The specified log entry was not found. It may have expired. 
-                        If you are using a load-balanced ZEO (cluster) setup, try 
+                        The specified log entry was not found. It may have expired.
+                        If you are using a load-balanced ZEO (cluster) setup, try
                         reloading until you get the right server in the cluster.
                 </dd>
             </dl>
@@ -63,7 +63,7 @@
                         i18n:translate="label_exception_value">Exception Value</dt>
                     <dd tal:content="entry/value">gak</dd>
                 </dl>
-            
+
                 <div tal:condition="entry/tb_html" tal:content="structure entry/tb_html">
                 Traceback (HTML)
                 </div>
@@ -90,7 +90,7 @@
 
         </div>
     </div>
-    
+
 </metal:main>
 </body>
 </html>

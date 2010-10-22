@@ -106,7 +106,7 @@ class TranslationServiceTool(PloneBaseTool, UniqueObject, SimpleItem):
         >>> ttool.day_msgid(3, format='s')
         'weekday_wed_short'
         """
-        # 
+        #
         if format == 's':
             # short format
             method = weekdayname_msgid_short

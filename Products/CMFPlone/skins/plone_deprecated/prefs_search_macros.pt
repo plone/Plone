@@ -37,7 +37,7 @@
                            value=""
                            tal:attributes="value searchstring;"
                            />
-                
+
                     <input type="hidden" name="searchonly" value="groups" />
                     <input type="submit"
                            class="searchButton"
@@ -61,7 +61,7 @@
                    alt="Select all items"
                    i18n:attributes="title label_select_all_items; alt label_select_all_items;"/>
             </th>
-            
+
             <th i18n:translate="listingheader_group_user_name">Group/User name</th>
           </tr>
 
@@ -114,7 +114,7 @@
 
         <tal:block condition="python:not many_groups or searchstring and results">
 
-        <input type="hidden" value="b_start" name="b_start" 
+        <input type="hidden" value="b_start" name="b_start"
                tal:attributes="value b_start"/>
 
         <div metal:use-macro="context/batch_macros/macros/navigation" />

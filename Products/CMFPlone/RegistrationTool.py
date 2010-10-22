@@ -169,7 +169,7 @@ class RegistrationTool(PloneBaseTool, BaseTool):
 
             try:
                 checkEmailAddress( email )
-            except EmailAddressInvalid: 
+            except EmailAddressInvalid:
                 return _(u'You must enter a valid email address.')
 
         else: # Existing member.
@@ -187,7 +187,7 @@ class RegistrationTool(PloneBaseTool, BaseTool):
 
                 # Not allowed to clear an existing non-empty email.
                 existing = member.getProperty('email')
-                
+
                 if existing and email == '':
                     return _(u'You must enter a valid email address.')
 

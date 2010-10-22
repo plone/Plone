@@ -2,7 +2,7 @@
 <componentregistry>
  <adapters/>
  <utilities>
-  <utility 
+  <utility
      interface="five.customerize.interfaces.IViewTemplateContainer"
      object="portal_view_customizations"/>
   <utility
@@ -11,7 +11,7 @@
   <utility
      interface="plone.contentrules.engine.interfaces.IRuleStorage"
      factory="plone.contentrules.engine.storage.RuleStorage"/>
-  <utility 
+  <utility
      interface="plone.app.i18n.locales.interfaces.ICountries"
      factory="plone.app.i18n.locales.countries.Countries"/>
   <utility

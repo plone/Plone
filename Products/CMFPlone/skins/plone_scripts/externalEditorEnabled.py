@@ -1,4 +1,4 @@
-## Script (Python) "externalEditorEnabled" 
+## Script (Python) "externalEditorEnabled"
 ##bind container=container
 ##bind context=context
 ##bind namespace=

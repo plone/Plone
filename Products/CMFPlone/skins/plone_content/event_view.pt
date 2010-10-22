@@ -45,7 +45,7 @@
                                     <tal:word i18n:translate="event_when_differentday_optional_word_between_date_and_time" />
                                     <span tal:replace="python:toLocalizedTime(context.start(), time_only=1)">Start Time</span>
                                   </span>
-                                </abbr> 
+                                </abbr>
                                 to
                                 <br i18n:name="linebreak" />
                                 <abbr i18n:name="enddate"
@@ -79,7 +79,7 @@
                                       tal:attributes="class string:$kss_class dtstart;
                                                       title python:context.start().ISO8601()"
                                       i18n:name="starttime">
-                                      <span metal:define-slot="inside" 
+                                      <span metal:define-slot="inside"
                                             class="explain"
                                             tal:content="python:toLocalizedTime(context.start(), time_only=1)">Start Time</span>
                                 </abbr> to
@@ -90,7 +90,7 @@
                                       tal:attributes="class string:$kss_class dtend;
                                                       title python:context.end().ISO8601()"
                                       i18n:name="endtime">
-                                      <span metal:define-slot="inside" 
+                                      <span metal:define-slot="inside"
                                             class="explain"
                                             tal:content="python:toLocalizedTime(context.end(), time_only=1)">End Time</span>
                                 </abbr>

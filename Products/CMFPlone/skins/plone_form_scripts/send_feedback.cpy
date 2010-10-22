@@ -50,7 +50,7 @@ if send_from_address == '':
     # Would be nicer to check in the feedback form, but that's hard to do securely
     plone_utils.addPortalMessage(_(u'Could not find a valid email address'), 'error')
     return state.set(status=state_failure)
-    
+
 sender_id = "%s (%s), %s" % (sender.getProperty('fullname'), sender.getId(), send_from_address)
 
 host = context.MailHost # plone_utils.getMailHost() (is private)
@@ -58,7 +58,7 @@ encoding = portal.getProperty('email_charset')
 
 ## TODO:
 ##
-## Add fullname, memberid to sender 
+## Add fullname, memberid to sender
 variables = {'send_from_address' : send_from_address,
              'sender_id'         : sender_id,
              'url'               : referer,

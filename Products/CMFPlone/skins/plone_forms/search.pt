@@ -115,8 +115,8 @@
             <span class="discreet">
             &mdash;
             <span i18n:translate="batch_x_items_matching_your_criteria"
-            ><span i18n:name="number" 
-            tal:omit-tag="" 
+            ><span i18n:name="number"
+            tal:omit-tag=""
             tal:content="python:len(results)">234</span> items matching your search terms</span>
           </span>
         </h1>
@@ -151,12 +151,12 @@
                     tal:attributes="class python:'contenttype-' + normalizeString(result.portal_type)">
                   <img tal:replace="structure item_icon/html_tag" />
                    <a
-                     href="#" 
+                     href="#"
                      tal:attributes="href url;
                                      class string:$item_wf_state_class"
                      tal:content="result/pretty_title_or_id" />
                 </dt>
-            
+
                 <dd>
                     <span tal:replace="python:plone_view.cropText(result.Description, desc_length, desc_ellipsis)">
                         Cropped description
@@ -176,7 +176,7 @@
                              i18n:name="author">
                             Bob Dobalina
                           </a>
-                        </tal:block>  
+                        </tal:block>
                     </span>
 
                     <span class="documentModified">
@@ -211,12 +211,12 @@
             </tal:entry>
             </tal:results>
             </dl>
-         
+
             <div metal:use-macro="context/batch_macros/macros/navigation" />
 
         </div>
     </div>
-    
+
 </metal:main>
 </body>
 </html>

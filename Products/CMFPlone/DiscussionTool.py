@@ -18,7 +18,7 @@ class DiscussionTool(PloneBaseTool, BaseTool):
             text_format on document objects.  Discussions in plone are going
             to use plain-text for now.  stx is too confusing.
         """
-        reply.cooked_text = convertWebIntelligentPlainTextToHtml(reply.text)                                    
+        reply.cooked_text = convertWebIntelligentPlainTextToHtml(reply.text)
 
 DiscussionTool.__doc__ = BaseTool.__doc__
 

@@ -40,11 +40,11 @@
               </ul>
               <div class="contentActions">&nbsp;</div>
           </div>
-      
+
           <div metal:use-macro="context/global_statusmessage/macros/portal_message">
             Portal status message
-          </div>      
-      
+          </div>
+
           <div id="content">
             <h1 class="documentFirstHeading"
                 i18n:translate="heading_users_overview">Users Overview</h1>
@@ -149,7 +149,7 @@
                                             user python:context.portal_membership.getMemberById(userid)"
                                 tal:condition="python:user is not None"
                                 tal:attributes="class python:test(oddrow,'odd','even')">
-                
+
                               <td>
                                     <a href="prefs_user_details"
                                        tal:attributes="href string:$portal_url/prefs_user_details?${userquery}">
@@ -158,7 +158,7 @@
                                     </a>
                                     <input type="hidden" name="users.id:records" tal:attributes="value userid" />
                               </td>
-                
+
                               <td tal:define="email python:user.getProperty('email')">
                                 <a href="#"
                                            class="link-plain"
@@ -174,7 +174,7 @@
                                    tal:attributes="value email;
                                                    disabled python:user.canWriteProperty('email') and default or 'disabled'" />
                               </td>
-                
+
                               <td class="listingCheckbox"
                                   tal:define="user_roles user/getRoles"
                                   tal:repeat="portal_role portal_roles">
@@ -186,7 +186,7 @@
                                                    checked python:test(portal_role in user_roles, 'checked', nothing);
                                                    disabled python:user.canAssignRole(portal_role) and default or 'disabled'" />
                               </td>
-                
+
                               <td class="listingCheckbox">
                                 <input type="checkbox"
                                    class="noborder"
@@ -195,7 +195,7 @@
                                                tal:attributes="value userid;
                                                                disabled python:user.canPasswordSet() and default or 'disabled'" />
                               </td>
-                
+
                               <td class="listingCheckbox">
                                 <input type="checkbox"
                                                class="noborder notify"

@@ -19,7 +19,7 @@ class TestCSSRegistry(PloneTestCase.PloneTestCase):
     def testDefaultCssIsInstalled(self):
         installedStylesheetIds = self.tool.getResourceIds()
         expected = ['ploneCustom.css',
-                    'authoring.css', 
+                    'authoring.css',
                     'public.css',
                     'base.css',
                     'portlets.css',
@@ -73,7 +73,7 @@ class TestJSRegistry(PloneTestCase.PloneTestCase):
              'cookie_functions.js',
              'nodeutilities.js',
              'plone_javascript_variables.js',
-             'register_function.js', 
+             'register_function.js',
              'formUnload.js',
              'formsubmithelpers.js',
              'form_tabbing.js',

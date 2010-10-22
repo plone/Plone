@@ -71,7 +71,7 @@
               <dl>
                 <dt i18n:translate="label_syndication_channel_title">Channel Title</dt>
                 <dd tal:content="context/@@plone_context_state/object_title">title</dd>
-            
+
                 <dt i18n:translate="label_syndication_channel_description">Channel Description</dt>
                 <dd tal:content="context/Description">description</dd>
               </dl>
@@ -82,7 +82,7 @@
                 <div class="field">
                   <label for="updatePeriod"
                          i18n:translate="label_syndication_updateperiod">Update Period</label>
-              
+
                   <div class="formHelp" i18n:translate="help_syndication_update_period">
                     Controls how often the channel is updated.
                   </div>
@@ -106,9 +106,9 @@
 
                   <label for="updateFrequency"
                          i18n:translate="label_syndication_update_frequency">Update Frequency</label>
-              
+
                   <div class="formHelp" i18n:translate="help_syndication_update_frequency">
-                    Controls the frequency of the updates. For example, 
+                    Controls the frequency of the updates. For example,
                     if you want it to update twice a week,
                     select "weekly" above, and "2" here.
                   </div>
@@ -123,7 +123,7 @@
                          tal:attributes="value updateFrequency;" />
                 </div>
 
-                <div class="field" 
+                <div class="field"
                      tal:define="updateBase python:request.get('updateBase', syntool.getUpdateBase(here));
                                  error errors/updateBase|nothing;
                                  inputname  string:updateBase;
@@ -138,7 +138,7 @@
                     So if you want to update weekly every Tuesday,
                     make sure this starts on a Tuesday.
                   </div>
-              
+
                   <div tal:content="error">Validation error output</div>
 
                   <div metal:use-macro="context/calendar_macros/macros/calendarDatePickerBox">
@@ -146,18 +146,18 @@
                   </div>
                 </div>
 
-                <div class="field" 
+                <div class="field"
                      tal:define="max_items python:request.get('max_items', syntool.getMaxItems(here));
                                  error errors/max_items|nothing"
                      tal:attributes="class python:test(error, 'field error', 'field')">
 
                   <label for="max_items"
                          i18n:translate="label_syndication_max_items">Maximum Items</label>
-              
+
                   <span class="fieldRequired" title="Required"
                         i18n:attributes="title title_required;"
                         i18n:translate="label_required">(Required)</span>
-                    
+
                         <div class="formHelp" i18n:translate="help_syndication_max_items">
                           Maximum number of items that will be syndicated.
                         </div>
@@ -184,7 +184,7 @@
                 <input type="hidden" name="form.submitted" value="1" />
 
               </fieldset>
-          
+
             </form>
 
           </tal:block>
@@ -194,7 +194,7 @@
             Syndication has been disabled by site administrator.
           </div>
       </div>
-      
+
     </metal:main>
 
   </body>

@@ -909,7 +909,7 @@ class TestIndexers(PloneTestCase.PloneTestCase):
 
         obj = DummyContent()
         w = IndexableObjectWrapper(obj, self.portal.portal_catalog)
-        
+
         self.failUnless(IIndexableObjectWrapper.providedBy(w))
         self.failUnless(IContentish.providedBy(w))
 
@@ -921,16 +921,16 @@ class TestIndexers(PloneTestCase.PloneTestCase):
 
 
 class TestObjectProvidedIndexExtender(unittest.TestCase):
-    
+
     def _index(self, object):
         from Products.CMFPlone.CatalogTool import object_provides
         return object_provides(object)()
-    
+
     def testNoInterfaces(self):
         class Dummy(object):
             pass
         self.assertEqual(self._index(Dummy()), ['zope.interface.Interface'])
-        
+
     def testSimpleInterface(self):
         class IDummy(zope.interface.Interface):
             pass

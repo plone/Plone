@@ -28,7 +28,7 @@
     <p i18n:translate="description_navigation_setup">
         Lets you control how navigation is constructed in your site.
     </p>
-    
+
     <p i18n:translate="description_navigation_setup_navtree">
         Note that to control how the navigation tree is displayed, you should
         go to "Manage portlets" at the root of the site (or wherever a
@@ -68,7 +68,7 @@
                     prefer manually constructing this part of the navigation.
                 </div>
             </div>
-            
+
             <div class="field"
                  tal:define="nonfolderish_tabs python: not site_properties.disable_nonfolderish_sections;
                              nonfolderish_tabs request/nonfolderish_tabs | nonfolderish_tabs;
@@ -117,7 +117,7 @@
                     when viewing content contained within it or within a subfolder.
                 </div>
             </div>
-            
+
             <div class="field" id="navigationtypes-field"
                  tal:define="
                        portal_types     context/portal_types;

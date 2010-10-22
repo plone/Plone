@@ -112,7 +112,7 @@ class TestActionsTool(PloneTestCase.PloneTestCase):
             info = ActionInfo(action, self.portal)
             self.failUnless(isinstance(info['title'], Message))
             self.failUnless(isinstance(info['description'], Message))
-            
+
     def testListActionsSkipsItemsWithOldInterface(self):
          # Ticket #10791
          me = Action("not_action_category")

@@ -135,7 +135,7 @@
    <permission-role>Owner</permission-role>
    <permission-role>Editor</permission-role>
    <permission-role>Reader</permission-role>
-   <permission-role>Contributor</permission-role>   
+   <permission-role>Contributor</permission-role>
   </permission-map>
   <permission-map name="Change portal events"
                   acquired="False">
@@ -269,7 +269,7 @@
    <guard-permission>Modify portal content</guard-permission>
   </guard>
  </transition>
- <transition transition_id="submit"  new_state="pending" 
+ <transition transition_id="submit"  new_state="pending"
              title="Submit for publication"
              trigger="USER"
              before_script="" after_script=""
@@ -321,7 +321,7 @@
     Comment about the last transition
   </description>
   <default>
-   
+
    <expression>python:state_change.kwargs.get('comment', '')</expression>
   </default>
   <guard>
@@ -333,7 +333,7 @@
     Provides access to workflow history
   </description>
   <default>
-   
+
    <expression>state_change/getHistory</expression>
   </default>
   <guard>
@@ -347,7 +347,7 @@
     When the previous transition was performed
   </description>
   <default>
-   
+
    <expression>state_change/getDateTime</expression>
   </default>
   <guard>

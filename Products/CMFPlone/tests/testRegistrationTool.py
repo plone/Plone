@@ -190,27 +190,27 @@ class TestPasswordGeneration(PloneTestCase.PloneTestCase):
         self.assertEqual(rc, self.registration.generateResetCode(salt))
 
 class TestEmailValidityChecker(unittest.TestCase):
-    
+
     check = lambda _, email: _checkEmail(email)
-    
+
     def test_generic_tld(self):
         result = self.check("webmaster@example.org")
         self.assertTrue(*result)
-    
+
     def test_normal_cc_tld(self):
         result = self.check("webmaster@example.co.uk")
         self.assertTrue(*result)
-    
+
     def test_idn_cc_tld(self):
         result = self.check(u"webmaster@example.xn--wgbh1c")
         self.assertTrue(*result)
-    
+
     def test_long_tld(self):
         result = self.check(u"webmaster@example.onion")
         self.assertTrue(*result)
 
 class TestRegistrationToolEmailValidityChecker(PloneTestCase.PloneTestCase):
-    
+
     check = lambda _, email: _.portal.portal_registration.isValidEmail(email)
 
 def test_suite():

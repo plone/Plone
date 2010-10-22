@@ -121,7 +121,7 @@ class TestCalendarTool(PloneTestCase.PloneTestCase):
           {'eventslist': [], 'day': 29, 'event': 0},
           {'eventslist': [], 'day': 0, 'event': 0},
           {'eventslist': [], 'day': 0, 'event': 0}]]
-  
+
         self.assertEqual(events, data)
 
     def testCatalogGetEvents(self):

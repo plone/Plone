@@ -6,7 +6,7 @@
       i18n:domain="plone">
   <body>
   <metal:main fill-slot="main" tal:define="results request/historyComparisonResults|nothing;">
-     
+
     <div id="content-core">
         <div tal:condition="results">
           <span tal:replace="structure results" />

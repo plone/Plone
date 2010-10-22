@@ -10,9 +10,9 @@
 
 <tal:block define="dummy context/rssAllowed" />
 
-<tal:block 
+<tal:block
     define="
-        syn context/portal_syndication; 
+        syn context/portal_syndication;
         objectList python:list(syn.getSyndicatableContent(here))">
     <metal:block use-macro="context/rss_template/macros/master">
         <metal:block fill-slot="syndication">

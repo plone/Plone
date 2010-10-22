@@ -54,12 +54,12 @@ class TestPloneToolBrowserDefault(PloneTestCase.FunctionalTestCase):
 
         response = self.publish(base_path+path, self.basic_auth)
         body = response.getBody().decode('utf-8')
-        
+
         # request/ACTUAL_URL is fubar in tests, remove lines that depend on it
         resolved = RE_REMOVE_DOCCONT.sub('', resolved)
         resolved = RE_REMOVE_NAVTREE.sub('', resolved)
         resolved = RE_REMOVE_TABS.sub('', resolved)
-        
+
         body = RE_REMOVE_DOCCONT.sub('', body)
         body = RE_REMOVE_NAVTREE.sub('', body)
         body = RE_REMOVE_TABS.sub('', body)
@@ -224,22 +224,22 @@ class TestDefaultPage(PloneTestCase.PloneTestCase):
 class TestPortalBrowserDefault(PloneTestCase.PloneTestCase):
     """Test the BrowserDefaultMixin as implemented by the root portal object
     """
-    
+
     def afterSetUp(self):
         self.setRoles(['Manager'])
-        
-        # Make sure we have the front page; the portal generator should take 
+
+        # Make sure we have the front page; the portal generator should take
         # care of this, but let's not be dependent on that in the test
         if not 'front-page' in self.portal.objectIds():
             self.portal.invokeFactory('Document', 'front-page',
                                       title = 'Welcome to Plone')
         self.portal.setDefaultPage('front-page')
-    
+
         # Also make sure we have folder_listing as a template
         self.portal.getTypeInfo().manage_changeProperties(view_methods =
                                         ['folder_listing'],
                                         default_view = 'folder_listing')
-            
+
     def failIfDiff(self, text1, text2):
         """
         Compare two bodies of text.  If they are not the same, fail and output the diff
@@ -254,7 +254,7 @@ class TestPortalBrowserDefault(PloneTestCase.PloneTestCase):
         resolved = self.portal()
         target = self.portal.unrestrictedTraverse('folder_listing')()
         self.failIfDiff(resolved, target)
-            
+
     def testDefaultViews(self):
         self.assertEqual(self.portal.getLayout(), 'folder_listing')
         self.assertEqual(self.portal.getDefaultPage(), 'front-page')
@@ -263,12 +263,12 @@ class TestPortalBrowserDefault(PloneTestCase.PloneTestCase):
         layoutKeys = [v[0] for v in self.portal.getAvailableLayouts()]
         self.failUnless('folder_listing' in layoutKeys)
         self.assertEqual(self.portal.__browser_default__(None), (self.portal, ['front-page',]))
-        
+
     def testCanSetLayout(self):
         self.failUnless(self.portal.canSetLayout())
         self.portal.manage_permission("Modify view template", [], 0)
         self.failIf(self.portal.canSetLayout()) # Not permitted
-    
+
     def testSetLayout(self):
         self.portal.setLayout('folder_listing')
         self.assertEqual(self.portal.getLayout(), 'folder_listing')
@@ -277,24 +277,24 @@ class TestPortalBrowserDefault(PloneTestCase.PloneTestCase):
         self.assertEqual(self.portal.getDefaultLayout(), 'folder_listing')
         layoutKeys = [v[0] for v in self.portal.getAvailableLayouts()]
         self.failUnless('folder_listing' in layoutKeys)
-        
+
         view = self.portal.view()
         browserDefault = self.portal.__browser_default__(None)[1][0]
         browserDefaultResolved = self.portal.unrestrictedTraverse(browserDefault)()
         template = self.portal.defaultView()
         templateResolved = self.portal.unrestrictedTraverse(template)()
-        
+
         self.failIfDiff(view, browserDefaultResolved)
         self.failIfDiff(view, templateResolved)
 
-        
+
     def testCanSetDefaultPage(self):
         self.failUnless(self.portal.canSetDefaultPage())
         self.portal.invokeFactory('Document', 'ad')
         self.failIf(self.portal.ad.canSetDefaultPage()) # Not folderish
         self.portal.manage_permission("Modify view template", [], 0)
         self.failIf(self.portal.canSetDefaultPage()) # Not permitted
-        
+
     def testSetDefaultPage(self):
         self.portal.invokeFactory('Document', 'ad')
         self.portal.setDefaultPage('ad')

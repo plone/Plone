@@ -35,7 +35,7 @@ for user in users:
         pw = generatePassword()
     else:
         pw = None
-        
+
     acl_users.userFolderEditUser(user.id, pw, user.get('roles',[]), member.getDomains(), REQUEST=context.REQUEST)
     if pw:
         context.REQUEST.form['new_password'] = pw

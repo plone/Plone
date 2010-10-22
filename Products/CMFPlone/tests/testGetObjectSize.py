@@ -47,7 +47,7 @@ class TestGetObjSize(PloneTestCase.PloneTestCase):
     def testNonIntString(self):
         self.assertEqual(self.portal.getObjSize(None, 'barney'), 'barney')
 
-    
+
 class TestGetObjSizedItem(PloneTestCase.PloneTestCase):
 
     def afterSetUp(self):

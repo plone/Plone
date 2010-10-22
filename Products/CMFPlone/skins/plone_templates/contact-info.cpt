@@ -20,7 +20,7 @@
     <h1 class="documentFirstHeading"
         i18n:translate="heading_contact_form">Contact form</h1>
 
-    <div class="documentDescription" 
+    <div class="documentDescription"
          tal:condition="portal/description"
          tal:content="portal/description">Site Description</div>
 
@@ -28,7 +28,7 @@
 
         <div i18n:translate="text_no_email_setup">
             This site doesn't have a valid email setup, so you cannot use
-            any contact forms. 
+            any contact forms.
         </div>
 
     </div>
@@ -67,11 +67,11 @@
                     </div>
                     <div tal:condition="error"
                        tal:content="error">Validation error output</div>
-                    <input type="text" 
-                           id="sender_fullname" 
-                           name="sender_fullname" 
-                           size="40" 
-                           value="" 
+                    <input type="text"
+                           id="sender_fullname"
+                           name="sender_fullname"
+                           size="40"
+                           value=""
                            tal:attributes="value request/sender_fullname|nothing"
                            />
                 </div>
@@ -100,11 +100,11 @@
                     <div tal:condition="error"
                          tal:content="error">Validation error output</div>
 
-                    <input type="text" 
-                           id="sender_from_address" 
-                           name="sender_from_address" 
-                           size="40" 
-                           value="" 
+                    <input type="text"
+                           id="sender_from_address"
+                           name="sender_from_address"
+                           size="40"
+                           value=""
                            tal:attributes="value request/sender_from_address|nothing"
                            />
                 </div>
@@ -127,11 +127,11 @@
                     <div tal:condition="error"
                          tal:content="error">Validation error output</div>
 
-                    <input type="text" 
-                           id="subject" 
-                           name="subject" 
-                           size="40" 
-                           value="" 
+                    <input type="text"
+                           id="subject"
+                           name="subject"
+                           size="40"
+                           value=""
                            tal:attributes="value request/subject|nothing"
                            />
                 </div>

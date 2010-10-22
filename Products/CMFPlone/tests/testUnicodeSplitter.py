@@ -347,7 +347,7 @@ class TestSearchingJapanese(PloneTestCase.PloneTestCase):
         self.assertEqual(len(items2), 0)
 
 class TestSearchingUnicodeJapanese(PloneTestCase.PloneTestCase):
-    """ Install Unicode Japanese test """ 
+    """ Install Unicode Japanese test """
     def afterSetUp(self):
         self.setRoles(('Manager',))
         self.portal.invokeFactory('Document', 'doc1')

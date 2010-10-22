@@ -19,7 +19,7 @@
 </head>
 
 <body>
-    
+
     <metal:header fill-slot="header">
         <dl class="portalMessage error"
             id="enable_cookies_message"
@@ -194,7 +194,7 @@
 
         </metal:login>
     </div>
-    
+
     </metal:main>
 </body>
 </html>

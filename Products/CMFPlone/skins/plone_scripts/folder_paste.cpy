@@ -24,7 +24,7 @@ if context.cb_dataValid:
         return state
     except ConflictError:
         raise
-    except ValueError: 
+    except ValueError:
         msg=_(u'Disallowed to paste item(s).')
     except Unauthorized:
         msg=_(u'Unauthorized to paste item(s).')

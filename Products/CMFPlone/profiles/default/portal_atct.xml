@@ -4,7 +4,7 @@
  <topic_indexes i18n:domain="plone">
   <index name="allowedRolesAndUsers"
      description="The roles and users with View permission on an item"
-     enabled="False" friendlyName="Internal Security" 
+     enabled="False" friendlyName="Internal Security"
      i18n:attributes="description; friendlyName" />
   <index name="created" description="The time and date an item was created"
      enabled="True" friendlyName="Creation Date"

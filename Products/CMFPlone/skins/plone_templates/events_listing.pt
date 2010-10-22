@@ -45,8 +45,8 @@
                              resulturl resultObject/absolute_url;">
 
                 <h2>
-                    <a href="/view" 
-                       tal:attributes="href resulturl" 
+                    <a href="/view"
+                       tal:attributes="href resulturl"
                        tal:content="result/pretty_title_or_id">
                         Event headline
                     </a>
@@ -54,10 +54,10 @@
 
                 <div class="newsContent">
 
-                    <p tal:content="result/Description"> 
-                        Description 
+                    <p tal:content="result/Description">
+                        Description
                     </p>
-    
+
                     <ul class="newsAbout">
                         <li>
                         <span tal:replace="python:modules['string'].join(resultObject.Subject(), ' ')"> Conference </span>
@@ -70,10 +70,10 @@
                         <tal:about-info condition="show_about">
                         <li>
                             <span tal:omit-tag="" i18n:translate="posted_by">Posted by</span>
-    
+
                             <span class="link-user">
                                 <a href=""
-                                   tal:attributes="href python: home_url(creator)" 
+                                   tal:attributes="href python: home_url(creator)"
                                    tal:content="creator">
                                     Author
                                 </a>
@@ -96,7 +96,7 @@
                         <li tal:attributes="class python: test(has_replies, 'visualCommentAlign link-comment','visualCommentAlign');"
                             tal:define="talkback python: getDiscussionFor(resultObject);
                                         has_replies python: talkback.hasReplies(resultObject);">
-                            <a href="" 
+                            <a href=""
                                tal:define="reply_count python:talkback.replyCount(resultObject)"
                                tal:condition="reply_count"
                                tal:attributes="href string:${resulturl}#comments;">
@@ -104,7 +104,7 @@
                         </li>
                         </tal:discussable>
                     </ul>
-                    
+
                 </div>
 
             </div>

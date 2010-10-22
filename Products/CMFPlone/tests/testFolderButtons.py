@@ -286,10 +286,10 @@ class TestFolderCutCopy(PloneTestCase.PloneTestCase):
 
 
 class TestObjectActions(PloneTestCase.FunctionalTestCase):
-    
+
     def afterSetUp(self):
         self.basic_auth = '%s:%s' % (default_user, default_password)
-    
+
     def assertStatusEqual(self, a, b, msg=''):
         if a != b:
             entries = self.portal.error_log.getLogEntries()
@@ -299,7 +299,7 @@ class TestObjectActions(PloneTestCase.FunctionalTestCase):
                 if not msg:
                     msg = 'no error log entry available'
         self.failUnlessEqual(a, b, msg)
-    
+
     def testObjectRenameWithoutVHM(self):
         self.folder.invokeFactory('Document', 'd1', title='Doc1')
         folderUrl = self.folder.absolute_url()
@@ -311,7 +311,7 @@ class TestObjectActions(PloneTestCase.FunctionalTestCase):
                                 env={'HTTP_REFERER' : origTemplate})
 
         self.assertStatusEqual(response.getStatus(), 302) # Redirect to edit
-        
+
         location = response.getHeader('Location').split('?')[0]
         params = {}
         for p in response.getHeader('Location').split('?')[1].split('&'):
@@ -342,12 +342,12 @@ class TestObjectActions(PloneTestCase.FunctionalTestCase):
         response = self.publish(editFormPath, self.basic_auth,
                                 request_method='POST', stdin=data)
         self.assertStatusEqual(response.getStatus(), 302)
-        
+
         # Make sure we landed in the right place
         location = response.getHeader('Location').split('?')[0]
         self.failUnless(location.startswith(folderUrl + '/new-id'), location)
         self.failUnless(location.endswith('document_view'), location)
-        
+
         self.failUnless('new-id' in self.folder)
         self.failIf('d1' in self.folder)
         self.assertEqual(self.folder['new-id'].Title(), 'New title')
@@ -355,23 +355,23 @@ class TestObjectActions(PloneTestCase.FunctionalTestCase):
     def testObjectRenameWithVHM(self):
         adding = self.app.manage_addProduct['SiteAccess']
         adding.manage_addVirtualHostMonster('vhm')
-        
+
         vhmBasePath = "/VirtualHostBase/http/example.org:80/%s/VirtualHostRoot/" % self.portal.getId()
         vhmBaseUrl = 'http://example.org/'
-        
+
         self.folder.invokeFactory('Document', 'd1', title='Doc1')
         folderPath = vhmBasePath + '/'.join(self.folder.getPhysicalPath()[2:])
-        folderUrl = vhmBaseUrl + '/'.join(self.folder.getPhysicalPath()[2:]) 
+        folderUrl = vhmBaseUrl + '/'.join(self.folder.getPhysicalPath()[2:])
         objPath = vhmBasePath + '/'.join(self.folder.d1.getPhysicalPath()[2:])
         objectUrl = vhmBaseUrl + '/'.join(self.folder.d1.getPhysicalPath()[2:])
-        
+
         origTemplate = objectUrl + '/document_view?foo=bar'
 
         response = self.publish(objPath + '/object_rename', self.basic_auth,
                                 env={'HTTP_REFERER' : origTemplate})
 
         self.assertStatusEqual(response.getStatus(), 302) # Redirect to edit
-        
+
         location = response.getHeader('Location').split('?')[0]
         params = {}
         for p in response.getHeader('Location').split('?')[1].split('&'):
@@ -402,12 +402,12 @@ class TestObjectActions(PloneTestCase.FunctionalTestCase):
         response = self.publish(editFormPath, self.basic_auth,
                                 request_method='POST', stdin=data)
         self.assertStatusEqual(response.getStatus(), 302)
-        
+
         # Make sure we landed in the right place
         location = response.getHeader('Location').split('?')[0]
         self.failUnless(location.startswith(folderUrl + '/new-id'), location)
         self.failUnless(location.endswith('document_view'), location)
-        
+
         self.failUnless('new-id' in self.folder)
         self.failIf('d1' in self.folder)
         self.assertEqual(self.folder['new-id'].Title(), 'New title')

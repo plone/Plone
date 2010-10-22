@@ -47,7 +47,7 @@
 
       <h1 class="documentFirstHeading"
           i18n:translate="heading_publishing_process">Publishing process</h1>
-          
+
       <div class="documentDescription" i18n:translate="description_publishing_process_short">
         An item's status (also called its review state) determines who
         can see it. Another way to control the visibility of an item is
@@ -55,7 +55,7 @@
         searchable before its publishing date. This will prevent the item
         from showing up in portlets and folder listings, although the item
         will still be available if accessed directly via its URL.
-      </div>          
+      </div>
 
       <div id="content-core">
 
@@ -191,7 +191,7 @@
                         </tal:items>
                     </tbody>
                     </metal:block>
-            
+
                   </table>
                 </div>
               </div>
@@ -210,7 +210,7 @@
 
                 <div class="formHelp"
                      i18n:translate="help_include_contained_objects">
-                  If checked, this will attempt to modify the status of all content 
+                  If checked, this will attempt to modify the status of all content
                   in any selected folders and their subfolders.
                 </div>
 
@@ -266,7 +266,7 @@
               </div>
 
               <div class="field">
-                <label for="comment" 
+                <label for="comment"
                        i18n:translate="label_comments">Comments</label>
 
                 <div class="formHelp"

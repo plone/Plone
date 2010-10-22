@@ -18,7 +18,7 @@
       <h1 class="documentFirstHeading"
           i18n:translate="heading_rename_item">Rename item</h1>
 
-      <div class="documentDescription" 
+      <div class="documentDescription"
            i18n:translate="description_rename_item">Each item has a Short Name and a Title, which you can change
            by entering the new details below.</div>
 

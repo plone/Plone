@@ -38,7 +38,7 @@
                i18n:translate="label_group_memberships">Group Memberships</a>
           </li>
         </ul>
-        <div class="contentActions">&nbsp;</div>        
+        <div class="contentActions">&nbsp;</div>
     </div>
 
     <div metal:use-macro="context/global_statusmessage/macros/portal_message">
@@ -131,7 +131,7 @@
               </metal:block>
             </div>
         </div>
-        
+
     </div>
     </div>
 

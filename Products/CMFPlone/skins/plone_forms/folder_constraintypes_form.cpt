@@ -69,7 +69,7 @@
                                parent plone_view/getParentObject">
 
                 <div class="field">
-                    <label for="enableAddRestrictions" 
+                    <label for="enableAddRestrictions"
                             i18n:translate="label_type_restrictions">
                         Type restrictions
                     </label>
@@ -129,7 +129,7 @@
                          tal:define="error errors/currentPrefer | nothing;"
                          tal:attributes="class python:test(error, 'field error', 'field')">
 
-                        <label for="currentPrefer" 
+                        <label for="currentPrefer"
                                 i18n:translate="label_immediately_addable_types">
                             Allowed types
                         </label>
@@ -236,7 +236,7 @@
             </tal:items>
           </form>
       </div>
-      
+
     </metal:main>
 
   </body>

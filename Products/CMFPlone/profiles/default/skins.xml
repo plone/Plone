@@ -45,7 +45,7 @@
     directory="Products.CMFPlone:skins/plone_templates"/>
  <object name="plone_styles" meta_type="Filesystem Directory View"
     directory="Products.CMFPlone:skins/plone_styles"/>
- <object name="plone_wysiwyg" meta_type="Filesystem Directory View" 
+ <object name="plone_wysiwyg" meta_type="Filesystem Directory View"
     directory="Products.CMFPlone:skins/plone_wysiwyg"/>
  <skin-path name="Plone Default">
   <layer name="custom"/>

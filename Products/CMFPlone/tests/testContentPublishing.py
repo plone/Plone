@@ -8,7 +8,7 @@ from Products.CMFPlone.tests import PloneTestCase
 text="""I lick my brain in silence
 Rather squeeze my head instead
 Midget man provoking violence
-Listen not to what I said 
+Listen not to what I said
 
 I said please calm it down
 Everything is turning brown
@@ -92,8 +92,8 @@ class TestContentPublishing(PloneTestCase.PloneTestCase):
 
         # folder_publish requires a non-GET request
         self.setRequestMethod('POST')
-        self.folder.folder_publish(workflow_action = 'publish', 
-                                   paths = paths, 
+        self.folder.folder_publish(workflow_action = 'publish',
+                                   paths = paths,
                                    include_children = True)
         for o in (self.folder.d1, self.folder.f1, self.folder.f1.d2, self.folder.f1.f2):
             self.assertEqual(self.workflow.getInfoFor(o, 'review_state'),'published')
@@ -110,8 +110,8 @@ class TestContentPublishing(PloneTestCase.PloneTestCase):
 
         # folder_publish requires a non-GET request
         self.setRequestMethod('POST')
-        self.folder.folder_publish(workflow_action = 'publish', 
-                                   paths = paths, 
+        self.folder.folder_publish(workflow_action = 'publish',
+                                   paths = paths,
                                    effective_date = '1/1/2001',
                                    expiration_date = '1/2/2001',
                                    include_children = True)
@@ -131,8 +131,8 @@ class TestContentPublishing(PloneTestCase.PloneTestCase):
 
         # folder_publish requires a non-GET request
         self.setRequestMethod('POST')
-        self.folder.folder_publish(workflow_action = 'publish', 
-                                   paths = paths, 
+        self.folder.folder_publish(workflow_action = 'publish',
+                                   paths = paths,
                                    include_children = False)
         for o in (self.folder.d1, self.folder.f1):
             self.assertEqual( self.workflow.getInfoFor(o, 'review_state'), 'published')
@@ -158,7 +158,7 @@ class TestContentPublishing(PloneTestCase.PloneTestCase):
         self.setRoles(['Manager']) # Make sure we can publish directly
         self.folder.invokeFactory('Document', id = 'd1', title = 'Doc 1')
         self.folder.setDefaultPage('d1')
-        # make parent be published already when publishing its default document 
+        # make parent be published already when publishing its default document
         # results in an attempt to do it again
         self.folder.content_status_modify('publish')
         self.assertEqual(self.workflow.getInfoFor(self.folder, 'review_state'), 'published')

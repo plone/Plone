@@ -6,8 +6,8 @@ ADD_SECURITY_WARNING = '''
 <p style="font-size:120%; color:red; font-weight:bold;">
 Attention!
 <br />
-Any security settings for Plone objects changed here are liable to be 
-overwritten without warning. To assign local roles use the "Sharing" tab in 
+Any security settings for Plone objects changed here are liable to be
+overwritten without warning. To assign local roles use the "Sharing" tab in
 Plone. More complex changes should be made using workflows where appropriate.</p>
 </dtml-unless>
 <!-- End security warning -->

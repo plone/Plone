@@ -534,7 +534,7 @@ class PloneTool(PloneBaseTool, UniqueObject, SimpleItem):
         >>> url = 'http://dev.plone.org/plone/query?milestone=2.1#foo'
         >>> tuple(ptool.urlparse(url))
         ('http', 'dev.plone.org', '/plone/query', '', 'milestone=2.1', 'foo')
-        
+
         New in Python 2.6: urlparse now returns a ParseReusult object.
         We just need the tuple form which is tuple(result).
         """
@@ -752,7 +752,7 @@ class PloneTool(PloneBaseTool, UniqueObject, SimpleItem):
         response web page is rendered. Portal status messages are by default
         rendered by the global_statusmessage.pt page template. They will be
         removed after they have been shown.
-        
+
         See addPortalMessages for examples.
         """
         if request is None:
@@ -989,7 +989,7 @@ class PloneTool(PloneBaseTool, UniqueObject, SimpleItem):
 
         >>> ptool.normalizeString("Foo bar")
         'foo-bar'
-        
+
         >>> ptool.normalizeString("Some!_are allowed, others&?:are not")
         'some-_are-allowed-others-are-not'
 
@@ -1040,7 +1040,7 @@ class PloneTool(PloneBaseTool, UniqueObject, SimpleItem):
         result = {}
         site_props = getToolByName(self, 'portal_properties').site_properties
         mt = getToolByName(self, 'portal_membership')
-        
+
         use_all = site_props.getProperty('exposeDCMetaTags', None)
         view_about = site_props.getProperty('allowAnonymousViewAbout', False) or not mt.isAnonymousUser()
 
@@ -1053,11 +1053,11 @@ class PloneTool(PloneBaseTool, UniqueObject, SimpleItem):
             # check non-public properties
             if not view_about and accessor in METADATA_DC_AUTHORFIELDS:
                 continue
-            
+
             # short circuit non-special cases
             if not use_all and accessor not in ('Description', 'Subject'):
                 continue
-            
+
             method = getattr(aq_inner(context).aq_explicit, accessor, None)
             if not callable(method):
                 continue
@@ -1074,7 +1074,7 @@ class PloneTool(PloneBaseTool, UniqueObject, SimpleItem):
             if accessor == 'Publisher' and value == 'No publisher':
                 # No publisher is hardcoded (TODO: still?)
                 continue
-            
+
             # Check for fullnames
             if view_about and accessor in METADATA_DC_AUTHORFIELDS:
                 if not isinstance(value, (list, tuple)):
@@ -1087,7 +1087,7 @@ class PloneTool(PloneBaseTool, UniqueObject, SimpleItem):
                         name=member['fullname'] or userid
                     tmp.append(name)
                 value=tmp
-            
+
             if isinstance(value, (list, tuple)):
                 # convert a list to a string
                 value = ', '.join(value)

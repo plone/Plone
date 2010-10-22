@@ -63,6 +63,6 @@ if failure:
     else:
         mapping[u'items'] = ', '.join(other)
         message = _(u'${items} could not be deleted.', mapping=mapping)
-        
+
 context.plone_utils.addPortalMessage(message)
 return state.set(status=status)

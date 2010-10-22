@@ -120,7 +120,7 @@ class TestPortalCreation(PloneTestCase.PloneTestCase, WarningInterceptor):
         self.assertEqual(len(res), 1)
         self.assertEqual(res[0].getId, 'Members')
         self.assertEqual(res[0].Title, 'Users')
-    
+
     def testMembersFolderOrdering(self):
         # Members folder should not have explicit ordering
         members = self.membership.getMembersFolder()
@@ -867,7 +867,7 @@ class TestPortalCreation(PloneTestCase.PloneTestCase, WarningInterceptor):
     def testNoDoubleGenericSetupImportSteps(self):
         view=ImportStepsView(self.setup, None)
         self.assertEqual([i['id'] for i in view.doubleSteps()], [])
-            
+
     def testNoInvalidGenericSetupImportSteps(self):
         view=ImportStepsView(self.setup, None)
         self.assertEqual([i['id'] for i in view.invalidSteps()], [])
@@ -875,7 +875,7 @@ class TestPortalCreation(PloneTestCase.PloneTestCase, WarningInterceptor):
     def testNoDoubleGenericSetupExportSteps(self):
         view=ExportStepsView(self.setup, None)
         self.assertEqual([i['id'] for i in view.doubleSteps()], [])
-            
+
     def testNoInvalidGenericSetupExportSteps(self):
         view=ExportStepsView(self.setup, None)
         self.assertEqual([i['id'] for i in view.invalidSteps()], [])

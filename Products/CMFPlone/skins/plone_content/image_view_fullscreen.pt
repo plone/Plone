@@ -16,17 +16,17 @@
 
     <style type="text/css" media="screen">
     body {
-        background-color: white; 
-        color: black; 
-        font-family: "Lucida Grande", Verdana, Lucida, Helvetica, Arial, sans-serif; 
+        background-color: white;
+        color: black;
+        font-family: "Lucida Grande", Verdana, Lucida, Helvetica, Arial, sans-serif;
         font-size: 69%;
     }
-    
+
     a {
-        display:block; 
-        margin: 0.5em; 
-        color: #436976; 
-        text-decoration: underline; 
+        display:block;
+        margin: 0.5em;
+        color: #436976;
+        text-decoration: underline;
         line-height:1.5em;
     }
 
@@ -41,7 +41,7 @@
 
     </style>
 
-</head>      
+</head>
 
 <body>
 
@@ -55,7 +55,7 @@
        tal:attributes="href context/portal_url"
        tal:condition="not: request/HTTP_REFERER"
        ><span i18n:translate="label_home">Home</span><br /><tal:block replace="structure context/tag" /></a>
-</div>    
+</div>
 
 </body>
 </html>

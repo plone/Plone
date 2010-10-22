@@ -16,7 +16,7 @@ from Products.CMFPlone import PloneMessageFactory as _
 REQUEST=context.REQUEST
 if 'paths' in REQUEST:
     ids = [p.split('/')[-1] or p.split('/')[-2] for p in REQUEST['paths']]
-    
+
     try:
         context.manage_copyObjects(ids, REQUEST, REQUEST.RESPONSE)
     except CopyError:

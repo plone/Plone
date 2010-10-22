@@ -487,7 +487,7 @@ class TestNavigationRoot(PloneTestCase.PloneTestCase):
         self.portal.portal_properties.navtree_properties.manage_changeProperties(root=relativePath)
         root = getNavigationRoot(self.portal)
         self.assertEqual(root, folderPath)
-        
+
     def testGetNavigationRootWithINavigationRoot(self):
         folderPath = '/'.join(self.folder.getPhysicalPath())
         self.folder.invokeFactory('Folder', 'folder1')

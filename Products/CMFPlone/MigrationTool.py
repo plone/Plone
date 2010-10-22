@@ -122,7 +122,7 @@ class MigrationTool(PloneBaseTool, UniqueObject, SimpleItem):
                     vars['PIL'] = 'unknown'
                 except ImportError:
                     pass
-            
+
         return vars
 
     security.declareProtected(ManagePortal, 'coreVersionsList')

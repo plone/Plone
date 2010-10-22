@@ -3,11 +3,11 @@ from Products.CMFPlone.tests import PloneTestCase
 
 bad_ones = [
     "<p>Foo</p>",
-    "<h5>Bar</h5><p>Foo</p>",    
+    "<h5>Bar</h5><p>Foo</p>",
     ]
 good_ones = [
     "<h2>Test</h2><p>Foo</p>",
-    "<h1>Test</h1><p>Foo</p><h2>foo</h2><p>bar</p>",    
+    "<h1>Test</h1><p>Foo</p><h2>foo</h2><p>bar</p>",
     ]
 
 

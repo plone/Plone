@@ -13,7 +13,7 @@
     id="portlet-prefs">
     <dt class="portletHeader">
         <span class="portletTopLeft"></span>
-        <a href="" 
+        <a href=""
            tal:attributes="href string:${portal_url}/plone_control_panel"
            i18n:translate="">Site Setup</a>
         <span class="portletTopRight"></span>

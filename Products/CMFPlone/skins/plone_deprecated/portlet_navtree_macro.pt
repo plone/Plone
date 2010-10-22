@@ -23,7 +23,7 @@
 
     <div tal:define="itemClass string:$item_wf_state_class;
                      itemClass python:test(isCurrent, itemClass + ' navTreeCurrentItem', itemClass);">
-        
+
         <a tal:attributes="href python:test(linkRemote, item.getRemoteUrl, itemUrl);
                            title item/Description;
                            class string:$itemClass">
@@ -37,7 +37,7 @@
                                  height item_icon/height;" />
             <span tal:replace="item/Title">Selected Item Title</span>
         </a>
-        
+
     </div>
 
     <ul tal:attributes="class python:'navTree navTreeLevel'+str(level)"

@@ -13,7 +13,7 @@ class TestBrowserDefaultScripts(PloneTestCase.PloneTestCase):
 
     def testHasIndexHtml(self):
         # Make sure we can determine if a container contains a index_html object
-        self.folder.invokeFactory('Document', 'index_html', 
+        self.folder.invokeFactory('Document', 'index_html',
                                   title='Test index')
         self.failUnless(self.folder.hasIndexHtml())
 
@@ -26,7 +26,7 @@ class TestBrowserDefaultScripts(PloneTestCase.PloneTestCase):
 
     def testGetSelectableViewsWithoutViews(self):
         # Assume documents have only one view
-        self.folder.invokeFactory('Document', 'test', 
+        self.folder.invokeFactory('Document', 'test',
                                   title='Test default page')
         doc = getattr(self.folder, 'test')
         self.failIf(doc.getSelectableViews())

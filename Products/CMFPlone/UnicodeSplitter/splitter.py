@@ -47,7 +47,7 @@ def process_str_post(s, enc):
 
 
 def process_str(s, enc):
-    """Receive str and encoding, then return the list 
+    """Receive str and encoding, then return the list
     of str as bi-grammed result.
     Decode str into unicode and pass it to process_unicode.
     When decode failed, return the result splitted per word.

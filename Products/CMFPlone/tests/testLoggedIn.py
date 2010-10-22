@@ -18,7 +18,7 @@ class TestLogin(PloneTestCase.PloneTestCase):
 
     def testLoggedInCreatesMemberArea(self):
         if self.membership.memberareaCreationFlag == 'True':
-            self.assertEqual(self.membership.getHomeFolder(), None) 
+            self.assertEqual(self.membership.getHomeFolder(), None)
             self.portal.logged_in()
             self.failIfEqual(self.membership.getHomeFolder(), None)
 

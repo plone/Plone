@@ -144,7 +144,7 @@
    <guard-permission>Review portal content</guard-permission>
   </guard>
  </transition>
- <transition transition_id="retract" new_state="private" 
+ <transition transition_id="retract" new_state="private"
              title="Member retracts submission"
              trigger="USER"
              before_script="" after_script=""
@@ -159,7 +159,7 @@
    <guard-permission>Request review</guard-permission>
   </guard>
  </transition>
- <transition transition_id="submit"  new_state="pending" 
+ <transition transition_id="submit"  new_state="pending"
              title="Member submits content for publication"
              trigger="USER"
              before_script="" after_script=""
@@ -174,7 +174,7 @@
    <guard-permission>Request review</guard-permission>
   </guard>
  </transition>
- 
+
  <worklist worklist_id="reviewer_queue" title="">
   <description>Reviewer tasks</description>
   <action url="%(portal_url)s/search?review_state=pending"
@@ -189,7 +189,7 @@
            for_status="True" update_always="True">
   <description>Previous transition</description>
   <default>
-   
+
    <expression>transition/getId|nothing</expression>
   </default>
   <guard>
@@ -199,7 +199,7 @@
            for_status="True" update_always="True">
   <description>The ID of the user who performed the previous transition</description>
   <default>
-   
+
    <expression>user/getId</expression>
   </default>
   <guard>
@@ -209,7 +209,7 @@
            for_status="True" update_always="True">
   <description>Comment about the last transition</description>
   <default>
-   
+
    <expression>python:state_change.kwargs.get('comment', '')</expression>
   </default>
   <guard>
@@ -219,7 +219,7 @@
            for_status="False" update_always="False">
   <description>Provides access to workflow history</description>
   <default>
-   
+
    <expression>state_change/getHistory</expression>
   </default>
   <guard>
@@ -231,7 +231,7 @@
            for_status="True" update_always="True">
   <description>When the previous transition was performed</description>
   <default>
-   
+
    <expression>state_change/getDateTime</expression>
   </default>
   <guard>

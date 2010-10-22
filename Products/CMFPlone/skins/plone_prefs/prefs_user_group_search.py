@@ -17,7 +17,7 @@ usersList = []
 if restrict != "users":
     groupsList = groups_tool.searchForGroups(REQUEST=None, title_or_name=searchstring)
     groupsList.sort(key=lambda x: x.getProperty('title').lower())
-    
+
 if restrict != "groups":
     usersList = members_tool.searchForMembers(REQUEST=None, name=searchstring)
     usersList.sort(key=lambda x: x.getProperty('fullname').lower())

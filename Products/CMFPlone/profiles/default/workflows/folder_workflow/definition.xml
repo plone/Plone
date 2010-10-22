@@ -152,7 +152,7 @@
            for_status="True" update_always="True">
   <description i18n:translate="">Previous transition</description>
   <default>
-   
+
    <expression>transition/getId|nothing</expression>
   </default>
   <guard>
@@ -164,7 +164,7 @@
     The ID of the user who performed the last transition
   </description>
   <default>
-   
+
    <expression>user/getId</expression>
   </default>
   <guard>
@@ -174,7 +174,7 @@
            for_status="True" update_always="True">
   <description i18n:translate="">Comment about the last transition</description>
   <default>
-   
+
    <expression>python:state_change.kwargs.get('comment', '')</expression>
   </default>
   <guard>
@@ -184,7 +184,7 @@
            for_status="False" update_always="False">
   <description i18n:translate="">Provides access to workflow history</description>
   <default>
-   
+
    <expression>state_change/getHistory</expression>
   </default>
   <guard>
@@ -198,7 +198,7 @@
     When the previous transition was performed
   </description>
   <default>
-   
+
    <expression>state_change/getDateTime</expression>
   </default>
   <guard>
