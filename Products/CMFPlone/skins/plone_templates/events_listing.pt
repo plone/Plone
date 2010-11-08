@@ -60,8 +60,9 @@
                     </p>
 
                     <ul class="newsAbout">
-                        <li>
-                        <span tal:replace="python:modules['string'].join(resultObject.Subject(), ' ')"> Conference </span>
+                        <li tal:define="subject python:resultObject.Subject()"
+                            tal:condition="subject">
+                        <span tal:replace="python:modules['string'].join(subject, ' ')"> Conference </span>
                         </li>
                         <li>
                         <span tal:replace="python:toLocalizedTime(resultObject.start(), long_format=1)">Start Date Time</span>
