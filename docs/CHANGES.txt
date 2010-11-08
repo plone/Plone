@@ -8,6 +8,10 @@ Changelog
 4.0.2 - Unreleased
 -------------------
 
+- Added fill-slot to events_listing.pt that was not showing any events.
+  This fixes http://dev.plone.org/plone/ticket/11216.
+  [jmansilla, WouterVH]
+
 - Fixed ``factory.addPloneSite`` so extension profiles have a chance of
   specifying site properties in a ``properties.xml`` file.
   [hannosch]

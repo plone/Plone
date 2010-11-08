@@ -11,6 +11,7 @@
 </head>
 
 <body>
+<metal:main fill-slot="main">
 <div id="content-core"
      tal:define="path context/@@plone_portal_state/navigation_root_path;
                  results python:context.portal_catalog.searchResults(
@@ -126,5 +127,6 @@
 
   </div>
 
+</metal:main>
 </body>
 </html>
