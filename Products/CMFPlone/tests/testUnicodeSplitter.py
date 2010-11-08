@@ -88,6 +88,11 @@ class TestSplitter(PloneTestCase.PloneTestCase):
         # May still fail if none of the locales is available
         saved = _setlocale(*LATIN1)
         try:
+            # If this test is failing, you probably just don't have
+            # the latin1 locales generated.  On Ubuntu, this worked:
+            #
+            # $ sudo locale-gen en_US.ISO-8859-1 en_US.ISO8859-15 en_GB.ISO8859-15 de_DE@euro fr_FR@euro nl_NL@euro
+            #
             self.assertEqual(self.process(input), output)
             self.assertEqual(self.processGlob(input), output)
         finally:
