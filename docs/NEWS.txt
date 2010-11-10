@@ -5,6 +5,12 @@
 Changelog
 =========
 
+3.2.3-sso-login-1 - November 10, 2010
+-------------------------------------
+
+- Backport of single sign on login functionality to go into 4.1.
+  [elro]
+
 3.2.3 - June 20, 2009
 ---------------------
 

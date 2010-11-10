@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os.path
 
-version = '3.2.3'
+version = '3.2.3-sso-login-1'
 
 setup(name='Plone',
       version=version,
