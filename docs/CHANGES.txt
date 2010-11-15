@@ -5,7 +5,7 @@
 Changelog
 =========
 
-4.0.2 - Unreleased
+4.0.2 - 2010-11-15
 ------------------
 
 - Added fill-slot to events_listing.pt that was not showing any events.
