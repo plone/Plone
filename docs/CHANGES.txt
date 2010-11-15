@@ -6,7 +6,7 @@ Changelog
 =========
 
 4.0.2 - Unreleased
--------------------
+------------------
 
 - Added fill-slot to events_listing.pt that was not showing any events.
   This fixes http://dev.plone.org/plone/ticket/11216.
@@ -21,7 +21,7 @@ Changelog
   This fixes http://dev.plone.org/plone/ticket/11141.
   [piv]
 
-- Fixed https://dev.plone.org/plone/ticket/11160,
+- Fixed http://dev.plone.org/plone/ticket/11160,
   first level of Table of Contents is a level with at least two entries.
   [thomasdesvenain]
 
@@ -29,7 +29,7 @@ Changelog
   specifications for popups were too vague.
   [smcmahon]
 
-- Fixed: https://dev.plone.org/plone/ticket/11187, Better message when
+- Fixed: http://dev.plone.org/plone/ticket/11187, Better message when
   you cannot delete a locked item
   [kiorky]
 
@@ -48,7 +48,7 @@ Changelog
 
 - Successful completion of contact form ended in redirect to 'undefined'
   when using popups. Fixed by just closing.
-  Fixes https://dev.plone.org/plone/ticket/11090
+  Fixes http://dev.plone.org/plone/ticket/11090
   [smcmahon]
 
 - Fixed i18n of the Upgrade hellip button in plone-overview.pt.
@@ -62,7 +62,7 @@ Changelog
   This fixes http://dev.plone.org/plone/ticket/10864
   [mr_savage]
 
-- Fixed https://dev.plone.org/plone/ticket/10956 - prevent content of the
+- Fixed http://dev.plone.org/plone/ticket/10956 - prevent content of the
   types listed in typesUseViewActionInListings from being selected as default
   pages.
   [elro]
