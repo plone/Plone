@@ -17,16 +17,16 @@ plone.UnlockHandler = {
     },
     
     execute: function() {
-        // this.submitting is set from the form unload handler
+        // plone.UnlockHandler.submitting is set from the form unload handler
         // (formUnload.js) and signifies that we are in the
         // form submit process. This means: no unlock needed,
         // and it also would be harmful (ConflictError)
-        if (this.submitting) return;
+        if (plone.UnlockHandler.submitting) return;
         jq.get(plone.UnlockHandler._baseUrl() + '/@@plone_lock_operations/safe_unlock');
     },
     
     refresh: function() {
-        if (this.submitting) return;
+        if (plone.UnlockHandler.submitting) return;
         jq.get(plone.UnlockHandler._baseUrl() + '/@@plone_lock_operations/refresh_lock');
     },
     
