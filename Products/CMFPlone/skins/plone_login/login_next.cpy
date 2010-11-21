@@ -33,8 +33,8 @@ if came_from is not None:
                        'login_form', 'logged_in', 'logged_out', 'registered',
                        'mail_password', 'mail_password_form', 'register',
                        'require_login', 'member_search_results', 'pwreset_finish',
-                       # We need localhost in the list, or Five.testbrowser tests
-                       # won't be able to log in via login_form (since r17128).
+                       # We need localhost in the list, or Testing.testbrowser
+                       # tests won't be able to log in via login_form
                        'localhost']:
         came_from = ''
     # It is probably a good idea in general to filter out urls outside the portal.

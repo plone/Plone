@@ -8,7 +8,11 @@ unique across the site.
 
 Some bootstrapping::
 
-    >>> from Products.Five.testbrowser import Browser
+    # BBB Zope 2.12
+    >>> try:
+    ...     from Testing.testbrowser import Browser
+    ... except ImportError:
+    ...     from Products.Five.testbrowser import Browser
     >>> browser = Browser()
 
 First we login as admin.

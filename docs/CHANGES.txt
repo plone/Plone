@@ -8,6 +8,9 @@ Changelog
 4.0.3 - Unreleased
 ------------------
 
+- Avoid various deprecation warnings under Zope 2.13.
+  [hannosch]
+
 4.0.2 - 2010-11-15
 ------------------
 

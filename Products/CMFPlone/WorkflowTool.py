@@ -216,7 +216,7 @@ class WorkflowTool(PloneBaseTool, BaseTool):
                     catalog_vars = dict(portal_type=types_by_wf.get(id, []))
                     for key in wlist_def.var_matches:
                         catalog_vars[key] = wlist_def.var_matches[key]
-                    for result in catalog.searchResults(**catalog_vars):
+                    for result in catalog.searchResults(catalog_vars):
                         o = result.getObject()
                         if o \
                            and id in self.getChainFor(o) \

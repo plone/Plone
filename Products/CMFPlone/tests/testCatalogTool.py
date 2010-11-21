@@ -818,7 +818,7 @@ class TestCatalogExpirationFiltering(PloneTestCase.PloneTestCase):
         self.folder.doc.setExpirationDate(DateTime(2000, 12, 31))
         self.folder.doc.reindexObject()
         self.nofx()
-        res = self.catalog.searchResults(show_inactive=True)
+        res = self.catalog.searchResults(dict(show_inactive=True))
         self.assertResults(res, base_content)
 
     def testCallExpiredWithExpiredDisabled(self):
@@ -858,8 +858,8 @@ class TestCatalogExpirationFiltering(PloneTestCase.PloneTestCase):
         self.assertResults(res, base_content)
         # We should be able to further limit the search using the exipres
         # and efective indices.
-        res = self.catalog.searchResults(expires={'query':DateTime()+3,
-                                                  'range':'min'})
+        res = self.catalog.searchResults(dict(expires={'query':DateTime()+3,
+                                                  'range':'min'}))
         self.assertResults(res, base_content[:-1])
 
     def testSearchResultsExpiredWithAdditionalExpiryFilter(self):
@@ -869,8 +869,8 @@ class TestCatalogExpirationFiltering(PloneTestCase.PloneTestCase):
         res = self.catalog.searchResults()
         self.assertResults(res, base_content[:-1])
         # Even if we explicitly ask for it, we shouldn't get expired content
-        res = self.catalog.searchResults(expires={'query':DateTime()-3,
-                                                  'range':'min'})
+        res = self.catalog.searchResults(dict(expires={'query':DateTime()-3,
+                                                  'range':'min'}))
         self.assertResults(res, base_content[:-1])
 
 

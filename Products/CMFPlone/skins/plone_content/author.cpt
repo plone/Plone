@@ -242,7 +242,7 @@
                     </tal:mailsetup>
 
                     <!-- listing of content created by this user -->
-                    <tal:authorContent define="author_content python:context.portal_catalog.searchResults(Creator=author, sort_on='created', sort_order='reverse')[:10];"
+                    <tal:authorContent define="author_content python:context.portal_catalog.searchResults(dict(Creator=author, sort_on='created', sort_order='reverse'))[:10];"
                                        condition="author_content">
 
                         <h2 i18n:translate="heading_author_content">

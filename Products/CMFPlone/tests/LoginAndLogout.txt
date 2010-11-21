@@ -4,7 +4,11 @@ Logging in and out
 A very simple and underdocumented testbrowser test.  This is all about
 logging in and out.
 
-    >>> from Products.Five.testbrowser import Browser
+    # BBB Zope 2.12
+    >>> try:
+    ...     from Testing.testbrowser import Browser
+    ... except ImportError:
+    ...     from Products.Five.testbrowser import Browser
     >>> browser = Browser()
 
 Using the Login Form

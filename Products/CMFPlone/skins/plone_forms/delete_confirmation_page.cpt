@@ -13,7 +13,7 @@
     <metal:main fill-slot="main"
          tal:define="useSelf python:context_state.is_structural_folder() and not context_state.is_default_page();
                      folder_warning python:useSelf and context.portal_type != 'Topic';
-                     number_of_objects_to_delete python:folder_warning and len(context.portal_catalog.searchResults(path='/'.join(context.getPhysicalPath()), portal_type=context.plone_utils.getUserFriendlyTypes()))">
+                     number_of_objects_to_delete python:folder_warning and len(context.portal_catalog.searchResults(dict(path='/'.join(context.getPhysicalPath()), portal_type=context.plone_utils.getUserFriendlyTypes())))">
       <h1 class="documentFirstHeading"
           tal:condition="folder_warning">
           <span i18n:translate="alert_really_delete_folder">

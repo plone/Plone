@@ -19,11 +19,13 @@ friendly_types = utils.getUserFriendlyTypes()
 found   = {}
 if path is None:
     path = getNavigationRoot(context)
-content = catalog.searchResults(Creator      = author,
-                                portal_type  = friendly_types,
-                                sort_on      = 'modified',
-                                sort_order   = 'reverse',
-                                path         = path)
+
+content = catalog.searchResults(dict(
+    Creator=author,
+    portal_type=friendly_types,
+    sort_on='modified',
+    sort_order='reverse',
+    path=path))
 
 for item in content:
     itemType = item.portal_type

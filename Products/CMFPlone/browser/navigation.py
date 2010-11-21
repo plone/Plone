@@ -162,7 +162,7 @@ class CatalogNavigationTabs(BrowserView):
         if site_properties.getProperty('disable_nonfolderish_sections', False):
             query['is_folderish'] = True
 
-        rawresult = portal_catalog.searchResults(**query)
+        rawresult = portal_catalog.searchResults(query)
 
         # now add the content to results
         idsNotToList = navtree_properties.getProperty('idsNotToList', ())
