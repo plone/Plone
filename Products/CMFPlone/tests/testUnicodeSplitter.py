@@ -3,6 +3,7 @@
 # Tests the UnicodeSplitter
 #
 
+import unittest
 from Products.CMFPlone.tests import PloneTestCase
 
 from Products.CMFPlone.UnicodeSplitter import Splitter
@@ -30,9 +31,9 @@ def _setlocale(*names):
     return saved
 
 
-class TestSplitter(PloneTestCase.PloneTestCase):
+class TestSplitter(unittest.TestCase):
 
-    def afterSetUp(self):
+    def setUp(self):
         self.splitter = Splitter()
         self.process = self.splitter.process
         self.processGlob = self.splitter.processGlob
@@ -99,9 +100,9 @@ class TestSplitter(PloneTestCase.PloneTestCase):
             _setlocale(saved)
 
 
-class TestCaseNormalizer(PloneTestCase.PloneTestCase):
+class TestCaseNormalizer(unittest.TestCase):
 
-    def afterSetUp(self):
+    def setUp(self):
         self.normalizer = CaseNormalizer()
         self.process = self.normalizer.process
 
@@ -246,10 +247,7 @@ from Products.CMFPlone.UnicodeSplitter \
      import process_str, process_str_post, process_str_glob,\
      process_unicode, process_unicode_glob
 
-class TestBigramFunctions(PloneTestCase.PloneTestCase):
-
-    def afterSetUp(self):
-        pass
+class TestBigramFunctions(unittest.TestCase):
 
     def test_process_str(self):
         lsts = [
@@ -288,7 +286,6 @@ class TestBigramFunctions(PloneTestCase.PloneTestCase):
                 self.assertEqual(type(x), type(y))
 
     def test_process_unicode_glob(self):
-        enc = "utf8"
         lsts = [
             (u"日本", [u"日本"]),
             (u"日", [u"日*"]),
@@ -310,16 +307,6 @@ class TestBigramFunctions(PloneTestCase.PloneTestCase):
         for lst, rst in lsts:
             self.assertEqual(rst, process_str_post(lst, enc))
 
-class TestReplaceSplitter(PloneTestCase.PloneTestCase):
-    """Install basic test
-    """
-
-    def afterSetUp(self):
-        pass
-
-    def test_adding_method(self):
-        from Products.CMFPlone.UnicodeSplitter import Splitter
-        self.failUnless(hasattr(Splitter, 'process_post_glob'))
 
 class TestSearchingJapanese(PloneTestCase.PloneTestCase):
     """Install Japanese test
@@ -378,16 +365,3 @@ class TestSearchingUnicodeJapanese(PloneTestCase.PloneTestCase):
         self.portal.manage_delObjects(['doc1'])
         items2 = catalog(SearchableText=u"予想")
         self.assertEqual(len(items2), 0)
-
-
-def test_suite():
-    from unittest import TestSuite, makeSuite
-    suite = TestSuite()
-    suite.addTest(makeSuite(TestSplitter))
-    suite.addTest(makeSuite(TestCaseNormalizer))
-    suite.addTest(makeSuite(TestQuery))
-    suite.addTest(makeSuite(TestBigramFunctions))
-    suite.addTest(makeSuite(TestReplaceSplitter))
-    suite.addTest(makeSuite(TestSearchingJapanese))
-    suite.addTest(makeSuite(TestSearchingUnicodeJapanese))
-    return suite
