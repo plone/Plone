@@ -313,6 +313,8 @@ class CatalogTool(PloneBaseTool, BaseTool):
         """
         kw = kw.copy()
         show_inactive = kw.get('show_inactive', False)
+        if isinstance(REQUEST, dict) and not show_inactive:
+            show_inactive = 'show_inactive' in REQUEST
 
         user = _getAuthenticatedUser(self)
         kw['allowedRolesAndUsers'] = self._listAllowedRolesAndUsers(user)
