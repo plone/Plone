@@ -217,7 +217,7 @@ class RegistrationTool(PloneBaseTool, BaseTool):
         # them and let MailHost manage the encoding.
         if isinstance(mail_text, unicode):
             mail_text = mail_text.encode(encoding)
-        message_obj = message_from_string(mail_text)
+        message_obj = message_from_string(mail_text.strip())
         subject = message_obj['Subject']
         m_to = message_obj['To']
         m_from = message_obj['From']
@@ -267,7 +267,7 @@ class RegistrationTool(PloneBaseTool, BaseTool):
         # them and let MailHost manage the encoding.
         if isinstance(mail_text, unicode):
             mail_text = mail_text.encode(encoding)
-        message_obj = message_from_string(mail_text)
+        message_obj = message_from_string(mail_text.strip())
         subject = message_obj['Subject']
         m_to = message_obj['To']
         m_from = message_obj['From']

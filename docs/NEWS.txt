@@ -8,6 +8,11 @@ Changelog
 3.3.6 - Unreleased
 ------------------
 
+- In the registration tool strip the mail text before passing it
+  through message_from_string.  A leading white line would prevent
+  getting Subject, To and From headers from the generated message.
+  [maurits]
+
 - Avoid conflict in selected tabs when the id of an excluded item starts with the
   same id of an existing tab.
   This closes http://dev.plone.org/plone/ticket/9944
