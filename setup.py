@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os.path
 
-version = '3.2.3-sso-login-1'
+version = '3.2.3-sso-login-2'
 
 setup(name='Plone',
       version=version,
@@ -57,7 +57,7 @@ setup(name='Plone',
           'Products.PasswordResetTool',
           'Products.PlacelessTranslationService',
           'Products.PloneLanguageTool',
-          'Products.PlonePAS',
+          'Products.PlonePAS>=3.9',
           'Products.PluggableAuthService',
           'Products.PluginRegistry',
           'Products.PortalTransforms',
@@ -95,7 +95,9 @@ setup(name='Plone',
           'plone.openid',
           'plone.portlets',
           'plone.protect > 1.0',
-          'plone.session',
+          'hmac',
+          'hashlib',
+          'plone.session>=3.0',
           'plone.theme',
           'plone.portlet.collection',
           'plone.portlet.static',
