@@ -1,0 +1,8 @@
+Changelog
+=========
+
+4.1 - Unreleased
+----------------
+
+- Separate `Products.CMFPlone` from the `Plone` egg. 
+  [elro]
