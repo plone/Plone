@@ -8,6 +8,10 @@ Changelog
 4.0.3 - Unreleased
 ------------------
 
+- Fixed errors on kss update in portal factory.
+  This fixes https://dev.plone.org/plone/ticket/11311.
+  [thomasdesvenain]
+
 - In the registration tool strip the mail text before passing it
   through message_from_string.  A leading white line would prevent
   getting Subject, To and From headers from the generated message.
