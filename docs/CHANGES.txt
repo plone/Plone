@@ -8,6 +8,10 @@ Changelog
 4.0.3 - Unreleased
 ------------------
 
+- Fixed possible Unauthorized error when registering a user when using
+  the email address as login name.
+  [maurits]
+
 - Fixed errors on kss update in portal factory.
   This fixes https://dev.plone.org/plone/ticket/11311.
   [thomasdesvenain]
