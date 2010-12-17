@@ -9,17 +9,23 @@
 <body>
 <metal:main fill-slot="main"
      tal:define="checkPermission nocall: context/portal_membership/checkPermission;
-                 is_manager python: checkPermission('Manage portal', here)">
+                 is_manager python: checkPermission('Manage portal', here);
+                 listing_allowed python: checkPermission('List portal members', here);">
 
     <h1 class="documentFirstHeading"
         i18n:translate="heading_member_search">Search for users</h1>
 
-    <div class="documentDescirption" i18n:translate="description_member_search">
+    <div class="documentDescirption" i18n:translate="description_member_search"
+        tal:condition="listing_allowed">
         This search form enables you to find users by specifying one or more
         search criteria.
     </div>
 
-    <div id="content-core">
+    <p tal:condition="not: listing_allowed"
+      i18n:translate="member_listing_not_allowed">
+      You are not allowed to list portal members.
+    </p>
+    <div id="content-core" tal:condition="listing_allowed">
         <form action="member_search_results"
               class="enableAutoFocus"
               method="post"
