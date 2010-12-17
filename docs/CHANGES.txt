@@ -8,6 +8,9 @@ Changelog
 4.0.3 - Unreleased
 ------------------
 
+- Added some css ids on login form.
+  [thomasdesvenain]
+
 - Fixed possible Unauthorized error when registering a user when using
   the email address as login name.
   [maurits]
