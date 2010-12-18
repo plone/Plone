@@ -36,18 +36,8 @@ Open the portal home and open the Members tab
     >>> "Search for users" in browser.contents
     True
 
-Now we perform a search as Anonymous User
-    >>> browser.getControl(name='login').value = username
-    >>> browser.getControl(name='submit').click()
-
-    >>> 'member_search_results' in browser.url
-    True
-
-We are not allowed to list members
+We are not allowed to list members up front
     >>> "You are not allowed to list portal members." in browser.contents
-    True
-
-    >>> 'No results were found.' in browser.contents
     True
 
 Now we login in the portal and retry
