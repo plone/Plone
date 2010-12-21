@@ -6,9 +6,12 @@ import urlparse
 from Products.CMFPlone.tests import PloneTestCase
 
 from Products.CMFCore.permissions import AddPortalContent
+from Products.CMFCore.permissions import ModifyPortalContent
 from Products.PluggableAuthService.interfaces.plugins import IChallengePlugin
 
 from AccessControl import Unauthorized
+from AccessControl import Permissions
+from AccessControl import getSecurityManager
 default_user = PloneTestCase.default_user
 default_password = PloneTestCase.default_password
 
@@ -105,7 +108,7 @@ class TestPortalFactory(PloneTestCase.PloneTestCase):
         self.login('manager')
         folder3.manage_permission(ADD_DOC_PERM, ['Authenticated'], 1)
         folder3.manage_permission(AddPortalContent, ['Authenticated'], 1)
-        
+
         # now make sure we can see it
         self.login('member')
         assert (pm.checkPermission(ADD_DOC_PERM, folder3))
@@ -123,7 +126,7 @@ class TestPortalFactory(PloneTestCase.PloneTestCase):
         # grant the add permission on the grandparent
         folder2.manage_permission(ADD_DOC_PERM, ['Authenticated'], 1)
         folder2.manage_permission(AddPortalContent, ['Authenticated'], 1)
-        
+
         # now make sure we can see it
         self.login('member')
         assert (pm.checkPermission(ADD_DOC_PERM, folder3))
@@ -142,7 +145,7 @@ class TestPortalFactory(PloneTestCase.PloneTestCase):
         # add the permission on the portal root
         self.portal.manage_permission(ADD_DOC_PERM, ['Authenticated'], 1)
         self.portal.manage_permission(AddPortalContent, ['Authenticated'], 1)
-        
+
         # now make sure we can see it
         self.login('member')
         assert (pm.checkPermission(ADD_DOC_PERM, folder3))
@@ -233,7 +236,36 @@ class TestCreateObject(PloneTestCase.PloneTestCase):
         self.folder.manage_permission(ADD_DOC_PERM, ['Member'], 1)
         self.failUnless(pm.checkPermission(ADD_DOC_PERM, self.folder))
         self.assertRaises(Unauthorized, self.folder.unrestrictedTraverse,
-                          'portal_factory/Document/testid')  
+                          'portal_factory/Document/testid')
+
+    def testCopyPermission(self):
+        self.setRoles(['Manager'])
+        self.portal.invokeFactory('Folder', id='folder_to_copy')
+
+        pm = self.portal.portal_membership
+        pm.addMember('editor', 'secret', ['Editor'], [])
+        self.login('editor')
+        member = pm.getMemberById('editor')
+        self.assertTrue(member.checkPermission(Permissions.copy_or_move,
+                                               self.portal))
+        security = getSecurityManager()
+        self.assertTrue(security.validate(
+            self.portal, self.portal, 'manage_copyObjects'))
+
+    def testRenamePermission(self):
+        self.setRoles(['Manager'])
+        self.portal.invokeFactory('Folder', id='folder_to_copy')
+
+        pm = self.portal.portal_membership
+        pm.addMember('editor', 'secret', ['Editor'], [])
+        self.login('editor')
+        member = pm.getMemberById('editor')
+        self.assertTrue(member.checkPermission(ModifyPortalContent,
+                                               self.portal))
+        security = getSecurityManager()
+        self.assertTrue(security.validate(
+            self.portal, self.portal, 'manage_renameObjects'))
+
 
 class TestCreateObjectByURL(PloneTestCase.FunctionalTestCase):
     '''Weeee, functional tests'''
