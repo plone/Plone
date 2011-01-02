@@ -27,6 +27,10 @@ setup(name='Plone',
       zip_safe=False,
       install_requires=[
           'setuptools',
+          'Products.CMFPlacefulWorkflow',
           'Products.CMFPlone',
+          'Products.kupu',
+          'plone.app.iterate',
+          'plone.app.openid',
       ],
       )
