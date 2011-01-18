@@ -5,7 +5,7 @@
 Changelog
 =========
 
-4.0.3 - Unreleased
+4.0.3 - 2011-01-18
 ------------------
 
 - Change PloneBatch class to work with actual_result_count alone instead of
