@@ -8,6 +8,10 @@ Changelog
 4.0.4 - Unreleased
 ------------------
 
+- Fixed handling of relative links used as default pages
+  This fixes https://dev.plone.org/plone/ticket/11340
+  [fRiSi]
+
 4.0.3 - 2011-01-18
 ------------------
 
