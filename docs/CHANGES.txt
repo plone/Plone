@@ -4,6 +4,9 @@ Changelog
 4.1a2 - Unreleased
 ------------------
 
+- Include plone.app.caching as an optional, shipped add-on.
+  [esteele]
+
 4.1a1 - 2011-01-18
 ----------------
 
