@@ -8,6 +8,11 @@ Changelog
 4.0.4 - Unreleased
 ------------------
 
+- (r47099 post-commit changelog entry) Remove js-generated inline style
+  from searchbox. Same CSS is in public.css.
+  See https://dev.plone.org/plone/changeset/40654
+  Fixes http://dev.plone.org/plone/ticket/11186
+
 - Fixed handling of relative links used as default pages
   This fixes https://dev.plone.org/plone/ticket/11340
   [fRiSi]
