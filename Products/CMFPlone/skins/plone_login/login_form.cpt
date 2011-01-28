@@ -138,7 +138,8 @@
 
 </form>
 
-<div tal:condition="python:checkPermission('Mail forgotten password', here)">
+<div id="login-forgotten-password"
+   tal:condition="python:checkPermission('Mail forgotten password', here)">
     <h3 i18n:translate="box_forgot_password_option">
         Forgot your password?
     </h3>
@@ -150,7 +151,7 @@
     </p>
 </div>
 
-<div
+<div id="login-new-user"
    tal:define="join python:[a['url'] for a in actions['user'] if a['id']=='join']"
    tal:condition="python: join and checkPermission('Add portal member', here)">
     <h3 i18n:translate="heading_new_user">
