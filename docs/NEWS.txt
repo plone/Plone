@@ -8,14 +8,21 @@ Changelog
 3.3.6 - Unreleased
 ------------------
 
+- Point link objects immediately to their remote_url when visitor
+  cannot edit, rather than relying on after-the-fact redirect.
+  This enables external-links javascript to open
+  a new window when appropriate.
+  This fixes http://dev.plone.org/plone/ticket/10305
+  [msmith64]
+
 - Add some CSS hooks in login_form parallel to
-  https://dev.plone.org/plone/changeset/46384
-  This closes https://dev.plone.org/plone/ticket/9468
+  http://dev.plone.org/plone/changeset/46384
+  This closes http://dev.plone.org/plone/ticket/9468
   [msmith64]
 
 - (r47099 post-commit changelog entry) Remove js-generated inline style
   from searchbox. Same CSS is in public.css.
-  See https://dev.plone.org/plone/changeset/40654
+  See http://dev.plone.org/plone/changeset/40654
   Fixes http://dev.plone.org/plone/ticket/11186
 
 - Make role/permission settings consistent in Plone root
