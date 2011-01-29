@@ -33,11 +33,7 @@ function scanforlinks() {
       // and no img children should be wrapped in a link-external span
       contentarea.find(
           'a[href^=http]:not(.link-plain):not([href^=' + url + ']):not(:has(img))')
-          .wrap('<span class="link-external"/>');
-      
-      // Clean up double-icons when both mark-external-links and icons are turned on.
-      contentarea.find('img.icon-Link + .link-external').addClass('has-icon');
-          
+          .wrap('<span></span>').parent().addClass('link-external')
       // All links without an http href (without the link-plain class), not within this site,
       // and no img children should be wrapped in a link-[protocol] span
       contentarea.find(

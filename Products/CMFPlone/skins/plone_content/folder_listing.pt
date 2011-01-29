@@ -54,9 +54,8 @@
         <tal:listing condition="folderContents">
 
             <dl>
-                <tal:entry tal:define="redirect_links portal/portal_properties/site_properties/redirect_links|nothing"
-                           tal:repeat="item folderContents">
-                <tal:block tal:define="item_url python:redirect_links and not checkPermission('Modify portal content', item) and getattr(item, 'getRemoteUrl') or item.getURL() or item/absolute_url();
+                <tal:entry tal:repeat="item folderContents">
+                <tal:block tal:define="item_url item/getURL|item/absolute_url;
                                        item_id item/getId|item/id;
                                        item_title_or_id item/pretty_title_or_id;
                                        item_description item/Description;

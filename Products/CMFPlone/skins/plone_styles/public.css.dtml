@@ -979,12 +979,6 @@ a.link-parent {
 
 
 /* Handling external links */
-#content img+span.link-external a,
-#content span.link-external.has-icon a {
-    /* The has-icon thing is an IE6 hack. */
-    background-image: none;
-    padding-left: 0;
-}
 #content span.link-external a {
     background: transparent url(&dtml-portal_url;/link_icon.gif) 0px 1px no-repeat;
     padding: 1px 0px 1px 16px;

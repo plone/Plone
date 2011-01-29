@@ -8,6 +8,11 @@ Changelog
 3.3.6 - Unreleased
 ------------------
 
+- Sorry for the noise!
+  Reverting http://dev.plone.org/plone/changeset/47113
+  Refs http://dev.plone.org/plone/ticket/10305
+  [msmith64]
+   
 - Point link objects immediately to their remote_url when visitor
   cannot edit, rather than relying on after-the-fact redirect.
   This enables external-links javascript to open
@@ -24,6 +29,7 @@ Changelog
   from searchbox. Same CSS is in public.css.
   See http://dev.plone.org/plone/changeset/40654
   Fixes http://dev.plone.org/plone/ticket/11186
+  [msmith64]
 
 - Make role/permission settings consistent in Plone root
   http://dev.plone.org/plone/ticket/7922
