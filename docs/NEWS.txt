@@ -8,6 +8,12 @@ Changelog
 3.3.6 - Unreleased
 ------------------
 
+- Mostly manual merge of Changeset 47328
+  On search form don't show list of users when anonymous
+  unless explicitly allowed in @@security-controlpanel.
+  Refs http://dev.plone.org/plone/changeset/47328
+  Fixes http://dev.plone.org/plone/ticket/11346
+
 - Sorry for the noise!
   Reverting http://dev.plone.org/plone/changeset/47113
   Refs http://dev.plone.org/plone/ticket/10305
