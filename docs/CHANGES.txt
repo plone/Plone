@@ -1,7 +1,7 @@
 Changelog
 =========
 
-4.1a2 - Unreleased
+4.1a2 - 2011-02-10
 ------------------
 
 - Include plone.app.caching as an optional, shipped add-on.
