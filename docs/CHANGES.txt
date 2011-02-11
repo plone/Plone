@@ -11,7 +11,7 @@ Changelog
   [esteele]
 
 4.1a1 - 2011-01-18
-----------------
+------------------
 
 - Separate `Products.CMFPlone` from the `Plone` egg. 
   [elro]
