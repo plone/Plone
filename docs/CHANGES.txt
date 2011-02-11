@@ -21,6 +21,11 @@ Changelog
   This fixes https://dev.plone.org/plone/ticket/11340
   [fRiSi]
 
+- Re-instate spinner.gif (animation), lost in the move to PNGs. The static
+  spinner.png has been deprecated.
+  Fixes http://dev.plone.org/plone/ticket/11504
+  [mj]
+
 4.0.3 - 2011-01-18
 ------------------
 
