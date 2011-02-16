@@ -8,6 +8,9 @@ Changelog
 4.0.4 - Unreleased
 ------------------
 
+- Add missing security declarations on PropertiesTool.
+  [davisagli]
+
 - Add fallback icon for control panels with no icon, in the portlet_prefs
   portlet. This fixes http://dev.plone.org/plone/tickets/11112.
   [topherh, davisagli]
