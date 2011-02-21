@@ -8,6 +8,10 @@ Changelog
 4.0.4 - Unreleased
 ------------------
 
+- Remove useless trailing slash in 404.
+  This fixes http://dev.plone.org/plone/ticket/11550
+  [gotcha]
+
 - Use correct argument order in utranslate.py script.
   This fixes http://dev.plone.org/plone/ticket/10395
   [fRiSi]
