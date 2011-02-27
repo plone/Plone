@@ -5,7 +5,7 @@
 Changelog
 =========
 
-4.0.4 - Unreleased
+4.0.4 - 2011-02-26
 ------------------
 
 - Remove useless trailing slash in 404.
@@ -29,7 +29,7 @@ Changelog
   [msmith64]
 
 - Fixed handling of relative links used as default pages
-  This fixes https://dev.plone.org/plone/ticket/11340
+  This fixes http://dev.plone.org/plone/ticket/11340
   [fRiSi]
 
 - Re-instate spinner.gif (animation), lost in the move to PNGs. The static
