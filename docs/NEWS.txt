@@ -8,6 +8,10 @@ Changelog
 3.3.6 - Unreleased
 ------------------
 
+- Patch ZCatalog methods that should not be publishable. (Should be applied
+  in Zope 2.10 but we're unlikely to see a new release of it soon.)
+  [davisagli]
+
 - Add missing security declarations on PropertiesTool.
   [davisagli]
 
