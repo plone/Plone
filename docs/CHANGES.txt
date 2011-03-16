@@ -8,6 +8,15 @@ Changelog
 4.0.5 - Unreleased
 ------------------
 
+- Fixed: "Show all" livesearch link manages "current folder only" option.
+  This fixes https://dev.plone.org/plone/ticket/11414.
+  [thomasdesvenain]
+
+- Fixed: "Show all" was not displayed in live search
+  when limit result was exceeded.
+  This fixes https://dev.plone.org/plone/ticket/11628.
+  [thomasdesvenain]
+
 4.0.4 - 2011-02-26
 ------------------
 
