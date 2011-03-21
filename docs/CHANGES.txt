@@ -8,6 +8,10 @@ Changelog
 4.0.5 - Unreleased
 ------------------
 
+- Added "rss" alias to "RSS". 
+  This fixes https://dev.plone.org/plone/ticket/11638.
+  [gotcha]
+
 - Fixed: "Show all" livesearch link manages "current folder only" option.
   This fixes https://dev.plone.org/plone/ticket/11414.
   [thomasdesvenain]
