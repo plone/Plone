@@ -105,7 +105,7 @@ ploneFormTabbing.initializeForm = function() {
     var count = 0;
     var found = false;
     $(this).find('.formPanel').each(function() {
-        if (!found && $(this).find('div.field.error')) {
+        if (!found && $(this).find('div.field.error').length!=0) {
             initialIndex = count;
             found = true;
         }
@@ -116,9 +116,10 @@ ploneFormTabbing.initializeForm = function() {
     if ($(ftabs).is('select.formTabs')) {
         tabSelector = 'select.formTabs';
     }
+    var tabsConfig = $.extend({}, ploneFormTabbing.jqtConfig, {'initialIndex':initialIndex});
     jqForm.children(tabSelector).tabs(
         'form.enableFormTabbing fieldset.formPanel', 
-        ploneFormTabbing.jqtConfig || {'initialIndex':initialIndex}
+        tabsConfig
         );
     
     // save selected tab on submit
