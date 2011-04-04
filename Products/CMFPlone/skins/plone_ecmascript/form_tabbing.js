@@ -50,7 +50,7 @@ ploneFormTabbing._buildTabs = function(container, legends) {
             tab = '<option '+className+' id="'+lid+'" value="'+lid+'">';
             tab += $(legend).text()+'</option>';
         } else {
-            tab = '<li '+className+'><a href="#'+lid+'"><span>';
+            tab = '<li '+className+'><a id="'+lid+'" href="#'+lid+'"><span>';
             tab += $(legend).text()+'</span></a></li>';
         }
 
@@ -95,7 +95,7 @@ ploneFormTabbing.initializeForm = function() {
     // The fieldset.current hidden may change, but is not content
     $(this).find('input[name=fieldset.current]').addClass('noUnloadProtection');
 
-    $(this).find('.formPanel:has(div.field span.fieldRequired)').each(function() {
+    $(this).find('.formPanel:has(div.field span.required)').each(function() {
         var id = this.id.replace(/^fieldset-/, "#fieldsetlegend-");
         $(id).addClass('required');
     });
