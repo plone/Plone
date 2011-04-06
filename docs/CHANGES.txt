@@ -5,7 +5,7 @@
 Changelog
 =========
 
-4.0.5 - Unreleased
+4.0.5 - 2011-04-06
 ------------------
 
 - Fixed: "showing field with error is broken in edit view"
