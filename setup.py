@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os.path
 
-version = '4.1b2'
+version = '4.1b3'
 
 setup(name='Plone',
       version=version,
