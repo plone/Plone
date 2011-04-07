@@ -1,8 +1,14 @@
 Changelog
 =========
 
-4.1b2 - Unreleased
+4.1b2 - 2011-04-06
 ------------------
+
+- Release Plone 4.1b2
+  [esteele]
+  
+- Depend on wicked now that Products.CMFPlone doesn't.
+  [davisagli]
 
 4.1b1 - 2011-03-04
 ------------------
