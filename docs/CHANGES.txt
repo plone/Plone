@@ -12,24 +12,24 @@ Changelog
 ------------------
 
 - Fixed: "showing field with error is broken in edit view"
-  This fixes https://dev.plone.org/plone/ticket/11686.
+  This fixes http://dev.plone.orgplone/ticket/11686.
   [gotcha]
 
 - Fixed: "missing required icon in tabs in edit view"
-  This fixes https://dev.plone.org/plone/ticket/11685.
+  This fixes http://dev.plone.orgplone/ticket/11685.
   [gotcha]
 
 - Added "rss" alias to "RSS". 
-  This fixes https://dev.plone.org/plone/ticket/11638.
+  This fixes http://dev.plone.orgplone/ticket/11638.
   [gotcha]
 
 - Fixed: "Show all" livesearch link manages "current folder only" option.
-  This fixes https://dev.plone.org/plone/ticket/11414.
+  This fixes http://dev.plone.orgplone/ticket/11414.
   [thomasdesvenain]
 
 - Fixed: "Show all" was not displayed in live search
   when limit result was exceeded.
-  This fixes https://dev.plone.org/plone/ticket/11628.
+  This fixes http://dev.plone.orgplone/ticket/11628.
   [thomasdesvenain]
 
 4.0.4 - 2011-02-26
