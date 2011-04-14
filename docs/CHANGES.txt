@@ -8,6 +8,10 @@ Changelog
 4.0.6 - Unreleased
 ------------------
 
+- Backport fix zope.sendmail patch to raise errors for immediate sending
+  failures. Relates to http://dev.plone.org/plone/ticket/10675.
+  [elro]
+
 - Fix form submission when it has more than 5 tabs.
   This fixes http://dev.plone.org/plone/ticket/10868.
   [thomasdesvenain]
