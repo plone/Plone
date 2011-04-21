@@ -10,7 +10,7 @@
       title="Content"
       description="Import the site's structure and content."
       handler="Products.CMFCore.exportimport.content.importSiteStructure">
-    <depends name="plone-final"/>
+    <depends name="typeinfo"/>
   </genericsetup:importStep>
 
   <genericsetup:importStep

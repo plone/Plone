@@ -8,6 +8,11 @@ Changelog
 4.0.6 - Unreleased
 ------------------
 
+- Let the content import step (importing the site structure) not
+  depend on plone-final but on typeinfo.  Solves circular dependency.
+  Refs http://dev.plone.org/plone/ticket/8350
+  [maurits]
+
 - Backport fix zope.sendmail patch to raise errors for immediate sending
   failures. Relates to http://dev.plone.org/plone/ticket/10675.
   [elro]
