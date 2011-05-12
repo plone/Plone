@@ -8,6 +8,10 @@ Changelog
 4.0.6 - Unreleased
 ------------------
 
+- Fix form tab navigation when it has more than 6 tabs under ie, chrome, safari.
+  This fixes http://dev.plone.org/plone/ticket/11815.
+  [thomasdesvenain]
+
 - Let the content import step (importing the site structure) not
   depend on plone-final but on typeinfo.  Solves circular dependency.
   Refs http://dev.plone.org/plone/ticket/8350
