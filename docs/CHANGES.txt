@@ -5,7 +5,7 @@
 Changelog
 =========
 
-4.0.6 - Unreleased
+4.0.6 - 2011-05-20
 ------------------
 
 - Fix form tab navigation when it has more than 6 tabs under ie, chrome, safari.
