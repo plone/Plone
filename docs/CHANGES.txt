@@ -8,6 +8,10 @@ Changelog
 4.0.6 - 2011-05-20
 ------------------
 
+- Backport set appropriate cache headers on createObject redirects to prevent
+  caching by proxy servers.
+  [elro]
+
 - Fix form tab navigation when it has more than 6 tabs under ie, chrome, safari.
   This fixes http://dev.plone.org/plone/ticket/11815.
   [thomasdesvenain]
