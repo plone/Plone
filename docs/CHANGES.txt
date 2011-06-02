@@ -2,9 +2,11 @@ Changelog
 =========
 
 
-4.1rc3 - Unreleased
+4.1rc3 - 2011-06-02
 -------------------
 
+- Release Plone 4.1rc3
+  [esteele]
 
 4.1rc2 - 2011-05-21
 -------------------
