@@ -15,6 +15,10 @@ Changelog
   worklist's contents (workflow) to support LinguaPlone better.
   [mj]
 
+- Optimized: Huge optimization of calendar_formfield.js under ie8 and lower.
+  Gain of 50% on js execution on a large page.
+  [thomasdesvenain]
+
 4.0.6 - 2011-05-20
 ------------------
 
@@ -58,6 +62,7 @@ Changelog
   This fixes http://dev.plone.orgplone/ticket/11638.
   [gotcha]
 
+>>>>>>> .r50505
 - Fixed: "Show all" livesearch link manages "current folder only" option.
   This fixes http://dev.plone.orgplone/ticket/11414.
   [thomasdesvenain]
