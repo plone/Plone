@@ -550,9 +550,15 @@ def _getSecurity(klass, create=True):
 
 def isLinked(obj):
     """ check if the given content object is linked from another one
-        WARNING: don't use this function in your code!!
-            it is a helper for the link integrity code and will potentially
-            abort the ongoing transaction, giving you unexpected results...
+
+        WARNING: this function can be time consuming !!
+
+            It deletes the object in a subtransaction that is rollbacked.
+            In other words, the object is kept safe.
+
+            Nevertheless, this implies that it also deletes recursively
+            all object's subobjects and references, which can be very
+            expensive.
     """
     # first check to see if link integrity handling has been enabled at all
     # and if so, if the removal of the object was already confirmed, i.e.
