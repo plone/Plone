@@ -574,16 +574,14 @@ def isLinked(obj):
     linked = False
     parent = obj.aq_inner.aq_parent
     try:
+        savepoint = transaction.savepoint()
         parent.manage_delObjects(obj.getId())
     except OFS.ObjectManager.BeforeDeleteException:
         linked = True
     except: # ignore other exceptions, not useful to us at this point
         pass
-    # since this function is called first thing in `delete_confirmation.cpy`
-    # and therefore nothing can possibly have changed yet at this point, we
-    # might as well "begin" a new transaction instead of using a savepoint,
-    # which creates a funny exception when using zeo (see #6666)
-    transaction.begin()
+    finally:
+        savepoint.rollback()
     return linked
 
 

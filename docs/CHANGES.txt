@@ -8,6 +8,12 @@ Changelog
 4.0.8 - Unreleased
 ------------------
 
+- Use ``transaction.savepoint`` instead of ``transaction.begin`` in
+  ``isLinked``; 
+  closes #7784;
+  does not reopen #6666 probably because we use fixed version of ZEO
+  [gotcha]
+
 - Optimized: Huge optimization of calendar_formfield.js under ie8 and lower.
   Gain of 50% on js execution on a large page.
   [thomasdesvenain]
