@@ -33,6 +33,7 @@ setup(name='Plone',
           'plone.app.caching',
           'plone.app.iterate',
           'plone.app.openid',
+          'plone.app.theming',
           'wicked',
       ],
       )
