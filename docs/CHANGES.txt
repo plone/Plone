@@ -4,6 +4,8 @@ Changelog
 4.2b1 - Unreleased
 ------------------
 
+- Release Plone 4.2b1
+  [esteele]
 
 4.2a2 - 2011-08-25
 ------------------
