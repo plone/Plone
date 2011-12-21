@@ -2,7 +2,7 @@
 # Helper objects for the Plone test suite
 #
 
-# $Id$
+# $Id: dummy.py 27741 2009-06-30 00:18:29Z davisagli $
 
 import os
 

@@ -12,7 +12,7 @@
 ##############################################################################
 """ Plone control panel tool node adapters.
 
-$Id$
+$Id: controlpanel.py 37814 2010-07-15 14:23:55Z hannosch $
 """
 from zope.i18nmessageid import Message
 
