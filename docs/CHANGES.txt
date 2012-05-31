@@ -1,7 +1,7 @@
 Changelog
 =========
 
-4.2rc2 (unreleased)
+4.2rc2 (2012-05-31)
 -------------------
 
 - Release Plone 4.2rc2
