@@ -23,7 +23,6 @@ setup(name='Plone',
       url='http://plone.org/',
       license='GPL version 2',
       packages=find_packages(exclude=['ez_setup']),
-      namespace_packages=['Products'],
       include_package_data=True,
       zip_safe=False,
       extras_require=dict(
