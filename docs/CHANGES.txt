@@ -1,12 +1,36 @@
 Changelog
 =========
 
-4.2rc2 (unreleased)
+4.3a1 (2012-08-31)
+------------------
+
+- Release Plone 4.3a1
+  [esteele]
+
+4.2.1 (2012-08-11)
+------------------
+
+- Release Plone 4.2.1
+  [esteele]
+
+
+4.2 (2012-06-29)
+----------------
+
+- Release Plone 4.2
+  [esteele]
+
+
+4.2rc2 (2012-05-31)
 -------------------
 
+- Release Plone 4.2rc2
+  [esteele]
+  
 - Add explicit dependencies on some `zope.app` libraries, to ensure they
   stay included during the 4.2 series.
   [hannosch]
+
 
 
 4.2rc1 (2012-05-07)
