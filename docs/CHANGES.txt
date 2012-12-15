@@ -4,7 +4,8 @@ Changelog
 4.2.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Release Plone 4.2.3
+  [esteele]
 
 
 4.2.2 (2012-10-15)
