@@ -1,10 +1,11 @@
 Changelog
 =========
 
-4.2.5 (unreleased)
+4.2.5 (2013-03-05)
 ------------------
 
-- Nothing changed yet.
+- Release Plone 4.2.5
+  [esteele]
 
 
 4.2.4 (2013-01-17)
