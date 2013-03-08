@@ -1,7 +1,7 @@
 from setuptools import setup
 import os.path
 
-version = '4.3rc2.dev0'
+version = '4.4a1.dev0'
 
 setup(name='Plone',
       version=version,
@@ -9,14 +9,17 @@ setup(name='Plone',
       long_description=open("README.txt").read() + "\n" +
                        open(os.path.join("docs", "CHANGES.txt")).read(),
       classifiers=[
-        "Environment :: Web Environment",
-        "Framework :: Plone",
-        "Framework :: Zope2",
-        "License :: OSI Approved :: GNU General Public License (GPL)",
-        "Operating System :: OS Independent",
-        "Programming Language :: Python",
-        "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
-        ],
+          "Environment :: Web Environment",
+          "Framework :: Plone",
+          "Framework :: Zope2",
+          "License :: OSI Approved :: GNU General Public License (GPL)",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python",
+          "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+          "Programming Language :: Python :: 2.6",
+          "Programming Language :: Python :: 2.7",
+          "Programming Language :: Python :: 2 :: Only",
+      ],
       keywords='Plone CMF python Zope',
       author='Plone Foundation',
       author_email='plone-developers@lists.sourceforge.net',
