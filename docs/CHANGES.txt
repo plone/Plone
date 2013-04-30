@@ -4,7 +4,11 @@ Changelog
 4.4a1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Depend on plone.app.contenttypes.
+  [thet]
+
+- Depend on plone.app.event.
+  [thet]
 
 
 4.3rc1 (2013-03-05)
