@@ -4,10 +4,10 @@ Changelog
 4.4a1 (unreleased)
 ------------------
 
-- Depend on plone.app.contenttypes.
-  [thet]
-
-- Depend on plone.app.event.
+- Add dependencies:
+  - plone.app.contenttypes.
+  - plone.app.event.
+  - plone.app.collection.
   [thet]
 
 
