@@ -27,6 +27,8 @@ setup(name='Plone',
       zip_safe=False,
       install_requires=[
           'setuptools',
+          'Products.Archetypes',
+          'Products.ATContentTypes >= 2.1.3',
           'Products.CMFPlacefulWorkflow',
           'Products.CMFPlone',
           'plone.app.caching',
