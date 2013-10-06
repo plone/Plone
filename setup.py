@@ -35,7 +35,6 @@ setup(name='Plone',
           'plone.app.dexterity',
           'plone.app.iterate',
           'plone.app.openid',
-          'plone.app.theming',
           'wicked',
       ],
       )

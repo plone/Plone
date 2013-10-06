@@ -1,6 +1,12 @@
 Changelog
 =========
 
+5.0b1 (unreleased)
+------------------
+
+- Move plone.app.theming dependency into Products.CMFPlone.
+  [esteele]
+
 4.3.2 (unreleased)
 ------------------
 
