@@ -36,6 +36,5 @@ setup(name='Plone',
           'plone.app.iterate',
           'plone.app.openid',
           'plone.app.upgrade',
-          'wicked',
       ],
       )
