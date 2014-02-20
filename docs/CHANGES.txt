@@ -1,10 +1,11 @@
 Changelog
 =========
 
-4.3.3 (unreleased)
+4.3.3 (2014-02-19)
 ------------------
 
-- Nothing changed yet.
+- Release Plone 4.3.3
+  [esteele]
 
 
 4.3.2 (2013-08-14)
@@ -75,7 +76,7 @@ Changelog
 
 - Release Plone 4.2rc2
   [esteele]
-  
+
 - Add explicit dependencies on some `zope.app` libraries, to ensure they
   stay included during the 4.2 series.
   [hannosch]
@@ -144,7 +145,7 @@ Changelog
 
 - Release Plone 4.1b2
   [esteele]
-  
+
 - Depend on wicked now that Products.CMFPlone doesn't.
   [davisagli]
 
@@ -169,5 +170,5 @@ Changelog
 4.1a1 - 2011-01-18
 ------------------
 
-- Separate `Products.CMFPlone` from the `Plone` egg. 
+- Separate `Products.CMFPlone` from the `Plone` egg.
   [elro]
