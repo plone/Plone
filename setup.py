@@ -1,7 +1,7 @@
 from setuptools import setup
 import os.path
 
-version = '5.0b1.dev0'
+version = '5.0a2'
 
 setup(name='Plone',
       version=version,
