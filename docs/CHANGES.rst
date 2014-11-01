@@ -1,10 +1,11 @@
 Changelog
 =========
 
-5.0a3 (unreleased)
+5.0a3 (2014-11-01)
 ------------------
 
-- Nothing changed yet.
+- Release Plone 5.0a3
+  [esteele]
 
 
 5.0a2 (2014-04-20)
@@ -13,10 +14,21 @@ Changelog
 - Move plone.app.theming dependency into Products.CMFPlone.
   [esteele]
 
-4.3.2 (unreleased)
+
+4.3.4 (2014-10-22)
+------------------
+  - Release Plone 4.3.4 [esteele]
+
+
+4.3.3 (2014-02-19)
 ------------------
 
-- Nothing changed yet.
+  - Release Plone 4.3.3 [esteele]
+
+4.3.2 (2013-08-14)
+------------------
+
+  - Release Plone 4.3.2 [esteele]
 
 
 4.3.1 (2013-05-30)
