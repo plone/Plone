@@ -1,10 +1,11 @@
 Changelog
 =========
 
-5.0b1 (unreleased)
+5.0b1 (2015-03-26)
 ------------------
 
-- Nothing changed yet.
+- Release Plone 5.0b1
+  [esteele]
 
 
 5.0a3 (2014-11-01)
