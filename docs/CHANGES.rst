@@ -1,16 +1,13 @@
 Changelog
 =========
 
-5.0.2 (unreleased)
+5.0.2 (2016-01-08)
 ------------------
 
 New:
 
-- *add item here*
-
-Fixes:
-
-- *add item here*
+- Release Plone 5.0.2
+  [esteele]
 
 
 5.0.1 (2015-12-17)
