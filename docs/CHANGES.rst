@@ -1,20 +1,13 @@
 Changelog
 =========
 
-5.1a2 (unreleased)
+5.1a2 (2016-08-19)
 ------------------
-
-Incompatibilities:
-
-- *add item here*
 
 New:
 
-- *add item here*
-
-Fixes:
-
-- *add item here*
+- Release Plone 5.1a2
+  [esteele]
 
 
 5.1a1 (2016-03-31)
