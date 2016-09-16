@@ -6,7 +6,8 @@ Changelog
 
 Breaking changes:
 
-- *add item here*
+- Remove plone.app.openid from core, still avalable as addon package.
+  [jensens]
 
 New features:
 

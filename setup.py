@@ -38,7 +38,6 @@ setup(
         'plone.app.caching',
         'plone.app.dexterity',
         'plone.app.iterate',
-        'plone.app.openid',
         'plone.app.upgrade',
     ],
     )
