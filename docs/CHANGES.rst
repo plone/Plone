@@ -7,6 +7,8 @@ Changelog
 Breaking changes:
 
 - *add item here*
+- Remove plone.app.openid from core, still available as addon package.
+  [jensens]
 
 New features:
 
@@ -14,7 +16,9 @@ New features:
 
 Bug fixes:
 
-- *add item here*
+- Be sure to require archetypes.multilingual
+  even if it's not required as a dependency of plone.app.multilingual.
+  [davisagli]
 
 
 5.0.6 (2016-08-23)
