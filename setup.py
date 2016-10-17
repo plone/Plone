@@ -30,6 +30,7 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
+        'archetypes.multilingual',
         'setuptools',
         'Products.Archetypes',
         'Products.ATContentTypes >= 2.1.3',
@@ -40,4 +41,4 @@ setup(
         'plone.app.iterate',
         'plone.app.upgrade',
     ],
-    )
+)
