@@ -2,7 +2,7 @@ About Plone
 ===========
 
 Plone is a user friendly Content Management System running on top of Python,
-Zope and the CMF.  
+Zope and the CMF.
 
 It benefits from all features of Zope/CMF such as: RDBMS integration,
 Python extensions, Object Oriented Database, Web configurable workflow,
@@ -74,7 +74,6 @@ files, etc.
 Plone runs on Windows, Linux, BSD, Mac OS X, and many other platforms;
 double-click installers are available for Windows and Mac OS X, and RPM
 packages are available for Linux. For full information, see the
-`plone.org product page`_.
+`documentation`_.
 
-.. _documentation: http://plone.org/documentation
-.. _plone.org product page: http://plone.org/products/plone
+.. _documentation: http://docs.plone.org
