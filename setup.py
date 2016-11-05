@@ -6,17 +6,17 @@ version = '4.3.12.dev0'
 setup(
     name='Plone',
     version=version,
-    description="The Plone Content Management System",
-    long_description=open("README.rst").read() + "\n" +
-                     open(os.path.join("docs", "CHANGES.rst")).read(),
+    description='The Plone Content Management System',
+    long_description=open('README.rst').read() + '\n' +
+                     open(os.path.join('docs', 'CHANGES.rst')).read(),
     classifiers=[
-        "Environment :: Web Environment",
-        "Framework :: Plone",
-        "Framework :: Zope2",
-        "License :: OSI Approved :: GNU General Public License (GPL)",
-        "Operating System :: OS Independent",
-        "Programming Language :: Python",
-        "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+        'Environment :: Web Environment',
+        'Framework :: Plone',
+        'Framework :: Zope2',
+        'License :: OSI Approved :: GNU General Public License (GPL)',
+        'Operating System :: OS Independent',
+        'Programming Language :: Python',
+        'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
     ],
     keywords='Plone CMF python Zope',
     author='Plone Foundation',
