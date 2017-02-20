@@ -1,20 +1,13 @@
 Changelog
 =========
 
-5.1b2 (unreleased)
+5.1b2 (2017-02-20)
 ------------------
-
-Breaking changes:
-
-- *add item here*
 
 New features:
 
-- *add item here*
-
-Bug fixes:
-
-- *add item here*
+- Release Plone 5.1b2
+  [esteele]
 
 
 5.1b1 (2017-02-20)
