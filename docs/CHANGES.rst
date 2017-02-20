@@ -1,18 +1,13 @@
 Changelog
 =========
 
-5.0.7 (unreleased)
+5.0.7 (2017-02-20)
 ------------------
-
-Breaking changes:
-
-- *add item here*
-- Remove plone.app.openid from core, still available as addon package.
-  [jensens]
 
 New features:
 
-- *add item here*
+- Release Plone 5.0.7
+  [esteele]
 
 Bug fixes:
 
