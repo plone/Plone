@@ -1,10 +1,11 @@
 Changelog
 =========
 
-4.3.13 (unreleased)
+4.3.13 (2017-03-16)
 -------------------
 
-- Nothing changed yet.
+New: 
+- Release Plone 4.3.13
 
 
 4.3.12 (2017-02-20)
