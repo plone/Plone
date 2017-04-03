@@ -1,26 +1,17 @@
 Changelog
 =========
 
-4.3.14 (unreleased)
+4.3.14 (2017-04-03)
 -------------------
 
-Breaking changes:
-
-- *add item here*
-
-New features:
-
-- *add item here*
-
-Bug fixes:
-
-- *add item here*
+New:
+- Release Plone 4.3.14
 
 
 4.3.13 (2017-03-16)
 -------------------
 
-New: 
+New:
 - Release Plone 4.3.13
 
 
