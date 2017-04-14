@@ -1,17 +1,19 @@
 About Plone
 ===========
 
-Plone is a user friendly Content Management System running on top of Python,
-Zope and the CMF.
+Plone is a user friendly and extensible Content Management System running on top of Python and
+Zope.
 
-It benefits from all features of Zope/CMF such as: RDBMS integration,
+Its features include RDBMS integration,
 Python extensions, Object Oriented Database, Web configurable workflow,
-pluggable membership and authentication, Undos, Form validation, amongst many
-many other features. Available protocols: FTP, XMLRPC, HTTP and WEBDAV
+pluggable membership and authentication, Undos, Form validation, and many
+other features. Available protocols: FTP, XMLRPC, HTTP and WEBDAV
 Turn it into a distributed application system by installing ZEO.
 
+For more information on Plone features, see https://Plone.com
+
 Plone shares some of the qualities of Livelink, Interwoven and Documentum. It
-aims to be *the* open source out-of-the-box publishing system.
+is the most secure, open source feature-complete out-of-the-box publishing system.
 
 What is Plone?
 --------------
