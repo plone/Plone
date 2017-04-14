@@ -14,6 +14,9 @@ New features:
 
 Bug fixes:
 
+- Add link to Plone.com and tweak intro
+  [tkimnguyen]
+  
 - *add item here*
 
 
