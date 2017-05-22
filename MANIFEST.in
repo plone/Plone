@@ -1,3 +1,2 @@
-recursive-include docs *
-include *
-global-exclude *.pyc
+include *.rst
+graft docs 
