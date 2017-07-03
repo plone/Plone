@@ -1,24 +1,18 @@
 Changelog
 =========
 
-5.1b4 (unreleased)
+5.1b4 (2017-07-03)
 ------------------
-
-Breaking changes:
-
-- *add item here*
 
 New features:
 
-- *add item here*
+- Release Plone 5.1b4
+  [esteele]
 
 Bug fixes:
 
 - Add link to Plone.com and tweak intro
   [tkimnguyen]
-  
-- *add item here*
-
 
 5.1b3 (2017-04-02)
 ------------------
