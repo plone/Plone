@@ -1,10 +1,13 @@
 Changelog
 =========
 
-4.3.16 (unreleased)
+4.3.16 (2017-09-08)
 -------------------
 
-- Nothing changed yet.
+New features:
+
+- Release Plone 4.3.16
+  [esteele]
 
 
 4.3.15 (2017-07-03)
