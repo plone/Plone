@@ -1,20 +1,13 @@
 Changelog
 =========
 
-5.1b5 (unreleased)
-------------------
-
-Breaking changes:
-
-- *add item here*
+5.1rc1 (2017-09-10)
+-------------------
 
 New features:
 
-- *add item here*
+- Release Plone 5.1rc1
 
-Bug fixes:
-
-- *add item here*
 
 
 5.1b4 (2017-07-03)
