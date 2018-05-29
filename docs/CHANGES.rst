@@ -1,20 +1,13 @@
 Changelog
 =========
 
-4.3.18 (unreleased)
+4.3.18 (2018-05-29)
 -------------------
-
-Breaking changes:
-
-- *add item here*
 
 New features:
 
-- *add item here*
-
-Bug fixes:
-
-- *add item here*
+- Release Plone 4.3.18
+  [esteele]
 
 
 4.3.17 (2018-03-07)
@@ -22,7 +15,7 @@ Bug fixes:
 
 New features:
 
-- Release Plone 4.3.16
+- Release Plone 4.3.17
   [esteele]
 
 
