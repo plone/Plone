@@ -38,13 +38,13 @@ setup(
         'plone.app.upgrade',
         'Products.CMFPlacefulWorkflow',
         'Products.CMFPlone',
-        'setuptools',
+        'setuptools>=36.2',
     ],
     extras_require={
         'archetypes': [
-            'Products.ATContentTypes',
-            'archetypes.multilingual',
-            'plone.app.contenttypes[archetypes,atrefs]'
+            'Products.ATContentTypes ; python_version<"3"',
+            'archetypes.multilingual ; python_version<"3"',
+            'plone.app.contenttypes[archetypes,atrefs] ; python_version<"3"',
         ],
     },
 )
