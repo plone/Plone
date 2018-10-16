@@ -42,7 +42,9 @@ setup(
     ],
     extras_require={
         'archetypes': [
-            'Products.CMFPlone [archetypes]',
+            'Products.ATContentTypes',
+            'archetypes.multilingual',
+            'plone.app.contenttypes[archetypes,atrefs]'
         ],
     },
 )
