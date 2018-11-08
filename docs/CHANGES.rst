@@ -1,20 +1,13 @@
 Changelog
 =========
 
-5.1.5 (unreleased)
+5.2a1 (2018-11-08)
 ------------------
-
-Breaking changes:
-
-- *add item here*
 
 New features:
 
-- *add item here*
-
-Bug fixes:
-
-- *add item here*
+- Release Plone 5.2a1
+  [esteele]
 
 
 5.1.4 (2018-10-01)
