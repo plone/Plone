@@ -1,8 +1,8 @@
 Changelog
 =========
 
-5.1rc2 (unreleased)
--------------------
+5.1.5 (unreleased)
+------------------
 
 Breaking changes:
 
@@ -16,6 +16,59 @@ Bug fixes:
 
 - *add item here*
 
+
+5.1.4 (2018-10-01)
+------------------
+
+New features:
+
+- Release Plone 5.1.4
+  [esteele]
+
+
+5.1.3 (2018-06-21)
+------------------
+
+New features:
+
+- Release Plone 5.1.3
+  [esteele]
+
+
+5.1.2 (2018-04-08)
+------------------
+
+New features:
+
+- Release Plone 5.1.2
+  [esteele]
+
+
+5.1.1 (2018-03-10)
+------------------
+
+New features:
+
+- Release Plone 5.1.1
+  [esteele]
+
+
+5.1.0 (2018-02-05)
+------------------
+
+New features:
+
+- Release Plone 5.1
+  [esteele]
+
+
+5.1rc2 (2017-11-26)
+-------------------
+
+New features:
+
+- Release Plone 5.1rc2
+  [esteele]
 
 5.1rc1 (2017-09-10)
 -------------------
