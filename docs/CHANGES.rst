@@ -4,7 +4,8 @@ Changelog
 5.2a3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add plone.restapi as a dependency.
+  [timo]
 
 
 5.2a2 (2018-12-28)
