@@ -1,6 +1,22 @@
 Changelog
 =========
 
+5.0.11 (unreleased)
+-------------------
+
+Breaking changes:
+
+- *add item here*
+
+New features:
+
+- *add item here*
+
+Bug fixes:
+
+- *add item here*
+
+
 5.0.10 (2019-01-08)
 -------------------
 
