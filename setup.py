@@ -32,6 +32,7 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
+        'plone.restapi',
         'plone.app.caching',
         'plone.app.dexterity',
         'plone.app.iterate',
