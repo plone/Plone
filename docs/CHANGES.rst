@@ -1,8 +1,10 @@
 Changelog
 =========
 
-5.2a3 (unreleased)
+5.2b1 (2019-02-13)
 ------------------
+
+New features:
 
 - Add plone.restapi as a dependency.
   [timo]
