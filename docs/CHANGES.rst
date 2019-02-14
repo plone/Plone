@@ -1,6 +1,22 @@
 Changelog
 =========
 
+5.2b2 (unreleased)
+------------------
+
+Breaking changes:
+
+- *add item here*
+
+New features:
+
+- *add item here*
+
+Bug fixes:
+
+- *add item here*
+
+
 5.2b1 (2019-02-13)
 ------------------
 
