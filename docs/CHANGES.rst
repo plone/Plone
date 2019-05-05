@@ -1,20 +1,13 @@
 Changelog
 =========
 
-5.2rc3 (unreleased)
+5.2rc3 (2019-05-04)
 -------------------
-
-Breaking changes:
-
-- *add item here*
 
 New features:
 
-- *add item here*
-
-Bug fixes:
-
-- *add item here*
+- Release Plone 5.2rc3
+  [esteele]
 
 
 5.2rc2 (2019-03-21)
