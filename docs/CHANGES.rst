@@ -1,8 +1,8 @@
 Changelog
 =========
 
-5.2rc4.0 (unreleased)
----------------------
+5.2rc4 (unreleased)
+-------------------
 
 Breaking changes:
 
