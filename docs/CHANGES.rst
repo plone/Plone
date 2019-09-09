@@ -1,20 +1,13 @@
 Changelog
 =========
 
-4.3.19 (unreleased)
+4.3.19 (2019-09-09)
 -------------------
-
-Breaking changes:
-
-- *add item here*
 
 New features:
 
-- *add item here*
-
-Bug fixes:
-
-- *add item here*
+- Release Plone 4.3.19
+  [esteele]
 
 
 4.3.18 (2018-05-29)
