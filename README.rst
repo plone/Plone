@@ -6,7 +6,7 @@ Zope.
 
 Its features include RDBMS integration,
 Python extensions, Object Oriented Database, Web configurable workflow,
-pluggable membership and authentication, Undos, Form validation, and many
+plugable membership and authentication, Undos, Form validation, and many
 other features. Available protocols: FTP, XMLRPC, HTTP and WEBDAV
 Turn it into a distributed application system by installing ZEO.
 
