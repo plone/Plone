@@ -1,20 +1,13 @@
 Changelog
 =========
 
-5.2.1 (unreleased)
+5.2.1 (2019-12-02)
 ------------------
-
-Breaking changes:
-
-- *add item here*
 
 New features:
 
-- *add item here*
-
-Bug fixes:
-
-- *add item here*
+- Release Plone 5.2.1 final
+  [esteele]
 
 
 5.2.0 (2019-07-10)
