@@ -1,7 +1,7 @@
 Changelog
 =========
 
-5.2.2 (unreleased)
+5.2.2 (2020-06-28)
 ------------------
 
 New features:
