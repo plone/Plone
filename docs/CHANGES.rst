@@ -4,17 +4,12 @@ Changelog
 4.3.20 (unreleased)
 -------------------
 
-Breaking changes:
-
-- *add item here*
-
 New features:
 
-- *add item here*
-
-Bug fixes:
-
-- *add item here*
+- Release Plone 4.3.20.
+  This will be the last release in the 4.3 series.
+  See also the `Plone release schedule <https://plone.org/download/release-schedule>`_.
+  [maurits]
 
 
 4.3.19 (2019-09-09)
