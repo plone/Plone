@@ -1,7 +1,7 @@
 Changelog
 =========
 
-5.1.7 (unreleased)
+5.1.7 (2020-09-21)
 ------------------
 
 New features:
