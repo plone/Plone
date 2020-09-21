@@ -4,17 +4,10 @@ Changelog
 5.1.7 (unreleased)
 ------------------
 
-Breaking changes:
-
-- *add item here*
-
 New features:
 
-- *add item here*
-
-Bug fixes:
-
-- *add item here*
+- Release Plone 5.1.7.
+  [maurits]
 
 
 5.1.6 (2019-09-03)
