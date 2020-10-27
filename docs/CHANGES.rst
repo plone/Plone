@@ -1,12 +1,16 @@
 Changelog
 =========
 
-5.2.1 (unreleased)
+6.0a1 (unreleased)
 ------------------
 
 Breaking changes:
 
-- *add item here*
+- Remove `archetypes` extra in `setup.py`.
+  [jensens]
+
+- Drop Python 2 support.
+  [jensens]
 
 New features:
 
@@ -15,6 +19,32 @@ New features:
 Bug fixes:
 
 - *add item here*
+
+Misc:
+
+- Move `setup.py` metadata to `setup.cfg`.
+  [jensens]
+
+
+
+
+5.2.2 (2020-06-28)
+------------------
+
+New features:
+
+- Release Plone 5.2.2 final
+  [maurits]
+
+
+5.2.1 (2019-12-02)
+------------------
+
+New features:
+
+- Release Plone 5.2.1 final
+  [esteele]
+
 
 
 5.2.0 (2019-07-10)
