@@ -4,17 +4,10 @@ Changelog
 5.2.4 (unreleased)
 ------------------
 
-Breaking changes:
-
-- *add item here*
-
-New features:
-
-- *add item here*
-
 Bug fixes:
 
-- *add item here*
+- Release Plone 5.2.4 final
+  [maurits]
 
 
 5.2.3 (2020-10-30)
