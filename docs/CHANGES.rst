@@ -9,6 +9,10 @@ Bug fixes:
 - Release Plone 5.2.4 final
   [maurits]
 
+- Removed ``plone.app.dexterity`` from dependencies.
+  It is already required by ``Products.CMFPlone``.
+  [maurits]
+
 
 5.2.3 (2020-10-30)
 ------------------

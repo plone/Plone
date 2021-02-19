@@ -36,7 +36,6 @@ setup(
     install_requires=[
         'plone.restapi',
         'plone.app.caching',
-        'plone.app.dexterity',
         'plone.app.iterate',
         'plone.app.upgrade',
         'Products.CMFPlacefulWorkflow',
