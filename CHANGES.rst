@@ -6,7 +6,7 @@ Changelog
 
 Breaking changes:
 
-- Remove `archetypes` extra in `setup.py`.
+- Remove ``archetypes`` extra in ``setup.py``.
   [jensens]
 
 - Drop Python 2 support.
@@ -22,7 +22,7 @@ Bug fixes:
 
 Misc:
 
-- Move `setup.py` metadata to `setup.cfg`.
+- Move ``setup.py`` metadata to ``setup.cfg``.
   [jensens]
 
 
