@@ -26,6 +26,35 @@ Misc:
   [jensens]
 
 
+5.2.5 (2021-07-31)
+------------------
+
+Bug fixes:
+
+- Release Plone 5.2.5 final
+  [maurits]
+
+
+5.2.4 (2021-02-19)
+------------------
+
+Bug fixes:
+
+- Release Plone 5.2.4 final
+  [maurits]
+
+- Removed ``plone.app.dexterity`` from dependencies.
+  It is already required by ``Products.CMFPlone``.
+  [maurits]
+
+
+5.2.3 (2020-10-30)
+------------------
+
+Bug fixes:
+
+- Release Plone 5.2.3 final
+  [maurits]
 
 
 5.2.2 (2020-06-28)
