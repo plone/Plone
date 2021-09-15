@@ -12,15 +12,9 @@ Breaking changes:
 - Drop Python 2 support.
   [jensens]
 
-New features:
-
-- *add item here*
-
-Bug fixes:
-
-- *add item here*
-
 Misc:
+
+- Create internal release on dist.plone.org.  [maurits]
 
 - Move ``setup.py`` metadata to ``setup.cfg``.
   [jensens]
