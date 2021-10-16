@@ -23,6 +23,7 @@ Bug fixes:
 Bug fixes:
 
 - Release 6.0.0a1.dev1.
+  Update: accidentally released as 6.0.0a1.
   [maurits]
 
 
