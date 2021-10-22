@@ -4,17 +4,10 @@ Changelog
 5.2.6 (unreleased)
 ------------------
 
-Breaking changes:
-
-- *add item here*
-
-New features:
-
-- *add item here*
-
 Bug fixes:
 
-- *add item here*
+- Release Plone 5.2.6 final
+  [maurits]
 
 
 5.2.5 (2021-07-31)
