@@ -14,7 +14,8 @@ New features:
 
 Bug fixes:
 
-- *add item here*
+- Depend on ``plone.volto``.
+  [maurits]
 
 
 6.0.0a3 (2022-01-28)
