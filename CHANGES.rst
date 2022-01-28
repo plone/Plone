@@ -4,17 +4,10 @@ Changelog
 6.0.0a3 (unreleased)
 --------------------
 
-Breaking changes:
-
-- *add item here*
-
-New features:
-
-- *add item here*
-
 Bug fixes:
 
-- *add item here*
+- Release 6.0.0a3.
+  [maurits]
 
 
 6.0.0a2 (2021-12-03)
