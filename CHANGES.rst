@@ -4,15 +4,7 @@ Changelog
 6.0.0a4 (unreleased)
 --------------------
 
-Breaking changes:
-
-- *add item here*
-
 New features:
-
-- *add item here*
-
-Bug fixes:
 
 - Depend on ``plone.volto``.
   [maurits]
