@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.0.0a4 (unreleased)
+6.0.0a4 (2022-04-08)
 --------------------
 
 New features:
