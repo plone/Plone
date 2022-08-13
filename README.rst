@@ -12,7 +12,7 @@ Pushed one step further Plone can be used as a framework on which to build custo
 Plone works as a
 
 - full-featured classical server-side rendered CMS,
-- headless CMS offers all features as a REST API.
+- headless CMS that offers all features as a REST API.
 
 
 Installing Plone
