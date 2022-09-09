@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.0.0b2 (unreleased)
+6.0.0b2 (2022-09-10)
 --------------------
 
 Breaking changes:
