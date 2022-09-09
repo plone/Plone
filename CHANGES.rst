@@ -6,15 +6,9 @@ Changelog
 
 Breaking changes:
 
-- *add item here*
-
-New features:
-
-- *add item here*
-
-Bug fixes:
-
-- *add item here*
+- Officially drop Python 3.7 support and add 3.10 support.
+  Currently everything still work in 3.7, but beta 2 is the last release where this is the case.
+  [maurits]
 
 
 6.0.0b1 (2022-07-23)
