@@ -1,6 +1,22 @@
 Changelog
 =========
 
+6.0.0b4 (unreleased)
+--------------------
+
+Breaking changes:
+
+- *add item here*
+
+New features:
+
+- *add item here*
+
+Bug fixes:
+
+- *add item here*
+
+
 6.0.0b3 (2022-10-04)
 --------------------
 
