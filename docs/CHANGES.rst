@@ -1,6 +1,22 @@
 Changelog
 =========
 
+5.2.11 (unreleased)
+-------------------
+
+Breaking changes:
+
+- *add item here*
+
+New features:
+
+- *add item here*
+
+Bug fixes:
+
+- *add item here*
+
+
 5.2.10 (2022-10-31)
 -------------------
 
