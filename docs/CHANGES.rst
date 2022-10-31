@@ -4,17 +4,10 @@ Changelog
 5.2.10 (unreleased)
 -------------------
 
-Breaking changes:
-
-- *add item here*
-
-New features:
-
-- *add item here*
-
 Bug fixes:
 
-- *add item here*
+- Release Plone 5.2.10.
+  [maurits]
 
 
 5.2.9 (2022-07-18)
