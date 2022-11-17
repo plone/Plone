@@ -1,20 +1,13 @@
 Changelog
 =========
 
-6.0.0b4 (unreleased)
---------------------
-
-Breaking changes:
-
-- *add item here*
-
-New features:
-
-- *add item here*
+6.0.0rc1 (unreleased)
+---------------------
 
 Bug fixes:
 
-- *add item here*
+- Release 6.0.0rc1.
+  [maurits]
 
 
 6.0.0b3 (2022-10-04)
