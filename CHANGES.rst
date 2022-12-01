@@ -16,6 +16,11 @@ Bug fixes:
 
 - *add item here*
 
+Internal:
+
+- Improve metadata on pypi.org
+  [ericof]
+
 
 6.0.0rc1 (2022-11-18)
 ---------------------
