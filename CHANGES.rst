@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.0.0rc2 (unreleased)
+6.0.0rc2 (2022-12-05)
 ---------------------
 
 Bug fixes:
