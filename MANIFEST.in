@@ -1,2 +1,2 @@
-include *.rst
-graft docs 
+include *.md
+graft docs

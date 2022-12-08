@@ -1,5 +1,23 @@
-About Plone
-===========
+<p align="center">
+    <img alt="Plone Logo" width="200px" src="https://raw.githubusercontent.com/plone/.github/main/plone-logo.png">
+</p>
+
+<h1 align="center">
+  Plone
+</h1>
+
+<div align="center">
+
+[![PyPI](https://img.shields.io/pypi/v/plone)](https://pypi.org/project/plone/)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/plone)](https://pypi.org/project/plone/)
+[![PyPI - Wheel](https://img.shields.io/pypi/wheel/plone)](https://pypi.org/project/plone/)
+[![PyPI - License](https://img.shields.io/pypi/l/plone)](https://pypi.org/project/plone/)
+[![PyPI - Status](https://img.shields.io/pypi/status/plone)](https://pypi.org/project/plone/)
+
+[![GitHub contributors](https://img.shields.io/github/contributors/plone/Products.CMFPlone)](https://github.com/plone/Products.CMFPlone)
+![GitHub Repo stars](https://img.shields.io/github/stars/plone/Plone?style=flat-square)
+
+</div>
 
 Plone is a mature, secure, and user-friendly Content Management System (CMS).
 
@@ -11,30 +29,33 @@ Pushed one step further Plone can be used as a framework on which to build custo
 
 Plone works as a
 
-- full-featured classical server-side rendered CMS,
-- headless CMS that offers all features as a REST API.
+- Full-featured classical server-side rendered CMS,
+- Headless CMS that offers all features as a REST API.
 
 
-Installing Plone
------------------
+<h2 align="center">
+  Installing Plone
+</h2>
 
-Plone is available on Microsoft Windows, Linux, OSX, and BSD platforms.
+Plone is available on Microsoft Windows, Linux, macOS, and BSD platforms.
 
 Plone runs as a container in the cloud with Docker.
 
-`Install Plone by choosing an option from plone.org <https://plone.org/download>`_
+[Install Plone by choosing an option from plone.org](https://plone.org/download)
 
 
-Documentation
--------------
+<h2 align="center">
+  Documentation
+</h2>
 
-Consult `the official Plone documentation <https://docs.plone.org>`_ with information for different audiences.
+Consult [the official Plone documentation](https://docs.plone.org) with information for different audiences.
 
-For trainings `comprehensive Plone training material <https://training.plone.org>`_ is available.
+For trainings [comprehensive Plone training material](https://training.plone.org) is available.
 
 
-What is Plone?
---------------
+<h2 align="center">
+  What is Plone?
+</h2>
 
 Plone is a ready-to-run content management system, offering a complete set of features needed by a wide variety of organizations.
 
@@ -44,37 +65,38 @@ Plone offers fine-grained permission control over content and actions.
 Plone is easy to set up, extremely flexible,
 and provides you with a system for managing web content that is ideal for project groups, communities, websites, extranets, and intranets.
 
-- *Plone is easy to install.*
+- **Plone is easy to install.**
   Several installation options are available for either your local machine or on servers in the cloud.
 
-- *Plone is easy to use.*
+- **Plone is easy to use.**
   The Plone Team includes usability experts who have made Plone easy and attractive for content managers to add, update, and maintain content.
 
-- *Plone is international.*
+- **Plone is international.**
   The Plone interface has more than 35 translations, and tools exist for managing multilingual content.
 
-- *Plone is standard.*
+- **Plone is standard.**
   Plone carefully follows standards for usability and accessibility.
   Plone pages are compliant with US Section 508, and the W3C's AAA rating for accessibility.
 
-- *Plone is Open Source.*
+- **Plone is Open Source.**
   Plone is licensed under the GNU General Public License, the same license used by Linux.
   This gives you the right to use Plone without a license fee, and to improve upon the product.
 
-- *Plone is supported.*
+- **Plone is supported.**
   There are over three hundred developers in the Plone Development Team around the world, and a multitude of companies that specialize in Plone development and support.
 
-- *Plone is extensible.*
+- **Plone is extensible.**
   There is a multitude of add-on products for Plone to add new features and content types.
   In addition, Plone can be scripted using web standard solutions and Open Source languages.
 
-- *Plone is technology neutral.*
+- **Plone is technology neutral.**
   Plone can interoperate with most relational database systems, open source, and commercial, and runs on a vast array of
   platforms, including Linux, Windows, Mac OS X, Solaris, and BSD.
 
 
+<h2 align="center">
 Technical overview
-------------------
+</h2>
 
 Plone is a content management platform written in Python.
 It builds upon Zope, an Open Source web application server and development system, and thus on the pluggable Zope Component Architecture (ZCA).
@@ -88,13 +110,26 @@ There are addons and techniques, however, to share information with other source
 files, etc.
 
 
+<h2 align="center">
 Official Resources
-------------------
-* `plone.org <https://plone.org/>`_ - Official website for developers, community, decision makers and evaluators.
-* `Plone support <https://plone.org/support>`_ - Where to find help.
-* `community.plone.org <https://community.plone.org/>`_ - Official community forum, the best place to get help.
-* `docs.plone.org <https://docs.plone.org/>`_ - Official documentation for developers/integrators.
-* `training.plone.org <https://training.plone.org/>`_ - Training classes for developers/integrators/users/designers.
-* `plone.api <https://docs.plone.org/develop/plone.api/docs/index.html>`_ - Documentation for plone.api.
-* `plone.restapi <https://plonerestapi.readthedocs.io/en/latest/>`_ - Documentation for plone.restapi.
-* `official Discord chat <https://discord.gg/zFY3EBbjaj>`_ - monitored.
+</h2>
+
+* [plone.org](https://plone.org/) - Official website for developers, community, decision makers and evaluators.
+* [Plone support](https://plone.org/support) - Where to find help.
+* [community.plone.org](https://community.plone.org/) - Official community forum, the best place to get help.
+* [docs.plone.org](https://docs.plone.org/) - Official documentation for developers/integrators.
+* [training.plone.org](https://training.plone.org/) - Training classes for developers/integrators/users/designers.
+* [plone.api](https://docs.plone.org/develop/plone.api/docs/index.html) - Documentation for plone.api.
+* [plone.restapi](https://plonerestapi.readthedocs.io/en/latest/) - Documentation for plone.restapi.
+* [official Discord chat](https://discord.gg/zFY3EBbjaj) - monitored.
+
+<h2 align="center">
+This project is supported by
+</h2>
+
+[![Plone Foundation](https://raw.githubusercontent.com/plone/.github/main/plone-foundation.png)](https://plone.org/foundation/)
+
+<h2 align="center">
+License
+</h2>
+The project is licensed under the GPLv2.
