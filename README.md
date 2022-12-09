@@ -37,9 +37,9 @@ Plone works as a
   Installing Plone
 </h2>
 
-Plone is available on Microsoft Windows, Linux, macOS, and BSD platforms.
+Plone is available on Linux, Microsoft Windows, macOS, and BSD platforms.
 
-Plone runs as a container in the cloud with Docker.
+Plone may be run as a container in the cloud with Docker and other Open Containers Initiative compliant platforms.
 
 [Install Plone by choosing an option from plone.org](https://plone.org/download)
 
@@ -91,14 +91,15 @@ and provides you with a system for managing web content that is ideal for projec
 
 - **Plone is technology neutral.**
   Plone can interoperate with most relational database systems, open source, and commercial, and runs on a vast array of
-  platforms, including Linux, Windows, Mac OS X, Solaris, and BSD.
+  platforms, including Linux, Windows, macOS, and BSD.
 
 
 <h2 align="center">
 Technical overview
 </h2>
 
-Plone is a content management platform written in Python.
+Plone is a content management platform with its backend written in Python.
+Plone has a choice of frontend, either Classic UI using server-side templates or Volto written in modern React-based JavaScript.
 It builds upon Zope, an Open Source web application server and development system, and thus on the pluggable Zope Component Architecture (ZCA).
 
 Python is the easy-to-learn, widely-used, and supported Open Source programming language.
@@ -114,14 +115,14 @@ files, etc.
 Official Resources
 </h2>
 
-* [plone.org](https://plone.org/) - Official website for developers, community, decision makers and evaluators.
+* [plone.org](https://plone.org/) - Official website for developers, community, decision makers, and evaluators.
 * [Plone support](https://plone.org/support) - Where to find help.
 * [community.plone.org](https://community.plone.org/) - Official community forum, the best place to get help.
-* [docs.plone.org](https://docs.plone.org/) - Official documentation for developers/integrators.
-* [training.plone.org](https://training.plone.org/) - Training classes for developers/integrators/users/designers.
-* [plone.api](https://docs.plone.org/develop/plone.api/docs/index.html) - Documentation for plone.api.
-* [plone.restapi](https://plonerestapi.readthedocs.io/en/latest/) - Documentation for plone.restapi.
-* [official Discord chat](https://discord.gg/zFY3EBbjaj) - monitored.
+* [docs.plone.org](https://docs.plone.org/) - Official documentation for developers, integrators, and content editors.
+* [training.plone.org](https://training.plone.org/) - Trainings for developers, integrators, content editors, and designers.
+* [`plone.api`](https://docs.plone.org/develop/plone.api/docs/index.html) - Documentation for `plone.api`.
+* [`plone.restapi`](https://plonerestapi.readthedocs.io/en/latest/) - Documentation for `plone.restapi`.
+* [Discord](https://discord.gg/zFY3EBbjaj) - Official Plone chat, voice, and video service.
 
 <h2 align="center">
 This project is supported by
