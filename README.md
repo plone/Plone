@@ -21,8 +21,9 @@
 
 Plone is a mature, secure, and user-friendly Content Management System (CMS).
 
-Plone - and the Open Source community behind it - aggregates more than 20 years of experience in content management.
-It offers all major features expected by a modern CMS out-of-the-box.
+Plone was first released to the public on October 4, 2001.
+
+Plone has the maturity, stability, and reliability of an application maintained by open source developers with decades of experience, while continually evolving and adapting to modern technology.
 
 Lots of customizations can be made trough-the-web, such as creating content types, themes, workflows, and much more.
 Pushed one step further Plone can be used as a framework on which to build custom CMS-like solutions.
@@ -68,17 +69,17 @@ and provides you with a system for managing web content that is ideal for projec
 - **Plone is easy to install.**
   Several installation options are available for either your local machine or on servers in the cloud.
 
-- **Plone is easy to use.**
+- **Plone empowers content editors and webmasters.**
   The Plone Team includes usability experts who have made Plone easy and attractive for content managers to add, update, and maintain content.
 
 - **Plone is international.**
   The Plone interface has more than 35 translations, and tools exist for managing multilingual content.
 
-- **Plone is standard.**
+- **Plone follows standards and is inclusive.**
   Plone carefully follows standards for usability and accessibility.
   Plone pages are compliant with US Section 508, and the W3C's AAA rating for accessibility.
 
-- **Plone is Open Source.**
+- **Plone is open source.**
   Plone is licensed under the GNU General Public License, the same license used by Linux.
   This gives you the right to use Plone without a license fee, and to improve upon the product.
 
@@ -87,7 +88,7 @@ and provides you with a system for managing web content that is ideal for projec
 
 - **Plone is extensible.**
   There is a multitude of add-on products for Plone to add new features and content types.
-  In addition, Plone can be scripted using web standard solutions and Open Source languages.
+  In addition, Plone can be scripted using web standard solutions and open source languages.
 
 - **Plone is technology neutral.**
   Plone can interoperate with most relational database systems, open source, and commercial, and runs on a vast array of
@@ -100,15 +101,15 @@ Technical overview
 
 Plone is a content management platform with its backend written in Python.
 Plone has a choice of frontend, either Classic UI using server-side templates or Volto written in modern React-based JavaScript.
-It builds upon Zope, an Open Source web application server and development system, and thus on the pluggable Zope Component Architecture (ZCA).
+It builds upon Zope, an open source web application server and development system, and thus on the pluggable Zope Component Architecture (ZCA).
 
-Python is the easy-to-learn, widely-used, and supported Open Source programming language.
+Python is the easy to learn, widely used, and supported open source programming language.
 Python can be used to add new features to Plone and used to understand or make changes to the way that Plone works.
 
 Plone stores its contents in Zope's built-in transactional hierarchical object database, the ZODB.
 The ZODB can be connected to simple file-storages, scalable ZEO-Servers or Postgres, MySQL, and Oracle.
-There are addons and techniques, however, to share information with other sources, such as relational databases, LDAP, filesystem
-files, etc.
+There are add-ons and techniques, however, to share information with other sources, such as relational databases, LDAP, filesystem
+files, and so on.
 
 
 <h2 align="center">
@@ -128,7 +129,11 @@ Official Resources
 This project is supported by
 </h2>
 
-[![Plone Foundation](https://raw.githubusercontent.com/plone/.github/main/plone-foundation.png)](https://plone.org/foundation/)
+<p align="center">
+    <a href="https://plone.org/foundation/">
+      <img alt="Plone Logo" width="200px" src="https://raw.githubusercontent.com/plone/.github/main/plone-foundation.png">
+    </a>
+</p>
 
 <h2 align="center">
 License
