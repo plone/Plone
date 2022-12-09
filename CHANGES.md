@@ -1,6 +1,6 @@
-## Changelog
+# Changelog
 
-### 6.0.0rc3 (unreleased)
+## 6.0.0rc3 (unreleased)
 
 Breaking changes:
 
@@ -15,7 +15,7 @@ Bug fixes:
 - *add item here*
 
 
-### 6.0.0rc2 (2022-12-05)
+## 6.0.0rc2 (2022-12-05)
 
 Bug fixes:
 
@@ -28,7 +28,7 @@ Internal:
   [ericof]
 
 
-### 6.0.0rc1 (2022-11-18)
+## 6.0.0rc1 (2022-11-18)
 
 Bug fixes:
 
@@ -36,7 +36,7 @@ Bug fixes:
   [maurits]
 
 
-### 6.0.0b3 (2022-10-04)
+## 6.0.0b3 (2022-10-04)
 
 Bug fixes:
 
@@ -44,7 +44,7 @@ Bug fixes:
   [maurits]
 
 
-### 6.0.0b2 (2022-09-10)
+## 6.0.0b2 (2022-09-10)
 
 Breaking changes:
 
@@ -53,7 +53,7 @@ Breaking changes:
   [maurits]
 
 
-### 6.0.0b1 (2022-07-23)
+## 6.0.0b1 (2022-07-23)
 
 Bug fixes:
 
@@ -61,7 +61,7 @@ Bug fixes:
   [maurits]
 
 
-### 6.0.0a6 (unreleased)
+## 6.0.0a6 (unreleased)
 
 Bug fixes:
 
@@ -69,7 +69,7 @@ Bug fixes:
   [maurits]
 
 
-### 6.0.0a5 (2022-06-24)
+## 6.0.0a5 (2022-06-24)
 
 Bug fixes:
 
@@ -77,7 +77,7 @@ Bug fixes:
   [maurits]
 
 
-### 6.0.0a4 (2022-04-08)
+## 6.0.0a4 (2022-04-08)
 
 New features:
 
@@ -85,7 +85,7 @@ New features:
   [maurits]
 
 
-### 6.0.0a3 (2022-01-28)
+## 6.0.0a3 (2022-01-28)
 
 Bug fixes:
 
@@ -93,7 +93,7 @@ Bug fixes:
   [maurits]
 
 
-### 6.0.0a2 (2021-12-03)
+## 6.0.0a2 (2021-12-03)
 
 Bug fixes:
 
@@ -101,7 +101,7 @@ Bug fixes:
   [maurits]
 
 
-### 6.0.0a1 (2021-10-16)
+## 6.0.0a1 (2021-10-16)
 
 Bug fixes:
 
@@ -110,7 +110,7 @@ Bug fixes:
   [maurits]
 
 
-### 6.0.0a1.dev0 (2021-09-15)
+## 6.0.0a1.dev0 (2021-09-15)
 
 Breaking changes:
 
@@ -128,7 +128,7 @@ Misc:
   [jensens]
 
 
-### 5.2.5 (2021-07-31)
+## 5.2.5 (2021-07-31)
 
 Bug fixes:
 
@@ -136,7 +136,7 @@ Bug fixes:
   [maurits]
 
 
-### 5.2.4 (2021-02-19)
+## 5.2.4 (2021-02-19)
 
 Bug fixes:
 
@@ -148,7 +148,7 @@ Bug fixes:
   [maurits]
 
 
-### 5.2.3 (2020-10-30)
+## 5.2.3 (2020-10-30)
 
 Bug fixes:
 
@@ -156,7 +156,7 @@ Bug fixes:
   [maurits]
 
 
-### 5.2.2 (2020-06-28)
+## 5.2.2 (2020-06-28)
 
 New features:
 
@@ -164,7 +164,7 @@ New features:
   [maurits]
 
 
-### 5.2.1 (2019-12-02)
+## 5.2.1 (2019-12-02)
 
 New features:
 
@@ -173,7 +173,7 @@ New features:
 
 
 
-### 5.2.0 (2019-07-10)
+## 5.2.0 (2019-07-10)
 
 New features:
 
@@ -181,7 +181,7 @@ New features:
   [esteele]
 
 
-### 5.2rc5 (2019-06-27)
+## 5.2rc5 (2019-06-27)
 
 New features:
 
@@ -189,7 +189,7 @@ New features:
   [esteele]
 
 
-### 5.2rc4 (2019-06-19)
+## 5.2rc4 (2019-06-19)
 
 New features:
 
@@ -197,7 +197,7 @@ New features:
   [esteele]
 
 
-### 5.2rc3 (2019-05-04)
+## 5.2rc3 (2019-05-04)
 
 New features:
 
@@ -205,14 +205,14 @@ New features:
   [esteele]
 
 
-### 5.2rc2 (2019-03-21)
+## 5.2rc2 (2019-03-21)
 
 Bug fixes:
 
 - Release Plone 5.2rc2
   [esteele]
 
-### 5.2rc1 (2019-03-04)
+## 5.2rc1 (2019-03-04)
 
 New features:
 
@@ -220,7 +220,7 @@ New features:
   [esteele]
 
 
-### 5.2b1 (2019-02-13)
+## 5.2b1 (2019-02-13)
 
 New features:
 
@@ -228,7 +228,7 @@ New features:
   [timo]
 
 
-### 5.2a2 (2018-12-28)
+## 5.2a2 (2018-12-28)
 
 New features:
 
@@ -236,7 +236,7 @@ New features:
   [esteele]
 
 
-### 5.2a1 (2018-11-08)
+## 5.2a1 (2018-11-08)
 
 New features:
 
@@ -244,7 +244,7 @@ New features:
   [esteele]
 
 
-### 5.1.4 (2018-10-01)
+## 5.1.4 (2018-10-01)
 
 New features:
 
@@ -252,7 +252,7 @@ New features:
   [esteele]
 
 
-### 5.1.3 (2018-06-21)
+## 5.1.3 (2018-06-21)
 
 New features:
 
@@ -260,7 +260,7 @@ New features:
   [esteele]
 
 
-### 5.1.2 (2018-04-08)
+## 5.1.2 (2018-04-08)
 
 New features:
 
@@ -268,7 +268,7 @@ New features:
   [esteele]
 
 
-### 5.1.1 (2018-03-10)
+## 5.1.1 (2018-03-10)
 
 New features:
 
@@ -276,7 +276,7 @@ New features:
   [esteele]
 
 
-### 5.1.0 (2018-02-05)
+## 5.1.0 (2018-02-05)
 
 New features:
 
@@ -284,14 +284,14 @@ New features:
   [esteele]
 
 
-### 5.1rc2 (2017-11-26)
+## 5.1rc2 (2017-11-26)
 
 New features:
 
 - Release Plone 5.1rc2
   [esteele]
 
-### 5.1rc1 (2017-09-10)
+## 5.1rc1 (2017-09-10)
 
 New features:
 
@@ -299,7 +299,7 @@ New features:
 
 
 
-### 5.1b4 (2017-07-03)
+## 5.1b4 (2017-07-03)
 
 New features:
 
@@ -311,7 +311,7 @@ Bug fixes:
 - Add link to Plone.com and tweak intro
   [tkimnguyen]
 
-### 5.1b3 (2017-04-02)
+## 5.1b3 (2017-04-02)
 
 New features:
 
@@ -319,7 +319,7 @@ New features:
   [esteele]
 
 
-### 5.1b2 (2017-02-20)
+## 5.1b2 (2017-02-20)
 
 New features:
 
@@ -327,7 +327,7 @@ New features:
   [esteele]
 
 
-### 5.1b1 (2017-02-20)
+## 5.1b1 (2017-02-20)
 
 Breaking changes:
 
@@ -346,7 +346,7 @@ Bug fixes:
   [davisagli]
 
 
-### 5.1a2 (2016-08-19)
+## 5.1a2 (2016-08-19)
 
 New:
 
@@ -354,14 +354,14 @@ New:
   [esteele]
 
 
-### 5.1a1 (2016-03-31)
+## 5.1a1 (2016-03-31)
 
 New:
 
 - Release Plone 5.1a1
   [esteele]
 
-### 5.0.2 (2016-01-08)
+## 5.0.2 (2016-01-08)
 
 New:
 
@@ -369,133 +369,133 @@ New:
   [esteele]
 
 
-### 5.0.1 (2015-12-17)
+## 5.0.1 (2015-12-17)
 
 - Release Plone 5.0.1
   [esteele]
 
 
-### 5.0 (2015-09-27)
+## 5.0 (2015-09-27)
 
 - Release Plone 5.0
   [esteele]
 
 
-### 5.0rc3 (2015-09-21)
+## 5.0rc3 (2015-09-21)
 
 - Release Plone 5.0rc3
   [esteele]
 
 
-### 5.0rc2 (2015-09-11)
+## 5.0rc2 (2015-09-11)
 
 - Release Plone 5.0rc2
   [esteele]
 
 
-### 5.0rc1 (2015-09-08)
+## 5.0rc1 (2015-09-08)
 
 - Release Plone 5.0rc1
   [esteele]
 
 
-### 5.0b4 (2015-08-23)
+## 5.0b4 (2015-08-23)
 
 - Release Plone 5.0b4
   [esteele]
 
 
-### 5.0b3 (2015-07-20)
+## 5.0b3 (2015-07-20)
 
 - Release Plone 5.0b3
   [esteele]
 
-### 5.0b2 (2015-05-27)
+## 5.0b2 (2015-05-27)
 
 - Release Plone 5.0b2
   [esteele]
 
 
-### 5.0b1 (2015-03-26)
+## 5.0b1 (2015-03-26)
 
 - Release Plone 5.0b1
   [esteele]
 
 
-### 5.0a3 (2014-11-01)
+## 5.0a3 (2014-11-01)
 
 - Release Plone 5.0a3
   [esteele]
 
 
-### 5.0a2 (2014-04-20)
+## 5.0a2 (2014-04-20)
 
 - Move plone.app.theming dependency into Products.CMFPlone.
   [esteele]
 
 
-### 4.3.4 (2014-10-22)
+## 4.3.4 (2014-10-22)
   - Release Plone 4.3.4 [esteele]
 
 
-### 4.3.3 (2014-02-19)
+## 4.3.3 (2014-02-19)
 
   - Release Plone 4.3.3 [esteele]
 
-### 4.3.2 (2013-08-14)
+## 4.3.2 (2013-08-14)
 
   - Release Plone 4.3.2 [esteele]
 
 
-### 4.3.1 (2013-05-30)
+## 4.3.1 (2013-05-30)
 
 - Release Plone 4.3.1
   [esteele]
 
 
-### 4.3 (2013-04-06)
+## 4.3 (2013-04-06)
 
 - Release Plone 4.3
   [esteele]
 
 
-### 4.3b2 (2013-01-17)
+## 4.3b2 (2013-01-17)
 
 - Release Plone 4.3b2
   [esteele]
 
 
-### 4.3b1 (2013-01-01)
+## 4.3b1 (2013-01-01)
 
 - Release Plone 4.3b1
   [esteele]
 
 
-### 4.3a2 (2012-10-18)
+## 4.3a2 (2012-10-18)
 
 - Release Plone 4.3a2
   [esteele]
 
 
-### 4.3a1 (2012-08-31)
+## 4.3a1 (2012-08-31)
 
 - Release Plone 4.3a1
   [esteele]
 
 
-### 4.2.1 (2012-08-11)
+## 4.2.1 (2012-08-11)
 
 - Release Plone 4.2.1
   [esteele]
 
 
-### 4.2 (2012-06-29)
+## 4.2 (2012-06-29)
 
 - Release Plone 4.2
   [esteele]
 
 
-### 4.2rc2 (2012-05-31)
+## 4.2rc2 (2012-05-31)
 
 - Release Plone 4.2rc2
   [esteele]
@@ -505,55 +505,55 @@ New:
   [hannosch]
 
 
-### 4.2rc1 (2012-05-07)
+## 4.2rc1 (2012-05-07)
 
 - Release Plone 4.2rc1
   [esteele]
 
 
-### 4.2b2 (2012-02-09)
+## 4.2b2 (2012-02-09)
 
 - Release Plone 4.2b2
   [esteele]
 
 
-### 4.2b1 (2011-12-05)
+## 4.2b1 (2011-12-05)
 
 - Release Plone 4.2b1
   [esteele]
 
-### 4.2a2 (2011-08-25)
+## 4.2a2 (2011-08-25)
 
 - Release Plone 4.2a2
   [esteele]
 
-### 4.2a1 (2011-08-08)
+## 4.2a1 (2011-08-08)
 
 - Release Plone 4.2a1
   [esteele]
 
-### 4.1 (2011-07-12)
+## 4.1 (2011-07-12)
 
 - Release Plone 4.1 final
   [esteele]
 
-### 4.1rc3 (2011-06-02)
+## 4.1rc3 (2011-06-02)
 
 - Release Plone 4.1rc3
   [esteele]
 
-### 4.1rc2 (2011-05-21)
+## 4.1rc2 (2011-05-21)
 
 - Release Plone 4.1rc2
   [esteele]
 
 
-### 4.1rc1 (2011-05-20)
+## 4.1rc1 (2011-05-20)
 
 - Release Plone 4.1rc1
   [esteele]
 
-### 4.1b2 (2011-04-06)
+## 4.1b2 (2011-04-06)
 
 - Release Plone 4.1b2
   [esteele]
@@ -561,22 +561,22 @@ New:
 - Depend on wicked now that Products.CMFPlone doesn't.
   [davisagli]
 
-### 4.1b1 (2011-03-04)
+## 4.1b1 (2011-03-04)
 
 - Release Plone 4.1b1
   [esteele]
 
-### 4.1a3 (2011-02-14)
+## 4.1a3 (2011-02-14)
 
 - Release Plone 4.1a3
   [esteele]
 
-### 4.1a2 (2011-02-10)
+## 4.1a2 (2011-02-10)
 
 - Include plone.app.caching as an optional, shipped add-on.
   [esteele]
 
-### 4.1a1 (2011-01-18)
+## 4.1a1 (2011-01-18)
 
 - Separate `Products.CMFPlone` from the `Plone` egg.
   [elro]
