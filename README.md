@@ -77,7 +77,7 @@ and provides you with a system for managing web content that is ideal for projec
 
 - **Plone follows standards and is inclusive.**
   Plone carefully follows standards for usability and accessibility.
-  Plone pages are compliant with US Section 508, and the W3C's AAA rating for accessibility.
+  Plone is compliant with WCAG 2.1 level AA and aims for ATAG 2.0 level AA.
 
 - **Plone is open source.**
   Plone is licensed under the GNU General Public License, the same license used by Linux.
