@@ -19,19 +19,20 @@
 
 </div>
 
-Plone is a mature, secure, and user-friendly Content Management System (CMS).
+Plone is a mature, secure, and user-friendly content management system (CMS).
 
 Plone was first released to the public on October 4, 2001.
 
 Plone has the maturity, stability, and reliability of an application maintained by open source developers with decades of experience, while continually evolving and adapting to modern technology.
 
 Lots of customizations can be made trough-the-web, such as creating content types, themes, workflows, and much more.
-Pushed one step further Plone can be used as a framework on which to build custom CMS-like solutions.
+Plone may be extended and used as a framework on which to build custom CMS-like solutions.
 
 Plone works as a
 
-- Full-featured classical server-side rendered CMS,
-- Headless CMS that offers all features as a REST API.
+- Full-featured server-side rendered HTML CMS.
+- React-based frontend for editing and viewing content, backed by a server with a REST API.
+- Headless CMS server with a REST API, allowing a developer to build a custom frontend with their chosen technology.
 
 
 <h2 align="center">
@@ -41,6 +42,7 @@ Plone works as a
 Plone is available on Linux, Microsoft Windows, macOS, and BSD platforms.
 
 Plone may be run as a container in the cloud with Docker and other Open Containers Initiative compliant platforms.
+[Example Dockerfiles](https://6.docs.plone.org/install/containers/images/index.html) and base images are available.
 
 [Install Plone by choosing an option from plone.org](https://plone.org/download)
 
@@ -69,7 +71,7 @@ and provides you with a system for managing web content that is ideal for projec
 - **Plone is easy to install.**
   Several installation options are available for either your local machine or on servers in the cloud.
 
-- **Plone empowers content editors and webmasters.**
+- **Plone empowers content editors and web application developers.**
   The Plone Team includes usability experts who have made Plone easy and attractive for content managers to add, update, and maintain content.
 
 - **Plone is international.**
@@ -84,14 +86,14 @@ and provides you with a system for managing web content that is ideal for projec
   This gives you the right to use Plone without a license fee, and to improve upon the product.
 
 - **Plone is supported.**
-  There are over three hundred developers in the Plone Development Team around the world, and a multitude of companies that specialize in Plone development and support.
+  There are over two hundred active developers in the Plone Development Team around the world, and a multitude of companies that specialize in Plone development and support.
 
 - **Plone is extensible.**
   There is a multitude of add-on products for Plone to add new features and content types.
   In addition, Plone can be scripted using web standard solutions and open source languages.
 
 - **Plone is technology neutral.**
-  Plone can interoperate with most relational database systems, open source, and commercial, and runs on a vast array of
+  Plone can interoperate with most relational database systems—both open source and commercial—and runs on a vast array of
   platforms, including Linux, Windows, macOS, and BSD.
 
 
