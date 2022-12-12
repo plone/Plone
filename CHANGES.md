@@ -1,6 +1,6 @@
 # Changelog
 
-## 6.0.0rc3 (unreleased)
+## 6.0.0 (unreleased)
 
 Breaking changes:
 
