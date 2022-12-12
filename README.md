@@ -8,8 +8,6 @@
 
 <div align="center">
 
-[![PyPI](https://img.shields.io/pypi/v/plone)](https://pypi.org/project/plone/)
-[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/plone)](https://pypi.org/project/plone/)
 [![PyPI - Wheel](https://img.shields.io/pypi/wheel/plone)](https://pypi.org/project/plone/)
 [![PyPI - License](https://img.shields.io/pypi/l/plone)](https://pypi.org/project/plone/)
 [![PyPI - Status](https://img.shields.io/pypi/status/plone)](https://pypi.org/project/plone/)
