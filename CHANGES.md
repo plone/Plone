@@ -1,19 +1,11 @@
 # Changelog
 
-## 6.0.3 (unreleased)
-
-
-Breaking changes:
-
-- *add item here*
-
-New features:
-
-- *add item here*
+## 6.0.3 (2023-03-23)
 
 Bug fixes:
 
-- *add item here*
+- Release 6.0.3.
+  [maurits]
 
 
 ## 6.0.2 (2023-02-23)
