@@ -4,17 +4,10 @@ Changelog
 5.2.12 (unreleased)
 -------------------
 
-Breaking changes:
-
-- *add item here*
-
-New features:
-
-- *add item here*
-
 Bug fixes:
 
-- *add item here*
+- Release Plone 5.2.12.
+  [maurits]
 
 
 5.2.11 (2023-01-26)
