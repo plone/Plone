@@ -1,5 +1,21 @@
 # Changelog
 
+## 6.0.5 (unreleased)
+
+
+Breaking changes:
+
+- *add item here*
+
+New features:
+
+- *add item here*
+
+Bug fixes:
+
+- *add item here*
+
+
 ## 6.0.4 (2023-04-21)
 
 Bug fixes:
