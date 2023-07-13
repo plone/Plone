@@ -9,7 +9,7 @@ Breaking changes:
 
 New features:
 
-- *add item here*
+- Depend on plone.app.multilingual here, this makes it an core addon. [jensens]
 
 Bug fixes:
 
