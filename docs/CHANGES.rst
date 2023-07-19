@@ -1,6 +1,22 @@
 Changelog
 =========
 
+5.2.14 (unreleased)
+-------------------
+
+Breaking changes:
+
+- *add item here*
+
+New features:
+
+- *add item here*
+
+Bug fixes:
+
+- *add item here*
+
+
 5.2.13 (2023-07-20)
 -------------------
 
