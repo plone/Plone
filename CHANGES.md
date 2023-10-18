@@ -1,6 +1,6 @@
 # Changelog
 
-## 6.0.5 (unreleased)
+## 6.1.0a1.dev0 (2023-10-18)
 
 
 New features:
