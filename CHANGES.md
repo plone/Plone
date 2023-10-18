@@ -3,17 +3,9 @@
 ## 6.0.5 (unreleased)
 
 
-Breaking changes:
-
-- *add item here*
-
 New features:
 
 - Depend on plone.app.multilingual here, this makes it an core addon. [jensens]
-
-Bug fixes:
-
-- *add item here*
 
 
 ## 6.0.7 (2023-09-14)
