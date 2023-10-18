@@ -16,6 +16,30 @@ Bug fixes:
 - *add item here*
 
 
+## 6.0.7 (2023-09-14)
+
+Bug fixes:
+
+- Release 6.0.7.
+  [maurits]
+
+
+## 6.0.6 (2023-06-22)
+
+Bug fixes:
+
+- Release 6.0.6.
+  [maurits]
+
+
+## 6.0.5 (2023-05-25)
+
+Bug fixes:
+
+- Release 6.0.5.
+  [maurits]
+
+
 ## 6.0.4 (2023-04-21)
 
 Bug fixes:
