@@ -2,7 +2,7 @@ How to upgrade a Plone site to a newer version
 ==============================================
 
 This is a short version, more information can be found at
-http://plone.org/upgrade.
+https://6.docs.plone.org/upgrade.
 
 1. Stop Plone / Zope
 
@@ -32,9 +32,9 @@ Running the upgrade may:
  * Reapply security to objects, this may be time-consuming
 
 If you have issues please search for an update of your Python, Zope, Plone and
-third-party add-ons and read http://plone.org/upgrade.
+third-party add-ons and read https://6.docs.plone.org/upgrade/index.
 If you still have issues please the use the bug tracker at
-http://dev.plone.org/plone and include: your Python version, the platform, the
+https://github.com/plone/Products.CMFPlone/issues and include: your Python version, the platform, the
 Plone versions you are upgrading to and from and most
 important: the full traceback and upgrade log. Try to provide as much
 information as possible.
