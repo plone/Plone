@@ -2,24 +2,9 @@
 
 ## 6.1.0a1 (unreleased)
 
-
-Breaking changes:
-
-- *add item here*
-
 New features:
 
-- *add item here*
-
-Bug fixes:
-
-- *add item here*
-
-
-## 6.1.0a1.dev0 (2023-10-18)
-
-
-New features:
+- Depend on plone.app.discussion here, this makes it an core addon. [jensens]
 
 - Depend on plone.app.multilingual here, this makes it an core addon. [jensens]
 
