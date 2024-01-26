@@ -1,6 +1,6 @@
 # Changelog
 
-## 6.1.0a1 (unreleased)
+## 6.1.0a1 (2024-01-26)
 
 New features:
 
