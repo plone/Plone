@@ -1,6 +1,6 @@
 # Changelog
 
-## 6.0.10 (unreleased)
+## 6.0.10 (2024-02-22)
 
 Bug fixes:
 
