@@ -3,17 +3,10 @@
 ## 6.1.0a2 (unreleased)
 
 
-Breaking changes:
-
-- *add item here*
-
-New features:
-
-- *add item here*
-
 Bug fixes:
 
-- *add item here*
+- Release 6.1.0a2.
+  [maurits]
 
 
 ## 6.1.0a1 (2024-01-26)
