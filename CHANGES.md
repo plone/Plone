@@ -3,17 +3,10 @@
 ## 6.1.0a5 (unreleased)
 
 
-Breaking changes:
-
-- *add item here*
-
-New features:
-
-- *add item here*
-
 Bug fixes:
 
-- *add item here*
+- Release 6.1.0a5.
+  [maurits]
 
 
 ## 6.1.0a4 (2024-08-01)
