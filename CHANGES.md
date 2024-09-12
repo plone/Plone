@@ -5,11 +5,13 @@
 
 Breaking changes:
 
-- *add item here*
+- Require Python 3.10 as minimum.
+  [maurits]
 
 New features:
 
-- *add item here*
+- Add dependency on `plone.classicui` distribution.
+  [maurits]
 
 Bug fixes:
 
