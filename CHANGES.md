@@ -13,10 +13,6 @@ New features:
 - Add dependency on `plone.classicui` distribution.
   [maurits]
 
-Bug fixes:
-
-- *add item here*
-
 
 ## 6.1.0a5 (2024-09-05)
 
