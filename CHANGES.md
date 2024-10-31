@@ -1,6 +1,6 @@
 # Changelog
 
-## 6.1.0a6 (unreleased)
+## 6.1.0b1 (2024-10-31)
 
 
 Breaking changes:
