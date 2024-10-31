@@ -1,5 +1,21 @@
 # Changelog
 
+## 6.1.0b2 (unreleased)
+
+
+Breaking changes:
+
+- *add item here*
+
+New features:
+
+- *add item here*
+
+Bug fixes:
+
+- *add item here*
+
+
 ## 6.1.0b1 (2024-10-31)
 
 
