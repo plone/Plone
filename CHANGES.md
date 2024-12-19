@@ -3,17 +3,10 @@
 ## 6.0.14 (unreleased)
 
 
-Breaking changes:
-
-- *add item here*
-
-New features:
-
-- *add item here*
-
 Bug fixes:
 
-- *add item here*
+- Release 6.0.14.
+  [maurits]
 
 
 ## 6.0.13 (2024-09-05)
