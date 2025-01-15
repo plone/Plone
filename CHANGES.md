@@ -13,7 +13,7 @@ New features:
 
 Bug fixes:
 
-- *add item here*
+- Update package metadata. [davisagli]
 
 
 ## 6.0.14 (2024-12-19)
