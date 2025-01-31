@@ -1,5 +1,21 @@
 # Changelog
 
+## 6.1.0rc2 (unreleased)
+
+
+Breaking changes:
+
+- *add item here*
+
+New features:
+
+- *add item here*
+
+Bug fixes:
+
+- *add item here*
+
+
 ## 6.1.0rc1 (2025-01-31)
 
 
