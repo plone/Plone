@@ -1,19 +1,12 @@
 # Changelog
 
-## 6.1.0rc2 (unreleased)
+## 6.1.0 (2025-02-07)
 
-
-Breaking changes:
-
-- *add item here*
-
-New features:
-
-- *add item here*
 
 Bug fixes:
 
-- *add item here*
+- Release 6.1.0.
+  [maurits]
 
 
 ## 6.1.0rc1 (2025-01-31)
