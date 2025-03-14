@@ -1,6 +1,6 @@
 # Changelog
 
-## 6.1.1 (unreleased)
+## 6.1.1rc1 (2025-03-14)
 
 
 Bug fixes:
