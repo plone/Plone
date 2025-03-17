@@ -3,15 +3,10 @@
 ## 6.0.15 (unreleased)
 
 
-Breaking changes:
-
-- *add item here*
-
-New features:
-
-- *add item here*
-
 Bug fixes:
+
+- Release 6.0.15rc1.
+  [maurits]
 
 - Update package metadata. [davisagli]
 
