@@ -1,6 +1,6 @@
 # Changelog
 
-## 6.0.15 (unreleased)
+## 6.0.15rc1 (2025-03-17)
 
 
 Bug fixes:
