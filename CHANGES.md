@@ -1,19 +1,12 @@
 # Changelog
 
-## 6.0.15rc2 (unreleased)
+## 6.0.15rc2 (2025-03-26)
 
-
-Breaking changes:
-
-- *add item here*
-
-New features:
-
-- *add item here*
 
 Bug fixes:
 
-- *add item here*
+- Prepare release.
+  [maurits]
 
 
 ## 6.0.15rc1 (2025-03-17)
