@@ -1,6 +1,6 @@
 # Changelog
 
-## 6.2.0rc1 (unreleased)
+## 6.2.0rc1 (2026-03-27)
 
 
 Bug fixes:
