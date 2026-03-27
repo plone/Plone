@@ -3,17 +3,10 @@
 ## 6.2.0rc1 (unreleased)
 
 
-Breaking changes:
-
-- *add item here*
-
-New features:
-
-- *add item here*
-
 Bug fixes:
 
-- *add item here*
+- Prepare release.
+  [maurits]
 
 
 ## 6.2.0a1 (2026-01-15)
