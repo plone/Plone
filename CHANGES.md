@@ -13,7 +13,8 @@ New features:
 
 Bug fixes:
 
-- *add item here*
+- Allow more recent setuptools versions for building the package.
+  [maurits]
 
 
 ## 6.2.0rc2 (2026-05-08)

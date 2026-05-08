@@ -1,2 +1,2 @@
 [build-system]
-requires = ["setuptools>=68.2,<77"]
+requires = ["setuptools>=68.2,<83"]
