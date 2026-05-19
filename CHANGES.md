@@ -1,17 +1,12 @@
 # Changelog
 
-## 6.2.0rc3 (unreleased)
+## 6.2.0 (unreleased)
 
-
-Breaking changes:
-
-- *add item here*
-
-New features:
-
-- *add item here*
 
 Bug fixes:
+
+- Prepare final release.
+  [maurits]
 
 - Allow more recent setuptools versions for building the package.
   [maurits]
