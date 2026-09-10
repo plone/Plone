@@ -3,17 +3,10 @@
 ## 6.2.2 (unreleased)
 
 
-Breaking changes:
+Internal:
 
-- *add item here*
-
-New features:
-
-- *add item here*
-
-Bug fixes:
-
-- *add item here*
+- Prepare release.
+  [maurits]
 
 
 ## 6.2.1 (2026-06-26)
