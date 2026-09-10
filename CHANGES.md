@@ -1,6 +1,6 @@
 # Changelog
 
-## 6.2.2 (unreleased)
+## 6.2.2 (2026-09-11)
 
 
 Internal:
