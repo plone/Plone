@@ -1,19 +1,12 @@
 # Changelog
 
-## 6.0.16 (unreleased)
+## 6.0.16 (2026-11-10)
 
 
-Breaking changes:
+Internal:
 
-- *add item here*
-
-New features:
-
-- *add item here*
-
-Bug fixes:
-
-- *add item here*
+- Prepare release.
+  [maurits]
 
 
 ## 6.0.15 (2025-03-27)
