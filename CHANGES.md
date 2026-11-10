@@ -1,19 +1,12 @@
 # Changelog
 
-## 6.2.3 (unreleased)
+## 6.2.3 (2026-11-10)
 
 
-Breaking changes:
+Internal:
 
-- *add item here*
-
-New features:
-
-- *add item here*
-
-Bug fixes:
-
-- *add item here*
+- Prepare release.
+  [maurits]
 
 
 ## 6.2.2 (2026-09-11)
